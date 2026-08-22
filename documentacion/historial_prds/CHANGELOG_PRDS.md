@@ -7,14 +7,24 @@
 
 ## 📜 Historial de Revisiones
 
-### 🔹 [Versión 4.0 (Master - Fase 4: BPMN & Casos de Uso Formales)](file:///Users/eliasignaciodelcastillogodoy/Desktop/ProyectoIntegrador/documentacion/historial_prds/PRD_v4.0_Fase4_BPMN_CasosDeUso_Master.md)
+### 🔹 [Versión 5.0 (Master - Fase 5: Pipelines CI/CD & Calidad Automatizada)](file:///Users/eliasignaciodelcastillogodoy/Desktop/ProyectoIntegrador/documentacion/historial_prds/PRD_v5.0_Fase5_CICD_Calidad_Master.md)
 - **Fecha:** 2026-08-22
 - **Estado:** VIGENTE / MASTER
 - **Autor:** Equipo de Arquitectura & Desarrollo
 - **Cambios Principales:**
-  - Incorporación formal de **5 Diagramas de Procesos de Negocio en BPMN 2.0** (`PR-01` a `PR-05`) con modelado de pools, lanes, compuertas lógicas, eventos temporales y tareas de servicio (MercadoPago, Gemini, Storage, Schedulers).
-  - Especificación formal de **8 Casos de Uso detallados** (`CU-01` a `CU-08`) con actores, precondiciones, postcondiciones, flujos principales numerados paso a paso, alternativos, excepciones y reglas de negocio.
-  - Generación de la **Matriz de Trazabilidad** que vincula Objetivos de Negocio (O1-O6), Casos de Uso, Entidades de Base de Datos y Módulos de Software.
+  - Incorporación de **Pipelines Automatizados de Integración Continua (CI/CD)** en GitHub Actions (`backend-ci.yml` y `frontend-ci.yml`).
+  - Ejecución obligatoria de la suite de pruebas unitarias JUnit 5 y validación estática de tipos TypeScript en cada push/PR.
+  - Generación de reportes de pruebas Surefire y artefactos de distribución listos para Edge CDN.
+
+---
+
+### 🔹 [Versión 4.0 (Fase 4 - BPMN 2.0 & Casos de Uso Formales)](file:///Users/eliasignaciodelcastillogodoy/Desktop/ProyectoIntegrador/documentacion/historial_prds/PRD_v4.0_Fase4_BPMN_CasosDeUso_Master.md)
+- **Fecha:** 2026-08-22
+- **Estado:** HISTÓRICO
+- **Autor:** Equipo de Arquitectura & Desarrollo
+- **Cambios Principales:**
+  - Incorporación formal de **5 Diagramas de Procesos de Negocio en BPMN 2.0** (`PR-01` a `PR-05`).
+  - Especificación formal de **8 Casos de Uso detallados** (`CU-01` a `CU-08`) y Matriz de Trazabilidad.
 
 ---
 
@@ -23,8 +33,7 @@
 - **Estado:** HISTÓRICO
 - **Autor:** Equipo de Arquitectura & Desarrollo
 - **Cambios Principales:**
-  - Incorporación de especificaciones de UI/UX avanzada en Frontend: Visor Comparativo Antes/Después con slider horizontal (`BeforeAfterSlider.tsx`), línea de tiempo de auditoría médica (`AuditTimelineView.tsx`), panel de administración de servicios y tarifas (`AdminServicesView.tsx`) y pantallas de retorno de MercadoPago.
-  - Especificación de despliegue contenerizado (`Dockerfile` multi-stage para backend, `vercel.json` para frontend y `docker-compose.yml` para orquestación local).
+  - Visor Comparativo Antes/Después con slider horizontal (`BeforeAfterSlider.tsx`), línea de tiempo de auditoría médica (`AuditTimelineView.tsx`), panel de administración de servicios (`AdminServicesView.tsx`) y Dockerfile multi-stage.
 
 ---
 
@@ -33,10 +42,7 @@
 - **Estado:** HISTÓRICO
 - **Autor:** Equipo de Arquitectura & Desarrollo
 - **Cambios Principales:**
-  - Especificación formal del algoritmo de cálculo de disponibilidad de franjas horarias en tiempo real (`/citas/disponibilidad`) de Lunes a Sábado (09:00 a 19:00 hs, paso de 30 min, antelación mínima de 2 horas).
-  - Incorporación del módulo de fotografías médicas con Supabase Storage (`imagen_hc`), validación de tipo MIME y generación de URLs firmadas.
-  - Especificación del flujo de recuperación de contraseña con tokens temporales de 15 minutos (`password_reset_token`).
-  - Plan y cobertura de la suite de pruebas unitarias automatizadas con JUnit 5 y Mockito.
+  - Algoritmo de cálculo de disponibilidad (`/citas/disponibilidad`), fotos con Supabase Storage (`imagen_hc`), tokens de 15 min (`password_reset_token`) y suite de tests unitarios JUnit 5.
 
 ---
 
@@ -45,8 +51,4 @@
 - **Estado:** HISTÓRICO
 - **Autor:** Equipo de Arquitectura & Desarrollo
 - **Cambios Principales:**
-  - Creación del PRD inicial bajo la metodología *How I Spec* de Rivera.
-  - Definición del universo de discurso (Dra. Valeria, Sofía y pacientes).
-  - Definición de objetivos (O1 a O6) y no-objetivos (NO1 a NO3).
-  - Especificación del ciclo de vida del turno, bloqueo temporal de 10 minutos por TTL y seña del 50% vía MercadoPago Checkout Pro.
-  - Modelo de historias clínicas con auditoría inmutable en PostgreSQL (Supabase) y Asistente Virtual con Google Gemini API.
+  - PRD inicial bajo la metodología *How I Spec* de Rivera, universo de discurso, objetivos O1-O6, ciclo de vida del turno y auditoría inmutable.

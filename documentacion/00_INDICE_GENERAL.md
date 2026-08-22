@@ -18,7 +18,8 @@ documentacion/
 │   ├── PRD_v1.0_Fase1_Inicial.md                         # Versión 1.0 (Especificación base y alcance)
 │   ├── PRD_v2.0_Fase2_Backend_Storage_Tests.md           # Versión 2.0 (Disponibilidad, Storage y Tests)
 │   ├── PRD_v3.0_Fase3_Frontend_DevOps_Master.md          # Versión 3.0 (UI/UX avanzada y Docker/Vercel)
-│   └── PRD_v4.0_Fase4_BPMN_CasosDeUso_Master.md          # Versión 4.0 (Master / Vigente con BPMN y Casos de Uso)
+│   ├── PRD_v4.0_Fase4_BPMN_CasosDeUso_Master.md          # Versión 4.0 (Modelado BPMN 2.0 y Casos de Uso)
+│   └── PRD_v5.0_Fase5_CICD_Calidad_Master.md             # Versión 5.0 (Master / Vigente con Pipelines CI/CD)
 │
 ├── 🏗️ fase1_especificacion_y_diseno/                      # Fase 1: Arquitectura base y Modelado
 │   ├── ARQUITECTURA_Y_DISENO_TECNICO.md                  # Diagramas UML (Paquetes, Despliegue), MER/MR, ACID
@@ -32,6 +33,9 @@ documentacion/
 │
 ├── 🏛️ fase4_bpmn_y_casos_de_uso/                          # Fase 4: Procesos BPMN 2.0 y Casos de Uso Formales
 │   └── FASE_4_PROCESOS_BPMN_Y_CASOS_DE_USO.md            # Diagramas BPMN (PR-01 a PR-05) y Casos de Uso (CU-01 a CU-08)
+│
+├── 🛡️ fase5_cicd_y_calidad_continua/                      # Fase 5: Pipelines CI/CD y Calidad Automatizada
+│   └── FASE_5_PIPELINES_CICD_GITHUB_ACTIONS.md           # Workflows de GitHub Actions (Backend y Frontend)
 │
 └── 📁 recursos_academicos_originales/                     # Materiales y diagramas base entregados por la cátedra
     ├── 2.- Microservicios y RestSimplificado.pdf
@@ -53,8 +57,9 @@ documentacion/
 
 | Necesidad / Objetivo | Documento Recomendado | Ubicación |
 | :--- | :--- | :--- |
-| **PRD Vigente Completo (How I Spec)** | [PRD v4.0 Master](file:///Users/eliasignaciodelcastillogodoy/Desktop/ProyectoIntegrador/documentacion/historial_prds/PRD_v4.0_Fase4_BPMN_CasosDeUso_Master.md) | `historial_prds/` |
+| **PRD Vigente Completo (How I Spec)** | [PRD v5.0 Master](file:///Users/eliasignaciodelcastillogodoy/Desktop/ProyectoIntegrador/documentacion/historial_prds/PRD_v5.0_Fase5_CICD_Calidad_Master.md) | `historial_prds/` |
 | **Historial de Revisiones del PRD** | [Changelog de PRDs](file:///Users/eliasignaciodelcastillogodoy/Desktop/ProyectoIntegrador/documentacion/historial_prds/CHANGELOG_PRDS.md) | `historial_prds/` |
+| **Pipelines CI/CD & GitHub Actions** | [Fase 5: CI/CD y Calidad](file:///Users/eliasignaciodelcastillogodoy/Desktop/ProyectoIntegrador/documentacion/fase5_cicd_y_calidad_continua/FASE_5_PIPELINES_CICD_GITHUB_ACTIONS.md) | `fase5_cicd_y_calidad_continua/` |
 | **Diagramas de Procesos BPMN 2.0 y Casos de Uso** | [Fase 4: BPMN y Casos de Uso](file:///Users/eliasignaciodelcastillogodoy/Desktop/ProyectoIntegrador/documentacion/fase4_bpmn_y_casos_de_uso/FASE_4_PROCESOS_BPMN_Y_CASOS_DE_USO.md) | `fase4_bpmn_y_casos_de_uso/` |
 | **Diagramas UML, MER y Transacciones** | [Arquitectura y Diseño Técnico](file:///Users/eliasignaciodelcastillogodoy/Desktop/ProyectoIntegrador/documentacion/fase1_especificacion_y_diseno/ARQUITECTURA_Y_DISENO_TECNICO.md) | `fase1_especificacion_y_diseno/` |
 | **Glosario de Anotaciones y Métodos** | [Glosario Técnico y Métodos](file:///Users/eliasignaciodelcastillogodoy/Desktop/ProyectoIntegrador/documentacion/fase1_especificacion_y_diseno/GLOSARIO_TECNICO_Y_METODOS.md) | `fase1_especificacion_y_diseno/` |
