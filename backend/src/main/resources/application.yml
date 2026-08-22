@@ -1,5 +1,5 @@
 server:
-  port: ${PORT:8080} # Puerto del servidor web (por defecto 8080 en local o inyectado por el entorno PaaS)
+  port: ${PORT:8080} # Puerto dinámico inyectado por Railway o 8080 por defecto
   servlet:
     context-path: /api/v1 # Prefijo base global de versión para todas las rutas REST
 
@@ -8,57 +8,56 @@ spring:
     name: clinica-dermatologica-backend # Nombre identificador del servicio
 
   datasource:
-    # URL de conexión JDBC a Supabase PostgreSQL con SSL obligatorio (Transaction pooler o conexión directa)
-    url: ${SPRING_DATASOURCE_URL:jdbc:postgresql://localhost:5432/clinica_db?sslmode=prefer}
-    username: ${SPRING_DATASOURCE_USERNAME:postgres} # Usuario de la base de datos Supabase
-    password: ${SPRING_DATASOURCE_PASSWORD:postgres} # Contraseña de la base de datos Supabase
-    driver-class-name: org.postgresql.Driver # Driver oficial de PostgreSQL
+    # URL de conexión JDBC a Supabase o PostgreSQL en la nube
+    url: ${SPRING_DATASOURCE_URL:${JDBC_DATABASE_URL:${DATABASE_URL:jdbc:postgresql://localhost:5432/clinica_db?sslmode=prefer}}}
+    username: ${SPRING_DATASOURCE_USERNAME:${PGUSER:${DATABASE_USER:postgres}}}
+    password: ${SPRING_DATASOURCE_PASSWORD:${PGPASSWORD:${DATABASE_PASSWORD:postgres}}}
+    driver-class-name: org.postgresql.Driver
     hikari:
-      maximum-pool-size: 10 # Tamaño máximo de conexiones simultáneas en el pool
-      minimum-idle: 5 # Mínimo de conexiones inactivas listas para responder
-      idle-timeout: 300000 # Tiempo máximo de inactividad antes de liberar conexión (5 minutos)
-      connection-timeout: 20000 # Tiempo máximo de espera para obtener una conexión (20 segundos)
+      maximum-pool-size: 10
+      minimum-idle: 2
+      idle-timeout: 300000
+      connection-timeout: 30000
 
   jpa:
     hibernate:
-      ddl-auto: validate # Validación estricta: Hibernate verifica que el esquema coincida exactamente con las entidades sin modificar tablas
-    show-sql: false # Desactiva el log excesivo de queries SQL en consola de producción para rendimiento
+      ddl-auto: validate
+    show-sql: false
     properties:
       hibernate:
-        format_sql: true # Formatea las consultas legibles en modo depuración
-        dialect: org.hibernate.dialect.PostgreSQLDialect # Dialecto de PostgreSQL para Hibernate 6
+        format_sql: false
+        dialect: org.hibernate.dialect.PostgreSQLDialect
 
   flyway:
-    enabled: true # Activa la ejecución automática de migraciones de esquema al arrancar
-    baseline-on-migrate: true # Permite aplicar migraciones sobre bases de datos existentes
-    locations: classpath:db/migration # Ruta donde se ubican los scripts SQL versionados
+    enabled: true
+    baseline-on-migrate: true
+    locations: classpath:db/migration
 
 # Configuración personalizada de Seguridad y Tokens JWT
 security:
   jwt:
-    # Clave secreta HMAC-SHA256 para firmar y validar tokens (mínimo 256 bits)
     secret-key: ${JWT_SECRET_KEY:MiClaveSecretaSuperSeguraParaLaClinicaDermatologica2026EsteticaYSalud}
-    expiration-time-ms: 28800000 # Tiempo de expiración del token JWT: 8 horas en milisegundos
+    expiration-time-ms: 28800000
 
 # Configuración de Pasarela de Pagos MercadoPago
 mercadopago:
-  access-token: ${MERCADOPAGO_ACCESS_TOKEN:TEST-0000000000000000-000000-00000000000000000000000000000000-000000000}
-  webhook-secret: ${MERCADOPAGO_WEBHOOK_SECRET:test_webhook_secret} # Clave para validar firma del webhook
+  access-token: ${MERCADOPAGO_ACCESS_TOKEN:TEST-0000000000000000-000000-000000-00000000000000000000000000000000-000000000}
+  webhook-secret: ${MERCADOPAGO_WEBHOOK_SECRET:test_webhook_secret}
   back-urls:
-    success: ${FRONTEND_BASE_URL:http://localhost:5173}/turnos/confirmado # Redirección tras pago aprobado
-    failure: ${FRONTEND_BASE_URL:http://localhost:5173}/turnos/fallido # Redirección tras pago fallido
-    pending: ${FRONTEND_BASE_URL:http://localhost:5173}/turnos/pendiente # Redirección tras pago pendiente
+    success: ${FRONTEND_BASE_URL:http://localhost:5173}/turnos/confirmado
+    failure: ${FRONTEND_BASE_URL:http://localhost:5173}/turnos/fallido
+    pending: ${FRONTEND_BASE_URL:http://localhost:5173}/turnos/pendiente
 
 # Configuración de Inteligencia Artificial con Google Gemini API
 gemini:
   api:
-    key: ${GEMINI_API_KEY:TU_API_KEY_DE_GEMINI} # API Key obtenida de Google AI Studio
-    base-url: https://generativelanguage.googleapis.com/v1beta # Endpoint base oficial de la API de Gemini
-    model: ${GEMINI_MODEL:gemini-3.5-flash-lite} # Modelo optimizado para respuestas conversacionales rápidas y económicas
+    key: ${GEMINI_API_KEY:AQ.Ab8RN6JtRjMndLmRpDeKhB60q8XernnuMzaJXyWk99XmT7zI4A}
+    base-url: https://generativelanguage.googleapis.com/v1beta
+    model: ${GEMINI_MODEL:gemini-3.5-flash-lite}
 
 # Configuración de Almacenamiento de Fotos Médicas en Supabase Storage
 supabase:
   storage:
-    url: ${SUPABASE_STORAGE_URL:https://jcsgixxatmqzpdcflevw.supabase.co/storage/v1} # URL de Supabase Storage
-    anon-key: ${SUPABASE_ANON_KEY:sb_publishable_vCQ09c8ZXEKvQeNipnC5gA_d8VQnASl} # Clave anónima o service role
-    bucket-name: photos # Nombre del bucket privado para historias clínicas
+    url: ${SUPABASE_STORAGE_URL:https://jcsgixxatmqzpdcflevw.supabase.co/storage/v1}
+    anon-key: ${SUPABASE_ANON_KEY:sb_publishable_vCQ09c8ZXEKvQeNipnC5gA_d8VQnASl}
+    bucket-name: photos
