@@ -66,12 +66,15 @@ export const GeminiChatbotWidget: React.FC = () => {
   };
 
   return (
-    <aside aria-label="Asistente Virtual con IA" className="fixed bottom-6 right-6 z-50 flex flex-col items-end">
-      {/* Ventana de Chat */}
+    <aside
+      aria-label="Asistente Virtual con IA"
+      className="fixed bottom-20 right-4 sm:bottom-6 sm:right-6 z-50 flex flex-col items-end"
+    >
+      {/* Ventana de Chat Flotante / Adaptativa */}
       {isOpen && (
         <div
-          className={`bg-white rounded-2xl shadow-2xl border border-slate-200 w-80 sm:w-96 flex flex-col transition-all duration-300 overflow-hidden mb-3 ${
-            isMinimized ? 'h-14' : 'h-[480px]'
+          className={`bg-white rounded-2xl shadow-2xl border border-slate-200 w-[calc(100vw-32px)] sm:w-96 flex flex-col transition-all duration-300 overflow-hidden mb-2 max-w-sm ${
+            isMinimized ? 'h-14' : 'h-[440px] sm:h-[480px]'
           }`}
         >
           {/* Encabezado del Widget */}
@@ -123,7 +126,7 @@ export const GeminiChatbotWidget: React.FC = () => {
                       </div>
                     )}
                     <div
-                      className={`max-w-[78%] p-3 rounded-2xl ${
+                      className={`max-w-[80%] p-3 rounded-2xl ${
                         msg.role === 'user'
                           ? 'bg-teal-600 text-white rounded-br-none shadow-sm'
                           : 'bg-white text-slate-800 border border-slate-200 rounded-bl-none shadow-sm'
@@ -182,17 +185,26 @@ export const GeminiChatbotWidget: React.FC = () => {
         </div>
       )}
 
-      {/* Botón Flotante de Apertura */}
+      {/* Botón Flotante de Apertura (Compacto Circular en Celulares, Expandido en Desktop) */}
       {!isOpen && (
         <button
           onClick={() => {
             setIsOpen(true);
             setIsMinimized(false);
           }}
-          className="bg-teal-600 hover:bg-teal-700 text-white p-3.5 rounded-full shadow-lg flex items-center space-x-2 transition-transform transform hover:scale-105"
+          className="bg-teal-600 hover:bg-teal-700 text-white shadow-xl shadow-teal-700/25 transition-all transform hover:scale-105 active:scale-95 flex items-center justify-center p-3 sm:py-3 sm:px-4 rounded-full border-2 border-white/20"
+          aria-label="Abrir asistente virtual de inteligencia artificial"
         >
-          <Sparkles className="w-5 h-5" />
-          <span className="text-xs font-bold pr-1">¿Dudas? Consultar con IA</span>
+          {/* En Móvil: Botón circular con icono y badge de IA */}
+          <div className="relative flex items-center justify-center">
+            <Sparkles className="w-5 h-5 sm:w-4 sm:h-4 text-white animate-pulse" />
+            <span className="absolute -top-1 -right-1 w-2.5 h-2.5 bg-emerald-400 border-2 border-teal-700 rounded-full sm:hidden"></span>
+          </div>
+
+          {/* En Desktop: Texto descriptivo visible */}
+          <span className="hidden sm:inline text-xs font-bold pl-2 pr-1">
+            ¿Dudas? Consultar con IA
+          </span>
         </button>
       )}
     </aside>
