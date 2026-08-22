@@ -9,7 +9,7 @@ spring:
 
   datasource:
     # URL de conexión JDBC a Supabase o PostgreSQL en la nube
-    url: ${SPRING_DATASOURCE_URL:${JDBC_DATABASE_URL:${DATABASE_URL:jdbc:postgresql://localhost:5432/clinica_db?sslmode=prefer}}}
+    url: ${SPRING_DATASOURCE_URL:${JDBC_DATABASE_URL:jdbc:${DATABASE_URL:postgresql://localhost:5432/clinica_db?sslmode=prefer}}}
     username: ${SPRING_DATASOURCE_USERNAME:${PGUSER:${DATABASE_USER:postgres}}}
     password: ${SPRING_DATASOURCE_PASSWORD:${PGPASSWORD:${DATABASE_PASSWORD:postgres}}}
     driver-class-name: org.postgresql.Driver
