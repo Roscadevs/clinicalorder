@@ -12,6 +12,9 @@ import java.time.Instant; // Tiempo UTC
 @Slf4j // Logger
 public class EmailNotificationService {
 
+    @org.springframework.beans.factory.annotation.Value("${FRONTEND_BASE_URL:http://localhost:5173}")
+    private String frontendBaseUrl;
+
     /**
      * Envía comprobante de confirmación de turno con los detalles de la cita.
      */
@@ -24,7 +27,7 @@ public class EmailNotificationService {
      * Envía el enlace con el token criptográfico para restablecer la contraseña.
      */
     public void sendPasswordResetEmail(String toEmail, String token) {
-        String resetUrl = "http://localhost:5173/auth/reset-password?token=" + token;
+        String resetUrl = frontendBaseUrl + "/auth/reset-password?token=" + token;
         log.info("📧 [EMAIL SERVICE] Enviando enlace de recuperación a {}: Restablece tu contraseña ingresando a: {} (Válido por 15 minutos)",
                 toEmail, resetUrl);
     }

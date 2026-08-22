@@ -22,7 +22,15 @@ public class JwtTokenProvider {
     public JwtTokenProvider(
             @Value("${security.jwt.secret-key}") String secret, // Inyecta el secret configurado
             @Value("${security.jwt.expiration-time-ms}") long expirationMs) { // Inyecta tiempo de expiración
-        this.secretKey = Keys.hmacShaKeyFor(secret.getBytes(StandardCharsets.UTF_8)); // Deriva clave segura HMAC-SHA
+        byte[] keyBytes = secret.getBytes(StandardCharsets.UTF_8);
+        if (keyBytes.length < 32) {
+            try {
+                java.security.MessageDigest md = java.security.MessageDigest.getInstance("SHA-256");
+                keyBytes = md.digest(keyBytes);
+            } catch (Exception ignored) {
+            }
+        }
+        this.secretKey = Keys.hmacShaKeyFor(keyBytes); // Deriva clave segura HMAC-SHA
         this.expirationTimeMs = expirationMs;
     }
 

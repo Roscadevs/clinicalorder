@@ -21,6 +21,7 @@
         <java.version>17</java.version> <!-- Definición de versión LTS de Java 17 -->
         <jjwt.version>0.12.5</jjwt.version> <!-- Versión de librería de soporte JWT -->
         <mercadopago.version>2.1.20</mercadopago.version> <!-- SDK oficial de MercadoPago -->
+        <flyway.version>10.7.2</flyway.version> <!-- Soporte nativo para PostgreSQL 16 y 17 -->
     </properties>
 
     <dependencies>
