@@ -7,14 +7,24 @@
 
 ## 📜 Historial de Revisiones
 
-### 🔹 [Versión 8.0 (Master - Fase 8: Recordatorios Multicanal & Sincronización de Calendarios)](file:///Users/eliasignaciodelcastillogodoy/Desktop/ProyectoIntegrador/documentacion/historial_prds/PRD_v8.0_Fase8_Recordatorios_Calendario_Master.md)
+### 🔹 [Versión 9.0 (Master Final - Fase 9: Guía de Defensa Oral & Demostración Integral)](file:///Users/eliasignaciodelcastillogodoy/Desktop/ProyectoIntegrador/documentacion/historial_prds/PRD_v9.0_Fase9_Master_Defensa_Integral.md)
 - **Fecha:** 2026-08-22
-- **Estado:** VIGENTE / MASTER
+- **Estado:** VIGENTE / MASTER FINAL
 - **Autor:** Equipo de Arquitectura & Desarrollo
 - **Cambios Principales:**
-  - Implementación del generador de eventos para **Google Calendar** en 1 clic y exportación de archivos **iCalendar (.ics)** estándar RFC 5545 para **Apple Calendar y Microsoft Outlook** con alarmas programadas de 24 hs y 2 hs previas (`calendarGenerator.ts`).
-  - Modal interactivo de **Recordatorios y Notificaciones Multicanal** (`ReminderNotificationModal.tsx`) con simulación de WhatsApp / Push y botón de confirmación de asistencia.
-  - Integración de los botones de agendamiento en el `BookingWizard.tsx`, `AppointmentReceiptModal.tsx` y `AgendaView.tsx`.
+  - Consolidación del ciclo de vida completo de ingeniería de software.
+  - Incorporación de la **Guía Estratégica de Defensa Oral y Demostración Cronometrada de 7 minutos** (`GUIA_DE_DEFENSA_Y_DEMOSTRACION.md`).
+  - Banco de 10 preguntas críticas de la cátedra con respuestas técnicas fundamentadas (Concurrencia `@Version`, transacciones ACID, 3FN/BCNF, Ley 26.529 y Secreto Médico, Docker y CI/CD).
+
+---
+
+### 🔹 [Versión 8.0 (Fase 8 - Recordatorios Multicanal & Sincronización de Calendarios)](file:///Users/eliasignaciodelcastillogodoy/Desktop/ProyectoIntegrador/documentacion/historial_prds/PRD_v8.0_Fase8_Recordatorios_Calendario_Master.md)
+- **Fecha:** 2026-08-22
+- **Estado:** HISTÓRICO
+- **Autor:** Equipo de Arquitectura & Desarrollo
+- **Cambios Principales:**
+  - Integración de **Google Calendar** en 1 clic y estándar **iCalendar (.ics)** RFC 5545 con alarmas a las -24h y -2h (`calendarGenerator.ts`).
+  - Modal interactivo de **Recordatorios WhatsApp / Push** (`ReminderNotificationModal.tsx`).
 
 ---
 
@@ -23,7 +33,7 @@
 - **Estado:** HISTÓRICO
 - **Autor:** Equipo de Arquitectura & Desarrollo
 - **Cambios Principales:**
-  - Dashboard de Analítica y KPIs Clínico-Financieros (`AnalyticsDashboardView.tsx`) con métricas de facturación bruta (\$5.840.000 ARS), reducción del absentismo del 35% al 4.2% y selector de roles RBAC.
+  - Dashboard de Analítica y KPIs Clínico-Financieros (`AnalyticsDashboardView.tsx`) con métricas de facturación (\$5.840.000 ARS), reducción de absentismo (35% a 4.2%) y selector de roles RBAC.
 
 ---
 

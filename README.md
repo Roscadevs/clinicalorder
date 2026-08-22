@@ -32,6 +32,7 @@
 ## 📖 Índice
 
 - [✨ Visión General & Propósito](#-visión-general--propósito)
+- [🎓 Guía de Defensa Oral y Demostración en Vivo](#-guía-de-defensa-oral-y-demostración-en-vivo)
 - [🏛️ Arquitectura del Sistema](#️-arquitectura-del-sistema)
 - [🔄 Modelos de Procesos de Negocio BPMN 2.0](#-modelos-de-procesos-de-negocio-bpmn-20)
 - [🧩 Módulos Funcionales & Casos de Uso](#-módulos-funcionales--casos-de-uso)
@@ -60,6 +61,15 @@ El sistema resuelve integralmente la problemática operativa, clínica y financi
 6. **Agenda Operativa y Cobros en Mostrador:** Gestión visual para la secretaria con liquidación del 50% restante en mostrador (efectivo/tarjeta).
 7. **Métricas y KPIs Clínico-Financieros:** Panel en tiempo real de facturación, tasa de asistencia y tratamientos más solicitados.
 8. **Documentación Legal & Comprobantes PDF:** Emisión de comprobantes con código QR y consentimientos informados conforme a la Ley Nacional 26.529.
+
+---
+
+## 🎓 Guía de Defensa Oral y Demostración en Vivo
+
+Consulte la **[Guía Estratégica de Defensa Oral (Fase 9)](documentacion/fase9_guia_de_defensa_y_pitch/GUIA_DE_DEFENSA_Y_DEMOSTRACION.md)** para la mesa evaluadora:
+- **Pitch de 60 segundos** de alto impacto.
+- **Guión de demostración cronometrado (7 minutos)** utilizando el *Simulador de Roles RBAC* en vivo (Paciente → Secretaria → Médica → Admin).
+- **Banco de 10 Preguntas "Trampa" de la Cátedra** con justificación técnica rigurosa (Concurrencia optimista `@Version`, transacciones ACID, 3FN / BCNF, Secreto Médico, Docker multi-stage y CI/CD).
 
 ---
 
@@ -166,7 +176,8 @@ Toda la documentación técnica se encuentra centralizada en la carpeta [`docume
   - [`PRD_v5.0_Fase5_CICD_Calidad_Master.md`](documentacion/historial_prds/PRD_v5.0_Fase5_CICD_Calidad_Master.md): Pipelines CI/CD en GitHub Actions.
   - [`PRD_v6.0_Fase6_Documentos_PDF_Master.md`](documentacion/historial_prds/PRD_v6.0_Fase6_Documentos_PDF_Master.md): Comprobantes PDF y Consentimientos.
   - [`PRD_v7.0_Fase7_Dashboard_KPIs_Master.md`](documentacion/historial_prds/PRD_v7.0_Fase7_Dashboard_KPIs_Master.md): Dashboard de Métricas y KPIs.
-  - [`PRD_v8.0_Fase8_Recordatorios_Calendario_Master.md`](documentacion/historial_prds/PRD_v8.0_Fase8_Recordatorios_Calendario_Master.md): **PRD Maestro Vigente** con Sincronización a Calendarios y Recordatorios.
+  - [`PRD_v8.0_Fase8_Recordatorios_Calendario_Master.md`](documentacion/historial_prds/PRD_v8.0_Fase8_Recordatorios_Calendario_Master.md): Recordatorios y Sincronización a Calendarios.
+  - [`PRD_v9.0_Fase9_Master_Defensa_Integral.md`](documentacion/historial_prds/PRD_v9.0_Fase9_Master_Defensa_Integral.md): **PRD Maestro Final Consolidado**.
 - 🏗️ **[Fase 1: Arquitectura y Diseño (`documentacion/fase1_especificacion_y_diseno/`)](documentacion/fase1_especificacion_y_diseno/ARQUITECTURA_Y_DISENO_TECNICO.md)**
   - [`ARQUITECTURA_Y_DISENO_TECNICO.md`](documentacion/fase1_especificacion_y_diseno/ARQUITECTURA_Y_DISENO_TECNICO.md): Diagramas UML, MER/MR, 1FN/2FN/3FN y transacciones ACID.
   - [`GLOSARIO_TECNICO_Y_METODOS.md`](documentacion/fase1_especificacion_y_diseno/GLOSARIO_TECNICO_Y_METODOS.md): Glosario exhaustivo de anotaciones Spring Boot, métodos de negocio y hooks.
@@ -184,6 +195,8 @@ Toda la documentación técnica se encuentra centralizada en la carpeta [`docume
   - [`FASE_7_DASHBOARD_METRICAS_Y_KPIS.md`](documentacion/fase7_dashboard_metricas_y_kpis/FASE_7_DASHBOARD_METRICAS_Y_KPIS.md): Tablero de KPIs, reducción de absentismo e impacto financiero.
 - 📲 **[Fase 8: Recordatorios y Calendarios (`documentacion/fase8_recordatorios_y_calendario_sync/`)](documentacion/fase8_recordatorios_y_calendario_sync/FASE_8_SISTEMA_RECORDATORIOS_Y_CALENDARIOS.md)**
   - [`FASE_8_SISTEMA_RECORDATORIOS_Y_CALENDARIOS.md`](documentacion/fase8_recordatorios_y_calendario_sync/FASE_8_SISTEMA_RECORDATORIOS_Y_CALENDARIOS.md): Sincronización con Google Calendar, Apple / Outlook .ics (RFC 5545) y Push.
+- 🎓 **[Fase 9: Guía de Defensa Oral y Pitch (`documentacion/fase9_guia_de_defensa_y_pitch/`)](documentacion/fase9_guia_de_defensa_y_pitch/GUIA_DE_DEFENSA_Y_DEMOSTRACION.md)**
+  - [`GUIA_DE_DEFENSA_Y_DEMOSTRACION.md`](documentacion/fase9_guia_de_defensa_y_pitch/GUIA_DE_DEFENSA_Y_DEMOSTRACION.md): Pitch de 60s, guión de demo de 7 minutos y banco de 10 preguntas críticas.
 
 ---
 

@@ -22,7 +22,8 @@ documentacion/
 │   ├── PRD_v5.0_Fase5_CICD_Calidad_Master.md             # Versión 5.0 (Pipelines CI/CD en GitHub Actions)
 │   ├── PRD_v6.0_Fase6_Documentos_PDF_Master.md           # Versión 6.0 (Comprobantes PDF y Consentimiento Ley 26.529)
 │   ├── PRD_v7.0_Fase7_Dashboard_KPIs_Master.md           # Versión 7.0 (Dashboard de KPIs y Métricas)
-│   └── PRD_v8.0_Fase8_Recordatorios_Calendario_Master.md # Versión 8.0 (Master / Vigente con Recordatorios y Calendarios)
+│   ├── PRD_v8.0_Fase8_Recordatorios_Calendario_Master.md # Versión 8.0 (Recordatorios y Sincronización Calendarios)
+│   └── PRD_v9.0_Fase9_Master_Defensa_Integral.md         # Versión 9.0 (Master Final con Guía de Defensa y Demo)
 │
 ├── 🏗️ fase1_especificacion_y_diseno/                      # Fase 1: Arquitectura base y Modelado
 │   ├── ARQUITECTURA_Y_DISENO_TECNICO.md                  # Diagramas UML (Paquetes, Despliegue), MER/MR, ACID
@@ -49,6 +50,9 @@ documentacion/
 ├── 📲 fase8_recordatorios_y_calendario_sync/              # Fase 8: Sincronización de Calendarios y Recordatorios
 │   └── FASE_8_SISTEMA_RECORDATORIOS_Y_CALENDARIOS.md     # Google Calendar, Apple/Outlook iCal (.ics) y Push
 │
+├── 🎓 fase9_guia_de_defensa_y_pitch/                      # Fase 9: Estrategia de Defensa Oral, Pitch y Preguntas
+│   └── GUIA_DE_DEFENSA_Y_DEMOSTRACION.md                 # Guión de demo 7 min y banco de 10 preguntas críticas
+│
 └── 📁 recursos_academicos_originales/                     # Materiales y diagramas base entregados por la cátedra
     ├── 2.- Microservicios y RestSimplificado.pdf
     ├── CasosDeUso - DetalleDiagrama.docx
@@ -69,7 +73,8 @@ documentacion/
 
 | Necesidad / Objetivo | Documento Recomendado | Ubicación |
 | :--- | :--- | :--- |
-| **PRD Vigente Completo (How I Spec)** | [PRD v8.0 Master](file:///Users/eliasignaciodelcastillogodoy/Desktop/ProyectoIntegrador/documentacion/historial_prds/PRD_v8.0_Fase8_Recordatorios_Calendario_Master.md) | `historial_prds/` |
+| **PRD Vigente Completo (How I Spec)** | [PRD v9.0 Master Final](file:///Users/eliasignaciodelcastillogodoy/Desktop/ProyectoIntegrador/documentacion/historial_prds/PRD_v9.0_Fase9_Master_Defensa_Integral.md) | `historial_prds/` |
+| **Guía de Defensa Oral y Demo 7 min** | [Fase 9: Guía de Defensa](file:///Users/eliasignaciodelcastillogodoy/Desktop/ProyectoIntegrador/documentacion/fase9_guia_de_defensa_y_pitch/GUIA_DE_DEFENSA_Y_DEMOSTRACION.md) | `fase9_guia_de_defensa_y_pitch/` |
 | **Historial de Revisiones del PRD** | [Changelog de PRDs](file:///Users/eliasignaciodelcastillogodoy/Desktop/ProyectoIntegrador/documentacion/historial_prds/CHANGELOG_PRDS.md) | `historial_prds/` |
 | **Recordatorios & Sincronización Calendarios** | [Fase 8: Calendarios y Avisos](file:///Users/eliasignaciodelcastillogodoy/Desktop/ProyectoIntegrador/documentacion/fase8_recordatorios_y_calendario_sync/FASE_8_SISTEMA_RECORDATORIOS_Y_CALENDARIOS.md) | `fase8_recordatorios_y_calendario_sync/` |
 | **Dashboard y KPIs de Gestión** | [Fase 7: Dashboard y KPIs](file:///Users/eliasignaciodelcastillogodoy/Desktop/ProyectoIntegrador/documentacion/fase7_dashboard_metricas_y_kpis/FASE_7_DASHBOARD_METRICAS_Y_KPIS.md) | `fase7_dashboard_metricas_y_kpis/` |
