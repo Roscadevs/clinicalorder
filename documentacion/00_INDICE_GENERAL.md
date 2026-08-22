@@ -21,7 +21,8 @@ documentacion/
 │   ├── PRD_v4.0_Fase4_BPMN_CasosDeUso_Master.md          # Versión 4.0 (Modelado BPMN 2.0 y Casos de Uso)
 │   ├── PRD_v5.0_Fase5_CICD_Calidad_Master.md             # Versión 5.0 (Pipelines CI/CD en GitHub Actions)
 │   ├── PRD_v6.0_Fase6_Documentos_PDF_Master.md           # Versión 6.0 (Comprobantes PDF y Consentimiento Ley 26.529)
-│   └── PRD_v7.0_Fase7_Dashboard_KPIs_Master.md           # Versión 7.0 (Master / Vigente con Dashboard de KPIs)
+│   ├── PRD_v7.0_Fase7_Dashboard_KPIs_Master.md           # Versión 7.0 (Dashboard de KPIs y Métricas)
+│   └── PRD_v8.0_Fase8_Recordatorios_Calendario_Master.md # Versión 8.0 (Master / Vigente con Recordatorios y Calendarios)
 │
 ├── 🏗️ fase1_especificacion_y_diseno/                      # Fase 1: Arquitectura base y Modelado
 │   ├── ARQUITECTURA_Y_DISENO_TECNICO.md                  # Diagramas UML (Paquetes, Despliegue), MER/MR, ACID
@@ -45,6 +46,9 @@ documentacion/
 ├── 📊 fase7_dashboard_metricas_y_kpis/                    # Fase 7: Dashboard Analítico y KPIs de Gestión
 │   └── FASE_7_DASHBOARD_METRICAS_Y_KPIS.md               # Indicadores de absentismo, facturación y tratamientos
 │
+├── 📲 fase8_recordatorios_y_calendario_sync/              # Fase 8: Sincronización de Calendarios y Recordatorios
+│   └── FASE_8_SISTEMA_RECORDATORIOS_Y_CALENDARIOS.md     # Google Calendar, Apple/Outlook iCal (.ics) y Push
+│
 └── 📁 recursos_academicos_originales/                     # Materiales y diagramas base entregados por la cátedra
     ├── 2.- Microservicios y RestSimplificado.pdf
     ├── CasosDeUso - DetalleDiagrama.docx
@@ -65,8 +69,9 @@ documentacion/
 
 | Necesidad / Objetivo | Documento Recomendado | Ubicación |
 | :--- | :--- | :--- |
-| **PRD Vigente Completo (How I Spec)** | [PRD v7.0 Master](file:///Users/eliasignaciodelcastillogodoy/Desktop/ProyectoIntegrador/documentacion/historial_prds/PRD_v7.0_Fase7_Dashboard_KPIs_Master.md) | `historial_prds/` |
+| **PRD Vigente Completo (How I Spec)** | [PRD v8.0 Master](file:///Users/eliasignaciodelcastillogodoy/Desktop/ProyectoIntegrador/documentacion/historial_prds/PRD_v8.0_Fase8_Recordatorios_Calendario_Master.md) | `historial_prds/` |
 | **Historial de Revisiones del PRD** | [Changelog de PRDs](file:///Users/eliasignaciodelcastillogodoy/Desktop/ProyectoIntegrador/documentacion/historial_prds/CHANGELOG_PRDS.md) | `historial_prds/` |
+| **Recordatorios & Sincronización Calendarios** | [Fase 8: Calendarios y Avisos](file:///Users/eliasignaciodelcastillogodoy/Desktop/ProyectoIntegrador/documentacion/fase8_recordatorios_y_calendario_sync/FASE_8_SISTEMA_RECORDATORIOS_Y_CALENDARIOS.md) | `fase8_recordatorios_y_calendario_sync/` |
 | **Dashboard y KPIs de Gestión** | [Fase 7: Dashboard y KPIs](file:///Users/eliasignaciodelcastillogodoy/Desktop/ProyectoIntegrador/documentacion/fase7_dashboard_metricas_y_kpis/FASE_7_DASHBOARD_METRICAS_Y_KPIS.md) | `fase7_dashboard_metricas_y_kpis/` |
 | **Comprobantes y Consentimientos en PDF** | [Fase 6: Documentos y PDF](file:///Users/eliasignaciodelcastillogodoy/Desktop/ProyectoIntegrador/documentacion/fase6_comprobantes_y_consentimientos_pdf/FASE_6_DOCUMENTOS_CLINICOS_Y_PDF.md) | `fase6_comprobantes_y_consentimientos_pdf/` |
 | **Pipelines CI/CD & GitHub Actions** | [Fase 5: CI/CD y Calidad](file:///Users/eliasignaciodelcastillogodoy/Desktop/ProyectoIntegrador/documentacion/fase5_cicd_y_calidad_continua/FASE_5_PIPELINES_CICD_GITHUB_ACTIONS.md) | `fase5_cicd_y_calidad_continua/` |

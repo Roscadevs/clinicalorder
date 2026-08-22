@@ -1,5 +1,6 @@
 import React from 'react'; // React hooks
-import { Printer, X, CheckCircle, Sparkles, QrCode, ShieldCheck } from 'lucide-react'; // Iconos
+import { Printer, X, CheckCircle, Sparkles, QrCode, ShieldCheck, Calendar, Download } from 'lucide-react'; // Iconos
+import { generateGoogleCalendarUrl, downloadIcsCalendarFile } from '../../utils/calendarGenerator'; // Utilidades
 
 interface AppointmentReceiptModalProps {
   isOpen: boolean;
@@ -20,7 +21,7 @@ interface AppointmentReceiptModalProps {
 }
 
 /**
- * Modal y documento imprimible de Comprobante Oficial de Turno y Seña.
+ * Modal y documento imprimible de Comprobante Oficial de Turno y Seña con sincronización a Calendario.
  */
 export const AppointmentReceiptModal: React.FC<AppointmentReceiptModalProps> = ({
   isOpen,
@@ -35,22 +36,55 @@ export const AppointmentReceiptModal: React.FC<AppointmentReceiptModalProps> = (
 
   const remainingBalance = appointmentData.agreedPrice - appointmentData.depositAmount;
 
+  const calendarEvent = {
+    id: appointmentData.id,
+    title: appointmentData.serviceName,
+    description: `Turno de ${appointmentData.serviceName} para ${appointmentData.patientName}. Seña abonada: $${appointmentData.depositAmount.toLocaleString()} ARS. Saldo en recepción: $${remainingBalance.toLocaleString()} ARS.`,
+    location: 'Consultorio Dra. Valeria Gómez, Av. Santa Fe 2450, Piso 4, CABA',
+    startTime: appointmentData.startTime,
+    durationMinutes: appointmentData.durationMinutes,
+  };
+
+  const googleUrl = generateGoogleCalendarUrl(calendarEvent);
+
+  const handleDownloadIcs = () => {
+    downloadIcsCalendarFile(calendarEvent);
+  };
+
   return (
     <div className="fixed inset-0 bg-black/50 backdrop-blur-sm z-50 flex items-center justify-center p-4 overflow-y-auto">
       <div className="bg-white rounded-2xl shadow-2xl max-w-2xl w-full p-6 sm:p-8 space-y-6 relative print:p-0 print:shadow-none print:max-w-full">
         {/* Botones de acción superiores (Ocultos en impresión) */}
-        <div className="flex justify-between items-center print:hidden border-b border-slate-100 pb-3">
+        <div className="flex flex-wrap justify-between items-center print:hidden border-b border-slate-100 pb-3 gap-2">
           <div className="flex items-center space-x-2">
             <CheckCircle className="w-5 h-5 text-emerald-600" />
             <span className="text-sm font-bold text-slate-800">Comprobante Oficial de Reserva</span>
           </div>
           <div className="flex items-center space-x-2">
+            <a
+              href={googleUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="bg-blue-50 hover:bg-blue-100 text-blue-700 text-xs font-bold px-3 py-2 rounded-xl flex items-center space-x-1.5 transition-colors border border-blue-200"
+              title="Añadir a Google Calendar"
+            >
+              <Calendar className="w-3.5 h-3.5" />
+              <span className="hidden sm:inline">Google Calendar</span>
+            </a>
+            <button
+              onClick={handleDownloadIcs}
+              className="bg-slate-100 hover:bg-slate-200 text-slate-700 text-xs font-bold px-3 py-2 rounded-xl flex items-center space-x-1.5 transition-colors border border-slate-300"
+              title="Descargar archivo .ics con alarmas para Apple y Outlook"
+            >
+              <Download className="w-3.5 h-3.5" />
+              <span className="hidden sm:inline">Apple / Outlook</span>
+            </button>
             <button
               onClick={handlePrint}
               className="bg-teal-600 hover:bg-teal-700 text-white text-xs font-bold px-3.5 py-2 rounded-xl flex items-center space-x-1.5 shadow-sm transition-colors"
             >
               <Printer className="w-4 h-4" />
-              <span>Imprimir / Guardar PDF</span>
+              <span>Imprimir / PDF</span>
             </button>
             <button
               onClick={onClose}

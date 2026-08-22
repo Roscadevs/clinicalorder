@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from 'react'; // React hooks
 import { appointmentsApi } from '../../services/api'; // API appointments
 import { Appointment, AppointmentStatus } from '../../types'; // Types
-import { Calendar, DollarSign, XCircle, Clock, Printer } from 'lucide-react'; // Icons
+import { Calendar, DollarSign, XCircle, Clock, Printer, Bell } from 'lucide-react'; // Icons
 import { AppointmentReceiptModal } from '../documents/AppointmentReceiptModal'; // Modal de comprobante
+import { ReminderNotificationModal } from '../reminders/ReminderNotificationModal'; // Modal de recordatorio
 
 export const AgendaView: React.FC = () => {
   const [appointments, setAppointments] = useState<Appointment[]>([]);
@@ -10,7 +11,8 @@ export const AgendaView: React.FC = () => {
   const [selectedAppointment, setSelectedAppointment] = useState<Appointment | null>(null);
   const [paymentModalOpen, setPaymentModalOpen] = useState(false);
   const [receiptModalOpen, setReceiptModalOpen] = useState(false);
-  const [receiptAppointment, setReceiptAppointment] = useState<Appointment | null>(null);
+  const [reminderModalOpen, setReminderModalOpen] = useState(false);
+  const [activeAppointment, setActiveAppointment] = useState<Appointment | null>(null);
   const [paymentAmount, setPaymentAmount] = useState<number>(0);
   const [paymentMethod] = useState<'FINAL_BALANCE_50' | 'FULL_PAYMENT'>('FINAL_BALANCE_50');
 
@@ -38,8 +40,13 @@ export const AgendaView: React.FC = () => {
   };
 
   const handleOpenReceipt = (appt: Appointment) => {
-    setReceiptAppointment(appt);
+    setActiveAppointment(appt);
     setReceiptModalOpen(true);
+  };
+
+  const handleOpenReminder = (appt: Appointment) => {
+    setActiveAppointment(appt);
+    setReminderModalOpen(true);
   };
 
   const handleFinalizePayment = async (e: React.FormEvent) => {
@@ -78,7 +85,7 @@ export const AgendaView: React.FC = () => {
           </div>
           <div>
             <h2 className="text-lg font-bold text-slate-900">Agenda Operativa del Consultorio</h2>
-            <p className="text-xs text-slate-500">Gestión de citas, asistencia, comprobantes y liquidación de saldos</p>
+            <p className="text-xs text-slate-500">Gestión de citas, asistencia, comprobantes y recordatorios</p>
           </div>
         </div>
 
@@ -134,6 +141,14 @@ export const AgendaView: React.FC = () => {
                     </td>
                     <td className="p-3.5 text-center">
                       <div className="flex items-center justify-center space-x-1.5">
+                        <button
+                          onClick={() => handleOpenReminder(a)}
+                          className="p-1.5 text-slate-600 hover:text-teal-600 hover:bg-slate-100 rounded-lg"
+                          title="Enviar Recordatorio & Calendario"
+                        >
+                          <Bell className="w-4 h-4 text-amber-600" />
+                        </button>
+
                         <button
                           onClick={() => handleOpenReceipt(a)}
                           className="p-1.5 text-slate-600 hover:text-teal-600 hover:bg-slate-100 rounded-lg"
@@ -225,21 +240,39 @@ export const AgendaView: React.FC = () => {
       )}
 
       {/* Modal de Comprobante Imprimible */}
-      {receiptModalOpen && receiptAppointment && (
+      {receiptModalOpen && activeAppointment && (
         <AppointmentReceiptModal
           isOpen={receiptModalOpen}
           onClose={() => setReceiptModalOpen(false)}
           appointmentData={{
-            id: receiptAppointment.id,
-            patientName: receiptAppointment.patientName,
-            patientDni: receiptAppointment.patientDni,
+            id: activeAppointment.id,
+            patientName: activeAppointment.patientName,
+            patientDni: activeAppointment.patientDni,
             patientEmail: 'paciente@example.com',
-            patientPhone: receiptAppointment.patientPhone,
-            serviceName: receiptAppointment.serviceName,
-            startTime: receiptAppointment.startTime,
+            patientPhone: activeAppointment.patientPhone,
+            serviceName: activeAppointment.serviceName,
+            startTime: activeAppointment.startTime,
             durationMinutes: 45,
-            agreedPrice: receiptAppointment.agreedPrice,
-            depositAmount: receiptAppointment.agreedPrice * 0.5,
+            agreedPrice: activeAppointment.agreedPrice,
+            depositAmount: activeAppointment.agreedPrice * 0.5,
+          }}
+        />
+      )}
+
+      {/* Modal de Recordatorio y Sincronización */}
+      {reminderModalOpen && activeAppointment && (
+        <ReminderNotificationModal
+          isOpen={reminderModalOpen}
+          onClose={() => setReminderModalOpen(false)}
+          appointmentData={{
+            id: activeAppointment.id,
+            patientName: activeAppointment.patientName,
+            patientPhone: activeAppointment.patientPhone,
+            serviceName: activeAppointment.serviceName,
+            startTime: activeAppointment.startTime,
+            durationMinutes: 45,
+            depositAmount: activeAppointment.agreedPrice * 0.5,
+            agreedPrice: activeAppointment.agreedPrice,
           }}
         />
       )}

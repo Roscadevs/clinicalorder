@@ -7,13 +7,23 @@
 
 ## 📜 Historial de Revisiones
 
-### 🔹 [Versión 7.0 (Master - Fase 7: Dashboard Analítico & Métricas de Gestión KPIs)](file:///Users/eliasignaciodelcastillogodoy/Desktop/ProyectoIntegrador/documentacion/historial_prds/PRD_v7.0_Fase7_Dashboard_KPIs_Master.md)
+### 🔹 [Versión 8.0 (Master - Fase 8: Recordatorios Multicanal & Sincronización de Calendarios)](file:///Users/eliasignaciodelcastillogodoy/Desktop/ProyectoIntegrador/documentacion/historial_prds/PRD_v8.0_Fase8_Recordatorios_Calendario_Master.md)
 - **Fecha:** 2026-08-22
 - **Estado:** VIGENTE / MASTER
 - **Autor:** Equipo de Arquitectura & Desarrollo
 - **Cambios Principales:**
-  - Implementación del **Dashboard de Analítica y KPIs Clínico-Financieros** (`AnalyticsDashboardView.tsx`) con métricas de facturación bruta (\$5.840.000 ARS), reducción del absentismo del 35% al 4.2% mediante señas online, ranking de tratamientos y tasa de conversión del Asistente Gemini AI (64.2%).
-  - Incorporación del simulador de roles RBAC interactivo en la barra superior (`App.tsx`).
+  - Implementación del generador de eventos para **Google Calendar** en 1 clic y exportación de archivos **iCalendar (.ics)** estándar RFC 5545 para **Apple Calendar y Microsoft Outlook** con alarmas programadas de 24 hs y 2 hs previas (`calendarGenerator.ts`).
+  - Modal interactivo de **Recordatorios y Notificaciones Multicanal** (`ReminderNotificationModal.tsx`) con simulación de WhatsApp / Push y botón de confirmación de asistencia.
+  - Integración de los botones de agendamiento en el `BookingWizard.tsx`, `AppointmentReceiptModal.tsx` y `AgendaView.tsx`.
+
+---
+
+### 🔹 [Versión 7.0 (Fase 7 - Dashboard Analítico & Métricas de Gestión KPIs)](file:///Users/eliasignaciodelcastillogodoy/Desktop/ProyectoIntegrador/documentacion/historial_prds/PRD_v7.0_Fase7_Dashboard_KPIs_Master.md)
+- **Fecha:** 2026-08-22
+- **Estado:** HISTÓRICO
+- **Autor:** Equipo de Arquitectura & Desarrollo
+- **Cambios Principales:**
+  - Dashboard de Analítica y KPIs Clínico-Financieros (`AnalyticsDashboardView.tsx`) con métricas de facturación bruta (\$5.840.000 ARS), reducción del absentismo del 35% al 4.2% y selector de roles RBAC.
 
 ---
 
@@ -22,8 +32,7 @@
 - **Estado:** HISTÓRICO
 - **Autor:** Equipo de Arquitectura & Desarrollo
 - **Cambios Principales:**
-  - Generador de **Comprobantes Oficiales de Turno e Impresión en PDF** (`AppointmentReceiptModal.tsx`) con código QR y desglose de seña del 50%.
-  - Documento de **Consentimiento Informado Médico-Legal** (`InformedConsentModal.tsx`) conforme a la Ley Nacional N° 26.529.
+  - Comprobantes Oficiales de Turno con QR (`AppointmentReceiptModal.tsx`) y Consentimiento Informado Ley 26.529 (`InformedConsentModal.tsx`).
 
 ---
 
@@ -32,7 +41,7 @@
 - **Estado:** HISTÓRICO
 - **Autor:** Equipo de Arquitectura & Desarrollo
 - **Cambios Principales:**
-  - Pipelines de Integración Continua (CI/CD) en GitHub Actions (`backend-ci.yml` y `frontend-ci.yml`) con ejecución obligatoria de JUnit 5 y chequeo de tipos TypeScript.
+  - Pipelines de Integración Continua (CI/CD) en GitHub Actions (`backend-ci.yml` y `frontend-ci.yml`).
 
 ---
 

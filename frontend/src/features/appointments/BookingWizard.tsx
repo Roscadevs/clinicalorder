@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from 'react'; // React hooks
 import { servicesApi, patientsApi, appointmentsApi } from '../../services/api'; // API services
 import { DermatologicService, PaymentPreferenceResponse } from '../../types'; // Types
-import { Clock, CreditCard, AlertCircle, ArrowRight, Printer } from 'lucide-react'; // Icons
+import { Clock, CreditCard, AlertCircle, ArrowRight, Printer, Bell, Calendar } from 'lucide-react'; // Icons
 import { AppointmentReceiptModal } from '../documents/AppointmentReceiptModal'; // Modal de comprobante
+import { ReminderNotificationModal } from '../reminders/ReminderNotificationModal'; // Modal de recordatorios y calendario
 
 export const BookingWizard: React.FC = () => {
   const [step, setStep] = useState<1 | 2 | 3 | 4>(1);
@@ -23,6 +24,7 @@ export const BookingWizard: React.FC = () => {
   const [isLoading, setIsLoading] = useState(false);
   const [errorMsg, setErrorMsg] = useState<string | null>(null);
   const [receiptModalOpen, setReceiptModalOpen] = useState(false);
+  const [reminderModalOpen, setReminderModalOpen] = useState(false);
 
   useEffect(() => {
     servicesApi.getActiveServices().then(setServices).catch(console.error);
@@ -337,12 +339,12 @@ export const BookingWizard: React.FC = () => {
             </div>
           </div>
 
-          <div className="flex flex-col sm:flex-row items-center justify-center gap-3">
+          <div className="flex flex-wrap items-center justify-center gap-3">
             <a
               href={holdResult.initPointUrl}
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center justify-center space-x-2 bg-[#009EE3] hover:bg-[#0082ba] text-white font-bold px-8 py-3.5 rounded-xl shadow-md transition-transform transform hover:scale-105 text-sm"
+              className="inline-flex items-center justify-center space-x-2 bg-[#009EE3] hover:bg-[#0082ba] text-white font-bold px-6 py-3.5 rounded-xl shadow-md transition-transform transform hover:scale-105 text-xs sm:text-sm"
             >
               <CreditCard className="w-4 h-4" />
               <span>Pagar Seña con MercadoPago</span>
@@ -350,10 +352,18 @@ export const BookingWizard: React.FC = () => {
 
             <button
               onClick={() => setReceiptModalOpen(true)}
-              className="inline-flex items-center justify-center space-x-2 bg-slate-100 hover:bg-slate-200 text-slate-700 font-bold px-6 py-3.5 rounded-xl text-sm transition-colors border border-slate-300"
+              className="inline-flex items-center justify-center space-x-2 bg-slate-100 hover:bg-slate-200 text-slate-700 font-bold px-5 py-3.5 rounded-xl text-xs sm:text-sm transition-colors border border-slate-300"
             >
               <Printer className="w-4 h-4" />
-              <span>Ver Comprobante</span>
+              <span>Comprobante</span>
+            </button>
+
+            <button
+              onClick={() => setReminderModalOpen(true)}
+              className="inline-flex items-center justify-center space-x-2 bg-teal-50 hover:bg-teal-100 text-teal-800 font-bold px-5 py-3.5 rounded-xl text-xs sm:text-sm transition-colors border border-teal-200"
+            >
+              <Calendar className="w-4 h-4 text-teal-600" />
+              <span>Agendar en Calendario</span>
             </button>
           </div>
 
@@ -377,6 +387,24 @@ export const BookingWizard: React.FC = () => {
             durationMinutes: selectedService.durationMinutes,
             agreedPrice: selectedService.basePrice,
             depositAmount: holdResult.depositAmount,
+          }}
+        />
+      )}
+
+      {/* Modal de Recordatorios y Sincronización de Calendario */}
+      {holdResult && selectedService && (
+        <ReminderNotificationModal
+          isOpen={reminderModalOpen}
+          onClose={() => setReminderModalOpen(false)}
+          appointmentData={{
+            id: holdResult.appointmentId,
+            patientName: patientName || 'Lucía Fernández',
+            patientPhone: patientPhone || '+54 9 11 1234-5678',
+            serviceName: selectedService.name,
+            startTime: `${selectedDate}T${selectedTime}:00Z`,
+            durationMinutes: selectedService.durationMinutes,
+            depositAmount: holdResult.depositAmount,
+            agreedPrice: selectedService.basePrice,
           }}
         />
       )}

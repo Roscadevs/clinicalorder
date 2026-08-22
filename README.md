@@ -35,6 +35,7 @@
 - [🏛️ Arquitectura del Sistema](#️-arquitectura-del-sistema)
 - [🔄 Modelos de Procesos de Negocio BPMN 2.0](#-modelos-de-procesos-de-negocio-bpmn-20)
 - [🧩 Módulos Funcionales & Casos de Uso](#-módulos-funcionales--casos-de-uso)
+- [📅 Sincronización con Calendarios & Recordatorios](#-sincronización-con-calendarios--recordatorios)
 - [📊 Dashboard de Analítica & KPIs de Gestión](#-dashboard-de-analítica--kpis-de-gestión)
 - [📄 Documentos Imprimibles y Consentimientos en PDF](#-documentos-imprimibles-y-consentimientos-en-pdf)
 - [🗂️ Documentación Organizada por Fases](#️-documentación-organizada-por-fases)
@@ -52,12 +53,13 @@
 El sistema resuelve integralmente la problemática operativa, clínica y financiera de la **Clínica Dermatológica y Estética Dra. Valeria Gómez**:
 
 1. **Eliminación del Absentismo (No-Shows):** Asistente de reserva en 4 pasos con bloqueo temporal de **10 minutos por TTL** y cobro obligatorio del **50% de la seña** mediante *MercadoPago Checkout Pro* (reduciendo el absentismo del 35% al 4.2%).
-2. **Historia Clínica Electrónica Estructurada:** Ficha médica 1:1 con fototipo Fitzpatrick (I a VI), patologías descompuestas, consentimientos y **auditoría inmutable automática** en PostgreSQL.
-3. **Registro Fotográfico Médico Seguro:** Almacenamiento de fotografías clínicas en *Supabase Storage* con validación de tipo MIME y **visor interactivo Antes / Después** con slider deslizante.
-4. **Asistente Virtual 24/7 con IA:** Chatbot asistido por *Google Gemini 1.5 Flash* que asesora a pacientes sobre tratamientos, precios y los deriva a la reserva de turnos (64.2% de conversión).
-5. **Agenda Operativa y Cobros en Mostrador:** Gestión visual para la secretaria con liquidación del 50% restante en mostrador (efectivo/tarjeta).
-6. **Métricas y KPIs Clínico-Financieros:** Panel en tiempo real de facturación, tasa de asistencia y tratamientos más solicitados.
-7. **Documentación Legal & Comprobantes PDF:** Emisión de comprobantes con código QR y consentimientos informados conforme a la Ley Nacional 26.529.
+2. **Sincronización con Calendarios en 1 Clic:** Agendamiento directo en **Google Calendar** y descarga de archivos **iCalendar (.ics)** para Apple Calendar / Outlook con alarmas programadas de 24h y 2h previas.
+3. **Historia Clínica Electrónica Estructurada:** Ficha médica 1:1 con fototipo Fitzpatrick (I a VI), patologías descompuestas, consentimientos y **auditoría inmutable automática** en PostgreSQL.
+4. **Registro Fotográfico Médico Seguro:** Almacenamiento de fotografías clínicas en *Supabase Storage* con validación de tipo MIME y **visor interactivo Antes / Después** con slider deslizante.
+5. **Asistente Virtual 24/7 con IA:** Chatbot asistido por *Google Gemini 1.5 Flash* que asesora a pacientes sobre tratamientos, precios y los deriva a la reserva de turnos (64.2% de conversión).
+6. **Agenda Operativa y Cobros en Mostrador:** Gestión visual para la secretaria con liquidación del 50% restante en mostrador (efectivo/tarjeta).
+7. **Métricas y KPIs Clínico-Financieros:** Panel en tiempo real de facturación, tasa de asistencia y tratamientos más solicitados.
+8. **Documentación Legal & Comprobantes PDF:** Emisión de comprobantes con código QR y consentimientos informados conforme a la Ley Nacional 26.529.
 
 ---
 
@@ -110,19 +112,28 @@ El sistema cuenta con el modelado formal de 5 procesos de negocio en estándar *
 
 ---
 
+## 📅 Sincronización con Calendarios & Recordatorios
+
+- **Google Calendar (1 Clic):** Creación inmediata de evento con dirección del consultorio y pautas médicas.
+- **Apple / Microsoft Outlook (.ics):** Descarga de archivo estándar **iCalendar (RFC 5545)** con alarmas automáticas a las **-24 hs** y **-2 hs** de la cita.
+- **Simulador de WhatsApp / Push:** Modal interactivo para enviar recordatorios y confirmar asistencia en tiempo real.
+
+---
+
 ## 🧩 Módulos Funcionales & Casos de Uso
 
 | Módulo | Casos de Uso Asociados | Descripción | Rol de Acceso |
 | :--- | :--- | :--- | :--- |
 | **1. Portal & Chatbot IA** | `CU-01` | Asesoramiento en lenguaje natural sobre tratamientos y precios mediante Gemini API. | Público |
 | **2. Reserva & Señas Online** | `CU-02`, `CU-03`, `CU-04` | Wizard de reserva, cálculo de slots disponibles (09-19h) y pasarela de pago MercadoPago. | Paciente / Público |
-| **3. Agenda & Cobros** | `CU-05` | Vista de turnos diarios/semanales, cancelación y liquidación del saldo restante del 50%. | Secretaria / Médica |
-| **4. Historia Clínica Digital** | `CU-06` | Ficha médica estructurada (Fitzpatrick I-VI, alergias, patologías, evoluciones). | Médica (`PHYSICIAN`) |
-| **5. Registro Fotográfico** | `CU-07` | Subida de imágenes a Supabase Storage y visor comparativo *Antes y Después*. | Médica (`PHYSICIAN`) |
-| **6. Auditoría Legal** | `CU-08` | Línea de tiempo de cambios inmutables con diffs JSON previos y nuevos. | Médica (`PHYSICIAN`) |
-| **7. Administración & Tarifas** | `CU-09` | CRUD de catálogo de tratamientos, ajuste de precios base y porcentaje de seña. | Administrador (`ADMIN`) |
-| **8. Métricas & Analítica** | `CU-10` | Tablero de control de KPIs clínicos, financieros y de absentismo. | Médica / Admin |
-| **9. Seguridad de Accesos** | `CU-11` | Inicio de sesión JWT, protección de fuerza bruta (5 intentos) y reset de password. | Todos los roles |
+| **3. Calendario & Recordatorios** | `CU-05` | Sincronización con Google Calendar, Apple .ics y simulador de WhatsApp. | Paciente / Secretaria |
+| **4. Agenda & Cobros** | `CU-06` | Vista de turnos diarios/semanales, cancelación y liquidación del saldo restante del 50%. | Secretaria / Médica |
+| **5. Historia Clínica Digital** | `CU-07` | Ficha médica estructurada (Fitzpatrick I-VI, alergias, patologías, evoluciones). | Médica (`PHYSICIAN`) |
+| **6. Registro Fotográfico** | `CU-08` | Subida de imágenes a Supabase Storage y visor comparativo *Antes y Después*. | Médica (`PHYSICIAN`) |
+| **7. Auditoría Legal** | `CU-09` | Línea de tiempo de cambios inmutables con diffs JSON previos y nuevos. | Médica (`PHYSICIAN`) |
+| **8. Administración & Tarifas** | `CU-10` | CRUD de catálogo de tratamientos, ajuste de precios base y porcentaje de seña. | Administrador (`ADMIN`) |
+| **9. Métricas & Analítica** | `CU-11` | Tablero de control de KPIs clínicos, financieros y de absentismo. | Médica / Admin |
+| **10. Seguridad de Accesos** | `CU-12` | Inicio de sesión JWT, protección de fuerza bruta (5 intentos) y reset de password. | Todos los roles |
 
 ---
 
@@ -149,12 +160,13 @@ Toda la documentación técnica se encuentra centralizada en la carpeta [`docume
 - 📜 **[Historial de PRDs (`documentacion/historial_prds/`)](documentacion/historial_prds/CHANGELOG_PRDS.md)**
   - [`CHANGELOG_PRDS.md`](documentacion/historial_prds/CHANGELOG_PRDS.md): Bitácora de cambios y versiones del PRD.
   - [`PRD_v1.0_Fase1_Inicial.md`](documentacion/historial_prds/PRD_v1.0_Fase1_Inicial.md): Especificación base y universo de discurso.
-  - [`PRD_v2.0_Fase2_Backend_Storage_Tests.md`](documentacion/historial_prD_v2.0_Fase2_Backend_Storage_Tests.md): Disponibilidad en tiempo real, Supabase Storage y Tests.
+  - [`PRD_v2.0_Fase2_Backend_Storage_Tests.md`](documentacion/historial_prds/PRD_v2.0_Fase2_Backend_Storage_Tests.md): Disponibilidad en tiempo real, Supabase Storage y Tests.
   - [`PRD_v3.0_Fase3_Frontend_DevOps_Master.md`](documentacion/historial_prds/PRD_v3.0_Fase3_Frontend_DevOps_Master.md): UI/UX avanzada y Docker/Vercel.
   - [`PRD_v4.0_Fase4_BPMN_CasosDeUso_Master.md`](documentacion/historial_prds/PRD_v4.0_Fase4_BPMN_CasosDeUso_Master.md): Modelado BPMN 2.0 y Casos de Uso.
   - [`PRD_v5.0_Fase5_CICD_Calidad_Master.md`](documentacion/historial_prds/PRD_v5.0_Fase5_CICD_Calidad_Master.md): Pipelines CI/CD en GitHub Actions.
   - [`PRD_v6.0_Fase6_Documentos_PDF_Master.md`](documentacion/historial_prds/PRD_v6.0_Fase6_Documentos_PDF_Master.md): Comprobantes PDF y Consentimientos.
-  - [`PRD_v7.0_Fase7_Dashboard_KPIs_Master.md`](documentacion/historial_prds/PRD_v7.0_Fase7_Dashboard_KPIs_Master.md): **PRD Maestro Vigente** con Dashboard de Métricas y KPIs.
+  - [`PRD_v7.0_Fase7_Dashboard_KPIs_Master.md`](documentacion/historial_prds/PRD_v7.0_Fase7_Dashboard_KPIs_Master.md): Dashboard de Métricas y KPIs.
+  - [`PRD_v8.0_Fase8_Recordatorios_Calendario_Master.md`](documentacion/historial_prds/PRD_v8.0_Fase8_Recordatorios_Calendario_Master.md): **PRD Maestro Vigente** con Sincronización a Calendarios y Recordatorios.
 - 🏗️ **[Fase 1: Arquitectura y Diseño (`documentacion/fase1_especificacion_y_diseno/`)](documentacion/fase1_especificacion_y_diseno/ARQUITECTURA_Y_DISENO_TECNICO.md)**
   - [`ARQUITECTURA_Y_DISENO_TECNICO.md`](documentacion/fase1_especificacion_y_diseno/ARQUITECTURA_Y_DISENO_TECNICO.md): Diagramas UML, MER/MR, 1FN/2FN/3FN y transacciones ACID.
   - [`GLOSARIO_TECNICO_Y_METODOS.md`](documentacion/fase1_especificacion_y_diseno/GLOSARIO_TECNICO_Y_METODOS.md): Glosario exhaustivo de anotaciones Spring Boot, métodos de negocio y hooks.
@@ -170,6 +182,8 @@ Toda la documentación técnica se encuentra centralizada en la carpeta [`docume
   - [`FASE_6_DOCUMENTOS_CLINICOS_Y_PDF.md`](documentacion/fase6_comprobantes_y_consentimientos_pdf/FASE_6_DOCUMENTOS_CLINICOS_Y_PDF.md): Comprobante Oficial de Turno con QR y Consentimiento Ley 26.529.
 - 📊 **[Fase 7: Dashboard Analítico y Métricas (`documentacion/fase7_dashboard_metricas_y_kpis/`)](documentacion/fase7_dashboard_metricas_y_kpis/FASE_7_DASHBOARD_METRICAS_Y_KPIS.md)**
   - [`FASE_7_DASHBOARD_METRICAS_Y_KPIS.md`](documentacion/fase7_dashboard_metricas_y_kpis/FASE_7_DASHBOARD_METRICAS_Y_KPIS.md): Tablero de KPIs, reducción de absentismo e impacto financiero.
+- 📲 **[Fase 8: Recordatorios y Calendarios (`documentacion/fase8_recordatorios_y_calendario_sync/`)](documentacion/fase8_recordatorios_y_calendario_sync/FASE_8_SISTEMA_RECORDATORIOS_Y_CALENDARIOS.md)**
+  - [`FASE_8_SISTEMA_RECORDATORIOS_Y_CALENDARIOS.md`](documentacion/fase8_recordatorios_y_calendario_sync/FASE_8_SISTEMA_RECORDATORIOS_Y_CALENDARIOS.md): Sincronización con Google Calendar, Apple / Outlook .ics (RFC 5545) y Push.
 
 ---
 
@@ -199,6 +213,7 @@ El repositorio cuenta con dos workflows automatizados en [`.github/workflows/`](
 - **Estilos:** Tailwind CSS + Lucide Icons
 - **Gestión de Estado & HTTP:** TanStack React Query v5 + Axios (interceptores JWT)
 - **Formularios & Validación:** React Hook Form + Zod
+- **Calendarios & Sincronización:** Google Calendar API URL + Estándar iCalendar (RFC 5545 `.ics`)
 - **Documentos & PDF:** Impresión nativa `@media print` + QR Vectorial
 - **Analítica:** Panel de KPIs y métricas en tiempo real
 - **CI/CD:** GitHub Actions
@@ -276,7 +291,7 @@ mvn test
 - **Control de Acceso Basado en Roles (RBAC):**
   - `ADMIN`: Control total de usuarios, médicos, secretarias, tarifas y métricas de gestión.
   - `PHYSICIAN` (Médica): Acceso a historias clínicas, fotos médicas, auditoría legal y KPIs.
-  - `RECEPTIONIST` (Secretaria): Gestión de agenda, asistencia y cobros en mostrador (bloqueada de historias clínicas).
+  - `RECEPTIONIST` (Secretaria): Gestión de agenda, asistencia, recordatorios y cobros en mostrador (bloqueada de historias clínicas).
 - **Control de Fuerza Bruta:** Bloqueo automático de 15 minutos al superar 5 intentos fallidos.
 - **Secreto Médico:** Cumplimiento estricto con la Ley de Derechos del Paciente y Protección de Datos Personales (auditoría inmutable de cada consulta o modificación).
 
