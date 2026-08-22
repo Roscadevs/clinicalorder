@@ -1,7 +1,26 @@
 version: '3.8'
 
 services:
-  # Backend Spring Boot (Java 17)
+  # Base de Datos PostgreSQL 15 Local con persistencia en volumen
+  postgres:
+    image: postgres:15-alpine
+    container_name: clinica-postgres
+    environment:
+      POSTGRES_DB: clinica_dermatologica
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgrespassword
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U postgres -d clinica_dermatologica"]
+      interval: 5s
+      timeout: 5s
+      retries: 5
+    restart: unless-stopped
+
+  # Backend Spring Boot (Java 17) con Clean Architecture y Flyway
   backend:
     build:
       context: ./backend
@@ -10,19 +29,21 @@ services:
     ports:
       - "8080:8080"
     environment:
-      - SPRING_PROFILES_ACTIVE=prod
-      - DB_URL=jdbc:postgresql://db.supabase.co:5432/postgres?sslmode=require
-      - DB_USERNAME=postgres
-      - DB_PASSWORD=${DB_PASSWORD:-postgres}
-      - JWT_SECRET=${JWT_SECRET:-9a8b7c6d5e4f3a2b1c0d9e8f7a6b5c4d3e2f1a0b9c8d7e6f5a4b3c2d1e0f9a8b}
-      - MERCADOPAGO_ACCESS_TOKEN=${MERCADOPAGO_ACCESS_TOKEN:-TEST-mock-token}
-      - MERCADOPAGO_WEBHOOK_SECRET=${MERCADOPAGO_WEBHOOK_SECRET:-mock-webhook-secret}
+      - SPRING_DATASOURCE_URL=jdbc:postgresql://postgres:5432/clinica_dermatologica?sslmode=disable
+      - SPRING_DATASOURCE_USERNAME=postgres
+      - SPRING_DATASOURCE_PASSWORD=postgrespassword
+      - JWT_SECRET_KEY=MiClaveSecretaSuperSeguraParaLaClinicaDermatologica2026EsteticaYSalud
+      - MERCADOPAGO_ACCESS_TOKEN=${MERCADOPAGO_ACCESS_TOKEN:-TEST-0000000000000000-000000-00000000000000000000000000000000-000000000}
+      - MERCADOPAGO_WEBHOOK_SECRET=${MERCADOPAGO_WEBHOOK_SECRET:-test_webhook_secret}
       - GEMINI_API_KEY=${GEMINI_API_KEY:-mock-gemini-key}
       - SUPABASE_STORAGE_URL=${SUPABASE_STORAGE_URL:-https://xyz.supabase.co/storage/v1}
-      - SUPABASE_STORAGE_KEY=${SUPABASE_STORAGE_KEY:-mock-anon-key}
+      - SUPABASE_ANON_KEY=${SUPABASE_ANON_KEY:-mock-anon-key}
+    depends_on:
+      postgres:
+        condition: service_healthy
     restart: unless-stopped
 
-  # Frontend React (Vite + Nginx en producción / Node en desarrollo)
+  # Frontend React (Vite 5 + TypeScript + Tailwind)
   frontend:
     image: node:20-alpine
     container_name: clinica-frontend
@@ -31,9 +52,13 @@ services:
       - "5173:5173"
     volumes:
       - ./frontend:/app
-    command: sh -c "npm install && npm run dev -- --host"
+    command: sh -c "npm install && npm run dev -- --host 0.0.0.0"
     environment:
       - VITE_API_BASE_URL=http://localhost:8080/api/v1
     depends_on:
       - backend
     restart: unless-stopped
+
+volumes:
+  postgres_data:
+    driver: local

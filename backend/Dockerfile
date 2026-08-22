@@ -1,7 +1,7 @@
 # ==========================================
 # STAGE 1: Build de la aplicación con Maven
 # ==========================================
-FROM maven:3.9.6-eclipse-temurin-17-alpine AS builder
+FROM maven:3.9.6-eclipse-temurin-17 AS builder
 
 WORKDIR /build
 
@@ -16,12 +16,12 @@ RUN mvn clean package -DskipTests -B
 # ==========================================
 # STAGE 2: Imagen de ejecución ligera JRE
 # ==========================================
-FROM eclipse-temurin:17-jre-alpine
+FROM eclipse-temurin:17-jre
 
 WORKDIR /app
 
 # Crea usuario no root por seguridad
-RUN addgroup -S appgroup && adduser -S appuser -G appgroup
+RUN groupadd -r appgroup && useradd -r -g appgroup appuser
 
 # Copia el JAR generado desde el Stage 1
 COPY --from=builder /build/target/*.jar app.jar
