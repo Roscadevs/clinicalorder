@@ -136,6 +136,7 @@ Toda la documentación técnica se encuentra centralizada en la carpeta [`docume
   - [`PRD_v8.0_Fase8_Recordatorios_Calendario_Master.md`](documentacion/historial_prds/PRD_v8.0_Fase8_Recordatorios_Calendario_Master.md): Recordatorios y Sincronización a Calendarios.
   - [`PRD_v9.0_Fase9_Master_Defensa_Integral.md`](documentacion/historial_prds/PRD_v9.0_Fase9_Master_Defensa_Integral.md): Guía de Defensa y Demo 7 min.
   - [`PRD_v10.0_Fase10_Mobile_Responsive_Master.md`](documentacion/historial_prds/PRD_v10.0_Fase10_Mobile_Responsive_Master.md): **PRD Maestro Final Consolidado** con Diseño Mobile-First.
+  - [`PRD_v11.0_Fase11_Landing_Login.md`](documentacion/historial_prds/PRD_v11.0_Fase11_Landing_Login.md): Landing Page, Enrutamiento y Login.
 - 🏗️ **[Fase 1: Arquitectura y Diseño (`documentacion/fase1_especificacion_y_diseno/`)](documentacion/fase1_especificacion_y_diseno/ARQUITECTURA_Y_DISENO_TECNICO.md)**
 - ⚙️ **[Fase 2: Backend y Calidad (`documentacion/fase2_backend_y_calidad/`)](documentacion/fase2_backend_y_calidad/FASE_2_IMPLEMENTACION_Y_TESTS.md)**
 - 🚀 **[Fase 3: Frontend UI/UX y DevOps (`documentacion/fase3_frontend_avanzado_y_devops/`)](documentacion/fase3_frontend_avanzado_y_devops/FASE_3_FRONTEND_UIUX_Y_DEVOPS.md)**
@@ -146,6 +147,7 @@ Toda la documentación técnica se encuentra centralizada en la carpeta [`docume
 - 📲 **[Fase 8: Recordatorios y Calendarios (`documentacion/fase8_recordatorios_y_calendario_sync/`)](documentacion/fase8_recordatorios_y_calendario_sync/FASE_8_SISTEMA_RECORDATORIOS_Y_CALENDARIOS.md)**
 - 🎓 **[Fase 9: Guía de Defensa Oral y Pitch (`documentacion/fase9_guia_de_defensa_y_pitch/`)](documentacion/fase9_guia_de_defensa_y_pitch/GUIA_DE_DEFENSA_Y_DEMOSTRACION.md)**
 - 📱 **[Fase 10: Diseño Mobile-First y Responsive (`documentacion/fase10_diseno_mobile_y_responsive/`)](documentacion/fase10_diseno_mobile_y_responsive/FASE_10_DISENO_MOBILE_Y_RESPONSIVE.md)**
+- 🌐 **[Fase 11: Landing Page y Enrutamiento (`documentacion/fase11_landing_y_enrutamiento/`)](documentacion/fase11_landing_y_enrutamiento/FASE_11_LANDING_Y_ENRUTAMIENTO.md)**
 
 ---
 
