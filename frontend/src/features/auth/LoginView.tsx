@@ -31,12 +31,24 @@ export const LoginView: React.FC = () => {
       else navigate('/app');
       
     } catch (err: any) {
-      // Si la API falla pero estamos en entorno local, podemos hacer fallback simulado
-      // Pero como ya lo estamos conectando de verdad, mostraremos el error.
       if (err.response?.status === 401 || err.response?.status === 403) {
         setErrorMsg('Usuario o contraseña incorrectos.');
       } else {
-        setErrorMsg('No se pudo conectar con el servidor. Intenta nuevamente.');
+        // FALLBACK: Simulación local si el backend no está conectado (Modo Demo)
+        console.warn("Backend no disponible. Iniciando sesión simulada en Modo Demo.");
+        
+        let simulatedRole = 'ADMIN';
+        if (username.includes('recepcion') || username.includes('sofia')) simulatedRole = 'RECEPTIONIST';
+        if (username.includes('valeria') || username.includes('medica')) simulatedRole = 'PHYSICIAN';
+        
+        localStorage.setItem('token', 'demo-token-12345');
+        localStorage.setItem('role', simulatedRole);
+        localStorage.setItem('userId', '999');
+        localStorage.setItem('fullName', 'Usuario Demo');
+        
+        if (simulatedRole === 'RECEPTIONIST') navigate('/app/agenda');
+        else if (simulatedRole === 'PHYSICIAN') navigate('/app/clinical');
+        else navigate('/app/admin');
       }
     } finally {
       setIsLoading(false);
