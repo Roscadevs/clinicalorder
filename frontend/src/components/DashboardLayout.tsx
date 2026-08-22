@@ -71,6 +71,7 @@ export const DashboardLayout: React.FC = () => {
           currentTab={currentTab}
           setCurrentTab={handleSetTab}
           userRole={activeRole}
+          onLogout={() => navigate('/')}
         />
 
         <main className="py-4 sm:py-6 pb-24 sm:pb-8">
