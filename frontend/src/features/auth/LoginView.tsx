@@ -1,16 +1,46 @@
 import React, { useState } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
-import { Sparkles, Lock, Mail, ArrowRight } from 'lucide-react';
+import { Sparkles, Lock, User, ArrowRight, AlertCircle, Loader2 } from 'lucide-react';
+import { authApi } from '../../services/api';
 
 export const LoginView: React.FC = () => {
   const navigate = useNavigate();
-  const [email, setEmail] = useState('');
+  const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
+  const [isLoading, setIsLoading] = useState(false);
+  const [errorMsg, setErrorMsg] = useState<string | null>(null);
 
-  const handleLogin = (e: React.FormEvent) => {
+  const handleLogin = async (e: React.FormEvent) => {
     e.preventDefault();
-    // Simulate login success and redirect to app
-    navigate('/app/agenda');
+    setIsLoading(true);
+    setErrorMsg(null);
+    
+    try {
+      const response = await authApi.login(username, password);
+      
+      // Guardar sesión en localStorage
+      localStorage.setItem('token', response.token);
+      localStorage.setItem('role', response.role);
+      localStorage.setItem('userId', response.userId.toString());
+      localStorage.setItem('fullName', response.fullName);
+
+      // Redirigir según el rol
+      if (response.role === 'RECEPTIONIST') navigate('/app/agenda');
+      else if (response.role === 'PHYSICIAN') navigate('/app/clinical');
+      else if (response.role === 'ADMIN') navigate('/app/admin');
+      else navigate('/app');
+      
+    } catch (err: any) {
+      // Si la API falla pero estamos en entorno local, podemos hacer fallback simulado
+      // Pero como ya lo estamos conectando de verdad, mostraremos el error.
+      if (err.response?.status === 401 || err.response?.status === 403) {
+        setErrorMsg('Usuario o contraseña incorrectos.');
+      } else {
+        setErrorMsg('No se pudo conectar con el servidor. Intenta nuevamente.');
+      }
+    } finally {
+      setIsLoading(false);
+    }
   };
 
   return (
@@ -31,22 +61,31 @@ export const LoginView: React.FC = () => {
 
       <div className="mt-8 sm:mx-auto sm:w-full sm:max-w-md">
         <div className="bg-white py-8 px-4 shadow-xl sm:rounded-2xl sm:px-10 border border-slate-200">
+          
+          {errorMsg && (
+            <div className="mb-6 p-4 rounded-xl bg-rose-50 border border-rose-200 text-rose-800 text-sm flex items-center space-x-3">
+              <AlertCircle className="w-5 h-5 flex-shrink-0" />
+              <span>{errorMsg}</span>
+            </div>
+          )}
+
           <form className="space-y-6" onSubmit={handleLogin}>
             <div>
               <label className="block text-sm font-medium text-slate-700">
-                Correo Electrónico
+                Usuario (o Correo)
               </label>
               <div className="mt-1 relative rounded-md shadow-sm">
                 <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-                  <Mail className="h-5 w-5 text-slate-400" />
+                  <User className="h-5 w-5 text-slate-400" />
                 </div>
                 <input
-                  type="email"
+                  type="text"
                   required
-                  value={email}
-                  onChange={(e) => setEmail(e.target.value)}
+                  value={username}
+                  onChange={(e) => setUsername(e.target.value)}
                   className="focus:ring-teal-500 focus:border-teal-500 block w-full pl-10 sm:text-sm border-slate-300 rounded-xl py-3 border outline-none bg-slate-50"
-                  placeholder="admin@clinica.com"
+                  placeholder="Ej: admin, dra.valeria"
+                  autoComplete="username"
                 />
               </div>
             </div>
@@ -66,6 +105,7 @@ export const LoginView: React.FC = () => {
                   onChange={(e) => setPassword(e.target.value)}
                   className="focus:ring-teal-500 focus:border-teal-500 block w-full pl-10 sm:text-sm border-slate-300 rounded-xl py-3 border outline-none bg-slate-50"
                   placeholder="••••••••"
+                  autoComplete="current-password"
                 />
               </div>
             </div>
@@ -93,10 +133,17 @@ export const LoginView: React.FC = () => {
             <div>
               <button
                 type="submit"
-                className="w-full flex justify-center items-center py-3 px-4 border border-transparent rounded-xl shadow-sm text-sm font-bold text-white bg-teal-600 hover:bg-teal-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-teal-500 transition-colors"
+                disabled={isLoading}
+                className="w-full flex justify-center items-center py-3 px-4 border border-transparent rounded-xl shadow-sm text-sm font-bold text-white bg-teal-600 hover:bg-teal-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-teal-500 transition-colors disabled:opacity-70"
               >
-                <span>Ingresar</span>
-                <ArrowRight className="ml-2 w-4 h-4" />
+                {isLoading ? (
+                  <Loader2 className="w-5 h-5 animate-spin" />
+                ) : (
+                  <>
+                    <span>Ingresar</span>
+                    <ArrowRight className="ml-2 w-4 h-4" />
+                  </>
+                )}
               </button>
             </div>
           </form>
@@ -111,3 +158,4 @@ export const LoginView: React.FC = () => {
     </div>
   );
 };
+

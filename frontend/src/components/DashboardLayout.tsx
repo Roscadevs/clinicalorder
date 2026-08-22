@@ -20,7 +20,9 @@ export const DashboardLayout: React.FC = () => {
   };
 
   const [currentTab, setCurrentTab] = useState<TabType>(getTabFromPath(location.pathname));
-  const [activeRole, setActiveRole] = useState<RoleType>('PHYSICIAN');
+  // Initialize role from localStorage if available, fallback to PUBLIC if missing
+  const initialRole = (localStorage.getItem('role') as RoleType) || 'PUBLIC';
+  const [activeRole, setActiveRole] = useState<RoleType>(initialRole);
 
   useEffect(() => {
     setCurrentTab(getTabFromPath(location.pathname));
@@ -35,20 +37,26 @@ export const DashboardLayout: React.FC = () => {
     if (tab === 'analytics') navigate('/app/analytics');
   };
 
+  const handleLogout = () => {
+    localStorage.clear();
+    navigate('/login');
+  };
+
   return (
     <div className="min-h-screen bg-slate-50 text-slate-900 flex flex-col justify-between selection:bg-teal-500 selection:text-white">
       <div>
         <div className="bg-slate-900 text-white text-[11px] py-1.5 px-3 sm:px-4 flex items-center justify-between">
           <div className="flex items-center space-x-1.5 sm:space-x-2">
             <span className="bg-teal-500 text-slate-950 font-bold px-1.5 py-0.5 rounded text-[9px] sm:text-[10px]">
-              RBAC
+              RBAC (Modo Demo)
             </span>
-            <span className="text-slate-300 text-[10px] sm:text-xs">Rol:</span>
+            <span className="text-slate-300 text-[10px] sm:text-xs">Simular Rol:</span>
             <select
               value={activeRole}
               onChange={(e) => {
                 const role = e.target.value as RoleType;
                 setActiveRole(role);
+                // In a real app we might update localStorage here for testing, but we leave it as a transient state
                 if (role === 'PUBLIC') handleSetTab('booking');
                 if (role === 'RECEPTIONIST') handleSetTab('agenda');
                 if (role === 'PHYSICIAN') handleSetTab('clinical');
@@ -71,7 +79,7 @@ export const DashboardLayout: React.FC = () => {
           currentTab={currentTab}
           setCurrentTab={handleSetTab}
           userRole={activeRole}
-          onLogout={() => navigate('/')}
+          onLogout={handleLogout}
         />
 
         <main className="py-4 sm:py-6 pb-24 sm:pb-8">
