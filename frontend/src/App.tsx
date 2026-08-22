@@ -1,4 +1,4 @@
-import React, { useState } from 'react'; // React
+import { useState } from 'react'; // React hooks
 import { Navbar } from './components/Navbar'; // Navbar
 import { BookingWizard } from './features/appointments/BookingWizard'; // Wizard de turnos
 import { AgendaView } from './features/agenda/AgendaView'; // Agenda

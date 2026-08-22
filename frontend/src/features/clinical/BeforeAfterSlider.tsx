@@ -1,94 +1,100 @@
 import React, { useState } from 'react'; // React hooks
-import { Sliders, Sparkles, Image as ImageIcon } from 'lucide-react'; // Iconos
+import { Sliders } from 'lucide-react'; // Iconos
 
 interface BeforeAfterSliderProps {
-  beforeImageUrl?: string; // URL de la fotografía inicial (Antes)
-  afterImageUrl?: string; // URL de la fotografía posterior (Después)
-  beforeLabel?: string; // Etiqueta descriptiva previa
-  afterLabel?: string; // Etiqueta descriptiva posterior
+  beforeImage?: string;
+  afterImage?: string;
+  beforeLabel?: string;
+  afterLabel?: string;
 }
 
-/**
- * Componente interactivo para comparar fotografías médicas y estéticas (Antes vs Después)
- * mediante un divisor deslizante horizontal.
- */
 export const BeforeAfterSlider: React.FC<BeforeAfterSliderProps> = ({
-  beforeImageUrl = 'https://images.unsplash.com/photo-1512290900672-1f486ecba717?auto=format&fit=crop&w=600&q=80',
-  afterImageUrl = 'https://images.unsplash.com/photo-1544005313-94ddf0286df2?auto=format&fit=crop&w=600&q=80',
-  beforeLabel = 'Antes del Tratamiento (Sesión Inicial)',
-  afterLabel = 'Después del Tratamiento (Semana 4)',
+  beforeImage = 'https://images.unsplash.com/photo-1512290900672-1f486cf81f72?auto=format&fit=crop&w=800&q=80',
+  afterImage = 'https://images.unsplash.com/photo-1522337360788-8b13dee7a37e?auto=format&fit=crop&w=800&q=80',
+  beforeLabel = 'Antes del Procedimiento (Día 1)',
+  afterLabel = 'Resultado Post-Tratamiento (Día 30)',
 }) => {
-  const [sliderPosition, setSliderPosition] = useState(50); // Posición porcentual del separador (0 a 100)
+  const [sliderPosition, setSliderPosition] = useState(50);
+  const [isDragging, setIsDragging] = useState(false);
 
-  const handleSliderChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setSliderPosition(Number(e.target.value));
+  const handleMove = (clientX: number, rect: DOMRect) => {
+    const x = clientX - rect.left;
+    const pos = Math.max(0, Math.min(100, (x / rect.width) * 100));
+    setSliderPosition(pos);
+  };
+
+  const handleTouchMove = (e: React.TouchEvent<HTMLDivElement>) => {
+    const rect = e.currentTarget.getBoundingClientRect();
+    handleMove(e.touches[0].clientX, rect);
+  };
+
+  const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
+    if (!isDragging) return;
+    const rect = e.currentTarget.getBoundingClientRect();
+    handleMove(e.clientX, rect);
   };
 
   return (
     <div className="bg-white p-6 rounded-2xl border border-slate-200 shadow-sm space-y-4">
-      <div className="flex items-center justify-between">
-        <div className="flex items-center space-x-2">
-          <Sliders className="w-5 h-5 text-teal-600" />
-          <h3 className="font-bold text-slate-800 text-base">Comparativa Clínica: Antes y Después</h3>
+      <div className="flex justify-between items-center border-b border-slate-100 pb-3">
+        <div>
+          <h3 className="font-bold text-slate-800 text-sm flex items-center space-x-2">
+            <Sliders className="w-4 h-4 text-teal-600" />
+            <span>Visor Comparativo Clínico "Antes y Después"</span>
+          </h3>
+          <p className="text-xs text-slate-500">
+            Desliza el divisor central para contrastar la evolución estética de la paciente.
+          </p>
         </div>
-        <span className="text-xs text-slate-500 bg-slate-100 px-3 py-1 rounded-full font-medium">
-          Desliza para contrastar resultados
+        <span className="text-xs font-semibold text-teal-700 bg-teal-50 px-2.5 py-1 rounded-full">
+          Posición: {Math.round(sliderPosition)}%
         </span>
       </div>
 
-      {/* Contenedor del Visor Deslizante */}
-      <div className="relative w-full h-80 sm:h-96 rounded-xl overflow-hidden select-none shadow-inner border border-slate-200 bg-slate-900">
-        {/* Imagen del 'DESPUÉS' (Capa de Fondo) */}
+      {/* Contenedor del Slider */}
+      <div
+        className="relative w-full aspect-[4/3] max-w-2xl mx-auto rounded-2xl overflow-hidden shadow-md select-none cursor-ew-resize border border-slate-200"
+        onMouseDown={() => setIsDragging(true)}
+        onMouseUp={() => setIsDragging(false)}
+        onMouseLeave={() => setIsDragging(false)}
+        onMouseMove={handleMouseMove}
+        onTouchMove={handleTouchMove}
+      >
+        {/* Imagen DESPUÉS (Fondo completo) */}
         <img
-          src={afterImageUrl}
-          alt="Foto Después"
-          className="absolute top-0 left-0 w-full h-full object-cover"
+          src={afterImage}
+          alt="Post-tratamiento"
+          className="absolute inset-0 w-full h-full object-cover"
         />
-        <div className="absolute top-3 right-3 bg-teal-900/80 backdrop-blur-md text-white text-xs font-bold px-3 py-1.5 rounded-lg shadow-sm border border-teal-500/30">
-          ✨ {afterLabel}
+        <div className="absolute bottom-3 right-3 bg-teal-900/80 backdrop-blur-sm text-white text-[11px] font-bold px-3 py-1.5 rounded-xl shadow">
+          {afterLabel}
         </div>
 
-        {/* Imagen del 'ANTES' (Capa Superior Recortada con Clip-Path) */}
+        {/* Imagen ANTES (Recortada por el ancho del slider) */}
         <div
-          className="absolute top-0 left-0 h-full overflow-hidden"
+          className="absolute inset-y-0 left-0 overflow-hidden"
           style={{ width: `${sliderPosition}%` }}
         >
           <img
-            src={beforeImageUrl}
-            alt="Foto Antes"
-            className="absolute top-0 left-0 w-full h-full object-cover max-w-none"
+            src={beforeImage}
+            alt="Pre-tratamiento"
+            className="absolute inset-0 w-full h-full object-cover max-w-none"
             style={{ width: '100%', height: '100%', objectFit: 'cover' }}
           />
-          <div className="absolute top-3 left-3 bg-slate-900/80 backdrop-blur-md text-white text-xs font-bold px-3 py-1.5 rounded-lg shadow-sm border border-slate-700/50">
-            ⏳ {beforeLabel}
+          <div className="absolute bottom-3 left-3 bg-slate-900/80 backdrop-blur-sm text-white text-[11px] font-bold px-3 py-1.5 rounded-xl shadow">
+            {beforeLabel}
           </div>
         </div>
 
-        {/* Línea Divisoria y Control Deslizante */}
+        {/* Línea Divisoria Vertical con Deslizador */}
         <div
-          className="absolute top-0 bottom-0 w-1 bg-white shadow-2xl z-20 flex items-center justify-center pointer-events-none"
+          className="absolute top-0 bottom-0 w-1 bg-white shadow-[0_0_10px_rgba(0,0,0,0.5)] cursor-ew-resize flex items-center justify-center"
           style={{ left: `${sliderPosition}%` }}
         >
-          <div className="w-8 h-8 rounded-full bg-white text-slate-800 shadow-xl border-2 border-teal-600 flex items-center justify-center text-xs font-black">
-            ⇄
+          <div className="w-8 h-8 rounded-full bg-white text-slate-800 shadow-xl flex items-center justify-center border-2 border-teal-600 ring-2 ring-white/50">
+            <Sliders className="w-4 h-4 text-teal-600 rotate-90" />
           </div>
         </div>
-
-        {/* Input invisible de rango para controlar el slider */}
-        <input
-          type="range"
-          min="0"
-          max="100"
-          value={sliderPosition}
-          onChange={handleSliderChange}
-          className="absolute top-0 left-0 w-full h-full opacity-0 cursor-ew-resize z-30"
-          aria-label="Deslizador comparativo de fotografía médica"
-        />
-      </div>
-
-      <div className="flex justify-between text-xs text-slate-500 pt-1">
-        <span className="font-semibold text-slate-700">Estado Previo</span>
-        <span className="font-semibold text-teal-700">Resultado Obtenido</span>
       </div>
     </div>
   );

@@ -1,5 +1,5 @@
 import React, { useState } from 'react'; // React hooks
-import { Printer, X, ShieldAlert, CheckSquare, Square, FileSignature } from 'lucide-react'; // Iconos
+import { Printer, X, CheckSquare, Square, FileSignature } from 'lucide-react'; // Iconos
 
 interface InformedConsentModalProps {
   isOpen: boolean;

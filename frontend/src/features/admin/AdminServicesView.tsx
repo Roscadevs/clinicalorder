@@ -1,241 +1,267 @@
 import React, { useState, useEffect } from 'react'; // React hooks
 import { servicesApi } from '../../services/api'; // API services
-import { DermatologicService } from '../../types'; // Tipos
-import { Sparkles, Plus, Edit2, Check, X, DollarSign, Clock, ShieldAlert } from 'lucide-react'; // Iconos
+import { DermatologicService } from '../../types'; // Types
+import { Settings, Plus, Edit2, CheckCircle } from 'lucide-react'; // Icons
 
 export const AdminServicesView: React.FC = () => {
   const [services, setServices] = useState<DermatologicService[]>([]);
-  const [editingServiceId, setEditingServiceId] = useState<number | null>(null);
-  const [editPrice, setEditPrice] = useState<number>(0);
-  const [editDeposit, setEditDeposit] = useState<number>(50);
-  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [editingService, setEditingService] = useState<DermatologicService | null>(null);
+  const [newPrice, setNewPrice] = useState<number>(0);
+  const [newDepositPercent, setNewDepositPercent] = useState<number>(50);
+  const [isSaving, setIsSaving] = useState(false);
+  const [saveSuccess, setSaveSuccess] = useState(false);
 
-  // Nuevo servicio
-  const [newName, setNewName] = useState('');
-  const [newDescription, setNewDescription] = useState('');
-  const [newDuration, setNewDuration] = useState(45);
-  const [newPrice, setNewPrice] = useState(40000);
-  const [newDeposit, setNewDeposit] = useState(50);
+  // New Service Modal State
+  const [isAdding, setIsAdding] = useState(false);
+  const [name, setName] = useState('');
+  const [description, setDescription] = useState('');
+  const [basePrice, setBasePrice] = useState(30000);
+  const [durationMinutes, setDurationMinutes] = useState(45);
+
+  const fetchServices = () => {
+    servicesApi.getActiveServices().then(setServices).catch(console.error);
+  };
 
   useEffect(() => {
-    servicesApi.getActiveServices().then(setServices).catch(console.error);
+    fetchServices();
   }, []);
 
   const handleStartEdit = (svc: DermatologicService) => {
-    setEditingServiceId(svc.id);
-    setEditPrice(svc.basePrice);
-    setEditDeposit(svc.depositPercentage);
+    setEditingService(svc);
+    setNewPrice(svc.basePrice);
+    setNewDepositPercent(50);
   };
 
-  const handleSaveEdit = (id: number) => {
-    setServices((prev) =>
-      prev.map((s) =>
-        s.id === id ? { ...s, basePrice: editPrice, depositPercentage: editDeposit } : s
-      )
-    );
-    setEditingServiceId(null);
-  };
-
-  const handleCreateService = (e: React.FormEvent) => {
+  const handleSaveEdit = async (e: React.FormEvent) => {
     e.preventDefault();
-    const created: DermatologicService = {
-      id: Date.now(),
-      name: newName,
-      description: newDescription,
-      durationMinutes: newDuration,
-      basePrice: newPrice,
-      depositPercentage: newDeposit,
-      active: true,
-    };
-    setServices([...services, created]);
-    setIsModalOpen(false);
-    setNewName('');
-    setNewDescription('');
+    if (!editingService) return;
+    setIsSaving(true);
+    try {
+      await servicesApi.updateServicePrice(editingService.id, newPrice, newDepositPercent);
+      setSaveSuccess(true);
+      setEditingService(null);
+      fetchServices();
+      setTimeout(() => setSaveSuccess(false), 3000);
+    } catch (err) {
+      alert('Error al actualizar arancel del servicio');
+    } finally {
+      setIsSaving(false);
+    }
+  };
+
+  const handleCreateService = async (e: React.FormEvent) => {
+    e.preventDefault();
+    setIsSaving(true);
+    try {
+      await servicesApi.createService({
+        name,
+        description,
+        basePrice,
+        durationMinutes,
+        depositPercentage: 50,
+      });
+      setIsAdding(false);
+      setName('');
+      setDescription('');
+      fetchServices();
+    } catch (err) {
+      alert('Error al dar de alta el nuevo tratamiento');
+    } finally {
+      setIsSaving(false);
+    }
   };
 
   return (
-    <div className="max-w-6xl mx-auto p-4 sm:p-6 space-y-6">
+    <div className="max-w-5xl mx-auto p-4 sm:p-6 space-y-6">
       <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center bg-white p-4 rounded-2xl border border-slate-200 shadow-sm gap-4">
         <div className="flex items-center space-x-3">
-          <div className="w-10 h-10 rounded-full bg-slate-900 text-teal-400 flex items-center justify-center font-bold">
-            <Sparkles className="w-5 h-5" />
+          <div className="w-10 h-10 rounded-full bg-teal-100 text-teal-700 flex items-center justify-center font-bold">
+            <Settings className="w-5 h-5" />
           </div>
           <div>
-            <h2 className="text-lg font-bold text-slate-900">Catálogo Oficial de Tratamientos & Tarifas</h2>
-            <p className="text-xs text-slate-500">Configuración de precios, señas online (%) y duraciones médicas</p>
+            <h2 className="text-lg font-bold text-slate-900">Catálogo de Procedimientos & Tarifas</h2>
+            <p className="text-xs text-slate-500">Gestión de precios oficiales y porcentaje de seña obligatoria</p>
           </div>
         </div>
 
         <button
-          onClick={() => setIsModalOpen(true)}
-          className="bg-teal-600 hover:bg-teal-700 text-white font-semibold px-4 py-2 rounded-xl text-xs flex items-center space-x-1.5 shadow-sm"
+          onClick={() => setIsAdding(true)}
+          className="bg-teal-600 hover:bg-teal-700 text-white text-xs font-bold px-4 py-2.5 rounded-xl flex items-center space-x-1.5 shadow-sm transition-colors"
         >
           <Plus className="w-4 h-4" />
-          <span>Nuevo Tratamiento</span>
+          <span>Agregar Tratamiento</span>
         </button>
       </div>
 
-      {/* Tabla de Servicios */}
-      <div className="bg-white rounded-2xl border border-slate-200 shadow-sm overflow-hidden">
-        <table className="w-full text-left text-xs sm:text-sm">
-          <thead className="bg-slate-50 text-slate-600 font-bold border-b border-slate-200">
-            <tr>
-              <th className="p-3.5">Tratamiento</th>
-              <th className="p-3.5">Duración</th>
-              <th className="p-3.5 text-right">Precio Base</th>
-              <th className="p-3.5 text-right">Seña Requerida</th>
-              <th className="p-3.5 text-center">Estado</th>
-              <th className="p-3.5 text-center">Acciones</th>
-            </tr>
-          </thead>
-          <tbody className="divide-y divide-slate-100">
-            {services.map((svc) => (
-              <tr key={svc.id} className="hover:bg-slate-50/80 transition-colors">
-                <td className="p-3.5">
-                  <div className="font-bold text-slate-900">{svc.name}</div>
-                  <div className="text-xs text-slate-500 line-clamp-1">{svc.description}</div>
-                </td>
-                <td className="p-3.5 font-semibold text-slate-700 flex items-center space-x-1">
-                  <Clock className="w-3.5 h-3.5 text-teal-600 mr-1" />
-                  <span>{svc.durationMinutes} min</span>
-                </td>
-                <td className="p-3.5 text-right font-bold text-slate-900">
-                  {editingServiceId === svc.id ? (
-                    <input
-                      type="number"
-                      value={editPrice}
-                      onChange={(e) => setEditPrice(Number(e.target.value))}
-                      className="w-24 border border-teal-500 rounded p-1 text-right text-xs"
-                    />
-                  ) : (
-                    `$${svc.basePrice.toLocaleString()} ARS`
-                  )}
-                </td>
-                <td className="p-3.5 text-right font-semibold text-teal-700">
-                  {editingServiceId === svc.id ? (
-                    <input
-                      type="number"
-                      value={editDeposit}
-                      onChange={(e) => setEditDeposit(Number(e.target.value))}
-                      className="w-16 border border-teal-500 rounded p-1 text-right text-xs"
-                    />
-                  ) : (
-                    `${svc.depositPercentage}% ($${(svc.basePrice * (svc.depositPercentage / 100)).toLocaleString()})`
-                  )}
-                </td>
-                <td className="p-3.5 text-center">
-                  <span className="px-2.5 py-0.5 rounded-full text-[11px] font-bold bg-emerald-100 text-emerald-800">
-                    Activo
-                  </span>
-                </td>
-                <td className="p-3.5 text-center">
-                  {editingServiceId === svc.id ? (
-                    <div className="flex items-center justify-center space-x-1">
-                      <button
-                        onClick={() => handleSaveEdit(svc.id)}
-                        className="p-1 text-emerald-600 hover:bg-emerald-50 rounded"
-                        title="Guardar"
-                      >
-                        <Check className="w-4 h-4" />
-                      </button>
-                      <button
-                        onClick={() => setEditingServiceId(null)}
-                        className="p-1 text-rose-600 hover:bg-rose-50 rounded"
-                        title="Cancelar"
-                      >
-                        <X className="w-4 h-4" />
-                      </button>
-                    </div>
-                  ) : (
-                    <button
-                      onClick={() => handleStartEdit(svc)}
-                      className="p-1 text-slate-500 hover:text-teal-600 hover:bg-slate-100 rounded"
-                      title="Editar tarifas"
-                    >
-                      <Edit2 className="w-4 h-4" />
-                    </button>
-                  )}
-                </td>
-              </tr>
-            ))}
-          </tbody>
-        </table>
+      {saveSuccess && (
+        <div className="p-3 bg-emerald-50 border border-emerald-200 rounded-xl text-emerald-800 text-xs font-bold flex items-center space-x-2">
+          <CheckCircle className="w-4 h-4" />
+          <span>¡Arancel actualizado correctamente! Impactará en todas las reservas futuras.</span>
+        </div>
+      )}
+
+      {/* Lista de Servicios */}
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+        {services.map((svc) => (
+          <div key={svc.id} className="bg-white p-5 rounded-2xl border border-slate-200 shadow-sm space-y-3">
+            <div className="flex justify-between items-start">
+              <div>
+                <h3 className="font-bold text-slate-900 text-sm">{svc.name}</h3>
+                <span className="text-[11px] text-slate-400 font-semibold">{svc.durationMinutes} minutos de sesión</span>
+              </div>
+              <button
+                onClick={() => handleStartEdit(svc)}
+                className="text-teal-600 hover:text-teal-800 p-1.5 rounded-lg hover:bg-teal-50"
+                title="Modificar Precios"
+              >
+                <Edit2 className="w-4 h-4" />
+              </button>
+            </div>
+
+            <p className="text-xs text-slate-600 leading-relaxed">{svc.description}</p>
+
+            <div className="flex justify-between items-baseline pt-3 border-t border-slate-100">
+              <div>
+                <span className="text-[10px] text-slate-400 uppercase font-bold block">Arancel Total</span>
+                <span className="text-base font-extrabold text-slate-900">${svc.basePrice.toLocaleString()} ARS</span>
+              </div>
+              <div className="text-right">
+                <span className="text-[10px] text-teal-600 uppercase font-bold block">Seña (50%)</span>
+                <span className="text-sm font-bold text-teal-700">${(svc.basePrice * 0.5).toLocaleString()} ARS</span>
+              </div>
+            </div>
+          </div>
+        ))}
       </div>
 
-      {/* Modal de Nuevo Tratamiento */}
-      {isModalOpen && (
+      {/* Modal de Edición de Precio */}
+      {editingService && (
         <div className="fixed inset-0 bg-black/40 backdrop-blur-sm z-50 flex items-center justify-center p-4">
-          <form onSubmit={handleCreateService} className="bg-white rounded-2xl shadow-2xl max-w-lg w-full p-6 space-y-4">
-            <h3 className="text-lg font-bold text-slate-900">Agregar Nuevo Tratamiento Estético</h3>
+          <form onSubmit={handleSaveEdit} className="bg-white rounded-2xl shadow-2xl max-w-md w-full p-6 space-y-4">
+            <h3 className="text-base font-bold text-slate-900">Modificar Arancel: {editingService.name}</h3>
 
-            <div className="space-y-3 text-xs">
-              <div>
-                <label className="font-bold text-slate-700 block mb-1">Nombre del Tratamiento *</label>
-                <input
-                  type="text"
-                  required
-                  value={newName}
-                  onChange={(e) => setNewName(e.target.value)}
-                  placeholder="Ej. Bioestimulación con Hidroxiapatita Cálcica"
-                  className="w-full bg-slate-50 border border-slate-300 rounded-xl p-2.5 outline-none focus:ring-2 focus:ring-teal-500"
-                />
+            <div>
+              <label className="block text-xs font-bold text-slate-700 mb-1">Precio Total Acordado (ARS) *</label>
+              <input
+                type="number"
+                required
+                value={newPrice}
+                onChange={(e) => setNewPrice(Number(e.target.value))}
+                className="w-full bg-slate-50 border border-slate-300 rounded-xl p-2.5 text-sm font-bold focus:ring-2 focus:ring-teal-500 outline-none"
+              />
+            </div>
+
+            <div>
+              <label className="block text-xs font-bold text-slate-700 mb-1">Porcentaje de Seña Obligatoria (%) *</label>
+              <input
+                type="number"
+                required
+                min={10}
+                max={100}
+                value={newDepositPercent}
+                onChange={(e) => setNewDepositPercent(Number(e.target.value))}
+                className="w-full bg-slate-50 border border-slate-300 rounded-xl p-2.5 text-sm font-bold focus:ring-2 focus:ring-teal-500 outline-none"
+              />
+            </div>
+
+            <div className="p-3 rounded-xl bg-teal-50 text-xs text-teal-800 space-y-1">
+              <div className="flex justify-between">
+                <span>Nueva Seña Requerida:</span>
+                <span className="font-bold">${((newPrice * newDepositPercent) / 100).toLocaleString()} ARS</span>
               </div>
-
-              <div>
-                <label className="font-bold text-slate-700 block mb-1">Descripción y Protocolo Clínico</label>
-                <textarea
-                  rows={2}
-                  value={newDescription}
-                  onChange={(e) => setNewDescription(e.target.value)}
-                  placeholder="Detalle clínico del procedimiento e indicaciones para el paciente..."
-                  className="w-full bg-slate-50 border border-slate-300 rounded-xl p-2.5 outline-none focus:ring-2 focus:ring-teal-500"
-                />
-              </div>
-
-              <div className="grid grid-cols-3 gap-3">
-                <div>
-                  <label className="font-bold text-slate-700 block mb-1">Duración (min)</label>
-                  <input
-                    type="number"
-                    value={newDuration}
-                    onChange={(e) => setNewDuration(Number(e.target.value))}
-                    className="w-full bg-slate-50 border border-slate-300 rounded-xl p-2.5 outline-none"
-                  />
-                </div>
-                <div>
-                  <label className="font-bold text-slate-700 block mb-1">Precio Total (ARS)</label>
-                  <input
-                    type="number"
-                    value={newPrice}
-                    onChange={(e) => setNewPrice(Number(e.target.value))}
-                    className="w-full bg-slate-50 border border-slate-300 rounded-xl p-2.5 outline-none"
-                  />
-                </div>
-                <div>
-                  <label className="font-bold text-slate-700 block mb-1">% de Seña</label>
-                  <input
-                    type="number"
-                    value={newDeposit}
-                    onChange={(e) => setNewDeposit(Number(e.target.value))}
-                    className="w-full bg-slate-50 border border-slate-300 rounded-xl p-2.5 outline-none"
-                  />
-                </div>
+              <div className="flex justify-between">
+                <span>Saldo en Consultorio:</span>
+                <span className="font-bold">${(newPrice - (newPrice * newDepositPercent) / 100).toLocaleString()} ARS</span>
               </div>
             </div>
 
             <div className="flex justify-end space-x-2 pt-2">
               <button
                 type="button"
-                onClick={() => setIsModalOpen(false)}
-                className="px-4 py-2 text-xs font-semibold text-slate-600 hover:bg-slate-100 rounded-xl"
+                onClick={() => setEditingService(null)}
+                className="px-4 py-2 text-xs text-slate-600 font-semibold hover:bg-slate-100 rounded-xl"
               >
                 Cancelar
               </button>
               <button
                 type="submit"
+                disabled={isSaving}
                 className="px-5 py-2 text-xs font-bold bg-teal-600 hover:bg-teal-700 text-white rounded-xl shadow-sm"
               >
-                Guardar Tratamiento
+                {isSaving ? 'Guardando...' : 'Guardar Cambios'}
+              </button>
+            </div>
+          </form>
+        </div>
+      )}
+
+      {/* Modal de Nuevo Servicio */}
+      {isAdding && (
+        <div className="fixed inset-0 bg-black/40 backdrop-blur-sm z-50 flex items-center justify-center p-4">
+          <form onSubmit={handleCreateService} className="bg-white rounded-2xl shadow-2xl max-w-md w-full p-6 space-y-4">
+            <h3 className="text-base font-bold text-slate-900">Alta de Nuevo Procedimiento Estético</h3>
+
+            <div>
+              <label className="block text-xs font-bold text-slate-700 mb-1">Nombre del Tratamiento *</label>
+              <input
+                type="text"
+                required
+                value={name}
+                onChange={(e) => setName(e.target.value)}
+                placeholder="Ej. Bioestimulación de Colágeno"
+                className="w-full bg-slate-50 border border-slate-300 rounded-xl p-2.5 text-xs focus:ring-2 focus:ring-teal-500 outline-none"
+              />
+            </div>
+
+            <div>
+              <label className="block text-xs font-bold text-slate-700 mb-1">Descripción Clínica *</label>
+              <textarea
+                required
+                rows={3}
+                value={description}
+                onChange={(e) => setDescription(e.target.value)}
+                placeholder="Indicar protocolo, zonas de aplicación y beneficios..."
+                className="w-full bg-slate-50 border border-slate-300 rounded-xl p-2.5 text-xs focus:ring-2 focus:ring-teal-500 outline-none"
+              />
+            </div>
+
+            <div className="grid grid-cols-2 gap-3">
+              <div>
+                <label className="block text-xs font-bold text-slate-700 mb-1">Precio Total (ARS) *</label>
+                <input
+                  type="number"
+                  required
+                  value={basePrice}
+                  onChange={(e) => setBasePrice(Number(e.target.value))}
+                  className="w-full bg-slate-50 border border-slate-300 rounded-xl p-2.5 text-xs font-bold focus:ring-2 focus:ring-teal-500 outline-none"
+                />
+              </div>
+              <div>
+                <label className="block text-xs font-bold text-slate-700 mb-1">Duración (min) *</label>
+                <input
+                  type="number"
+                  required
+                  value={durationMinutes}
+                  onChange={(e) => setDurationMinutes(Number(e.target.value))}
+                  className="w-full bg-slate-50 border border-slate-300 rounded-xl p-2.5 text-xs font-bold focus:ring-2 focus:ring-teal-500 outline-none"
+                />
+              </div>
+            </div>
+
+            <div className="flex justify-end space-x-2 pt-2">
+              <button
+                type="button"
+                onClick={() => setIsAdding(false)}
+                className="px-4 py-2 text-xs text-slate-600 font-semibold hover:bg-slate-100 rounded-xl"
+              >
+                Cancelar
+              </button>
+              <button
+                type="submit"
+                disabled={isSaving}
+                className="px-5 py-2 text-xs font-bold bg-teal-600 hover:bg-teal-700 text-white rounded-xl shadow-sm"
+              >
+                {isSaving ? 'Creando...' : 'Crear Tratamiento'}
               </button>
             </div>
           </form>

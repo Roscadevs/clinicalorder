@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react'; // React hooks
 import { servicesApi, patientsApi, appointmentsApi } from '../../services/api'; // API services
 import { DermatologicService, PaymentPreferenceResponse } from '../../types'; // Types
-import { Calendar, Clock, CreditCard, CheckCircle2, AlertCircle, ArrowRight, Sparkles, Printer } from 'lucide-react'; // Icons
+import { Clock, CreditCard, AlertCircle, ArrowRight, Printer } from 'lucide-react'; // Icons
 import { AppointmentReceiptModal } from '../documents/AppointmentReceiptModal'; // Modal de comprobante
 
 export const BookingWizard: React.FC = () => {

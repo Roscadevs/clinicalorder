@@ -1,5 +1,5 @@
 import React from 'react'; // React
-import { Sparkles, Calendar, UserCheck, ShieldCheck, Settings, BarChart3, LogOut } from 'lucide-react'; // Iconos
+import { Sparkles, Calendar, UserCheck, ShieldCheck, Settings, BarChart3 } from 'lucide-react'; // Iconos
 
 interface NavbarProps {
   currentTab: 'booking' | 'agenda' | 'clinical' | 'admin' | 'analytics';
@@ -8,7 +8,7 @@ interface NavbarProps {
   onLogout?: () => void;
 }
 
-export const Navbar: React.FC<NavbarProps> = ({ currentTab, setCurrentTab, userRole, onLogout }) => {
+export const Navbar: React.FC<NavbarProps> = ({ currentTab, setCurrentTab, userRole }) => {
   return (
     <header className="bg-white border-b border-slate-200 sticky top-0 z-40 shadow-sm">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">

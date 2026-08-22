@@ -7,7 +7,6 @@ import {
   Sparkles,
   ArrowUpRight,
   ShieldCheck,
-  Clock,
   PieChart,
   BarChart3
 } from 'lucide-react'; // Iconos

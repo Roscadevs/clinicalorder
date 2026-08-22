@@ -121,6 +121,26 @@ export interface ClinicalEntry {
   updatedAt: string;
 }
 
+export interface ClinicalAuditLog {
+  id: number;
+  medicalRecordId: number;
+  modifiedByUserId: number;
+  modifiedByFullName: string;
+  action: string;
+  previousStateJson?: any;
+  newStateJson?: any;
+  timestamp: string;
+  ipAddress: string;
+  reason?: string;
+}
+
+export interface ChatMessage {
+  id: string;
+  role: 'user' | 'assistant';
+  content: string;
+  timestamp: Date;
+}
+
 export interface GeminiChatResponse {
   reply: string; // Respuesta empática generada por Gemini
   suggestedServices: string[]; // Sugerencias detectadas

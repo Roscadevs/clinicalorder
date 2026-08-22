@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react'; // React hooks
 import { appointmentsApi } from '../../services/api'; // API appointments
 import { Appointment, AppointmentStatus } from '../../types'; // Types
-import { Calendar, DollarSign, XCircle, CheckCircle, Clock, UserCheck, Printer } from 'lucide-react'; // Icons
+import { Calendar, DollarSign, XCircle, Clock, Printer } from 'lucide-react'; // Icons
 import { AppointmentReceiptModal } from '../documents/AppointmentReceiptModal'; // Modal de comprobante
 
 export const AgendaView: React.FC = () => {
@@ -12,7 +12,7 @@ export const AgendaView: React.FC = () => {
   const [receiptModalOpen, setReceiptModalOpen] = useState(false);
   const [receiptAppointment, setReceiptAppointment] = useState<Appointment | null>(null);
   const [paymentAmount, setPaymentAmount] = useState<number>(0);
-  const [paymentMethod, setPaymentMethod] = useState<'FINAL_BALANCE_50' | 'FULL_PAYMENT'>('FINAL_BALANCE_50');
+  const [paymentMethod] = useState<'FINAL_BALANCE_50' | 'FULL_PAYMENT'>('FINAL_BALANCE_50');
 
   const fetchAgenda = () => {
     const startIso = new Date(`${selectedDate}T00:00:00Z`).toISOString();
