@@ -17,6 +17,9 @@ interface ReminderNotificationModalProps {
   };
 }
 
+/**
+ * Modal y Bottom Sheet táctil de Recordatorios y Sincronización de Calendarios.
+ */
 export const ReminderNotificationModal: React.FC<ReminderNotificationModalProps> = ({
   isOpen,
   onClose,
@@ -42,22 +45,25 @@ export const ReminderNotificationModal: React.FC<ReminderNotificationModalProps>
   };
 
   return (
-    <div className="fixed inset-0 bg-black/50 backdrop-blur-sm z-50 flex items-center justify-center p-4 overflow-y-auto">
-      <div className="bg-white rounded-2xl shadow-2xl max-w-lg w-full p-6 space-y-5 relative">
+    <div className="fixed inset-0 bg-black/50 backdrop-blur-sm z-50 flex items-end sm:items-center justify-center p-0 sm:p-4 overflow-y-auto">
+      <div className="bg-white rounded-t-3xl sm:rounded-2xl shadow-2xl max-w-lg w-full p-5 sm:p-6 space-y-4 relative max-h-[92dvh] overflow-y-auto">
+        {/* Tirador táctil en celular */}
+        <div className="w-12 h-1.5 bg-slate-300 rounded-full mx-auto sm:hidden"></div>
+
         {/* Encabezado */}
         <div className="flex justify-between items-center border-b border-slate-100 pb-3">
           <div className="flex items-center space-x-2">
-            <div className="w-8 h-8 rounded-full bg-teal-100 text-teal-700 flex items-center justify-center font-bold">
+            <div className="w-8 h-8 rounded-full bg-teal-100 text-teal-700 flex items-center justify-center font-bold flex-shrink-0">
               <Bell className="w-4 h-4" />
             </div>
             <div>
-              <h3 className="text-sm font-bold text-slate-900">Recordatorio & Sincronización de Calendario</h3>
-              <p className="text-[11px] text-slate-500">Notificación automática programada (24h antes)</p>
+              <h3 className="text-xs sm:text-sm font-bold text-slate-900">Recordatorio & Sincronización</h3>
+              <p className="text-[10px] sm:text-[11px] text-slate-500">Aviso multicanal programado (24h antes)</p>
             </div>
           </div>
           <button
             onClick={onClose}
-            className="text-slate-400 hover:text-slate-600 p-1.5 rounded-xl hover:bg-slate-100"
+            className="text-slate-400 hover:text-slate-600 p-2 rounded-xl hover:bg-slate-100 min-h-[40px] min-w-[40px] flex items-center justify-center"
           >
             <X className="w-5 h-5" />
           </button>
@@ -104,9 +110,9 @@ export const ReminderNotificationModal: React.FC<ReminderNotificationModalProps>
           ) : (
             <button
               onClick={() => setConfirmed(true)}
-              className="w-full bg-emerald-600 hover:bg-emerald-700 text-white text-xs font-bold py-2 rounded-xl flex items-center justify-center space-x-1.5 transition-colors shadow"
+              className="w-full bg-emerald-600 hover:bg-emerald-700 text-white text-xs font-bold py-2.5 rounded-xl flex items-center justify-center space-x-1.5 transition-colors shadow min-h-[44px]"
             >
-              <CheckCircle className="w-3.5 h-3.5" />
+              <CheckCircle className="w-4 h-4" />
               <span>Simular Confirmación de Asistencia</span>
             </button>
           )}
@@ -118,13 +124,13 @@ export const ReminderNotificationModal: React.FC<ReminderNotificationModalProps>
             <Calendar className="w-3.5 h-3.5 mr-1 text-teal-600" /> Agendar en tu Calendario Personal
           </h4>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-2.5 pt-1">
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 pt-1">
             {/* Opción 1: Google Calendar */}
             <a
               href={googleUrl}
               target="_blank"
               rel="noopener noreferrer"
-              className="flex items-center justify-between p-3 rounded-xl border border-slate-200 hover:border-teal-500 bg-slate-50 hover:bg-teal-50/50 transition-colors text-xs group"
+              className="flex items-center justify-between p-3 rounded-xl border border-slate-200 hover:border-teal-500 bg-slate-50 hover:bg-teal-50/50 transition-colors text-xs group min-h-[48px]"
             >
               <div className="flex items-center space-x-2">
                 <div className="w-7 h-7 rounded-lg bg-white border border-slate-200 flex items-center justify-center font-bold text-red-500 text-xs shadow-sm">
@@ -138,7 +144,7 @@ export const ReminderNotificationModal: React.FC<ReminderNotificationModalProps>
             {/* Opción 2: Apple Calendar / Outlook (.ics) */}
             <button
               onClick={handleDownloadIcs}
-              className="flex items-center justify-between p-3 rounded-xl border border-slate-200 hover:border-teal-500 bg-slate-50 hover:bg-teal-50/50 transition-colors text-xs group text-left"
+              className="flex items-center justify-between p-3 rounded-xl border border-slate-200 hover:border-teal-500 bg-slate-50 hover:bg-teal-50/50 transition-colors text-xs group text-left min-h-[48px]"
             >
               <div className="flex items-center space-x-2">
                 <div className="w-7 h-7 rounded-lg bg-white border border-slate-200 flex items-center justify-center font-bold text-blue-600 text-xs shadow-sm">

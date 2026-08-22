@@ -11,18 +11,24 @@ interface NavbarProps {
 export const Navbar: React.FC<NavbarProps> = ({ currentTab, setCurrentTab, userRole }) => {
   return (
     <header className="bg-white border-b border-slate-200 sticky top-0 z-40 shadow-sm">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
-        <div className="flex items-center space-x-3 cursor-pointer" onClick={() => setCurrentTab('booking')}>
-          <div className="w-10 h-10 rounded-full bg-teal-600 flex items-center justify-center text-white shadow-md">
-            <Sparkles className="w-5 h-5" />
+      <div className="max-w-7xl mx-auto px-3 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
+        {/* Logotipo & Título Médico */}
+        <div className="flex items-center space-x-2.5 cursor-pointer" onClick={() => setCurrentTab('booking')}>
+          <div className="w-9 h-9 sm:w-10 sm:h-10 rounded-full bg-teal-600 flex items-center justify-center text-white shadow-md flex-shrink-0">
+            <Sparkles className="w-4 h-4 sm:w-5 sm:h-5" />
           </div>
           <div>
-            <span className="text-lg font-bold tracking-tight text-slate-800">Dra. Valeria Gómez</span>
-            <span className="block text-xs font-medium text-teal-600">Dermatología & Estética Médica</span>
+            <span className="text-base sm:text-lg font-bold tracking-tight text-slate-800 block leading-tight">
+              Dra. Valeria Gómez
+            </span>
+            <span className="text-[10px] sm:text-xs font-medium text-teal-600 block">
+              Dermatología & Estética Médica
+            </span>
           </div>
         </div>
 
-        <nav className="flex items-center space-x-1.5 sm:space-x-2">
+        {/* Navegación de Escritorio (Oculta en Celular porque se usa BottomNav) */}
+        <nav className="hidden sm:flex items-center space-x-1.5 sm:space-x-2">
           <button
             onClick={() => setCurrentTab('booking')}
             className={`px-3 py-2 rounded-lg text-xs sm:text-sm font-medium transition-colors flex items-center space-x-1.5 ${

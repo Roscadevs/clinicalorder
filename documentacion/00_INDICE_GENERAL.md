@@ -23,7 +23,8 @@ documentacion/
 │   ├── PRD_v6.0_Fase6_Documentos_PDF_Master.md           # Versión 6.0 (Comprobantes PDF y Consentimiento Ley 26.529)
 │   ├── PRD_v7.0_Fase7_Dashboard_KPIs_Master.md           # Versión 7.0 (Dashboard de KPIs y Métricas)
 │   ├── PRD_v8.0_Fase8_Recordatorios_Calendario_Master.md # Versión 8.0 (Recordatorios y Sincronización Calendarios)
-│   └── PRD_v9.0_Fase9_Master_Defensa_Integral.md         # Versión 9.0 (Master Final con Guía de Defensa y Demo)
+│   ├── PRD_v9.0_Fase9_Master_Defensa_Integral.md         # Versión 9.0 (Guía de Defensa y Demo 7 min)
+│   └── PRD_v10.0_Fase10_Mobile_Responsive_Master.md      # Versión 10.0 (Master Final con Diseño Mobile-First)
 │
 ├── 🏗️ fase1_especificacion_y_diseno/                      # Fase 1: Arquitectura base y Modelado
 │   ├── ARQUITECTURA_Y_DISENO_TECNICO.md                  # Diagramas UML (Paquetes, Despliegue), MER/MR, ACID
@@ -53,6 +54,9 @@ documentacion/
 ├── 🎓 fase9_guia_de_defensa_y_pitch/                      # Fase 9: Estrategia de Defensa Oral, Pitch y Preguntas
 │   └── GUIA_DE_DEFENSA_Y_DEMOSTRACION.md                 # Guión de demo 7 min y banco de 10 preguntas críticas
 │
+├── 📱 fase10_diseno_mobile_y_responsive/                  # Fase 10: Diseño Mobile-First y Ergonomía Táctil
+│   └── FASE_10_DISENO_MOBILE_Y_RESPONSIVE.md             # BottomNav, Bottom Sheets y Carrusel de Días
+│
 └── 📁 recursos_academicos_originales/                     # Materiales y diagramas base entregados por la cátedra
     ├── 2.- Microservicios y RestSimplificado.pdf
     ├── CasosDeUso - DetalleDiagrama.docx
@@ -73,7 +77,8 @@ documentacion/
 
 | Necesidad / Objetivo | Documento Recomendado | Ubicación |
 | :--- | :--- | :--- |
-| **PRD Vigente Completo (How I Spec)** | [PRD v9.0 Master Final](file:///Users/eliasignaciodelcastillogodoy/Desktop/ProyectoIntegrador/documentacion/historial_prds/PRD_v9.0_Fase9_Master_Defensa_Integral.md) | `historial_prds/` |
+| **PRD Vigente Completo (How I Spec)** | [PRD v10.0 Master Final](file:///Users/eliasignaciodelcastillogodoy/Desktop/ProyectoIntegrador/documentacion/historial_prds/PRD_v10.0_Fase10_Mobile_Responsive_Master.md) | `historial_prds/` |
+| **Diseño Mobile-First y Responsive UX** | [Fase 10: Diseño Mobile](file:///Users/eliasignaciodelcastillogodoy/Desktop/ProyectoIntegrador/documentacion/fase10_diseno_mobile_y_responsive/FASE_10_DISENO_MOBILE_Y_RESPONSIVE.md) | `fase10_diseno_mobile_y_responsive/` |
 | **Guía de Defensa Oral y Demo 7 min** | [Fase 9: Guía de Defensa](file:///Users/eliasignaciodelcastillogodoy/Desktop/ProyectoIntegrador/documentacion/fase9_guia_de_defensa_y_pitch/GUIA_DE_DEFENSA_Y_DEMOSTRACION.md) | `fase9_guia_de_defensa_y_pitch/` |
 | **Historial de Revisiones del PRD** | [Changelog de PRDs](file:///Users/eliasignaciodelcastillogodoy/Desktop/ProyectoIntegrador/documentacion/historial_prds/CHANGELOG_PRDS.md) | `historial_prds/` |
 | **Recordatorios & Sincronización Calendarios** | [Fase 8: Calendarios y Avisos](file:///Users/eliasignaciodelcastillogodoy/Desktop/ProyectoIntegrador/documentacion/fase8_recordatorios_y_calendario_sync/FASE_8_SISTEMA_RECORDATORIOS_Y_CALENDARIOS.md) | `fase8_recordatorios_y_calendario_sync/` |
