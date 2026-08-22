@@ -4,7 +4,7 @@
 -- =====================================================================================
 
 -- 1. Tabla de Usuarios del Sistema (Personal de la Clínica)
-CREATE TABLE usuario (
+CREATE TABLE IF NOT EXISTS usuario (
     id BIGSERIAL PRIMARY KEY, -- Clave primaria autoincremental
     username VARCHAR(50) NOT NULL UNIQUE, -- Nombre de usuario único para login
     password_hash VARCHAR(255) NOT NULL, -- Contraseña con hash BCrypt
@@ -19,7 +19,7 @@ CREATE TABLE usuario (
 );
 
 -- 2. Tabla de Tokens de Restablecimiento de Contraseña
-CREATE TABLE password_reset_token (
+CREATE TABLE IF NOT EXISTS password_reset_token (
     id BIGSERIAL PRIMARY KEY, -- Identificador único
     user_id BIGINT NOT NULL REFERENCES usuario(id) ON DELETE CASCADE, -- Usuario asociado
     token VARCHAR(255) NOT NULL UNIQUE, -- Token criptográfico aleatorio
@@ -29,7 +29,7 @@ CREATE TABLE password_reset_token (
 );
 
 -- 3. Tabla de Pacientes
-CREATE TABLE paciente (
+CREATE TABLE IF NOT EXISTS paciente (
     id BIGSERIAL PRIMARY KEY, -- Identificador único del paciente
     name VARCHAR(100) NOT NULL, -- Nombre y apellido
     dni VARCHAR(8) NOT NULL UNIQUE CHECK (dni ~ '^[0-9]{7,8}$'), -- DNI argentino de 7 u 8 dígitos
@@ -43,12 +43,12 @@ CREATE TABLE paciente (
 );
 
 -- Índices de búsqueda para optimizar consultas de pacientes
-CREATE INDEX idx_paciente_dni ON paciente(dni);
-CREATE INDEX idx_paciente_email ON paciente(email);
-CREATE INDEX idx_paciente_name ON paciente(name);
+CREATE INDEX IF NOT EXISTS idx_paciente_dni ON paciente(dni);
+CREATE INDEX IF NOT EXISTS idx_paciente_email ON paciente(email);
+CREATE INDEX IF NOT EXISTS idx_paciente_name ON paciente(name);
 
 -- 4. Tabla de Servicios Dermatológicos y Estéticos
-CREATE TABLE servicio (
+CREATE TABLE IF NOT EXISTS servicio (
     id BIGSERIAL PRIMARY KEY, -- Identificador del servicio
     name VARCHAR(100) NOT NULL UNIQUE, -- Nombre único del tratamiento
     description VARCHAR(500) NULL, -- Descripción clínica y estética del servicio
@@ -62,7 +62,7 @@ CREATE TABLE servicio (
 );
 
 -- 5. Tabla de Citas (Turnos)
-CREATE TABLE cita (
+CREATE TABLE IF NOT EXISTS cita (
     id BIGSERIAL PRIMARY KEY, -- Identificador único de la cita
     paciente_id BIGINT NOT NULL REFERENCES paciente(id) ON DELETE RESTRICT, -- Paciente citado
     servicio_id BIGINT NOT NULL REFERENCES servicio(id) ON DELETE RESTRICT, -- Servicio a realizar
@@ -81,13 +81,13 @@ CREATE TABLE cita (
 );
 
 -- Índices para búsqueda de disponibilidad y estados de agenda
-CREATE INDEX idx_cita_range ON cita(start_time, end_time);
-CREATE INDEX idx_cita_status ON cita(status);
-CREATE INDEX idx_cita_paciente ON cita(paciente_id);
-CREATE INDEX idx_cita_hold_deadline ON cita(temporary_hold_deadline);
+CREATE INDEX IF NOT EXISTS idx_cita_range ON cita(start_time, end_time);
+CREATE INDEX IF NOT EXISTS idx_cita_status ON cita(status);
+CREATE INDEX IF NOT EXISTS idx_cita_paciente ON cita(paciente_id);
+CREATE INDEX IF NOT EXISTS idx_cita_hold_deadline ON cita(temporary_hold_deadline);
 
 -- 6. Tabla de Transacciones de Pago (MercadoPago y Mostrador)
-CREATE TABLE transaccion_pago (
+CREATE TABLE IF NOT EXISTS transaccion_pago (
     id BIGSERIAL PRIMARY KEY, -- Identificador de la transacción
     cita_id BIGINT NOT NULL REFERENCES cita(id) ON DELETE RESTRICT, -- Cita a la que pertenece el pago
     mp_preference_id VARCHAR(100) NULL, -- ID de preferencia generado en MercadoPago
@@ -101,7 +101,7 @@ CREATE TABLE transaccion_pago (
 );
 
 -- 7. Tabla de Bloqueos de Calendario (Indisponibilidad)
-CREATE TABLE bloqueo_calendario (
+CREATE TABLE IF NOT EXISTS bloqueo_calendario (
     id BIGSERIAL PRIMARY KEY, -- Identificador del bloqueo
     created_by_user_id BIGINT NOT NULL REFERENCES usuario(id) ON DELETE RESTRICT, -- Usuario que bloqueó
     start_time TIMESTAMP WITH TIME ZONE NOT NULL, -- Inicio del bloqueo
@@ -111,7 +111,7 @@ CREATE TABLE bloqueo_calendario (
 );
 
 -- 8. Tabla de Historia Clínica Base (Ficha Anamnesis por Paciente - Relación 1:1)
-CREATE TABLE historia_clinica (
+CREATE TABLE IF NOT EXISTS historia_clinica (
     id BIGSERIAL PRIMARY KEY, -- Identificador único de la historia clínica
     paciente_id BIGINT NOT NULL UNIQUE REFERENCES paciente(id) ON DELETE RESTRICT, -- Paciente único
     created_by_user_id BIGINT NOT NULL REFERENCES usuario(id) ON DELETE RESTRICT, -- Médica que creó la ficha
@@ -151,7 +151,7 @@ CREATE TABLE historia_clinica (
 );
 
 -- 9. Tabla de Entradas de Evolución Clínica (Notas por Sesión)
-CREATE TABLE entrada_hc (
+CREATE TABLE IF NOT EXISTS entrada_hc (
     id BIGSERIAL PRIMARY KEY, -- Identificador de la nota clínica
     historia_clinica_id BIGINT NOT NULL REFERENCES historia_clinica(id) ON DELETE RESTRICT, -- Historia asociada
     cita_id BIGINT NOT NULL REFERENCES cita(id) ON DELETE RESTRICT, -- Turno específico atendido
@@ -162,7 +162,7 @@ CREATE TABLE entrada_hc (
 );
 
 -- 10. Tabla de Metadatos de Fotografías Médicas
-CREATE TABLE imagen_hc (
+CREATE TABLE IF NOT EXISTS imagen_hc (
     id BIGSERIAL PRIMARY KEY, -- Identificador de la foto
     historia_clinica_id BIGINT NOT NULL REFERENCES historia_clinica(id) ON DELETE CASCADE, -- Historia clínica
     file_path VARCHAR(255) NOT NULL UNIQUE, -- Ruta en Supabase Storage (photos/...)
