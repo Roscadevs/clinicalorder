@@ -11,6 +11,7 @@
 [![Supabase](https://img.shields.io/badge/Supabase-Database%20%26%20Storage-3ECF8E?style=for-the-badge&logo=supabase&logoColor=white)](https://supabase.com/)
 [![MercadoPago](https://img.shields.io/badge/MercadoPago-Checkout%20Pro-009EE3?style=for-the-badge&logo=mercadopago&logoColor=white)](https://www.mercadopago.com.ar/)
 [![Google Gemini](https://img.shields.io/badge/Google%20Gemini-1.5%20Flash-8E75B2?style=for-the-badge&logo=google&logoColor=white)](https://ai.google.dev/)
+[![BPMN 2.0](https://img.shields.io/badge/BPMN-2.0%20Modeling-FF6F00?style=for-the-badge&logo=diagram&logoColor=white)](documentacion/fase4_bpmn_y_casos_de_uso/FASE_4_PROCESOS_BPMN_Y_CASOS_DE_USO.md)
 [![Vercel](https://img.shields.io/badge/Vercel-Frontend%20Edge-000000?style=for-the-badge&logo=vercel&logoColor=white)](https://vercel.com/)
 
 <br/>
@@ -18,6 +19,7 @@
 > **Trabajo Práctico Especial (TPE) / Proyecto Integrador**  
 > **Asignatura:** Ingeniería del Software II  
 > **Metodología de Requerimientos:** *How I Spec* (Rivera)  
+> **Modelado de Procesos:** BPMN 2.0 & UML 2.5  
 > **Patrón Arquitectónico:** Monolito Modular con *Clean Layered Architecture* (4 capas limpias)
 
 </div>
@@ -28,7 +30,8 @@
 
 - [✨ Visión General & Propósito](#-visión-general--propósito)
 - [🏛️ Arquitectura del Sistema](#️-arquitectura-del-sistema)
-- [🧩 Módulos Funcionales](#-módulos-funcionales)
+- [🔄 Modelos de Procesos de Negocio BPMN 2.0](#-modelos-de-procesos-de-negocio-bpmn-20)
+- [🧩 Módulos Funcionales & Casos de Uso](#-módulos-funcionales--casos-de-uso)
 - [🗂️ Documentación Organizada por Fases](#️-documentación-organizada-por-fases)
 - [🚀 Pila Tecnológica (Tech Stack)](#-pila-tecnológica-tech-stack)
 - [⚙️ Instalación y Ejecución Local](#️-instalación-y-ejecución-local)
@@ -85,17 +88,32 @@ El sistema resuelve integralmente la problemática operativa, clínica y financi
 
 ---
 
-## 🧩 Módulos Funcionales
+## 🔄 Modelos de Procesos de Negocio BPMN 2.0
 
-| Módulo | Descripción | Rol de Acceso |
-| :--- | :--- | :--- |
-| **1. Portal & Chatbot IA** | Landing público informativo con asesoramiento en tiempo real mediante Gemini API. | Público |
-| **2. Reserva & Señas Online** | Wizard de reserva, cálculo de slots disponibles (09-19h) y pasarela de pago MercadoPago. | Paciente / Público |
-| **3. Agenda & Cobros** | Vista de turnos diarios/semanales, cancelación y liquidación del saldo restante del 50%. | Secretaria / Médica |
-| **4. Historia Clínica Digital** | Ficha médica estructurada (Fitzpatrick I-VI, alergias, patologías, evoluciones). | Médica (`PHYSICIAN`) |
-| **5. Registro Fotográfico** | Subida de imágenes a Supabase Storage y visor comparativo *Antes y Después*. | Médica (`PHYSICIAN`) |
-| **6. Auditoría Legal** | Línea de tiempo de cambios inmutables con diffs JSON previos y nuevos. | Médica (`PHYSICIAN`) |
-| **7. Administración & Tarifas** | CRUD de catálogo de tratamientos, ajuste de precios base y porcentaje de seña. | Administrador (`ADMIN`) |
+El sistema cuenta con el modelado formal de 5 procesos de negocio en estándar **BPMN 2.0**:
+
+- **`PR-01`:** Reserva de Turno Online, Retención de 10 min por TTL, Seña en MercadoPago y Notificación por Email.
+- **`PR-02`:** Consulta Médica, Registro Fotográfico en Supabase Storage, Evolución Clínica y Auditoría Inmutable.
+- **`PR-03`:** Recepción, Verificación de Asistencia, Liquidación de Saldo Restante (50%) en Mostrador y Cierre.
+- **`PR-04`:** Asesoramiento Automatizado con Google Gemini AI y Derivación al Catálogo.
+- **`PR-05`:** Recuperación Segura de Contraseña mediante Tokens Criptográficos de 15 minutos.
+
+*Consulte los diagramas detallados en [Fase 4: BPMN y Casos de Uso](documentacion/fase4_bpmn_y_casos_de_uso/FASE_4_PROCESOS_BPMN_Y_CASOS_DE_USO.md).*
+
+---
+
+## 🧩 Módulos Funcionales & Casos de Uso
+
+| Módulo | Casos de Uso Asociados | Descripción | Rol de Acceso |
+| :--- | :--- | :--- | :--- |
+| **1. Portal & Chatbot IA** | `CU-01` | Asesoramiento en lenguaje natural sobre tratamientos y precios mediante Gemini API. | Público |
+| **2. Reserva & Señas Online** | `CU-02`, `CU-03`, `CU-04` | Wizard de reserva, cálculo de slots disponibles (09-19h) y pasarela de pago MercadoPago. | Paciente / Público |
+| **3. Agenda & Cobros** | `CU-05` | Vista de turnos diarios/semanales, cancelación y liquidación del saldo restante del 50%. | Secretaria / Médica |
+| **4. Historia Clínica Digital** | `CU-06` | Ficha médica estructurada (Fitzpatrick I-VI, alergias, patologías, evoluciones). | Médica (`PHYSICIAN`) |
+| **5. Registro Fotográfico** | `CU-07` | Subida de imágenes a Supabase Storage y visor comparativo *Antes y Después*. | Médica (`PHYSICIAN`) |
+| **6. Auditoría Legal** | `CU-08` | Línea de tiempo de cambios inmutables con diffs JSON previos y nuevos. | Médica (`PHYSICIAN`) |
+| **7. Administración & Tarifas** | `CU-09` | CRUD de catálogo de tratamientos, ajuste de precios base y porcentaje de seña. | Administrador (`ADMIN`) |
+| **8. Seguridad de Accesos** | `CU-10` | Inicio de sesión JWT, protección de fuerza bruta (5 intentos) y reset de password. | Todos los roles |
 
 ---
 
@@ -107,7 +125,8 @@ Toda la documentación técnica se encuentra centralizada en la carpeta [`docume
   - [`CHANGELOG_PRDS.md`](documentacion/historial_prds/CHANGELOG_PRDS.md): Bitácora de cambios y versiones del PRD.
   - [`PRD_v1.0_Fase1_Inicial.md`](documentacion/historial_prds/PRD_v1.0_Fase1_Inicial.md): Especificación base y universo de discurso.
   - [`PRD_v2.0_Fase2_Backend_Storage_Tests.md`](documentacion/historial_prds/PRD_v2.0_Fase2_Backend_Storage_Tests.md): Disponibilidad en tiempo real, Supabase Storage y Tests.
-  - [`PRD_v3.0_Fase3_Frontend_DevOps_Master.md`](documentacion/historial_prds/PRD_v3.0_Fase3_Frontend_DevOps_Master.md): **PRD Maestro Vigente** con UI/UX y DevOps.
+  - [`PRD_v3.0_Fase3_Frontend_DevOps_Master.md`](documentacion/historial_prds/PRD_v3.0_Fase3_Frontend_DevOps_Master.md): UI/UX avanzada y Docker/Vercel.
+  - [`PRD_v4.0_Fase4_BPMN_CasosDeUso_Master.md`](documentacion/historial_prds/PRD_v4.0_Fase4_BPMN_CasosDeUso_Master.md): **PRD Maestro Vigente** con Procesos BPMN 2.0 y Casos de Uso.
 - 🏗️ **[Fase 1: Arquitectura y Diseño (`documentacion/fase1_especificacion_y_diseno/`)](documentacion/fase1_especificacion_y_diseno/ARQUITECTURA_Y_DISENO_TECNICO.md)**
   - [`ARQUITECTURA_Y_DISENO_TECNICO.md`](documentacion/fase1_especificacion_y_diseno/ARQUITECTURA_Y_DISENO_TECNICO.md): Diagramas UML, MER/MR, 1FN/2FN/3FN y transacciones ACID.
   - [`GLOSARIO_TECNICO_Y_METODOS.md`](documentacion/fase1_especificacion_y_diseno/GLOSARIO_TECNICO_Y_METODOS.md): Glosario exhaustivo de anotaciones Spring Boot, métodos de negocio y hooks.
@@ -115,6 +134,8 @@ Toda la documentación técnica se encuentra centralizada en la carpeta [`docume
   - [`FASE_2_IMPLEMENTACION_Y_TESTS.md`](documentacion/fase2_backend_y_calidad/FASE_2_IMPLEMENTACION_Y_TESTS.md): Detalle técnico de disponibilidad y tests unitarios.
 - 🚀 **[Fase 3: Frontend UI/UX y DevOps (`documentacion/fase3_frontend_avanzado_y_devops/`)](documentacion/fase3_frontend_avanzado_y_devops/FASE_3_FRONTEND_UIUX_Y_DEVOPS.md)**
   - [`FASE_3_FRONTEND_UIUX_Y_DEVOPS.md`](documentacion/fase3_frontend_avanzado_y_devops/FASE_3_FRONTEND_UIUX_Y_DEVOPS.md): Visor Antes/Después, Timeline de Auditoría y Docker.
+- 🏛️ **[Fase 4: Procesos BPMN 2.0 y Casos de Uso (`documentacion/fase4_bpmn_y_casos_de_uso/`)](documentacion/fase4_bpmn_y_casos_de_uso/FASE_4_PROCESOS_BPMN_Y_CASOS_DE_USO.md)**
+  - [`FASE_4_PROCESOS_BPMN_Y_CASOS_DE_USO.md`](documentacion/fase4_bpmn_y_casos_de_uso/FASE_4_PROCESOS_BPMN_Y_CASOS_DE_USO.md): 5 Procesos BPMN 2.0 (PR-01 a PR-05), 8 Casos de Uso Formales (CU-01 a CU-08) y Matriz de Trazabilidad.
 
 ---
 

@@ -7,14 +7,24 @@
 
 ## 📜 Historial de Revisiones
 
-### 🔹 [Versión 3.0 (Master - Fase 3)](file:///Users/eliasignaciodelcastillogodoy/Desktop/ProyectoIntegrador/documentacion/historial_prds/PRD_v3.0_Fase3_Frontend_DevOps_Master.md)
+### 🔹 [Versión 4.0 (Master - Fase 4: BPMN & Casos de Uso Formales)](file:///Users/eliasignaciodelcastillogodoy/Desktop/ProyectoIntegrador/documentacion/historial_prds/PRD_v4.0_Fase4_BPMN_CasosDeUso_Master.md)
 - **Fecha:** 2026-08-22
 - **Estado:** VIGENTE / MASTER
 - **Autor:** Equipo de Arquitectura & Desarrollo
 - **Cambios Principales:**
+  - Incorporación formal de **5 Diagramas de Procesos de Negocio en BPMN 2.0** (`PR-01` a `PR-05`) con modelado de pools, lanes, compuertas lógicas, eventos temporales y tareas de servicio (MercadoPago, Gemini, Storage, Schedulers).
+  - Especificación formal de **8 Casos de Uso detallados** (`CU-01` a `CU-08`) con actores, precondiciones, postcondiciones, flujos principales numerados paso a paso, alternativos, excepciones y reglas de negocio.
+  - Generación de la **Matriz de Trazabilidad** que vincula Objetivos de Negocio (O1-O6), Casos de Uso, Entidades de Base de Datos y Módulos de Software.
+
+---
+
+### 🔹 [Versión 3.0 (Fase 3 - Frontend UI/UX Avanzado & DevOps)](file:///Users/eliasignaciodelcastillogodoy/Desktop/ProyectoIntegrador/documentacion/historial_prds/PRD_v3.0_Fase3_Frontend_DevOps_Master.md)
+- **Fecha:** 2026-08-22
+- **Estado:** HISTÓRICO
+- **Autor:** Equipo de Arquitectura & Desarrollo
+- **Cambios Principales:**
   - Incorporación de especificaciones de UI/UX avanzada en Frontend: Visor Comparativo Antes/Después con slider horizontal (`BeforeAfterSlider.tsx`), línea de tiempo de auditoría médica (`AuditTimelineView.tsx`), panel de administración de servicios y tarifas (`AdminServicesView.tsx`) y pantallas de retorno de MercadoPago.
   - Especificación de despliegue contenerizado (`Dockerfile` multi-stage para backend, `vercel.json` para frontend y `docker-compose.yml` para orquestación local).
-  - Incorporación de modelos de integración continua y variables de entorno seguras.
 
 ---
 
