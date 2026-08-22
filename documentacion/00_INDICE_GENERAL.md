@@ -20,7 +20,8 @@ documentacion/
 │   ├── PRD_v3.0_Fase3_Frontend_DevOps_Master.md          # Versión 3.0 (UI/UX avanzada y Docker/Vercel)
 │   ├── PRD_v4.0_Fase4_BPMN_CasosDeUso_Master.md          # Versión 4.0 (Modelado BPMN 2.0 y Casos de Uso)
 │   ├── PRD_v5.0_Fase5_CICD_Calidad_Master.md             # Versión 5.0 (Pipelines CI/CD en GitHub Actions)
-│   └── PRD_v6.0_Fase6_Documentos_PDF_Master.md           # Versión 6.0 (Master / Vigente con Comprobantes PDF y Consentimiento)
+│   ├── PRD_v6.0_Fase6_Documentos_PDF_Master.md           # Versión 6.0 (Comprobantes PDF y Consentimiento Ley 26.529)
+│   └── PRD_v7.0_Fase7_Dashboard_KPIs_Master.md           # Versión 7.0 (Master / Vigente con Dashboard de KPIs)
 │
 ├── 🏗️ fase1_especificacion_y_diseno/                      # Fase 1: Arquitectura base y Modelado
 │   ├── ARQUITECTURA_Y_DISENO_TECNICO.md                  # Diagramas UML (Paquetes, Despliegue), MER/MR, ACID
@@ -40,6 +41,9 @@ documentacion/
 │
 ├── 📄 fase6_comprobantes_y_consentimientos_pdf/           # Fase 6: Documentos Clínicos, Comprobantes y PDF
 │   └── FASE_6_DOCUMENTOS_CLINICOS_Y_PDF.md               # Comprobante Oficial con QR y Consentimiento Ley 26.529
+│
+├── 📊 fase7_dashboard_metricas_y_kpis/                    # Fase 7: Dashboard Analítico y KPIs de Gestión
+│   └── FASE_7_DASHBOARD_METRICAS_Y_KPIS.md               # Indicadores de absentismo, facturación y tratamientos
 │
 └── 📁 recursos_academicos_originales/                     # Materiales y diagramas base entregados por la cátedra
     ├── 2.- Microservicios y RestSimplificado.pdf
@@ -61,8 +65,9 @@ documentacion/
 
 | Necesidad / Objetivo | Documento Recomendado | Ubicación |
 | :--- | :--- | :--- |
-| **PRD Vigente Completo (How I Spec)** | [PRD v6.0 Master](file:///Users/eliasignaciodelcastillogodoy/Desktop/ProyectoIntegrador/documentacion/historial_prds/PRD_v6.0_Fase6_Documentos_PDF_Master.md) | `historial_prds/` |
+| **PRD Vigente Completo (How I Spec)** | [PRD v7.0 Master](file:///Users/eliasignaciodelcastillogodoy/Desktop/ProyectoIntegrador/documentacion/historial_prds/PRD_v7.0_Fase7_Dashboard_KPIs_Master.md) | `historial_prds/` |
 | **Historial de Revisiones del PRD** | [Changelog de PRDs](file:///Users/eliasignaciodelcastillogodoy/Desktop/ProyectoIntegrador/documentacion/historial_prds/CHANGELOG_PRDS.md) | `historial_prds/` |
+| **Dashboard y KPIs de Gestión** | [Fase 7: Dashboard y KPIs](file:///Users/eliasignaciodelcastillogodoy/Desktop/ProyectoIntegrador/documentacion/fase7_dashboard_metricas_y_kpis/FASE_7_DASHBOARD_METRICAS_Y_KPIS.md) | `fase7_dashboard_metricas_y_kpis/` |
 | **Comprobantes y Consentimientos en PDF** | [Fase 6: Documentos y PDF](file:///Users/eliasignaciodelcastillogodoy/Desktop/ProyectoIntegrador/documentacion/fase6_comprobantes_y_consentimientos_pdf/FASE_6_DOCUMENTOS_CLINICOS_Y_PDF.md) | `fase6_comprobantes_y_consentimientos_pdf/` |
 | **Pipelines CI/CD & GitHub Actions** | [Fase 5: CI/CD y Calidad](file:///Users/eliasignaciodelcastillogodoy/Desktop/ProyectoIntegrador/documentacion/fase5_cicd_y_calidad_continua/FASE_5_PIPELINES_CICD_GITHUB_ACTIONS.md) | `fase5_cicd_y_calidad_continua/` |
 | **Diagramas de Procesos BPMN 2.0 y Casos de Uso** | [Fase 4: BPMN y Casos de Uso](file:///Users/eliasignaciodelcastillogodoy/Desktop/ProyectoIntegrador/documentacion/fase4_bpmn_y_casos_de_uso/FASE_4_PROCESOS_BPMN_Y_CASOS_DE_USO.md) | `fase4_bpmn_y_casos_de_uso/` |

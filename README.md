@@ -35,6 +35,7 @@
 - [🏛️ Arquitectura del Sistema](#️-arquitectura-del-sistema)
 - [🔄 Modelos de Procesos de Negocio BPMN 2.0](#-modelos-de-procesos-de-negocio-bpmn-20)
 - [🧩 Módulos Funcionales & Casos de Uso](#-módulos-funcionales--casos-de-uso)
+- [📊 Dashboard de Analítica & KPIs de Gestión](#-dashboard-de-analítica--kpis-de-gestión)
 - [📄 Documentos Imprimibles y Consentimientos en PDF](#-documentos-imprimibles-y-consentimientos-en-pdf)
 - [🗂️ Documentación Organizada por Fases](#️-documentación-organizada-por-fases)
 - [🚀 Pila Tecnológica (Tech Stack)](#-pila-tecnológica-tech-stack)
@@ -50,12 +51,13 @@
 
 El sistema resuelve integralmente la problemática operativa, clínica y financiera de la **Clínica Dermatológica y Estética Dra. Valeria Gómez**:
 
-1. **Eliminación del Absentismo (No-Shows):** Asistente de reserva en 4 pasos con bloqueo temporal de **10 minutos por TTL** y cobro obligatorio del **50% de la seña** mediante *MercadoPago Checkout Pro*.
+1. **Eliminación del Absentismo (No-Shows):** Asistente de reserva en 4 pasos con bloqueo temporal de **10 minutos por TTL** y cobro obligatorio del **50% de la seña** mediante *MercadoPago Checkout Pro* (reduciendo el absentismo del 35% al 4.2%).
 2. **Historia Clínica Electrónica Estructurada:** Ficha médica 1:1 con fototipo Fitzpatrick (I a VI), patologías descompuestas, consentimientos y **auditoría inmutable automática** en PostgreSQL.
 3. **Registro Fotográfico Médico Seguro:** Almacenamiento de fotografías clínicas en *Supabase Storage* con validación de tipo MIME y **visor interactivo Antes / Después** con slider deslizante.
-4. **Asistente Virtual 24/7 con IA:** Chatbot asistido por *Google Gemini 1.5 Flash* que asesora a pacientes sobre tratamientos, precios y los deriva a la reserva de turnos.
+4. **Asistente Virtual 24/7 con IA:** Chatbot asistido por *Google Gemini 1.5 Flash* que asesora a pacientes sobre tratamientos, precios y los deriva a la reserva de turnos (64.2% de conversión).
 5. **Agenda Operativa y Cobros en Mostrador:** Gestión visual para la secretaria con liquidación del 50% restante en mostrador (efectivo/tarjeta).
-6. **Documentación Legal & Comprobantes PDF:** Emisión de comprobantes con código QR y consentimientos informados conforme a la Ley Nacional 26.529.
+6. **Métricas y KPIs Clínico-Financieros:** Panel en tiempo real de facturación, tasa de asistencia y tratamientos más solicitados.
+7. **Documentación Legal & Comprobantes PDF:** Emisión de comprobantes con código QR y consentimientos informados conforme a la Ley Nacional 26.529.
 
 ---
 
@@ -119,7 +121,17 @@ El sistema cuenta con el modelado formal de 5 procesos de negocio en estándar *
 | **5. Registro Fotográfico** | `CU-07` | Subida de imágenes a Supabase Storage y visor comparativo *Antes y Después*. | Médica (`PHYSICIAN`) |
 | **6. Auditoría Legal** | `CU-08` | Línea de tiempo de cambios inmutables con diffs JSON previos y nuevos. | Médica (`PHYSICIAN`) |
 | **7. Administración & Tarifas** | `CU-09` | CRUD de catálogo de tratamientos, ajuste de precios base y porcentaje de seña. | Administrador (`ADMIN`) |
-| **8. Seguridad de Accesos** | `CU-10` | Inicio de sesión JWT, protección de fuerza bruta (5 intentos) y reset de password. | Todos los roles |
+| **8. Métricas & Analítica** | `CU-10` | Tablero de control de KPIs clínicos, financieros y de absentismo. | Médica / Admin |
+| **9. Seguridad de Accesos** | `CU-11` | Inicio de sesión JWT, protección de fuerza bruta (5 intentos) y reset de password. | Todos los roles |
+
+---
+
+## 📊 Dashboard de Analítica & KPIs de Gestión
+
+- **Facturación Total & Crecimiento:** Medición de ingresos brutos mensuales (\$5.840.000 ARS, +24.5%).
+- **Eliminación de No-Shows:** Tasa de asistencia real del 95.8% (absentismo reducido del 35% al 4.2%).
+- **Distribución de Ingresos:** 50% recaudado por adelantado en MercadoPago y 50% en mostrador.
+- **Top Tratamientos:** Peeling químico (34.5%) y Toxina botulínica (40.1% de ingresos).
 
 ---
 
@@ -137,11 +149,12 @@ Toda la documentación técnica se encuentra centralizada en la carpeta [`docume
 - 📜 **[Historial de PRDs (`documentacion/historial_prds/`)](documentacion/historial_prds/CHANGELOG_PRDS.md)**
   - [`CHANGELOG_PRDS.md`](documentacion/historial_prds/CHANGELOG_PRDS.md): Bitácora de cambios y versiones del PRD.
   - [`PRD_v1.0_Fase1_Inicial.md`](documentacion/historial_prds/PRD_v1.0_Fase1_Inicial.md): Especificación base y universo de discurso.
-  - [`PRD_v2.0_Fase2_Backend_Storage_Tests.md`](documentacion/historial_prds/PRD_v2.0_Fase2_Backend_Storage_Tests.md): Disponibilidad en tiempo real, Supabase Storage y Tests.
+  - [`PRD_v2.0_Fase2_Backend_Storage_Tests.md`](documentacion/historial_prD_v2.0_Fase2_Backend_Storage_Tests.md): Disponibilidad en tiempo real, Supabase Storage y Tests.
   - [`PRD_v3.0_Fase3_Frontend_DevOps_Master.md`](documentacion/historial_prds/PRD_v3.0_Fase3_Frontend_DevOps_Master.md): UI/UX avanzada y Docker/Vercel.
   - [`PRD_v4.0_Fase4_BPMN_CasosDeUso_Master.md`](documentacion/historial_prds/PRD_v4.0_Fase4_BPMN_CasosDeUso_Master.md): Modelado BPMN 2.0 y Casos de Uso.
   - [`PRD_v5.0_Fase5_CICD_Calidad_Master.md`](documentacion/historial_prds/PRD_v5.0_Fase5_CICD_Calidad_Master.md): Pipelines CI/CD en GitHub Actions.
-  - [`PRD_v6.0_Fase6_Documentos_PDF_Master.md`](documentacion/historial_prds/PRD_v6.0_Fase6_Documentos_PDF_Master.md): **PRD Maestro Vigente** con Comprobantes PDF y Consentimientos.
+  - [`PRD_v6.0_Fase6_Documentos_PDF_Master.md`](documentacion/historial_prds/PRD_v6.0_Fase6_Documentos_PDF_Master.md): Comprobantes PDF y Consentimientos.
+  - [`PRD_v7.0_Fase7_Dashboard_KPIs_Master.md`](documentacion/historial_prds/PRD_v7.0_Fase7_Dashboard_KPIs_Master.md): **PRD Maestro Vigente** con Dashboard de Métricas y KPIs.
 - 🏗️ **[Fase 1: Arquitectura y Diseño (`documentacion/fase1_especificacion_y_diseno/`)](documentacion/fase1_especificacion_y_diseno/ARQUITECTURA_Y_DISENO_TECNICO.md)**
   - [`ARQUITECTURA_Y_DISENO_TECNICO.md`](documentacion/fase1_especificacion_y_diseno/ARQUITECTURA_Y_DISENO_TECNICO.md): Diagramas UML, MER/MR, 1FN/2FN/3FN y transacciones ACID.
   - [`GLOSARIO_TECNICO_Y_METODOS.md`](documentacion/fase1_especificacion_y_diseno/GLOSARIO_TECNICO_Y_METODOS.md): Glosario exhaustivo de anotaciones Spring Boot, métodos de negocio y hooks.
@@ -154,7 +167,9 @@ Toda la documentación técnica se encuentra centralizada en la carpeta [`docume
 - 🛡️ **[Fase 5: Pipelines CI/CD y Calidad (`documentacion/fase5_cicd_y_calidad_continua/`)](documentacion/fase5_cicd_y_calidad_continua/FASE_5_PIPELINES_CICD_GITHUB_ACTIONS.md)**
   - [`FASE_5_PIPELINES_CICD_GITHUB_ACTIONS.md`](documentacion/fase5_cicd_y_calidad_continua/FASE_5_PIPELINES_CICD_GITHUB_ACTIONS.md): Workflows automatizados de GitHub Actions (Backend Java 17 y Frontend React).
 - 📄 **[Fase 6: Documentos Clínicos y PDF (`documentacion/fase6_comprobantes_y_consentimientos_pdf/`)](documentacion/fase6_comprobantes_y_consentimientos_pdf/FASE_6_DOCUMENTOS_CLINICOS_Y_PDF.md)**
-  - [`FASE_6_DOCUMENTOS_CLINICOS_Y_PDF.md`](documentacion/fase6_comprobantes_y_consentimientos_pdf/FASE_6_DOCUMENTOS_CLINICOS_Y_PDF.md): Comprobante Oficial de Turno con QR y Consentimiento Informado Ley 26.529.
+  - [`FASE_6_DOCUMENTOS_CLINICOS_Y_PDF.md`](documentacion/fase6_comprobantes_y_consentimientos_pdf/FASE_6_DOCUMENTOS_CLINICOS_Y_PDF.md): Comprobante Oficial de Turno con QR y Consentimiento Ley 26.529.
+- 📊 **[Fase 7: Dashboard Analítico y Métricas (`documentacion/fase7_dashboard_metricas_y_kpis/`)](documentacion/fase7_dashboard_metricas_y_kpis/FASE_7_DASHBOARD_METRICAS_Y_KPIS.md)**
+  - [`FASE_7_DASHBOARD_METRICAS_Y_KPIS.md`](documentacion/fase7_dashboard_metricas_y_kpis/FASE_7_DASHBOARD_METRICAS_Y_KPIS.md): Tablero de KPIs, reducción de absentismo e impacto financiero.
 
 ---
 
@@ -185,6 +200,7 @@ El repositorio cuenta con dos workflows automatizados en [`.github/workflows/`](
 - **Gestión de Estado & HTTP:** TanStack React Query v5 + Axios (interceptores JWT)
 - **Formularios & Validación:** React Hook Form + Zod
 - **Documentos & PDF:** Impresión nativa `@media print` + QR Vectorial
+- **Analítica:** Panel de KPIs y métricas en tiempo real
 - **CI/CD:** GitHub Actions
 
 ---
@@ -258,8 +274,8 @@ mvn test
 ## 🔒 Seguridad, Privacidad y RBAC
 
 - **Control de Acceso Basado en Roles (RBAC):**
-  - `ADMIN`: Control total de usuarios, médicos, secretarias y catálogo de tarifas.
-  - `PHYSICIAN` (Médica): Acceso exclusivo a historias clínicas, fotos médicas y auditoría legal.
+  - `ADMIN`: Control total de usuarios, médicos, secretarias, tarifas y métricas de gestión.
+  - `PHYSICIAN` (Médica): Acceso a historias clínicas, fotos médicas, auditoría legal y KPIs.
   - `RECEPTIONIST` (Secretaria): Gestión de agenda, asistencia y cobros en mostrador (bloqueada de historias clínicas).
 - **Control de Fuerza Bruta:** Bloqueo automático de 15 minutos al superar 5 intentos fallidos.
 - **Secreto Médico:** Cumplimiento estricto con la Ley de Derechos del Paciente y Protección de Datos Personales (auditoría inmutable de cada consulta o modificación).

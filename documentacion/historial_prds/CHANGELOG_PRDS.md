@@ -7,14 +7,23 @@
 
 ## 📜 Historial de Revisiones
 
-### 🔹 [Versión 6.0 (Master - Fase 6: Comprobantes Médicos & Consentimientos en PDF)](file:///Users/eliasignaciodelcastillogodoy/Desktop/ProyectoIntegrador/documentacion/historial_prds/PRD_v6.0_Fase6_Documentos_PDF_Master.md)
+### 🔹 [Versión 7.0 (Master - Fase 7: Dashboard Analítico & Métricas de Gestión KPIs)](file:///Users/eliasignaciodelcastillogodoy/Desktop/ProyectoIntegrador/documentacion/historial_prds/PRD_v7.0_Fase7_Dashboard_KPIs_Master.md)
 - **Fecha:** 2026-08-22
 - **Estado:** VIGENTE / MASTER
 - **Autor:** Equipo de Arquitectura & Desarrollo
 - **Cambios Principales:**
-  - Incorporación del generador de **Comprobantes Oficiales de Turno e Impresión en PDF** (`AppointmentReceiptModal.tsx`) con desglose de seña del 50%, saldo restante, código QR de verificación e indicaciones pre-turno.
-  - Implementación del documento de **Consentimiento Informado Médico-Legal** (`InformedConsentModal.tsx`) conforme a la Ley Nacional N° 26.529 con declaración jurada de antecedentes, riesgos informados, fototipo y firmas.
-  - Integración del botón de comprobante e impresión en `BookingWizard.tsx`, `AgendaView.tsx` y `MedicalRecordView.tsx`.
+  - Implementación del **Dashboard de Analítica y KPIs Clínico-Financieros** (`AnalyticsDashboardView.tsx`) con métricas de facturación bruta (\$5.840.000 ARS), reducción del absentismo del 35% al 4.2% mediante señas online, ranking de tratamientos y tasa de conversión del Asistente Gemini AI (64.2%).
+  - Incorporación del simulador de roles RBAC interactivo en la barra superior (`App.tsx`).
+
+---
+
+### 🔹 [Versión 6.0 (Fase 6 - Comprobantes Médicos & Consentimientos en PDF)](file:///Users/eliasignaciodelcastillogodoy/Desktop/ProyectoIntegrador/documentacion/historial_prds/PRD_v6.0_Fase6_Documentos_PDF_Master.md)
+- **Fecha:** 2026-08-22
+- **Estado:** HISTÓRICO
+- **Autor:** Equipo de Arquitectura & Desarrollo
+- **Cambios Principales:**
+  - Generador de **Comprobantes Oficiales de Turno e Impresión en PDF** (`AppointmentReceiptModal.tsx`) con código QR y desglose de seña del 50%.
+  - Documento de **Consentimiento Informado Médico-Legal** (`InformedConsentModal.tsx`) conforme a la Ley Nacional N° 26.529.
 
 ---
 
@@ -23,8 +32,7 @@
 - **Estado:** HISTÓRICO
 - **Autor:** Equipo de Arquitectura & Desarrollo
 - **Cambios Principales:**
-  - Incorporación de **Pipelines Automatizados de Integración Continua (CI/CD)** en GitHub Actions (`backend-ci.yml` y `frontend-ci.yml`).
-  - Ejecución obligatoria de la suite de pruebas unitarias JUnit 5 y validación estática de tipos TypeScript en cada push/PR.
+  - Pipelines de Integración Continua (CI/CD) en GitHub Actions (`backend-ci.yml` y `frontend-ci.yml`) con ejecución obligatoria de JUnit 5 y chequeo de tipos TypeScript.
 
 ---
 
@@ -33,8 +41,7 @@
 - **Estado:** HISTÓRICO
 - **Autor:** Equipo de Arquitectura & Desarrollo
 - **Cambios Principales:**
-  - Incorporación formal de **5 Diagramas de Procesos de Negocio en BPMN 2.0** (`PR-01` a `PR-05`).
-  - Especificación formal de **8 Casos de Uso detallados** (`CU-01` a `CU-08`) y Matriz de Trazabilidad.
+  - 5 Diagramas de Procesos de Negocio en BPMN 2.0 (`PR-01` a `PR-05`) y 8 Casos de Uso detallados (`CU-01` a `CU-08`).
 
 ---
 
@@ -43,7 +50,7 @@
 - **Estado:** HISTÓRICO
 - **Autor:** Equipo de Arquitectura & Desarrollo
 - **Cambios Principales:**
-  - Visor Comparativo Antes/Después con slider horizontal (`BeforeAfterSlider.tsx`), línea de tiempo de auditoría médica (`AuditTimelineView.tsx`), panel de administración de servicios (`AdminServicesView.tsx`) y Dockerfile multi-stage.
+  - Visor Antes/Después con slider horizontal, línea de tiempo de auditoría y Dockerfile multi-stage.
 
 ---
 
@@ -52,7 +59,7 @@
 - **Estado:** HISTÓRICO
 - **Autor:** Equipo de Arquitectura & Desarrollo
 - **Cambios Principales:**
-  - Algoritmo de cálculo de disponibilidad (`/citas/disponibilidad`), fotos con Supabase Storage (`imagen_hc`), tokens de 15 min (`password_reset_token`) y suite de tests unitarios JUnit 5.
+  - Disponibilidad de slots en tiempo real, fotos en Supabase Storage y suite de tests JUnit 5.
 
 ---
 

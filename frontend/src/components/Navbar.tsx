@@ -1,9 +1,9 @@
 import React from 'react'; // React
-import { Sparkles, Calendar, UserCheck, ShieldCheck, Settings, LogOut } from 'lucide-react'; // Iconos
+import { Sparkles, Calendar, UserCheck, ShieldCheck, Settings, BarChart3, LogOut } from 'lucide-react'; // Iconos
 
 interface NavbarProps {
-  currentTab: 'booking' | 'agenda' | 'clinical' | 'admin';
-  setCurrentTab: (tab: 'booking' | 'agenda' | 'clinical' | 'admin') => void;
+  currentTab: 'booking' | 'agenda' | 'clinical' | 'admin' | 'analytics';
+  setCurrentTab: (tab: 'booking' | 'agenda' | 'clinical' | 'admin' | 'analytics') => void;
   userRole?: string;
   onLogout?: () => void;
 }
@@ -22,7 +22,7 @@ export const Navbar: React.FC<NavbarProps> = ({ currentTab, setCurrentTab, userR
           </div>
         </div>
 
-        <nav className="flex items-center space-x-2 sm:space-x-3">
+        <nav className="flex items-center space-x-1.5 sm:space-x-2">
           <button
             onClick={() => setCurrentTab('booking')}
             className={`px-3 py-2 rounded-lg text-xs sm:text-sm font-medium transition-colors flex items-center space-x-1.5 ${
@@ -32,7 +32,7 @@ export const Navbar: React.FC<NavbarProps> = ({ currentTab, setCurrentTab, userR
             }`}
           >
             <Calendar className="w-4 h-4" />
-            <span>Reservar Turno</span>
+            <span>Reservar</span>
           </button>
 
           {(userRole === 'RECEPTIONIST' || userRole === 'PHYSICIAN' || userRole === 'ADMIN') && (
@@ -45,7 +45,7 @@ export const Navbar: React.FC<NavbarProps> = ({ currentTab, setCurrentTab, userR
               }`}
             >
               <UserCheck className="w-4 h-4" />
-              <span>Agenda & Cobros</span>
+              <span>Agenda</span>
             </button>
           )}
 
@@ -73,7 +73,21 @@ export const Navbar: React.FC<NavbarProps> = ({ currentTab, setCurrentTab, userR
               }`}
             >
               <Settings className="w-4 h-4 text-slate-700" />
-              <span>Tarifas (Admin)</span>
+              <span>Tarifas</span>
+            </button>
+          )}
+
+          {(userRole === 'ADMIN' || userRole === 'PHYSICIAN') && (
+            <button
+              onClick={() => setCurrentTab('analytics')}
+              className={`px-3 py-2 rounded-lg text-xs sm:text-sm font-medium transition-colors flex items-center space-x-1.5 ${
+                currentTab === 'analytics'
+                  ? 'bg-teal-50 text-teal-700 font-semibold'
+                  : 'text-slate-600 hover:text-slate-900 hover:bg-slate-50'
+              }`}
+            >
+              <BarChart3 className="w-4 h-4 text-teal-600" />
+              <span>Métricas (KPIs)</span>
             </button>
           )}
         </nav>
