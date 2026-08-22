@@ -7,14 +7,24 @@
 
 ## 📜 Historial de Revisiones
 
-### 🔹 [Versión 5.0 (Master - Fase 5: Pipelines CI/CD & Calidad Automatizada)](file:///Users/eliasignaciodelcastillogodoy/Desktop/ProyectoIntegrador/documentacion/historial_prds/PRD_v5.0_Fase5_CICD_Calidad_Master.md)
+### 🔹 [Versión 6.0 (Master - Fase 6: Comprobantes Médicos & Consentimientos en PDF)](file:///Users/eliasignaciodelcastillogodoy/Desktop/ProyectoIntegrador/documentacion/historial_prds/PRD_v6.0_Fase6_Documentos_PDF_Master.md)
 - **Fecha:** 2026-08-22
 - **Estado:** VIGENTE / MASTER
 - **Autor:** Equipo de Arquitectura & Desarrollo
 - **Cambios Principales:**
+  - Incorporación del generador de **Comprobantes Oficiales de Turno e Impresión en PDF** (`AppointmentReceiptModal.tsx`) con desglose de seña del 50%, saldo restante, código QR de verificación e indicaciones pre-turno.
+  - Implementación del documento de **Consentimiento Informado Médico-Legal** (`InformedConsentModal.tsx`) conforme a la Ley Nacional N° 26.529 con declaración jurada de antecedentes, riesgos informados, fototipo y firmas.
+  - Integración del botón de comprobante e impresión en `BookingWizard.tsx`, `AgendaView.tsx` y `MedicalRecordView.tsx`.
+
+---
+
+### 🔹 [Versión 5.0 (Fase 5 - Pipelines CI/CD & Calidad Automatizada)](file:///Users/eliasignaciodelcastillogodoy/Desktop/ProyectoIntegrador/documentacion/historial_prds/PRD_v5.0_Fase5_CICD_Calidad_Master.md)
+- **Fecha:** 2026-08-22
+- **Estado:** HISTÓRICO
+- **Autor:** Equipo de Arquitectura & Desarrollo
+- **Cambios Principales:**
   - Incorporación de **Pipelines Automatizados de Integración Continua (CI/CD)** en GitHub Actions (`backend-ci.yml` y `frontend-ci.yml`).
   - Ejecución obligatoria de la suite de pruebas unitarias JUnit 5 y validación estática de tipos TypeScript en cada push/PR.
-  - Generación de reportes de pruebas Surefire y artefactos de distribución listos para Edge CDN.
 
 ---
 

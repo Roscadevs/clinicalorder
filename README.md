@@ -35,6 +35,7 @@
 - [🏛️ Arquitectura del Sistema](#️-arquitectura-del-sistema)
 - [🔄 Modelos de Procesos de Negocio BPMN 2.0](#-modelos-de-procesos-de-negocio-bpmn-20)
 - [🧩 Módulos Funcionales & Casos de Uso](#-módulos-funcionales--casos-de-uso)
+- [📄 Documentos Imprimibles y Consentimientos en PDF](#-documentos-imprimibles-y-consentimientos-en-pdf)
 - [🗂️ Documentación Organizada por Fases](#️-documentación-organizada-por-fases)
 - [🚀 Pila Tecnológica (Tech Stack)](#-pila-tecnológica-tech-stack)
 - [⚙️ Instalación y Ejecución Local](#️-instalación-y-ejecución-local)
@@ -54,6 +55,7 @@ El sistema resuelve integralmente la problemática operativa, clínica y financi
 3. **Registro Fotográfico Médico Seguro:** Almacenamiento de fotografías clínicas en *Supabase Storage* con validación de tipo MIME y **visor interactivo Antes / Después** con slider deslizante.
 4. **Asistente Virtual 24/7 con IA:** Chatbot asistido por *Google Gemini 1.5 Flash* que asesora a pacientes sobre tratamientos, precios y los deriva a la reserva de turnos.
 5. **Agenda Operativa y Cobros en Mostrador:** Gestión visual para la secretaria con liquidación del 50% restante en mostrador (efectivo/tarjeta).
+6. **Documentación Legal & Comprobantes PDF:** Emisión de comprobantes con código QR y consentimientos informados conforme a la Ley Nacional 26.529.
 
 ---
 
@@ -121,6 +123,13 @@ El sistema cuenta con el modelado formal de 5 procesos de negocio en estándar *
 
 ---
 
+## 📄 Documentos Imprimibles y Consentimientos en PDF
+
+- **Comprobante Oficial de Reserva (`AppointmentReceiptModal.tsx`):** Desglose del 50% abonado online y saldo en mostrador, código QR de verificación e indicaciones previas al turno.
+- **Consentimiento Informado Médico-Legal (`InformedConsentModal.tsx`):** Cumplimiento con la Ley Nacional N° 26.529 con declaración jurada de antecedentes y campos de firma profesional.
+
+---
+
 ## 🗂️ Documentación Organizada por Fases
 
 Toda la documentación técnica se encuentra centralizada en la carpeta [`documentacion/`](documentacion/00_INDICE_GENERAL.md):
@@ -131,7 +140,8 @@ Toda la documentación técnica se encuentra centralizada en la carpeta [`docume
   - [`PRD_v2.0_Fase2_Backend_Storage_Tests.md`](documentacion/historial_prds/PRD_v2.0_Fase2_Backend_Storage_Tests.md): Disponibilidad en tiempo real, Supabase Storage y Tests.
   - [`PRD_v3.0_Fase3_Frontend_DevOps_Master.md`](documentacion/historial_prds/PRD_v3.0_Fase3_Frontend_DevOps_Master.md): UI/UX avanzada y Docker/Vercel.
   - [`PRD_v4.0_Fase4_BPMN_CasosDeUso_Master.md`](documentacion/historial_prds/PRD_v4.0_Fase4_BPMN_CasosDeUso_Master.md): Modelado BPMN 2.0 y Casos de Uso.
-  - [`PRD_v5.0_Fase5_CICD_Calidad_Master.md`](documentacion/historial_prds/PRD_v5.0_Fase5_CICD_Calidad_Master.md): **PRD Maestro Vigente** con CI/CD en GitHub Actions.
+  - [`PRD_v5.0_Fase5_CICD_Calidad_Master.md`](documentacion/historial_prds/PRD_v5.0_Fase5_CICD_Calidad_Master.md): Pipelines CI/CD en GitHub Actions.
+  - [`PRD_v6.0_Fase6_Documentos_PDF_Master.md`](documentacion/historial_prds/PRD_v6.0_Fase6_Documentos_PDF_Master.md): **PRD Maestro Vigente** con Comprobantes PDF y Consentimientos.
 - 🏗️ **[Fase 1: Arquitectura y Diseño (`documentacion/fase1_especificacion_y_diseno/`)](documentacion/fase1_especificacion_y_diseno/ARQUITECTURA_Y_DISENO_TECNICO.md)**
   - [`ARQUITECTURA_Y_DISENO_TECNICO.md`](documentacion/fase1_especificacion_y_diseno/ARQUITECTURA_Y_DISENO_TECNICO.md): Diagramas UML, MER/MR, 1FN/2FN/3FN y transacciones ACID.
   - [`GLOSARIO_TECNICO_Y_METODOS.md`](documentacion/fase1_especificacion_y_diseno/GLOSARIO_TECNICO_Y_METODOS.md): Glosario exhaustivo de anotaciones Spring Boot, métodos de negocio y hooks.
@@ -143,6 +153,8 @@ Toda la documentación técnica se encuentra centralizada en la carpeta [`docume
   - [`FASE_4_PROCESOS_BPMN_Y_CASOS_DE_USO.md`](documentacion/fase4_bpmn_y_casos_de_uso/FASE_4_PROCESOS_BPMN_Y_CASOS_DE_USO.md): 5 Procesos BPMN 2.0 (PR-01 a PR-05), 8 Casos de Uso Formales (CU-01 a CU-08) y Matriz de Trazabilidad.
 - 🛡️ **[Fase 5: Pipelines CI/CD y Calidad (`documentacion/fase5_cicd_y_calidad_continua/`)](documentacion/fase5_cicd_y_calidad_continua/FASE_5_PIPELINES_CICD_GITHUB_ACTIONS.md)**
   - [`FASE_5_PIPELINES_CICD_GITHUB_ACTIONS.md`](documentacion/fase5_cicd_y_calidad_continua/FASE_5_PIPELINES_CICD_GITHUB_ACTIONS.md): Workflows automatizados de GitHub Actions (Backend Java 17 y Frontend React).
+- 📄 **[Fase 6: Documentos Clínicos y PDF (`documentacion/fase6_comprobantes_y_consentimientos_pdf/`)](documentacion/fase6_comprobantes_y_consentimientos_pdf/FASE_6_DOCUMENTOS_CLINICOS_Y_PDF.md)**
+  - [`FASE_6_DOCUMENTOS_CLINICOS_Y_PDF.md`](documentacion/fase6_comprobantes_y_consentimientos_pdf/FASE_6_DOCUMENTOS_CLINICOS_Y_PDF.md): Comprobante Oficial de Turno con QR y Consentimiento Informado Ley 26.529.
 
 ---
 
@@ -172,6 +184,7 @@ El repositorio cuenta con dos workflows automatizados en [`.github/workflows/`](
 - **Estilos:** Tailwind CSS + Lucide Icons
 - **Gestión de Estado & HTTP:** TanStack React Query v5 + Axios (interceptores JWT)
 - **Formularios & Validación:** React Hook Form + Zod
+- **Documentos & PDF:** Impresión nativa `@media print` + QR Vectorial
 - **CI/CD:** GitHub Actions
 
 ---

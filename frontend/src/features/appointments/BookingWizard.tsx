@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from 'react'; // React hooks
 import { servicesApi, patientsApi, appointmentsApi } from '../../services/api'; // API services
 import { DermatologicService, PaymentPreferenceResponse } from '../../types'; // Types
-import { Calendar, Clock, CreditCard, CheckCircle2, AlertCircle, ArrowRight, Sparkles } from 'lucide-react'; // Icons
+import { Calendar, Clock, CreditCard, CheckCircle2, AlertCircle, ArrowRight, Sparkles, Printer } from 'lucide-react'; // Icons
+import { AppointmentReceiptModal } from '../documents/AppointmentReceiptModal'; // Modal de comprobante
 
 export const BookingWizard: React.FC = () => {
   const [step, setStep] = useState<1 | 2 | 3 | 4>(1);
@@ -21,13 +22,12 @@ export const BookingWizard: React.FC = () => {
   const [timeLeftSeconds, setTimeLeftSeconds] = useState<number>(600); // 10 minutes (600s)
   const [isLoading, setIsLoading] = useState(false);
   const [errorMsg, setErrorMsg] = useState<string | null>(null);
+  const [receiptModalOpen, setReceiptModalOpen] = useState(false);
 
   useEffect(() => {
-    // Carga inicial del catálogo de servicios
     servicesApi.getActiveServices().then(setServices).catch(console.error);
   }, []);
 
-  // Temporizador de cuenta regresiva de 10 minutos para el bloqueo temporal
   useEffect(() => {
     if (step !== 4 || timeLeftSeconds <= 0) return;
     const interval = setInterval(() => {
@@ -49,14 +49,12 @@ export const BookingWizard: React.FC = () => {
     setErrorMsg(null);
 
     try {
-      // 1. Crea o busca al paciente
       const patient = await patientsApi.createPatient({
         name: patientName,
         dni: patientDni,
         phone: patientPhone,
         email: patientEmail,
       }).catch(async () => {
-        // Si ya existe, busca por DNI
         const found = await patientsApi.getPatients(patientDni);
         return found[0];
       });
@@ -65,7 +63,6 @@ export const BookingWizard: React.FC = () => {
         throw new Error('No se pudo vincular los datos del paciente');
       }
 
-      // 2. Realiza el bloqueo temporal de 10 minutos
       const startTimeIso = new Date(`${selectedDate}T${selectedTime}:00Z`).toISOString();
       const hold = await appointmentsApi.bookTemporaryHold({
         patientId: patient.id,
@@ -75,7 +72,7 @@ export const BookingWizard: React.FC = () => {
 
       setHoldResult(hold);
       setTimeLeftSeconds(600);
-      setStep(4); // Pasa al paso de pago de seña
+      setStep(4);
     } catch (err: any) {
       setErrorMsg(err.response?.data?.message || 'La franja horaria ya no está disponible. Por favor, elija otro horario.');
     } finally {
@@ -233,7 +230,7 @@ export const BookingWizard: React.FC = () => {
         </div>
       )}
 
-      {/* PASO 3: Formulario de Filiación del Paciente */}
+      {/* PASO 3: Datos de Filiación */}
       {step === 3 && selectedService && (
         <form onSubmit={handleStartBooking} className="space-y-6 bg-white p-6 rounded-2xl border border-slate-200 shadow-sm">
           <div>
@@ -311,7 +308,7 @@ export const BookingWizard: React.FC = () => {
         </form>
       )}
 
-      {/* PASO 4: Bloqueo Temporal Activo y Botón MercadoPago */}
+      {/* PASO 4: Bloqueo Temporal Activo & Checkout Pro */}
       {step === 4 && holdResult && (
         <div className="bg-white p-6 sm:p-8 rounded-2xl border border-slate-200 shadow-lg text-center space-y-6">
           <div className="w-16 h-16 bg-amber-100 text-amber-700 rounded-full flex items-center justify-center mx-auto">
@@ -340,19 +337,48 @@ export const BookingWizard: React.FC = () => {
             </div>
           </div>
 
-          <div>
+          <div className="flex flex-col sm:flex-row items-center justify-center gap-3">
             <a
               href={holdResult.initPointUrl}
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center justify-center space-x-2 bg-[#009EE3] hover:bg-[#0082ba] text-white font-bold px-8 py-4 rounded-xl shadow-md transition-transform transform hover:scale-105 text-base"
+              className="inline-flex items-center justify-center space-x-2 bg-[#009EE3] hover:bg-[#0082ba] text-white font-bold px-8 py-3.5 rounded-xl shadow-md transition-transform transform hover:scale-105 text-sm"
             >
-              <CreditCard className="w-5 h-5" />
+              <CreditCard className="w-4 h-4" />
               <span>Pagar Seña con MercadoPago</span>
             </a>
-            <p className="text-xs text-slate-400 mt-2">Serás redirigido a la pasarela segura oficial de MercadoPago.</p>
+
+            <button
+              onClick={() => setReceiptModalOpen(true)}
+              className="inline-flex items-center justify-center space-x-2 bg-slate-100 hover:bg-slate-200 text-slate-700 font-bold px-6 py-3.5 rounded-xl text-sm transition-colors border border-slate-300"
+            >
+              <Printer className="w-4 h-4" />
+              <span>Ver Comprobante</span>
+            </button>
           </div>
+
+          <p className="text-xs text-slate-400 mt-2">Serás redirigido a la pasarela segura oficial de MercadoPago.</p>
         </div>
+      )}
+
+      {/* Modal de Comprobante Oficial Imprimible */}
+      {holdResult && selectedService && (
+        <AppointmentReceiptModal
+          isOpen={receiptModalOpen}
+          onClose={() => setReceiptModalOpen(false)}
+          appointmentData={{
+            id: holdResult.appointmentId,
+            patientName: patientName || 'Lucía Fernández',
+            patientDni: patientDni || '38456123',
+            patientEmail: patientEmail || 'lucia@example.com',
+            patientPhone: patientPhone || '+54 9 11 1234-5678',
+            serviceName: selectedService.name,
+            startTime: `${selectedDate}T${selectedTime}:00Z`,
+            durationMinutes: selectedService.durationMinutes,
+            agreedPrice: selectedService.basePrice,
+            depositAmount: holdResult.depositAmount,
+          }}
+        />
       )}
     </div>
   );

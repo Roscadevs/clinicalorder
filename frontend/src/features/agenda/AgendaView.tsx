@@ -1,13 +1,16 @@
 import React, { useState, useEffect } from 'react'; // React hooks
 import { appointmentsApi } from '../../services/api'; // API appointments
 import { Appointment, AppointmentStatus } from '../../types'; // Types
-import { Calendar, DollarSign, XCircle, CheckCircle, Clock, UserCheck } from 'lucide-react'; // Icons
+import { Calendar, DollarSign, XCircle, CheckCircle, Clock, UserCheck, Printer } from 'lucide-react'; // Icons
+import { AppointmentReceiptModal } from '../documents/AppointmentReceiptModal'; // Modal de comprobante
 
 export const AgendaView: React.FC = () => {
   const [appointments, setAppointments] = useState<Appointment[]>([]);
   const [selectedDate, setSelectedDate] = useState<string>('2026-08-25');
   const [selectedAppointment, setSelectedAppointment] = useState<Appointment | null>(null);
   const [paymentModalOpen, setPaymentModalOpen] = useState(false);
+  const [receiptModalOpen, setReceiptModalOpen] = useState(false);
+  const [receiptAppointment, setReceiptAppointment] = useState<Appointment | null>(null);
   const [paymentAmount, setPaymentAmount] = useState<number>(0);
   const [paymentMethod, setPaymentMethod] = useState<'FINAL_BALANCE_50' | 'FULL_PAYMENT'>('FINAL_BALANCE_50');
 
@@ -32,6 +35,11 @@ export const AgendaView: React.FC = () => {
     setSelectedAppointment(appt);
     setPaymentAmount(appt.agreedPrice * 0.5); // Saldo restante 50%
     setPaymentModalOpen(true);
+  };
+
+  const handleOpenReceipt = (appt: Appointment) => {
+    setReceiptAppointment(appt);
+    setReceiptModalOpen(true);
   };
 
   const handleFinalizePayment = async (e: React.FormEvent) => {
@@ -70,7 +78,7 @@ export const AgendaView: React.FC = () => {
           </div>
           <div>
             <h2 className="text-lg font-bold text-slate-900">Agenda Operativa del Consultorio</h2>
-            <p className="text-xs text-slate-500">Gestión de citas, asistencia y liquidación de saldos en mostrador</p>
+            <p className="text-xs text-slate-500">Gestión de citas, asistencia, comprobantes y liquidación de saldos</p>
           </div>
         </div>
 
@@ -125,14 +133,22 @@ export const AgendaView: React.FC = () => {
                       </div>
                     </td>
                     <td className="p-3.5 text-center">
-                      <div className="flex items-center justify-center space-x-2">
+                      <div className="flex items-center justify-center space-x-1.5">
+                        <button
+                          onClick={() => handleOpenReceipt(a)}
+                          className="p-1.5 text-slate-600 hover:text-teal-600 hover:bg-slate-100 rounded-lg"
+                          title="Imprimir Comprobante Oficial"
+                        >
+                          <Printer className="w-4 h-4" />
+                        </button>
+
                         {a.status === 'CONFIRMED' && (
                           <button
                             onClick={() => handleOpenPayment(a)}
-                            className="bg-emerald-600 hover:bg-emerald-700 text-white font-semibold px-3 py-1.5 rounded-lg text-xs flex items-center space-x-1"
+                            className="bg-emerald-600 hover:bg-emerald-700 text-white font-semibold px-2.5 py-1 rounded-lg text-xs flex items-center space-x-1"
                           >
                             <DollarSign className="w-3.5 h-3.5" />
-                            <span>Cobrar Saldo</span>
+                            <span>Cobrar</span>
                           </button>
                         )}
                         {a.status !== 'COMPLETED' && a.status !== 'CANCELLED' && (
@@ -206,6 +222,26 @@ export const AgendaView: React.FC = () => {
             </div>
           </form>
         </div>
+      )}
+
+      {/* Modal de Comprobante Imprimible */}
+      {receiptModalOpen && receiptAppointment && (
+        <AppointmentReceiptModal
+          isOpen={receiptModalOpen}
+          onClose={() => setReceiptModalOpen(false)}
+          appointmentData={{
+            id: receiptAppointment.id,
+            patientName: receiptAppointment.patientName,
+            patientDni: receiptAppointment.patientDni,
+            patientEmail: 'paciente@example.com',
+            patientPhone: receiptAppointment.patientPhone,
+            serviceName: receiptAppointment.serviceName,
+            startTime: receiptAppointment.startTime,
+            durationMinutes: 45,
+            agreedPrice: receiptAppointment.agreedPrice,
+            depositAmount: receiptAppointment.agreedPrice * 0.5,
+          }}
+        />
       )}
     </div>
   );
