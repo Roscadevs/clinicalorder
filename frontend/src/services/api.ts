@@ -41,6 +41,7 @@ export const servicesApi = {
   getActiveServices: async (): Promise<DermatologicService[]> => {
     try {
       const response = await api.get<DermatologicService[]>('/servicios');
+      if (!Array.isArray(response.data)) throw new Error('Expected array');
       return response.data;
     } catch {
       return [
@@ -122,6 +123,7 @@ export const patientsApi = {
   getPatients: async (search?: string): Promise<Patient[]> => {
     try {
       const response = await api.get<Patient[]>('/pacientes', { params: { search } });
+      if (!Array.isArray(response.data)) throw new Error('Expected array');
       return response.data;
     } catch {
       return [
@@ -159,6 +161,7 @@ export const appointmentsApi = {
   getAgenda: async (start: string, end: string): Promise<Appointment[]> => {
     try {
       const response = await api.get<Appointment[]>('/citas/agenda', { params: { start, end } });
+      if (!Array.isArray(response.data)) throw new Error('Expected array');
       return response.data;
     } catch {
       return [
@@ -263,6 +266,7 @@ export const clinicalApi = {
   getClinicalEntries: async (medicalRecordId: number): Promise<ClinicalEntry[]> => {
     try {
       const response = await api.get<ClinicalEntry[]>(`/historias-clinicas/${medicalRecordId}/entradas`);
+      if (!Array.isArray(response.data)) throw new Error('Expected array');
       return response.data;
     } catch {
       return [
@@ -303,6 +307,7 @@ export const clinicalApi = {
   getAuditLogs: async (): Promise<ClinicalAuditLog[]> => {
     try {
       const response = await api.get<ClinicalAuditLog[]>('/historias-clinicas/auditoria');
+      if (!Array.isArray(response.data)) throw new Error('Expected array');
       return response.data;
     } catch {
       return [
