@@ -1,0 +1,39 @@
+version: '3.8'
+
+services:
+  # Backend Spring Boot (Java 17)
+  backend:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    container_name: clinica-backend
+    ports:
+      - "8080:8080"
+    environment:
+      - SPRING_PROFILES_ACTIVE=prod
+      - DB_URL=jdbc:postgresql://db.supabase.co:5432/postgres?sslmode=require
+      - DB_USERNAME=postgres
+      - DB_PASSWORD=${DB_PASSWORD:-postgres}
+      - JWT_SECRET=${JWT_SECRET:-9a8b7c6d5e4f3a2b1c0d9e8f7a6b5c4d3e2f1a0b9c8d7e6f5a4b3c2d1e0f9a8b}
+      - MERCADOPAGO_ACCESS_TOKEN=${MERCADOPAGO_ACCESS_TOKEN:-TEST-mock-token}
+      - MERCADOPAGO_WEBHOOK_SECRET=${MERCADOPAGO_WEBHOOK_SECRET:-mock-webhook-secret}
+      - GEMINI_API_KEY=${GEMINI_API_KEY:-mock-gemini-key}
+      - SUPABASE_STORAGE_URL=${SUPABASE_STORAGE_URL:-https://xyz.supabase.co/storage/v1}
+      - SUPABASE_STORAGE_KEY=${SUPABASE_STORAGE_KEY:-mock-anon-key}
+    restart: unless-stopped
+
+  # Frontend React (Vite + Nginx en producción / Node en desarrollo)
+  frontend:
+    image: node:20-alpine
+    container_name: clinica-frontend
+    working_dir: /app
+    ports:
+      - "5173:5173"
+    volumes:
+      - ./frontend:/app
+    command: sh -c "npm install && npm run dev -- --host"
+    environment:
+      - VITE_API_BASE_URL=http://localhost:8080/api/v1
+    depends_on:
+      - backend
+    restart: unless-stopped
