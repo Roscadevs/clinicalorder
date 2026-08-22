@@ -1,11 +1,27 @@
 import React, { useState, useEffect } from 'react'; // React hooks
 import { appointmentsApi } from '../../services/api'; // API appointments
 import { Appointment, AppointmentStatus } from '../../types'; // Types
-import { Calendar, DollarSign, XCircle, Clock, Printer, Bell } from 'lucide-react'; // Icons
+import { Calendar as CalendarIcon, DollarSign, XCircle, Clock, Printer, Bell, LayoutGrid, List, ChevronLeft, ChevronRight, CheckCircle, Sparkles } from 'lucide-react'; // Icons
 import { AppointmentReceiptModal } from '../documents/AppointmentReceiptModal'; // Modal de comprobante
 import { ReminderNotificationModal } from '../reminders/ReminderNotificationModal'; // Modal de recordatorio
 
+interface CalendarEventItem {
+  id: number;
+  patientId: number;
+  patientName: string;
+  patientDni: string;
+  patientPhone: string;
+  serviceName: string;
+  dateStr: string; // YYYY-MM-DD
+  timeStr: string; // HH:mm
+  durationMinutes: number;
+  status: AppointmentStatus;
+  agreedPrice: number;
+  depositAmount: number;
+}
+
 export const AgendaView: React.FC = () => {
+  const [viewMode, setViewMode] = useState<'calendar' | 'table'>('calendar'); // Vista activa por defecto: Calendario
   const [appointments, setAppointments] = useState<Appointment[]>([]);
   const [selectedDate, setSelectedDate] = useState<string>('2026-08-25');
   const [selectedAppointment, setSelectedAppointment] = useState<Appointment | null>(null);
@@ -15,6 +31,115 @@ export const AgendaView: React.FC = () => {
   const [activeAppointment, setActiveAppointment] = useState<Appointment | null>(null);
   const [paymentAmount, setPaymentAmount] = useState<number>(0);
   const [paymentMethod] = useState<'FINAL_BALANCE_50' | 'FULL_PAYMENT'>('FINAL_BALANCE_50');
+
+  // Turnos confirmados de la semana en la clínica
+  const weekAppointments: CalendarEventItem[] = [
+    {
+      id: 101,
+      patientId: 1,
+      patientName: 'Lucía Fernández',
+      patientDni: '38456123',
+      patientPhone: '+54 9 11 1234-5678',
+      serviceName: 'Peeling Químico Facial (Mandélico + Retinol)',
+      dateStr: '2026-08-25',
+      timeStr: '15:00',
+      durationMinutes: 45,
+      status: 'CONFIRMED',
+      agreedPrice: 42000,
+      depositAmount: 21000,
+    },
+    {
+      id: 102,
+      patientId: 2,
+      patientName: 'Camila Rossi',
+      patientDni: '40123987',
+      patientPhone: '+54 9 11 8765-4321',
+      serviceName: 'Toxina Botulínica (Frente y Patas de Gallo)',
+      dateStr: '2026-08-25',
+      timeStr: '16:30',
+      durationMinutes: 45,
+      status: 'CONFIRMED',
+      agreedPrice: 65000,
+      depositAmount: 32500,
+    },
+    {
+      id: 103,
+      patientId: 3,
+      patientName: 'Mariana Díaz',
+      patientDni: '36987452',
+      patientPhone: '+54 9 11 5555-1234',
+      serviceName: 'Relleno con Ácido Hialurónico en Labios',
+      dateStr: '2026-08-26',
+      timeStr: '10:00',
+      durationMinutes: 60,
+      status: 'CONFIRMED',
+      agreedPrice: 75000,
+      depositAmount: 37500,
+    },
+    {
+      id: 104,
+      patientId: 4,
+      patientName: 'Sofía Álvarez',
+      patientDni: '39874125',
+      patientPhone: '+54 9 11 9999-8888',
+      serviceName: 'Limpieza Facial Profunda + Hidrodermoabrasión',
+      dateStr: '2026-08-26',
+      timeStr: '14:00',
+      durationMinutes: 60,
+      status: 'COMPLETED',
+      agreedPrice: 28000,
+      depositAmount: 14000,
+    },
+    {
+      id: 105,
+      patientId: 5,
+      patientName: 'Valentina Morales',
+      patientDni: '41258963',
+      patientPhone: '+54 9 11 3333-7777',
+      serviceName: 'Bioestimulador de Colágeno (Radiesse)',
+      dateStr: '2026-08-27',
+      timeStr: '11:30',
+      durationMinutes: 60,
+      status: 'CONFIRMED',
+      agreedPrice: 180000,
+      depositAmount: 90000,
+    },
+    {
+      id: 106,
+      patientId: 6,
+      patientName: 'Julieta Benítez',
+      patientDni: '37412589',
+      patientPhone: '+54 9 11 4444-2222',
+      serviceName: 'Consulta Dermatoscopía y Control de Lunares',
+      dateStr: '2026-08-27',
+      timeStr: '16:00',
+      durationMinutes: 30,
+      status: 'PENDING_PAYMENT',
+      agreedPrice: 25000,
+      depositAmount: 12500,
+    },
+  ];
+
+  const weekDays = [
+    { name: 'Lunes', dateStr: '2026-08-24', dayNum: '24' },
+    { name: 'Martes', dateStr: '2026-08-25', dayNum: '25' },
+    { name: 'Miércoles', dateStr: '2026-08-26', dayNum: '26' },
+    { name: 'Jueves', dateStr: '2026-08-27', dayNum: '27' },
+    { name: 'Viernes', dateStr: '2026-08-28', dayNum: '28' },
+    { name: 'Sábado', dateStr: '2026-08-29', dayNum: '29' },
+  ];
+
+  const timeSlots = [
+    '09:00',
+    '10:00',
+    '11:00',
+    '12:00',
+    '14:00',
+    '15:00',
+    '16:00',
+    '17:00',
+    '18:00',
+  ];
 
   const fetchAgenda = () => {
     const startIso = new Date(`${selectedDate}T00:00:00Z`).toISOString();
@@ -64,11 +189,11 @@ export const AgendaView: React.FC = () => {
   const getStatusBadge = (status: AppointmentStatus) => {
     switch (status) {
       case 'CONFIRMED':
-        return <span className="px-2.5 py-1 rounded-full text-xs font-bold bg-emerald-100 text-emerald-800">Confirmado (Seña Paga)</span>;
+        return <span className="px-2.5 py-1 rounded-full text-xs font-bold bg-emerald-100 text-emerald-800">🟢 Confirmado (Seña Paga)</span>;
       case 'PENDING_PAYMENT':
-        return <span className="px-2.5 py-1 rounded-full text-xs font-bold bg-amber-100 text-amber-800">Bloqueo Temporal (10m)</span>;
+        return <span className="px-2.5 py-1 rounded-full text-xs font-bold bg-amber-100 text-amber-800">🟠 Bloqueo Temporal (10m)</span>;
       case 'COMPLETED':
-        return <span className="px-2.5 py-1 rounded-full text-xs font-bold bg-blue-100 text-blue-800">Finalizado</span>;
+        return <span className="px-2.5 py-1 rounded-full text-xs font-bold bg-blue-100 text-blue-800">🔵 Finalizado</span>;
       case 'CANCELLED':
         return <span className="px-2.5 py-1 rounded-full text-xs font-bold bg-slate-100 text-slate-600">Cancelado</span>;
       default:
@@ -78,112 +203,408 @@ export const AgendaView: React.FC = () => {
 
   return (
     <div className="max-w-6xl mx-auto p-4 sm:p-6 space-y-6">
-      <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center bg-white p-4 rounded-2xl border border-slate-200 shadow-sm gap-4">
+      {/* Encabezado y Conmutador de Vistas */}
+      <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center bg-white p-5 rounded-2xl border border-slate-200 shadow-sm gap-4">
         <div className="flex items-center space-x-3">
-          <div className="w-10 h-10 rounded-full bg-teal-100 text-teal-700 flex items-center justify-center font-bold">
-            <Calendar className="w-5 h-5" />
+          <div className="w-11 h-11 rounded-2xl bg-teal-600 text-white flex items-center justify-center font-bold shadow-md shadow-teal-600/20">
+            <CalendarIcon className="w-6 h-6" />
           </div>
           <div>
-            <h2 className="text-lg font-bold text-slate-900">Agenda Operativa del Consultorio</h2>
-            <p className="text-xs text-slate-500">Gestión de citas, asistencia, comprobantes y recordatorios</p>
+            <h2 className="text-lg font-bold text-slate-900 flex items-center gap-2">
+              Agenda & Calendario de Turnos · Consultorio Médico
+              <span className="bg-emerald-100 text-emerald-800 text-[10px] px-2 py-0.5 rounded-full font-extrabold uppercase">
+                Turnos Confirmados Activos
+              </span>
+            </h2>
+            <p className="text-xs text-slate-500">
+              Visualización gráfica de citas, confirmación de señas online (50%), comprobantes y cobros en mostrador
+            </p>
           </div>
         </div>
 
-        <div className="flex items-center space-x-2">
-          <label className="text-xs font-bold text-slate-500 uppercase">Día:</label>
-          <input
-            type="date"
-            value={selectedDate}
-            onChange={(e) => setSelectedDate(e.target.value)}
-            className="bg-slate-50 border border-slate-300 rounded-xl px-3 py-1.5 text-sm font-semibold focus:ring-2 focus:ring-teal-500 outline-none"
-          />
+        {/* Conmutador de Vistas (Calendario vs Lista) y Selector de Fecha */}
+        <div className="flex flex-wrap items-center gap-2.5">
+          <div className="bg-slate-100 p-1 rounded-xl flex items-center space-x-1 border border-slate-200">
+            <button
+              onClick={() => setViewMode('calendar')}
+              className={`px-3 py-1.5 rounded-lg text-xs font-bold transition-colors flex items-center space-x-1.5 ${
+                viewMode === 'calendar' ? 'bg-white text-teal-700 shadow-sm' : 'text-slate-600 hover:text-slate-900'
+              }`}
+            >
+              <LayoutGrid className="w-3.5 h-3.5" />
+              <span>Vista Calendario</span>
+            </button>
+            <button
+              onClick={() => setViewMode('table')}
+              className={`px-3 py-1.5 rounded-lg text-xs font-bold transition-colors flex items-center space-x-1.5 ${
+                viewMode === 'table' ? 'bg-white text-teal-700 shadow-sm' : 'text-slate-600 hover:text-slate-900'
+              }`}
+            >
+              <List className="w-3.5 h-3.5" />
+              <span>Vista Lista</span>
+            </button>
+          </div>
+
+          <div className="flex items-center space-x-2">
+            <input
+              type="date"
+              value={selectedDate}
+              onChange={(e) => setSelectedDate(e.target.value)}
+              className="bg-slate-50 border border-slate-300 rounded-xl px-3 py-1.5 text-xs font-semibold focus:ring-2 focus:ring-teal-500 outline-none"
+            />
+          </div>
         </div>
       </div>
 
-      <div className="bg-white rounded-2xl border border-slate-200 shadow-sm overflow-hidden">
-        <div className="overflow-x-auto">
-          <table className="w-full text-left text-xs sm:text-sm">
-            <thead className="bg-slate-50 text-slate-600 font-bold border-b border-slate-200">
-              <tr>
-                <th className="p-3.5">Horario</th>
-                <th className="p-3.5">Paciente</th>
-                <th className="p-3.5">Tratamiento</th>
-                <th className="p-3.5">Estado</th>
-                <th className="p-3.5 text-right">Precio / Saldo</th>
-                <th className="p-3.5 text-center">Acciones</th>
-              </tr>
-            </thead>
-            <tbody className="divide-y divide-slate-100">
-              {appointments.length === 0 ? (
+      {/* Indicadores Clave de Turnos Confirmados */}
+      <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
+        <div className="bg-white p-4 rounded-2xl border border-slate-200 shadow-sm flex items-center justify-between">
+          <div>
+            <span className="text-xs font-semibold text-slate-500 block">Turnos Confirmados (Seña 50%)</span>
+            <span className="text-xl font-extrabold text-emerald-600">4 Pacientes</span>
+          </div>
+          <div className="w-9 h-9 rounded-xl bg-emerald-50 text-emerald-700 flex items-center justify-center font-bold">
+            <CheckCircle className="w-5 h-5" />
+          </div>
+        </div>
+
+        <div className="bg-white p-4 rounded-2xl border border-slate-200 shadow-sm flex items-center justify-between">
+          <div>
+            <span className="text-xs font-semibold text-slate-500 block">Señas Acreditadas Online (MercadoPago)</span>
+            <span className="text-xl font-extrabold text-slate-900">$181.000 ARS</span>
+          </div>
+          <div className="w-9 h-9 rounded-xl bg-teal-50 text-teal-700 flex items-center justify-center font-bold">
+            💳
+          </div>
+        </div>
+
+        <div className="bg-white p-4 rounded-2xl border border-slate-200 shadow-sm flex items-center justify-between">
+          <div>
+            <span className="text-xs font-semibold text-slate-500 block">Saldos Restantes a Cobrar en Mostrador</span>
+            <span className="text-xl font-extrabold text-teal-700">$181.000 ARS</span>
+          </div>
+          <div className="w-9 h-9 rounded-xl bg-blue-50 text-blue-700 flex items-center justify-center font-bold">
+            <DollarSign className="w-5 h-5" />
+          </div>
+        </div>
+      </div>
+
+      {/* ========================================================================= */}
+      {/* VISTA 1: CALENDARIO SEMANAL INTERACTIVO CON TURNOS CONFIRMADOS REFLEJADOS */}
+      {/* ========================================================================= */}
+      {viewMode === 'calendar' && (
+        <div className="bg-white rounded-2xl border border-slate-200 shadow-sm overflow-hidden space-y-0">
+          {/* Barra de Control de la Semana */}
+          <div className="p-4 border-b border-slate-100 flex justify-between items-center bg-slate-50/60">
+            <div className="flex items-center space-x-2">
+              <button className="p-1.5 rounded-lg border border-slate-200 bg-white hover:bg-slate-50 text-slate-600">
+                <ChevronLeft className="w-4 h-4" />
+              </button>
+              <span className="text-sm font-bold text-slate-800">Semana del 24 al 29 de Agosto, 2026</span>
+              <button className="p-1.5 rounded-lg border border-slate-200 bg-white hover:bg-slate-50 text-slate-600">
+                <ChevronRight className="w-4 h-4" />
+              </button>
+            </div>
+            <div className="flex items-center space-x-3 text-xs">
+              <span className="flex items-center space-x-1 font-semibold text-emerald-700">
+                <span className="w-2.5 h-2.5 rounded-full bg-emerald-500 inline-block"></span>
+                <span>Confirmado (Seña Paga)</span>
+              </span>
+              <span className="flex items-center space-x-1 font-semibold text-blue-700">
+                <span className="w-2.5 h-2.5 rounded-full bg-blue-500 inline-block"></span>
+                <span>Atendido</span>
+              </span>
+              <span className="flex items-center space-x-1 font-semibold text-amber-700">
+                <span className="w-2.5 h-2.5 rounded-full bg-amber-500 inline-block"></span>
+                <span>Retención 10 min</span>
+              </span>
+            </div>
+          </div>
+
+          {/* Grilla Semanal */}
+          <div className="overflow-x-auto">
+            <div className="min-w-[850px]">
+              {/* Encabezado de Días */}
+              <div className="grid grid-cols-7 border-b border-slate-200 bg-slate-100/70 text-slate-700 font-bold text-xs">
+                <div className="p-3 text-center border-r border-slate-200 text-slate-400">Horario</div>
+                {weekDays.map((d) => (
+                  <div
+                    key={d.dateStr}
+                    className={`p-3 text-center border-r border-slate-200 last:border-r-0 ${
+                      d.dateStr === '2026-08-25' ? 'bg-teal-50/80 text-teal-900 font-extrabold' : ''
+                    }`}
+                  >
+                    <div>{d.name}</div>
+                    <span className="text-sm font-extrabold text-slate-900">{d.dayNum}</span>
+                  </div>
+                ))}
+              </div>
+
+              {/* Filas Horarias */}
+              <div className="divide-y divide-slate-100">
+                {timeSlots.map((slot) => (
+                  <div key={slot} className="grid grid-cols-7 min-h-[85px]">
+                    {/* Columna Horario */}
+                    <div className="p-2.5 text-center text-xs font-bold text-slate-400 border-r border-slate-100 flex items-center justify-center bg-slate-50/30">
+                      <Clock className="w-3.5 h-3.5 mr-1 text-teal-600" />
+                      <span>{slot} hs</span>
+                    </div>
+
+                    {/* Columnas de los Días con los Turnos Confirmados Reflejados */}
+                    {weekDays.map((day) => {
+                      const slotAppts = weekAppointments.filter(
+                        (a) => a.dateStr === day.dateStr && a.timeStr.startsWith(slot.substring(0, 2))
+                      );
+
+                      return (
+                        <div
+                          key={day.dateStr}
+                          className={`p-1.5 border-r border-slate-100 last:border-r-0 relative ${
+                            day.dateStr === '2026-08-25' ? 'bg-teal-50/20' : ''
+                          }`}
+                        >
+                          {slotAppts.map((appt) => {
+                            const isConfirmed = appt.status === 'CONFIRMED';
+                            const isCompleted = appt.status === 'COMPLETED';
+                            const isPending = appt.status === 'PENDING_PAYMENT';
+
+                            const cardBg = isConfirmed
+                              ? 'bg-emerald-50 border-emerald-300 text-emerald-950 hover:bg-emerald-100/90 shadow-sm'
+                              : isCompleted
+                              ? 'bg-blue-50 border-blue-300 text-blue-950 hover:bg-blue-100/90 shadow-sm'
+                              : 'bg-amber-50 border-amber-300 text-amber-950 hover:bg-amber-100/90 shadow-sm';
+
+                            return (
+                              <div
+                                key={appt.id}
+                                onClick={() => {
+                                  // Adaptar a tipo Appointment y abrir modal
+                                  const adaptedAppt: Appointment = {
+                                    id: appt.id,
+                                    patientId: appt.patientId,
+                                    patientName: appt.patientName,
+                                    patientDni: appt.patientDni,
+                                    patientPhone: appt.patientPhone,
+                                    serviceId: 1,
+                                    serviceName: appt.serviceName,
+                                    startTime: `${appt.dateStr}T${appt.timeStr}:00Z`,
+                                    endTime: `${appt.dateStr}T${appt.timeStr}:00Z`,
+                                    status: appt.status,
+                                    agreedPrice: appt.agreedPrice,
+                                    rescheduleCount: 0,
+                                    version: 1,
+                                  };
+                                  setActiveAppointment(adaptedAppt);
+                                }}
+                                className={`p-2.5 rounded-xl border text-xs cursor-pointer transition-all ${cardBg} space-y-1.5`}
+                              >
+                                <div className="flex justify-between items-start">
+                                  <span className="font-extrabold truncate block max-w-[95px] text-slate-900">
+                                    {appt.patientName}
+                                  </span>
+                                  <span className="text-[10px] font-extrabold bg-white/80 px-1.5 py-0.5 rounded shadow-xs">
+                                    {appt.timeStr}
+                                  </span>
+                                </div>
+                                <p className="text-[11px] line-clamp-1 font-medium text-slate-700">
+                                  {appt.serviceName}
+                                </p>
+                                <div className="flex items-center justify-between text-[10px] pt-1 border-t border-slate-200/70">
+                                  <span className="font-extrabold text-emerald-700">Seña: 50% ✓</span>
+                                  <span className="font-extrabold text-slate-900">${appt.agreedPrice.toLocaleString()}</span>
+                                </div>
+                              </div>
+                            );
+                          })}
+                        </div>
+                      );
+                    })}
+                  </div>
+                ))}
+              </div>
+            </div>
+          </div>
+        </div>
+      )}
+
+      {/* ========================================================================= */}
+      {/* VISTA 2: LISTA / TABLA OPERATIVA DE RECEPCIÓN */}
+      {/* ========================================================================= */}
+      {viewMode === 'table' && (
+        <div className="bg-white rounded-2xl border border-slate-200 shadow-sm overflow-hidden">
+          <div className="overflow-x-auto">
+            <table className="w-full text-left text-xs sm:text-sm">
+              <thead className="bg-slate-50 text-slate-600 font-bold border-b border-slate-200">
                 <tr>
-                  <td colSpan={6} className="p-8 text-center text-slate-400">
-                    No hay turnos registrados para la fecha seleccionada.
-                  </td>
+                  <th className="p-3.5">Horario</th>
+                  <th className="p-3.5">Paciente</th>
+                  <th className="p-3.5">Tratamiento</th>
+                  <th className="p-3.5">Estado</th>
+                  <th className="p-3.5 text-right">Precio / Saldo</th>
+                  <th className="p-3.5 text-center">Acciones</th>
                 </tr>
-              ) : (
-                appointments.map((a) => (
-                  <tr key={a.id} className="hover:bg-slate-50/80 transition-colors">
-                    <td className="p-3.5 font-bold text-slate-800 flex items-center space-x-1.5">
-                      <Clock className="w-4 h-4 text-teal-600" />
-                      <span>{new Date(a.startTime).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })} hs</span>
-                    </td>
-                    <td className="p-3.5">
-                      <div className="font-semibold text-slate-900">{a.patientName}</div>
-                      <div className="text-[11px] text-slate-500">DNI: {a.patientDni} · Tel: {a.patientPhone}</div>
-                    </td>
-                    <td className="p-3.5 font-medium text-slate-700">{a.serviceName}</td>
-                    <td className="p-3.5">{getStatusBadge(a.status)}</td>
-                    <td className="p-3.5 text-right">
-                      <div className="font-bold text-slate-900">${a.agreedPrice.toLocaleString()} ARS</div>
-                      <div className="text-[11px] text-teal-600 font-semibold">
-                        {a.status === 'CONFIRMED' ? 'Saldo pendiente: 50%' : ''}
-                      </div>
-                    </td>
-                    <td className="p-3.5 text-center">
-                      <div className="flex items-center justify-center space-x-1.5">
-                        <button
-                          onClick={() => handleOpenReminder(a)}
-                          className="p-1.5 text-slate-600 hover:text-teal-600 hover:bg-slate-100 rounded-lg"
-                          title="Enviar Recordatorio & Calendario"
-                        >
-                          <Bell className="w-4 h-4 text-amber-600" />
-                        </button>
-
-                        <button
-                          onClick={() => handleOpenReceipt(a)}
-                          className="p-1.5 text-slate-600 hover:text-teal-600 hover:bg-slate-100 rounded-lg"
-                          title="Imprimir Comprobante Oficial"
-                        >
-                          <Printer className="w-4 h-4" />
-                        </button>
-
-                        {a.status === 'CONFIRMED' && (
-                          <button
-                            onClick={() => handleOpenPayment(a)}
-                            className="bg-emerald-600 hover:bg-emerald-700 text-white font-semibold px-2.5 py-1 rounded-lg text-xs flex items-center space-x-1"
-                          >
-                            <DollarSign className="w-3.5 h-3.5" />
-                            <span>Cobrar</span>
-                          </button>
-                        )}
-                        {a.status !== 'COMPLETED' && a.status !== 'CANCELLED' && (
-                          <button
-                            onClick={() => handleCancel(a.id)}
-                            className="text-rose-600 hover:text-rose-700 p-1.5 rounded-lg hover:bg-rose-50"
-                            title="Cancelar Turno"
-                          >
-                            <XCircle className="w-4 h-4" />
-                          </button>
-                        )}
-                      </div>
+              </thead>
+              <tbody className="divide-y divide-slate-100">
+                {appointments.length === 0 ? (
+                  <tr>
+                    <td colSpan={6} className="p-8 text-center text-slate-400">
+                      No hay turnos registrados para la fecha seleccionada.
                     </td>
                   </tr>
-                ))
-              )}
-            </tbody>
-          </table>
+                ) : (
+                  appointments.map((a) => (
+                    <tr key={a.id} className="hover:bg-slate-50/80 transition-colors">
+                      <td className="p-3.5 font-bold text-slate-800 flex items-center space-x-1.5">
+                        <Clock className="w-4 h-4 text-teal-600" />
+                        <span>{new Date(a.startTime).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })} hs</span>
+                      </td>
+                      <td className="p-3.5">
+                        <div className="font-semibold text-slate-900">{a.patientName}</div>
+                        <div className="text-[11px] text-slate-500">DNI: {a.patientDni} · Tel: {a.patientPhone}</div>
+                      </td>
+                      <td className="p-3.5 font-medium text-slate-700">{a.serviceName}</td>
+                      <td className="p-3.5">{getStatusBadge(a.status)}</td>
+                      <td className="p-3.5 text-right">
+                        <div className="font-bold text-slate-900">${a.agreedPrice.toLocaleString()} ARS</div>
+                        <div className="text-[11px] text-teal-600 font-semibold">
+                          {a.status === 'CONFIRMED' ? 'Saldo pendiente en recepción: 50%' : ''}
+                        </div>
+                      </td>
+                      <td className="p-3.5 text-center">
+                        <div className="flex items-center justify-center space-x-1.5">
+                          <button
+                            onClick={() => handleOpenReminder(a)}
+                            className="p-1.5 text-slate-600 hover:text-teal-600 hover:bg-slate-100 rounded-lg"
+                            title="Enviar Recordatorio & Calendario"
+                          >
+                            <Bell className="w-4 h-4 text-amber-600" />
+                          </button>
+
+                          <button
+                            onClick={() => handleOpenReceipt(a)}
+                            className="p-1.5 text-slate-600 hover:text-teal-600 hover:bg-slate-100 rounded-lg"
+                            title="Imprimir Comprobante Oficial"
+                          >
+                            <Printer className="w-4 h-4" />
+                          </button>
+
+                          {a.status === 'CONFIRMED' && (
+                            <button
+                              onClick={() => handleOpenPayment(a)}
+                              className="bg-emerald-600 hover:bg-emerald-700 text-white font-semibold px-2.5 py-1 rounded-lg text-xs flex items-center space-x-1"
+                            >
+                              <DollarSign className="w-3.5 h-3.5" />
+                              <span>Cobrar</span>
+                            </button>
+                          )}
+                          {a.status !== 'COMPLETED' && a.status !== 'CANCELLED' && (
+                            <button
+                              onClick={() => handleCancel(a.id)}
+                              className="text-rose-600 hover:text-rose-700 p-1.5 rounded-lg hover:bg-rose-50"
+                              title="Cancelar Turno"
+                            >
+                              <XCircle className="w-4 h-4" />
+                            </button>
+                          )}
+                        </div>
+                      </td>
+                    </tr>
+                  ))
+                )}
+              </tbody>
+            </table>
+          </div>
         </div>
-      </div>
+      )}
+
+      {/* Modal Rápido de Gestión para Turnos Seleccionados en el Calendario */}
+      {activeAppointment && !receiptModalOpen && !reminderModalOpen && !paymentModalOpen && (
+        <div className="fixed inset-0 bg-black/40 backdrop-blur-sm z-50 flex items-center justify-center p-4">
+          <div className="bg-white rounded-2xl shadow-2xl max-w-md w-full p-6 space-y-4">
+            <div className="flex justify-between items-start border-b border-slate-100 pb-3">
+              <div>
+                <span className="text-[10px] uppercase font-bold text-teal-600 tracking-wider">
+                  Detalle del Turno #{activeAppointment.id}
+                </span>
+                <h3 className="text-lg font-bold text-slate-900">{activeAppointment.patientName}</h3>
+                <p className="text-xs text-slate-500">
+                  DNI: {activeAppointment.patientDni} · Tel: {activeAppointment.patientPhone}
+                </p>
+              </div>
+              <div>{getStatusBadge(activeAppointment.status)}</div>
+            </div>
+
+            <div className="bg-slate-50 p-3.5 rounded-xl border border-slate-200 text-xs space-y-1.5">
+              <div className="flex justify-between">
+                <span className="text-slate-500">Tratamiento:</span>
+                <span className="font-bold text-slate-800">{activeAppointment.serviceName}</span>
+              </div>
+              <div className="flex justify-between">
+                <span className="text-slate-500">Fecha y Hora:</span>
+                <span className="font-bold text-teal-700">
+                  {new Date(activeAppointment.startTime).toLocaleDateString('es-AR', {
+                    weekday: 'short',
+                    day: 'numeric',
+                    month: 'short',
+                  })}{' '}
+                  a las{' '}
+                  {new Date(activeAppointment.startTime).toLocaleTimeString([], {
+                    hour: '2-digit',
+                    minute: '2-digit',
+                  })}{' '}
+                  hs
+                </span>
+              </div>
+              <div className="flex justify-between text-emerald-800 bg-emerald-50 p-1.5 rounded-lg border border-emerald-200 font-bold">
+                <span>Seña 50% Acreditada Online:</span>
+                <span>${(activeAppointment.agreedPrice * 0.5).toLocaleString()} ARS</span>
+              </div>
+              <div className="flex justify-between font-bold pt-1 text-slate-800">
+                <span>Saldo Pendiente en Mostrador:</span>
+                <span className="text-teal-600">${(activeAppointment.agreedPrice * 0.5).toLocaleString()} ARS</span>
+              </div>
+            </div>
+
+            {/* Acciones Rápidas */}
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 pt-1">
+              {activeAppointment.status === 'CONFIRMED' && (
+                <button
+                  onClick={() => {
+                    handleOpenPayment(activeAppointment);
+                  }}
+                  className="bg-emerald-600 hover:bg-emerald-700 text-white font-bold text-xs p-2.5 rounded-xl flex items-center justify-center space-x-1.5 shadow-sm"
+                >
+                  <DollarSign className="w-4 h-4" />
+                  <span>Cobrar Saldo (50%)</span>
+                </button>
+              )}
+
+              <button
+                onClick={() => setReminderModalOpen(true)}
+                className="bg-amber-50 hover:bg-amber-100 text-amber-900 border border-amber-200 font-bold text-xs p-2.5 rounded-xl flex items-center justify-center space-x-1.5"
+              >
+                <Bell className="w-4 h-4 text-amber-600" />
+                <span>Enviar Recordatorio</span>
+              </button>
+
+              <button
+                onClick={() => setReceiptModalOpen(true)}
+                className="bg-slate-100 hover:bg-slate-200 text-slate-800 border border-slate-300 font-bold text-xs p-2.5 rounded-xl flex items-center justify-center space-x-1.5"
+              >
+                <Printer className="w-4 h-4 text-teal-600" />
+                <span>Comprobante Oficial</span>
+              </button>
+
+              <button
+                onClick={() => setActiveAppointment(null)}
+                className="bg-slate-50 hover:bg-slate-100 text-slate-600 border border-slate-200 font-bold text-xs p-2.5 rounded-xl flex items-center justify-center"
+              >
+                <span>Cerrar</span>
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
 
       {/* Modal de Cobro de Saldo en Mostrador */}
       {paymentModalOpen && selectedAppointment && (
@@ -243,7 +664,10 @@ export const AgendaView: React.FC = () => {
       {receiptModalOpen && activeAppointment && (
         <AppointmentReceiptModal
           isOpen={receiptModalOpen}
-          onClose={() => setReceiptModalOpen(false)}
+          onClose={() => {
+            setReceiptModalOpen(false);
+            setActiveAppointment(null);
+          }}
           appointmentData={{
             id: activeAppointment.id,
             patientName: activeAppointment.patientName,
@@ -263,7 +687,10 @@ export const AgendaView: React.FC = () => {
       {reminderModalOpen && activeAppointment && (
         <ReminderNotificationModal
           isOpen={reminderModalOpen}
-          onClose={() => setReminderModalOpen(false)}
+          onClose={() => {
+            setReminderModalOpen(false);
+            setActiveAppointment(null);
+          }}
           appointmentData={{
             id: activeAppointment.id,
             patientName: activeAppointment.patientName,
