@@ -35,9 +35,10 @@ services:
       - JWT_SECRET_KEY=MiClaveSecretaSuperSeguraParaLaClinicaDermatologica2026EsteticaYSalud
       - MERCADOPAGO_ACCESS_TOKEN=${MERCADOPAGO_ACCESS_TOKEN:-TEST-0000000000000000-000000-00000000000000000000000000000000-000000000}
       - MERCADOPAGO_WEBHOOK_SECRET=${MERCADOPAGO_WEBHOOK_SECRET:-test_webhook_secret}
-      - GEMINI_API_KEY=${GEMINI_API_KEY:-mock-gemini-key}
-      - SUPABASE_STORAGE_URL=${SUPABASE_STORAGE_URL:-https://xyz.supabase.co/storage/v1}
-      - SUPABASE_ANON_KEY=${SUPABASE_ANON_KEY:-mock-anon-key}
+      - GEMINI_API_KEY=${GEMINI_API_KEY:-AQ.Ab8RN6JtRjMndLmRpDeKhB60q8XernnuMzaJXyWk99XmT7zI4A}
+      - GEMINI_MODEL=${GEMINI_MODEL:-gemini-3.5-flash-lite}
+      - SUPABASE_STORAGE_URL=${SUPABASE_STORAGE_URL:-https://jcsgixxatmqzpdcflevw.supabase.co/storage/v1}
+      - SUPABASE_ANON_KEY=${SUPABASE_ANON_KEY:-sb_publishable_vCQ09c8ZXEKvQeNipnC5gA_d8VQnASl}
     depends_on:
       postgres:
         condition: service_healthy
@@ -55,6 +56,8 @@ services:
     command: sh -c "npm install && npm run dev -- --host 0.0.0.0"
     environment:
       - VITE_API_BASE_URL=http://localhost:8080/api/v1
+      - VITE_SUPABASE_URL=${SUPABASE_URL:-https://jcsgixxatmqzpdcflevw.supabase.co}
+      - VITE_SUPABASE_ANON_KEY=${SUPABASE_ANON_KEY:-sb_publishable_vCQ09c8ZXEKvQeNipnC5gA_d8VQnASl}
     depends_on:
       - backend
     restart: unless-stopped

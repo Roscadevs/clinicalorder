@@ -54,11 +54,11 @@ gemini:
   api:
     key: ${GEMINI_API_KEY:TU_API_KEY_DE_GEMINI} # API Key obtenida de Google AI Studio
     base-url: https://generativelanguage.googleapis.com/v1beta # Endpoint base oficial de la API de Gemini
-    model: gemini-1.5-flash # Modelo optimizado para respuestas conversacionales rápidas y económicas
+    model: ${GEMINI_MODEL:gemini-3.5-flash-lite} # Modelo optimizado para respuestas conversacionales rápidas y económicas
 
 # Configuración de Almacenamiento de Fotos Médicas en Supabase Storage
 supabase:
   storage:
-    url: ${SUPABASE_STORAGE_URL:https://tu-proyecto.supabase.co/storage/v1} # URL de Supabase Storage
-    anon-key: ${SUPABASE_ANON_KEY:tu_supabase_anon_key} # Clave anónima o service role
+    url: ${SUPABASE_STORAGE_URL:https://jcsgixxatmqzpdcflevw.supabase.co/storage/v1} # URL de Supabase Storage
+    anon-key: ${SUPABASE_ANON_KEY:sb_publishable_vCQ09c8ZXEKvQeNipnC5gA_d8VQnASl} # Clave anónima o service role
     bucket-name: photos # Nombre del bucket privado para historias clínicas

@@ -10,6 +10,8 @@
   },
   "dependencies": {
     "@hookform/resolvers": "^3.3.4",
+    "@supabase/server": "^1.4.1",
+    "@supabase/supabase-js": "^2.112.3",
     "@tanstack/react-query": "^5.24.1",
     "axios": "^1.6.7",
     "clsx": "^2.1.0",
