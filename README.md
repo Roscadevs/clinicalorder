@@ -168,7 +168,7 @@ docker compose up -d
 ```
 - Frontend: `http://localhost:5173/`
 - Backend: `http://localhost:8080/api/v1/servicios`
-
+- deploy:`https://clinicalorder.eliasdelcastillo.com`
 ---
 
 <div align="center">
