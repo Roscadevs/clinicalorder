@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from 'react'; // React hooks
 import { servicesApi, patientsApi, appointmentsApi } from '../../services/api'; // API services
 import { DermatologicService, PaymentPreferenceResponse } from '../../types'; // Types
-import { Clock, CreditCard, AlertCircle, ArrowRight, Printer, Bell, Calendar } from 'lucide-react'; // Icons
+import { Clock, CreditCard, AlertCircle, ArrowRight, Printer, Bell, Calendar, QrCode, MessageCircle, Copy, Check } from 'lucide-react'; // Icons
+import { QRCodeSVG } from 'qrcode.react'; // QR generator
 import { AppointmentReceiptModal } from '../documents/AppointmentReceiptModal'; // Modal de comprobante
 import { ReminderNotificationModal } from '../reminders/ReminderNotificationModal'; // Modal de recordatorios y calendario
 
@@ -42,6 +43,33 @@ export const BookingWizard: React.FC = () => {
     const m = Math.floor(secs / 60);
     const s = secs % 60;
     return `${m.toString().padStart(2, '0')}:${s.toString().padStart(2, '0')}`;
+  };
+
+  const [copiedLink, setCopiedLink] = useState(false);
+
+  const handleSendWhatsApp = () => {
+    if (!holdResult) return;
+    const cleanPhone = (patientPhone || '').replace(/\D/g, '');
+    const message = encodeURIComponent(
+      `Hola ${patientName || 'estimado/a'}, tu turno en Dra. Valeria Gómez para ${selectedService?.name || 'tratamiento'} (${selectedDate} a las ${selectedTime} hs) ha sido reservado temporalmente por 10 minutos.\n\nPuedes abonar la seña requerida de $${holdResult.depositAmount.toLocaleString()} ARS mediante este link seguro de Mercado Pago:\n${holdResult.initPointUrl}`
+    );
+    const url = cleanPhone
+      ? `https://wa.me/${cleanPhone}?text=${message}`
+      : `https://wa.me/?text=${message}`;
+    window.open(url, '_blank', 'noopener,noreferrer');
+  };
+
+  const handleCopyPaymentLink = async () => {
+    if (!holdResult) return;
+    try {
+      if (navigator.clipboard) {
+        await navigator.clipboard.writeText(holdResult.initPointUrl);
+      }
+      setCopiedLink(true);
+      setTimeout(() => setCopiedLink(false), 2500);
+    } catch (err) {
+      console.error('Error al copiar enlace', err);
+    }
   };
 
   const handleStartBooking = async (e: React.FormEvent) => {
@@ -336,6 +364,53 @@ export const BookingWizard: React.FC = () => {
             <div className="flex justify-between border-t border-slate-200 pt-2">
               <span className="font-bold text-slate-800">Seña a abonar (50%):</span>
               <span className="font-extrabold text-teal-600 text-base">${holdResult.depositAmount.toLocaleString()} ARS</span>
+            </div>
+          </div>
+
+          {/* Código QR y Acciones de Compartir Link */}
+          <div className="bg-slate-50 border border-slate-200 rounded-2xl p-4 sm:p-5 max-w-md mx-auto space-y-3.5">
+            <div className="flex items-center justify-between border-b border-slate-200 pb-2">
+              <div className="flex items-center space-x-2 text-slate-800 font-bold text-xs sm:text-sm">
+                <QrCode className="w-4 h-4 text-teal-600" />
+                <span>Escanear QR de Pago</span>
+              </div>
+              <span className="text-[11px] font-semibold text-slate-500 uppercase tracking-wider bg-slate-200/60 px-2 py-0.5 rounded">
+                Mercado Pago
+              </span>
+            </div>
+
+            <div className="flex flex-col sm:flex-row items-center gap-4 bg-white p-3.5 rounded-xl border border-slate-200/80 shadow-sm">
+              <div className="p-2 bg-white rounded-lg shadow-sm border border-slate-100 shrink-0">
+                <QRCodeSVG
+                  value={holdResult.initPointUrl}
+                  size={120}
+                  level="M"
+                />
+              </div>
+              <div className="text-left space-y-2.5">
+                <p className="text-xs text-slate-600 leading-relaxed">
+                  Escaneá con tu celular o app de Mercado Pago para abonar la seña al instante.
+                </p>
+                <div className="flex flex-wrap gap-2 pt-1">
+                  <button
+                    type="button"
+                    onClick={handleSendWhatsApp}
+                    className="inline-flex items-center space-x-1.5 text-xs font-bold px-3 py-1.5 rounded-lg bg-[#25D366]/10 text-[#128C7E] hover:bg-[#25D366]/20 transition-colors border border-[#25D366]/30"
+                  >
+                    <MessageCircle className="w-3.5 h-3.5" />
+                    <span>WhatsApp</span>
+                  </button>
+
+                  <button
+                    type="button"
+                    onClick={handleCopyPaymentLink}
+                    className="inline-flex items-center space-x-1.5 text-xs font-bold px-3 py-1.5 rounded-lg bg-slate-100 hover:bg-slate-200 text-slate-700 transition-colors border border-slate-300"
+                  >
+                    {copiedLink ? <Check className="w-3.5 h-3.5 text-emerald-600" /> : <Copy className="w-3.5 h-3.5" />}
+                    <span>{copiedLink ? '¡Copiado!' : 'Copiar Link'}</span>
+                  </button>
+                </div>
+              </div>
             </div>
           </div>
 

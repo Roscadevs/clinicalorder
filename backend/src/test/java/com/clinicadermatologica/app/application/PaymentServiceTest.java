@@ -102,6 +102,52 @@ public class PaymentServiceTest {
     }
 
     @Test
+    @DisplayName("Debe procesar webhook cuando los datos vienen vía query parameters")
+    void testProcessWebhook_QueryParams_Approved() {
+        Map<String, String> queryParams = Map.of(
+                "topic", "payment",
+                "id", "987654321"
+        );
+
+        Payment mockMpPayment = mock(Payment.class);
+        when(mockMpPayment.getStatus()).thenReturn("approved");
+        when(mockMpPayment.getExternalReference()).thenReturn("100");
+        when(mercadoPagoAdapter.getPaymentDetails(987654321L)).thenReturn(mockMpPayment);
+
+        when(appointmentRepository.findById(100L)).thenReturn(Optional.of(mockAppointment));
+        when(paymentTransactionRepository.findByAppointmentId(100L)).thenReturn(List.of(mockTransaction));
+
+        boolean processed = paymentService.processMercadoPagoWebhook(null, queryParams, null, null);
+
+        assertTrue(processed);
+        assertEquals(AppointmentStatus.CONFIRMED, mockAppointment.getStatus());
+        assertEquals(PaymentStatus.APPROVED, mockTransaction.getStatus());
+        assertEquals("987654321", mockTransaction.getMpPaymentId());
+    }
+
+    @Test
+    @DisplayName("Debe marcar el turno como PAYMENT_FAILED cuando el pago es rechazado")
+    void testProcessWebhook_Rejected_FailsAppointment() {
+        Map<String, Object> payload = Map.of(
+                "type", "payment",
+                "data", Map.of("id", 123456789L)
+        );
+
+        Payment mockMpPayment = mock(Payment.class);
+        when(mockMpPayment.getStatus()).thenReturn("rejected");
+        when(mockMpPayment.getExternalReference()).thenReturn("100");
+        when(mercadoPagoAdapter.getPaymentDetails(123456789L)).thenReturn(mockMpPayment);
+
+        when(appointmentRepository.findById(100L)).thenReturn(Optional.of(mockAppointment));
+        when(paymentTransactionRepository.findByAppointmentId(100L)).thenReturn(List.of(mockTransaction));
+
+        paymentService.processMercadoPagoWebhook(payload);
+
+        assertEquals(AppointmentStatus.PAYMENT_FAILED, mockAppointment.getStatus());
+        assertEquals(PaymentStatus.REJECTED, mockTransaction.getStatus());
+    }
+
+    @Test
     @DisplayName("Debe registrar cobro en mostrador y marcar la cita como COMPLETED")
     void testRegisterFinalPayment_Success() {
         mockAppointment.setStatus(AppointmentStatus.CONFIRMED); // Cita previamente confirmada
@@ -120,3 +166,4 @@ public class PaymentServiceTest {
         verify(appointmentRepository, times(1)).save(mockAppointment);
     }
 }
+

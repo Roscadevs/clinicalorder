@@ -124,6 +124,7 @@ Consulte la **[Guía Estratégica de Defensa Oral (Fase 9)](documentacion/fase9_
 
 Toda la documentación técnica se encuentra centralizada en la carpeta [`documentacion/`](documentacion/00_INDICE_GENERAL.md):
 
+- 📘 **[Manual Maestro de Ingeniería de Software y Metodología Agentic IA](documentacion/GUIA_MAESTRA_ESTANDAR_INGENIERIA_Y_AGENTES_IA.md)** *(Playbook definitivo de arquitectura, requisitos formales, DevOps y prompting de agentes)*
 - 📜 **[Historial de PRDs (`documentacion/historial_prds/`)](documentacion/historial_prds/CHANGELOG_PRDS.md)**
   - [`CHANGELOG_PRDS.md`](documentacion/historial_prds/CHANGELOG_PRDS.md): Bitácora de cambios y versiones del PRD.
   - [`PRD_v1.0_Fase1_Inicial.md`](documentacion/historial_prds/PRD_v1.0_Fase1_Inicial.md): Especificación base y universo de discurso.
