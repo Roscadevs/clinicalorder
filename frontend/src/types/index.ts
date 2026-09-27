@@ -2,7 +2,7 @@
  * Definiciones de Tipos de TypeScript sincronizadas con los DTOs y Modelos de Dominio del Backend Spring Boot.
  */
 
-export type UserRole = 'ADMIN' | 'PHYSICIAN' | 'RECEPTIONIST'; // Roles de usuario RBAC
+export type UserRole = 'ADMIN' | 'DOCTORA' | 'SECRETARIA'; // Roles RBAC (sincronizados con el enum UserRole del backend)
 
 export interface AuthResponse {
   token: string; // Token JWT firmado
@@ -40,8 +40,9 @@ export interface DermatologicService {
 export type AppointmentStatus =
   | 'PENDING_PAYMENT' // Bloqueo temporal de 10 min
   | 'CONFIRMED'       // Seña abonada
-  | 'CANCELLED'       // Cancelado
-  | 'COMPLETED'       // Finalizado
+  | 'ATTENDED'        // Atendido por el médico; pendiente de cobro del saldo
+  | 'CANCELED'        // Cancelado (incluye bloqueos temporales vencidos)
+  | 'COMPLETED'       // Atendido y cobrado
   | 'PAYMENT_FAILED'  // Expirado o rechazado
   | 'NO_SHOW';        // Inasistencia
 
@@ -67,8 +68,45 @@ export interface PaymentPreferenceResponse {
   preferenceId: string; // ID de preferencia MercadoPago
   initPointUrl: string; // URL para pagar en MercadoPago Checkout Pro
   depositAmount: number; // Monto del 50% de la seña
-  holdExpiresAt: string; // Fecha y hora límite (10 min)
+  holdExpiresAt?: string; // Fecha y hora límite (10 min). El backend aún no lo envía.
 }
+
+/** Franja horaria calculada por el backend (/citas/disponibilidad). */
+export interface TimeSlot {
+  startTime: string; // ISO 8601 UTC
+  endTime: string; // ISO 8601 UTC
+  timeDisplay: string; // Ej. '15:00 hs'
+  available: boolean; // false si está ocupada, en bloqueo temporal o bloqueada en agenda
+}
+
+/** Canal de pago (sincronizado con el enum PaymentType del backend). */
+export type PaymentType = 'CASH' | 'BANK_TRANSFER' | 'MERCADOPAGO';
+
+/** Concepto del pago (sincronizado con el enum PaymentConcept del backend). */
+export type PaymentConcept = 'DEPOSIT' | 'BALANCE' | 'FULL';
+
+/** Resultado de "Registrar Pago" (POST /citas/{id}/registrar-pago). Alimenta el comprobante. */
+export interface PaymentReceipt {
+  appointmentId: number;
+  transactionId?: number;
+  paymentType: PaymentType;
+  concept: PaymentConcept;
+  amount: number;
+  paymentDate: string; // ISO 8601
+  appointmentStatus: AppointmentStatus;
+}
+
+export const PAYMENT_TYPE_LABELS: Record<PaymentType, string> = {
+  CASH: 'Efectivo',
+  BANK_TRANSFER: 'Transferencia bancaria',
+  MERCADOPAGO: 'Pago virtual (MercadoPago)',
+};
+
+export const PAYMENT_CONCEPT_LABELS: Record<PaymentConcept, string> = {
+  DEPOSIT: 'Seña',
+  BALANCE: 'Saldo',
+  FULL: 'Pago total',
+};
 
 export interface MedicalRecord {
   id: number;
@@ -112,13 +150,25 @@ export interface MedicalRecord {
 
 export interface ClinicalEntry {
   id: number;
-  medicalRecordId: number;
+  patientId?: number;
+  medicalRecordId?: number;
   appointmentId: number;
+  serviceName?: string; // Servicio del turno asociado (para listar por fecha/servicio)
   authorUserId: number;
   authorFullName: string;
   content: string; // Notas de evolución, unidades inyectadas, zonas
   createdAt: string;
   updatedAt: string;
+}
+
+/** Foto clínica de un tratamiento (por ahora guardada localmente como dataURL). */
+export interface ClinicalPhoto {
+  id: string;
+  appointmentId: number;
+  patientId: number;
+  dataUrl: string;   // imagen en base64 (almacenamiento local temporal)
+  caption?: string;
+  createdAt: string;
 }
 
 export interface ClinicalAuditLog {

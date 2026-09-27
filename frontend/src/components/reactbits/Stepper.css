@@ -1,0 +1,61 @@
+.rb-stepper .step-indicator-row {
+  display: flex;
+  width: 100%;
+  align-items: center;
+}
+
+.rb-stepper .step-content-default {
+  position: relative;
+  overflow: hidden;
+}
+
+.rb-stepper .step-indicator {
+  position: relative;
+  cursor: pointer;
+  outline: none;
+}
+
+.rb-stepper .step-indicator-inner {
+  display: flex;
+  height: 2rem;
+  width: 2rem;
+  align-items: center;
+  justify-content: center;
+  border-radius: 9999px;
+  font-weight: 600;
+}
+
+.rb-stepper .active-dot {
+  height: 0.75rem;
+  width: 0.75rem;
+  border-radius: 9999px;
+  background-color: #fff;
+}
+
+.rb-stepper .step-number {
+  font-size: 0.875rem;
+}
+
+.rb-stepper .step-connector {
+  position: relative;
+  margin-left: 0.5rem;
+  margin-right: 0.5rem;
+  height: 0.15rem;
+  flex: 1;
+  overflow: hidden;
+  border-radius: 0.25rem;
+  background-color: #E9E2DC;
+}
+
+.rb-stepper .step-connector-inner {
+  position: absolute;
+  left: 0;
+  top: 0;
+  height: 100%;
+}
+
+.rb-stepper .check-icon {
+  height: 1rem;
+  width: 1rem;
+  color: #fff;
+}

@@ -1,103 +1,157 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
-import { Sparkles, Calendar as CalendarIcon, ShieldCheck, HeartPulse } from 'lucide-react';
+import { Calendar as CalendarIcon, ArrowRight } from 'lucide-react';
+import { Logo } from '../../components/ui';
+import { Aurora, BlurText, SpotlightCard, SpecularButton } from '../../components/reactbits';
+import { whatsappLink, BOOKING_MESSAGE } from '../../config/contact';
+
+const services = [
+  {
+    title: 'Salud capilar',
+    description:
+      'Diagnóstico y tratamiento integral de estimulación, fortalecimiento y crecimiento.',
+  },
+  {
+    title: 'Cuidado de la piel',
+    description:
+      'Bioestimuladores de colágeno, microneedling, tratamientos que trabajan respetando las facciones y potenciando lo propio.',
+  },
+  {
+    title: 'Armonización facial',
+    description:
+      'Hilos PDO, ácido hialurónico, toxina botulínica, recuperación ante el paso del tiempo.',
+  },
+];
 
 export const LandingPageView: React.FC = () => {
   const navigate = useNavigate();
 
   return (
-    <div className="min-h-screen bg-slate-50 text-slate-900 flex flex-col font-sans">
-      {/* Public Header */}
-      <header className="bg-white border-b border-slate-200">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
-          <div className="flex items-center space-x-2.5">
-            <div className="w-9 h-9 sm:w-10 sm:h-10 rounded-full bg-teal-600 flex items-center justify-center text-white shadow-md">
-              <Sparkles className="w-4 h-4 sm:w-5 sm:h-5" />
-            </div>
+    <div className="min-h-screen bg-sand-50 text-sand-900 flex flex-col font-sans">
+      {/* Header público */}
+      <header className="bg-white/80 backdrop-blur-md border-b border-sand-200 sticky top-0 z-30">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
+          <div className="flex items-center gap-3">
+            <Logo variant="mark" className="w-14 h-14 sm:w-16 sm:h-16 text-primary-500" />
             <div>
-              <span className="text-base sm:text-lg font-bold tracking-tight text-slate-800 block leading-tight">
-                Dra. Valeria Gómez
+              <span className="font-display text-lg sm:text-xl font-bold tracking-tight text-sand-900 block leading-tight">
+                Dra. Paula Villa Fuhrmann
               </span>
-              <span className="text-[10px] sm:text-xs font-medium text-teal-600 block">
-                Dermatología & Estética Médica
+              <span className="text-[11px] sm:text-xs font-medium text-primary-500 block">
+                Especialista en Medicina Estética
               </span>
             </div>
           </div>
-          <div>
-            <button
-              onClick={() => navigate('/login')}
-              className="text-sm font-medium text-slate-600 hover:text-teal-700 transition-colors"
-            >
-              Staff Login
-            </button>
-          </div>
+          <button
+            onClick={() => navigate('/login')}
+            className="text-sm font-semibold text-sand-600 hover:text-primary-600 transition-colors"
+          >
+            Acceder
+          </button>
         </div>
       </header>
 
-      {/* Hero Section */}
       <main className="flex-grow">
-        <section className="bg-teal-50 py-16 sm:py-24 px-4 sm:px-6 lg:px-8 text-center">
-          <div className="max-w-3xl mx-auto">
-            <h1 className="text-4xl sm:text-5xl font-extrabold text-slate-900 tracking-tight mb-4">
-              Cuidamos la salud <span className="text-teal-600">y belleza</span> de tu piel
-            </h1>
-            <p className="text-lg text-slate-600 mb-8 max-w-2xl mx-auto">
-              Tratamientos dermatológicos y estéticos personalizados con la última tecnología y el respaldo de profesionales médicos expertos.
-            </p>
-            <button
-              onClick={() => navigate('/book')}
-              className="bg-teal-600 hover:bg-teal-700 text-white font-bold px-8 py-4 rounded-xl shadow-lg transition-transform transform hover:-translate-y-1 inline-flex items-center space-x-2"
-            >
-              <CalendarIcon className="w-5 h-5" />
-              <span>Agendar Turno Online</span>
-            </button>
+        {/* Hero con Aurora presente y colorida + texto claro encima */}
+        <section className="relative overflow-hidden bg-sand-900">
+          {/* Fondo Aurora: presente, colorido */}
+          <div className="absolute inset-0 pointer-events-none" aria-hidden="true">
+            <Aurora
+              colorStops={['#C9AB94', '#93654F', '#B39D87']}
+              blend={0.4}
+              amplitude={1.2}
+              speed={0.8}
+            />
+          </div>
+          <div className="relative max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 py-24 sm:py-32 text-center">
+            <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-white/10 border border-white/20 text-xs font-semibold text-sand-100 backdrop-blur-sm mb-6">
+              todo lo que necesitas para sentirte y verte mejor
+            </span>
+
+            <BlurText
+              text="Cuidamos la salud y belleza de tu piel"
+              animateBy="words"
+              direction="top"
+              delay={120}
+              className="font-display text-4xl sm:text-5xl lg:text-6xl font-bold tracking-tight text-white justify-center leading-[1.1] mb-6"
+            />
+
+            <div className="flex justify-center">
+              <SpecularButton
+                size="lg"
+                radius={16}
+                tint="#6C4E40"
+                tintOpacity={1}
+                baseColor="#C9AB94"
+                lineColor="#FBF9F7"
+                textColor="#FBF9F7"
+                intensity={1.4}
+                proximity={320}
+                onClick={() =>
+                  window.open(whatsappLink(BOOKING_MESSAGE), '_blank', 'noopener,noreferrer')
+                }
+              >
+                <span className="inline-flex items-center gap-2 font-semibold">
+                  <CalendarIcon className="w-5 h-5" />
+                  Solicitar turno por WhatsApp
+                </span>
+              </SpecularButton>
+            </div>
           </div>
         </section>
 
-        {/* Services Summary */}
-        <section className="py-16 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto">
-          <h2 className="text-3xl font-bold text-center text-slate-800 mb-12">Nuestros Servicios Destacados</h2>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            {/* Service 1 */}
-            <div className="bg-white p-6 rounded-2xl border border-slate-200 shadow-sm hover:shadow-md transition-shadow">
-              <div className="w-12 h-12 bg-teal-100 text-teal-700 rounded-xl flex items-center justify-center mb-4">
-                <ShieldCheck className="w-6 h-6" />
-              </div>
-              <h3 className="text-xl font-bold text-slate-900 mb-2">Dermatología Clínica</h3>
-              <p className="text-slate-600 text-sm">
-                Diagnóstico y tratamiento integral de enfermedades de la piel, cabello y uñas. Prevención de cáncer de piel.
-              </p>
-            </div>
-            
-            {/* Service 2 */}
-            <div className="bg-white p-6 rounded-2xl border border-slate-200 shadow-sm hover:shadow-md transition-shadow">
-              <div className="w-12 h-12 bg-purple-100 text-purple-700 rounded-xl flex items-center justify-center mb-4">
-                <Sparkles className="w-6 h-6" />
-              </div>
-              <h3 className="text-xl font-bold text-slate-900 mb-2">Estética Médica Avanzada</h3>
-              <p className="text-slate-600 text-sm">
-                Armonización facial, toxina botulínica, ácido hialurónico, bioestimuladores y peelings médicos.
-              </p>
-            </div>
+        {/* Servicios destacados con SpotlightCard */}
+        <section className="py-16 sm:py-20 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto">
+          <div className="flex flex-col items-center text-center mb-12">
+            <BlurText
+              text="Nuestros Servicios Destacados"
+              animateBy="words"
+              direction="top"
+              delay={100}
+              className="font-display text-3xl sm:text-4xl font-bold text-sand-900 justify-center mb-3"
+            />
+            <BlurText
+              text="Tratamientos progresivos, personalizados y con criterio médico, pensados para acompañarte en cada etapa"
+              animateBy="words"
+              direction="top"
+              delay={40}
+              className="text-sand-600 max-w-2xl justify-center"
+            />
+          </div>
 
-            {/* Service 3 */}
-            <div className="bg-white p-6 rounded-2xl border border-slate-200 shadow-sm hover:shadow-md transition-shadow">
-              <div className="w-12 h-12 bg-blue-100 text-blue-700 rounded-xl flex items-center justify-center mb-4">
-                <HeartPulse className="w-6 h-6" />
-              </div>
-              <h3 className="text-xl font-bold text-slate-900 mb-2">Tecnología Láser</h3>
-              <p className="text-slate-600 text-sm">
-                Tratamientos de vanguardia para rosácea, manchas, cicatrices, rejuvenecimiento y depilación médica definitiva.
-              </p>
-            </div>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+            {services.map((svc) => {
+              return (
+                <SpotlightCard key={svc.title} className="h-full">
+                  <h3 className="font-display text-xl font-bold text-sand-900 mb-2 text-center">{svc.title}</h3>
+                  <p className="text-sand-600 text-sm leading-relaxed text-center">{svc.description}</p>
+                </SpotlightCard>
+              );
+            })}
+          </div>
+
+          {/* Pill hacia el catálogo completo de tratamientos */}
+          <div className="flex justify-center mt-10">
+            <button
+              onClick={() => navigate('/servicios')}
+              className="group inline-flex items-center gap-2 px-5 py-2.5 rounded-full border border-primary-300 bg-white text-sm font-semibold text-primary-600 shadow-soft hover:bg-primary-50 hover:border-primary-400 transition-colors"
+            >
+              Conocé todos nuestros tratamientos y servicios
+              <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-0.5" />
+            </button>
           </div>
         </section>
       </main>
 
       {/* Footer */}
-      <footer className="bg-slate-900 text-slate-400 py-8 text-center text-sm">
-        <p className="font-semibold text-slate-200">Clínica Médica Dermatológica & Estética Dra. Valeria Gómez</p>
-        <p className="mt-1 text-xs">© 2026 Todos los derechos reservados.</p>
+      <footer className="bg-sand-900 text-sand-300 py-10">
+        <div className="max-w-7xl mx-auto px-4 flex flex-col items-center text-center gap-3">
+          <Logo variant="mark" className="w-16 h-16 text-white/90" />
+          <p className="font-display font-semibold text-white">
+           Dra. Paula Villa Fuhrmann
+          </p>
+          <p className="text-xs text-sand-400">© 2026 Todos los derechos reservados.</p>
+        </div>
       </footer>
     </div>
   );

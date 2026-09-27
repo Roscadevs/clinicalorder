@@ -4,12 +4,49 @@ import {
   Patient,
   DermatologicService,
   Appointment,
+  AppointmentStatus,
   PaymentPreferenceResponse,
   MedicalRecord,
   ClinicalEntry,
   ClinicalAuditLog,
-  GeminiChatResponse
+  GeminiChatResponse,
+  TimeSlot,
+  PaymentType,
+  PaymentReceipt,
+  UserRole
 } from '../types'; // Importación de contratos de tipos
+
+/** URL absoluta de la API (para requests fuera de axios, p. ej. fetch keepalive). */
+export const API_BASE_URL: string = import.meta.env.VITE_API_BASE_URL || '/api/v1';
+
+/**
+ * true sólo si el backend no está disponible (modo demo):
+ *  - sin respuesta (caída de red), o
+ *  - 502/503/504, o un 500 con cuerpo vacío (lo que devuelve el proxy de Vite
+ *    cuando Spring Boot está apagado).
+ * Los errores reales del backend (409, 400, 404, 500 con JSON...) se propagan:
+ * p. ej. un 409 significa que otro usuario ya tomó el horario.
+ */
+const isNetworkError = (err: unknown): boolean => {
+  if (!axios.isAxiosError(err)) return false;
+  const res = err.response;
+  if (!res) return true;
+  if ([502, 503, 504].includes(res.status)) return true;
+  // El proxy de Vite responde 500 cuando Spring Boot está apagado. Un 500 real
+  // del backend trae un JSON con "message"/"error"; sin eso, lo tratamos como caída.
+  if (res.status === 500) {
+    const d = res.data as unknown;
+    if (d == null || d === '') return true;
+    if (typeof d === 'object' && !('message' in d) && !('error' in d)) return true;
+  }
+  return false;
+};
+
+const currentUserId = (): number | undefined => {
+  const raw = localStorage.getItem('userId');
+  const n = raw ? Number(raw) : NaN;
+  return Number.isFinite(n) ? n : undefined;
+};
 
 // Instancia configurada de Axios con base URL hacia la API de Spring Boot
 const api = axios.create({
@@ -34,87 +71,95 @@ export const authApi = {
     const response = await api.post<AuthResponse>('/auth/login', { username, password });
     return response.data;
   },
+  /** Alta de usuario del staff (solo ADMIN). POST /auth/register. */
+  register: async (data: {
+    username: string;
+    password: string;
+    email: string;
+    fullName: string;
+    role: UserRole;
+  }): Promise<void> => {
+    try {
+      await api.post('/auth/register', data);
+    } catch (err) {
+      if (!isNetworkError(err)) throw err;
+      // Modo demo: se considera creado.
+    }
+  },
 };
+
+// Catálogo de demostración (backend apagado)
+const DEMO_SERVICES: DermatologicService[] = [
+  { id: 1, name: 'Peeling Químico Facial (Ácido Mandélico + Retinol)', description: 'Renovación celular profunda, atenúa manchas solares, melasma y secuelas de acné.', durationMinutes: 45, basePrice: 42000, depositPercentage: 50, active: true },
+  { id: 2, name: 'Toxina Botulínica (Frente, Entrecejo y Patas de Gallo)', description: 'Atenuación armónica de arrugas dinámicas y líneas de expresión.', durationMinutes: 45, basePrice: 65000, depositPercentage: 50, active: true },
+  { id: 3, name: 'Relleno con Ácido Hialurónico (Labios y Surcos)', description: 'Volumen e hidratación profunda con cánula de precisión y anestesia tópica.', durationMinutes: 60, basePrice: 75000, depositPercentage: 50, active: true },
+  { id: 4, name: 'Limpieza Facial Profunda + Hidrodermoabrasión', description: 'Extracción atraumática de impurezas, punta de diamante y mascarilla descongestiva.', durationMinutes: 60, basePrice: 28000, depositPercentage: 50, active: true },
+  { id: 5, name: 'Mesoterapia Capilar', description: 'Microinyecciones para estimular el crecimiento y fortalecer el folículo.', durationMinutes: 30, basePrice: 35000, depositPercentage: 40, active: false },
+];
 
 // --- SERVICIOS DEL CATÁLOGO ---
 export const servicesApi = {
+  /** Servicios activos (vista pública / reserva). */
   getActiveServices: async (): Promise<DermatologicService[]> => {
     try {
       const response = await api.get<DermatologicService[]>('/servicios');
       if (!Array.isArray(response.data)) throw new Error('Expected array');
       return response.data;
-    } catch {
-      return [
-        {
-          id: 1,
-          name: 'Peeling Químico Facial (Ácido Mandélico + Retinol)',
-          description: 'Renovación celular profunda, atenúa manchas solares, melasma y secuelas de acné.',
-          durationMinutes: 45,
-          basePrice: 42000,
-          depositPercentage: 50,
-          active: true,
-        },
-        {
-          id: 2,
-          name: 'Toxina Botulínica (Frente, Entrecejo y Patas de Gallo)',
-          description: 'Atenuación armónica de arrugas dinámicas y líneas de expresión.',
-          durationMinutes: 45,
-          basePrice: 65000,
-          depositPercentage: 50,
-          active: true,
-        },
-        {
-          id: 3,
-          name: 'Relleno con Ácido Hialurónico (Labios y Surcos)',
-          description: 'Volumen e hidratación profunda con cánula de precisión y anestesia tópica.',
-          durationMinutes: 60,
-          basePrice: 75000,
-          depositPercentage: 50,
-          active: true,
-        },
-        {
-          id: 4,
-          name: 'Limpieza Facial Profunda + Hidrodermoabrasión',
-          description: 'Extracción atraumática de impurezas, punta de diamante y mascarilla descongestiva.',
-          durationMinutes: 60,
-          basePrice: 28000,
-          depositPercentage: 50,
-          active: true,
-        },
-      ];
+    } catch (err) {
+      if (!isNetworkError(err) && !(err instanceof Error && err.message === 'Expected array')) throw err;
+      return DEMO_SERVICES.filter((s) => s.active);
     }
   },
-  updateServicePrice: async (id: number, basePrice: number, depositPercentage: number): Promise<DermatologicService> => {
+  /** Todos los servicios, activos e inactivos (panel de administración). */
+  getAllServicesForAdmin: async (): Promise<DermatologicService[]> => {
     try {
-      const response = await api.put<DermatologicService>(`/servicios/${id}`, { basePrice, depositPercentage });
+      const response = await api.get<DermatologicService[]>('/servicios/todos');
+      if (!Array.isArray(response.data)) throw new Error('Expected array');
       return response.data;
-    } catch {
-      return {
-        id,
-        name: 'Tratamiento Actualizado',
-        description: 'Actualización local',
-        durationMinutes: 45,
-        basePrice,
-        depositPercentage,
-        active: true,
-      };
+    } catch (err) {
+      if (!isNetworkError(err) && !(err instanceof Error && err.message === 'Expected array')) throw err;
+      return DEMO_SERVICES;
     }
   },
   createService: async (data: Partial<DermatologicService>): Promise<DermatologicService> => {
     try {
       const response = await api.post<DermatologicService>('/servicios', data);
       return response.data;
-    } catch {
+    } catch (err) {
+      if (!isNetworkError(err)) throw err;
       return {
         id: Date.now(),
         name: data.name || 'Nuevo Servicio',
         description: data.description || '',
         durationMinutes: data.durationMinutes || 45,
         basePrice: data.basePrice || 30000,
-        depositPercentage: data.depositPercentage || 50,
+        depositPercentage: data.depositPercentage ?? 50,
         active: true,
       };
     }
+  },
+  /** Actualiza un servicio completo (nombre, precio, seña, duración, activo). */
+  updateService: async (id: number, data: Partial<DermatologicService>): Promise<DermatologicService> => {
+    try {
+      const response = await api.put<DermatologicService>(`/servicios/${id}`, data);
+      return response.data;
+    } catch (err) {
+      if (!isNetworkError(err)) throw err;
+      return {
+        id,
+        name: data.name ?? 'Servicio',
+        description: data.description ?? '',
+        durationMinutes: data.durationMinutes ?? 45,
+        basePrice: data.basePrice ?? 30000,
+        depositPercentage: data.depositPercentage ?? 50,
+        followUpIntervalDays: data.followUpIntervalDays,
+        active: data.active ?? true,
+      };
+    }
+  },
+  /** Activa o desactiva un servicio (baja lógica). Reenvía todos los campos + active. */
+  setServiceActive: async (service: DermatologicService, active: boolean): Promise<DermatologicService> => {
+    return servicesApi.updateService(service.id, { ...service, active });
   },
 };
 
@@ -126,10 +171,16 @@ export const patientsApi = {
       if (!Array.isArray(response.data)) throw new Error('Expected array');
       return response.data;
     } catch {
-      return [
+      // Modo demo: filtra localmente por nombre o DNI, igual que el backend.
+      const demo: Patient[] = [
         { id: 1, name: 'Lucía Fernández', dni: '38456123', phone: '+54 9 11 1234-5678', email: 'lucia.fernandez@example.com', active: true, createdAt: '2026-08-01' },
         { id: 2, name: 'Camila Rossi', dni: '40123987', phone: '+54 9 11 8765-4321', email: 'camila.rossi@example.com', active: true, createdAt: '2026-08-10' },
+        { id: 3, name: 'Mariana Díaz', dni: '36987452', phone: '+54 9 11 5555-1234', email: 'mariana.diaz@example.com', active: true, createdAt: '2026-08-12' },
+        { id: 4, name: 'Sofía Álvarez', dni: '39874125', phone: '+54 9 11 9999-8888', email: 'sofia.alvarez@example.com', active: true, createdAt: '2026-08-15' },
       ];
+      const q = (search ?? '').trim().toLowerCase();
+      if (!q) return demo;
+      return demo.filter((p) => p.dni.includes(q) || p.name.toLowerCase().includes(q));
     }
   },
   createPatient: async (patient: Partial<Patient>): Promise<Patient> => {
@@ -140,17 +191,63 @@ export const patientsApi = {
 
 // --- SERVICIOS DE CITAS Y RESERVAS ---
 export const appointmentsApi = {
+  /**
+   * Franjas horarias calculadas por el backend para una fecha y servicio.
+   * `available=false` cubre turnos confirmados, bloqueos temporales de otros
+   * usuarios (PENDING_PAYMENT) y bloqueos de agenda.
+   */
+  getAvailableSlots: async (date: string, serviceId: number): Promise<TimeSlot[]> => {
+    try {
+      const response = await api.get<TimeSlot[]>('/citas/disponibilidad', {
+        params: { fecha: date, servicioId: serviceId },
+      });
+      if (!Array.isArray(response.data)) throw new Error('Expected array');
+      return response.data;
+    } catch (err) {
+      if (!isNetworkError(err) && !(err instanceof Error && err.message === 'Expected array')) throw err;
+      // Modo demo: grilla 09:00–18:30 cada 30 min. Los ocupados se derivan de la fecha y
+      // el servicio (pseudoaleatorio pero estable), así cada día muestra una agenda distinta.
+      let seed = 0;
+      for (const ch of `${date}|${serviceId}`) seed = (seed * 31 + ch.charCodeAt(0)) >>> 0;
+      const slots: TimeSlot[] = [];
+      let i = 0;
+      for (let h = 9; h < 19; h++) {
+        for (const m of [0, 30]) {
+          const hhmm = `${String(h).padStart(2, '0')}:${m === 0 ? '00' : '30'}`;
+          const start = new Date(`${date}T${hhmm}:00-03:00`);
+          const taken = ((seed >>> (i % 24)) ^ (i * 2654435761)) % 5 === 0;
+          slots.push({
+            startTime: start.toISOString(),
+            endTime: new Date(start.getTime() + 45 * 60000).toISOString(),
+            timeDisplay: `${hhmm} hs`,
+            available: !taken && start.getTime() > Date.now() + 2 * 3600 * 1000,
+          });
+          i++;
+        }
+      }
+      return slots;
+    }
+  },
+
+  /**
+   * Bloquea el horario por 10 minutos (turno en PENDING_PAYMENT).
+   * Si otro usuario ya lo tomó, el backend responde 409 y el error se propaga:
+   * NO se simula éxito, porque eso rompería el control de concurrencia.
+   */
   bookTemporaryHold: async (data: {
     patientId: number;
     serviceId: number;
     startTime: string;
   }): Promise<PaymentPreferenceResponse> => {
     try {
-      const response = await api.post<PaymentPreferenceResponse>('/citas/reservar-temporal', data);
+      const response = await api.post<PaymentPreferenceResponse>('/citas/reservar-temporal', data, {
+        params: { userId: currentUserId() },
+      });
       return response.data;
-    } catch {
+    } catch (err) {
+      if (!isNetworkError(err)) throw err;
       return {
-        appointmentId: 101,
+        appointmentId: Math.floor(Math.random() * 9000) + 1000,
         preferenceId: 'PREF-MP-2026-SIMULATED',
         initPointUrl: 'https://www.mercadopago.com.ar/checkout/v1/redirect?pref_id=simulated',
         depositAmount: 21000,
@@ -158,38 +255,149 @@ export const appointmentsApi = {
       };
     }
   },
+
+  /**
+   * Intento de liberar el bloqueo cuando se cierra o recarga la pestaña.
+   * `keepalive` deja que el request termine aunque la página se descargue. No es
+   * garantizado (el navegador puede cerrarse abruptamente o quedarse sin red): la
+   * garantía real es el vencimiento del bloqueo en el servidor a los 10 minutos.
+   */
+  releaseHoldOnPageExit: (id: number): void => {
+    const token = localStorage.getItem('token');
+    try {
+      fetch(`${API_BASE_URL}/citas/${id}/cancelar`, {
+        method: 'POST',
+        keepalive: true,
+        headers: token ? { Authorization: `Bearer ${token}` } : undefined,
+      }).catch(() => undefined);
+    } catch {
+      /* el navegador no permitió el envío */
+    }
+  },
+
+  /** Libera un bloqueo temporal (p. ej. al editar servicio u horario). */
+  releaseHold: async (id: number): Promise<void> => {
+    try {
+      await api.post(`/citas/${id}/cancelar`);
+    } catch (err) {
+      if (!isNetworkError(err)) throw err;
+    }
+  },
+
+  /**
+   * Caso de uso "Registrar Pago" (seña en mostrador: efectivo o transferencia).
+   * El backend valida (bloqueo vigente, monto >= seña) y confirma el turno.
+   * Devuelve los datos del pago para el comprobante.
+   */
+  registerDepositPayment: async (
+    id: number,
+    payload: { paymentType: Exclude<PaymentType, 'MERCADOPAGO'>; amount: number; agreedPrice: number }
+  ): Promise<PaymentReceipt> => {
+    try {
+      const response = await api.post<PaymentReceipt>(
+        `/citas/${id}/registrar-pago`,
+        { paymentType: payload.paymentType, amount: payload.amount },
+        { params: { userId: currentUserId() } }
+      );
+      return response.data;
+    } catch (err) {
+      if (!isNetworkError(err)) throw err;
+      // Modo demo: se considera registrado.
+      return {
+        appointmentId: id,
+        paymentType: payload.paymentType,
+        concept: payload.amount >= payload.agreedPrice ? 'FULL' : 'DEPOSIT',
+        amount: payload.amount,
+        paymentDate: new Date().toISOString(),
+        appointmentStatus: 'CONFIRMED',
+      };
+    }
+  },
+  /** Turnos en el rango [start, end) (ISO 8601). Para la agenda del staff. */
   getAgenda: async (start: string, end: string): Promise<Appointment[]> => {
     try {
       const response = await api.get<Appointment[]>('/citas/agenda', { params: { start, end } });
       if (!Array.isArray(response.data)) throw new Error('Expected array');
       return response.data;
-    } catch {
-      return [
-        {
-          id: 101,
-          patientId: 1,
-          patientName: 'Lucía Fernández',
-          patientDni: '38456123',
-          patientPhone: '+54 9 11 1234-5678',
-          serviceId: 1,
-          serviceName: 'Peeling Químico Facial',
-          startTime: `${start.split('T')[0]}T15:00:00Z`,
-          endTime: `${start.split('T')[0]}T15:45:00Z`,
-          status: 'CONFIRMED',
-          agreedPrice: 42000,
-          rescheduleCount: 0,
-          version: 1,
-        },
-      ];
+    } catch (err) {
+      if (!isNetworkError(err) && !(err instanceof Error && err.message === 'Expected array')) throw err;
+      return demoAgenda(start, end);
     }
   },
   cancelAppointment: async (id: number): Promise<void> => {
-    await api.post(`/citas/${id}/cancelar`);
+    try {
+      await api.post(`/citas/${id}/cancelar`);
+    } catch (err) {
+      if (!isNetworkError(err)) throw err;
+    }
   },
-  finalizePayment: async (id: number, amount: number, paymentType: string, receptionistUserId: number): Promise<void> => {
-    await api.post(`/citas/${id}/liquidar-saldo`, { amount, paymentType }, { params: { receptionistUserId } });
+  /** El médico marca el turno como atendido (CONFIRMED -> ATTENDED). */
+  markAsAttended: async (id: number): Promise<void> => {
+    try {
+      await api.post(`/citas/${id}/atender`);
+    } catch (err) {
+      if (!isNetworkError(err)) throw err;
+    }
+  },
+  /**
+   * Liquida el saldo final en mostrador (turno CONFIRMED -> COMPLETED).
+   * paymentType: canal real (CASH, BANK_TRANSFER, MERCADOPAGO).
+   */
+  finalizePayment: async (id: number, amount: number, paymentType: PaymentType): Promise<void> => {
+    try {
+      await api.post(`/citas/${id}/liquidar-saldo`, { amount, paymentType }, {
+        params: { receptionistUserId: currentUserId() },
+      });
+    } catch (err) {
+      if (!isNetworkError(err)) throw err;
+    }
   },
 };
+
+/**
+ * Agenda de demostración (backend apagado): turnos repartidos alrededor de "hoy"
+ * con estados variados, para probar el calendario y los colores por estado.
+ */
+function demoAgenda(startIso: string, endIso: string): Appointment[] {
+  const start = new Date(startIso).getTime();
+  const end = new Date(endIso).getTime();
+  const dayMs = 86400000;
+  const at = (dayOffset: number, hhmm: string) => {
+    const base = new Date();
+    base.setHours(0, 0, 0, 0);
+    const [h, m] = hhmm.split(':').map(Number);
+    return new Date(base.getTime() + dayOffset * dayMs + (h * 60 + m) * 60000);
+  };
+  const mk = (
+    id: number, dayOffset: number, hhmm: string, durationMin: number,
+    status: AppointmentStatus, name: string, dni: string, phone: string,
+    serviceName: string, price: number
+  ): Appointment => {
+    const s = at(dayOffset, hhmm);
+    return {
+      id, patientId: id, patientName: name, patientDni: dni, patientPhone: phone,
+      serviceId: (id % 4) + 1, serviceName,
+      startTime: s.toISOString(),
+      endTime: new Date(s.getTime() + durationMin * 60000).toISOString(),
+      status, agreedPrice: price, rescheduleCount: 0, version: 1,
+    };
+  };
+
+  const all = [
+    mk(101, 0, '09:30', 45, 'CONFIRMED', 'Lucía Fernández', '38456123', '+54 9 11 1234-5678', 'Peeling Químico Facial', 42000),
+    mk(102, 0, '11:00', 45, 'COMPLETED', 'Camila Rossi', '40123987', '+54 9 11 8765-4321', 'Toxina Botulínica', 65000),
+    mk(103, 0, '16:30', 60, 'CONFIRMED', 'Mariana Díaz', '36987452', '+54 9 11 5555-1234', 'Relleno con Ácido Hialurónico', 75000),
+    mk(104, 1, '10:00', 60, 'CONFIRMED', 'Sofía Álvarez', '39874125', '+54 9 11 9999-8888', 'Limpieza Facial Profunda', 28000),
+    mk(105, 1, '14:30', 60, 'PENDING_PAYMENT', 'Valentina Morales', '41258963', '+54 9 11 3333-7777', 'Bioestimulador de Colágeno', 180000),
+    mk(106, 2, '12:00', 30, 'CONFIRMED', 'Julieta Benítez', '37412589', '+54 9 11 4444-2222', 'Control de Lunares', 25000),
+    mk(107, 3, '15:00', 45, 'COMPLETED', 'Florencia Ruiz', '42011888', '+54 9 11 2222-1010', 'Peeling Químico Facial', 42000),
+    mk(108, -1, '10:30', 45, 'CONFIRMED', 'Agustina Peña', '38999111', '+54 9 11 7777-2323', 'Toxina Botulínica', 65000),
+  ];
+  return all.filter((a) => {
+    const t = new Date(a.startTime).getTime();
+    return t >= start && t < end;
+  });
+}
 
 // --- SERVICIOS DE HISTORIA CLÍNICA (Solo Médicas) ---
 export const clinicalApi = {
@@ -263,41 +471,77 @@ export const clinicalApi = {
       };
     }
   },
-  getClinicalEntries: async (medicalRecordId: number): Promise<ClinicalEntry[]> => {
+  /** Notas clínicas de un paciente (más recientes primero, con serviceName). */
+  getClinicalEntriesByPatient: async (patientId: number): Promise<ClinicalEntry[]> => {
     try {
-      const response = await api.get<ClinicalEntry[]>(`/historias-clinicas/${medicalRecordId}/entradas`);
+      const response = await api.get<ClinicalEntry[]>(`/historias-clinicas/paciente/${patientId}/entradas`);
       if (!Array.isArray(response.data)) throw new Error('Expected array');
-      return response.data;
-    } catch {
+      return [...response.data].sort((a, b) => b.createdAt.localeCompare(a.createdAt));
+    } catch (err) {
+      if (!isNetworkError(err) && !(err instanceof Error && err.message === 'Expected array')) throw err;
       return [
         {
           id: 1,
-          medicalRecordId,
-          appointmentId: 101,
+          patientId,
+          appointmentId: 102,
+          serviceName: 'Toxina Botulínica (Frente y Patas de Gallo)',
           authorUserId: 2,
-          authorFullName: 'Dra. Valeria Gómez',
-          content: 'Sesión 1: Aplicación de peeling de ácido mandélico 30% durante 4 minutos. Buena tolerancia cutánea. Se indica hidratación con ácido hialurónico y FPS 50+ cada 3 horas.',
+          authorFullName: 'Dra. Paula Villa Fuhrmann',
+          content: 'Aplicación de 24U de toxina botulínica en tercio superior. Buena tolerancia. Control en 15 días.',
           createdAt: '2026-08-20T16:00:00Z',
           updatedAt: '2026-08-20T16:00:00Z',
+        },
+        {
+          id: 2,
+          patientId,
+          appointmentId: 101,
+          serviceName: 'Peeling Químico Facial (Ácido Mandélico + Retinol)',
+          authorUserId: 2,
+          authorFullName: 'Dra. Paula Villa Fuhrmann',
+          content: 'Sesión 1: peeling de ácido mandélico 30% durante 4 minutos. Se indica FPS 50+ cada 3 horas.',
+          createdAt: '2026-07-30T11:00:00Z',
+          updatedAt: '2026-07-30T11:00:00Z',
         },
       ];
     }
   },
-  addClinicalEntry: async (medicalRecordId: number, appointmentId: number, content: string, physicianUserId: number): Promise<ClinicalEntry> => {
+  addClinicalEntry: async (appointmentId: number, content: string): Promise<ClinicalEntry> => {
     try {
       const response = await api.post<ClinicalEntry>(
         '/historias-clinicas/entradas',
-        { medicalRecordId, appointmentId, content },
-        { params: { physicianUserId } }
+        { appointmentId, content },
+        { params: { physicianUserId: currentUserId() } }
       );
       return response.data;
-    } catch {
+    } catch (err) {
+      if (!isNetworkError(err)) throw err;
       return {
         id: Date.now(),
-        medicalRecordId,
         appointmentId,
-        authorUserId: physicianUserId,
-        authorFullName: 'Dra. Valeria Gómez',
+        authorUserId: currentUserId() ?? 2,
+        authorFullName: localStorage.getItem('fullName') || 'Dra. Paula Villa Fuhrmann',
+        content,
+        createdAt: new Date().toISOString(),
+        updatedAt: new Date().toISOString(),
+      };
+    }
+  },
+  /** Edita una nota clínica (queda auditada en el backend). No se puede eliminar. */
+  updateClinicalEntry: async (entryId: number, content: string): Promise<ClinicalEntry> => {
+    try {
+      const response = await api.put<ClinicalEntry>(
+        `/historias-clinicas/entradas/${entryId}`,
+        { content },
+        { params: { physicianUserId: currentUserId() } }
+      );
+      return response.data;
+    } catch (err) {
+      if (!isNetworkError(err)) throw err;
+      return {
+        id: entryId,
+        appointmentId: 0,
+        authorUserId: currentUserId() ?? 2,
+        authorFullName: localStorage.getItem('fullName') || 'Dra. Paula Villa Fuhrmann',
         content,
         createdAt: new Date().toISOString(),
         updatedAt: new Date().toISOString(),
@@ -342,7 +586,7 @@ export const chatbotApi = {
       const res = await chatApi.sendMessageToGemini(message);
       return res.reply;
     } catch {
-      return '¡Hola! 🌿 Los tratamientos más solicitados son el Peeling Mandélico ($42.000 ARS con seña de $21.000 ARS) y la Toxina Botulínica ($65.000 ARS con seña de $32.500 ARS). Puedes seleccionar el horario deseado en nuestra pestaña Reservar.';
+      return '¡Hola! 🌿 Los tratamientos más solicitados son el Peeling Mandélico ($42.000 ARS con seña de $21.000 ARS) y la Toxina Botulínica ($65.000 ARS con seña de $32.500 ARS). Para reservar, escribinos por WhatsApp y coordinamos tu turno.';
     }
   },
 };

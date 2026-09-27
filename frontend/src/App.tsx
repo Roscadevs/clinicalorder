@@ -1,10 +1,12 @@
 import React from 'react';
-import { Routes, Route, Navigate } from 'react-router-dom';
+import { Routes, Route, Navigate, useLocation } from 'react-router-dom';
+import { AnimatePresence } from 'motion/react';
 
 // Public Views
 import { LandingPageView } from './features/public/LandingPageView';
 import { LoginView } from './features/auth/LoginView';
 import { PasswordRecoveryView } from './features/auth/PasswordRecoveryView';
+import { ServicesCatalogView } from './features/public/ServicesCatalogView';
 
 // Internal Views
 import { DashboardLayout } from './components/DashboardLayout';
@@ -15,42 +17,91 @@ import { MedicalRecordView } from './features/clinical/MedicalRecordView';
 import { AdminServicesView } from './features/admin/AdminServicesView';
 import { AnalyticsDashboardView } from './features/analytics/AnalyticsDashboardView';
 
+import { PageTransition } from './components/PageTransition';
+
 export function App() {
+  const location = useLocation();
+
   return (
-    <Routes>
-      {/* Public Routes */}
-      <Route path="/" element={<LandingPageView />} />
-      <Route path="/book" element={
-        <div className="min-h-screen bg-slate-50 py-12">
-          <div className="max-w-7xl mx-auto px-4">
-             <button onClick={() => window.history.back()} className="mb-4 text-slate-500 hover:text-slate-800 text-sm font-medium">
-               &larr; Volver
-             </button>
-             <BookingWizard />
-          </div>
-        </div>
-      } />
-      <Route path="/turnos/confirmado" element={<BookingSuccessView />} />
-      <Route path="/turnos/fallido" element={<BookingFailureView />} />
-      <Route path="/turnos/pendiente" element={<BookingPendingView />} />
-      <Route path="/login" element={<LoginView />} />
-      <Route path="/recover-password" element={<PasswordRecoveryView />} />
+    <AnimatePresence mode="wait">
+      <Routes location={location} key={location.pathname}>
+        {/* Public Routes */}
+        <Route
+          path="/"
+          element={
+            <PageTransition>
+              <LandingPageView />
+            </PageTransition>
+          }
+        />
+        {/* Catálogo público. La reserva de turnos es sólo para el staff (/app/booking);
+            los pacientes solicitan turno por WhatsApp. */}
+        <Route
+          path="/servicios"
+          element={
+            <PageTransition>
+              <ServicesCatalogView />
+            </PageTransition>
+          }
+        />
+        <Route
+          path="/login"
+          element={
+            <PageTransition>
+              <LoginView />
+            </PageTransition>
+          }
+        />
+        <Route
+          path="/recover-password"
+          element={
+            <PageTransition>
+              <PasswordRecoveryView />
+            </PageTransition>
+          }
+        />
 
-      {/* Internal Dashboard Routes */}
-      <Route path="/app" element={<DashboardLayout />}>
-        {/* Default redirect to booking or agenda depending on role, for now just redirect to agenda */}
-        <Route index element={<Navigate to="/app/agenda" replace />} />
-        
-        <Route path="booking" element={<BookingWizard />} />
-        <Route path="agenda" element={<AgendaView />} />
-        <Route path="clinical" element={<MedicalRecordView />} />
-        <Route path="admin" element={<AdminServicesView />} />
-        <Route path="analytics" element={<AnalyticsDashboardView />} />
-      </Route>
+        {/* Rutas de retorno de Mercado Pago (configuradas en back-urls del backend).
+            Deben ser públicas: el paciente vuelve acá desde el checkout. */}
+        <Route
+          path="/turnos/confirmado"
+          element={
+            <PageTransition>
+              <BookingSuccessView />
+            </PageTransition>
+          }
+        />
+        <Route
+          path="/turnos/fallido"
+          element={
+            <PageTransition>
+              <BookingFailureView />
+            </PageTransition>
+          }
+        />
+        <Route
+          path="/turnos/pendiente"
+          element={
+            <PageTransition>
+              <BookingPendingView />
+            </PageTransition>
+          }
+        />
 
-      {/* Fallback route */}
-      <Route path="*" element={<Navigate to="/" replace />} />
-    </Routes>
+        {/* Internal Dashboard Routes */}
+        <Route path="/app" element={<DashboardLayout />}>
+          <Route index element={<Navigate to="/app/agenda" replace />} />
+          <Route path="booking" element={<BookingWizard />} />
+          <Route path="agenda" element={<AgendaView />} />
+          <Route path="clinical" element={<MedicalRecordView />} />
+          <Route path="admin" element={<AdminServicesView />} />
+          <Route path="analytics" element={<AnalyticsDashboardView />} />
+        </Route>
+
+        {/* Fallback route */}
+        <Route path="*" element={<Navigate to="/" replace />} />
+      </Routes>
+    </AnimatePresence>
   );
 }
 

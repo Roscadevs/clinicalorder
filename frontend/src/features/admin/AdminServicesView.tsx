@@ -1,272 +1,183 @@
-import React, { useState, useEffect } from 'react'; // React hooks
-import { servicesApi } from '../../services/api'; // API services
-import { DermatologicService } from '../../types'; // Types
-import { Settings, Plus, Edit2, CheckCircle } from 'lucide-react'; // Icons
+import React, { useEffect, useMemo, useState } from 'react';
+import { Settings, Plus, Pencil, Search, Users, Tag, Clock, CheckCircle2, Ban } from 'lucide-react';
+import { servicesApi } from '../../services/api';
+import { DermatologicService } from '../../types';
+import { Card, Button, Badge, Spinner } from '../../components/ui';
+import { ServiceFormModal } from './ServiceFormModal';
+import { UserFormModal } from './UserFormModal';
+import { cn } from '../../utils/cn';
 
+const ars = (n: number) => `$${n.toLocaleString('es-AR', { maximumFractionDigits: 0 })}`;
+type AdminTab = 'servicios' | 'usuarios';
+
+/**
+ * Panel de administración (solo ADMIN): catálogo de servicios/tarifas con buscador,
+ * alta/edición y activar/desactivar; y alta de usuarios del staff.
+ */
 export const AdminServicesView: React.FC = () => {
+  const [tab, setTab] = useState<AdminTab>('servicios');
   const [services, setServices] = useState<DermatologicService[]>([]);
-  const [editingService, setEditingService] = useState<DermatologicService | null>(null);
-  const [newPrice, setNewPrice] = useState<number>(0);
-  const [newDepositPercent, setNewDepositPercent] = useState<number>(50);
-  const [isSaving, setIsSaving] = useState(false);
-  const [saveSuccess, setSaveSuccess] = useState(false);
+  const [loading, setLoading] = useState(true);
+  const [query, setQuery] = useState('');
+  const [editing, setEditing] = useState<DermatologicService | null>(null);
+  const [formOpen, setFormOpen] = useState(false);
+  const [userFormOpen, setUserFormOpen] = useState(false);
+  const [userCreated, setUserCreated] = useState<string | null>(null);
+  const [togglingId, setTogglingId] = useState<number | null>(null);
 
-  // New Service Modal State
-  const [isAdding, setIsAdding] = useState(false);
-  const [name, setName] = useState('');
-  const [description, setDescription] = useState('');
-  const [basePrice, setBasePrice] = useState(30000);
-  const [durationMinutes, setDurationMinutes] = useState(45);
-
-  const fetchServices = () => {
-    servicesApi.getActiveServices().then(setServices).catch(console.error);
+  const load = () => {
+    setLoading(true);
+    servicesApi.getAllServicesForAdmin()
+      .then((list) => setServices([...list].sort((a, b) => a.name.localeCompare(b.name, 'es'))))
+      .catch(() => setServices([]))
+      .finally(() => setLoading(false));
   };
+  useEffect(load, []);
 
-  useEffect(() => {
-    fetchServices();
-  }, []);
+  const filtered = useMemo(() => {
+    const q = query.trim().toLowerCase();
+    if (!q) return services;
+    return services.filter((s) => s.name.toLowerCase().includes(q) || (s.description ?? '').toLowerCase().includes(q));
+  }, [services, query]);
 
-  const handleStartEdit = (svc: DermatologicService) => {
-    setEditingService(svc);
-    setNewPrice(svc.basePrice);
-    setNewDepositPercent(50);
-  };
+  const openNew = () => { setEditing(null); setFormOpen(true); };
+  const openEdit = (s: DermatologicService) => { setEditing(s); setFormOpen(true); };
 
-  const handleSaveEdit = async (e: React.FormEvent) => {
-    e.preventDefault();
-    if (!editingService) return;
-    setIsSaving(true);
+  const toggleActive = async (s: DermatologicService) => {
+    setTogglingId(s.id);
     try {
-      await servicesApi.updateServicePrice(editingService.id, newPrice, newDepositPercent);
-      setSaveSuccess(true);
-      setEditingService(null);
-      fetchServices();
-      setTimeout(() => setSaveSuccess(false), 3000);
-    } catch (err) {
-      alert('Error al actualizar arancel del servicio');
+      await servicesApi.setServiceActive(s, !s.active);
+      load();
     } finally {
-      setIsSaving(false);
-    }
-  };
-
-  const handleCreateService = async (e: React.FormEvent) => {
-    e.preventDefault();
-    setIsSaving(true);
-    try {
-      await servicesApi.createService({
-        name,
-        description,
-        basePrice,
-        durationMinutes,
-        depositPercentage: 50,
-      });
-      setIsAdding(false);
-      setName('');
-      setDescription('');
-      fetchServices();
-    } catch (err) {
-      alert('Error al dar de alta el nuevo tratamiento');
-    } finally {
-      setIsSaving(false);
+      setTogglingId(null);
     }
   };
 
   return (
-    <div className="max-w-5xl mx-auto p-4 sm:p-6 space-y-6">
-      <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center bg-white p-4 rounded-2xl border border-slate-200 shadow-sm gap-4">
-        <div className="flex items-center space-x-3">
-          <div className="w-10 h-10 rounded-full bg-teal-100 text-teal-700 flex items-center justify-center font-bold">
-            <Settings className="w-5 h-5" />
-          </div>
-          <div>
-            <h2 className="text-lg font-bold text-slate-900">Catálogo de Procedimientos & Tarifas</h2>
-            <p className="text-xs text-slate-500">Gestión de precios oficiales y porcentaje de seña obligatoria</p>
-          </div>
-        </div>
-
-        <button
-          onClick={() => setIsAdding(true)}
-          className="bg-teal-600 hover:bg-teal-700 text-white text-xs font-bold px-4 py-2.5 rounded-xl flex items-center space-x-1.5 shadow-sm transition-colors"
-        >
-          <Plus className="w-4 h-4" />
-          <span>Agregar Tratamiento</span>
-        </button>
-      </div>
-
-      {saveSuccess && (
-        <div className="p-3 bg-emerald-50 border border-emerald-200 rounded-xl text-emerald-800 text-xs font-bold flex items-center space-x-2">
-          <CheckCircle className="w-4 h-4" />
-          <span>¡Arancel actualizado correctamente! Impactará en todas las reservas futuras.</span>
-        </div>
-      )}
-
-      {/* Lista de Servicios */}
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-        {services.map((svc) => (
-          <div key={svc.id} className="bg-white p-5 rounded-2xl border border-slate-200 shadow-sm space-y-3">
-            <div className="flex justify-between items-start">
-              <div>
-                <h3 className="font-bold text-slate-900 text-sm">{svc.name}</h3>
-                <span className="text-[11px] text-slate-400 font-semibold">{svc.durationMinutes} minutos de sesión</span>
-              </div>
-              <button
-                onClick={() => handleStartEdit(svc)}
-                className="text-teal-600 hover:text-teal-800 p-1.5 rounded-lg hover:bg-teal-50"
-                title="Modificar Precios"
-              >
-                <Edit2 className="w-4 h-4" />
-              </button>
+    <div className="max-w-5xl mx-auto p-3 sm:p-6 space-y-5">
+      <Card>
+        <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3">
+          <div className="flex items-center gap-3">
+            <div className="w-10 h-10 rounded-2xl bg-primary-500 text-white flex items-center justify-center flex-shrink-0">
+              <Settings className="w-5 h-5" />
             </div>
-
-            <p className="text-xs text-slate-600 leading-relaxed">{svc.description}</p>
-
-            <div className="flex justify-between items-baseline pt-3 border-t border-slate-100">
-              <div>
-                <span className="text-[10px] text-slate-400 uppercase font-bold block">Arancel Total</span>
-                <span className="text-base font-extrabold text-slate-900">${svc.basePrice.toLocaleString()} ARS</span>
-              </div>
-              <div className="text-right">
-                <span className="text-[10px] text-teal-600 uppercase font-bold block">Seña (50%)</span>
-                <span className="text-sm font-bold text-teal-700">${(svc.basePrice * 0.5).toLocaleString()} ARS</span>
-              </div>
+            <div>
+              <h2 className="font-display text-lg font-bold text-sand-900">Administración</h2>
+              <p className="text-xs text-sand-500">Catálogo de tratamientos y gestión de usuarios.</p>
             </div>
           </div>
-        ))}
-      </div>
-
-      {/* Modal de Edición de Precio */}
-      {editingService && (
-        <div className="fixed inset-0 bg-black/40 backdrop-blur-sm z-50 flex items-center justify-center p-4">
-          <form onSubmit={handleSaveEdit} className="bg-white rounded-2xl shadow-2xl max-w-md w-full p-6 space-y-4">
-            <h3 className="text-base font-bold text-slate-900">Modificar Arancel: {editingService.name}</h3>
-
-            <div>
-              <label className="block text-xs font-bold text-slate-700 mb-1">Precio Total Acordado (ARS) *</label>
-              <input
-                type="number"
-                required
-                value={newPrice}
-                onChange={(e) => setNewPrice(Number(e.target.value))}
-                className="w-full bg-slate-50 border border-slate-300 rounded-xl p-2.5 text-sm font-bold focus:ring-2 focus:ring-teal-500 outline-none"
-              />
-            </div>
-
-            <div>
-              <label className="block text-xs font-bold text-slate-700 mb-1">Porcentaje de Seña Obligatoria (%) *</label>
-              <input
-                type="number"
-                required
-                min={10}
-                max={100}
-                value={newDepositPercent}
-                onChange={(e) => setNewDepositPercent(Number(e.target.value))}
-                className="w-full bg-slate-50 border border-slate-300 rounded-xl p-2.5 text-sm font-bold focus:ring-2 focus:ring-teal-500 outline-none"
-              />
-            </div>
-
-            <div className="p-3 rounded-xl bg-teal-50 text-xs text-teal-800 space-y-1">
-              <div className="flex justify-between">
-                <span>Nueva Seña Requerida:</span>
-                <span className="font-bold">${((newPrice * newDepositPercent) / 100).toLocaleString()} ARS</span>
-              </div>
-              <div className="flex justify-between">
-                <span>Saldo en Consultorio:</span>
-                <span className="font-bold">${(newPrice - (newPrice * newDepositPercent) / 100).toLocaleString()} ARS</span>
-              </div>
-            </div>
-
-            <div className="flex justify-end space-x-2 pt-2">
+          <div className="bg-sand-100 p-1 rounded-xl flex items-center gap-1 border border-sand-200 self-start">
+            {([['servicios', 'Servicios', Tag], ['usuarios', 'Usuarios', Users]] as const).map(([id, label, Icon]) => (
               <button
-                type="button"
-                onClick={() => setEditingService(null)}
-                className="px-4 py-2 text-xs text-slate-600 font-semibold hover:bg-slate-100 rounded-xl"
+                key={id}
+                onClick={() => setTab(id)}
+                className={cn(
+                  'px-3 py-1.5 rounded-lg text-xs font-bold transition-colors flex items-center gap-1.5',
+                  tab === id ? 'bg-white text-primary-700 shadow-sm' : 'text-sand-600 hover:text-sand-900'
+                )}
               >
-                Cancelar
+                <Icon className="w-3.5 h-3.5" /> {label}
               </button>
-              <button
-                type="submit"
-                disabled={isSaving}
-                className="px-5 py-2 text-xs font-bold bg-teal-600 hover:bg-teal-700 text-white rounded-xl shadow-sm"
-              >
-                {isSaving ? 'Guardando...' : 'Guardar Cambios'}
-              </button>
-            </div>
-          </form>
+            ))}
+          </div>
         </div>
+      </Card>
+
+      {tab === 'servicios' ? (
+        <>
+          {/* Buscador + alta */}
+          <div className="flex flex-col sm:flex-row gap-3 sm:items-center">
+            <div className="relative flex-grow">
+              <Search className="w-4 h-4 text-sand-400 absolute left-3.5 top-1/2 -translate-y-1/2 pointer-events-none" />
+              <input
+                type="search"
+                value={query}
+                onChange={(e) => setQuery(e.target.value)}
+                placeholder="Buscar tratamiento por nombre o descripción…"
+                aria-label="Buscar tratamiento"
+                className="w-full bg-white border border-sand-300 rounded-xl pl-10 pr-4 py-2.5 text-sm outline-none focus:ring-2 focus:ring-primary-500/40 focus:border-primary-500"
+              />
+            </div>
+            <Button onClick={openNew} leftIcon={<Plus className="w-4 h-4" />}>Agregar tratamiento</Button>
+          </div>
+
+          {loading ? (
+            <div className="py-12 flex justify-center"><Spinner label="Cargando servicios" /></div>
+          ) : filtered.length === 0 ? (
+            <Card><p className="text-sm text-sand-500 py-4 text-center">No hay tratamientos que coincidan con la búsqueda.</p></Card>
+          ) : (
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+              {filtered.map((s) => (
+                <Card key={s.id} className={cn('space-y-3', !s.active && 'opacity-70')}>
+                  <div className="flex items-start justify-between gap-2">
+                    <div className="min-w-0">
+                      <div className="flex items-center gap-2 flex-wrap">
+                        <h3 className="font-display font-bold text-sand-900">{s.name}</h3>
+                        <Badge variant={s.active ? 'success' : 'neutral'}>{s.active ? 'Activo' : 'Inactivo'}</Badge>
+                      </div>
+                      <p className="text-[11px] text-sand-500 flex items-center gap-1 mt-0.5">
+                        <Clock className="w-3 h-3" /> {s.durationMinutes} min
+                      </p>
+                    </div>
+                    <button onClick={() => openEdit(s)} className="p-1.5 rounded-lg text-primary-600 hover:bg-primary-50" title="Editar" aria-label="Editar tratamiento">
+                      <Pencil className="w-4 h-4" />
+                    </button>
+                  </div>
+
+                  {s.description && <p className="text-xs text-sand-600 leading-relaxed line-clamp-2">{s.description}</p>}
+
+                  <div className="flex items-baseline justify-between pt-3 border-t border-sand-100">
+                    <div>
+                      <span className="text-[10px] text-sand-400 uppercase font-bold block">Precio</span>
+                      <span className="font-display text-base font-extrabold text-sand-900">{ars(s.basePrice)} ARS</span>
+                    </div>
+                    <div className="text-right">
+                      <span className="text-[10px] text-primary-600 uppercase font-bold block">Seña {s.depositPercentage}%</span>
+                      <span className="text-sm font-bold text-primary-700">{ars((s.basePrice * s.depositPercentage) / 100)} ARS</span>
+                    </div>
+                  </div>
+
+                  <Button
+                    size="sm"
+                    variant={s.active ? 'ghost' : 'success'}
+                    fullWidth
+                    isLoading={togglingId === s.id}
+                    onClick={() => toggleActive(s)}
+                    leftIcon={s.active ? <Ban className="w-4 h-4" /> : <CheckCircle2 className="w-4 h-4" />}
+                  >
+                    {s.active ? 'Desactivar' : 'Activar'}
+                  </Button>
+                </Card>
+              ))}
+            </div>
+          )}
+        </>
+      ) : (
+        <Card className="space-y-4">
+          <div className="flex items-center justify-between gap-3">
+            <div>
+              <h3 className="font-display font-bold text-sand-900">Usuarios del staff</h3>
+              <p className="text-xs text-sand-500">Creá cuentas para secretaria, doctora u otro administrador.</p>
+            </div>
+            <Button onClick={() => setUserFormOpen(true)} leftIcon={<Plus className="w-4 h-4" />}>Crear usuario</Button>
+          </div>
+          {userCreated && (
+            <div className="p-3 rounded-xl bg-success-50 border border-success-100 text-success-700 text-sm flex items-center gap-2">
+              <CheckCircle2 className="w-4 h-4" /> Usuario <strong>{userCreated}</strong> creado correctamente.
+            </div>
+          )}
+          <p className="text-xs text-sand-400">
+            El listado y la edición de usuarios existentes se agregará en una próxima etapa.
+          </p>
+        </Card>
       )}
 
-      {/* Modal de Nuevo Servicio */}
-      {isAdding && (
-        <div className="fixed inset-0 bg-black/40 backdrop-blur-sm z-50 flex items-center justify-center p-4">
-          <form onSubmit={handleCreateService} className="bg-white rounded-2xl shadow-2xl max-w-md w-full p-6 space-y-4">
-            <h3 className="text-base font-bold text-slate-900">Alta de Nuevo Procedimiento Estético</h3>
-
-            <div>
-              <label className="block text-xs font-bold text-slate-700 mb-1">Nombre del Tratamiento *</label>
-              <input
-                type="text"
-                required
-                value={name}
-                onChange={(e) => setName(e.target.value)}
-                placeholder="Ej. Bioestimulación de Colágeno"
-                className="w-full bg-slate-50 border border-slate-300 rounded-xl p-2.5 text-xs focus:ring-2 focus:ring-teal-500 outline-none"
-              />
-            </div>
-
-            <div>
-              <label className="block text-xs font-bold text-slate-700 mb-1">Descripción Clínica *</label>
-              <textarea
-                required
-                rows={3}
-                value={description}
-                onChange={(e) => setDescription(e.target.value)}
-                placeholder="Indicar protocolo, zonas de aplicación y beneficios..."
-                className="w-full bg-slate-50 border border-slate-300 rounded-xl p-2.5 text-xs focus:ring-2 focus:ring-teal-500 outline-none"
-              />
-            </div>
-
-            <div className="grid grid-cols-2 gap-3">
-              <div>
-                <label className="block text-xs font-bold text-slate-700 mb-1">Precio Total (ARS) *</label>
-                <input
-                  type="number"
-                  required
-                  value={basePrice}
-                  onChange={(e) => setBasePrice(Number(e.target.value))}
-                  className="w-full bg-slate-50 border border-slate-300 rounded-xl p-2.5 text-xs font-bold focus:ring-2 focus:ring-teal-500 outline-none"
-                />
-              </div>
-              <div>
-                <label className="block text-xs font-bold text-slate-700 mb-1">Duración (min) *</label>
-                <input
-                  type="number"
-                  required
-                  value={durationMinutes}
-                  onChange={(e) => setDurationMinutes(Number(e.target.value))}
-                  className="w-full bg-slate-50 border border-slate-300 rounded-xl p-2.5 text-xs font-bold focus:ring-2 focus:ring-teal-500 outline-none"
-                />
-              </div>
-            </div>
-
-            <div className="flex justify-end space-x-2 pt-2">
-              <button
-                type="button"
-                onClick={() => setIsAdding(false)}
-                className="px-4 py-2 text-xs text-slate-600 font-semibold hover:bg-slate-100 rounded-xl"
-              >
-                Cancelar
-              </button>
-              <button
-                type="submit"
-                disabled={isSaving}
-                className="px-5 py-2 text-xs font-bold bg-teal-600 hover:bg-teal-700 text-white rounded-xl shadow-sm"
-              >
-                {isSaving ? 'Creando...' : 'Crear Tratamiento'}
-              </button>
-            </div>
-          </form>
-        </div>
-      )}
+      <ServiceFormModal isOpen={formOpen} onClose={() => setFormOpen(false)} service={editing} onSaved={load} />
+      <UserFormModal
+        isOpen={userFormOpen}
+        onClose={() => setUserFormOpen(false)}
+        onCreated={() => { setUserCreated('nuevo'); setTimeout(() => setUserCreated(null), 4000); }}
+      />
     </div>
   );
 };

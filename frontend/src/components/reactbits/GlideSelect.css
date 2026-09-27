@@ -1,0 +1,214 @@
+.glide-select {
+  --gs-accent: #93654F;
+  --gs-surface: #ffffff;
+  --gs-highlight: #EADFD5;
+  --gs-text: #2C251F;
+  --gs-radius: 12px;
+  --gs-inner-radius: 8px;
+  --gs-chip: 44px;
+  --gs-row: 40px;
+  --gs-font: 14px;
+  --gs-pop: 180ms;
+  --gs-pop-out: 120ms;
+  --gs-glide: 220ms;
+  --gs-ease-out: cubic-bezier(0.23, 1, 0.32, 1);
+  position: relative;
+  display: inline-block;
+}
+
+.glide-select[data-disabled] {
+  opacity: 0.5;
+}
+
+.glide-select__trigger {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 6px;
+  width: 100%;
+  height: var(--gs-chip);
+  margin: 0;
+  padding: 0 12px 0 14px;
+  border: 1px solid #D8CCC1;
+  border-radius: var(--gs-inner-radius);
+  background: var(--gs-surface);
+  color: var(--gs-text);
+  font-family: inherit;
+  font-size: var(--gs-font);
+  font-weight: 500;
+  line-height: 1;
+  cursor: pointer;
+  outline: none;
+  user-select: none;
+  -webkit-user-select: none;
+  -webkit-tap-highlight-color: transparent;
+  touch-action: manipulation;
+  transition:
+    background-color 100ms ease,
+    border-color 120ms ease,
+    transform 160ms var(--gs-ease-out);
+}
+
+.glide-select__trigger:disabled {
+  cursor: default;
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .glide-select__trigger:not(:disabled):hover {
+    border-color: #C9AB94;
+  }
+}
+
+.glide-select__trigger[aria-expanded='true'] {
+  border-color: #93654F;
+  box-shadow: 0 0 0 3px rgba(147, 101, 79, 0.15);
+}
+
+.glide-select__trigger:not(:disabled):active {
+  transform: scale(0.99);
+}
+
+.glide-select__label[data-empty] {
+  opacity: 0.55;
+}
+
+.glide-select[data-swap] .glide-select__label {
+  animation: gs-swap 160ms ease;
+}
+
+@keyframes gs-swap {
+  from {
+    opacity: 0.6;
+    filter: blur(2px);
+  }
+}
+
+.glide-select__chevron {
+  display: inline-flex;
+  color: color-mix(in srgb, var(--gs-text) 45%, transparent);
+  transition: transform 200ms var(--gs-ease-out);
+}
+
+.glide-select__trigger[aria-expanded='true'] .glide-select__chevron {
+  transform: rotate(180deg);
+}
+
+/* Menú renderizado en portal (position: fixed vía inline style).
+   Fondo sólido opaco + z-index alto para que NUNCA se vea transparente
+   ni quede por debajo de otros elementos (como la card de descripción). */
+.glide-select__menu {
+  z-index: 60;
+  padding: 4px;
+  border-radius: var(--gs-radius);
+  border: 1px solid #E9E2DC;
+  background: #ffffff;
+  box-shadow: 0 8px 24px color-mix(in srgb, #6C4E40 22%, transparent);
+  transform-origin: var(--gs-origin, top center);
+  opacity: 0;
+  transform: scale(0.95);
+  transition:
+    opacity var(--gs-pop) var(--gs-ease-out),
+    transform var(--gs-pop) var(--gs-ease-out);
+}
+
+.glide-select__menu[data-state='open'] {
+  opacity: 1;
+  transform: none;
+}
+
+.glide-select__menu[data-state='closed'] {
+  opacity: 0;
+  transform: scale(0.95);
+  transition-duration: var(--gs-pop-out);
+  pointer-events: none;
+}
+
+.glide-select__list {
+  position: relative;
+  display: grid;
+  gap: 1px;
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  background: #ffffff;
+  border-radius: var(--gs-inner-radius);
+}
+
+/* Píldora deslizante que resalta la opción activa (hover / teclado / scrub).
+   Es el realce que se desliza suavemente entre opciones, como el original. */
+.glide-select__pill {
+  position: absolute;
+  top: 0;
+  right: 0;
+  left: 0;
+  height: var(--gs-row);
+  border-radius: var(--gs-inner-radius);
+  background: var(--gs-highlight);
+  opacity: 0;
+  pointer-events: none;
+  transition:
+    transform var(--gs-glide) var(--gs-ease-out),
+    opacity 150ms ease;
+}
+
+.glide-select__option {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  height: var(--gs-row);
+  padding: 0 8px 0 10px;
+  border-radius: var(--gs-inner-radius);
+  color: var(--gs-text);
+  font-size: var(--gs-font);
+  cursor: pointer;
+  user-select: none;
+  -webkit-user-select: none;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.glide-select__name {
+  flex: 1 1 auto;
+  min-width: 0;
+  overflow: hidden;
+  font-weight: 500;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+.glide-select__tag {
+  flex-shrink: 0;
+  color: color-mix(in srgb, var(--gs-text) 55%, transparent);
+  font-size: calc(var(--gs-font) - 2px);
+}
+
+.glide-select__check {
+  display: inline-flex;
+  flex-shrink: 0;
+  color: var(--gs-accent);
+  visibility: hidden;
+}
+
+.glide-select__check[data-on] {
+  visibility: visible;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .glide-select__menu {
+    transform: none !important;
+    transition: opacity var(--gs-pop) ease;
+  }
+  .glide-select__pill {
+    transition: opacity 150ms ease;
+  }
+  .glide-select__chevron {
+    transition: none;
+  }
+  .glide-select__trigger:not(:disabled):active {
+    transform: none;
+  }
+  .glide-select[data-swap] .glide-select__label {
+    animation: none;
+  }
+}

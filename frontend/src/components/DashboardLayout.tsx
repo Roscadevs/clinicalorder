@@ -3,38 +3,41 @@ import { Outlet, useLocation, useNavigate } from 'react-router-dom';
 import { Navbar } from './Navbar';
 import { BottomNav } from './BottomNav';
 import { GeminiChatbotWidget } from './GeminiChatbotWidget';
+import { PageTransition } from './PageTransition';
+import { NAV_TABS, type TabType, type RoleType } from './navConfig';
 
-type TabType = 'booking' | 'agenda' | 'clinical' | 'admin' | 'analytics';
-type RoleType = 'PUBLIC' | 'RECEPTIONIST' | 'PHYSICIAN' | 'ADMIN';
+const pathToTab = (path: string): TabType => {
+  const match = NAV_TABS.find((t) => path.includes(t.path));
+  return match?.id ?? 'agenda';
+};
+
+const tabToPath = (tab: TabType): string =>
+  NAV_TABS.find((t) => t.id === tab)?.path ?? '/app/agenda';
+
+/** Rol por defecto para cada rol al iniciar / cambiar en el simulador. */
+const roleLanding: Record<RoleType, TabType> = {
+  PUBLIC: 'booking',
+  SECRETARIA: 'agenda',
+  DOCTORA: 'clinical',
+  ADMIN: 'admin',
+};
 
 export const DashboardLayout: React.FC = () => {
   const location = useLocation();
   const navigate = useNavigate();
-  
-  const getTabFromPath = (path: string): TabType => {
-    if (path.includes('/app/agenda')) return 'agenda';
-    if (path.includes('/app/clinical')) return 'clinical';
-    if (path.includes('/app/admin')) return 'admin';
-    if (path.includes('/app/analytics')) return 'analytics';
-    return 'booking';
-  };
 
-  const [currentTab, setCurrentTab] = useState<TabType>(getTabFromPath(location.pathname));
-  // Initialize role from localStorage if available, fallback to PUBLIC if missing
-  const initialRole = (localStorage.getItem('role') as RoleType) || 'PUBLIC';
+  const [currentTab, setCurrentTab] = useState<TabType>(pathToTab(location.pathname));
+  const initialRole = (localStorage.getItem('role') as RoleType) || 'SECRETARIA';
   const [activeRole, setActiveRole] = useState<RoleType>(initialRole);
+  const fullName = localStorage.getItem('fullName') || undefined;
 
   useEffect(() => {
-    setCurrentTab(getTabFromPath(location.pathname));
+    setCurrentTab(pathToTab(location.pathname));
   }, [location.pathname]);
 
   const handleSetTab = (tab: TabType) => {
     setCurrentTab(tab);
-    if (tab === 'booking') navigate('/app/booking');
-    if (tab === 'agenda') navigate('/app/agenda');
-    if (tab === 'clinical') navigate('/app/clinical');
-    if (tab === 'admin') navigate('/app/admin');
-    if (tab === 'analytics') navigate('/app/analytics');
+    navigate(tabToPath(tab));
   };
 
   const handleLogout = () => {
@@ -43,57 +46,50 @@ export const DashboardLayout: React.FC = () => {
   };
 
   return (
-    <div className="min-h-screen bg-slate-50 text-slate-900 flex flex-col justify-between selection:bg-teal-500 selection:text-white">
+    <div className="min-h-screen bg-sand-50 text-sand-900 flex flex-col justify-between selection:bg-primary-500 selection:text-white">
       <div>
-        <div className="bg-slate-900 text-white text-[11px] py-1.5 px-3 sm:px-4 flex items-center justify-between">
-          <div className="flex items-center space-x-1.5 sm:space-x-2">
-            <span className="bg-teal-500 text-slate-950 font-bold px-1.5 py-0.5 rounded text-[9px] sm:text-[10px]">
+        {/* Barra de simulación de rol (modo demo). Se quita al integrar auth real. */}
+        <div className="bg-sand-900 text-white text-[11px] py-1.5 px-3 sm:px-4 flex items-center justify-between">
+          <div className="flex items-center gap-1.5 sm:gap-2">
+            <span className="bg-primary-400 text-sand-900 font-bold px-1.5 py-0.5 rounded text-[9px] sm:text-[10px]">
               RBAC (Modo Demo)
             </span>
-            <span className="text-slate-300 text-[10px] sm:text-xs">Simular Rol:</span>
+            <span className="text-sand-300 text-[10px] sm:text-xs">Simular rol:</span>
             <select
               value={activeRole}
               onChange={(e) => {
                 const role = e.target.value as RoleType;
                 setActiveRole(role);
-                // In a real app we might update localStorage here for testing, but we leave it as a transient state
-                if (role === 'PUBLIC') handleSetTab('booking');
-                if (role === 'RECEPTIONIST') handleSetTab('agenda');
-                if (role === 'PHYSICIAN') handleSetTab('clinical');
-                if (role === 'ADMIN') handleSetTab('admin');
+                handleSetTab(roleLanding[role]);
               }}
-              className="bg-slate-800 text-teal-300 font-bold px-2 py-0.5 rounded outline-none border border-slate-700 text-[11px] sm:text-xs cursor-pointer"
+              className="bg-sand-800 text-primary-200 font-bold px-2 py-0.5 rounded outline-none border border-sand-700 text-[11px] sm:text-xs cursor-pointer"
             >
-              <option value="PUBLIC">Paciente / Público</option>
-              <option value="RECEPTIONIST">Secretaria (Sofía)</option>
-              <option value="PHYSICIAN">Médica (Dra. Valeria)</option>
+              <option value="SECRETARIA">Secretaria</option>
+              <option value="DOCTORA">Doctora (Dra. Paula)</option>
               <option value="ADMIN">Administrador General</option>
             </select>
           </div>
-          <span className="text-slate-400 hidden md:inline text-[11px]">
-            PostgreSQL 15 (Supabase) + Spring Boot 3.2 + Gemini AI
-          </span>
         </div>
 
         <Navbar
           currentTab={currentTab}
           setCurrentTab={handleSetTab}
           userRole={activeRole}
+          fullName={fullName}
           onLogout={handleLogout}
         />
 
         <main className="py-4 sm:py-6 pb-24 sm:pb-8">
-          <Outlet />
+          {/* Fundido entre vistas internas al cambiar de pestaña */}
+          <PageTransition key={location.pathname}>
+            <Outlet />
+          </PageTransition>
         </main>
       </div>
 
       <GeminiChatbotWidget />
 
-      <BottomNav
-        currentTab={currentTab}
-        setCurrentTab={handleSetTab}
-        userRole={activeRole}
-      />
+      <BottomNav currentTab={currentTab} setCurrentTab={handleSetTab} userRole={activeRole} />
     </div>
   );
 };

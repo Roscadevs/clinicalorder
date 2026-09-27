@@ -10,7 +10,7 @@ import puppeteer from 'puppeteer';
   console.log('Navigating to http://localhost:4173/app');
   await page.goto('http://localhost:4173/app', { waitUntil: 'networkidle0' });
 
-  const roles = ['PUBLIC', 'RECEPTIONIST', 'PHYSICIAN', 'ADMIN'];
+  const roles = ['PUBLIC', 'SECRETARIA', 'DOCTORA', 'ADMIN'];
   
   for (const role of roles) {
     console.log(`Changing role to ${role}...`);
