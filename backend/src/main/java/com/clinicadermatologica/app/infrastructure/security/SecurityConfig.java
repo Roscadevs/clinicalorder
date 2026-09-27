@@ -58,8 +58,8 @@ public class SecurityConfig {
                 .requestMatchers(HttpMethod.POST, "/chat/gemini").permitAll()
                 // Webhook Público de MercadoPago (recibe notificaciones de pago)
                 .requestMatchers(HttpMethod.POST, "/pagos/webhook").permitAll()
-                // Restricción Estricta: Solo MÉDICA puede acceder a historias clínicas y auditoría
-                .requestMatchers("/historias-clinicas/**").hasRole("PHYSICIAN")
+                // Restricción Estricta: Solo DOCTORA puede acceder a historias clínicas y auditoría
+                .requestMatchers("/historias-clinicas/**").hasRole("DOCTORA")
                 // Restricción: Solo ADMINISTRADOR puede gestionar usuarios y servicios
                 .requestMatchers("/admin/**").hasRole("ADMIN")
                 // Cualquier otra solicitud requiere autenticación JWT válida

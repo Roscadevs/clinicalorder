@@ -1,52 +1,50 @@
 package com.clinicadermatologica.app.application.service;
 
-import com.clinicadermatologica.app.domain.exception.*; // Excepciones de negocio
-import com.clinicadermatologica.app.domain.model.*; // Entidades de dominio
-import com.clinicadermatologica.app.domain.repository.*; // Repositorios del dominio
-import com.clinicadermatologica.app.infrastructure.payment.MercadoPagoPaymentAdapter; // Adaptador MercadoPago
-import com.clinicadermatologica.app.presentation.dto.*; // DTOs
-import com.mercadopago.resources.preference.Preference; // Recurso de MercadoPago
-import lombok.RequiredArgsConstructor; // Inyección por constructor
-import lombok.extern.slf4j.Slf4j; // Logger
-import org.springframework.scheduling.annotation.Scheduled; // Tareas periódicas
-import org.springframework.stereotype.Service; // Servicio Spring
-import org.springframework.transaction.annotation.Transactional; // Transacciones ACID
+import com.clinicadermatologica.app.domain.exception.*;
+import com.clinicadermatologica.app.domain.model.*;
+import com.clinicadermatologica.app.domain.repository.*;
+import com.clinicadermatologica.app.infrastructure.payment.MercadoPagoPaymentAdapter;
+import com.clinicadermatologica.app.presentation.dto.*;
+import com.mercadopago.resources.preference.Preference;
+import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
-import java.math.BigDecimal; // Precisión decimal
-import java.math.RoundingMode; // Modo de redondeo
-import java.time.*; // Tipos de fecha/hora de Java 8+
-import java.time.format.DateTimeFormatter; // Formato de fecha
-import java.time.temporal.ChronoUnit; // Unidades temporales
-import java.util.*; // Colecciones Java
-import java.util.stream.Collectors; // Streams
+import java.math.BigDecimal;
+import java.math.RoundingMode;
+import java.time.*;
+import java.time.format.DateTimeFormatter;
+import java.time.temporal.ChronoUnit;
+import java.util.*;
+import java.util.stream.Collectors;
 
 /**
- * Servicio de Aplicación para gestión de turnos, cálculo de disponibilidad y TTL de 10 minutos.
+ * Servicio de Aplicación para gestión de turnos y cálculo de disponibilidad.
  */
-@Service // Componente de servicio Spring
-@RequiredArgsConstructor // Inyección por constructor
-@Slf4j // Logger
+@Service
+@RequiredArgsConstructor
+@Slf4j
 public class AppointmentService {
 
-    private final AppointmentRepository appointmentRepository; // Repositorio de citas
-    private final PatientRepository patientRepository; // Repositorio de pacientes
-    private final DermatologicServiceRepository serviceRepository; // Repositorio de servicios
-    private final UserRepository userRepository; // Repositorio de usuarios
-    private final PaymentTransactionRepository paymentTransactionRepository; // Repositorio de pagos
-    private final CalendarBlockRepository calendarBlockRepository; // Repositorio de bloqueos
-    private final MercadoPagoPaymentAdapter mercadoPagoAdapter; // Adaptador MercadoPago
+    private final AppointmentRepository appointmentRepository;
+    private final PatientRepository patientRepository;
+    private final DermatologicServiceRepository serviceRepository;
+    private final UserRepository userRepository;
+    private final PaymentTransactionRepository paymentTransactionRepository;
+    private final CalendarBlockRepository calendarBlockRepository;
+    private final MercadoPagoPaymentAdapter mercadoPagoAdapter;
 
     /**
-     * Calcula dinámicamente las franjas horarias disponibles para una fecha y servicio determinados.
+     * Calcula dinámicamente las franjas horarias disponibles para una fecha y servicio.
      */
-    @Transactional(readOnly = true) // Consulta optimizada de solo lectura
+    @Transactional(readOnly = true)
     public List<TimeSlotDTO> getAvailableSlots(LocalDate date, Long serviceId) {
         DermatologicService service = serviceRepository.findById(serviceId)
                 .orElseThrow(() -> new ResourceNotFoundException("Servicio no encontrado"));
 
         int duration = service.getDurationMinutes();
 
-        // Rango de horario de atención: 09:00 a 19:00 hs (Zona horaria de la clínica)
         ZoneId zone = ZoneId.of("America/Argentina/Buenos_Aires");
         ZonedDateTime dayStart = date.atTime(9, 0).atZone(zone);
         ZonedDateTime dayEnd = date.atTime(19, 0).atZone(zone);
@@ -54,13 +52,12 @@ public class AppointmentService {
         Instant startInstant = dayStart.toInstant();
         Instant endInstant = dayEnd.toInstant();
 
-        // Obtiene todas las citas activas y bloqueos de calendario para la fecha consultada
         List<Appointment> existingAppointments = appointmentRepository.findByDateRange(startInstant, endInstant);
         List<CalendarBlock> calendarBlocks = calendarBlockRepository.findByDateRange(startInstant, endInstant);
 
         List<TimeSlotDTO> slots = new ArrayList<>();
         ZonedDateTime current = dayStart;
-        Instant nowPlus2Hours = Instant.now().plus(2, ChronoUnit.HOURS); // Antelación mínima de 2 horas
+        Instant nowPlus2Hours = Instant.now().plus(2, ChronoUnit.HOURS);
         DateTimeFormatter timeFormatter = DateTimeFormatter.ofPattern("HH:mm");
 
         while (current.plusMinutes(duration).isBefore(dayEnd) || current.plusMinutes(duration).isEqual(dayEnd)) {
@@ -69,31 +66,26 @@ public class AppointmentService {
 
             boolean isAvailable = true;
 
-            // 1. Valida si la franja cae en el pasado o antes del plazo de antelación
             if (slotStart.isBefore(nowPlus2Hours)) {
                 isAvailable = false;
             }
 
-            // 2. Valida colisión con citas activas o bloqueos temporales vigentes (<10 min)
             if (isAvailable) {
+                Instant now = Instant.now();
                 for (Appointment appt : existingAppointments) {
-                    if (appt.getStatus() == AppointmentStatus.CONFIRMED || appt.getStatus() == AppointmentStatus.COMPLETED) {
+                    AppointmentStatus s = appt.getStatus();
+                    // Un bloqueo temporal vencido ya no retiene el horario (aunque el job aún no lo haya cancelado)
+                    if (HoldPolicy.isExpired(appt, now)) continue;
+                    if (s == AppointmentStatus.CONFIRMED || s == AppointmentStatus.COMPLETED
+                            || s == AppointmentStatus.ATTENDED || s == AppointmentStatus.PENDING_PAYMENT) {
                         if (appt.getStartTime().isBefore(slotEnd) && appt.getEndTime().isAfter(slotStart)) {
                             isAvailable = false;
                             break;
-                        }
-                    } else if (appt.getStatus() == AppointmentStatus.PENDING_PAYMENT) {
-                        if (appt.getTemporaryHoldDeadline() != null && appt.getTemporaryHoldDeadline().isAfter(Instant.now())) {
-                            if (appt.getStartTime().isBefore(slotEnd) && appt.getEndTime().isAfter(slotStart)) {
-                                isAvailable = false;
-                                break;
-                            }
                         }
                     }
                 }
             }
 
-            // 3. Valida colisión con bloqueos de calendario
             if (isAvailable) {
                 for (CalendarBlock block : calendarBlocks) {
                     if (block.getStartTime().isBefore(slotEnd) && block.getEndTime().isAfter(slotStart)) {
@@ -110,7 +102,6 @@ public class AppointmentService {
                     .available(isAvailable)
                     .build());
 
-            // Avanza en intervalos de 30 minutos
             current = current.plusMinutes(30);
         }
 
@@ -118,9 +109,11 @@ public class AppointmentService {
     }
 
     /**
-     * Bloquea temporalmente un turno durante 10 minutos y genera la preferencia de pago en MercadoPago.
+     * Bloquea un turno y genera la preferencia de pago en MercadoPago.
+     * La transacción de pago (PENDING) con paymentConcept=DEPOSIT se crea aquí para que
+     * el webhook pueda encontrarla por mpPreferenceId y actualizar su estado.
      */
-    @Transactional // Transacción ACID
+    @Transactional
     public PaymentPreferenceResponseDTO bookTemporaryHold(BookAppointmentRequestDTO request, Long createdByUserId) {
         Patient patient = patientRepository.findById(request.getPatientId())
                 .orElseThrow(() -> new ResourceNotFoundException("Paciente no encontrado"));
@@ -144,19 +137,28 @@ public class AppointmentService {
 
         List<CalendarBlock> blocks = calendarBlockRepository.findOverlappingBlocks(startTime, endTime);
         if (!blocks.isEmpty()) {
-            throw new SlotUnavailableException("El horario seleccionado está bloqueado por: " + blocks.get(0).getReason());
+            throw new SlotUnavailableException("El horario seleccionado está bloqueado"
+                    + (blocks.get(0).getReason() != null ? ": " + blocks.get(0).getReason() : ""));
         }
 
-        List<Appointment> overlapping = appointmentRepository.findOverlappingAppointments(startTime, endTime);
+        // Los bloqueos vencidos que se superponen se cancelan en el momento y no impiden la reserva
+        Instant now = Instant.now();
+        List<Appointment> overlapping = new ArrayList<>();
+        for (Appointment appt : appointmentRepository.findOverlappingAppointments(startTime, endTime)) {
+            if (HoldPolicy.isExpired(appt, now)) {
+                expireHold(appt);
+            } else {
+                overlapping.add(appt);
+            }
+        }
         if (!overlapping.isEmpty()) {
             throw new SlotUnavailableException("La franja horaria seleccionada ya se encuentra reservada o en proceso de pago");
         }
 
         BigDecimal agreedPrice = service.getBasePrice();
-        BigDecimal depositPercentage = service.getDepositPercentage();
-        BigDecimal depositAmount = agreedPrice.multiply(depositPercentage).divide(new BigDecimal("100"), 2, RoundingMode.HALF_UP);
-
-        Instant holdDeadline = Instant.now().plus(10, ChronoUnit.MINUTES);
+        BigDecimal depositAmount = agreedPrice
+                .multiply(new BigDecimal(service.getDepositPercentage()))
+                .divide(new BigDecimal("100"), 2, RoundingMode.HALF_UP);
 
         Appointment appointment = Appointment.builder()
                 .patient(patient)
@@ -166,10 +168,6 @@ public class AppointmentService {
                 .endTime(endTime)
                 .status(AppointmentStatus.PENDING_PAYMENT)
                 .agreedPrice(agreedPrice)
-                .temporaryHoldDeadline(holdDeadline)
-                .originalStartTime(startTime)
-                .rescheduleCount(0)
-                .version(0L)
                 .build();
 
         appointment = appointmentRepository.save(appointment);
@@ -182,15 +180,17 @@ public class AppointmentService {
         );
 
         String preferenceId = preference != null ? preference.getId() : "MOCK-PREF-" + UUID.randomUUID();
-        String initPointUrl = preference != null ? preference.getInitPoint() : "https://www.mercadopago.com.ar/checkout/v1/redirect?pref_id=" + preferenceId;
+        String initPointUrl = preference != null ? preference.getInitPoint()
+                : "https://www.mercadopago.com.ar/checkout/v1/redirect?pref_id=" + preferenceId;
 
+        // Crea transacción PENDING con concepto DEPOSIT; el webhook la buscará por mpPreferenceId
         PaymentTransaction transaction = PaymentTransaction.builder()
                 .appointment(appointment)
                 .mpPreferenceId(preferenceId)
-                .paymentType(PaymentType.DEPOSIT_50)
+                .paymentType(PaymentType.MERCADOPAGO)
+                .paymentConcept(PaymentConcept.DEPOSIT)
                 .amount(depositAmount)
                 .status(PaymentStatus.PENDING)
-                .paymentDate(Instant.now())
                 .build();
 
         paymentTransactionRepository.save(transaction);
@@ -200,18 +200,8 @@ public class AppointmentService {
                 .preferenceId(preferenceId)
                 .initPointUrl(initPointUrl)
                 .depositAmount(depositAmount)
-                .holdExpiresAt(holdDeadline)
+                .holdExpiresAt(HoldPolicy.expiresAt(appointment))
                 .build();
-    }
-
-    @Scheduled(fixedRate = 60000)
-    @Transactional
-    public void releaseExpiredHoldsScheduler() {
-        Instant now = Instant.now();
-        int releasedCount = appointmentRepository.releaseExpiredHolds(now);
-        if (releasedCount > 0) {
-            log.info("Tarea programada: Se liberaron {} turnos vencidos con estado PENDING_PAYMENT", releasedCount);
-        }
     }
 
     @Transactional
@@ -223,8 +213,66 @@ public class AppointmentService {
             throw new BusinessRuleException("No se puede cancelar un turno que ya ha sido completado");
         }
 
-        appointment.setStatus(AppointmentStatus.CANCELLED);
+        appointment.setStatus(AppointmentStatus.CANCELED);
         appointmentRepository.save(appointment);
+        rejectPendingTransactions(appointment);
+    }
+
+    /**
+     * Marca el turno como atendido (acto clínico realizado por el médico).
+     * Sólo un turno CONFIRMED puede pasar a ATTENDED. El cobro del saldo
+     * (ATTENDED -> COMPLETED) es un paso posterior de negocio.
+     */
+    @Transactional
+    public void markAsAttended(Long appointmentId) {
+        Appointment appointment = appointmentRepository.findById(appointmentId)
+                .orElseThrow(() -> new ResourceNotFoundException("Turno no encontrado con ID " + appointmentId));
+
+        if (appointment.getStatus() == AppointmentStatus.ATTENDED) {
+            return; // idempotente: ya estaba marcado como atendido
+        }
+        if (appointment.getStatus() != AppointmentStatus.CONFIRMED) {
+            throw new BusinessRuleException("Sólo se puede marcar como atendido un turno confirmado (estado actual: "
+                    + appointment.getStatus() + ")");
+        }
+
+        appointment.setStatus(AppointmentStatus.ATTENDED);
+        appointmentRepository.save(appointment);
+        log.info("Cita #{} marcada como ATENDIDA; pendiente de cobro del saldo", appointmentId);
+    }
+
+    /**
+     * Cancela los bloqueos temporales cuyo plazo de 10 minutos venció sin registrarse el pago,
+     * liberando el horario. La ejecuta periódicamente HoldExpirationScheduler.
+     *
+     * @return cantidad de bloqueos liberados
+     */
+    @Transactional
+    public int releaseExpiredHolds() {
+        List<Appointment> expired = appointmentRepository.findExpiredHolds(Instant.now().minus(HoldPolicy.TTL));
+        expired.forEach(this::expireHold);
+        if (!expired.isEmpty()) {
+            log.info("Bloqueos temporales vencidos liberados: {}", expired.size());
+        }
+        return expired.size();
+    }
+
+    /** Un bloqueo vencido pasa a CANCELED y su intento de pago pendiente se descarta. */
+    private void expireHold(Appointment appointment) {
+        appointment.setStatus(AppointmentStatus.CANCELED);
+        appointmentRepository.save(appointment);
+        rejectPendingTransactions(appointment);
+        log.info("Cita #{} CANCELADA: venció el bloqueo temporal de {} minutos",
+                appointment.getId(), HoldPolicy.TTL.toMinutes());
+    }
+
+    private void rejectPendingTransactions(Appointment appointment) {
+        paymentTransactionRepository.findByAppointmentId(appointment.getId()).stream()
+                .filter(tx -> tx.getStatus() == PaymentStatus.PENDING)
+                .forEach(tx -> {
+                    tx.setStatus(PaymentStatus.REJECTED);
+                    paymentTransactionRepository.save(tx);
+                });
     }
 
     @Transactional(readOnly = true)
@@ -254,9 +302,7 @@ public class AppointmentService {
                 .endTime(a.getEndTime())
                 .status(a.getStatus())
                 .agreedPrice(a.getAgreedPrice())
-                .temporaryHoldDeadline(a.getTemporaryHoldDeadline())
-                .rescheduleCount(a.getRescheduleCount())
-                .version(a.getVersion())
+                .followUpToId(a.getFollowUpTo() != null ? a.getFollowUpTo().getId() : null)
                 .build();
     }
 }

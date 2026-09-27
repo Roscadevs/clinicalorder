@@ -1,31 +1,31 @@
 package com.clinicadermatologica.app.application.service;
 
-import com.clinicadermatologica.app.domain.exception.BusinessRuleException; // Excepción de negocio
-import com.clinicadermatologica.app.domain.exception.ResourceNotFoundException; // Excepción de no encontrado
-import com.clinicadermatologica.app.domain.model.Patient; // Entidad Patient
-import com.clinicadermatologica.app.domain.repository.PatientRepository; // Repositorio de pacientes
-import com.clinicadermatologica.app.presentation.dto.PatientRequestDTO; // DTO de entrada
-import com.clinicadermatologica.app.presentation.dto.PatientResponseDTO; // DTO de respuesta
-import lombok.RequiredArgsConstructor; // Inyección por constructor
-import org.springframework.stereotype.Service; // Servicio Spring
-import org.springframework.transaction.annotation.Transactional; // Transacciones ACID
+import com.clinicadermatologica.app.domain.exception.BusinessRuleException;
+import com.clinicadermatologica.app.domain.exception.ResourceNotFoundException;
+import com.clinicadermatologica.app.domain.model.Patient;
+import com.clinicadermatologica.app.domain.repository.PatientRepository;
+import com.clinicadermatologica.app.presentation.dto.PatientRequestDTO;
+import com.clinicadermatologica.app.presentation.dto.PatientResponseDTO;
+import lombok.RequiredArgsConstructor;
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
-import java.util.List; // Listas
-import java.util.stream.Collectors; // Streams de Java
+import java.util.List;
+import java.util.stream.Collectors;
 
 /**
  * Servicio de Aplicación para la gestión y búsqueda de pacientes.
  */
-@Service // Componente de servicio Spring
-@RequiredArgsConstructor // Inyección por constructor
+@Service
+@RequiredArgsConstructor
 public class PatientService {
 
-    private final PatientRepository patientRepository; // Inyección del repositorio
+    private final PatientRepository patientRepository;
 
     /**
      * Registra un nuevo paciente con validaciones de unicidad de DNI, teléfono y correo.
      */
-    @Transactional // Transacción ACID
+    @Transactional
     public PatientResponseDTO createPatient(PatientRequestDTO request) {
         if (patientRepository.existsByDni(request.getDni())) {
             throw new BusinessRuleException("Ya existe un paciente registrado con el DNI " + request.getDni());
@@ -43,7 +43,6 @@ public class PatientService {
                 .phone(request.getPhone())
                 .email(request.getEmail())
                 .birthDate(request.getBirthDate())
-                .profession(request.getProfession())
                 .active(true)
                 .build();
 
@@ -53,7 +52,7 @@ public class PatientService {
     /**
      * Obtiene los datos de un paciente por su clave primaria.
      */
-    @Transactional(readOnly = true) // Transacción de solo lectura optimizada
+    @Transactional(readOnly = true)
     public PatientResponseDTO getPatientById(Long id) {
         return patientRepository.findById(id)
                 .map(this::mapToDTO)
@@ -92,7 +91,6 @@ public class PatientService {
         patient.setPhone(request.getPhone());
         patient.setEmail(request.getEmail());
         patient.setBirthDate(request.getBirthDate());
-        patient.setProfession(request.getProfession());
 
         return mapToDTO(patientRepository.save(patient));
     }
@@ -116,7 +114,6 @@ public class PatientService {
                 .phone(p.getPhone())
                 .email(p.getEmail())
                 .birthDate(p.getBirthDate())
-                .profession(p.getProfession())
                 .active(p.getActive())
                 .createdAt(p.getCreatedAt())
                 .build();

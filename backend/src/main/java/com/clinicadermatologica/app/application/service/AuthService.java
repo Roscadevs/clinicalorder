@@ -1,40 +1,47 @@
 package com.clinicadermatologica.app.application.service;
 
-import com.clinicadermatologica.app.domain.exception.*; // Excepciones de negocio
-import com.clinicadermatologica.app.domain.model.*; // Entidades del dominio
-import com.clinicadermatologica.app.domain.repository.PasswordResetTokenRepository; // Repositorio de tokens
-import com.clinicadermatologica.app.domain.repository.UserRepository; // Repositorio de usuarios
-import com.clinicadermatologica.app.infrastructure.notification.EmailNotificationService; // Servicio de emails
-import com.clinicadermatologica.app.infrastructure.security.JwtTokenProvider; // Proveedor JWT
-import com.clinicadermatologica.app.presentation.dto.*; // DTOs
-import lombok.RequiredArgsConstructor; // Inyección por constructor
-import lombok.extern.slf4j.Slf4j; // Logger
-import org.springframework.security.crypto.password.PasswordEncoder; // BCrypt encoder
-import org.springframework.stereotype.Service; // Anotación de servicio Spring
-import org.springframework.transaction.annotation.Transactional; // Transacciones ACID
+import com.clinicadermatologica.app.domain.exception.*;
+import com.clinicadermatologica.app.domain.model.*;
+import com.clinicadermatologica.app.domain.repository.PasswordResetTokenRepository;
+import com.clinicadermatologica.app.domain.repository.UserRepository;
+import com.clinicadermatologica.app.infrastructure.notification.EmailNotificationService;
+import com.clinicadermatologica.app.infrastructure.security.JwtTokenProvider;
+import com.clinicadermatologica.app.presentation.dto.*;
+import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
+import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
-import java.time.Instant; // Tipos de tiempo UTC
-import java.time.temporal.ChronoUnit; // Unidades temporales
-import java.util.UUID; // Generador de tokens aleatorios
+import java.time.Instant;
+import java.time.temporal.ChronoUnit;
+import java.util.UUID;
 
 /**
  * Servicio de Aplicación para autenticación, gestión de sesiones JWT y recuperación de contraseñas.
+ *
+ * SEGURIDAD aplicada en este servicio:
+ * - Hashing de contraseñas: BCrypt (costo 12) vía PasswordEncoder. Nunca se almacena texto plano.
+ * - Autenticación JWT stateless: tras login exitoso se emite un token firmado HMAC-SHA256 (JwtTokenProvider).
+ * - Tokens de recuperación de contraseña: de uso único (usedAt != null) y con vencimiento de 15 minutos
+ *   (expiresAt). Ambos controles son independientes y se validan en resetPassword().
  */
-@Service // Componente de servicio Spring
-@RequiredArgsConstructor // Inyección por constructor de dependencias
-@Slf4j // Logger
+@Service
+@RequiredArgsConstructor
+@Slf4j
 public class AuthService {
 
-    private final UserRepository userRepository; // Repositorio de usuarios
-    private final PasswordResetTokenRepository passwordResetTokenRepository; // Repositorio de tokens
-    private final PasswordEncoder passwordEncoder; // Comparador BCrypt (costo 12)
-    private final JwtTokenProvider jwtTokenProvider; // Generador de tokens JWT
-    private final EmailNotificationService emailService; // Notificaciones
+    private final UserRepository userRepository;
+    private final PasswordResetTokenRepository passwordResetTokenRepository;
+    private final PasswordEncoder passwordEncoder; // BCrypt costo 12 — ver SecurityConfig.passwordEncoder()
+    private final JwtTokenProvider jwtTokenProvider;
+    private final EmailNotificationService emailService;
 
     /**
-     * Autentica credenciales y emite token JWT con control de ataques de fuerza bruta.
+     * Autentica credenciales y emite token JWT stateless.
+     * Flujo: cargar usuario → verificar cuenta activa → comparar contraseña → emitir JWT.
      */
-    @Transactional // Transacción ACID para actualizar intentos fallidos
+    @Transactional
     public AuthResponseDTO login(AuthRequestDTO request) {
         User user = userRepository.findByUsername(request.getUsername())
                 .orElseThrow(() -> new BusinessRuleException("Credenciales no válidas"));
@@ -43,25 +50,9 @@ public class AuthService {
             throw new BusinessRuleException("La cuenta de usuario se encuentra suspendida");
         }
 
-        if (user.getLockedUntil() != null && Instant.now().isBefore(user.getLockedUntil())) {
-            throw new BusinessRuleException("La cuenta está temporalmente bloqueada por reiterados intentos fallidos. Intente más tarde.");
-        }
-
         if (!passwordEncoder.matches(request.getPassword(), user.getPasswordHash())) {
-            int attempts = user.getFailedLoginAttempts() + 1;
-            user.setFailedLoginAttempts(attempts);
-
-            if (attempts >= 5) {
-                user.setLockedUntil(Instant.now().plus(15, ChronoUnit.MINUTES));
-                log.warn("Usuario {} bloqueado temporalmente por 5 intentos fallidos", user.getUsername());
-            }
-            userRepository.save(user);
             throw new BusinessRuleException("Credenciales no válidas");
         }
-
-        user.setFailedLoginAttempts(0);
-        user.setLockedUntil(null);
-        userRepository.save(user);
 
         String token = jwtTokenProvider.generateToken(user);
 
@@ -79,19 +70,17 @@ public class AuthService {
     /**
      * Genera un token temporal de restablecimiento de contraseña (15 min) y envía el correo.
      */
-    @Transactional // Transacción ACID
+    @Transactional
     public void forgotPassword(ForgotPasswordRequestDTO request) {
         User user = userRepository.findByEmail(request.getEmail())
                 .orElseThrow(() -> new ResourceNotFoundException("No existe usuario registrado con ese correo electrónico"));
 
-        // Genera una cadena aleatoria criptográfica
         String tokenStr = UUID.randomUUID().toString().replace("-", "");
 
         PasswordResetToken resetToken = PasswordResetToken.builder()
                 .user(user)
                 .token(tokenStr)
-                .used(false)
-                .expiresAt(Instant.now().plus(15, ChronoUnit.MINUTES)) // 15 minutos de validez
+                .expiresAt(Instant.now().plus(15, ChronoUnit.MINUTES))
                 .build();
 
         passwordResetTokenRepository.save(resetToken);
@@ -100,13 +89,17 @@ public class AuthService {
 
     /**
      * Valida el token y actualiza la contraseña con nuevo hash BCrypt.
+     *
+     * SEGURIDAD: Dos controles independientes:
+     * 1. usedAt != null → token ya fue consumido, no puede reutilizarse.
+     * 2. Instant.now().isAfter(expiresAt) → token expirado (15 minutos de vigencia).
      */
-    @Transactional // Transacción ACID
+    @Transactional
     public void resetPassword(ResetPasswordRequestDTO request) {
         PasswordResetToken resetToken = passwordResetTokenRepository.findByToken(request.getToken())
                 .orElseThrow(() -> new BusinessRuleException("Token de recuperación inválido o inexistente"));
 
-        if (resetToken.getUsed()) {
+        if (resetToken.getUsedAt() != null) {
             throw new BusinessRuleException("Este token de recuperación ya ha sido utilizado");
         }
 
@@ -115,12 +108,10 @@ public class AuthService {
         }
 
         User user = resetToken.getUser();
-        user.setPasswordHash(passwordEncoder.encode(request.getNewPassword())); // Cifra nueva clave
-        user.setFailedLoginAttempts(0); // Desbloquea la cuenta
-        user.setLockedUntil(null);
+        user.setPasswordHash(passwordEncoder.encode(request.getNewPassword()));
         userRepository.save(user);
 
-        resetToken.setUsed(true); // Invalida el token para un solo uso
+        resetToken.setUsedAt(Instant.now()); // Invalida el token para un solo uso
         passwordResetTokenRepository.save(resetToken);
         log.info("Contraseña actualizada exitosamente para el usuario {}", user.getUsername());
     }
@@ -139,12 +130,11 @@ public class AuthService {
 
         User user = User.builder()
                 .username(request.getUsername())
-                .passwordHash(passwordEncoder.encode(request.getPassword()))
+                .passwordHash(passwordEncoder.encode(request.getPassword())) // Hash BCrypt, nunca texto plano
                 .email(request.getEmail())
                 .fullName(request.getFullName())
                 .role(request.getRole())
                 .active(true)
-                .failedLoginAttempts(0)
                 .build();
 
         return userRepository.save(user);
