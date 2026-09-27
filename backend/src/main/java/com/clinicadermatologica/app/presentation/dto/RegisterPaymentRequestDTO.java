@@ -8,19 +8,19 @@ import lombok.*;
 import java.math.BigDecimal;
 
 /**
- * DTO para registrar la liquidación final del saldo en mostrador.
- * El campo paymentType indica el canal utilizado (CASH, BANK_TRANSFER o MERCADOPAGO).
- * El concepto del pago (BALANCE) es siempre implícito en la operación de liquidación final.
+ * DTO del caso de uso "Registrar Pago" para la seña de un turno reservado por el staff.
+ * El medio de pago manual es CASH o BANK_TRANSFER; el pago virtual (MERCADOPAGO) se
+ * acredita automáticamente por webhook y no se registra por este endpoint.
  */
 @Getter
 @Setter
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class FinalizePaymentRequestDTO {
+public class RegisterPaymentRequestDTO {
 
-    @NotNull(message = "El tipo de pago es obligatorio")
-    private PaymentType paymentType; // Canal: CASH, BANK_TRANSFER, MERCADOPAGO
+    @NotNull(message = "El medio de pago es obligatorio")
+    private PaymentType paymentType;
 
     @NotNull(message = "El monto abonado es obligatorio")
     @DecimalMin(value = "0.01", message = "El monto debe ser mayor a cero")
