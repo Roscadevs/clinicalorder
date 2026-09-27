@@ -11,5 +11,5 @@ import java.util.List; // Colección de lista
  */
 @Repository // Componente Spring Data
 public interface JpaMedicalRecordAuditRepository extends JpaRepository<MedicalRecordAudit, Long> {
-    List<MedicalRecordAudit> findByMedicalRecordIdOrderByModifiedAtDesc(Long medicalRecordId); // Auditoría cronológica inversa
+    List<MedicalRecordAudit> findByMedicalRecordIdOrderByUpdatedAtDesc(Long medicalRecordId); // Auditoría cronológica inversa
 }

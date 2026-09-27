@@ -11,6 +11,7 @@ import { ServicesCatalogView } from './features/public/ServicesCatalogView';
 // Internal Views
 import { DashboardLayout } from './components/DashboardLayout';
 import { BookingWizard } from './features/appointments/BookingWizard';
+import { BookingSuccessView, BookingFailureView, BookingPendingView } from './features/appointments/BookingStatusViews';
 import { AgendaView } from './features/agenda/AgendaView';
 import { MedicalRecordView } from './features/clinical/MedicalRecordView';
 import { AdminServicesView } from './features/admin/AdminServicesView';
@@ -56,6 +57,33 @@ export function App() {
           element={
             <PageTransition>
               <PasswordRecoveryView />
+            </PageTransition>
+          }
+        />
+
+        {/* Rutas de retorno de Mercado Pago (configuradas en back-urls del backend).
+            Deben ser públicas: el paciente vuelve acá desde el checkout. */}
+        <Route
+          path="/turnos/confirmado"
+          element={
+            <PageTransition>
+              <BookingSuccessView />
+            </PageTransition>
+          }
+        />
+        <Route
+          path="/turnos/fallido"
+          element={
+            <PageTransition>
+              <BookingFailureView />
+            </PageTransition>
+          }
+        />
+        <Route
+          path="/turnos/pendiente"
+          element={
+            <PageTransition>
+              <BookingPendingView />
             </PageTransition>
           }
         />

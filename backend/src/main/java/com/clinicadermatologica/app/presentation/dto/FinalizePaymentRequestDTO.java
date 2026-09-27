@@ -1,24 +1,26 @@
 package com.clinicadermatologica.app.presentation.dto;
 
-import com.clinicadermatologica.app.domain.model.PaymentType; // Enum de tipo de pago
-import jakarta.validation.constraints.DecimalMin; // Validación de valor decimal mínimo
-import jakarta.validation.constraints.NotNull; // Validación de no nulo
-import lombok.*; // Generadores Lombok
+import com.clinicadermatologica.app.domain.model.PaymentType;
+import jakarta.validation.constraints.DecimalMin;
+import jakarta.validation.constraints.NotNull;
+import lombok.*;
 
-import java.math.BigDecimal; // Precisión decimal
+import java.math.BigDecimal;
 
 /**
- * DTO para registrar la liquidación final del saldo en mostrador (efectivo, POS, transferencia).
+ * DTO para registrar la liquidación final del saldo en mostrador.
+ * El campo paymentType indica el canal utilizado (CASH, BANK_TRANSFER o MERCADOPAGO).
+ * El concepto del pago (BALANCE) es siempre implícito en la operación de liquidación final.
  */
-@Getter // Genera getters
-@Setter // Genera setters
-@Builder // Habilita Builder
-@NoArgsConstructor // Constructor vacío
-@AllArgsConstructor // Constructor completo
+@Getter
+@Setter
+@Builder
+@NoArgsConstructor
+@AllArgsConstructor
 public class FinalizePaymentRequestDTO {
 
     @NotNull(message = "El tipo de pago es obligatorio")
-    private PaymentType paymentType;
+    private PaymentType paymentType; // Canal: CASH, BANK_TRANSFER, MERCADOPAGO
 
     @NotNull(message = "El monto abonado es obligatorio")
     @DecimalMin(value = "0.01", message = "El monto debe ser mayor a cero")

@@ -1,21 +1,18 @@
 package com.clinicadermatologica.app.presentation.dto;
 
-import jakarta.validation.constraints.Email; // Valida formato email
-import jakarta.validation.constraints.NotBlank; // Valida no blanco
-import jakarta.validation.constraints.Pattern; // Valida expresión regular
-import jakarta.validation.constraints.Size; // Valida longitud
-import lombok.*; // Generadores Lombok
+import jakarta.validation.constraints.*;
+import lombok.*;
 
-import java.time.LocalDate; // Fecha sin hora
+import java.time.LocalDate;
 
 /**
  * DTO para creación o actualización de un paciente.
  */
-@Getter // Genera getters
-@Setter // Genera setters
-@Builder // Habilita Builder
-@NoArgsConstructor // Constructor vacío
-@AllArgsConstructor // Constructor completo
+@Getter
+@Setter
+@Builder
+@NoArgsConstructor
+@AllArgsConstructor
 public class PatientRequestDTO {
 
     @NotBlank(message = "El nombre del paciente es obligatorio")
@@ -33,6 +30,7 @@ public class PatientRequestDTO {
     @Email(message = "Formato de email inválido")
     private String email;
 
-    private LocalDate birthDate; // Fecha de nacimiento (opcional)
-    private String profession; // Profesión u ocupación (opcional)
+    @NotNull(message = "La fecha de nacimiento es obligatoria")
+    @PastOrPresent(message = "La fecha de nacimiento no puede ser una fecha futura")
+    private LocalDate birthDate;
 }

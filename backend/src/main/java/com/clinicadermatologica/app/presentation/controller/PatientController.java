@@ -19,7 +19,7 @@ import java.util.List; // Listas
 @RestController // Controlador REST
 @RequestMapping("/pacientes") // Ruta /api/v1/pacientes
 @RequiredArgsConstructor // Inyección por constructor
-@PreAuthorize("hasAnyRole('PHYSICIAN', 'RECEPTIONIST', 'ADMIN')") // Accesible por todos los roles autenticados
+@PreAuthorize("hasAnyRole('DOCTORA', 'SECRETARIA', 'ADMIN')") // Accesible por todos los roles autenticados
 public class PatientController {
 
     private final PatientService patientService; // Servicio

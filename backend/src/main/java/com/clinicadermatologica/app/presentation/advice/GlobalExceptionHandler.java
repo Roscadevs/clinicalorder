@@ -29,6 +29,11 @@ public class GlobalExceptionHandler {
         return buildErrorResponse(HttpStatus.CONFLICT, ex.getMessage(), request.getRequestURI()); // HTTP 409 Conflict
     }
 
+    @ExceptionHandler(DuplicateResourceException.class) // Captura recurso duplicado (ej. alergia, habito, antecedente)
+    public ResponseEntity<Map<String, Object>> handleDuplicate(DuplicateResourceException ex, HttpServletRequest request) {
+        return buildErrorResponse(HttpStatus.CONFLICT, ex.getMessage(), request.getRequestURI()); // HTTP 409 Conflict
+    }
+
     @ExceptionHandler(BusinessRuleException.class) // Captura violación de regla de negocio
     public ResponseEntity<Map<String, Object>> handleBusinessRule(BusinessRuleException ex, HttpServletRequest request) {
         return buildErrorResponse(HttpStatus.BAD_REQUEST, ex.getMessage(), request.getRequestURI()); // HTTP 400 Bad Request

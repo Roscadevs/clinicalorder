@@ -51,7 +51,7 @@ public class AppointmentController {
      * Consulta la agenda de turnos en un rango de fechas (para Médica y Secretaria).
      */
     @GetMapping("/agenda") // Mapea HTTP GET /api/v1/citas/agenda?start=...&end=...
-    @PreAuthorize("hasAnyRole('PHYSICIAN', 'RECEPTIONIST', 'ADMIN')")
+    @PreAuthorize("hasAnyRole('DOCTORA', 'SECRETARIA', 'ADMIN')")
     public ResponseEntity<List<AppointmentResponseDTO>> getAgenda(
             @RequestParam @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME) Instant start,
             @RequestParam @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME) Instant end) {
@@ -62,7 +62,7 @@ public class AppointmentController {
      * Consulta el detalle de una cita específica por su identificador.
      */
     @GetMapping("/{id}") // Mapea HTTP GET /api/v1/citas/{id}
-    @PreAuthorize("hasAnyRole('PHYSICIAN', 'RECEPTIONIST', 'ADMIN')")
+    @PreAuthorize("hasAnyRole('DOCTORA', 'SECRETARIA', 'ADMIN')")
     public ResponseEntity<AppointmentResponseDTO> getAppointmentById(@PathVariable Long id) {
         return ResponseEntity.ok(appointmentService.getAppointmentById(id));
     }
@@ -71,22 +71,46 @@ public class AppointmentController {
      * Cancela un turno previamente agendado.
      */
     @PostMapping("/{id}/cancelar") // Mapea HTTP POST /api/v1/citas/{id}/cancelar
-    @PreAuthorize("hasAnyRole('PHYSICIAN', 'RECEPTIONIST', 'ADMIN')")
+    @PreAuthorize("hasAnyRole('DOCTORA', 'SECRETARIA', 'ADMIN')")
     public ResponseEntity<Void> cancelAppointment(@PathVariable Long id) {
         appointmentService.cancelAppointment(id);
         return ResponseEntity.noContent().build();
     }
 
     /**
-     * Registra el cobro final del 50% en mostrador (efectivo/tarjeta) y finaliza la cita.
+     * Registra el cobro final en mostrador y finaliza la cita.
      */
     @PostMapping("/{id}/liquidar-saldo") // Mapea HTTP POST /api/v1/citas/{id}/liquidar-saldo
-    @PreAuthorize("hasAnyRole('RECEPTIONIST', 'ADMIN', 'PHYSICIAN')")
+    @PreAuthorize("hasAnyRole('SECRETARIA', 'ADMIN', 'DOCTORA')")
     public ResponseEntity<Void> finalizePayment(
             @PathVariable Long id,
             @Valid @RequestBody FinalizePaymentRequestDTO request,
             @RequestParam Long receptionistUserId) {
         paymentService.registerFinalPayment(id, request, receptionistUserId);
         return ResponseEntity.ok().build();
+    }
+
+    /**
+     * Marca un turno como atendido (acto clínico). Sólo la médica o el administrador.
+     * El turno pasa de CONFIRMED a ATTENDED; el cobro del saldo es posterior.
+     */
+    @PostMapping("/{id}/atender") // Mapea HTTP POST /api/v1/citas/{id}/atender
+    @PreAuthorize("hasAnyRole('DOCTORA', 'ADMIN')")
+    public ResponseEntity<Void> markAsAttended(@PathVariable Long id) {
+        appointmentService.markAsAttended(id);
+        return ResponseEntity.noContent().build();
+    }
+
+    /**
+     * Caso de uso "Registrar Pago": registra la seña (efectivo o transferencia) de un turno
+     * bloqueado temporalmente y lo confirma. Devuelve los datos para el comprobante.
+     */
+    @PostMapping("/{id}/registrar-pago") // Mapea HTTP POST /api/v1/citas/{id}/registrar-pago
+    @PreAuthorize("hasAnyRole('SECRETARIA', 'ADMIN', 'DOCTORA')")
+    public ResponseEntity<PaymentReceiptDTO> registerDepositPayment(
+            @PathVariable Long id,
+            @Valid @RequestBody RegisterPaymentRequestDTO request,
+            @RequestParam Long userId) {
+        return ResponseEntity.ok(paymentService.registerDepositPayment(id, request, userId));
     }
 }

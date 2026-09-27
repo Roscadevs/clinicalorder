@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
-import { Banknote, Smartphone, AlertCircle, Copy, Check, MessageCircle, ArrowLeft } from 'lucide-react';
+import { Banknote, Smartphone, AlertCircle, Copy, Check, MessageCircle, ArrowLeft, QrCode } from 'lucide-react';
+import { QRCodeSVG } from 'qrcode.react';
 import { appointmentsApi } from '../../services/api';
 import { PaymentReceipt } from '../../types';
 import { Button, Input } from '../../components/ui';
@@ -216,21 +217,40 @@ export const RegisterPaymentStep: React.FC<RegisterPaymentStepProps> = ({
             la seña, siempre que el pago se complete antes de que venza el bloqueo de 10 minutos.
           </p>
           {initPointUrl ? (
-            <div className="flex flex-wrap gap-2">
-              <Button type="button" variant="secondary" onClick={copyLink} leftIcon={copied ? <Check className="w-4 h-4" /> : <Copy className="w-4 h-4" />}>
-                {copied ? 'Link copiado' : 'Copiar link de pago'}
-              </Button>
-              {patientWhatsapp && (
-                <a
-                  href={`https://wa.me/${patientWhatsapp}?text=${virtualMessage}`}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="inline-flex items-center gap-2 px-4 py-2.5 min-h-[42px] rounded-xl text-sm font-semibold border border-primary-300 text-primary-600 hover:bg-primary-50 transition-colors"
-                >
-                  <MessageCircle className="w-4 h-4" />
-                  Enviar por WhatsApp
-                </a>
-              )}
+            <div className="space-y-4">
+              {/* QR de pago: el paciente escanea y abona sin necesidad de recibir el link */}
+              <div className="flex flex-col sm:flex-row items-center gap-4 rounded-xl border border-sand-200 bg-sand-50 p-4">
+                <div className="shrink-0 rounded-lg border border-sand-200 bg-white p-2">
+                  <QRCodeSVG value={initPointUrl} size={120} level="M" />
+                </div>
+                <div className="space-y-1 text-center sm:text-left">
+                  <p className="flex items-center justify-center gap-2 text-sm font-semibold text-sand-900 sm:justify-start">
+                    <QrCode className="h-4 w-4 text-primary-600" />
+                    Escanear para abonar
+                  </p>
+                  <p className="text-xs text-sand-600">
+                    El paciente puede escanearlo con la cámara o la app de MercadoPago y abonar la seña al
+                    instante, sin salir del consultorio.
+                  </p>
+                </div>
+              </div>
+
+              <div className="flex flex-wrap gap-2">
+                <Button type="button" variant="secondary" onClick={copyLink} leftIcon={copied ? <Check className="w-4 h-4" /> : <Copy className="w-4 h-4" />}>
+                  {copied ? 'Link copiado' : 'Copiar link de pago'}
+                </Button>
+                {patientWhatsapp && (
+                  <a
+                    href={`https://wa.me/${patientWhatsapp}?text=${virtualMessage}`}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center gap-2 px-4 py-2.5 min-h-[42px] rounded-xl text-sm font-semibold border border-primary-300 text-primary-600 hover:bg-primary-50 transition-colors"
+                  >
+                    <MessageCircle className="w-4 h-4" />
+                    Enviar por WhatsApp
+                  </a>
+                )}
+              </div>
             </div>
           ) : (
             <p className="text-sm text-danger-600">No se generó el link de pago para este turno.</p>

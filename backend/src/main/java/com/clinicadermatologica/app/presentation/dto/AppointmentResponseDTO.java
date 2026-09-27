@@ -1,19 +1,19 @@
 package com.clinicadermatologica.app.presentation.dto;
 
-import com.clinicadermatologica.app.domain.model.AppointmentStatus; // Enum de estados
-import lombok.*; // Generadores Lombok
+import com.clinicadermatologica.app.domain.model.AppointmentStatus;
+import lombok.*;
 
-import java.math.BigDecimal; // Precisión decimal
-import java.time.Instant; // Tiempo UTC
+import java.math.BigDecimal;
+import java.time.Instant;
 
 /**
  * DTO de respuesta detallada de una cita o turno.
  */
-@Getter // Genera getters
-@Setter // Genera setters
-@Builder // Habilita Builder
-@NoArgsConstructor // Constructor vacío
-@AllArgsConstructor // Constructor completo
+@Getter
+@Setter
+@Builder
+@NoArgsConstructor
+@AllArgsConstructor
 public class AppointmentResponseDTO {
     private Long id;
     private Long patientId;
@@ -26,7 +26,5 @@ public class AppointmentResponseDTO {
     private Instant endTime;
     private AppointmentStatus status;
     private BigDecimal agreedPrice;
-    private Instant temporaryHoldDeadline;
-    private Integer rescheduleCount;
-    private Long version;
+    private Long followUpToId; // ID de la cita de origen (null si es cita independiente)
 }

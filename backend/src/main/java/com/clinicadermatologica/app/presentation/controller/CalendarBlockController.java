@@ -20,7 +20,7 @@ import java.util.List; // Listas
 @RestController // Controlador REST
 @RequestMapping("/bloqueos") // Ruta /api/v1/bloqueos
 @RequiredArgsConstructor // Inyección por constructor
-@PreAuthorize("hasAnyRole('ADMIN', 'PHYSICIAN')") // Exige rol ADMIN o PHYSICIAN
+@PreAuthorize("hasAnyRole('ADMIN', 'DOCTORA')") // Bloqueos gestionados por ADMIN o DOCTORA
 public class CalendarBlockController {
 
     private final CalendarBlockService blockService; // Inyección del servicio

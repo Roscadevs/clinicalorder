@@ -1,74 +1,78 @@
 package com.clinicadermatologica.app.application.service;
 
-import com.clinicadermatologica.app.domain.exception.*; // Excepciones de negocio
-import com.clinicadermatologica.app.domain.model.*; // Entidades del dominio
-import com.clinicadermatologica.app.domain.repository.*; // Repositorios del dominio
-import com.clinicadermatologica.app.presentation.dto.*; // DTOs
-import com.fasterxml.jackson.databind.ObjectMapper; // Serializador JSON para snapshots de auditoría
-import lombok.RequiredArgsConstructor; // Inyección por constructor
-import lombok.extern.slf4j.Slf4j; // Logger
-import org.springframework.stereotype.Service; // Servicio Spring
-import org.springframework.transaction.annotation.Transactional; // Transacciones ACID
+import com.clinicadermatologica.app.domain.exception.*;
+import com.clinicadermatologica.app.domain.model.*;
+import com.clinicadermatologica.app.domain.repository.*;
+import com.clinicadermatologica.app.infrastructure.security.AesEncryptionService;
+import com.clinicadermatologica.app.presentation.dto.*;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
-import java.util.List; // Colección de lista
-import java.util.stream.Collectors; // Streams
+import java.security.GeneralSecurityException;
+import java.util.List;
+import java.util.stream.Collectors;
 
 /**
- * Servicio de Aplicación para Historias Clínicas, Notas de Evolución y Auditoría Inmutable.
- * Exclusivo para Médicas (Physicians).
+ * Servicio de Aplicacion para Historias Clinicas, Entradas Clinicas y Auditoria Inmutable.
+ * Exclusivo para Doctoras (rol DOCTORA).
+ *
+ * SEGURIDAD:
+ * - physicalExamination y ClinicalEntry.content se cifran con AES-256-GCM antes de persistir.
+ * - El descifrado ocurre exclusivamente en este servicio; DTOs y controladores solo manejan texto en claro.
+ * - Los snapshots de auditoria en ClinicalEntryAudit tambien se almacenan cifrados.
  */
-@Service // Componente de servicio Spring
-@RequiredArgsConstructor // Inyección por constructor
-@Slf4j // Logger
+@Service
+@RequiredArgsConstructor
+@Slf4j
 public class MedicalRecordService {
 
-    private final MedicalRecordRepository medicalRecordRepository; // Repositorio de historias
-    private final ClinicalEntryRepository clinicalEntryRepository; // Repositorio de evoluciones
-    private final PatientRepository patientRepository; // Repositorio de pacientes
-    private final AppointmentRepository appointmentRepository; // Repositorio de turnos
-    private final UserRepository userRepository; // Repositorio de usuarios
-    private final ObjectMapper objectMapper; // Serializador JSON Jackson
+    private final MedicalRecordRepository medicalRecordRepository;
+    private final ClinicalEntryRepository clinicalEntryRepository;
+    private final PatientRepository patientRepository;
+    private final AppointmentRepository appointmentRepository;
+    private final UserRepository userRepository;
+    private final AlergiaRepository alergiaRepository;
+    private final AntecedentePatologicoRepository antecedentePatologicoRepository;
+    private final HabitoRepository habitoRepository;
+    private final AesEncryptionService aesEncryptionService; // Singleton — AES-256-GCM
+    private final ObjectMapper objectMapper;
 
-    /**
-     * Consulta la historia clínica completa de un paciente por su ID.
-     */
-    @Transactional(readOnly = true) // Solo lectura
+    // ─── HISTORIA CLINICA ───────────────────────────────────────────────────────
+
+    @Transactional(readOnly = true)
     public MedicalRecordDTO getMedicalRecordByPatientId(Long patientId) {
         return medicalRecordRepository.findByPatientId(patientId)
                 .map(this::mapRecordToDTO)
-                .orElse(null); // Retorna null si es la primera consulta y aún no tiene ficha creada
+                .orElse(null);
     }
 
-    /**
-     * Crea o actualiza la ficha médica general, registrando automáticamente la auditoría de cambios.
-     */
-    @Transactional // Transacción ACID: la actualización y la auditoría ocurren atómicamente
+    @Transactional
     public MedicalRecordDTO saveOrUpdateMedicalRecord(Long patientId, MedicalRecordDTO dto, Long physicianUserId) {
         Patient patient = patientRepository.findById(patientId)
                 .orElseThrow(() -> new ResourceNotFoundException("Paciente no encontrado"));
 
         User physician = userRepository.findById(physicianUserId)
-                .orElseThrow(() -> new ResourceNotFoundException("Médica no encontrada"));
+                .orElseThrow(() -> new ResourceNotFoundException("Medica no encontrada"));
 
         MedicalRecord record = medicalRecordRepository.findByPatientId(patientId).orElse(null);
 
         if (record == null) {
-            // Creación inicial de la historia clínica
             record = MedicalRecord.builder()
                     .patient(patient)
                     .createdByUser(physician)
                     .build();
             applyDtoToEntity(dto, record);
             record = medicalRecordRepository.save(record);
-            log.info("Historia clínica #{} creada para paciente #{} por médica {}", record.getId(), patientId, physician.getUsername());
+            log.info("Historia clinica #{} creada para paciente #{}", record.getId(), patientId);
         } else {
-            // Modificación: Captura el estado previo para la tabla de auditoría
             try {
                 String previousJson = objectMapper.writeValueAsString(mapRecordToDTO(record));
                 applyDtoToEntity(dto, record);
                 String newJson = objectMapper.writeValueAsString(mapRecordToDTO(record));
 
-                // Registra la fila inmutable en historia_clinica_audit
                 MedicalRecordAudit audit = MedicalRecordAudit.builder()
                         .medicalRecord(record)
                         .modifiedByUser(physician)
@@ -79,141 +83,233 @@ public class MedicalRecordService {
 
                 medicalRecordRepository.saveAudit(audit);
                 record = medicalRecordRepository.save(record);
-                log.info("Historia clínica #{} actualizada con auditoría por médica {}", record.getId(), physician.getUsername());
+                log.info("Historia clinica #{} actualizada con auditoria", record.getId());
             } catch (Exception e) {
-                log.error("Error al serializar auditoría de historia clínica: {}", e.getMessage());
-                throw new BusinessRuleException("Error al generar registro de auditoría clínica");
+                log.error("Error al serializar auditoria de historia clinica: {}", e.getMessage());
+                throw new BusinessRuleException("Error al generar registro de auditoria clinica");
             }
         }
 
         return mapRecordToDTO(record);
     }
 
-    /**
-     * Redacta una nueva nota de evolución clínica para una sesión/turno específico.
-     */
-    @Transactional // Transacción ACID
-    public ClinicalEntryResponseDTO addClinicalEntry(ClinicalEntryRequestDTO request, Long physicianUserId) {
-        MedicalRecord record = medicalRecordRepository.findById(request.getMedicalRecordId())
-                .orElseThrow(() -> new ResourceNotFoundException("Historia clínica no encontrada"));
+    // ─── ENTRADAS CLINICAS ──────────────────────────────────────────────────────
 
+    @Transactional
+    public ClinicalEntryResponseDTO addClinicalEntry(ClinicalEntryRequestDTO request, Long physicianUserId) {
         Appointment appointment = appointmentRepository.findById(request.getAppointmentId())
                 .orElseThrow(() -> new ResourceNotFoundException("Turno no encontrado"));
 
         User author = userRepository.findById(physicianUserId)
-                .orElseThrow(() -> new ResourceNotFoundException("Médica autora no encontrada"));
+                .orElseThrow(() -> new ResourceNotFoundException("Medica autora no encontrada"));
+
+        // El paciente se deriva del turno — no se acepta un patientId externo
+        Patient patient = appointment.getPatient();
+
+        byte[] encryptedContent = encrypt(request.getContent());
 
         ClinicalEntry entry = ClinicalEntry.builder()
-                .medicalRecord(record)
+                .patient(patient)
                 .appointment(appointment)
                 .authorUser(author)
-                .content(request.getContent())
+                .content(encryptedContent)
                 .build();
 
         return mapEntryToDTO(clinicalEntryRepository.save(entry));
     }
 
-    /**
-     * Edita una nota de evolución previa, registrando atómicamente la auditoría del cambio.
-     */
-    @Transactional // Transacción ACID
+    @Transactional
     public ClinicalEntryResponseDTO updateClinicalEntry(Long entryId, String newContent, Long physicianUserId) {
         ClinicalEntry entry = clinicalEntryRepository.findById(entryId)
-                .orElseThrow(() -> new ResourceNotFoundException("Nota clínica no encontrada con ID " + entryId));
+                .orElseThrow(() -> new ResourceNotFoundException("Nota clinica no encontrada con ID " + entryId));
 
         User physician = userRepository.findById(physicianUserId)
-                .orElseThrow(() -> new ResourceNotFoundException("Médica no encontrada"));
+                .orElseThrow(() -> new ResourceNotFoundException("Medica no encontrada"));
 
-        // Guarda el snapshot de auditoría con el texto original
+        byte[] encryptedNew = encrypt(newContent);
+
+        // Auditoria: ambos snapshots almacenados cifrados
         ClinicalEntryAudit audit = ClinicalEntryAudit.builder()
                 .clinicalEntry(entry)
                 .modifiedByUser(physician)
-                .previousContent(entry.getContent())
-                .newContent(newContent)
+                .previousContent(entry.getContent()) // ya cifrado
+                .newContent(encryptedNew)
                 .build();
 
         clinicalEntryRepository.saveAudit(audit);
-
-        // Actualiza el contenido de la nota
-        entry.setContent(newContent);
+        entry.setContent(encryptedNew);
         return mapEntryToDTO(clinicalEntryRepository.save(entry));
     }
 
-    /**
-     * Consulta todas las notas de evolución médica de una historia clínica.
-     */
     @Transactional(readOnly = true)
-    public List<ClinicalEntryResponseDTO> getClinicalEntries(Long medicalRecordId) {
-        return clinicalEntryRepository.findByMedicalRecordId(medicalRecordId).stream()
+    public List<ClinicalEntryResponseDTO> getClinicalEntriesByPatient(Long patientId) {
+        return clinicalEntryRepository.findByPatientId(patientId).stream()
                 .map(this::mapEntryToDTO)
                 .collect(Collectors.toList());
     }
 
+    // ─── ALERGIAS ────────────────────────────────────────────────────────────────
+
+    @Transactional
+    public AlergiaResponseDTO addAlergia(Long medicalRecordId, AlergiaRequestDTO dto) {
+        MedicalRecord record = medicalRecordRepository.findById(medicalRecordId)
+                .orElseThrow(() -> new ResourceNotFoundException("Historia clinica no encontrada"));
+
+        AlergiaId id = new AlergiaId(medicalRecordId, dto.getTipo().trim());
+        if (alergiaRepository.existsById(id)) {
+            throw new DuplicateResourceException(
+                    "Ya existe una alergia de tipo '" + dto.getTipo() + "' en esta historia clinica");
+        }
+
+        Alergia alergia = Alergia.builder()
+                .id(id)
+                .medicalRecord(record)
+                .observaciones(dto.getObservaciones())
+                .build();
+
+        return mapAlergiaToDTO(alergiaRepository.save(alergia));
+    }
+
+    @Transactional
+    public void removeAlergia(Long medicalRecordId, String tipo) {
+        AlergiaId id = new AlergiaId(medicalRecordId, tipo.trim());
+        if (!alergiaRepository.existsById(id)) {
+            throw new ResourceNotFoundException(
+                    "Alergia de tipo '" + tipo + "' no encontrada en esta historia clinica");
+        }
+        alergiaRepository.delete(id);
+    }
+
+    // ─── ANTECEDENTES PATOLOGICOS ────────────────────────────────────────────────
+
+    @Transactional
+    public AntecedentePatologicoResponseDTO addAntecedentePatologico(Long medicalRecordId,
+                                                                      AntecedentePatologicoRequestDTO dto) {
+        MedicalRecord record = medicalRecordRepository.findById(medicalRecordId)
+                .orElseThrow(() -> new ResourceNotFoundException("Historia clinica no encontrada"));
+
+        AntecedentePatologicoId id = new AntecedentePatologicoId(medicalRecordId, dto.getTipo().trim());
+        if (antecedentePatologicoRepository.existsById(id)) {
+            throw new DuplicateResourceException(
+                    "Ya existe un antecedente de tipo '" + dto.getTipo() + "' en esta historia clinica");
+        }
+
+        AntecedentePatologico ap = AntecedentePatologico.builder()
+                .id(id)
+                .medicalRecord(record)
+                .observaciones(dto.getObservaciones())
+                .build();
+
+        return mapAntecedenteToDTO(antecedentePatologicoRepository.save(ap));
+    }
+
+    @Transactional
+    public void removeAntecedentePatologico(Long medicalRecordId, String tipo) {
+        AntecedentePatologicoId id = new AntecedentePatologicoId(medicalRecordId, tipo.trim());
+        if (!antecedentePatologicoRepository.existsById(id)) {
+            throw new ResourceNotFoundException(
+                    "Antecedente de tipo '" + tipo + "' no encontrado en esta historia clinica");
+        }
+        antecedentePatologicoRepository.delete(id);
+    }
+
+    // ─── HABITOS ─────────────────────────────────────────────────────────────────
+
+    @Transactional
+    public HabitoResponseDTO addHabito(Long medicalRecordId, HabitoRequestDTO dto) {
+        MedicalRecord record = medicalRecordRepository.findById(medicalRecordId)
+                .orElseThrow(() -> new ResourceNotFoundException("Historia clinica no encontrada"));
+
+        HabitoId id = new HabitoId(medicalRecordId, dto.getTipo().trim());
+        if (habitoRepository.existsById(id)) {
+            throw new DuplicateResourceException(
+                    "Ya existe un habito de tipo '" + dto.getTipo() + "' en esta historia clinica");
+        }
+
+        Habito habito = Habito.builder()
+                .id(id)
+                .medicalRecord(record)
+                .observaciones(dto.getObservaciones())
+                .build();
+
+        return mapHabitoToDTO(habitoRepository.save(habito));
+    }
+
+    @Transactional
+    public void removeHabito(Long medicalRecordId, String tipo) {
+        HabitoId id = new HabitoId(medicalRecordId, tipo.trim());
+        if (!habitoRepository.existsById(id)) {
+            throw new ResourceNotFoundException(
+                    "Habito de tipo '" + tipo + "' no encontrado en esta historia clinica");
+        }
+        habitoRepository.delete(id);
+    }
+
+    // ─── HELPERS DE CIFRADO ──────────────────────────────────────────────────────
+
+    private byte[] encrypt(String plaintext) {
+        try {
+            return aesEncryptionService.encrypt(plaintext);
+        } catch (GeneralSecurityException e) {
+            log.error("Error al cifrar contenido clinico: {}", e.getMessage());
+            throw new BusinessRuleException("Error interno al procesar contenido clinico");
+        }
+    }
+
+    private String decrypt(byte[] ciphertext) {
+        if (ciphertext == null) return null;
+        try {
+            return aesEncryptionService.decrypt(ciphertext);
+        } catch (GeneralSecurityException e) {
+            log.error("Error al descifrar contenido clinico: {}", e.getMessage());
+            throw new BusinessRuleException("Error interno al recuperar contenido clinico");
+        }
+    }
+
+    // ─── MAPPERS ─────────────────────────────────────────────────────────────────
+
     private void applyDtoToEntity(MedicalRecordDTO dto, MedicalRecord r) {
-        r.setHasHta(dto.getHasHta() != null ? dto.getHasHta() : false);
-        r.setHasDbt(dto.getHasDbt() != null ? dto.getHasDbt() : false);
-        r.setHasHypothyroidism(dto.getHasHypothyroidism() != null ? dto.getHasHypothyroidism() : false);
-        r.setHasHyperthyroidism(dto.getHasHyperthyroidism() != null ? dto.getHasHyperthyroidism() : false);
-        r.setHasAnemia(dto.getHasAnemia() != null ? dto.getHasAnemia() : false);
-        r.setHasAutoimmuneDiseases(dto.getHasAutoimmuneDiseases() != null ? dto.getHasAutoimmuneDiseases() : false);
-        r.setHasGlaucoma(dto.getHasGlaucoma() != null ? dto.getHasGlaucoma() : false);
-        r.setHasCoagulationDisorders(dto.getHasCoagulationDisorders() != null ? dto.getHasCoagulationDisorders() : false);
-        r.setHasScarringAlterations(dto.getHasScarringAlterations() != null ? dto.getHasScarringAlterations() : false);
-        r.setOtherPathological(dto.getOtherPathological());
-
-        r.setAllergyAnesthesia(dto.getAllergyAnesthesia() != null ? dto.getAllergyAnesthesia() : false);
-        r.setAllergyEgg(dto.getAllergyEgg() != null ? dto.getAllergyEgg() : false);
-        r.setAllergyFish(dto.getAllergyFish() != null ? dto.getAllergyFish() : false);
-        r.setOtherAllergies(dto.getOtherAllergies());
-
-        r.setHabitTobacco(dto.getHabitTobacco() != null ? dto.getHabitTobacco() : false);
-        r.setHabitAlcohol(dto.getHabitAlcohol() != null ? dto.getHabitAlcohol() : false);
-        r.setHabitSunExposure(dto.getHabitSunExposure() != null ? dto.getHabitSunExposure() : false);
-        r.setHabitSpfUse(dto.getHabitSpfUse() != null ? dto.getHabitSpfUse() : false);
-
-        r.setSurgicalHistory(dto.getSurgicalHistory());
+        r.setFitzpatrickPhototype(dto.getFitzpatrickPhototype());
+        r.setPhysicalExamination(
+                dto.getPhysicalExamination() != null ? encrypt(dto.getPhysicalExamination()) : null);
+        r.setInformedConsentSigned(dto.getInformedConsentSigned() != null ? dto.getInformedConsentSigned() : false);
         r.setGynecologicalHistory(dto.getGynecologicalHistory());
+        r.setSurgicalHistory(dto.getSurgicalHistory());
         r.setCurrentMedications(dto.getCurrentMedications());
         r.setPreviousAestheticTreatments(dto.getPreviousAestheticTreatments());
-
-        r.setFitzpatrickPhototype(dto.getFitzpatrickPhototype());
-        r.setPhysicalExamination(dto.getPhysicalExamination());
-        r.setTreatmentPlan(dto.getTreatmentPlan());
-        r.setInformedConsentSigned(dto.getInformedConsentSigned() != null ? dto.getInformedConsentSigned() : false);
     }
 
     private MedicalRecordDTO mapRecordToDTO(MedicalRecord r) {
+        List<AlergiaResponseDTO> alergias = alergiaRepository
+                .findByMedicalRecordId(r.getId()).stream()
+                .map(this::mapAlergiaToDTO)
+                .collect(Collectors.toList());
+
+        List<AntecedentePatologicoResponseDTO> antecedentes = antecedentePatologicoRepository
+                .findByMedicalRecordId(r.getId()).stream()
+                .map(this::mapAntecedenteToDTO)
+                .collect(Collectors.toList());
+
+        List<HabitoResponseDTO> habitos = habitoRepository
+                .findByMedicalRecordId(r.getId()).stream()
+                .map(this::mapHabitoToDTO)
+                .collect(Collectors.toList());
+
         return MedicalRecordDTO.builder()
                 .id(r.getId())
                 .patientId(r.getPatient().getId())
                 .patientName(r.getPatient().getName())
                 .patientDni(r.getPatient().getDni())
-                .hasHta(r.getHasHta())
-                .hasDbt(r.getHasDbt())
-                .hasHypothyroidism(r.getHasHypothyroidism())
-                .hasHyperthyroidism(r.getHasHyperthyroidism())
-                .hasAnemia(r.getHasAnemia())
-                .hasAutoimmuneDiseases(r.getHasAutoimmuneDiseases())
-                .hasGlaucoma(r.getHasGlaucoma())
-                .hasCoagulationDisorders(r.getHasCoagulationDisorders())
-                .hasScarringAlterations(r.getHasScarringAlterations())
-                .otherPathological(r.getOtherPathological())
-                .allergyAnesthesia(r.getAllergyAnesthesia())
-                .allergyEgg(r.getAllergyEgg())
-                .allergyFish(r.getAllergyFish())
-                .otherAllergies(r.getOtherAllergies())
-                .habitTobacco(r.getHabitTobacco())
-                .habitAlcohol(r.getHabitAlcohol())
-                .habitSunExposure(r.getHabitSunExposure())
-                .habitSpfUse(r.getHabitSpfUse())
-                .surgicalHistory(r.getSurgicalHistory())
+                .fitzpatrickPhototype(r.getFitzpatrickPhototype())
+                .physicalExamination(decrypt(r.getPhysicalExamination()))
+                .informedConsentSigned(r.getInformedConsentSigned())
                 .gynecologicalHistory(r.getGynecologicalHistory())
+                .surgicalHistory(r.getSurgicalHistory())
                 .currentMedications(r.getCurrentMedications())
                 .previousAestheticTreatments(r.getPreviousAestheticTreatments())
-                .fitzpatrickPhototype(r.getFitzpatrickPhototype())
-                .physicalExamination(r.getPhysicalExamination())
-                .treatmentPlan(r.getTreatmentPlan())
-                .informedConsentSigned(r.getInformedConsentSigned())
+                .alergias(alergias)
+                .antecedentesPatologicos(antecedentes)
+                .habitos(habitos)
                 .createdAt(r.getCreatedAt())
                 .updatedAt(r.getUpdatedAt())
                 .build();
@@ -222,13 +318,44 @@ public class MedicalRecordService {
     private ClinicalEntryResponseDTO mapEntryToDTO(ClinicalEntry e) {
         return ClinicalEntryResponseDTO.builder()
                 .id(e.getId())
-                .medicalRecordId(e.getMedicalRecord().getId())
+                .patientId(e.getPatient().getId())
                 .appointmentId(e.getAppointment().getId())
+                .serviceName(e.getAppointment().getService() != null ? e.getAppointment().getService().getName() : null)
                 .authorUserId(e.getAuthorUser().getId())
                 .authorFullName(e.getAuthorUser().getFullName())
-                .content(e.getContent())
+                .content(decrypt(e.getContent()))
                 .createdAt(e.getCreatedAt())
                 .updatedAt(e.getUpdatedAt())
+                .build();
+    }
+
+    private AlergiaResponseDTO mapAlergiaToDTO(Alergia a) {
+        return AlergiaResponseDTO.builder()
+                .medicalRecordId(a.getId().getMedicalRecordId())
+                .tipo(a.getId().getTipo())
+                .observaciones(a.getObservaciones())
+                .createdAt(a.getCreatedAt())
+                .updatedAt(a.getUpdatedAt())
+                .build();
+    }
+
+    private AntecedentePatologicoResponseDTO mapAntecedenteToDTO(AntecedentePatologico ap) {
+        return AntecedentePatologicoResponseDTO.builder()
+                .medicalRecordId(ap.getId().getMedicalRecordId())
+                .tipo(ap.getId().getTipo())
+                .observaciones(ap.getObservaciones())
+                .createdAt(ap.getCreatedAt())
+                .updatedAt(ap.getUpdatedAt())
+                .build();
+    }
+
+    private HabitoResponseDTO mapHabitoToDTO(Habito h) {
+        return HabitoResponseDTO.builder()
+                .medicalRecordId(h.getId().getMedicalRecordId())
+                .tipo(h.getId().getTipo())
+                .observaciones(h.getObservaciones())
+                .createdAt(h.getCreatedAt())
+                .updatedAt(h.getUpdatedAt())
                 .build();
     }
 }

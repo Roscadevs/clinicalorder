@@ -1,41 +1,43 @@
 package com.clinicadermatologica.app.infrastructure.security;
 
-import com.clinicadermatologica.app.domain.model.User; // Entidad User del dominio
-import com.clinicadermatologica.app.domain.repository.UserRepository; // Interfaz UserRepository
-import lombok.RequiredArgsConstructor; // Inyección por constructor
-import org.springframework.security.core.authority.SimpleGrantedAuthority; // Representa un rol/autoridad en Spring Security
-import org.springframework.security.core.userdetails.*; // Interfaces estándar de Spring Security para autenticación
-import org.springframework.stereotype.Service; // Anotación de servicio Spring
+import com.clinicadermatologica.app.domain.model.User;
+import com.clinicadermatologica.app.domain.repository.UserRepository;
+import lombok.RequiredArgsConstructor;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
+import org.springframework.security.core.userdetails.*;
+import org.springframework.stereotype.Service;
 
-import java.util.Collections; // Utilidad de colecciones
+import java.util.Collections;
 
 /**
  * Servicio que implementa UserDetailsService para cargar las credenciales y roles del usuario desde la BD.
+ *
+ * SEGURIDAD (RBAC):
+ * - El rol del usuario se prefija con 'ROLE_' según la convención de Spring Security.
+ * - La cuenta se considera activa/inactiva según el campo User.active.
+ * - No existen campos de bloqueo temporal; la habilitación de la cuenta depende únicamente de User.active.
  */
-@Service // Componente de servicio Spring
-@RequiredArgsConstructor // Inyección por constructor de dependencias
+@Service
+@RequiredArgsConstructor
 public class CustomUserDetailsService implements UserDetailsService {
 
-    private final UserRepository userRepository; // Inyección del repositorio de usuarios
+    private final UserRepository userRepository;
 
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        // Busca al usuario en la base de datos Supabase
         User user = userRepository.findByUsername(username)
-                .orElseThrow(() -> new UsernameNotFoundException("Usuario no encontrado con nombre de usuario: " + username));
+                .orElseThrow(() -> new UsernameNotFoundException("Usuario no encontrado: " + username));
 
-        // Asigna el rol con el prefijo obligatorio 'ROLE_' requerido por Spring Security
         SimpleGrantedAuthority authority = new SimpleGrantedAuthority("ROLE_" + user.getRole().name());
 
-        // Retorna la instancia de UserDetails estándar de Spring Security
         return new org.springframework.security.core.userdetails.User(
                 user.getUsername(),
                 user.getPasswordHash(),
-                user.getActive(), // enabled
-                true, // accountNonExpired
-                true, // credentialsNonExpired
-                user.getLockedUntil() == null || java.time.Instant.now().isAfter(user.getLockedUntil()), // accountNonLocked
-                Collections.singletonList(authority) // Lista con el rol del usuario
+                user.getActive(), // enabled — cuenta activa o suspendida
+                true,             // accountNonExpired
+                true,             // credentialsNonExpired
+                true,             // accountNonLocked — el bloqueo temporal fue eliminado de la especificación
+                Collections.singletonList(authority)
         );
     }
 }
