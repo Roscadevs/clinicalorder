@@ -1,15 +1,18 @@
 package com.clinicadermatologica.app.infrastructure.persistence.jpa;
 
-import com.clinicadermatologica.app.domain.model.ClinicalImage; // Entidad ClinicalImage
-import org.springframework.data.jpa.repository.JpaRepository; // Spring Data JPA
-import org.springframework.stereotype.Repository; // Componente de repositorio
+import com.clinicadermatologica.app.domain.model.ClinicalImage;
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.stereotype.Repository;
 
-import java.util.List; // Colección de lista
+import java.util.List;
 
 /**
  * Repositorio Spring Data JPA para la entidad ClinicalImage.
+ * Delegado por ClinicalImageRepositoryAdapter (DAO Implementation).
  */
-@Repository // Componente Spring Data
+@Repository
 public interface JpaClinicalImageRepository extends JpaRepository<ClinicalImage, Long> {
-    List<ClinicalImage> findByMedicalRecordIdOrderByUploadedAtDesc(Long medicalRecordId); // Fotos ordenadas por fecha
+
+    /** Fotografías asociadas a una entrada clínica concreta, ordenadas por fecha de carga descendente. */
+    List<ClinicalImage> findByClinicalEntryIdOrderByUploadedAtDesc(Long clinicalEntryId);
 }

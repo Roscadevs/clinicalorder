@@ -1,19 +1,23 @@
 package com.clinicadermatologica.app.domain.repository;
 
-import com.clinicadermatologica.app.domain.model.ClinicalEntry; // Entidad ClinicalEntry
-import com.clinicadermatologica.app.domain.model.ClinicalEntryAudit; // Entidad de auditoría
+import com.clinicadermatologica.app.domain.model.ClinicalEntry;
+import com.clinicadermatologica.app.domain.model.ClinicalEntryAudit;
 
-import java.util.List; // Colección de lista
-import java.util.Optional; // Contenedor opcional
+import java.util.List;
+import java.util.Optional;
 
 /**
- * Contrato de repositorio del dominio para notas de evolución clínica y su pista de auditoría.
+ * PATRÓN DAO — Contrato de acceso a datos para notas de evolución clínica y su pista de auditoría.
+ *
+ * Esta interfaz define el contrato de acceso a datos para ClinicalEntry.
+ * Los servicios dependen únicamente de esta interfaz; nunca del adaptador ni del JPA directo.
+ * La implementación concreta reside en ClinicalEntryRepositoryAdapter.
  */
 public interface ClinicalEntryRepository {
-    Optional<ClinicalEntry> findById(Long id); // Búsqueda de nota por ID
-    List<ClinicalEntry> findByMedicalRecordId(Long medicalRecordId); // Todas las evoluciones de una historia
-    Optional<ClinicalEntry> findByAppointmentId(Long appointmentId); // Evolución ligada a un turno
-    ClinicalEntry save(ClinicalEntry entry); // Guarda o actualiza la nota de evolución
-    ClinicalEntryAudit saveAudit(ClinicalEntryAudit audit); // Guarda el registro de auditoría de la nota
-    List<ClinicalEntryAudit> findAuditByEntryId(Long entryId); // Historial de ediciones de una nota
+    Optional<ClinicalEntry> findById(Long id);
+    List<ClinicalEntry> findByPatientId(Long patientId);       // Entradas por paciente (reemplaza findByMedicalRecordId)
+    Optional<ClinicalEntry> findByAppointmentId(Long appointmentId);
+    ClinicalEntry save(ClinicalEntry entry);
+    ClinicalEntryAudit saveAudit(ClinicalEntryAudit audit);
+    List<ClinicalEntryAudit> findAuditByEntryId(Long entryId);
 }

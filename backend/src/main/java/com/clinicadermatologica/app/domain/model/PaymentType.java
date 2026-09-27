@@ -1,10 +1,13 @@
 package com.clinicadermatologica.app.domain.model;
 
 /**
- * Enumeración que define el tipo de pago de una cita.
+ * Enumeración que define el tipo (canal) de pago utilizado en una transacción.
+ *
+ * Se complementa con PaymentConcept (propósito del pago: DEPOSIT, BALANCE, FULL).
+ * PaymentType describe CÓMO se paga; PaymentConcept describe PARA QUÉ se paga.
  */
 public enum PaymentType {
-    DEPOSIT_50,       // Seña del 50% abonada online vía MercadoPago para confirmar la reserva
-    FINAL_BALANCE_50, // Saldo restante del 50% abonado al concluir la sesión clínica
-    FULL_PAYMENT      // Pago del 100% total en una única transacción
+    MERCADOPAGO,    // Pago procesado en línea a través de la plataforma MercadoPago (billetera digital)
+    CASH,           // Pago en efectivo registrado manualmente en el mostrador
+    BANK_TRANSFER   // Pago por transferencia bancaria registrado manualmente en el mostrador
 }

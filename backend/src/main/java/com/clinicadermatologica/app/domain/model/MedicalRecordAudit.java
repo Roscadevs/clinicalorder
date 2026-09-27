@@ -39,7 +39,7 @@ public class MedicalRecordAudit {
     @Column(name = "new_values", nullable = false, columnDefinition = "jsonb") // Snapshot nuevo en JSONB
     private String newValues;
 
-    @CreationTimestamp // Timestamp inmutable del evento de auditoría
-    @Column(name = "modified_at", nullable = false, updatable = false)
-    private Instant modifiedAt;
+    @CreationTimestamp // Timestamp inmutable del evento de auditoría (columna HCA-updated_at según especificación)
+    @Column(name = "updated_at", nullable = false, updatable = false)
+    private Instant updatedAt;
 }

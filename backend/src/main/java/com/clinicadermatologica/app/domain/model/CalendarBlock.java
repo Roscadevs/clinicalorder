@@ -32,7 +32,7 @@ public class CalendarBlock {
     @Column(name = "end_time", nullable = false) // Fecha y hora de finalización
     private Instant endTime;
 
-    @Column(name = "reason", nullable = false, length = 255) // Motivo del bloqueo
+    @Column(name = "reason", nullable = true, length = 255) // Motivo del bloqueo (opcional)
     private String reason;
 
     @CreationTimestamp // Fecha automática de alta

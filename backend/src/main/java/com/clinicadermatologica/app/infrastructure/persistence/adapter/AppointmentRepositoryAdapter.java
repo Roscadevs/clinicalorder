@@ -1,57 +1,57 @@
 package com.clinicadermatologica.app.infrastructure.persistence.adapter;
 
-import com.clinicadermatologica.app.domain.model.Appointment; // Entidad Appointment
-import com.clinicadermatologica.app.domain.model.AppointmentStatus; // Enum de estados
-import com.clinicadermatologica.app.domain.repository.AppointmentRepository; // Interfaz del dominio
-import com.clinicadermatologica.app.infrastructure.persistence.jpa.JpaAppointmentRepository; // Repositorio JPA
-import lombok.RequiredArgsConstructor; // Inyección por constructor
-import org.springframework.stereotype.Component; // Componente Spring
+import com.clinicadermatologica.app.domain.model.Appointment;
+import com.clinicadermatologica.app.domain.model.AppointmentStatus;
+import com.clinicadermatologica.app.domain.repository.AppointmentRepository;
+import com.clinicadermatologica.app.infrastructure.persistence.jpa.JpaAppointmentRepository;
+import lombok.RequiredArgsConstructor;
+import org.springframework.stereotype.Component;
 
-import java.time.Instant; // Tipos de tiempo UTC
-import java.util.List; // Colección de lista
-import java.util.Optional; // Contenedor opcional
+import java.time.Instant;
+import java.util.List;
+import java.util.Optional;
 
 /**
- * Adaptador de persistencia para la gestión de turnos y control de concurrencia optimista.
+ * PATRÓN DAO — Implementación concreta del contrato AppointmentRepository.
+ *
+ * Este adaptador actúa como la capa DAO entre el dominio y la infraestructura de persistencia.
+ * Traduce el contrato definido en la interfaz AppointmentRepository hacia las operaciones
+ * específicas de Spring Data JPA (JpaAppointmentRepository), manteniendo al dominio
+ * completamente desacoplado de la tecnología de persistencia subyacente.
  */
-@Component // Componente Spring
-@RequiredArgsConstructor // Inyección por constructor
+@Component
+@RequiredArgsConstructor
 public class AppointmentRepositoryAdapter implements AppointmentRepository {
 
-    private final JpaAppointmentRepository jpaRepository; // Inyección del repositorio JPA
+    private final JpaAppointmentRepository jpaRepository;
 
     @Override
     public Optional<Appointment> findById(Long id) {
-        return jpaRepository.findById(id); // Delega la búsqueda
+        return jpaRepository.findById(id);
     }
 
     @Override
     public List<Appointment> findByPatientId(Long patientId) {
-        return jpaRepository.findByPatientIdOrderByStartTimeDesc(patientId); // Historial por paciente
+        return jpaRepository.findByPatientIdOrderByStartTimeDesc(patientId);
     }
 
     @Override
     public List<Appointment> findOverlappingAppointments(Instant start, Instant end) {
-        return jpaRepository.findOverlappingActiveAppointments(start, end, Instant.now()); // Chequea colisión horaria
+        return jpaRepository.findOverlappingActiveAppointments(start, end);
     }
 
     @Override
     public List<Appointment> findByDateRange(Instant start, Instant end) {
-        return jpaRepository.findByDateRange(start, end); // Rango de agenda
+        return jpaRepository.findByDateRange(start, end);
     }
 
     @Override
-    public List<Appointment> findByStatusAndTemporaryHoldDeadlineBefore(AppointmentStatus status, Instant now) {
-        return jpaRepository.findByStatusAndTemporaryHoldDeadlineBefore(status, now); // Turnos vencidos
+    public List<Appointment> findExpiredHolds(Instant createdBefore) {
+        return jpaRepository.findByStatusAndCreatedAtBefore(AppointmentStatus.PENDING_PAYMENT, createdBefore);
     }
 
     @Override
     public Appointment save(Appointment appointment) {
-        return jpaRepository.save(appointment); // Guarda la cita (@Version actúa aquí)
-    }
-
-    @Override
-    public int releaseExpiredHolds(Instant now) {
-        return jpaRepository.releaseExpiredHolds(now); // Actualización masiva
+        return jpaRepository.save(appointment);
     }
 }

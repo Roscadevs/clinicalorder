@@ -1,53 +1,57 @@
 package com.clinicadermatologica.app.infrastructure.persistence.adapter;
 
-import com.clinicadermatologica.app.domain.model.ClinicalEntry; // Entidad ClinicalEntry
-import com.clinicadermatologica.app.domain.model.ClinicalEntryAudit; // Entidad de auditoría
-import com.clinicadermatologica.app.domain.repository.ClinicalEntryRepository; // Interfaz ClinicalEntryRepository
-import com.clinicadermatologica.app.infrastructure.persistence.jpa.JpaClinicalEntryAuditRepository; // JPA Audit
-import com.clinicadermatologica.app.infrastructure.persistence.jpa.JpaClinicalEntryRepository; // JPA Repository
-import lombok.RequiredArgsConstructor; // Inyección por constructor
-import org.springframework.stereotype.Component; // Componente Spring
+import com.clinicadermatologica.app.domain.model.ClinicalEntry;
+import com.clinicadermatologica.app.domain.model.ClinicalEntryAudit;
+import com.clinicadermatologica.app.domain.repository.ClinicalEntryRepository;
+import com.clinicadermatologica.app.infrastructure.persistence.jpa.JpaClinicalEntryAuditRepository;
+import com.clinicadermatologica.app.infrastructure.persistence.jpa.JpaClinicalEntryRepository;
+import lombok.RequiredArgsConstructor;
+import org.springframework.stereotype.Component;
 
-import java.util.List; // Colección de lista
-import java.util.Optional; // Contenedor opcional
+import java.util.List;
+import java.util.Optional;
 
 /**
- * Adaptador de infraestructura para las notas de evolución clínica y su auditoría.
+ * PATRÓN DAO — Implementación concreta del contrato ClinicalEntryRepository.
+ *
+ * Este adaptador actúa como la capa DAO entre el dominio y la infraestructura de persistencia.
+ * Traduce el contrato definido en ClinicalEntryRepository hacia las operaciones de Spring Data JPA,
+ * manteniendo al dominio completamente desacoplado de la tecnología de persistencia subyacente.
  */
-@Component // Componente Spring
-@RequiredArgsConstructor // Inyección por constructor
+@Component
+@RequiredArgsConstructor
 public class ClinicalEntryRepositoryAdapter implements ClinicalEntryRepository {
 
-    private final JpaClinicalEntryRepository jpaEntryRepository; // Inyección de JPA Repository
-    private final JpaClinicalEntryAuditRepository jpaAuditRepository; // Inyección de JPA Audit Repository
+    private final JpaClinicalEntryRepository jpaEntryRepository;
+    private final JpaClinicalEntryAuditRepository jpaAuditRepository;
 
     @Override
     public Optional<ClinicalEntry> findById(Long id) {
-        return jpaEntryRepository.findById(id); // Delega la búsqueda
+        return jpaEntryRepository.findById(id);
     }
 
     @Override
-    public List<ClinicalEntry> findByMedicalRecordId(Long medicalRecordId) {
-        return jpaEntryRepository.findByMedicalRecordIdOrderByCreatedAtDesc(medicalRecordId); // Evoluciones por historia
+    public List<ClinicalEntry> findByPatientId(Long patientId) {
+        return jpaEntryRepository.findByPatientIdOrderByCreatedAtDesc(patientId);
     }
 
     @Override
     public Optional<ClinicalEntry> findByAppointmentId(Long appointmentId) {
-        return jpaEntryRepository.findByAppointmentId(appointmentId); // Evolución ligada al turno
+        return jpaEntryRepository.findByAppointmentId(appointmentId);
     }
 
     @Override
     public ClinicalEntry save(ClinicalEntry entry) {
-        return jpaEntryRepository.save(entry); // Persiste la nota clínica
+        return jpaEntryRepository.save(entry);
     }
 
     @Override
     public ClinicalEntryAudit saveAudit(ClinicalEntryAudit audit) {
-        return jpaAuditRepository.save(audit); // Guarda el registro de auditoría
+        return jpaAuditRepository.save(audit);
     }
 
     @Override
     public List<ClinicalEntryAudit> findAuditByEntryId(Long entryId) {
-        return jpaAuditRepository.findByClinicalEntryIdOrderByModifiedAtDesc(entryId); // Historial de cambios
+        return jpaAuditRepository.findByClinicalEntryIdOrderByModifiedAtDesc(entryId);
     }
 }
