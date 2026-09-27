@@ -176,12 +176,22 @@ public class AppointmentService {
                 appointment.getId(),
                 service.getName(),
                 depositAmount,
-                patient.getEmail()
+                patient.getEmail(),
+                patient.getName(),
+                patient.getDni(),
+                patient.getPhone()
         );
 
         String preferenceId = preference != null ? preference.getId() : "MOCK-PREF-" + UUID.randomUUID();
-        String initPointUrl = preference != null ? preference.getInitPoint()
-                : "https://www.mercadopago.com.ar/checkout/v1/redirect?pref_id=" + preferenceId;
+        // Prioriza el punto de inicio de sandbox cuando la credencial es de prueba
+        String initPointUrl;
+        if (preference != null) {
+            initPointUrl = (preference.getSandboxInitPoint() != null && !preference.getSandboxInitPoint().isBlank())
+                    ? preference.getSandboxInitPoint()
+                    : preference.getInitPoint();
+        } else {
+            initPointUrl = "https://sandbox.mercadopago.com.ar/checkout/v1/redirect?pref_id=" + preferenceId;
+        }
 
         // Crea transacción PENDING con concepto DEPOSIT; el webhook la buscará por mpPreferenceId
         PaymentTransaction transaction = PaymentTransaction.builder()

@@ -163,6 +163,41 @@ public class PaymentServiceTest {
         assertEquals(PaymentStatus.REJECTED, pendingTx.getStatus());
     }
 
+    @Test
+    @DisplayName("Webhook con datos en query parameters debe procesarse igual")
+    void testWebhook_QueryParams_Approved() {
+        PaymentTransaction pendingTx = PaymentTransaction.builder()
+                .id(4L)
+                .appointment(mockAppointment)
+                .paymentType(PaymentType.MERCADOPAGO)
+                .paymentConcept(PaymentConcept.DEPOSIT)
+                .amount(new BigDecimal("21000.00"))
+                .status(PaymentStatus.PENDING)
+                .mpPreferenceId("PREF-QP-321")
+                .build();
+
+        // MercadoPago puede notificar sin cuerpo JSON, pasando el recurso por la query string
+        Map<String, String> queryParams = Map.of(
+                "topic", "payment",
+                "id", "987654321"
+        );
+
+        Payment mpPayment = mock(Payment.class);
+        when(mpPayment.getStatus()).thenReturn("approved");
+        when(mpPayment.getPreferenceId()).thenReturn("PREF-QP-321");
+
+        when(mercadoPagoAdapter.getPaymentDetails(987654321L)).thenReturn(mpPayment);
+        when(paymentTransactionRepository.findByMpPreferenceId("PREF-QP-321"))
+                .thenReturn(Optional.of(pendingTx));
+
+        boolean processed = paymentService.processMercadoPagoWebhook(null, queryParams, null, null);
+
+        assertTrue(processed);
+        assertEquals(AppointmentStatus.CONFIRMED, mockAppointment.getStatus());
+        assertEquals(PaymentStatus.APPROVED, pendingTx.getStatus());
+        assertEquals("987654321", pendingTx.getMpPaymentId());
+    }
+
     // ─── FINAL PAYMENT TESTS ─────────────────────────────────────────────────────
 
     @Test
@@ -312,3 +347,4 @@ public class PaymentServiceTest {
         assertSame(mpStrategy, factory.getStrategy(PaymentType.MERCADOPAGO));
     }
 }
+

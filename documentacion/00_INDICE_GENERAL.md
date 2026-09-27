@@ -12,6 +12,7 @@
 documentacion/
 │
 ├── 00_INDICE_GENERAL.md                                  # Este documento: Mapa y guía de lectura
+├── 📘 GUIA_MAESTRA_ESTANDAR_INGENIERIA_Y_AGENTES_IA.md   # Manual Maestro de Arquitectura, Requisitos y Agentes IA
 │
 ├── 📜 historial_prds/                                     # Historial cronológico de versiones del PRD
 │   ├── CHANGELOG_PRDS.md                                 # Registro de cambios, autores y versiones
@@ -77,6 +78,7 @@ documentacion/
 
 | Necesidad / Objetivo | Documento Recomendado | Ubicación |
 | :--- | :--- | :--- |
+| **📘 Manual Maestro de Ingeniería & Agentes IA** | [Guía Maestra de Ingeniería](file:///Users/eliasignaciodelcastillogodoy/Desktop/ProyectoIntegrador/documentacion/GUIA_MAESTRA_ESTANDAR_INGENIERIA_Y_AGENTES_IA.md) | `documentacion/` |
 | **PRD Vigente Completo (How I Spec)** | [PRD v10.0 Master Final](file:///Users/eliasignaciodelcastillogodoy/Desktop/ProyectoIntegrador/documentacion/historial_prds/PRD_v10.0_Fase10_Mobile_Responsive_Master.md) | `historial_prds/` |
 | **Diseño Mobile-First y Responsive UX** | [Fase 10: Diseño Mobile](file:///Users/eliasignaciodelcastillogodoy/Desktop/ProyectoIntegrador/documentacion/fase10_diseno_mobile_y_responsive/FASE_10_DISENO_MOBILE_Y_RESPONSIVE.md) | `fase10_diseno_mobile_y_responsive/` |
 | **Guía de Defensa Oral y Demo 7 min** | [Fase 9: Guía de Defensa](file:///Users/eliasignaciodelcastillogodoy/Desktop/ProyectoIntegrador/documentacion/fase9_guia_de_defensa_y_pitch/GUIA_DE_DEFENSA_Y_DEMOSTRACION.md) | `fase9_guia_de_defensa_y_pitch/` |

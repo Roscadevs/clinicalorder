@@ -9,6 +9,7 @@ import { PasswordRecoveryView } from './features/auth/PasswordRecoveryView';
 // Internal Views
 import { DashboardLayout } from './components/DashboardLayout';
 import { BookingWizard } from './features/appointments/BookingWizard';
+import { BookingSuccessView, BookingFailureView, BookingPendingView } from './features/appointments/BookingStatusViews';
 import { AgendaView } from './features/agenda/AgendaView';
 import { MedicalRecordView } from './features/clinical/MedicalRecordView';
 import { AdminServicesView } from './features/admin/AdminServicesView';
@@ -29,6 +30,9 @@ export function App() {
           </div>
         </div>
       } />
+      <Route path="/turnos/confirmado" element={<BookingSuccessView />} />
+      <Route path="/turnos/fallido" element={<BookingFailureView />} />
+      <Route path="/turnos/pendiente" element={<BookingPendingView />} />
       <Route path="/login" element={<LoginView />} />
       <Route path="/recover-password" element={<PasswordRecoveryView />} />
 
