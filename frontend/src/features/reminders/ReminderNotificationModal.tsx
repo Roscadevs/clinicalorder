@@ -1,6 +1,7 @@
 import React, { useState } from 'react'; // React hooks
 import { Bell, Calendar, Smartphone, X, CheckCircle, ExternalLink, Download } from 'lucide-react'; // Iconos
 import { generateGoogleCalendarUrl, downloadIcsCalendarFile } from '../../utils/calendarGenerator'; // Utilidades
+import { CLINIC } from '../../config/contact';
 
 interface ReminderNotificationModalProps {
   isOpen: boolean;
@@ -33,7 +34,7 @@ export const ReminderNotificationModal: React.FC<ReminderNotificationModalProps>
     id: appointmentData.id,
     title: appointmentData.serviceName,
     description: `Turno de ${appointmentData.serviceName} para ${appointmentData.patientName}. Seña abonada: $${appointmentData.depositAmount.toLocaleString()} ARS. Saldo restante a abonar en mostrador: $${(appointmentData.agreedPrice - appointmentData.depositAmount).toLocaleString()} ARS.`,
-    location: 'Consultorio Dra. Valeria Gómez, Av. Santa Fe 2450, Piso 4, CABA',
+    location: CLINIC.address || `Consultorio ${CLINIC.doctorName}`,
     startTime: appointmentData.startTime,
     durationMinutes: appointmentData.durationMinutes,
   };
@@ -81,7 +82,7 @@ export const ReminderNotificationModal: React.FC<ReminderNotificationModalProps>
           <div className="text-xs space-y-2 text-slate-200 leading-relaxed">
             <p>
               ¡Hola <strong>{appointmentData.patientName}</strong>! 🌿 Te recordamos tu cita de{' '}
-              <strong>{appointmentData.serviceName}</strong> con la Dra. Valeria Gómez para el:{' '}
+              <strong>{appointmentData.serviceName}</strong> con la {CLINIC.doctorName} para el:{' '}
               <span className="text-teal-300 font-bold">
                 {new Date(appointmentData.startTime).toLocaleDateString('es-AR', {
                   weekday: 'short',
@@ -98,7 +99,7 @@ export const ReminderNotificationModal: React.FC<ReminderNotificationModalProps>
               .
             </p>
             <p className="text-[11px] text-slate-400">
-              📍 Av. Santa Fe 2450, Piso 4, CABA. Recuerda asistir sin maquillaje y con 10 min de anticipación.
+              {CLINIC.address && <>📍 {CLINIC.address}. </>}Recordá asistir sin maquillaje y con 10 min de anticipación.
             </p>
           </div>
 

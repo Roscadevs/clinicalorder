@@ -1,6 +1,24 @@
-import React from 'react'; // React hooks
-import { Printer, X, CheckCircle, Sparkles, QrCode, ShieldCheck, Calendar, Download } from 'lucide-react'; // Iconos
-import { generateGoogleCalendarUrl, downloadIcsCalendarFile } from '../../utils/calendarGenerator'; // Utilidades
+import React from 'react';
+import { Calendar, Download, Printer, X, CheckCircle } from 'lucide-react';
+import { generateGoogleCalendarUrl, downloadIcsCalendarFile } from '../../utils/calendarGenerator';
+import { Logo } from '../../components/ui';
+import { CLINIC } from '../../config/contact';
+import {
+  PaymentConcept,
+  PaymentType,
+  PAYMENT_CONCEPT_LABELS,
+  PAYMENT_TYPE_LABELS,
+} from '../../types';
+
+const TZ = 'America/Argentina/Buenos_Aires';
+
+export interface ReceiptPayment {
+  type: PaymentType;
+  concept: PaymentConcept;
+  amount: number;
+  date: string; // ISO 8601
+  transactionId?: number;
+}
 
 interface AppointmentReceiptModalProps {
   isOpen: boolean;
@@ -16,190 +34,180 @@ interface AppointmentReceiptModalProps {
     durationMinutes: number;
     agreedPrice: number;
     depositAmount: number;
-    mpTransactionId?: string;
   };
+  /** Pago registrado. Si falta, el comprobante indica que no hay pagos. */
+  payment?: ReceiptPayment;
 }
 
+const ars = (n: number) => `$${n.toLocaleString('es-AR', { maximumFractionDigits: 2 })} ARS`;
+const fmt = (iso: string, opts: Intl.DateTimeFormatOptions) =>
+  new Intl.DateTimeFormat('es-AR', { timeZone: TZ, ...opts }).format(new Date(iso));
+
 /**
- * Modal y documento imprimible de Comprobante Oficial con soporte Bottom Sheet en Celulares.
+ * Comprobante de turno imprimible: fecha, tratamiento, tipo de pago y monto abonado.
  */
 export const AppointmentReceiptModal: React.FC<AppointmentReceiptModalProps> = ({
   isOpen,
   onClose,
   appointmentData,
+  payment,
 }) => {
   if (!isOpen) return null;
 
-  const handlePrint = () => {
-    window.print();
-  };
-
-  const remainingBalance = appointmentData.agreedPrice - appointmentData.depositAmount;
+  const paid = payment?.amount ?? 0;
+  const remainingBalance = Math.max(0, appointmentData.agreedPrice - paid);
+  const turnoDate = fmt(appointmentData.startTime, { weekday: 'long', day: 'numeric', month: 'long', year: 'numeric' });
+  const turnoTime = fmt(appointmentData.startTime, { hour: '2-digit', minute: '2-digit' });
 
   const calendarEvent = {
     id: appointmentData.id,
     title: appointmentData.serviceName,
-    description: `Turno de ${appointmentData.serviceName} para ${appointmentData.patientName}. Seña abonada: $${appointmentData.depositAmount.toLocaleString()} ARS. Saldo en recepción: $${remainingBalance.toLocaleString()} ARS.`,
-    location: 'Consultorio Dra. Valeria Gómez, Av. Santa Fe 2450, Piso 4, CABA',
+    description:
+      `Turno de ${appointmentData.serviceName} para ${appointmentData.patientName} con ${CLINIC.doctorName}.` +
+      (payment ? ` Pago registrado: ${ars(paid)} (${PAYMENT_TYPE_LABELS[payment.type]}).` : '') +
+      ` Saldo a abonar en consultorio: ${ars(remainingBalance)}.`,
+    location: CLINIC.address || CLINIC.doctorName,
     startTime: appointmentData.startTime,
     durationMinutes: appointmentData.durationMinutes,
   };
 
-  const googleUrl = generateGoogleCalendarUrl(calendarEvent);
-
-  const handleDownloadIcs = () => {
-    downloadIcsCalendarFile(calendarEvent);
-  };
-
   return (
-    <div className="fixed inset-0 bg-black/50 backdrop-blur-sm z-50 flex items-end sm:items-center justify-center p-0 sm:p-4 overflow-y-auto">
-      <div className="bg-white rounded-t-3xl sm:rounded-2xl shadow-2xl max-w-2xl w-full p-5 sm:p-8 space-y-5 relative max-h-[92dvh] overflow-y-auto print:p-0 print:shadow-none print:max-w-full">
-        {/* Tirador táctil para celular */}
-        <div className="w-12 h-1.5 bg-slate-300 rounded-full mx-auto sm:hidden print:hidden"></div>
-
-        {/* Botones de acción superiores (Ocultos en impresión) */}
-        <div className="flex flex-wrap justify-between items-center print:hidden border-b border-slate-100 pb-3 gap-2">
-          <div className="flex items-center space-x-2">
-            <CheckCircle className="w-5 h-5 text-emerald-600 flex-shrink-0" />
-            <span className="text-xs sm:text-sm font-bold text-slate-800">Comprobante Oficial de Reserva</span>
-          </div>
-          <div className="flex items-center space-x-1.5 sm:space-x-2 flex-wrap">
+    <div
+      className="fixed inset-0 bg-sand-900/40 backdrop-blur-sm z-50 flex items-end sm:items-center justify-center p-0 sm:p-4 overflow-y-auto print:static print:bg-transparent print:p-0"
+      role="dialog"
+      aria-modal="true"
+      aria-label="Comprobante de turno"
+      onClick={onClose}
+    >
+      <div
+        className="receipt-print-area bg-white rounded-t-3xl sm:rounded-2xl shadow-lift max-w-2xl w-full p-5 sm:p-8 space-y-5 max-h-[92dvh] overflow-y-auto print:max-h-none print:shadow-none print:rounded-none"
+        onClick={(e) => e.stopPropagation()}
+      >
+        {/* Acciones (no se imprimen) */}
+        <div className="flex flex-wrap justify-between items-center gap-2 border-b border-sand-100 pb-3 print:hidden">
+          <span className="flex items-center gap-2 text-sm font-bold text-sand-800">
+            <CheckCircle className="w-5 h-5 text-success-600" />
+            Comprobante de turno
+          </span>
+          <div className="flex items-center gap-1.5 flex-wrap">
             <a
-              href={googleUrl}
+              href={generateGoogleCalendarUrl(calendarEvent)}
               target="_blank"
               rel="noopener noreferrer"
-              className="bg-blue-50 hover:bg-blue-100 text-blue-700 text-xs font-bold px-2.5 sm:px-3 py-2 rounded-xl flex items-center space-x-1.5 transition-colors border border-blue-200 min-h-[40px]"
+              className="inline-flex items-center gap-1.5 px-3 py-2 min-h-[40px] rounded-xl text-xs font-bold border border-sand-200 bg-sand-50 text-sand-700 hover:bg-sand-100"
               title="Añadir a Google Calendar"
             >
               <Calendar className="w-3.5 h-3.5" />
               <span className="hidden sm:inline">Google Calendar</span>
             </a>
             <button
-              onClick={handleDownloadIcs}
-              className="bg-slate-100 hover:bg-slate-200 text-slate-700 text-xs font-bold px-2.5 sm:px-3 py-2 rounded-xl flex items-center space-x-1.5 transition-colors border border-slate-300 min-h-[40px]"
-              title="Descargar archivo .ics con alarmas"
+              onClick={() => downloadIcsCalendarFile(calendarEvent)}
+              className="inline-flex items-center gap-1.5 px-3 py-2 min-h-[40px] rounded-xl text-xs font-bold border border-sand-200 bg-sand-50 text-sand-700 hover:bg-sand-100"
+              title="Descargar archivo .ics"
             >
               <Download className="w-3.5 h-3.5" />
               <span className="hidden sm:inline">iCal (.ics)</span>
             </button>
             <button
-              onClick={handlePrint}
-              className="bg-teal-600 hover:bg-teal-700 text-white text-xs font-bold px-3 py-2 rounded-xl flex items-center space-x-1.5 shadow-sm transition-colors min-h-[40px]"
+              onClick={() => window.print()}
+              className="inline-flex items-center gap-1.5 px-3 py-2 min-h-[40px] rounded-xl text-xs font-bold bg-primary-500 hover:bg-primary-600 text-white"
             >
               <Printer className="w-4 h-4" />
-              <span>Imprimir</span>
+              Imprimir
             </button>
             <button
               onClick={onClose}
-              className="text-slate-400 hover:text-slate-600 p-2 rounded-xl hover:bg-slate-100 min-h-[40px] min-w-[40px] flex items-center justify-center"
+              aria-label="Cerrar"
+              className="p-2 min-h-[40px] min-w-[40px] rounded-xl text-sand-400 hover:bg-sand-100 hover:text-sand-700 flex items-center justify-center"
             >
               <X className="w-5 h-5" />
             </button>
           </div>
         </div>
 
-        {/* --- CONTENIDO DEL COMPROBANTE MÉDICO --- */}
-        <div className="space-y-5 text-slate-800 print:text-black">
-          {/* Encabezado Clínico */}
-          <div className="flex justify-between items-start border-b-2 border-teal-600 pb-3 sm:pb-4">
+        {/* Encabezado */}
+        <div className="flex justify-between items-start gap-4 border-b-2 border-primary-500 pb-4">
+          <div className="flex items-center gap-3">
+            <Logo variant="mark" className="w-12 h-12 text-primary-500" />
             <div>
-              <h1 className="text-lg sm:text-xl font-extrabold text-slate-900 tracking-tight">Dra. Valeria Gómez</h1>
-              <p className="text-[11px] sm:text-xs font-semibold text-teal-700">Dermatología Clínica & Estética Médica</p>
-              <p className="text-[10px] sm:text-[11px] text-slate-500">M.P. 48.912 · M.N. 124.580 · R.E. 09/2018</p>
-              <p className="text-[10px] sm:text-[11px] text-slate-500">Av. Santa Fe 2450, Piso 4, CABA · Tel: +54 11 4821-9000</p>
-            </div>
-            <div className="text-right">
-              <div className="w-8 h-8 sm:w-10 sm:h-10 rounded-full bg-teal-600 text-white flex items-center justify-center font-bold ml-auto mb-1">
-                <Sparkles className="w-4 h-4 sm:w-5 sm:h-5" />
-              </div>
-              <span className="text-[10px] sm:text-xs font-mono font-bold text-slate-700">
-                TURNO #{appointmentData.id.toString().padStart(6, '0')}
-              </span>
+              <h1 className="font-display text-lg sm:text-xl font-bold text-sand-900">{CLINIC.doctorName}</h1>
+              <p className="text-xs font-semibold text-primary-600">{CLINIC.specialty}</p>
+              {CLINIC.address && <p className="text-[11px] text-sand-500">{CLINIC.address}</p>}
             </div>
           </div>
-
-          {/* Datos del Paciente y de la Cita */}
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4 text-xs bg-slate-50 p-3.5 sm:p-4 rounded-xl border border-slate-200">
-            <div>
-              <span className="text-slate-400 block text-[10px] uppercase font-bold">Paciente:</span>
-              <span className="font-bold text-slate-900 text-sm">{appointmentData.patientName}</span>
-              <p className="text-slate-600">DNI: {appointmentData.patientDni}</p>
-              <p className="text-slate-600">Tel: {appointmentData.patientPhone}</p>
-              <p className="text-slate-600">Email: {appointmentData.patientEmail}</p>
-            </div>
-            <div className="border-t sm:border-t-0 sm:border-l border-slate-200 pt-2 sm:pt-0 sm:pl-4">
-              <span className="text-slate-400 block text-[10px] uppercase font-bold">Detalle del Turno:</span>
-              <span className="font-bold text-teal-800 text-sm">{appointmentData.serviceName}</span>
-              <p className="font-semibold text-slate-800 mt-1">
-                📅 {new Date(appointmentData.startTime).toLocaleDateString('es-AR', { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' })}
-              </p>
-              <p className="font-bold text-teal-700">
-                ⏰ {new Date(appointmentData.startTime).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })} hs ({appointmentData.durationMinutes} min)
-              </p>
-            </div>
-          </div>
-
-          {/* Desglose Financiero */}
-          <div>
-            <h4 className="text-xs font-bold uppercase tracking-wider text-slate-500 mb-2">Liquidación de Seña y Aranceles</h4>
-            <table className="w-full text-xs border border-slate-200 rounded-lg overflow-hidden">
-              <thead className="bg-slate-100 text-slate-700 font-bold">
-                <tr>
-                  <th className="p-2 sm:p-2.5 text-left">Concepto</th>
-                  <th className="p-2 sm:p-2.5 text-center">Estado</th>
-                  <th className="p-2 sm:p-2.5 text-right">Importe</th>
-                </tr>
-              </thead>
-              <tbody className="divide-y divide-slate-200">
-                <tr>
-                  <td className="p-2 sm:p-2.5">Arancel Total ({appointmentData.serviceName})</td>
-                  <td className="p-2 sm:p-2.5 text-center text-slate-500 font-medium">Acordado</td>
-                  <td className="p-2 sm:p-2.5 text-right font-bold">${appointmentData.agreedPrice.toLocaleString()} ARS</td>
-                </tr>
-                <tr className="bg-emerald-50/60 text-emerald-900 font-semibold">
-                  <td className="p-2 sm:p-2.5">Seña Online (50% MercadoPago)</td>
-                  <td className="p-2 sm:p-2.5 text-center">
-                    <span className="bg-emerald-100 text-emerald-800 text-[10px] px-2 py-0.5 rounded-full font-bold">ACREDITADO</span>
-                  </td>
-                  <td className="p-2 sm:p-2.5 text-right font-bold text-emerald-700">-${appointmentData.depositAmount.toLocaleString()} ARS</td>
-                </tr>
-                <tr className="bg-slate-50 text-slate-900 font-extrabold text-xs sm:text-sm border-t-2 border-slate-300">
-                  <td className="p-2 sm:p-2.5" colSpan={2}>Saldo Restante en Mostrador:</td>
-                  <td className="p-2 sm:p-2.5 text-right text-teal-700">${remainingBalance.toLocaleString()} ARS</td>
-                </tr>
-              </tbody>
-            </table>
-          </div>
-
-          {/* Instrucciones Médicas Previas */}
-          <div className="bg-amber-50 border border-amber-200 p-3 rounded-xl text-[11px] text-amber-900 space-y-1">
-            <span className="font-bold flex items-center">
-              <ShieldCheck className="w-3.5 h-3.5 mr-1 text-amber-700" /> Indicaciones Previas:
+          <div className="text-right text-[11px] text-sand-500">
+            <span className="block font-mono font-bold text-sand-800 text-xs">
+              TURNO #{appointmentData.id.toString().padStart(6, '0')}
             </span>
-            <ul className="list-disc list-inside space-y-0.5 text-amber-800 pl-1">
-              <li>Presentarse 10 minutos antes con DNI.</li>
-              <li>Evitar exposición solar directa y ácidos exfoliantes 48 hs previas.</li>
-              <li>Concurrir con el rostro desmaquillado y limpio.</li>
-            </ul>
-          </div>
-
-          {/* Pie de Firma y Verificación QR */}
-          <div className="flex justify-between items-end pt-3 sm:pt-4 border-t border-slate-200 text-[10px] text-slate-400">
-            <div className="flex items-center space-x-2">
-              <div className="w-10 h-10 sm:w-12 sm:h-12 bg-slate-100 border border-slate-300 rounded flex items-center justify-center text-slate-700 flex-shrink-0">
-                <QrCode className="w-6 h-6 sm:w-8 sm:h-8 text-slate-800" />
-              </div>
-              <div>
-                <p className="font-mono text-[8px] sm:text-[9px]">ID-VERIF: MP-{appointmentData.id}-2026</p>
-                <p>Verificación online oficial</p>
-              </div>
-            </div>
-            <div className="text-right">
-              <div className="w-28 sm:w-36 border-b border-slate-400 mb-1"></div>
-              <p className="font-semibold text-slate-700">Firma & Sello</p>
-            </div>
+            Emitido: {fmt(new Date().toISOString(), { day: '2-digit', month: '2-digit', year: 'numeric' })}
           </div>
         </div>
+
+        {/* Paciente y turno */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 text-sm">
+          <div className="bg-sand-50 border border-sand-200 rounded-xl p-4">
+            <span className="block text-[10px] uppercase font-bold text-sand-500 mb-1">Paciente</span>
+            <p className="font-bold text-sand-900">{appointmentData.patientName}</p>
+            <p className="text-sand-600">DNI {appointmentData.patientDni}</p>
+            <p className="text-sand-600">{appointmentData.patientPhone}</p>
+            <p className="text-sand-600 break-all">{appointmentData.patientEmail}</p>
+          </div>
+          <div className="bg-sand-50 border border-sand-200 rounded-xl p-4">
+            <span className="block text-[10px] uppercase font-bold text-sand-500 mb-1">Turno</span>
+            <p className="font-bold text-sand-900">{appointmentData.serviceName}</p>
+            <p className="text-sand-700 capitalize">{turnoDate}</p>
+            <p className="text-sand-700">
+              {turnoTime} hs · {appointmentData.durationMinutes} min
+            </p>
+          </div>
+        </div>
+
+        {/* Pago */}
+        <div>
+          <h2 className="text-xs font-bold uppercase tracking-wider text-sand-500 mb-2">Pago</h2>
+          <table className="w-full text-sm border border-sand-200 rounded-xl overflow-hidden">
+            <tbody className="divide-y divide-sand-100">
+              {payment ? (
+                <>
+                  <tr>
+                    <th scope="row" className="p-2.5 text-left font-medium text-sand-600">Tipo de pago</th>
+                    <td className="p-2.5 text-right font-semibold text-sand-900">{PAYMENT_TYPE_LABELS[payment.type]}</td>
+                  </tr>
+                  <tr>
+                    <th scope="row" className="p-2.5 text-left font-medium text-sand-600">Concepto</th>
+                    <td className="p-2.5 text-right font-semibold text-sand-900">{PAYMENT_CONCEPT_LABELS[payment.concept]}</td>
+                  </tr>
+                  <tr>
+                    <th scope="row" className="p-2.5 text-left font-medium text-sand-600">Fecha del pago</th>
+                    <td className="p-2.5 text-right text-sand-800">
+                      {fmt(payment.date, { day: '2-digit', month: '2-digit', year: 'numeric', hour: '2-digit', minute: '2-digit' })} hs
+                    </td>
+                  </tr>
+                  <tr className="bg-success-50/60">
+                    <th scope="row" className="p-2.5 text-left font-bold text-sand-800">Monto abonado</th>
+                    <td className="p-2.5 text-right font-bold text-success-700">{ars(paid)}</td>
+                  </tr>
+                </>
+              ) : (
+                <tr>
+                  <td colSpan={2} className="p-2.5 text-sand-500">Sin pagos registrados para este turno.</td>
+                </tr>
+              )}
+              <tr>
+                <th scope="row" className="p-2.5 text-left font-medium text-sand-600">Precio total del tratamiento</th>
+                <td className="p-2.5 text-right text-sand-800">{ars(appointmentData.agreedPrice)}</td>
+              </tr>
+              <tr className="bg-sand-50">
+                <th scope="row" className="p-2.5 text-left font-bold text-sand-900">Saldo a abonar en consultorio</th>
+                <td className="p-2.5 text-right font-bold text-primary-600">{ars(remainingBalance)}</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <p className="text-[11px] text-sand-500 border-t border-sand-100 pt-3">
+          Presentarse 10 minutos antes con DNI. Ante cualquier cambio, comunicarse con el consultorio con anticipación.
+        </p>
       </div>
     </div>
   );
