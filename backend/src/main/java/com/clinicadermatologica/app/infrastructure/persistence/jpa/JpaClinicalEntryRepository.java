@@ -1,17 +1,22 @@
 package com.clinicadermatologica.app.infrastructure.persistence.jpa;
 
-import com.clinicadermatologica.app.domain.model.ClinicalEntry; // Entidad ClinicalEntry
-import org.springframework.data.jpa.repository.JpaRepository; // Spring Data JPA
-import org.springframework.stereotype.Repository; // Componente de repositorio
+import com.clinicadermatologica.app.domain.model.ClinicalEntry;
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.stereotype.Repository;
 
-import java.util.List; // Colección de lista
-import java.util.Optional; // Contenedor opcional
+import java.util.List;
+import java.util.Optional;
 
 /**
  * Repositorio Spring Data JPA para las notas de evolución clínica.
+ * Delegado por ClinicalEntryRepositoryAdapter (DAO Implementation).
  */
-@Repository // Componente Spring Data
+@Repository
 public interface JpaClinicalEntryRepository extends JpaRepository<ClinicalEntry, Long> {
-    List<ClinicalEntry> findByMedicalRecordIdOrderByCreatedAtDesc(Long medicalRecordId); // Evoluciones por historia
-    Optional<ClinicalEntry> findByAppointmentId(Long appointmentId); // Evolución ligada a una cita
+
+    /** Evoluciones de un paciente ordenadas por fecha descendente. */
+    List<ClinicalEntry> findByPatientIdOrderByCreatedAtDesc(Long patientId);
+
+    /** Evolución ligada a una cita concreta. */
+    Optional<ClinicalEntry> findByAppointmentId(Long appointmentId);
 }

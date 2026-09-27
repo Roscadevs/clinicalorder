@@ -1,40 +1,44 @@
 package com.clinicadermatologica.app.infrastructure.persistence.adapter;
 
-import com.clinicadermatologica.app.domain.model.ClinicalImage; // Entidad del dominio
-import com.clinicadermatologica.app.domain.repository.ClinicalImageRepository; // Interfaz del dominio
-import com.clinicadermatologica.app.infrastructure.persistence.jpa.JpaClinicalImageRepository; // JPA Repository
-import lombok.RequiredArgsConstructor; // Inyección por constructor
-import org.springframework.stereotype.Component; // Componente Spring
+import com.clinicadermatologica.app.domain.model.ClinicalImage;
+import com.clinicadermatologica.app.domain.repository.ClinicalImageRepository;
+import com.clinicadermatologica.app.infrastructure.persistence.jpa.JpaClinicalImageRepository;
+import lombok.RequiredArgsConstructor;
+import org.springframework.stereotype.Component;
 
-import java.util.List; // Colección de lista
-import java.util.Optional; // Contenedor opcional
+import java.util.List;
+import java.util.Optional;
 
 /**
- * Adaptador de infraestructura para los metadatos de fotografías médicas.
+ * PATRÓN DAO — Implementación concreta del contrato ClinicalImageRepository.
+ *
+ * Este adaptador actúa como la capa DAO entre el dominio y la infraestructura de persistencia.
+ * Traduce el contrato definido en ClinicalImageRepository hacia las operaciones de Spring Data JPA,
+ * manteniendo al dominio completamente desacoplado de la tecnología de persistencia subyacente.
  */
-@Component // Componente Spring
-@RequiredArgsConstructor // Inyección por constructor
+@Component
+@RequiredArgsConstructor
 public class ClinicalImageRepositoryAdapter implements ClinicalImageRepository {
 
-    private final JpaClinicalImageRepository jpaRepository; // Inyección del repositorio JPA
+    private final JpaClinicalImageRepository jpaRepository;
 
     @Override
     public Optional<ClinicalImage> findById(Long id) {
-        return jpaRepository.findById(id); // Delega la búsqueda por ID
+        return jpaRepository.findById(id);
     }
 
     @Override
-    public List<ClinicalImage> findByMedicalRecordId(Long medicalRecordId) {
-        return jpaRepository.findByMedicalRecordIdOrderByUploadedAtDesc(medicalRecordId); // Fotos por historia
+    public List<ClinicalImage> findByClinicalEntryId(Long clinicalEntryId) {
+        return jpaRepository.findByClinicalEntryIdOrderByUploadedAtDesc(clinicalEntryId);
     }
 
     @Override
     public ClinicalImage save(ClinicalImage image) {
-        return jpaRepository.save(image); // Persiste los metadatos de la imagen
+        return jpaRepository.save(image);
     }
 
     @Override
     public void deleteById(Long id) {
-        jpaRepository.deleteById(id); // Elimina los metadatos
+        jpaRepository.deleteById(id);
     }
 }

@@ -1,42 +1,48 @@
 package com.clinicadermatologica.app.domain.model;
 
-import jakarta.persistence.*; // Importa anotaciones JPA estándar
-import lombok.*; // Generadores de código Lombok
-import org.hibernate.annotations.CreationTimestamp; // Fecha inmutable de auditoría
+import jakarta.persistence.*;
+import lombok.*;
+import org.hibernate.annotations.CreationTimestamp;
 
-import java.time.Instant; // Representación de tiempo UTC
+import java.time.Instant;
 
 /**
  * Entidad de Auditoría Inmutable para cambios en las notas de evolución clínica.
+ *
+ * SEGURIDAD: previousContent y newContent almacenan el contenido cifrado (AES-256-GCM) como BYTEA,
+ * exactamente como se almacena en ClinicalEntry.content. El contenido nunca se guarda en texto plano
+ * en ninguna tabla de la base de datos.
+ *
+ * Los registros de auditoría son históricos: no se modifican ni eliminan una vez generados.
  */
-@Entity // Entidad JPA
-@Table(name = "entrada_hc_audit") // Mapea a 'entrada_hc_audit'
-@Getter // Getters automáticos
-@Setter // Setters automáticos
-@Builder // Habilita Builder
-@NoArgsConstructor // Constructor vacío
-@AllArgsConstructor // Constructor completo
+@Entity
+@Table(name = "entrada_hc_audit")
+@Getter
+@Setter
+@Builder
+@NoArgsConstructor
+@AllArgsConstructor
 public class ClinicalEntryAudit {
 
-    @Id // Clave primaria
-    @GeneratedValue(strategy = GenerationType.IDENTITY) // BIGSERIAL autoincremental
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @ManyToOne(fetch = FetchType.LAZY) // Entrada clínica que fue editada
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "entrada_hc_id", nullable = false)
     private ClinicalEntry clinicalEntry;
 
-    @ManyToOne(fetch = FetchType.LAZY) // Médica que efectuó la modificación
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "modified_by_user_id", nullable = false)
     private User modifiedByUser;
 
-    @Column(name = "previous_content", nullable = false, columnDefinition = "TEXT") // Contenido anterior
-    private String previousContent;
+    @Column(name = "previous_content", nullable = false, columnDefinition = "BYTEA") // Cifrado AES-256-GCM
+    private byte[] previousContent;
 
-    @Column(name = "new_content", nullable = false, columnDefinition = "TEXT") // Contenido nuevo
-    private String newContent;
+    @Column(name = "new_content", nullable = false, columnDefinition = "BYTEA") // Cifrado AES-256-GCM
+    private byte[] newContent;
 
-    @CreationTimestamp // Marca temporal inmutable del evento de auditoría
+    @CreationTimestamp
     @Column(name = "modified_at", nullable = false, updatable = false)
     private Instant modifiedAt;
 }

@@ -1,48 +1,56 @@
 package com.clinicadermatologica.app.domain.model;
 
-import jakarta.persistence.*; // Importa anotaciones JPA estándar
-import lombok.*; // Generadores de código Lombok
-import org.hibernate.annotations.CreationTimestamp; // Fecha de creación
-import org.hibernate.annotations.UpdateTimestamp; // Fecha de actualización
+import jakarta.persistence.*;
+import lombok.*;
+import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.UpdateTimestamp;
 
-import java.time.Instant; // Representación de tiempo UTC
+import java.time.Instant;
 
 /**
  * Entidad de Dominio que representa una Nota de Evolución Clínica de una sesión específica.
+ *
+ * CAMBIO DE MODELO:
+ * - FK historia_clinica_id eliminada. La historia clínica se navega vía appointment → patient → medicalRecord.
+ * - FK paciente_id añadida directamente para representar la relación es_sujeto_de (Paciente → Entrada_HC).
+ *   El servicio garantiza que appointment.patient == entry.patient al crear la entrada.
+ *
+ * SEGURIDAD: content se almacena cifrado (AES-256-GCM) como BYTEA.
+ * El cifrado/descifrado es responsabilidad exclusiva de MedicalRecordService vía AesEncryptionService.
  */
-@Entity // Entidad JPA
-@Table(name = "entrada_hc") // Mapea a 'entrada_hc'
-@Getter // Getters automáticos
-@Setter // Setters automáticos
-@Builder // Habilita Builder
-@NoArgsConstructor // Constructor vacío
-@AllArgsConstructor // Constructor completo
+@Entity
+@Table(name = "entrada_hc")
+@Getter
+@Setter
+@Builder
+@NoArgsConstructor
+@AllArgsConstructor
 public class ClinicalEntry {
 
-    @Id // Clave primaria
-    @GeneratedValue(strategy = GenerationType.IDENTITY) // BIGSERIAL autoincremental
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @ManyToOne(fetch = FetchType.LAZY) // Relación con la historia clínica general
-    @JoinColumn(name = "historia_clinica_id", nullable = false)
-    private MedicalRecord medicalRecord;
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "paciente_id", nullable = false) // FK directa al paciente (relación es_sujeto_de)
+    private Patient patient;
 
-    @ManyToOne(fetch = FetchType.LAZY) // Relación con el turno correspondiente a la sesión
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "cita_id", nullable = false)
     private Appointment appointment;
 
-    @ManyToOne(fetch = FetchType.LAZY) // Médica dermatóloga que redactó la evolución
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "author_user_id", nullable = false)
     private User authorUser;
 
-    @Column(name = "content", nullable = false, columnDefinition = "TEXT") // Contenido médico de evolución
-    private String content;
+    @Column(name = "content", nullable = false, columnDefinition = "BYTEA") // Cifrado AES-256-GCM
+    private byte[] content;
 
-    @CreationTimestamp // Fecha automática de redacción
+    @CreationTimestamp
     @Column(name = "created_at", nullable = false, updatable = false)
     private Instant createdAt;
 
-    @UpdateTimestamp // Fecha automática de última edición
+    @UpdateTimestamp
     @Column(name = "updated_at", nullable = false)
     private Instant updatedAt;
 }

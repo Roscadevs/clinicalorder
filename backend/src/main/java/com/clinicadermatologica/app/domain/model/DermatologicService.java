@@ -1,57 +1,57 @@
 package com.clinicadermatologica.app.domain.model;
 
-import jakarta.persistence.*; // Importa anotaciones JPA estándar
-import lombok.*; // Generadores de código Lombok
-import org.hibernate.annotations.CreationTimestamp; // Marca temporal automática de creación
-import org.hibernate.annotations.UpdateTimestamp; // Marca temporal automática de actualización
+import jakarta.persistence.*;
+import lombok.*;
+import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.UpdateTimestamp;
 
-import java.math.BigDecimal; // Tipo numérico de alta precisión para valores monetarios
-import java.time.Instant; // Representación de fecha y hora UTC
+import java.math.BigDecimal;
+import java.time.Instant;
 
 /**
  * Entidad de Dominio que representa un servicio o tratamiento dermatológico/estético ofrecido.
  */
-@Entity // Entidad JPA mapeada a base de datos
-@Table(name = "servicio") // Mapea a la tabla 'servicio' en PostgreSQL
-@Getter // Getters automáticos
-@Setter // Setters automáticos
-@Builder // Habilita Builder
-@NoArgsConstructor // Constructor vacío para JPA
-@AllArgsConstructor // Constructor completo
+@Entity
+@Table(name = "servicio")
+@Getter
+@Setter
+@Builder
+@NoArgsConstructor
+@AllArgsConstructor
 public class DermatologicService {
 
-    @Id // Clave primaria
-    @GeneratedValue(strategy = GenerationType.IDENTITY) // BIGSERIAL autoincremental
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(name = "name", nullable = false, unique = true, length = 100) // Nombre único del tratamiento
+    @Column(name = "name", nullable = false, unique = true, length = 100)
     private String name;
 
-    @Column(name = "description", length = 500) // Descripción del procedimiento y áreas de aplicación
+    @Column(name = "description", length = 500)
     private String description;
 
-    @Column(name = "duration_minutes", nullable = false) // Duración en minutos requerida en agenda
+    @Column(name = "duration_minutes", nullable = false) // Entre 10 y 480 minutos (validado en DTO)
     private Integer durationMinutes;
 
-    @Column(name = "base_price", nullable = false, precision = 12, scale = 2) // Precio base con 2 decimales
+    @Column(name = "base_price", nullable = false, precision = 12, scale = 2)
     private BigDecimal basePrice;
 
-    @Column(name = "deposit_percentage", nullable = false, precision = 5, scale = 2) // % de seña exigido (ej. 50%)
-    @Builder.Default // Valor por defecto 50.00%
-    private BigDecimal depositPercentage = new BigDecimal("50.00");
+    @Column(name = "deposit_percentage", nullable = false) // Porcentaje entero entre 1 y 100
+    private Integer depositPercentage;
 
-    @Column(name = "follow_up_interval_days") // Días sugeridos para control o próxima sesión
-    private Integer followUpIntervalDays;
+    @Column(name = "follow_up_interval_days", nullable = false)
+    @Builder.Default // 0 = sin seguimiento recomendado
+    private Integer followUpIntervalDays = 0;
 
-    @Column(name = "active", nullable = false) // Estado de disponibilidad del servicio en catálogo
-    @Builder.Default // Activo por defecto
+    @Column(name = "active", nullable = false)
+    @Builder.Default
     private Boolean active = true;
 
-    @CreationTimestamp // Timestamp automático de alta
+    @CreationTimestamp
     @Column(name = "created_at", nullable = false, updatable = false)
     private Instant createdAt;
 
-    @UpdateTimestamp // Timestamp automático de actualización
+    @UpdateTimestamp
     @Column(name = "updated_at", nullable = false)
     private Instant updatedAt;
 }

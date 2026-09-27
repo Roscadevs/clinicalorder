@@ -1,18 +1,18 @@
 package com.clinicadermatologica.app.presentation.dto;
 
-import jakarta.validation.constraints.*; // Importa validaciones estándar
-import lombok.*; // Generadores Lombok
+import jakarta.validation.constraints.*;
+import lombok.*;
 
-import java.math.BigDecimal; // Precisión decimal
+import java.math.BigDecimal;
 
 /**
  * DTO para la creación o actualización de un servicio dermatológico/estético.
  */
-@Getter // Genera getters
-@Setter // Genera setters
-@Builder // Habilita Builder
-@NoArgsConstructor // Constructor vacío
-@AllArgsConstructor // Constructor completo
+@Getter
+@Setter
+@Builder
+@NoArgsConstructor
+@AllArgsConstructor
 public class ServiceRequestDTO {
 
     @NotBlank(message = "El nombre del servicio es obligatorio")
@@ -23,8 +23,8 @@ public class ServiceRequestDTO {
     private String description;
 
     @NotNull(message = "La duración en minutos es obligatoria")
-    @Min(value = 15, message = "La duración mínima es de 15 minutos")
-    @Max(value = 240, message = "La duración máxima es de 240 minutos")
+    @Min(value = 10, message = "La duración mínima es de 10 minutos")
+    @Max(value = 480, message = "La duración máxima es de 480 minutos")
     private Integer durationMinutes;
 
     @NotNull(message = "El precio base es obligatorio")
@@ -32,10 +32,13 @@ public class ServiceRequestDTO {
     private BigDecimal basePrice;
 
     @NotNull(message = "El porcentaje de seña es obligatorio")
-    @DecimalMin(value = "0.00", message = "El porcentaje mínimo es 0")
-    @DecimalMax(value = "100.00", message = "El porcentaje máximo es 100")
-    private BigDecimal depositPercentage;
+    @Min(value = 1, message = "El porcentaje mínimo de seña es 1")
+    @Max(value = 100, message = "El porcentaje máximo de seña es 100")
+    private Integer depositPercentage;
 
-    private Integer followUpIntervalDays; // Intervalo de control recomendado (opcional)
-    private Boolean active; // Estado activo (opcional)
+    @NotNull(message = "El intervalo de seguimiento es obligatorio")
+    @Min(value = 0, message = "El intervalo de seguimiento no puede ser negativo")
+    private Integer followUpIntervalDays; // 0 = sin seguimiento recomendado
+
+    private Boolean active;
 }

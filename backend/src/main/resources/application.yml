@@ -43,6 +43,14 @@ security:
     secret-key: ${JWT_SECRET_KEY:MiClaveSecretaSuperSeguraParaLaClinicaDermatologica2026EsteticaYSalud}
     expiration-time-ms: 28800000
 
+# Cifrado AES-256-GCM para contenido clínico sensible (historias clínicas, entradas clínicas)
+# SEGURIDAD: La clave real NUNCA debe estar en este archivo.
+# Se inyecta exclusivamente desde la variable de entorno AES_ENCRYPTION_KEY.
+# Generar con: openssl rand -base64 32
+app:
+  encryption:
+    key: ${AES_ENCRYPTION_KEY}
+
 # Configuración de Pasarela de Pagos MercadoPago
 mercadopago:
   access-token: ${MERCADOPAGO_ACCESS_TOKEN:TEST-0000000000000000-000000-000000-00000000000000000000000000000000-000000000}

@@ -31,6 +31,16 @@ public class ServiceCatalogController {
     }
 
     /**
+     * Endpoint protegido para listar TODOS los servicios (activos e inactivos)
+     * en el panel de administración.
+     */
+    @GetMapping("/todos") // Mapea HTTP GET /api/v1/servicios/todos
+    @PreAuthorize("hasRole('ADMIN')")
+    public ResponseEntity<List<ServiceResponseDTO>> getAllServicesForAdmin() {
+        return ResponseEntity.ok(serviceService.getAllServicesForAdmin());
+    }
+
+    /**
      * Endpoint público para consultar el detalle de un tratamiento.
      */
     @GetMapping("/{id}") // Mapea HTTP GET /api/v1/servicios/{id}

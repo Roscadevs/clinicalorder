@@ -1,31 +1,31 @@
 package com.clinicadermatologica.app.application.service;
 
-import com.clinicadermatologica.app.domain.exception.BusinessRuleException; // Excepción de negocio
-import com.clinicadermatologica.app.domain.exception.ResourceNotFoundException; // Excepción de no encontrado
-import com.clinicadermatologica.app.domain.model.DermatologicService; // Entidad DermatologicService
-import com.clinicadermatologica.app.domain.repository.DermatologicServiceRepository; // Repositorio
-import com.clinicadermatologica.app.presentation.dto.ServiceRequestDTO; // DTO entrada
-import com.clinicadermatologica.app.presentation.dto.ServiceResponseDTO; // DTO salida
-import lombok.RequiredArgsConstructor; // Inyección por constructor
-import org.springframework.stereotype.Service; // Servicio Spring
-import org.springframework.transaction.annotation.Transactional; // Transacciones ACID
+import com.clinicadermatologica.app.domain.exception.BusinessRuleException;
+import com.clinicadermatologica.app.domain.exception.ResourceNotFoundException;
+import com.clinicadermatologica.app.domain.model.DermatologicService;
+import com.clinicadermatologica.app.domain.repository.DermatologicServiceRepository;
+import com.clinicadermatologica.app.presentation.dto.ServiceRequestDTO;
+import com.clinicadermatologica.app.presentation.dto.ServiceResponseDTO;
+import lombok.RequiredArgsConstructor;
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
-import java.util.List; // Colección de lista
-import java.util.stream.Collectors; // Streams
+import java.util.List;
+import java.util.stream.Collectors;
 
 /**
  * Servicio de Aplicación para el catálogo y administración de tarifas de servicios.
  */
-@Service // Componente de servicio Spring
-@RequiredArgsConstructor // Inyección por constructor
+@Service
+@RequiredArgsConstructor
 public class DermatologicServiceService {
 
-    private final DermatologicServiceRepository serviceRepository; // Repositorio
+    private final DermatologicServiceRepository serviceRepository;
 
     /**
      * Obtiene el catálogo de servicios activos para la vista pública y el chatbot.
      */
-    @Transactional(readOnly = true) // Solo lectura
+    @Transactional(readOnly = true)
     public List<ServiceResponseDTO> getAllActiveServices() {
         return serviceRepository.findAllActive().stream()
                 .map(this::mapToDTO)
@@ -55,7 +55,7 @@ public class DermatologicServiceService {
     /**
      * Crea un nuevo servicio en el catálogo (solo Administrador).
      */
-    @Transactional // Transacción ACID
+    @Transactional
     public ServiceResponseDTO createService(ServiceRequestDTO request) {
         if (serviceRepository.existsByName(request.getName())) {
             throw new BusinessRuleException("Ya existe un servicio con el nombre " + request.getName());
@@ -85,7 +85,7 @@ public class DermatologicServiceService {
         service.setName(request.getName());
         service.setDescription(request.getDescription());
         service.setDurationMinutes(request.getDurationMinutes());
-        service.setBasePrice(request.getBasePrice()); // Nueva tarifa
+        service.setBasePrice(request.getBasePrice());
         service.setDepositPercentage(request.getDepositPercentage());
         service.setFollowUpIntervalDays(request.getFollowUpIntervalDays());
         if (request.getActive() != null) {

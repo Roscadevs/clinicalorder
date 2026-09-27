@@ -18,6 +18,6 @@ public class AuthResponseDTO {
     private Long userId; // Identificador único del usuario
     private String username; // Nombre de usuario
     private String fullName; // Nombre completo para mostrar en la interfaz
-    private UserRole role; // Rol RBAC asignado (ADMIN, PHYSICIAN, RECEPTIONIST)
+    private UserRole role; // Rol RBAC asignado (ADMIN, DOCTORA, SECRETARIA)
     private Long expiresInMs; // Milisegundos de vigencia del token
 }

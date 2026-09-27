@@ -38,7 +38,7 @@ public class GeminiApiClientAdapter {
     public GeminiChatResponseDTO generateResponse(GeminiChatRequestDTO request, String servicesCatalogContext) {
         try {
             // Prompt del sistema con rol, restricciones clínicas y catálogo de servicios
-            String systemInstruction = "Eres la Asistente Virtual de la Clínica Dermatológica y Estética de la Dra. Valeria. " +
+            String systemInstruction = "Eres la Asistente Virtual de la Clínica Dermatológica y Estética de la Dra. Paula Villa Fuhrmann " +
                     "Tu objetivo es brindar información clara, cálida y profesional sobre nuestros tratamientos, precios y cuidados de la piel. " +
                     "REGLAS OBLIGATORIAS: " +
                     "1. No emitas diagnósticos médicos definitivos ni recetes medicamentos; siempre aclara que se requiere consulta médica presencial. " +
