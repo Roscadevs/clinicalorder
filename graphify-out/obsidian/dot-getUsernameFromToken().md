@@ -1,12 +1,12 @@
 ---
 source_file: "backend/src/main/java/com/clinicadermatologica/app/infrastructure/security/JwtTokenProvider.java"
 type: "code"
-community: "JwtAuthenticationFilter"
+community: "GlobalExceptionHandler"
 location: "L58"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/JwtAuthenticationFilter
+  - community/GlobalExceptionHandler
 ---
 
 # .getUsernameFromToken()
@@ -15,4 +15,4 @@ tags:
 - [[dot-doFilterInternal()]] - `calls` [INFERRED]
 - [[JwtTokenProvider]] - `method` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/JwtAuthenticationFilter
+#graphify/code #graphify/EXTRACTED #community/GlobalExceptionHandler

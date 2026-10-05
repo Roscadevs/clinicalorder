@@ -14,11 +14,11 @@ tags:
 ## Connections
 - [[dot-addAntecedentePatologico()]] - `references` [EXTRACTED]
 - [[dot-addAntecedentePatologico()_1]] - `references` [EXTRACTED]
-- [[AllArgsConstructor_18]] - `references` [EXTRACTED]
+- [[AllArgsConstructor_17]] - `references` [EXTRACTED]
 - [[AntecedentePatologicoRequestDTO.java]] - `contains` [EXTRACTED]
-- [[Builder_16]] - `references` [EXTRACTED]
-- [[Getter_18]] - `references` [EXTRACTED]
-- [[NoArgsConstructor_18]] - `references` [EXTRACTED]
-- [[Setter_18]] - `references` [EXTRACTED]
+- [[Builder_15]] - `references` [EXTRACTED]
+- [[Getter_17]] - `references` [EXTRACTED]
+- [[NoArgsConstructor_17]] - `references` [EXTRACTED]
+- [[Setter_17]] - `references` [EXTRACTED]
 
 #graphify/code #graphify/EXTRACTED #community/AntecedentePatologico

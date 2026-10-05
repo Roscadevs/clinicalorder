@@ -13,7 +13,7 @@ tags:
 
 ## Connections
 - [[dot-createBlock()]] - `method` [EXTRACTED]
-- [[dot-deleteBlock()_1]] - `method` [EXTRACTED]
+- [[dot-deleteBlock()]] - `method` [EXTRACTED]
 - [[dot-getBlocksByRange()]] - `method` [EXTRACTED]
 - [[dot-mapToDTO()_2]] - `method` [EXTRACTED]
 - [[CalendarBlockController]] - `references` [EXTRACTED]

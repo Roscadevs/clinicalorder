@@ -1,12 +1,12 @@
 ---
 source_file: "backend/src/main/java/com/clinicadermatologica/app/presentation/dto/AlergiaRequestDTO.java"
 type: "code"
-community: "MedicalRecordController"
+community: "AlergiaRequestDTO"
 location: "L1"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/MedicalRecordController
+  - community/AlergiaRequestDTO
 ---
 
 # AlergiaRequestDTO.java
@@ -14,4 +14,4 @@ tags:
 ## Connections
 - [[AlergiaRequestDTO]] - `contains` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/MedicalRecordController
+#graphify/code #graphify/EXTRACTED #community/AlergiaRequestDTO

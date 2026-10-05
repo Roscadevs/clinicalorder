@@ -1,11 +1,11 @@
 ---
 source_file: ""
 type: "code"
-community: "lombok.extern.slf4j.Slf4j"
+community: "MercadoPagoPaymentAdapter"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/lombokexternslf4jSlf4j
+  - community/MercadoPagoPaymentAdapter
 ---
 
 # com.mercadopago.resources.preference.Preference
@@ -15,4 +15,4 @@ tags:
 - [[AppointmentService.java]] - `imports` [EXTRACTED]
 - [[MercadoPagoPaymentAdapter.java]] - `imports` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/lombokexternslf4jSlf4j
+#graphify/code #graphify/EXTRACTED #community/MercadoPagoPaymentAdapter

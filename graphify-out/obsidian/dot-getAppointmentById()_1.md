@@ -1,12 +1,12 @@
 ---
 source_file: "backend/src/main/java/com/clinicadermatologica/app/presentation/controller/AppointmentController.java"
 type: "code"
-community: "AppointmentController"
+community: "lombok.RequiredArgsConstructor"
 location: "L64"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/AppointmentController
+  - community/lombokRequiredArgsConstructor
 ---
 
 # .getAppointmentById()
@@ -19,4 +19,4 @@ tags:
 - [[org.springframework.http.ResponseEntity]] - `references` [EXTRACTED]
 - [[org.springframework.security.access.prepost.PreAuthorize]] - `references` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/AppointmentController
+#graphify/code #graphify/EXTRACTED #community/lombokRequiredArgsConstructor

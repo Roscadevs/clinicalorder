@@ -1,20 +1,26 @@
 ---
-source_file: "backend/src/main/java/com/clinicadermatologica/app/infrastructure/persistence/adapter/AntecedentePatologicoRepositoryAdapter.java"
+source_file: "backend/src/main/java/com/clinicadermatologica/app/domain/repository/DermatologicServiceRepository.java"
 type: "code"
-community: "AntecedentePatologico"
-location: "L31"
+community: "AppointmentService"
+location: "L12"
 tags:
   - graphify/code
-  - graphify/EXTRACTED
-  - community/AntecedentePatologico
+  - graphify/INFERRED
+  - community/AppointmentService
 ---
 
 # .findById()
 
 ## Connections
-- [[AntecedentePatologico]] - `references` [EXTRACTED]
-- [[AntecedentePatologicoId]] - `references` [EXTRACTED]
-- [[AntecedentePatologicoRepositoryAdapter]] - `method` [EXTRACTED]
-- [[Override_10]] - `references` [EXTRACTED]
+- [[dot-bookTemporaryHold()]] - `calls` [INFERRED]
+- [[dot-getAvailableSlots()]] - `calls` [INFERRED]
+- [[dot-getServiceById()_1]] - `calls` [INFERRED]
+- [[dot-testBookTemporaryHold_ExpiredOverlappingHold_IsReleased()]] - `calls` [INFERRED]
+- [[dot-testBookTemporaryHold_SlotUnavailable_ThrowsException()]] - `calls` [INFERRED]
+- [[dot-testBookTemporaryHold_Success()]] - `calls` [INFERRED]
+- [[dot-testGetAvailableSlots()]] - `calls` [INFERRED]
+- [[dot-updateService()]] - `calls` [INFERRED]
+- [[DermatologicService]] - `references` [EXTRACTED]
+- [[DermatologicServiceRepository]] - `method` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/AntecedentePatologico
+#graphify/code #graphify/INFERRED #community/AppointmentService

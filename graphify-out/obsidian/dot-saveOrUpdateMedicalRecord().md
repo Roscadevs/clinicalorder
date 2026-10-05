@@ -13,8 +13,8 @@ tags:
 
 ## Connections
 - [[dot-applyDtoToEntity()]] - `calls` [EXTRACTED]
-- [[dot-findById()_13]] - `calls` [INFERRED]
-- [[dot-findById()_7]] - `calls` [INFERRED]
+- [[dot-findById()_12]] - `calls` [INFERRED]
+- [[dot-findById()_6]] - `calls` [INFERRED]
 - [[dot-findByPatientId()_5]] - `calls` [INFERRED]
 - [[dot-mapRecordToDTO()]] - `calls` [EXTRACTED]
 - [[dot-save()_12]] - `calls` [INFERRED]

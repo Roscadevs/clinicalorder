@@ -14,9 +14,9 @@ tags:
 ## Connections
 - [[dot-deleteById()_1]] - `method` [EXTRACTED]
 - [[dot-findByDateRange()_5]] - `method` [EXTRACTED]
-- [[dot-findById()_2]] - `method` [EXTRACTED]
+- [[dot-findById()_1]] - `method` [EXTRACTED]
 - [[dot-findOverlappingBlocks()_2]] - `method` [EXTRACTED]
-- [[dot-save()_2]] - `method` [EXTRACTED]
+- [[dot-save()_1]] - `method` [EXTRACTED]
 - [[AppointmentService]] - `references` [EXTRACTED]
 - [[AppointmentServiceTest]] - `references` [EXTRACTED]
 - [[CalendarBlockRepository.java]] - `contains` [EXTRACTED]

@@ -1,12 +1,12 @@
 ---
 source_file: "backend/src/main/java/com/clinicadermatologica/app/domain/model/AlergiaId.java"
 type: "code"
-community: "AlergiaId"
+community: "Habito"
 location: "L1"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/AlergiaId
+  - community/Habito
 ---
 
 # AlergiaId.java
@@ -15,4 +15,4 @@ tags:
 - [[AlergiaId]] - `contains` [EXTRACTED]
 - [[jakarta.persistence.Embeddable]] - `imports` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/AlergiaId
+#graphify/code #graphify/EXTRACTED #community/Habito

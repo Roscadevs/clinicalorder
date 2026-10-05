@@ -1,12 +1,12 @@
 ---
 source_file: "backend/src/main/java/com/clinicadermatologica/app/presentation/dto/PatientRequestDTO.java"
 type: "code"
-community: "lombok.RequiredArgsConstructor"
+community: "PatientRequestDTO"
 location: "L11"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/lombokRequiredArgsConstructor
+  - community/PatientRequestDTO
 ---
 
 # PatientRequestDTO
@@ -16,13 +16,13 @@ tags:
 - [[dot-createPatient()]] - `references` [EXTRACTED]
 - [[dot-updatePatient()_1]] - `references` [EXTRACTED]
 - [[dot-updatePatient()]] - `references` [EXTRACTED]
-- [[AllArgsConstructor_10]] - `references` [EXTRACTED]
-- [[Builder_9]] - `references` [EXTRACTED]
-- [[Getter_10]] - `references` [EXTRACTED]
-- [[NoArgsConstructor_10]] - `references` [EXTRACTED]
+- [[AllArgsConstructor_8]] - `references` [EXTRACTED]
+- [[Builder_7]] - `references` [EXTRACTED]
+- [[Getter_8]] - `references` [EXTRACTED]
+- [[NoArgsConstructor_8]] - `references` [EXTRACTED]
 - [[PatientController.java]] - `imports` [EXTRACTED]
 - [[PatientRequestDTO.java]] - `contains` [EXTRACTED]
 - [[PatientService.java]] - `imports` [EXTRACTED]
-- [[Setter_10]] - `references` [EXTRACTED]
+- [[Setter_8]] - `references` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/lombokRequiredArgsConstructor
+#graphify/code #graphify/EXTRACTED #community/PatientRequestDTO

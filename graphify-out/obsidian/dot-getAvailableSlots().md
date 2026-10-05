@@ -14,7 +14,7 @@ tags:
 ## Connections
 - [[dot-findByDateRange()_4]] - `calls` [INFERRED]
 - [[dot-findByDateRange()_5]] - `calls` [INFERRED]
-- [[dot-findById()_12]] - `calls` [INFERRED]
+- [[dot-findById()_11]] - `calls` [INFERRED]
 - [[dot-getAvailableSlots()_1]] - `calls` [INFERRED]
 - [[dot-isExpired()]] - `calls` [EXTRACTED]
 - [[dot-testGetAvailableSlots()]] - `calls` [INFERRED]

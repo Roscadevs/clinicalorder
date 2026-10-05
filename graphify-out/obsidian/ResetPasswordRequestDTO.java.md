@@ -1,12 +1,12 @@
 ---
 source_file: "backend/src/main/java/com/clinicadermatologica/app/presentation/dto/ResetPasswordRequestDTO.java"
 type: "code"
-community: "ResetPasswordRequestDTO"
+community: "AuthController"
 location: "L1"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/ResetPasswordRequestDTO
+  - community/AuthController
 ---
 
 # ResetPasswordRequestDTO.java
@@ -14,4 +14,4 @@ tags:
 ## Connections
 - [[ResetPasswordRequestDTO]] - `contains` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/ResetPasswordRequestDTO
+#graphify/code #graphify/EXTRACTED #community/AuthController

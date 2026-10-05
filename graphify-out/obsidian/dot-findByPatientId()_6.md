@@ -15,6 +15,6 @@ tags:
 - [[dot-findByPatientIdOrderByCreatedAtDesc()]] - `calls` [INFERRED]
 - [[ClinicalEntry]] - `references` [EXTRACTED]
 - [[ClinicalEntryRepositoryAdapter]] - `method` [EXTRACTED]
-- [[Override_16]] - `references` [EXTRACTED]
+- [[Override_17]] - `references` [EXTRACTED]
 
 #graphify/code #graphify/EXTRACTED #community/ClinicalEntry

@@ -10,24 +10,24 @@ members: 20
 ## Members
 - [[dot-delete()_5]] - code - backend/src/main/java/com/clinicadermatologica/app/infrastructure/persistence/adapter/AlergiaRepositoryAdapter.java
 - [[dot-existsById()_5]] - code - backend/src/main/java/com/clinicadermatologica/app/infrastructure/persistence/adapter/AlergiaRepositoryAdapter.java
-- [[dot-findById()_23]] - code - backend/src/main/java/com/clinicadermatologica/app/infrastructure/persistence/adapter/AlergiaRepositoryAdapter.java
+- [[dot-findById()_21]] - code - backend/src/main/java/com/clinicadermatologica/app/infrastructure/persistence/adapter/AlergiaRepositoryAdapter.java
 - [[dot-findByIdMedicalRecordId()_2]] - code - backend/src/main/java/com/clinicadermatologica/app/infrastructure/persistence/jpa/JpaAlergiaRepository.java
 - [[dot-findByMedicalRecordId()_5]] - code - backend/src/main/java/com/clinicadermatologica/app/infrastructure/persistence/adapter/AlergiaRepositoryAdapter.java
-- [[dot-save()_20]] - code - backend/src/main/java/com/clinicadermatologica/app/infrastructure/persistence/adapter/AlergiaRepositoryAdapter.java
+- [[dot-save()_21]] - code - backend/src/main/java/com/clinicadermatologica/app/infrastructure/persistence/adapter/AlergiaRepositoryAdapter.java
 - [[Alergia]] - code - backend/src/main/java/com/clinicadermatologica/app/domain/model/Alergia.java
 - [[Alergia.java]] - code - backend/src/main/java/com/clinicadermatologica/app/domain/model/Alergia.java
 - [[AlergiaRepositoryAdapter]] - code - backend/src/main/java/com/clinicadermatologica/app/infrastructure/persistence/adapter/AlergiaRepositoryAdapter.java
 - [[AlergiaRepositoryAdapter.java]] - code - backend/src/main/java/com/clinicadermatologica/app/infrastructure/persistence/adapter/AlergiaRepositoryAdapter.java
 - [[AllArgsConstructor_37]] - code
 - [[Builder_34]] - code
-- [[Entity_13]] - code
+- [[Entity_12]] - code
 - [[Getter_37]] - code
 - [[JpaAlergiaRepository]] - code - backend/src/main/java/com/clinicadermatologica/app/infrastructure/persistence/jpa/JpaAlergiaRepository.java
 - [[JpaAlergiaRepository.java]] - code - backend/src/main/java/com/clinicadermatologica/app/infrastructure/persistence/jpa/JpaAlergiaRepository.java
 - [[NoArgsConstructor_37]] - code
-- [[Override_17]] - code
+- [[Override_18]] - code
 - [[Setter_37]] - code
-- [[Table_13]] - code
+- [[Table_12]] - code
 
 ## Live Query (requires Dataview plugin)
 
@@ -43,7 +43,7 @@ SORT file.name ASC
 - 2 edges to [[_COMMUNITY_org.springframework.stereotype.Component]]
 - 1 edge to [[_COMMUNITY_MedicalRecord]]
 - 1 edge to [[_COMMUNITY_MedicalRecordService]]
-- 1 edge to [[_COMMUNITY_MedicalRecordDTO]]
+- 1 edge to [[_COMMUNITY_AlergiaResponseDTO]]
 
 ## Top bridge nodes
 - [[Alergia]] - degree 22, connects to 4 communities

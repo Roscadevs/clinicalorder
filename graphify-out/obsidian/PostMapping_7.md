@@ -1,16 +1,19 @@
 ---
 source_file: ""
 type: "code"
-community: "GeminiChatRequestDTO"
+community: "AuthController"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/GeminiChatRequestDTO
+  - community/AuthController
 ---
 
 # PostMapping
 
 ## Connections
-- [[dot-sendMessage()]] - `references` [EXTRACTED]
+- [[dot-forgotPassword()]] - `references` [EXTRACTED]
+- [[dot-login()]] - `references` [EXTRACTED]
+- [[dot-register()_4]] - `references` [EXTRACTED]
+- [[dot-resetPassword()]] - `references` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/GeminiChatRequestDTO
+#graphify/code #graphify/EXTRACTED #community/AuthController

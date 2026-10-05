@@ -1,16 +1,16 @@
 ---
 source_file: ""
 type: "code"
-community: "DermatologicServiceRepository"
+community: "AuthController"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/DermatologicServiceRepository
+  - community/AuthController
 ---
 
 # RequestMapping
 
 ## Connections
-- [[GeminiChatbotController]] - `references` [EXTRACTED]
+- [[AuthController]] - `references` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/DermatologicServiceRepository
+#graphify/code #graphify/EXTRACTED #community/AuthController

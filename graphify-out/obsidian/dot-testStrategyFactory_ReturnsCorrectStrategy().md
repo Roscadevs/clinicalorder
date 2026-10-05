@@ -13,7 +13,7 @@ tags:
 
 ## Connections
 - [[dot-getStrategy()]] - `calls` [INFERRED]
-- [[dot-supportedType()]] - `calls` [INFERRED]
+- [[dot-supportedType()_3]] - `calls` [INFERRED]
 - [[PaymentServiceTest]] - `method` [EXTRACTED]
 - [[PaymentStrategyFactory]] - `calls` [EXTRACTED]
 - [[org.junit.jupiter.api.DisplayName]] - `references` [EXTRACTED]

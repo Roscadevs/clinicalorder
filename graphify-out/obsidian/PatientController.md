@@ -1,12 +1,12 @@
 ---
 source_file: "backend/src/main/java/com/clinicadermatologica/app/presentation/controller/PatientController.java"
 type: "code"
-community: "lombok.RequiredArgsConstructor"
+community: "PatientRequestDTO"
 location: "L19"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/lombokRequiredArgsConstructor
+  - community/PatientRequestDTO
 ---
 
 # PatientController
@@ -19,9 +19,9 @@ tags:
 - [[dot-updatePatient()]] - `method` [EXTRACTED]
 - [[PatientController.java]] - `contains` [EXTRACTED]
 - [[PatientService]] - `references` [EXTRACTED]
-- [[RequestMapping_2]] - `references` [EXTRACTED]
-- [[RestController_2]] - `references` [EXTRACTED]
+- [[RequestMapping_1]] - `references` [EXTRACTED]
+- [[RestController_1]] - `references` [EXTRACTED]
 - [[lombok.RequiredArgsConstructor]] - `references` [EXTRACTED]
 - [[org.springframework.security.access.prepost.PreAuthorize]] - `references` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/lombokRequiredArgsConstructor
+#graphify/code #graphify/EXTRACTED #community/PatientRequestDTO

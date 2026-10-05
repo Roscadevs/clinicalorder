@@ -1,11 +1,11 @@
 ---
 type: community
-members: 19
+members: 17
 ---
 
 # AesEncryptionService
 
-**Members:** 19 nodes
+**Members:** 17 nodes
 
 ## Members
 - [[dot-AesEncryptionService()]] - code - backend/src/main/java/com/clinicadermatologica/app/infrastructure/security/AesEncryptionService.java
@@ -22,11 +22,9 @@ members: 19
 - [[dot-testUnicodeContent()]] - code - backend/src/test/java/com/clinicadermatologica/app/infrastructure/AesEncryptionServiceTest.java
 - [[dot-testUniqueIvPerEncryption()]] - code - backend/src/test/java/com/clinicadermatologica/app/infrastructure/AesEncryptionServiceTest.java
 - [[AesEncryptionService]] - code - backend/src/main/java/com/clinicadermatologica/app/infrastructure/security/AesEncryptionService.java
-- [[AesEncryptionService.java]] - code - backend/src/main/java/com/clinicadermatologica/app/infrastructure/security/AesEncryptionService.java
 - [[AesEncryptionServiceTest]] - code - backend/src/test/java/com/clinicadermatologica/app/infrastructure/AesEncryptionServiceTest.java
 - [[AesEncryptionServiceTest.java]] - code - backend/src/test/java/com/clinicadermatologica/app/infrastructure/AesEncryptionServiceTest.java
 - [[org.junit.jupiter.api.BeforeEach]] - code
-- [[org.springframework.context.annotation.Scope]] - code
 
 ## Live Query (requires Dataview plugin)
 
@@ -37,17 +35,16 @@ SORT file.name ASC
 
 ## Connections to other communities
 - 13 edges to [[_COMMUNITY_org.junit.jupiter.api.DisplayName]]
-- 6 edges to [[_COMMUNITY_MedicalRecordService]]
-- 4 edges to [[_COMMUNITY_UserRepository]]
-- 3 edges to [[_COMMUNITY_org.springframework.transaction.annotation.Transactional]]
-- 3 edges to [[_COMMUNITY_dot-findById]]
+- 7 edges to [[_COMMUNITY_lombok.extern.slf4j.Slf4j]]
+- 5 edges to [[_COMMUNITY_MedicalRecordService]]
+- 4 edges to [[_COMMUNITY_dot-findById]]
 - 1 edge to [[_COMMUNITY_AppointmentService]]
 - 1 edge to [[_COMMUNITY_PaymentServiceTest.java]]
 - 1 edge to [[_COMMUNITY_AppointmentServiceTest.java]]
 
 ## Top bridge nodes
 - [[org.junit.jupiter.api.BeforeEach]] - degree 10, connects to 4 communities
-- [[AesEncryptionService]] - degree 15, connects to 3 communities
-- [[dot-decrypt()_1]] - degree 7, connects to 2 communities
-- [[AesEncryptionService.java]] - degree 4, connects to 2 communities
+- [[AesEncryptionService]] - degree 15, connects to 2 communities
+- [[dot-decrypt()_1]] - degree 7, connects to 1 community
 - [[dot-encrypt()_1]] - degree 7, connects to 1 community
+- [[dot-testRoundTrip()]] - degree 5, connects to 1 community

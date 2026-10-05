@@ -12,7 +12,7 @@ tags:
 # .findByClinicalEntryIdOrderByModifiedAtDesc()
 
 ## Connections
-- [[dot-findAuditByEntryId()_1]] - `calls` [INFERRED]
+- [[dot-findAuditByEntryId()]] - `calls` [INFERRED]
 - [[ClinicalEntryAudit]] - `references` [EXTRACTED]
 - [[JpaClinicalEntryAuditRepository]] - `method` [EXTRACTED]
 

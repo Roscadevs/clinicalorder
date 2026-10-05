@@ -1,16 +1,17 @@
 ---
 type: community
-members: 24
+members: 29
 ---
 
 # CalendarBlockResponseDTO
 
-**Members:** 24 nodes
+**Members:** 29 nodes
 
 ## Members
 - [[dot-createBlock()]] - code - backend/src/main/java/com/clinicadermatologica/app/application/service/CalendarBlockService.java
 - [[dot-createBlock()_1]] - code - backend/src/main/java/com/clinicadermatologica/app/presentation/controller/CalendarBlockController.java
-- [[dot-deleteBlock()_1]] - code - backend/src/main/java/com/clinicadermatologica/app/application/service/CalendarBlockService.java
+- [[dot-deleteBlock()]] - code - backend/src/main/java/com/clinicadermatologica/app/application/service/CalendarBlockService.java
+- [[dot-deleteBlock()_1]] - code - backend/src/main/java/com/clinicadermatologica/app/presentation/controller/CalendarBlockController.java
 - [[dot-deleteById()_1]] - code - backend/src/main/java/com/clinicadermatologica/app/domain/repository/CalendarBlockRepository.java
 - [[dot-getBlocks()]] - code - backend/src/main/java/com/clinicadermatologica/app/presentation/controller/CalendarBlockController.java
 - [[dot-getBlocksByRange()]] - code - backend/src/main/java/com/clinicadermatologica/app/application/service/CalendarBlockService.java
@@ -19,17 +20,21 @@ members: 24
 - [[AllArgsConstructor_22]] - code
 - [[Builder_19]] - code
 - [[Builder_20]] - code
+- [[CalendarBlockController]] - code - backend/src/main/java/com/clinicadermatologica/app/presentation/controller/CalendarBlockController.java
 - [[CalendarBlockRequestDTO]] - code - backend/src/main/java/com/clinicadermatologica/app/presentation/dto/CalendarBlockRequestDTO.java
 - [[CalendarBlockRequestDTO.java]] - code - backend/src/main/java/com/clinicadermatologica/app/presentation/dto/CalendarBlockRequestDTO.java
 - [[CalendarBlockResponseDTO]] - code - backend/src/main/java/com/clinicadermatologica/app/presentation/dto/CalendarBlockResponseDTO.java
 - [[CalendarBlockResponseDTO.java]] - code - backend/src/main/java/com/clinicadermatologica/app/presentation/dto/CalendarBlockResponseDTO.java
 - [[CalendarBlockService]] - code - backend/src/main/java/com/clinicadermatologica/app/application/service/CalendarBlockService.java
-- [[GetMapping_2]] - code
+- [[DeleteMapping_2]] - code
+- [[GetMapping_1]] - code
 - [[Getter_21]] - code
 - [[Getter_22]] - code
 - [[NoArgsConstructor_21]] - code
 - [[NoArgsConstructor_22]] - code
 - [[PostMapping_3]] - code
+- [[RequestMapping_3]] - code
+- [[RestController_3]] - code
 - [[Setter_21]] - code
 - [[Setter_22]] - code
 
@@ -42,14 +47,15 @@ SORT file.name ASC
 
 ## Connections to other communities
 - 10 edges to [[_COMMUNITY_lombok.RequiredArgsConstructor]]
-- 8 edges to [[_COMMUNITY_org.springframework.transaction.annotation.Transactional]]
+- 7 edges to [[_COMMUNITY_org.springframework.transaction.annotation.Transactional]]
 - 4 edges to [[_COMMUNITY_Appointment]]
+- 1 edge to [[_COMMUNITY_lombok.extern.slf4j.Slf4j]]
 - 1 edge to [[_COMMUNITY_UserRepository]]
 - 1 edge to [[_COMMUNITY_dot-findById]]
 - 1 edge to [[_COMMUNITY_AppointmentService]]
 
 ## Top bridge nodes
-- [[CalendarBlockService]] - degree 11, connects to 4 communities
+- [[CalendarBlockService]] - degree 11, connects to 5 communities
 - [[dot-createBlock()]] - degree 9, connects to 3 communities
 - [[CalendarBlockResponseDTO]] - degree 13, connects to 2 communities
 - [[CalendarBlockRequestDTO]] - degree 10, connects to 2 communities

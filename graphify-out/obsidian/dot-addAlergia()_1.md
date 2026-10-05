@@ -14,7 +14,7 @@ tags:
 ## Connections
 - [[dot-addAlergia()]] - `calls` [INFERRED]
 - [[dot-existsById()_4]] - `calls` [INFERRED]
-- [[dot-findById()_15]] - `calls` [INFERRED]
+- [[dot-findById()_14]] - `calls` [INFERRED]
 - [[dot-mapAlergiaToDTO()]] - `calls` [EXTRACTED]
 - [[dot-save()_13]] - `calls` [INFERRED]
 - [[dot-testAddAlergia_DuplicateTipo_Throws()]] - `calls` [INFERRED]

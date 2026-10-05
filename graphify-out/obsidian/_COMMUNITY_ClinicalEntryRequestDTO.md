@@ -8,13 +8,13 @@ members: 7
 **Members:** 7 nodes
 
 ## Members
-- [[AllArgsConstructor_5]] - code
-- [[Builder_5]] - code
+- [[AllArgsConstructor_4]] - code
+- [[Builder_4]] - code
 - [[ClinicalEntryRequestDTO]] - code - backend/src/main/java/com/clinicadermatologica/app/presentation/dto/ClinicalEntryRequestDTO.java
 - [[ClinicalEntryRequestDTO.java]] - code - backend/src/main/java/com/clinicadermatologica/app/presentation/dto/ClinicalEntryRequestDTO.java
-- [[Getter_5]] - code
-- [[NoArgsConstructor_5]] - code
-- [[Setter_5]] - code
+- [[Getter_4]] - code
+- [[NoArgsConstructor_4]] - code
+- [[Setter_4]] - code
 
 ## Live Query (requires Dataview plugin)
 

@@ -1,12 +1,12 @@
 ---
 source_file: "backend/src/main/java/com/clinicadermatologica/app/infrastructure/persistence/jpa/JpaClinicalImageRepository.java"
 type: "code"
-community: "ClinicalImage"
+community: "org.springframework.data.jpa.repository.JpaRepository"
 location: "L13"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/ClinicalImage
+  - community/orgspringframeworkdatajparepositoryJpaRepository
 ---
 
 # JpaClinicalImageRepository
@@ -20,4 +20,4 @@ tags:
 - [[org.springframework.data.jpa.repository.JpaRepository]] - `inherits` [EXTRACTED]
 - [[org.springframework.stereotype.Repository]] - `references` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/ClinicalImage
+#graphify/code #graphify/EXTRACTED #community/orgspringframeworkdatajparepositoryJpaRepository

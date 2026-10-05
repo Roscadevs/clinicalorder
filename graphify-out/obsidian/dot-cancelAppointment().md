@@ -13,7 +13,7 @@ tags:
 
 ## Connections
 - [[dot-cancelAppointment()_1]] - `calls` [INFERRED]
-- [[dot-findById()_8]] - `calls` [INFERRED]
+- [[dot-findById()_7]] - `calls` [INFERRED]
 - [[dot-rejectPendingTransactions()_1]] - `calls` [EXTRACTED]
 - [[dot-save()_10]] - `calls` [INFERRED]
 - [[AppointmentService]] - `method` [EXTRACTED]

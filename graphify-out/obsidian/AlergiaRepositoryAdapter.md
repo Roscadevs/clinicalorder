@@ -14,9 +14,9 @@ tags:
 ## Connections
 - [[dot-delete()_5]] - `method` [EXTRACTED]
 - [[dot-existsById()_5]] - `method` [EXTRACTED]
-- [[dot-findById()_23]] - `method` [EXTRACTED]
+- [[dot-findById()_21]] - `method` [EXTRACTED]
 - [[dot-findByMedicalRecordId()_5]] - `method` [EXTRACTED]
-- [[dot-save()_20]] - `method` [EXTRACTED]
+- [[dot-save()_21]] - `method` [EXTRACTED]
 - [[AlergiaRepository]] - `implements` [EXTRACTED]
 - [[AlergiaRepositoryAdapter.java]] - `contains` [EXTRACTED]
 - [[JpaAlergiaRepository]] - `references` [EXTRACTED]

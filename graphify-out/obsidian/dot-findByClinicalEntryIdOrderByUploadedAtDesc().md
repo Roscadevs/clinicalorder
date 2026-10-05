@@ -1,12 +1,12 @@
 ---
 source_file: "backend/src/main/java/com/clinicadermatologica/app/infrastructure/persistence/jpa/JpaClinicalImageRepository.java"
 type: "code"
-community: "ClinicalImage"
+community: "org.springframework.data.jpa.repository.JpaRepository"
 location: "L17"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/ClinicalImage
+  - community/orgspringframeworkdatajparepositoryJpaRepository
 ---
 
 # .findByClinicalEntryIdOrderByUploadedAtDesc()
@@ -16,4 +16,4 @@ tags:
 - [[ClinicalImage]] - `references` [EXTRACTED]
 - [[JpaClinicalImageRepository]] - `method` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/ClinicalImage
+#graphify/code #graphify/EXTRACTED #community/orgspringframeworkdatajparepositoryJpaRepository

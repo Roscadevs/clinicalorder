@@ -1,12 +1,12 @@
 ---
 source_file: "backend/src/main/java/com/clinicadermatologica/app/infrastructure/security/SecurityConfig.java"
 type: "code"
-community: "SecurityConfig.java"
+community: "GlobalExceptionHandler"
 location: "L39"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/SecurityConfigjava
+  - community/GlobalExceptionHandler
 ---
 
 # .authenticationManager()
@@ -17,4 +17,4 @@ tags:
 - [[org.springframework.security.authentication.AuthenticationManager]] - `references` [EXTRACTED]
 - [[org.springframework.security.config.annotation.authentication.configuration.AuthenticationConfiguration]] - `references` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/SecurityConfigjava
+#graphify/code #graphify/EXTRACTED #community/GlobalExceptionHandler

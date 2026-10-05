@@ -13,7 +13,7 @@ tags:
 
 ## Connections
 - [[dot-findByDateRange()_4]] - `method` [EXTRACTED]
-- [[dot-findById()_8]] - `method` [EXTRACTED]
+- [[dot-findById()_7]] - `method` [EXTRACTED]
 - [[dot-findByPatientId()]] - `method` [EXTRACTED]
 - [[dot-findExpiredHolds()_1]] - `method` [EXTRACTED]
 - [[dot-findOverlappingAppointments()_1]] - `method` [EXTRACTED]

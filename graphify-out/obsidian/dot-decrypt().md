@@ -1,12 +1,12 @@
 ---
 source_file: "backend/src/main/java/com/clinicadermatologica/app/application/service/MedicalRecordService.java"
 type: "code"
-community: "MedicalRecordService"
+community: ".findById"
 location: "L259"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/MedicalRecordService
+  - community/findById
 ---
 
 # .decrypt()
@@ -17,4 +17,4 @@ tags:
 - [[dot-mapRecordToDTO()]] - `calls` [EXTRACTED]
 - [[MedicalRecordService]] - `method` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/MedicalRecordService
+#graphify/code #graphify/EXTRACTED #community/findById

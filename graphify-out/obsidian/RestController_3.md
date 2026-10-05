@@ -1,16 +1,16 @@
 ---
 source_file: ""
 type: "code"
-community: "ServiceResponseDTO"
+community: "CalendarBlockResponseDTO"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/ServiceResponseDTO
+  - community/CalendarBlockResponseDTO
 ---
 
 # RestController
 
 ## Connections
-- [[ServiceCatalogController]] - `references` [EXTRACTED]
+- [[CalendarBlockController]] - `references` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/ServiceResponseDTO
+#graphify/code #graphify/EXTRACTED #community/CalendarBlockResponseDTO

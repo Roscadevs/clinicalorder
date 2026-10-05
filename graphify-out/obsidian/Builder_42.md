@@ -1,16 +1,16 @@
 ---
 source_file: ""
 type: "code"
-community: "GeminiChatResponseDTO"
+community: "org.springframework.transaction.annotation.Transactional"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/GeminiChatResponseDTO
+  - community/orgspringframeworktransactionannotationTransactional
 ---
 
 # Builder
 
 ## Connections
-- [[GeminiChatResponseDTO]] - `references` [EXTRACTED]
+- [[PatientResponseDTO]] - `references` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/GeminiChatResponseDTO
+#graphify/code #graphify/EXTRACTED #community/orgspringframeworktransactionannotationTransactional

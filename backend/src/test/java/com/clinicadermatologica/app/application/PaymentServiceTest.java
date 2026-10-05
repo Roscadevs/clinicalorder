@@ -80,7 +80,7 @@ public class PaymentServiceTest {
 
         Payment mpPayment = mock(Payment.class);
         when(mpPayment.getStatus()).thenReturn("approved");
-        when(mpPayment.getPreferenceId()).thenReturn("PREF-123");
+        when(mpPayment.getExternalReference()).thenReturn("PREF-123");
 
         Map<String, Object> payload = Map.of(
                 "type", "payment",
@@ -114,7 +114,7 @@ public class PaymentServiceTest {
 
         Payment mpPayment = mock(Payment.class);
         when(mpPayment.getStatus()).thenReturn("approved");
-        when(mpPayment.getPreferenceId()).thenReturn("PREF-FULL-456");
+        when(mpPayment.getExternalReference()).thenReturn("PREF-FULL-456");
 
         Map<String, Object> payload = Map.of(
                 "type", "payment",
@@ -146,7 +146,7 @@ public class PaymentServiceTest {
 
         Payment mpPayment = mock(Payment.class);
         when(mpPayment.getStatus()).thenReturn("rejected");
-        when(mpPayment.getPreferenceId()).thenReturn("PREF-REJ-789");
+        when(mpPayment.getExternalReference()).thenReturn("PREF-REJ-789");
 
         Map<String, Object> payload = Map.of(
                 "type", "payment",
@@ -184,7 +184,7 @@ public class PaymentServiceTest {
 
         Payment mpPayment = mock(Payment.class);
         when(mpPayment.getStatus()).thenReturn("approved");
-        when(mpPayment.getPreferenceId()).thenReturn("PREF-QP-321");
+        when(mpPayment.getExternalReference()).thenReturn("PREF-QP-321");
 
         when(mercadoPagoAdapter.getPaymentDetails(987654321L)).thenReturn(mpPayment);
         when(paymentTransactionRepository.findByMpPreferenceId("PREF-QP-321"))

@@ -1,16 +1,16 @@
 ---
 source_file: ""
 type: "code"
-community: "ResetPasswordRequestDTO"
+community: "PatientRequestDTO"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/ResetPasswordRequestDTO
+  - community/PatientRequestDTO
 ---
 
 # AllArgsConstructor
 
 ## Connections
-- [[ResetPasswordRequestDTO]] - `references` [EXTRACTED]
+- [[PatientRequestDTO]] - `references` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/ResetPasswordRequestDTO
+#graphify/code #graphify/EXTRACTED #community/PatientRequestDTO

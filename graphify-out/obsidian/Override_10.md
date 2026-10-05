@@ -13,7 +13,7 @@ tags:
 ## Connections
 - [[dot-delete()_3]] - `references` [EXTRACTED]
 - [[dot-existsById()_3]] - `references` [EXTRACTED]
-- [[dot-findById()_11]] - `references` [EXTRACTED]
+- [[dot-findById()_10]] - `references` [EXTRACTED]
 - [[dot-findByMedicalRecordId()_1]] - `references` [EXTRACTED]
 - [[dot-save()_9]] - `references` [EXTRACTED]
 

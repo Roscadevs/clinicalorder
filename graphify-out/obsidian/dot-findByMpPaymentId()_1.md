@@ -1,20 +1,19 @@
 ---
-source_file: "backend/src/main/java/com/clinicadermatologica/app/infrastructure/persistence/adapter/PaymentTransactionRepositoryAdapter.java"
+source_file: "backend/src/main/java/com/clinicadermatologica/app/infrastructure/persistence/jpa/JpaPaymentTransactionRepository.java"
 type: "code"
-community: "org.springframework.stereotype.Component"
-location: "L26"
+community: "PaymentTransaction"
+location: "L15"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/orgspringframeworkstereotypeComponent
+  - community/PaymentTransaction
 ---
 
 # .findByMpPaymentId()
 
 ## Connections
-- [[dot-findByMpPaymentId()_2]] - `calls` [INFERRED]
-- [[Override_3]] - `references` [EXTRACTED]
+- [[dot-findByMpPaymentId()]] - `calls` [INFERRED]
+- [[JpaPaymentTransactionRepository]] - `method` [EXTRACTED]
 - [[PaymentTransaction]] - `references` [EXTRACTED]
-- [[PaymentTransactionRepositoryAdapter]] - `method` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/orgspringframeworkstereotypeComponent
+#graphify/code #graphify/EXTRACTED #community/PaymentTransaction

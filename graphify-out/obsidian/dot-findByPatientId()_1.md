@@ -15,6 +15,6 @@ tags:
 - [[dot-findByPatientIdOrderByStartTimeDesc()]] - `calls` [INFERRED]
 - [[Appointment]] - `references` [EXTRACTED]
 - [[AppointmentRepositoryAdapter]] - `method` [EXTRACTED]
-- [[Override_4]] - `references` [EXTRACTED]
+- [[Override_1]] - `references` [EXTRACTED]
 
 #graphify/code #graphify/EXTRACTED #community/Appointment

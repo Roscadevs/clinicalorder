@@ -14,7 +14,7 @@ tags:
 ## Connections
 - [[dot-getImagesByClinicalEntry()]] - `calls` [INFERRED]
 - [[ClinicalImageResponseDTO]] - `references` [EXTRACTED]
-- [[GetMapping]] - `references` [EXTRACTED]
+- [[GetMapping_2]] - `references` [EXTRACTED]
 - [[MedicalRecordController]] - `method` [EXTRACTED]
 - [[org.springframework.http.ResponseEntity]] - `references` [EXTRACTED]
 

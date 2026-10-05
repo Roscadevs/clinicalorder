@@ -1,16 +1,16 @@
 ---
 source_file: ""
 type: "code"
-community: "lombok.RequiredArgsConstructor"
+community: "CalendarBlockResponseDTO"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/lombokRequiredArgsConstructor
+  - community/CalendarBlockResponseDTO
 ---
 
 # DeleteMapping
 
 ## Connections
-- [[dot-deactivatePatient()]] - `references` [EXTRACTED]
+- [[dot-deleteBlock()_1]] - `references` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/lombokRequiredArgsConstructor
+#graphify/code #graphify/EXTRACTED #community/CalendarBlockResponseDTO

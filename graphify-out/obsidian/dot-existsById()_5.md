@@ -14,6 +14,6 @@ tags:
 ## Connections
 - [[AlergiaId]] - `references` [EXTRACTED]
 - [[AlergiaRepositoryAdapter]] - `method` [EXTRACTED]
-- [[Override_17]] - `references` [EXTRACTED]
+- [[Override_18]] - `references` [EXTRACTED]
 
 #graphify/code #graphify/EXTRACTED #community/Alergia

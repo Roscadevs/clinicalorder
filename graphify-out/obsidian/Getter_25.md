@@ -1,16 +1,16 @@
 ---
 source_file: ""
 type: "code"
-community: "ClinicalImage"
+community: "Patient"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/ClinicalImage
+  - community/Patient
 ---
 
 # Getter
 
 ## Connections
-- [[ClinicalImage]] - `references` [EXTRACTED]
+- [[Patient_1]] - `references` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/ClinicalImage
+#graphify/code #graphify/EXTRACTED #community/Patient

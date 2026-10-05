@@ -1,35 +1,35 @@
 ---
 source_file: "backend/src/main/java/com/clinicadermatologica/app/domain/model/PaymentTransaction.java"
 type: "code"
-community: "org.springframework.stereotype.Component"
+community: "PaymentTransaction"
 location: "L20"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/orgspringframeworkstereotypeComponent
+  - community/PaymentTransaction
 ---
 
 # PaymentTransaction
 
 ## Connections
-- [[dot-findByAppointmentId()]] - `references` [EXTRACTED]
 - [[dot-findByAppointmentId()_1]] - `references` [EXTRACTED]
+- [[dot-findByAppointmentId()]] - `references` [EXTRACTED]
 - [[dot-findByAppointmentIdOrderByCreatedAtAsc()]] - `references` [EXTRACTED]
+- [[dot-findById()_22]] - `references` [EXTRACTED]
 - [[dot-findById()]] - `references` [EXTRACTED]
-- [[dot-findById()_1]] - `references` [EXTRACTED]
+- [[dot-findByMpPaymentId()_2]] - `references` [EXTRACTED]
 - [[dot-findByMpPaymentId()]] - `references` [EXTRACTED]
 - [[dot-findByMpPaymentId()_1]] - `references` [EXTRACTED]
-- [[dot-findByMpPaymentId()_2]] - `references` [EXTRACTED]
 - [[dot-findByMpPreferenceId()_2]] - `references` [EXTRACTED]
 - [[dot-findByMpPreferenceId()]] - `references` [EXTRACTED]
 - [[dot-findByMpPreferenceId()_1]] - `references` [EXTRACTED]
+- [[dot-register()_3]] - `references` [EXTRACTED]
 - [[dot-register()]] - `references` [EXTRACTED]
 - [[dot-register()_1]] - `references` [EXTRACTED]
 - [[dot-register()_2]] - `references` [EXTRACTED]
-- [[dot-register()_3]] - `references` [EXTRACTED]
 - [[dot-rejectPendingTransactions()]] - `references` [EXTRACTED]
+- [[dot-save()_5]] - `references` [EXTRACTED]
 - [[dot-save()]] - `references` [EXTRACTED]
-- [[dot-save()_1]] - `references` [EXTRACTED]
 - [[AllArgsConstructor]] - `references` [EXTRACTED]
 - [[Appointment]] - `references` [EXTRACTED]
 - [[Builder]] - `references` [EXTRACTED]
@@ -48,4 +48,4 @@ tags:
 - [[Table]] - `references` [EXTRACTED]
 - [[User]] - `references` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/orgspringframeworkstereotypeComponent
+#graphify/code #graphify/EXTRACTED #community/PaymentTransaction

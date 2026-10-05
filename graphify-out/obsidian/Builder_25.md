@@ -1,16 +1,16 @@
 ---
 source_file: ""
 type: "code"
-community: "AppointmentServiceTest.java"
+community: "DermatologicService"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/AppointmentServiceTestjava
+  - community/DermatologicService
 ---
 
 # Builder
 
 ## Connections
-- [[BookAppointmentRequestDTO]] - `references` [EXTRACTED]
+- [[DermatologicService]] - `references` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/AppointmentServiceTestjava
+#graphify/code #graphify/EXTRACTED #community/DermatologicService

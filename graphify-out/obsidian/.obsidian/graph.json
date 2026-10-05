@@ -1,7 +1,7 @@
 {
   "colorGroups": [
     {
-      "query": "tag:#community/orgspringframeworkstereotypeComponent",
+      "query": "tag:#community/PaymentTransaction",
       "color": {
         "a": 1,
         "rgb": 5142951
@@ -64,7 +64,7 @@
       }
     },
     {
-      "query": "tag:#community/UserRepository",
+      "query": "tag:#community/lombokexternslf4jSlf4j",
       "color": {
         "a": 1,
         "rgb": 12234924
@@ -85,7 +85,7 @@
       }
     },
     {
-      "query": "tag:#community/lombokRequiredArgsConstructor",
+      "query": "tag:#community/PatientRequestDTO",
       "color": {
         "a": 1,
         "rgb": 14767961
@@ -246,7 +246,7 @@
       }
     },
     {
-      "query": "tag:#community/AppointmentController",
+      "query": "tag:#community/lombokRequiredArgsConstructor",
       "color": {
         "a": 1,
         "rgb": 15583560
@@ -281,7 +281,7 @@
       }
     },
     {
-      "query": "tag:#community/lombokexternslf4jSlf4j",
+      "query": "tag:#community/MercadoPagoPaymentAdapter",
       "color": {
         "a": 1,
         "rgb": 5142951
@@ -344,7 +344,7 @@
       }
     },
     {
-      "query": "tag:#community/JwtAuthenticationFilter",
+      "query": "tag:#community/UserRepository",
       "color": {
         "a": 1,
         "rgb": 12234924
@@ -379,7 +379,7 @@
       }
     },
     {
-      "query": "tag:#community/MedicalRecordDTO",
+      "query": "tag:#community/AlergiaResponseDTO",
       "color": {
         "a": 1,
         "rgb": 5873999
@@ -421,7 +421,7 @@
       }
     },
     {
-      "query": "tag:#community/SecurityConfigjava",
+      "query": "tag:#community/orgspringframeworkstereotypeComponent",
       "color": {
         "a": 1,
         "rgb": 5142951
@@ -435,7 +435,7 @@
       }
     },
     {
-      "query": "tag:#community/GeminiChatResponseDTO",
+      "query": "tag:#community/ClinicalEntryAudit",
       "color": {
         "a": 1,
         "rgb": 14767961
@@ -491,14 +491,14 @@
       }
     },
     {
-      "query": "tag:#community/DermatologicServiceRepository",
+      "query": "tag:#community/login",
       "color": {
         "a": 1,
         "rgb": 5142951
       }
     },
     {
-      "query": "tag:#community/GeminiChatRequestDTO",
+      "query": "tag:#community/forgotPassword",
       "color": {
         "a": 1,
         "rgb": 15896107
@@ -771,14 +771,14 @@
       }
     },
     {
-      "query": "tag:#community/ResetPasswordRequestDTO",
+      "query": "tag:#community/save",
       "color": {
         "a": 1,
         "rgb": 5142951
       }
     },
     {
-      "query": "tag:#community/ServiceRequestDTO",
+      "query": "tag:#community/AppointmentResponseDTO",
       "color": {
         "a": 1,
         "rgb": 15896107
@@ -1209,6 +1209,48 @@
       "color": {
         "a": 1,
         "rgb": 14767961
+      }
+    },
+    {
+      "query": "tag:#community/AlergiaRequestDTO",
+      "color": {
+        "a": 1,
+        "rgb": 7780274
+      }
+    },
+    {
+      "query": "tag:#community/PaymentStatus",
+      "color": {
+        "a": 1,
+        "rgb": 5873999
+      }
+    },
+    {
+      "query": "tag:#community/register",
+      "color": {
+        "a": 1,
+        "rgb": 15583560
+      }
+    },
+    {
+      "query": "tag:#community/register",
+      "color": {
+        "a": 1,
+        "rgb": 11565729
+      }
+    },
+    {
+      "query": "tag:#community/HoldExpirationSchedulerjava",
+      "color": {
+        "a": 1,
+        "rgb": 16752039
+      }
+    },
+    {
+      "query": "tag:#community/register",
+      "color": {
+        "a": 1,
+        "rgb": 10253663
       }
     }
   ]

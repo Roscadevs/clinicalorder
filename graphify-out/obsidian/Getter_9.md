@@ -1,16 +1,16 @@
 ---
 source_file: ""
 type: "code"
-community: "ServiceRequestDTO"
+community: "PaymentServiceTest.java"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/ServiceRequestDTO
+  - community/PaymentServiceTestjava
 ---
 
 # Getter
 
 ## Connections
-- [[ServiceRequestDTO]] - `references` [EXTRACTED]
+- [[FinalizePaymentRequestDTO]] - `references` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/ServiceRequestDTO
+#graphify/code #graphify/EXTRACTED #community/PaymentServiceTestjava

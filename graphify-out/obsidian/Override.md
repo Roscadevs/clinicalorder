@@ -1,17 +1,20 @@
 ---
 source_file: ""
 type: "code"
-community: "org.springframework.stereotype.Component"
+community: "PaymentTransaction"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/orgspringframeworkstereotypeComponent
+  - community/PaymentTransaction
 ---
 
 # Override
 
 ## Connections
-- [[dot-register()_1]] - `references` [EXTRACTED]
-- [[dot-supportedType()_1]] - `references` [EXTRACTED]
+- [[dot-findByAppointmentId()]] - `references` [EXTRACTED]
+- [[dot-findById()]] - `references` [EXTRACTED]
+- [[dot-findByMpPaymentId()]] - `references` [EXTRACTED]
+- [[dot-findByMpPreferenceId()]] - `references` [EXTRACTED]
+- [[dot-save()]] - `references` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/orgspringframeworkstereotypeComponent
+#graphify/code #graphify/EXTRACTED #community/PaymentTransaction

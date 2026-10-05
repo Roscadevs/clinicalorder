@@ -1,17 +1,16 @@
 ---
 source_file: ""
 type: "code"
-community: "GeminiChatRequestDTO"
+community: ".forgotPassword"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/GeminiChatRequestDTO
+  - community/forgotPassword
 ---
 
 # Builder
 
 ## Connections
-- [[ChatMessageItemDTO]] - `references` [EXTRACTED]
-- [[GeminiChatRequestDTO]] - `references` [EXTRACTED]
+- [[ForgotPasswordRequestDTO]] - `references` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/GeminiChatRequestDTO
+#graphify/code #graphify/EXTRACTED #community/forgotPassword

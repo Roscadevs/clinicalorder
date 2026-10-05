@@ -18,8 +18,8 @@ tags:
 - [[dot-getServiceById()]] - `method` [EXTRACTED]
 - [[dot-updateService()_1]] - `method` [EXTRACTED]
 - [[DermatologicServiceService]] - `references` [EXTRACTED]
-- [[RequestMapping_3]] - `references` [EXTRACTED]
-- [[RestController_3]] - `references` [EXTRACTED]
+- [[RequestMapping_2]] - `references` [EXTRACTED]
+- [[RestController_2]] - `references` [EXTRACTED]
 - [[ServiceCatalogController.java]] - `contains` [EXTRACTED]
 - [[lombok.RequiredArgsConstructor]] - `references` [EXTRACTED]
 

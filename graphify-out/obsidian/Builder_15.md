@@ -11,6 +11,6 @@ tags:
 # Builder
 
 ## Connections
-- [[AntecedentePatologico]] - `references` [EXTRACTED]
+- [[AntecedentePatologicoRequestDTO]] - `references` [EXTRACTED]
 
 #graphify/code #graphify/EXTRACTED #community/AntecedentePatologico

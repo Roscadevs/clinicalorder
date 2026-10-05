@@ -14,12 +14,12 @@ tags:
 ## Connections
 - [[dot-bookTemporaryHold()]] - `references` [EXTRACTED]
 - [[dot-bookTemporaryHold()_1]] - `references` [EXTRACTED]
-- [[AllArgsConstructor_28]] - `references` [EXTRACTED]
+- [[AllArgsConstructor_31]] - `references` [EXTRACTED]
 - [[AppointmentServiceTest.java]] - `imports` [EXTRACTED]
 - [[BookAppointmentRequestDTO.java]] - `contains` [EXTRACTED]
-- [[Builder_25]] - `references` [EXTRACTED]
-- [[Getter_28]] - `references` [EXTRACTED]
-- [[NoArgsConstructor_28]] - `references` [EXTRACTED]
-- [[Setter_28]] - `references` [EXTRACTED]
+- [[Builder_28]] - `references` [EXTRACTED]
+- [[Getter_31]] - `references` [EXTRACTED]
+- [[NoArgsConstructor_31]] - `references` [EXTRACTED]
+- [[Setter_31]] - `references` [EXTRACTED]
 
 #graphify/code #graphify/EXTRACTED #community/AppointmentServiceTestjava

@@ -1,20 +1,19 @@
 ---
-source_file: "backend/src/main/java/com/clinicadermatologica/app/domain/repository/PasswordResetTokenRepository.java"
+source_file: "backend/src/main/java/com/clinicadermatologica/app/infrastructure/persistence/adapter/PasswordResetTokenRepositoryAdapter.java"
 type: "code"
-community: "UserRepository"
-location: "L12"
+community: "PasswordResetToken"
+location: "L25"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/UserRepository
+  - community/PasswordResetToken
 ---
 
 # .save()
 
 ## Connections
-- [[dot-forgotPassword()_1]] - `calls` [INFERRED]
-- [[dot-resetPassword()_1]] - `calls` [INFERRED]
+- [[Override_20]] - `references` [EXTRACTED]
 - [[PasswordResetToken]] - `references` [EXTRACTED]
-- [[PasswordResetTokenRepository]] - `method` [EXTRACTED]
+- [[PasswordResetTokenRepositoryAdapter]] - `method` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/UserRepository
+#graphify/code #graphify/EXTRACTED #community/PasswordResetToken

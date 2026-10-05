@@ -1,33 +1,37 @@
 ---
 type: community
-members: 20
+members: 24
 ---
 
 # lombok.extern.slf4j.Slf4j
 
-**Members:** 20 nodes
+**Members:** 24 nodes
 
 ## Members
-- [[dot-createDepositPreference()]] - code - backend/src/main/java/com/clinicadermatologica/app/infrastructure/payment/MercadoPagoPaymentAdapter.java
-- [[dot-handleMercadoPagoWebhook()]] - code - backend/src/main/java/com/clinicadermatologica/app/presentation/controller/PaymentWebhookController.java
-- [[dot-releaseExpiredHolds()_1]] - code - backend/src/main/java/com/clinicadermatologica/app/infrastructure/scheduling/HoldExpirationScheduler.java
-- [[AppointmentService.java]] - code - backend/src/main/java/com/clinicadermatologica/app/application/service/AppointmentService.java
+- [[dot-JwtTokenProvider()]] - code - backend/src/main/java/com/clinicadermatologica/app/infrastructure/security/JwtTokenProvider.java
+- [[dot-findByToken()_2]] - code - backend/src/main/java/com/clinicadermatologica/app/domain/repository/PasswordResetTokenRepository.java
+- [[dot-resetPassword()_1]] - code - backend/src/main/java/com/clinicadermatologica/app/application/service/AuthService.java
+- [[dot-sendAppointmentConfirmationEmail()]] - code - backend/src/main/java/com/clinicadermatologica/app/infrastructure/notification/EmailNotificationService.java
+- [[dot-testResetPassword_AlreadyUsedToken_ThrowsException()]] - code - backend/src/test/java/com/clinicadermatologica/app/application/AuthServiceTest.java
+- [[dot-testResetPassword_ExpiredToken_ThrowsException()]] - code - backend/src/test/java/com/clinicadermatologica/app/application/AuthServiceTest.java
+- [[dot-testResetPassword_Success()]] - code - backend/src/test/java/com/clinicadermatologica/app/application/AuthServiceTest.java
+- [[AesEncryptionService.java]] - code - backend/src/main/java/com/clinicadermatologica/app/infrastructure/security/AesEncryptionService.java
+- [[AuthService]] - code - backend/src/main/java/com/clinicadermatologica/app/application/service/AuthService.java
+- [[AuthService.java]] - code - backend/src/main/java/com/clinicadermatologica/app/application/service/AuthService.java
+- [[AuthServiceTest]] - code - backend/src/test/java/com/clinicadermatologica/app/application/AuthServiceTest.java
+- [[AuthServiceTest.java]] - code - backend/src/test/java/com/clinicadermatologica/app/application/AuthServiceTest.java
+- [[ClinicalImageService]] - code - backend/src/main/java/com/clinicadermatologica/app/application/service/ClinicalImageService.java
+- [[EmailNotificationService]] - code - backend/src/main/java/com/clinicadermatologica/app/infrastructure/notification/EmailNotificationService.java
 - [[EmailNotificationService.java]] - code - backend/src/main/java/com/clinicadermatologica/app/infrastructure/notification/EmailNotificationService.java
-- [[HoldExpirationScheduler]] - code - backend/src/main/java/com/clinicadermatologica/app/infrastructure/scheduling/HoldExpirationScheduler.java
-- [[HoldExpirationScheduler.java]] - code - backend/src/main/java/com/clinicadermatologica/app/infrastructure/scheduling/HoldExpirationScheduler.java
-- [[MercadoPagoPaymentAdapter]] - code - backend/src/main/java/com/clinicadermatologica/app/infrastructure/payment/MercadoPagoPaymentAdapter.java
-- [[MercadoPagoPaymentAdapter.java]] - code - backend/src/main/java/com/clinicadermatologica/app/infrastructure/payment/MercadoPagoPaymentAdapter.java
-- [[PaymentService]] - code - backend/src/main/java/com/clinicadermatologica/app/application/service/PaymentService.java
-- [[PaymentService.java]] - code - backend/src/main/java/com/clinicadermatologica/app/application/service/PaymentService.java
-- [[PaymentWebhookController]] - code - backend/src/main/java/com/clinicadermatologica/app/presentation/controller/PaymentWebhookController.java
-- [[PaymentWebhookController.java]] - code - backend/src/main/java/com/clinicadermatologica/app/presentation/controller/PaymentWebhookController.java
-- [[PostMapping_6]] - code
-- [[RequestMapping_6]] - code
-- [[RestController_6]] - code
-- [[com.mercadopago.resources.payment.Payment]] - code
-- [[com.mercadopago.resources.preference.Preference]] - code
+- [[JwtTokenProvider]] - code - backend/src/main/java/com/clinicadermatologica/app/infrastructure/security/JwtTokenProvider.java
+- [[JwtTokenProvider.java]] - code - backend/src/main/java/com/clinicadermatologica/app/infrastructure/security/JwtTokenProvider.java
+- [[MedicalRecordService.java]] - code - backend/src/main/java/com/clinicadermatologica/app/application/service/MedicalRecordService.java
+- [[PasswordResetTokenRepository]] - code - backend/src/main/java/com/clinicadermatologica/app/domain/repository/PasswordResetTokenRepository.java
+- [[javax.crypto.SecretKey]] - code
 - [[lombok.extern.slf4j.Slf4j]] - code
-- [[org.springframework.scheduling.annotation.Scheduled]] - code
+- [[org.springframework.context.annotation.Scope]] - code
+- [[org.springframework.security.crypto.password.PasswordEncoder]] - code
+- [[org.springframework.stereotype.Service]] - code
 
 ## Live Query (requires Dataview plugin)
 
@@ -37,23 +41,34 @@ SORT file.name ASC
 ```
 
 ## Connections to other communities
-- 12 edges to [[_COMMUNITY_org.junit.jupiter.api.DisplayName]]
-- 10 edges to [[_COMMUNITY_lombok.RequiredArgsConstructor]]
-- 10 edges to [[_COMMUNITY_org.springframework.transaction.annotation.Transactional]]
-- 9 edges to [[_COMMUNITY_AppointmentService]]
-- 6 edges to [[_COMMUNITY_org.springframework.stereotype.Component]]
-- 6 edges to [[_COMMUNITY_PaymentServiceTest.java]]
-- 5 edges to [[_COMMUNITY_UserRepository]]
-- 2 edges to [[_COMMUNITY_GlobalExceptionHandler]]
-- 2 edges to [[_COMMUNITY_ClinicalImageResponseDTO]]
-- 2 edges to [[_COMMUNITY_GeminiChatResponseDTO]]
-- 1 edge to [[_COMMUNITY_MedicalRecordService]]
-- 1 edge to [[_COMMUNITY_AppointmentController]]
-- 1 edge to [[_COMMUNITY_AppointmentServiceTest.java]]
+- 13 edges to [[_COMMUNITY_org.springframework.transaction.annotation.Transactional]]
+- 11 edges to [[_COMMUNITY_org.junit.jupiter.api.DisplayName]]
+- 8 edges to [[_COMMUNITY_MedicalRecordService]]
+- 8 edges to [[_COMMUNITY_lombok.RequiredArgsConstructor]]
+- 8 edges to [[_COMMUNITY_UserRepository]]
+- 7 edges to [[_COMMUNITY_GlobalExceptionHandler]]
+- 7 edges to [[_COMMUNITY_AesEncryptionService]]
+- 6 edges to [[_COMMUNITY_ClinicalImageResponseDTO]]
+- 5 edges to [[_COMMUNITY_dot-login]]
+- 5 edges to [[_COMMUNITY_dot-forgotPassword]]
+- 4 edges to [[_COMMUNITY_DermatologicService]]
+- 4 edges to [[_COMMUNITY_MercadoPagoPaymentAdapter]]
+- 4 edges to [[_COMMUNITY_PasswordResetToken]]
+- 3 edges to [[_COMMUNITY_AuthController]]
+- 2 edges to [[_COMMUNITY_HoldExpirationScheduler.java]]
+- 2 edges to [[_COMMUNITY_AppointmentService]]
+- 2 edges to [[_COMMUNITY_User]]
+- 2 edges to [[_COMMUNITY_org.springframework.stereotype.Component]]
+- 2 edges to [[_COMMUNITY_PaymentServiceTest.java]]
+- 1 edge to [[_COMMUNITY_MedicalRecordController]]
+- 1 edge to [[_COMMUNITY_ServiceResponseDTO]]
+- 1 edge to [[_COMMUNITY_CalendarBlockResponseDTO]]
+- 1 edge to [[_COMMUNITY_ClinicalImage]]
+- 1 edge to [[_COMMUNITY_ClinicalEntryAudit]]
 
 ## Top bridge nodes
-- [[lombok.extern.slf4j.Slf4j]] - degree 26, connects to 8 communities
-- [[PaymentService]] - degree 20, connects to 8 communities
-- [[MercadoPagoPaymentAdapter]] - degree 13, connects to 5 communities
-- [[PaymentService.java]] - degree 11, connects to 4 communities
-- [[AppointmentService.java]] - degree 7, connects to 3 communities
+- [[lombok.extern.slf4j.Slf4j]] - degree 26, connects to 11 communities
+- [[org.springframework.stereotype.Service]] - degree 24, connects to 11 communities
+- [[AuthServiceTest]] - degree 18, connects to 6 communities
+- [[ClinicalImageService]] - degree 12, connects to 6 communities
+- [[AuthService]] - degree 17, connects to 5 communities

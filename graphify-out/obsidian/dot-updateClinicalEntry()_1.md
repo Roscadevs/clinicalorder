@@ -13,11 +13,11 @@ tags:
 
 ## Connections
 - [[dot-encrypt()]] - `calls` [EXTRACTED]
-- [[dot-findById()_21]] - `calls` [INFERRED]
-- [[dot-findById()_7]] - `calls` [INFERRED]
+- [[dot-findById()_23]] - `calls` [INFERRED]
+- [[dot-findById()_6]] - `calls` [INFERRED]
 - [[dot-mapEntryToDTO()]] - `calls` [EXTRACTED]
 - [[dot-save()_6]] - `calls` [INFERRED]
-- [[dot-saveAudit()_2]] - `calls` [INFERRED]
+- [[dot-saveAudit()_3]] - `calls` [INFERRED]
 - [[dot-updateClinicalEntry()]] - `calls` [INFERRED]
 - [[ClinicalEntryResponseDTO]] - `references` [EXTRACTED]
 - [[MedicalRecordService]] - `method` [EXTRACTED]

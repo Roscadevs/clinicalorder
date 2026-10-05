@@ -1,19 +1,19 @@
 ---
-source_file: "backend/src/main/java/com/clinicadermatologica/app/infrastructure/persistence/adapter/PaymentTransactionRepositoryAdapter.java"
+source_file: "backend/src/main/java/com/clinicadermatologica/app/domain/repository/CalendarBlockRepository.java"
 type: "code"
-community: "org.springframework.stereotype.Component"
-location: "L41"
+community: "Appointment"
+location: "L16"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/orgspringframeworkstereotypeComponent
+  - community/Appointment
 ---
 
 # .save()
 
 ## Connections
-- [[Override_3]] - `references` [EXTRACTED]
-- [[PaymentTransaction]] - `references` [EXTRACTED]
-- [[PaymentTransactionRepositoryAdapter]] - `method` [EXTRACTED]
+- [[dot-createBlock()]] - `calls` [INFERRED]
+- [[CalendarBlock]] - `references` [EXTRACTED]
+- [[CalendarBlockRepository]] - `method` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/orgspringframeworkstereotypeComponent
+#graphify/code #graphify/EXTRACTED #community/Appointment

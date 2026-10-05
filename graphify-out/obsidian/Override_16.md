@@ -1,21 +1,21 @@
 ---
 source_file: ""
 type: "code"
-community: "ClinicalEntry"
+community: "DermatologicService"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/ClinicalEntry
+  - community/DermatologicService
 ---
 
 # Override
 
 ## Connections
-- [[dot-findAuditByEntryId()_1]] - `references` [EXTRACTED]
-- [[dot-findByAppointmentId()_3]] - `references` [EXTRACTED]
-- [[dot-findById()_22]] - `references` [EXTRACTED]
-- [[dot-findByPatientId()_6]] - `references` [EXTRACTED]
+- [[dot-existsByName()_1]] - `references` [EXTRACTED]
+- [[dot-findAll()_1]] - `references` [EXTRACTED]
+- [[dot-findAllActive()_3]] - `references` [EXTRACTED]
+- [[dot-findById()_19]] - `references` [EXTRACTED]
+- [[dot-findByName()_1]] - `references` [EXTRACTED]
 - [[dot-save()_19]] - `references` [EXTRACTED]
-- [[dot-saveAudit()_3]] - `references` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/ClinicalEntry
+#graphify/code #graphify/EXTRACTED #community/DermatologicService

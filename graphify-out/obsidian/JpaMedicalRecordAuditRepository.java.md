@@ -1,12 +1,12 @@
 ---
 source_file: "backend/src/main/java/com/clinicadermatologica/app/infrastructure/persistence/jpa/JpaMedicalRecordAuditRepository.java"
 type: "code"
-community: "org.springframework.data.jpa.repository.JpaRepository"
+community: "MedicalRecord"
 location: "L1"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/orgspringframeworkdatajparepositoryJpaRepository
+  - community/MedicalRecord
 ---
 
 # JpaMedicalRecordAuditRepository.java
@@ -17,4 +17,4 @@ tags:
 - [[org.springframework.data.jpa.repository.JpaRepository]] - `imports` [EXTRACTED]
 - [[org.springframework.stereotype.Repository]] - `imports` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/orgspringframeworkdatajparepositoryJpaRepository
+#graphify/code #graphify/EXTRACTED #community/MedicalRecord

@@ -1,16 +1,16 @@
 ---
 source_file: ""
 type: "code"
-community: "JwtAuthenticationFilter"
+community: "UserRepository"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/JwtAuthenticationFilter
+  - community/UserRepository
 ---
 
 # Override
 
 ## Connections
-- [[dot-doFilterInternal()]] - `references` [EXTRACTED]
+- [[dot-loadUserByUsername()]] - `references` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/JwtAuthenticationFilter
+#graphify/code #graphify/EXTRACTED #community/UserRepository

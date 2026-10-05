@@ -11,6 +11,6 @@ tags:
 # AllArgsConstructor
 
 ## Connections
-- [[AntecedentePatologico]] - `references` [EXTRACTED]
+- [[AntecedentePatologicoId]] - `references` [EXTRACTED]
 
 #graphify/code #graphify/EXTRACTED #community/AntecedentePatologico

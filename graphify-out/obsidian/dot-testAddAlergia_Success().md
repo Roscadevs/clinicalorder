@@ -14,7 +14,7 @@ tags:
 ## Connections
 - [[dot-addAlergia()_1]] - `calls` [INFERRED]
 - [[dot-existsById()_4]] - `calls` [INFERRED]
-- [[dot-findById()_15]] - `calls` [INFERRED]
+- [[dot-findById()_14]] - `calls` [INFERRED]
 - [[dot-save()_13]] - `calls` [INFERRED]
 - [[AlergiaId]] - `calls` [INFERRED]
 - [[MedicalRecordServiceTest]] - `method` [EXTRACTED]

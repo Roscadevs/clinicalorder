@@ -1,20 +1,17 @@
 ---
 source_file: ""
 type: "code"
-community: "org.springframework.stereotype.Component"
+community: "Habito"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/orgspringframeworkstereotypeComponent
+  - community/Habito
 ---
 
 # Override
 
 ## Connections
-- [[dot-findByAppointmentId()_1]] - `references` [EXTRACTED]
-- [[dot-findById()_1]] - `references` [EXTRACTED]
-- [[dot-findByMpPaymentId()_1]] - `references` [EXTRACTED]
-- [[dot-findByMpPreferenceId()]] - `references` [EXTRACTED]
-- [[dot-save()_1]] - `references` [EXTRACTED]
+- [[dot-equals()]] - `references` [EXTRACTED]
+- [[dot-hashCode()]] - `references` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/orgspringframeworkstereotypeComponent
+#graphify/code #graphify/EXTRACTED #community/Habito

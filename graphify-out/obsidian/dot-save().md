@@ -1,25 +1,19 @@
 ---
-source_file: "backend/src/main/java/com/clinicadermatologica/app/domain/repository/PaymentTransactionRepository.java"
+source_file: "backend/src/main/java/com/clinicadermatologica/app/infrastructure/persistence/adapter/PaymentTransactionRepositoryAdapter.java"
 type: "code"
-community: "org.springframework.stereotype.Component"
-location: "L16"
+community: "PaymentTransaction"
+location: "L41"
 tags:
   - graphify/code
-  - graphify/INFERRED
-  - community/orgspringframeworkstereotypeComponent
+  - graphify/EXTRACTED
+  - community/PaymentTransaction
 ---
 
 # .save()
 
 ## Connections
-- [[dot-bookTemporaryHold()]] - `calls` [INFERRED]
-- [[dot-processMercadoPagoWebhook()]] - `calls` [INFERRED]
-- [[dot-register()_1]] - `calls` [INFERRED]
-- [[dot-register()_2]] - `calls` [INFERRED]
-- [[dot-register()_3]] - `calls` [INFERRED]
-- [[dot-rejectPendingTransactions()_1]] - `calls` [INFERRED]
-- [[dot-rejectPendingTransactions()]] - `calls` [INFERRED]
+- [[Override]] - `references` [EXTRACTED]
 - [[PaymentTransaction]] - `references` [EXTRACTED]
-- [[PaymentTransactionRepository]] - `method` [EXTRACTED]
+- [[PaymentTransactionRepositoryAdapter]] - `method` [EXTRACTED]
 
-#graphify/code #graphify/INFERRED #community/orgspringframeworkstereotypeComponent
+#graphify/code #graphify/EXTRACTED #community/PaymentTransaction

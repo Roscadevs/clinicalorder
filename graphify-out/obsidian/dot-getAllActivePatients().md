@@ -12,7 +12,7 @@ tags:
 # .getAllActivePatients()
 
 ## Connections
-- [[dot-findAllActive()]] - `calls` [INFERRED]
+- [[dot-findAllActive()_1]] - `calls` [INFERRED]
 - [[dot-getPatients()]] - `calls` [INFERRED]
 - [[PatientResponseDTO]] - `references` [EXTRACTED]
 - [[PatientService]] - `method` [EXTRACTED]

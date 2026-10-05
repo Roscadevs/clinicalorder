@@ -14,9 +14,9 @@ tags:
 ## Connections
 - [[dot-addHabito()]] - `calls` [INFERRED]
 - [[dot-existsById()]] - `calls` [INFERRED]
-- [[dot-findById()_15]] - `calls` [INFERRED]
+- [[dot-findById()_14]] - `calls` [INFERRED]
 - [[dot-mapHabitoToDTO()]] - `calls` [EXTRACTED]
-- [[dot-save()_21]] - `calls` [INFERRED]
+- [[dot-save()_23]] - `calls` [INFERRED]
 - [[HabitoId]] - `calls` [INFERRED]
 - [[HabitoRequestDTO]] - `references` [EXTRACTED]
 - [[HabitoResponseDTO]] - `references` [EXTRACTED]

@@ -1,11 +1,11 @@
 ---
 source_file: ""
 type: "code"
-community: "org.springframework.stereotype.Component"
+community: ".save"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/orgspringframeworkstereotypeComponent
+  - community/save
 ---
 
 # Appointment
@@ -13,4 +13,4 @@ tags:
 ## Connections
 - [[dot-rejectPendingTransactions()]] - `references` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/orgspringframeworkstereotypeComponent
+#graphify/code #graphify/EXTRACTED #community/save

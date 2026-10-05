@@ -13,8 +13,8 @@ tags:
 
 ## Connections
 - [[dot-deactivatePatient()]] - `calls` [INFERRED]
-- [[dot-findById()_13]] - `calls` [INFERRED]
-- [[dot-save()_23]] - `calls` [INFERRED]
+- [[dot-findById()_12]] - `calls` [INFERRED]
+- [[dot-save()_14]] - `calls` [INFERRED]
 - [[PatientService]] - `method` [EXTRACTED]
 - [[ResourceNotFoundException]] - `calls` [EXTRACTED]
 - [[org.springframework.transaction.annotation.Transactional]] - `references` [EXTRACTED]

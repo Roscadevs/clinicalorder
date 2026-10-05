@@ -1,22 +1,22 @@
 # Graph Report - TP  (2026-10-05)
 
 ## Corpus Check
-- 307 files · ~155,578 words
+- 307 files · ~155,615 words
 - Verdict: corpus is large enough that graph structure adds value.
 - Unclassified: 19 file(s) not represented in the graph (top: .css 6, (none) 3, .drawio 3)
 
 ## Summary
-- 2321 nodes · 4332 edges · 173 communities (137 shown, 31 thin omitted)
-- Extraction: 93% EXTRACTED · 7% INFERRED · 0% AMBIGUOUS · INFERRED: 312 edges (avg confidence: 0.8)
+- 2321 nodes · 4333 edges · 179 communities (140 shown, 35 thin omitted)
+- Extraction: 93% EXTRACTED · 7% INFERRED · 0% AMBIGUOUS · INFERRED: 313 edges (avg confidence: 0.8)
 - Token cost: 0 input · 0 output
 
 ## Graph Freshness
-- Built from commit: `330f09ea`
+- Built from commit: `74e1cccb`
 - Run `git rev-parse HEAD` and compare to check if the graph is stale.
 - Run `graphify update .` after code changes (no API cost).
 
 ## Community Hubs (Navigation)
-- org.springframework.stereotype.Component
+- PaymentTransaction
 - Appointment
 - AntecedentePatologico
 - Patient
@@ -25,10 +25,10 @@
 - api.ts
 - org.springframework.transaction.annotation.Transactional
 - cn
-- UserRepository
+- lombok.extern.slf4j.Slf4j
 - MedicalRecordController
 - Habito
-- lombok.RequiredArgsConstructor
+- PatientRequestDTO
 - V4__schema_redesign.sql
 - 📘 Manual Maestro de Ingeniería de Software, Metodología de Especificación y Desarrollo Ágil con Agentes de IA
 - PaymentServiceTest.java
@@ -51,12 +51,12 @@
 - DermatologicService
 - AppointmentServiceTest.java
 - AgendaView.tsx
-- AppointmentController
+- lombok.RequiredArgsConstructor
 - AuthController
 - 2. Catálogo de Métodos y Funciones de Negocio (Backend)
 - DashboardLayout.tsx
 - compilerOptions
-- lombok.extern.slf4j.Slf4j
+- MercadoPagoPaymentAdapter
 - ClinicalImageResponseDTO
 - Alergia
 - 3. 📋 Especificación Formal de Casos de Uso Detallados (CU-01 a CU-08)
@@ -65,20 +65,20 @@
 - UserRole
 - AesEncryptionService
 - StrykerJS Mutation Testing Strategy & Setup Analysis (Frontend / Vitest)
-- JwtAuthenticationFilter
+- UserRepository
 - V1__initial_schema.sql
 - 🧠 3. Banco de Preguntas "Trampa" de la Cátedra & Respuestas Técnicas
 - Detailed Testing & Mutation Testing Infrastructure Analysis
 - .addHabito
-- MedicalRecordDTO
+- AlergiaResponseDTO
 - dependencies
 - AdminServicesView.tsx
 - BookingWizard.tsx
 - AppointmentReceiptModal.tsx
 - reactbits/index.ts
-- SecurityConfig.java
+- org.springframework.stereotype.Component
 - PasswordResetToken
-- GeminiChatResponseDTO
+- ClinicalEntryAudit
 - Analysis Report — Backend Codebase Survey
 - Frontend Codebase Analysis Report — Dermatology Management System
 - BRIEFING — 2026-08-10T19:40:42-03:00
@@ -86,8 +86,8 @@
 - BRIEFING — 2026-08-10T19:41:00Z
 - BRIEFING — 2026-08-10T22:50:12Z
 - BRIEFING — 2026-08-10T22:42:30Z
-- DermatologicServiceRepository
-- GeminiChatRequestDTO
+- .login
+- .forgotPassword
 - org.springframework.data.jpa.repository.JpaRepository
 - V2__audit_triggers_and_tables.sql
 - 📜 Historial de Revisiones
@@ -126,8 +126,8 @@
 - Handoff Report — Testing & Mutation Testing Setup Survey
 - Handoff Report — Sentinel Setup
 - ClinicalEntryRequestDTO
-- ResetPasswordRequestDTO
-- ServiceRequestDTO
+- .save
+- AppointmentResponseDTO
 - Cambios Implementados
 - Documento de Especificación de Comprobantes Médicos y Consentimientos Informados en PDF (Fase 6)
 - PRD v3.0 (Master): Sistema Integral Dermatológico, Estética y Asistente IA
@@ -141,6 +141,7 @@
 - Scope: Milestone 1 — Backend Test Suite & Mutation Testing
 - Dispatch: Sub-Orchestrator Milestone 2 (Frontend)
 - Scope: Milestone 2 — Frontend Test Suite & Mutation Testing
+- .findById
 - Documento de Métricas, KPIs y Dashboard de Gestión (Fase 7)
 - Documento de Sistema de Recordatorios y Sincronización con Calendarios (Fase 8)
 - BlurText.tsx
@@ -184,6 +185,12 @@
 - historia_clinica
 - com.clinicadermatologica:clinica-dermatologica-backend
 - transaccion_pago
+- AlergiaRequestDTO
+- PaymentStatus
+- .register
+- .register
+- HoldExpirationScheduler.java
+- .register
 
 ## God Nodes (most connected - your core abstractions)
 1. `User` - 47 edges
@@ -212,11 +219,11 @@
 ## Import Cycles
 - None detected.
 
-## Communities (173 total, 31 thin omitted)
+## Communities (179 total, 35 thin omitted)
 
-### Community 0 - "org.springframework.stereotype.Component"
-Cohesion: 0.05
-Nodes (38): Appointment, Appointment, PaymentConcept, PaymentType, PaymentRegistrationStrategy, PaymentStatus, APPROVED, PENDING (+30 more)
+### Community 0 - "PaymentTransaction"
+Cohesion: 0.17
+Nodes (11): AllArgsConstructor, Builder, Entity, Getter, NoArgsConstructor, Setter, Table, PaymentTransaction (+3 more)
 
 ### Community 1 - "Appointment"
 Cohesion: 0.06
@@ -231,8 +238,8 @@ Cohesion: 0.10
 Nodes (12): AllArgsConstructor, Builder, Entity, Getter, NoArgsConstructor, Setter, Table, Patient (+4 more)
 
 ### Community 4 - "ClinicalEntry"
-Cohesion: 0.09
-Nodes (20): ClinicalEntry, AllArgsConstructor, Builder, Entity, Getter, NoArgsConstructor, Setter, Table (+12 more)
+Cohesion: 0.15
+Nodes (10): ClinicalEntry, AllArgsConstructor, Builder, Entity, Getter, NoArgsConstructor, Setter, Table (+2 more)
 
 ### Community 5 - "react"
 Cohesion: 0.11
@@ -243,28 +250,28 @@ Cohesion: 0.09
 Nodes (24): GeminiChatbotWidget(), ROLES, UserFormModal(), UserFormModalProps, ClinicalNoteModalProps, photoStore, TreatmentPhotos(), TreatmentPhotosProps (+16 more)
 
 ### Community 7 - "org.springframework.transaction.annotation.Transactional"
-Cohesion: 0.13
-Nodes (13): ClinicalImageService, PatientService, BusinessRuleException, ResourceNotFoundException, GetMapping, AllArgsConstructor, Builder, Getter (+5 more)
+Cohesion: 0.14
+Nodes (11): PatientService, BusinessRuleException, ResourceNotFoundException, GetMapping, AllArgsConstructor, Builder, Getter, NoArgsConstructor (+3 more)
 
 ### Community 8 - "cn"
 Cohesion: 0.12
 Nodes (25): BadgeProps, BadgeVariant, variantStyles, Card, CardHeader(), CardProps, CardTitle(), Input (+17 more)
 
-### Community 9 - "UserRepository"
-Cohesion: 0.14
-Nodes (8): AuthService, PasswordResetTokenRepository, UserRepository, EmailNotificationService, JwtTokenProvider, AuthServiceTest, javax.crypto.SecretKey, org.springframework.security.crypto.password.PasswordEncoder
+### Community 9 - "lombok.extern.slf4j.Slf4j"
+Cohesion: 0.19
+Nodes (11): AuthService, ClinicalImageService, PasswordResetTokenRepository, EmailNotificationService, JwtTokenProvider, AuthServiceTest, javax.crypto.SecretKey, lombok.extern.slf4j.Slf4j (+3 more)
 
 ### Community 10 - "MedicalRecordController"
-Cohesion: 0.07
-Nodes (19): DeleteMapping, GetMapping, PostMapping, PutMapping, RequestMapping, RestController, MedicalRecordController, AlergiaRequestDTO (+11 more)
+Cohesion: 0.11
+Nodes (12): DeleteMapping, PostMapping, PutMapping, RequestMapping, RestController, MedicalRecordController, ClinicalEntryResponseDTO, AllArgsConstructor (+4 more)
 
 ### Community 11 - "Habito"
-Cohesion: 0.11
-Nodes (18): Habito, AllArgsConstructor, Builder, Entity, Getter, NoArgsConstructor, Setter, Table (+10 more)
+Cohesion: 0.09
+Nodes (19): Habito, AllArgsConstructor, Builder, Entity, Getter, NoArgsConstructor, Setter, Table (+11 more)
 
-### Community 12 - "lombok.RequiredArgsConstructor"
-Cohesion: 0.11
-Nodes (21): PasswordResetTokenRepositoryAdapter, CalendarBlockController, DeleteMapping, RequestMapping, RestController, DeleteMapping, PostMapping, PutMapping (+13 more)
+### Community 12 - "PatientRequestDTO"
+Cohesion: 0.13
+Nodes (12): DeleteMapping, PostMapping, PutMapping, RequestMapping, RestController, PatientController, AllArgsConstructor, Builder (+4 more)
 
 ### Community 13 - "V4__schema_redesign.sql"
 Cohesion: 0.13
@@ -276,11 +283,11 @@ Nodes (32): 🏁 10. Resumen Ejecutivo y Checklist de Calidad para Nuevos Proyec
 
 ### Community 15 - "PaymentServiceTest.java"
 Cohesion: 0.08
-Nodes (26): PaymentConcept, BALANCE, DEPOSIT, FULL, PaymentType, BANK_TRANSFER, CASH, MERCADOPAGO (+18 more)
+Nodes (27): PaymentConcept, BALANCE, DEPOSIT, FULL, PaymentType, BANK_TRANSFER, CASH, MERCADOPAGO (+19 more)
 
 ### Community 16 - "org.junit.jupiter.api.DisplayName"
 Cohesion: 0.21
-Nodes (5): PaymentStrategyFactory, Appointment, PaymentServiceTest, org.junit.jupiter.api.DisplayName, org.junit.jupiter.api.Test
+Nodes (6): PaymentService, PaymentStrategyFactory, Appointment, PaymentServiceTest, org.junit.jupiter.api.DisplayName, org.junit.jupiter.api.Test
 
 ### Community 17 - "MedicalRecordView.tsx"
 Cohesion: 0.13
@@ -288,15 +295,15 @@ Nodes (23): Badge(), getVisualStatus(), STATUS_STYLES, StatusStyle, PatientSearc
 
 ### Community 18 - "MedicalRecord"
 Cohesion: 0.10
-Nodes (18): AllArgsConstructor, Builder, Entity, Getter, NoArgsConstructor, Setter, Table, MedicalRecord (+10 more)
+Nodes (20): AllArgsConstructor, Builder, Entity, Getter, NoArgsConstructor, Setter, Table, MedicalRecord (+12 more)
 
 ### Community 19 - "Especificación del Modelo Relacional (MR) en Supabase PostgreSQL"
 Cohesion: 0.07
 Nodes (27): 10. Tabla `entrada_hc`, 11. Tabla `entrada_hc_audit`, 12. Tabla `imagen_hc`, 1. Diagrama de Paquetes UML (Arquitectura Limpia en Capas), 1. Tabla `usuario`, 2. Diagrama de Despliegue UML (Topología de Infraestructura), 2. Tabla `password_reset_token`, 3. Modelo Entidad-Relación (MER) y Modelo Relacional (MR) (+19 more)
 
 ### Community 20 - "GlobalExceptionHandler"
-Cohesion: 0.17
-Nodes (11): DuplicateResourceException, SlotUnavailableException, UnauthorizedAccessException, GlobalExceptionHandler, ResponseEntity, ExceptionHandler, HttpStatus, jakarta.servlet.http.HttpServletRequest (+3 more)
+Cohesion: 0.07
+Nodes (27): DuplicateResourceException, SlotUnavailableException, UnauthorizedAccessException, Override, JwtAuthenticationFilter, SecurityConfig, GlobalExceptionHandler, ResponseEntity (+19 more)
 
 ### Community 21 - "PRD — Sistema Integral de Gestión Dermatológica, Estética y Asistente Virtual con IA"
 Cohesion: 0.07
@@ -311,24 +318,24 @@ Cohesion: 0.08
 Nodes (24): 1. Executive Summary & Objective Overview, 2.1 `JwtService` (`backend/src/main/java/com/dermacare/backend/security/JwtService.java`), 2.2 `JwtAuthenticationFilter` (`backend/src/main/java/com/dermacare/backend/security/JwtAuthenticationFilter.java`), 2.3 `AuthController` (`backend/src/main/java/com/dermacare/backend/controllers/AuthController.java`), 2.4 `PatientController` (`backend/src/main/java/com/dermacare/backend/controllers/PatientController.java`), 2.5 `AppointmentController` (`backend/src/main/java/com/dermacare/backend/controllers/AppointmentController.java`), 2. Target Class Codebase Audit, 3.1 `JwtServiceTest` Design (+16 more)
 
 ### Community 24 - "ServiceResponseDTO"
-Cohesion: 0.14
-Nodes (13): DermatologicServiceService, GetMapping, PostMapping, PutMapping, RequestMapping, RestController, ServiceCatalogController, AllArgsConstructor (+5 more)
+Cohesion: 0.10
+Nodes (19): DermatologicServiceService, GetMapping, PostMapping, PutMapping, RequestMapping, RestController, ServiceCatalogController, AllArgsConstructor (+11 more)
 
 ### Community 25 - "package.json"
 Cohesion: 0.08
 Nodes (23): name, private, type, version, autoprefixer, axios, clsx, @hookform/resolvers (+15 more)
 
 ### Community 26 - "CalendarBlockResponseDTO"
-Cohesion: 0.11
-Nodes (15): CalendarBlockService, GetMapping, PostMapping, CalendarBlockRequestDTO, AllArgsConstructor, Builder, Getter, NoArgsConstructor (+7 more)
+Cohesion: 0.09
+Nodes (19): CalendarBlockService, CalendarBlockController, DeleteMapping, GetMapping, PostMapping, RequestMapping, RestController, CalendarBlockRequestDTO (+11 more)
 
 ### Community 27 - "MedicalRecordService"
-Cohesion: 0.16
-Nodes (10): ClinicalEntry, MedicalRecord, MedicalRecordService, MedicalRecordRepository, MedicalRecord, Patient, MedicalRecordServiceTest, com.fasterxml.jackson.databind.ObjectMapper (+2 more)
+Cohesion: 0.11
+Nodes (16): MedicalRecord, MedicalRecordService, MedicalRecordRepository, GetMapping, AllArgsConstructor, Builder, Getter, NoArgsConstructor (+8 more)
 
 ### Community 28 - "AlergiaId"
-Cohesion: 0.15
-Nodes (8): AlergiaId, AllArgsConstructor, Getter, NoArgsConstructor, Override, Setter, AlergiaRepository, jakarta.persistence.Embeddable
+Cohesion: 0.19
+Nodes (7): AlergiaId, AllArgsConstructor, Getter, NoArgsConstructor, Override, Setter, AlergiaRepository
 
 ### Community 29 - "2. Detailed Component Inspections & Mocking Strategies"
 Cohesion: 0.09
@@ -336,15 +343,15 @@ Nodes (22): 1. Component Technical Inventory, 2.1 `App.jsx`, 2.2 `Layout.jsx`, 2
 
 ### Community 30 - "ClinicalImage"
 Cohesion: 0.14
-Nodes (12): ClinicalImage, AllArgsConstructor, Builder, Entity, Getter, NoArgsConstructor, Setter, Table (+4 more)
+Nodes (11): ClinicalImage, AllArgsConstructor, Builder, Entity, Getter, NoArgsConstructor, Setter, Table (+3 more)
 
 ### Community 31 - "User"
 Cohesion: 0.16
 Nodes (11): AllArgsConstructor, Builder, Entity, Getter, NoArgsConstructor, Setter, Table, User (+3 more)
 
 ### Community 32 - "DermatologicService"
-Cohesion: 0.17
-Nodes (11): DermatologicService, AllArgsConstructor, Builder, Entity, Getter, NoArgsConstructor, Setter, Table (+3 more)
+Cohesion: 0.06
+Nodes (32): GeminiChatbotService, DermatologicService, AllArgsConstructor, Builder, Entity, Getter, NoArgsConstructor, Setter (+24 more)
 
 ### Community 33 - "AppointmentServiceTest.java"
 Cohesion: 0.10
@@ -354,13 +361,13 @@ Nodes (18): BookAppointmentRequestDTO, AllArgsConstructor, Builder, Getter, NoAr
 Cohesion: 0.22
 Nodes (21): addDays(), AgendaView(), AppointmentDetail(), ApptChip(), ars(), computeRange(), dayKey(), fmtTime() (+13 more)
 
-### Community 35 - "AppointmentController"
-Cohesion: 0.14
-Nodes (11): AppointmentController, GetMapping, PostMapping, RequestMapping, RestController, AppointmentResponseDTO, AllArgsConstructor, Builder (+3 more)
+### Community 35 - "lombok.RequiredArgsConstructor"
+Cohesion: 0.17
+Nodes (13): AppointmentController, GetMapping, PostMapping, RequestMapping, RestController, PostMapping, RequestMapping, RestController (+5 more)
 
 ### Community 36 - "AuthController"
-Cohesion: 0.10
-Nodes (16): AuthController, PostMapping, RequestMapping, RestController, AuthRequestDTO, AllArgsConstructor, Builder, Getter (+8 more)
+Cohesion: 0.16
+Nodes (10): AuthController, PostMapping, RequestMapping, RestController, AllArgsConstructor, Builder, Getter, NoArgsConstructor (+2 more)
 
 ### Community 37 - "2. Catálogo de Métodos y Funciones de Negocio (Backend)"
 Cohesion: 0.10
@@ -373,10 +380,6 @@ Nodes (15): BottomNav(), BottomNavProps, ICONS, DashboardLayout(), pathToTab(), 
 ### Community 39 - "compilerOptions"
 Cohesion: 0.10
 Nodes (20): compilerOptions, baseUrl, isolatedModules, jsx, lib, module, moduleResolution, noEmit (+12 more)
-
-### Community 40 - "lombok.extern.slf4j.Slf4j"
-Cohesion: 0.17
-Nodes (11): PaymentService, MercadoPagoPaymentAdapter, HoldExpirationScheduler, PostMapping, RequestMapping, RestController, PaymentWebhookController, com.mercadopago.resources.payment.Payment (+3 more)
 
 ### Community 41 - "ClinicalImageResponseDTO"
 Cohesion: 0.14
@@ -403,16 +406,16 @@ Cohesion: 0.12
 Nodes (16): UserRole, ADMIN, DOCTORA, SECRETARIA, AuthResponseDTO, AllArgsConstructor, Builder, Getter (+8 more)
 
 ### Community 47 - "AesEncryptionService"
-Cohesion: 0.18
-Nodes (4): AesEncryptionService, AesEncryptionServiceTest, org.junit.jupiter.api.BeforeEach, org.springframework.context.annotation.Scope
+Cohesion: 0.21
+Nodes (3): AesEncryptionService, AesEncryptionServiceTest, org.junit.jupiter.api.BeforeEach
 
 ### Community 48 - "StrykerJS Mutation Testing Strategy & Setup Analysis (Frontend / Vitest)"
 Cohesion: 0.11
 Nodes (17): 1. Executive Summary, 2. StrykerJS Configuration for Vitest (`frontend/stryker.config.json`), 3. Mutate Target Strategy & Exclusions, 4. Component-by-Component Mutant Survival Risk Analysis, 5. Recommended Testing Patterns for >= 70% Mutation Score, 6. Execution & Verification Commands, 7. Conclusion & Recommendations, Command Execution Workflow (+9 more)
 
-### Community 49 - "JwtAuthenticationFilter"
-Cohesion: 0.15
-Nodes (10): CustomUserDetailsService, Override, Override, JwtAuthenticationFilter, jakarta.servlet.FilterChain, jakarta.servlet.http.HttpServletResponse, org.springframework.security.core.userdetails.UserDetails, org.springframework.web.filter.OncePerRequestFilter (+2 more)
+### Community 49 - "UserRepository"
+Cohesion: 0.21
+Nodes (5): UserRepository, CustomUserDetailsService, Override, UserDetails, UserDetailsService
 
 ### Community 50 - "V1__initial_schema.sql"
 Cohesion: 0.25
@@ -430,9 +433,9 @@ Nodes (16): 1. Executive Summary, 2. Workspace & Root Level Survey, 3.1 Architec
 Cohesion: 0.12
 Nodes (12): HabitoRequestDTO, AllArgsConstructor, Builder, Getter, NoArgsConstructor, Setter, HabitoResponseDTO, AllArgsConstructor (+4 more)
 
-### Community 54 - "MedicalRecordDTO"
-Cohesion: 0.12
-Nodes (12): AlergiaResponseDTO, AllArgsConstructor, Builder, Getter, NoArgsConstructor, Setter, AllArgsConstructor, Builder (+4 more)
+### Community 54 - "AlergiaResponseDTO"
+Cohesion: 0.25
+Nodes (6): AlergiaResponseDTO, AllArgsConstructor, Builder, Getter, NoArgsConstructor, Setter
 
 ### Community 55 - "dependencies"
 Cohesion: 0.12
@@ -454,17 +457,17 @@ Nodes (14): AppointmentReceiptModal(), AppointmentReceiptModalProps, ars(), fmt(
 Cohesion: 0.13
 Nodes (11): Aurora(), AuroraProps, GlideOption, ButtonSize, SpecularButton(), SpecularButtonProps, SpecularPropsSnapshot, SpotlightCard() (+3 more)
 
-### Community 60 - "SecurityConfig.java"
-Cohesion: 0.25
-Nodes (10): SecurityConfig, CorsConfigurationSource, org.springframework.context.annotation.Bean, org.springframework.context.annotation.Configuration, org.springframework.security.authentication.AuthenticationManager, org.springframework.security.config.annotation.authentication.configuration.AuthenticationConfiguration, org.springframework.security.config.annotation.method.configuration.EnableMethodSecurity, org.springframework.security.config.annotation.web.builders.HttpSecurity (+2 more)
+### Community 60 - "org.springframework.stereotype.Component"
+Cohesion: 0.23
+Nodes (7): PaymentType, PaymentRegistrationStrategy, PaymentTransactionRepository, BankTransferPaymentStrategy, CashPaymentStrategy, MercadoPagoPaymentStrategy, org.springframework.stereotype.Component
 
 ### Community 61 - "PasswordResetToken"
 Cohesion: 0.16
-Nodes (9): AllArgsConstructor, Builder, Entity, Getter, NoArgsConstructor, Setter, Table, PasswordResetToken (+1 more)
+Nodes (11): AllArgsConstructor, Builder, Entity, Getter, NoArgsConstructor, Setter, Table, PasswordResetToken (+3 more)
 
-### Community 62 - "GeminiChatResponseDTO"
-Cohesion: 0.18
-Nodes (8): GeminiApiClientAdapter, GeminiChatResponseDTO, AllArgsConstructor, Builder, Getter, NoArgsConstructor, Setter, SuppressWarnings
+### Community 62 - "ClinicalEntryAudit"
+Cohesion: 0.15
+Nodes (9): ClinicalEntryAudit, AllArgsConstructor, Builder, Entity, Getter, NoArgsConstructor, Setter, Table (+1 more)
 
 ### Community 63 - "Analysis Report — Backend Codebase Survey"
 Cohesion: 0.17
@@ -494,17 +497,17 @@ Nodes (11): Artifact Index, BRIEFING — 2026-08-10T22:50:12Z, Change Tracker, C
 Cohesion: 0.17
 Nodes (11): Artifact Index, BRIEFING — 2026-08-10T22:42:30Z, Change Tracker, Current Parent, 🔒 Key Constraints, Key Decisions Made, Loaded Skills, Mission (+3 more)
 
-### Community 70 - "DermatologicServiceRepository"
-Cohesion: 0.20
-Nodes (5): GeminiChatbotService, DermatologicServiceRepository, GeminiChatbotController, RequestMapping, RestController
+### Community 70 - ".login"
+Cohesion: 0.21
+Nodes (6): AuthRequestDTO, AllArgsConstructor, Builder, Getter, NoArgsConstructor, Setter
 
-### Community 71 - "GeminiChatRequestDTO"
-Cohesion: 0.26
-Nodes (8): PostMapping, ChatMessageItemDTO, GeminiChatRequestDTO, AllArgsConstructor, Builder, Getter, NoArgsConstructor, Setter
+### Community 71 - ".forgotPassword"
+Cohesion: 0.18
+Nodes (6): ForgotPasswordRequestDTO, AllArgsConstructor, Builder, Getter, NoArgsConstructor, Setter
 
 ### Community 72 - "org.springframework.data.jpa.repository.JpaRepository"
-Cohesion: 0.36
-Nodes (6): JpaClinicalEntryAuditRepository, JpaMedicalRecordAuditRepository, JpaMedicalRecordRepository, JpaPasswordResetTokenRepository, org.springframework.data.jpa.repository.JpaRepository, org.springframework.stereotype.Repository
+Cohesion: 0.40
+Nodes (5): JpaClinicalEntryAuditRepository, JpaClinicalEntryRepository, JpaClinicalImageRepository, org.springframework.data.jpa.repository.JpaRepository, org.springframework.stereotype.Repository
 
 ### Community 73 - "V2__audit_triggers_and_tables.sql"
 Cohesion: 0.27
@@ -654,13 +657,13 @@ Nodes (6): Caveats, Conclusion, Handoff Report — Sentinel Setup, Logic Chain, 
 Cohesion: 0.29
 Nodes (6): ClinicalEntryRequestDTO, AllArgsConstructor, Builder, Getter, NoArgsConstructor, Setter
 
-### Community 110 - "ResetPasswordRequestDTO"
-Cohesion: 0.29
-Nodes (6): AllArgsConstructor, Builder, Getter, NoArgsConstructor, Setter, ResetPasswordRequestDTO
+### Community 110 - ".save"
+Cohesion: 0.20
+Nodes (5): Appointment, Appointment, Override, PaymentConcept, PaymentType
 
-### Community 111 - "ServiceRequestDTO"
-Cohesion: 0.29
-Nodes (6): AllArgsConstructor, Builder, Getter, NoArgsConstructor, Setter, ServiceRequestDTO
+### Community 111 - "AppointmentResponseDTO"
+Cohesion: 0.22
+Nodes (6): AppointmentResponseDTO, AllArgsConstructor, Builder, Getter, NoArgsConstructor, Setter
 
 ### Community 112 - "Cambios Implementados"
 Cohesion: 0.29
@@ -762,25 +765,41 @@ Nodes (3): Current Status, Iteration Status, Progress — Sub-Orchestrator Miles
 Cohesion: 0.50
 Nodes (4): scripts, build, dev, preview
 
+### Community 173 - "AlergiaRequestDTO"
+Cohesion: 0.29
+Nodes (6): AlergiaRequestDTO, AllArgsConstructor, Builder, Getter, NoArgsConstructor, Setter
+
+### Community 174 - "PaymentStatus"
+Cohesion: 0.33
+Nodes (5): PaymentStatus, APPROVED, PENDING, REFUNDED, REJECTED
+
+### Community 175 - ".register"
+Cohesion: 0.33
+Nodes (4): Appointment, Override, PaymentConcept, PaymentType
+
+### Community 176 - ".register"
+Cohesion: 0.33
+Nodes (4): Appointment, Override, PaymentConcept, PaymentType
+
 ## Knowledge Gaps
 - **719 isolated node(s):** `com.clinicadermatologica:clinica-dermatologica-backend`, `PENDING_PAYMENT`, `CONFIRMED`, `ATTENDED`, `CANCELED` (+714 more)
   These have ≤1 connection - possible missing edges or undocumented components. (Counts symbols only; 1190 node(s) total have ≤1 connection when file, concept and rationale nodes are included.)
-- **31 thin communities (<3 nodes) omitted from report** — run `graphify query` to explore isolated nodes.
+- **35 thin communities (<3 nodes) omitted from report** — run `graphify query` to explore isolated nodes.
 
 ## Suggested Questions
 _Questions this graph is uniquely positioned to answer:_
 
-- **Why does `User` connect `User` to `org.springframework.stereotype.Component`, `Appointment`, `ClinicalEntry`, `org.springframework.transaction.annotation.Transactional`, `UserRepository`, `lombok.RequiredArgsConstructor`, `UserRole`, `org.junit.jupiter.api.DisplayName`, `JwtAuthenticationFilter`, `MedicalRecord`, `.findById`, `AppointmentService`, `MedicalRecordService`, `PasswordResetToken`?**
+- **Why does `User` connect `User` to `PaymentTransaction`, `Appointment`, `ClinicalEntry`, `org.springframework.transaction.annotation.Transactional`, `lombok.extern.slf4j.Slf4j`, `org.junit.jupiter.api.DisplayName`, `MedicalRecord`, `AppointmentService`, `MedicalRecordService`, `lombok.RequiredArgsConstructor`, `AuthController`, `UserRole`, `.register`, `.register`, `UserRepository`, `.register`, `PasswordResetToken`, `ClinicalEntryAudit`, `.login`, `.forgotPassword`, `.save`, `.findById`?**
   _High betweenness centrality (0.030) - this node is a cross-community bridge._
-- **Why does `MedicalRecordService` connect `MedicalRecordService` to `AntecedentePatologico`, `Patient`, `ClinicalEntry`, `org.springframework.transaction.annotation.Transactional`, `lombok.extern.slf4j.Slf4j`, `UserRepository`, `MedicalRecordController`, `Habito`, `lombok.RequiredArgsConstructor`, `AesEncryptionService`, `.addHabito`, `MedicalRecordDTO`, `AppointmentService`, `AlergiaId`, `.findById`?**
+- **Why does `MedicalRecordService` connect `MedicalRecordService` to `AntecedentePatologico`, `Patient`, `lombok.RequiredArgsConstructor`, `lombok.extern.slf4j.Slf4j`, `MedicalRecordController`, `Habito`, `AesEncryptionService`, `UserRepository`, `.addHabito`, `AlergiaResponseDTO`, `AppointmentService`, `AlergiaId`, `.findById`, `ClinicalEntryAudit`?**
   _High betweenness centrality (0.017) - this node is a cross-community bridge._
-- **Why does `MedicalRecordDTO` connect `MedicalRecordDTO` to `AntecedentePatologico`, `MedicalRecordController`, `MedicalRecordService`, `.addHabito`?**
+- **Why does `MedicalRecordDTO` connect `MedicalRecordService` to `MedicalRecordController`, `AntecedentePatologico`, `.addHabito`, `AlergiaResponseDTO`?**
   _High betweenness centrality (0.015) - this node is a cross-community bridge._
 - **What connects `com.clinicadermatologica:clinica-dermatologica-backend`, `PENDING_PAYMENT`, `CONFIRMED` to the rest of the system?**
   _719 weakly-connected nodes found - possible documentation gaps or missing edges._
-- **Should `org.springframework.stereotype.Component` be split into smaller, more focused modules?**
-  _Cohesion score 0.050724637681159424 - nodes in this community are weakly interconnected._
 - **Should `Appointment` be split into smaller, more focused modules?**
-  _Cohesion score 0.05764145954521417 - nodes in this community are weakly interconnected._
+  _Cohesion score 0.05901639344262295 - nodes in this community are weakly interconnected._
 - **Should `AntecedentePatologico` be split into smaller, more focused modules?**
   _Cohesion score 0.06485671191553545 - nodes in this community are weakly interconnected._
+- **Should `Patient` be split into smaller, more focused modules?**
+  _Cohesion score 0.0951219512195122 - nodes in this community are weakly interconnected._

@@ -1,23 +1,23 @@
 ---
-source_file: "backend/src/main/java/com/clinicadermatologica/app/infrastructure/payment/strategy/MercadoPagoPaymentStrategy.java"
+source_file: "backend/src/main/java/com/clinicadermatologica/app/application/strategy/PaymentRegistrationStrategy.java"
 type: "code"
-community: "org.springframework.stereotype.Component"
-location: "L30"
+community: ".register"
+location: "L41"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/orgspringframeworkstereotypeComponent
+  - community/register
 ---
 
 # .register()
 
 ## Connections
-- [[dot-save()]] - `calls` [INFERRED]
-- [[Appointment_6]] - `references` [EXTRACTED]
-- [[MercadoPagoPaymentStrategy]] - `method` [EXTRACTED]
-- [[Override_2]] - `references` [EXTRACTED]
+- [[dot-testRegisterDeposit_Cash_ConfirmsAppointment()]] - `calls` [INFERRED]
+- [[dot-testRegisterFinalPayment_DelegatesToStrategy_CompletesAppointment()]] - `calls` [INFERRED]
+- [[Appointment_7]] - `references` [EXTRACTED]
 - [[PaymentConcept_5]] - `references` [EXTRACTED]
+- [[PaymentRegistrationStrategy]] - `method` [EXTRACTED]
 - [[PaymentTransaction]] - `references` [EXTRACTED]
 - [[User]] - `references` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/orgspringframeworkstereotypeComponent
+#graphify/code #graphify/EXTRACTED #community/register

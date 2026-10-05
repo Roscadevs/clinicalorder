@@ -1,20 +1,20 @@
 ---
-source_file: "backend/src/main/java/com/clinicadermatologica/app/presentation/controller/CalendarBlockController.java"
+source_file: "backend/src/main/java/com/clinicadermatologica/app/application/service/CalendarBlockService.java"
 type: "code"
-community: "lombok.RequiredArgsConstructor"
-location: "L42"
+community: "CalendarBlockResponseDTO"
+location: "L64"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/lombokRequiredArgsConstructor
+  - community/CalendarBlockResponseDTO
 ---
 
 # .deleteBlock()
 
 ## Connections
 - [[dot-deleteBlock()_1]] - `calls` [INFERRED]
-- [[CalendarBlockController]] - `method` [EXTRACTED]
-- [[DeleteMapping_1]] - `references` [EXTRACTED]
-- [[org.springframework.http.ResponseEntity]] - `references` [EXTRACTED]
+- [[dot-deleteById()_1]] - `calls` [INFERRED]
+- [[CalendarBlockService]] - `method` [EXTRACTED]
+- [[org.springframework.transaction.annotation.Transactional]] - `references` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/lombokRequiredArgsConstructor
+#graphify/code #graphify/EXTRACTED #community/CalendarBlockResponseDTO

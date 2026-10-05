@@ -1,12 +1,12 @@
 ---
 source_file: "backend/src/main/java/com/clinicadermatologica/app/infrastructure/ai/GeminiApiClientAdapter.java"
 type: "code"
-community: "GeminiChatResponseDTO"
+community: "DermatologicService"
 location: "L38"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/GeminiChatResponseDTO
+  - community/DermatologicService
 ---
 
 # .generateResponse()
@@ -18,4 +18,4 @@ tags:
 - [[GeminiChatRequestDTO]] - `references` [EXTRACTED]
 - [[GeminiChatResponseDTO]] - `references` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/GeminiChatResponseDTO
+#graphify/code #graphify/EXTRACTED #community/DermatologicService

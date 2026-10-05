@@ -1,16 +1,16 @@
 ---
 source_file: ""
 type: "code"
-community: "Habito"
+community: "AppointmentResponseDTO"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/Habito
+  - community/AppointmentResponseDTO
 ---
 
 # NoArgsConstructor
 
 ## Connections
-- [[HabitoId]] - `references` [EXTRACTED]
+- [[AppointmentResponseDTO]] - `references` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/Habito
+#graphify/code #graphify/EXTRACTED #community/AppointmentResponseDTO

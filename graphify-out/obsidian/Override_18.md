@@ -1,16 +1,20 @@
 ---
 source_file: ""
 type: "code"
-community: "JwtAuthenticationFilter"
+community: "Alergia"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/JwtAuthenticationFilter
+  - community/Alergia
 ---
 
 # Override
 
 ## Connections
-- [[dot-loadUserByUsername()]] - `references` [EXTRACTED]
+- [[dot-delete()_5]] - `references` [EXTRACTED]
+- [[dot-existsById()_5]] - `references` [EXTRACTED]
+- [[dot-findById()_21]] - `references` [EXTRACTED]
+- [[dot-findByMedicalRecordId()_5]] - `references` [EXTRACTED]
+- [[dot-save()_21]] - `references` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/JwtAuthenticationFilter
+#graphify/code #graphify/EXTRACTED #community/Alergia

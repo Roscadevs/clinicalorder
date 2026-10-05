@@ -1,21 +1,19 @@
 ---
 source_file: ""
 type: "code"
-community: "User"
+community: "ClinicalImage"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/User
+  - community/ClinicalImage
 ---
 
 # Override
 
 ## Connections
-- [[dot-existsByEmail()_3]] - `references` [EXTRACTED]
-- [[dot-existsByUsername()]] - `references` [EXTRACTED]
-- [[dot-findByEmail()_3]] - `references` [EXTRACTED]
-- [[dot-findById()_19]] - `references` [EXTRACTED]
-- [[dot-findByUsername()]] - `references` [EXTRACTED]
+- [[dot-deleteById()_3]] - `references` [EXTRACTED]
+- [[dot-findByClinicalEntryId()]] - `references` [EXTRACTED]
+- [[dot-findById()_17]] - `references` [EXTRACTED]
 - [[dot-save()_17]] - `references` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/User
+#graphify/code #graphify/EXTRACTED #community/ClinicalImage

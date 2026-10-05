@@ -1,20 +1,32 @@
 ---
-source_file: "backend/src/main/java/com/clinicadermatologica/app/infrastructure/persistence/adapter/HabitoRepositoryAdapter.java"
+source_file: "backend/src/main/java/com/clinicadermatologica/app/domain/repository/UserRepository.java"
 type: "code"
-community: "Habito"
-location: "L31"
+community: ".findById"
+location: "L11"
 tags:
   - graphify/code
-  - graphify/EXTRACTED
-  - community/Habito
+  - graphify/INFERRED
+  - community/findById
 ---
 
 # .findById()
 
 ## Connections
-- [[Habito]] - `references` [EXTRACTED]
-- [[HabitoId]] - `references` [EXTRACTED]
-- [[HabitoRepositoryAdapter]] - `method` [EXTRACTED]
-- [[Override_7]] - `references` [EXTRACTED]
+- [[dot-addClinicalEntry()_1]] - `calls` [INFERRED]
+- [[dot-bookTemporaryHold()]] - `calls` [INFERRED]
+- [[dot-createBlock()]] - `calls` [INFERRED]
+- [[dot-registerDepositPayment()]] - `calls` [INFERRED]
+- [[dot-registerFinalPayment()]] - `calls` [INFERRED]
+- [[dot-saveOrUpdateMedicalRecord()]] - `calls` [INFERRED]
+- [[dot-testAddClinicalEntry_EncryptsContent()]] - `calls` [INFERRED]
+- [[dot-testBookTemporaryHold_ExpiredOverlappingHold_IsReleased()]] - `calls` [INFERRED]
+- [[dot-testBookTemporaryHold_SlotUnavailable_ThrowsException()]] - `calls` [INFERRED]
+- [[dot-testBookTemporaryHold_Success()]] - `calls` [INFERRED]
+- [[dot-testRegisterDeposit_Cash_ConfirmsAppointment()]] - `calls` [INFERRED]
+- [[dot-testRegisterFinalPayment_DelegatesToStrategy_CompletesAppointment()]] - `calls` [INFERRED]
+- [[dot-testSaveInitialMedicalRecord_Success()]] - `calls` [INFERRED]
+- [[dot-updateClinicalEntry()_1]] - `calls` [INFERRED]
+- [[User]] - `references` [EXTRACTED]
+- [[UserRepository]] - `method` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/Habito
+#graphify/code #graphify/INFERRED #community/findById

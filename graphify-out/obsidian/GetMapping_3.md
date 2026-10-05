@@ -1,11 +1,11 @@
 ---
 source_file: ""
 type: "code"
-community: "AppointmentController"
+community: "lombok.RequiredArgsConstructor"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/AppointmentController
+  - community/lombokRequiredArgsConstructor
 ---
 
 # GetMapping
@@ -15,4 +15,4 @@ tags:
 - [[dot-getAppointmentById()_1]] - `references` [EXTRACTED]
 - [[dot-getAvailableSlots()_1]] - `references` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/AppointmentController
+#graphify/code #graphify/EXTRACTED #community/lombokRequiredArgsConstructor

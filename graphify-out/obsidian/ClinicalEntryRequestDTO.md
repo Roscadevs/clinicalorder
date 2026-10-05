@@ -14,11 +14,11 @@ tags:
 ## Connections
 - [[dot-addClinicalEntry()_1]] - `references` [EXTRACTED]
 - [[dot-addClinicalEntry()]] - `references` [EXTRACTED]
-- [[AllArgsConstructor_5]] - `references` [EXTRACTED]
-- [[Builder_5]] - `references` [EXTRACTED]
+- [[AllArgsConstructor_4]] - `references` [EXTRACTED]
+- [[Builder_4]] - `references` [EXTRACTED]
 - [[ClinicalEntryRequestDTO.java]] - `contains` [EXTRACTED]
-- [[Getter_5]] - `references` [EXTRACTED]
-- [[NoArgsConstructor_5]] - `references` [EXTRACTED]
-- [[Setter_5]] - `references` [EXTRACTED]
+- [[Getter_4]] - `references` [EXTRACTED]
+- [[NoArgsConstructor_4]] - `references` [EXTRACTED]
+- [[Setter_4]] - `references` [EXTRACTED]
 
 #graphify/code #graphify/EXTRACTED #community/ClinicalEntryRequestDTO

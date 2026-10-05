@@ -1,19 +1,18 @@
 ---
-source_file: "backend/src/main/java/com/clinicadermatologica/app/infrastructure/persistence/jpa/JpaClinicalEntryRepository.java"
+source_file: "backend/src/main/java/com/clinicadermatologica/app/domain/repository/ClinicalEntryRepository.java"
 type: "code"
-community: "ClinicalEntry"
-location: "L21"
+community: "ClinicalEntryAudit"
+location: "L19"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/ClinicalEntry
+  - community/ClinicalEntryAudit
 ---
 
 # .findByAppointmentId()
 
 ## Connections
-- [[dot-findByAppointmentId()_3]] - `calls` [INFERRED]
 - [[ClinicalEntry]] - `references` [EXTRACTED]
-- [[JpaClinicalEntryRepository]] - `method` [EXTRACTED]
+- [[ClinicalEntryRepository]] - `method` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/ClinicalEntry
+#graphify/code #graphify/EXTRACTED #community/ClinicalEntryAudit

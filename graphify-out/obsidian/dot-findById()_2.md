@@ -1,8 +1,8 @@
 ---
-source_file: "backend/src/main/java/com/clinicadermatologica/app/domain/repository/CalendarBlockRepository.java"
+source_file: "backend/src/main/java/com/clinicadermatologica/app/infrastructure/persistence/adapter/AppointmentRepositoryAdapter.java"
 type: "code"
 community: "Appointment"
-location: "L13"
+location: "L28"
 tags:
   - graphify/code
   - graphify/EXTRACTED
@@ -12,7 +12,8 @@ tags:
 # .findById()
 
 ## Connections
-- [[CalendarBlock]] - `references` [EXTRACTED]
-- [[CalendarBlockRepository]] - `method` [EXTRACTED]
+- [[Appointment]] - `references` [EXTRACTED]
+- [[AppointmentRepositoryAdapter]] - `method` [EXTRACTED]
+- [[Override_1]] - `references` [EXTRACTED]
 
 #graphify/code #graphify/EXTRACTED #community/Appointment

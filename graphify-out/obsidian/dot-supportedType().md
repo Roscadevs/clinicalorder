@@ -1,19 +1,19 @@
 ---
-source_file: "backend/src/main/java/com/clinicadermatologica/app/application/strategy/PaymentRegistrationStrategy.java"
+source_file: "backend/src/main/java/com/clinicadermatologica/app/infrastructure/payment/strategy/BankTransferPaymentStrategy.java"
 type: "code"
-community: "org.springframework.stereotype.Component"
-location: "L29"
+community: ".save"
+location: "L25"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/orgspringframeworkstereotypeComponent
+  - community/save
 ---
 
 # .supportedType()
 
 ## Connections
-- [[dot-testStrategyFactory_ReturnsCorrectStrategy()]] - `calls` [INFERRED]
-- [[PaymentRegistrationStrategy]] - `method` [EXTRACTED]
+- [[BankTransferPaymentStrategy]] - `method` [EXTRACTED]
+- [[Override_5]] - `references` [EXTRACTED]
 - [[PaymentType_2]] - `references` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/orgspringframeworkstereotypeComponent
+#graphify/code #graphify/EXTRACTED #community/save

@@ -1,12 +1,12 @@
 ---
 source_file: "backend/src/main/java/com/clinicadermatologica/app/presentation/dto/AuthRequestDTO.java"
 type: "code"
-community: "AuthController"
+community: ".login"
 location: "L1"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/AuthController
+  - community/login
 ---
 
 # AuthRequestDTO.java
@@ -14,4 +14,4 @@ tags:
 ## Connections
 - [[AuthRequestDTO]] - `contains` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/AuthController
+#graphify/code #graphify/EXTRACTED #community/login

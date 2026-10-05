@@ -13,9 +13,9 @@ tags:
 
 ## Connections
 - [[dot-bookTemporaryHold()]] - `calls` [INFERRED]
-- [[dot-findById()_13]] - `calls` [INFERRED]
 - [[dot-findById()_12]] - `calls` [INFERRED]
-- [[dot-findById()_7]] - `calls` [INFERRED]
+- [[dot-findById()_11]] - `calls` [INFERRED]
+- [[dot-findById()_6]] - `calls` [INFERRED]
 - [[dot-findOverlappingAppointments()_1]] - `calls` [INFERRED]
 - [[dot-findOverlappingBlocks()_2]] - `calls` [INFERRED]
 - [[AppointmentServiceTest]] - `method` [EXTRACTED]

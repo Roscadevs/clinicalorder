@@ -15,7 +15,7 @@ tags:
 - [[dot-getBlocksByRange()]] - `calls` [INFERRED]
 - [[CalendarBlockController]] - `method` [EXTRACTED]
 - [[CalendarBlockResponseDTO]] - `references` [EXTRACTED]
-- [[GetMapping_2]] - `references` [EXTRACTED]
+- [[GetMapping_1]] - `references` [EXTRACTED]
 - [[org.springframework.http.ResponseEntity]] - `references` [EXTRACTED]
 
 #graphify/code #graphify/EXTRACTED #community/CalendarBlockResponseDTO

@@ -1,12 +1,12 @@
 ---
 source_file: "backend/src/main/java/com/clinicadermatologica/app/presentation/controller/AppointmentController.java"
 type: "code"
-community: "AppointmentController"
+community: "lombok.RequiredArgsConstructor"
 location: "L21"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/AppointmentController
+  - community/lombokRequiredArgsConstructor
 ---
 
 # AppointmentController
@@ -23,8 +23,8 @@ tags:
 - [[AppointmentController.java]] - `contains` [EXTRACTED]
 - [[AppointmentService]] - `references` [EXTRACTED]
 - [[PaymentService]] - `references` [EXTRACTED]
-- [[RequestMapping_4]] - `references` [EXTRACTED]
-- [[RestController_4]] - `references` [EXTRACTED]
+- [[RequestMapping_5]] - `references` [EXTRACTED]
+- [[RestController_5]] - `references` [EXTRACTED]
 - [[lombok.RequiredArgsConstructor]] - `references` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/AppointmentController
+#graphify/code #graphify/EXTRACTED #community/lombokRequiredArgsConstructor

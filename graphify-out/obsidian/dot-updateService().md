@@ -12,7 +12,7 @@ tags:
 # .updateService()
 
 ## Connections
-- [[dot-findById()_12]] - `calls` [INFERRED]
+- [[dot-findById()_11]] - `calls` [INFERRED]
 - [[dot-mapToDTO()_1]] - `calls` [EXTRACTED]
 - [[dot-save()_11]] - `calls` [INFERRED]
 - [[dot-updateService()_1]] - `calls` [INFERRED]

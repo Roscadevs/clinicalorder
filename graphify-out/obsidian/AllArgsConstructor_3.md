@@ -11,6 +11,6 @@ tags:
 # AllArgsConstructor
 
 ## Connections
-- [[AlergiaRequestDTO]] - `references` [EXTRACTED]
+- [[ClinicalEntryResponseDTO]] - `references` [EXTRACTED]
 
 #graphify/code #graphify/EXTRACTED #community/MedicalRecordController

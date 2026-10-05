@@ -12,8 +12,8 @@ tags:
 # CashPaymentStrategy
 
 ## Connections
-- [[dot-register()_2]] - `method` [EXTRACTED]
-- [[dot-supportedType()_2]] - `method` [EXTRACTED]
+- [[dot-register()_1]] - `method` [EXTRACTED]
+- [[dot-supportedType()_1]] - `method` [EXTRACTED]
 - [[CashPaymentStrategy.java]] - `contains` [EXTRACTED]
 - [[PaymentRegistrationStrategy]] - `implements` [EXTRACTED]
 - [[PaymentTransactionRepository]] - `references` [EXTRACTED]

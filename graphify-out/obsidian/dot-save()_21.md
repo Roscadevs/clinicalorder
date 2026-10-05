@@ -1,19 +1,19 @@
 ---
-source_file: "backend/src/main/java/com/clinicadermatologica/app/domain/repository/HabitoRepository.java"
+source_file: "backend/src/main/java/com/clinicadermatologica/app/infrastructure/persistence/adapter/AlergiaRepositoryAdapter.java"
 type: "code"
-community: ".addHabito"
-location: "L22"
+community: "Alergia"
+location: "L37"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/addHabito
+  - community/Alergia
 ---
 
 # .save()
 
 ## Connections
-- [[dot-addHabito()_1]] - `calls` [INFERRED]
-- [[Habito]] - `references` [EXTRACTED]
-- [[HabitoRepository]] - `method` [EXTRACTED]
+- [[Alergia]] - `references` [EXTRACTED]
+- [[AlergiaRepositoryAdapter]] - `method` [EXTRACTED]
+- [[Override_18]] - `references` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/addHabito
+#graphify/code #graphify/EXTRACTED #community/Alergia

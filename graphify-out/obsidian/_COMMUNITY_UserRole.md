@@ -36,10 +36,10 @@ SORT file.name ASC
 ```
 
 ## Connections to other communities
-- 2 edges to [[_COMMUNITY_UserRepository]]
+- 2 edges to [[_COMMUNITY_AuthController]]
 - 1 edge to [[_COMMUNITY_User]]
-- 1 edge to [[_COMMUNITY_AuthController]]
-- 1 edge to [[_COMMUNITY_lombok.RequiredArgsConstructor]]
+- 1 edge to [[_COMMUNITY_dot-login]]
+- 1 edge to [[_COMMUNITY_UserRepository]]
 
 ## Top bridge nodes
 - [[AuthResponseDTO]] - degree 9, connects to 2 communities

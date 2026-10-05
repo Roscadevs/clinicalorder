@@ -12,7 +12,7 @@ tags:
 # .deleteById()
 
 ## Connections
-- [[dot-deleteBlock()_1]] - `calls` [INFERRED]
+- [[dot-deleteBlock()]] - `calls` [INFERRED]
 - [[CalendarBlockRepository]] - `method` [EXTRACTED]
 
 #graphify/code #graphify/EXTRACTED #community/CalendarBlockResponseDTO

@@ -17,6 +17,7 @@ import org.springframework.transaction.annotation.Transactional;
 import java.math.BigDecimal;
 import java.math.RoundingMode;
 import java.time.Instant;
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -124,19 +125,31 @@ public class PaymentService {
                 return true;
             }
 
-            // Busca la transacción PENDING por preferenceId — el concepto ya está almacenado
-            String preferenceId = mpPayment.getPreferenceId();
-            if (preferenceId == null) {
-                log.warn("El pago {} no tiene preferenceId asociado", paymentId);
+            // Busca la transacción PENDING por externalReference (preferenceId o appointmentId)
+            String externalReference = mpPayment.getExternalReference();
+            if (externalReference == null || externalReference.isBlank()) {
+                log.warn("El pago {} no tiene externalReference asociado", paymentId);
                 return true;
             }
 
             PaymentTransaction transaction = paymentTransactionRepository
-                    .findByMpPreferenceId(preferenceId)
+                    .findByMpPreferenceId(externalReference)
                     .orElse(null);
 
             if (transaction == null) {
-                log.warn("No se encontró transacción pendiente para preferenceId: {}", preferenceId);
+                try {
+                    Long appointmentId = Long.parseLong(externalReference.trim());
+                    List<PaymentTransaction> txs = paymentTransactionRepository.findByAppointmentId(appointmentId);
+                    transaction = txs.stream()
+                            .filter(t -> t.getPaymentType() == PaymentType.MERCADOPAGO && t.getStatus() == PaymentStatus.PENDING)
+                            .findFirst()
+                            .orElse(null);
+                } catch (NumberFormatException ignored) {
+                }
+            }
+
+            if (transaction == null) {
+                log.warn("No se encontró transacción pendiente para externalReference: {}", externalReference);
                 return true;
             }
 

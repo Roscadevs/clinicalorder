@@ -1,16 +1,16 @@
 ---
 source_file: ""
 type: "code"
-community: "PaymentServiceTest.java"
+community: "MedicalRecord"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/PaymentServiceTestjava
+  - community/MedicalRecord
 ---
 
 # Builder
 
 ## Connections
-- [[RegisterPaymentRequestDTO]] - `references` [EXTRACTED]
+- [[MedicalRecord]] - `references` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/PaymentServiceTestjava
+#graphify/code #graphify/EXTRACTED #community/MedicalRecord

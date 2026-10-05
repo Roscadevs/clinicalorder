@@ -2,7 +2,7 @@
 source_file: "backend/src/main/java/com/clinicadermatologica/app/application/service/PaymentService.java"
 type: "code"
 community: "org.junit.jupiter.api.DisplayName"
-location: "L255"
+location: "L268"
 tags:
   - graphify/code
   - graphify/INFERRED
@@ -12,8 +12,8 @@ tags:
 # .registerDepositPayment()
 
 ## Connections
-- [[dot-findById()_8]] - `calls` [INFERRED]
 - [[dot-findById()_7]] - `calls` [INFERRED]
+- [[dot-findById()_6]] - `calls` [INFERRED]
 - [[dot-getStrategy()]] - `calls` [INFERRED]
 - [[dot-isExpired()]] - `calls` [EXTRACTED]
 - [[dot-registerDepositPayment()_1]] - `calls` [INFERRED]

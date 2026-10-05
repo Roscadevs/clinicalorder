@@ -18,8 +18,8 @@ tags:
 - [[dot-resetPassword()]] - `method` [EXTRACTED]
 - [[AuthController.java]] - `contains` [EXTRACTED]
 - [[AuthService]] - `references` [EXTRACTED]
-- [[RequestMapping_5]] - `references` [EXTRACTED]
-- [[RestController_5]] - `references` [EXTRACTED]
+- [[RequestMapping_7]] - `references` [EXTRACTED]
+- [[RestController_7]] - `references` [EXTRACTED]
 - [[lombok.RequiredArgsConstructor]] - `references` [EXTRACTED]
 
 #graphify/code #graphify/EXTRACTED #community/AuthController

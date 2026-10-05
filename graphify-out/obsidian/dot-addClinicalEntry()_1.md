@@ -14,8 +14,8 @@ tags:
 ## Connections
 - [[dot-addClinicalEntry()]] - `calls` [INFERRED]
 - [[dot-encrypt()]] - `calls` [EXTRACTED]
-- [[dot-findById()_8]] - `calls` [INFERRED]
 - [[dot-findById()_7]] - `calls` [INFERRED]
+- [[dot-findById()_6]] - `calls` [INFERRED]
 - [[dot-mapEntryToDTO()]] - `calls` [EXTRACTED]
 - [[dot-save()_6]] - `calls` [INFERRED]
 - [[dot-testAddClinicalEntry_EncryptsContent()]] - `calls` [INFERRED]

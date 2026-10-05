@@ -1,17 +1,17 @@
 ---
 source_file: ""
 type: "code"
-community: "Habito"
+community: ".register"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/Habito
+  - community/register
 ---
 
 # Override
 
 ## Connections
-- [[dot-equals()]] - `references` [EXTRACTED]
-- [[dot-hashCode()]] - `references` [EXTRACTED]
+- [[dot-register()_1]] - `references` [EXTRACTED]
+- [[dot-supportedType()_1]] - `references` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/Habito
+#graphify/code #graphify/EXTRACTED #community/register

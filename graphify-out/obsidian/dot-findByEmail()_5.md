@@ -1,12 +1,12 @@
 ---
 source_file: "backend/src/main/java/com/clinicadermatologica/app/domain/repository/UserRepository.java"
 type: "code"
-community: "UserRepository"
+community: ".forgotPassword"
 location: "L13"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/UserRepository
+  - community/forgotPassword
 ---
 
 # .findByEmail()
@@ -17,4 +17,4 @@ tags:
 - [[User]] - `references` [EXTRACTED]
 - [[UserRepository]] - `method` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/UserRepository
+#graphify/code #graphify/EXTRACTED #community/forgotPassword

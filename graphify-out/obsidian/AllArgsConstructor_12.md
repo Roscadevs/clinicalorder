@@ -1,16 +1,16 @@
 ---
 source_file: ""
 type: "code"
-community: "PaymentServiceTest.java"
+community: "AlergiaRequestDTO"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/PaymentServiceTestjava
+  - community/AlergiaRequestDTO
 ---
 
 # AllArgsConstructor
 
 ## Connections
-- [[PaymentReceiptDTO]] - `references` [EXTRACTED]
+- [[AlergiaRequestDTO]] - `references` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/PaymentServiceTestjava
+#graphify/code #graphify/EXTRACTED #community/AlergiaRequestDTO

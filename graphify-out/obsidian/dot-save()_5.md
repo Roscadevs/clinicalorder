@@ -1,19 +1,25 @@
 ---
-source_file: "backend/src/main/java/com/clinicadermatologica/app/infrastructure/persistence/adapter/HabitoRepositoryAdapter.java"
+source_file: "backend/src/main/java/com/clinicadermatologica/app/domain/repository/PaymentTransactionRepository.java"
 type: "code"
-community: "Habito"
-location: "L36"
+community: ".save"
+location: "L16"
 tags:
   - graphify/code
-  - graphify/EXTRACTED
-  - community/Habito
+  - graphify/INFERRED
+  - community/save
 ---
 
 # .save()
 
 ## Connections
-- [[Habito]] - `references` [EXTRACTED]
-- [[HabitoRepositoryAdapter]] - `method` [EXTRACTED]
-- [[Override_7]] - `references` [EXTRACTED]
+- [[dot-bookTemporaryHold()]] - `calls` [INFERRED]
+- [[dot-processMercadoPagoWebhook()]] - `calls` [INFERRED]
+- [[dot-register()]] - `calls` [INFERRED]
+- [[dot-register()_1]] - `calls` [INFERRED]
+- [[dot-register()_2]] - `calls` [INFERRED]
+- [[dot-rejectPendingTransactions()_1]] - `calls` [INFERRED]
+- [[dot-rejectPendingTransactions()]] - `calls` [INFERRED]
+- [[PaymentTransaction]] - `references` [EXTRACTED]
+- [[PaymentTransactionRepository]] - `method` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/Habito
+#graphify/code #graphify/INFERRED #community/save

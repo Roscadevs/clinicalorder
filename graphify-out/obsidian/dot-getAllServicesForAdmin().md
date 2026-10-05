@@ -12,7 +12,7 @@ tags:
 # .getAllServicesForAdmin()
 
 ## Connections
-- [[dot-findAll()_1]] - `calls` [INFERRED]
+- [[dot-findAll()]] - `calls` [INFERRED]
 - [[dot-getAllServicesForAdmin()_1]] - `calls` [INFERRED]
 - [[DermatologicServiceService]] - `method` [EXTRACTED]
 - [[ServiceResponseDTO]] - `references` [EXTRACTED]

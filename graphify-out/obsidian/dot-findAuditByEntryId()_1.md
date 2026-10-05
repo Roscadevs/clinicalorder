@@ -1,20 +1,18 @@
 ---
-source_file: "backend/src/main/java/com/clinicadermatologica/app/infrastructure/persistence/adapter/ClinicalEntryRepositoryAdapter.java"
+source_file: "backend/src/main/java/com/clinicadermatologica/app/domain/repository/ClinicalEntryRepository.java"
 type: "code"
-community: "ClinicalEntry"
-location: "L53"
+community: "ClinicalEntryAudit"
+location: "L22"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/ClinicalEntry
+  - community/ClinicalEntryAudit
 ---
 
 # .findAuditByEntryId()
 
 ## Connections
-- [[dot-findByClinicalEntryIdOrderByModifiedAtDesc()]] - `calls` [INFERRED]
 - [[ClinicalEntryAudit]] - `references` [EXTRACTED]
-- [[ClinicalEntryRepositoryAdapter]] - `method` [EXTRACTED]
-- [[Override_16]] - `references` [EXTRACTED]
+- [[ClinicalEntryRepository]] - `method` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/ClinicalEntry
+#graphify/code #graphify/EXTRACTED #community/ClinicalEntryAudit

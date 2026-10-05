@@ -1,19 +1,19 @@
 ---
 source_file: "backend/src/main/java/com/clinicadermatologica/app/infrastructure/persistence/jpa/JpaPaymentTransactionRepository.java"
 type: "code"
-community: "org.springframework.stereotype.Component"
+community: "PaymentTransaction"
 location: "L17"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/orgspringframeworkstereotypeComponent
+  - community/PaymentTransaction
 ---
 
 # .findByAppointmentIdOrderByCreatedAtAsc()
 
 ## Connections
-- [[dot-findByAppointmentId()_1]] - `calls` [INFERRED]
+- [[dot-findByAppointmentId()]] - `calls` [INFERRED]
 - [[JpaPaymentTransactionRepository]] - `method` [EXTRACTED]
 - [[PaymentTransaction]] - `references` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/orgspringframeworkstereotypeComponent
+#graphify/code #graphify/EXTRACTED #community/PaymentTransaction

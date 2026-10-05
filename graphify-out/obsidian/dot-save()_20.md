@@ -1,19 +1,19 @@
 ---
-source_file: "backend/src/main/java/com/clinicadermatologica/app/infrastructure/persistence/adapter/AlergiaRepositoryAdapter.java"
+source_file: "backend/src/main/java/com/clinicadermatologica/app/infrastructure/persistence/adapter/ClinicalEntryRepositoryAdapter.java"
 type: "code"
-community: "Alergia"
-location: "L37"
+community: "ClinicalEntry"
+location: "L43"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/Alergia
+  - community/ClinicalEntry
 ---
 
 # .save()
 
 ## Connections
-- [[Alergia]] - `references` [EXTRACTED]
-- [[AlergiaRepositoryAdapter]] - `method` [EXTRACTED]
+- [[ClinicalEntry]] - `references` [EXTRACTED]
+- [[ClinicalEntryRepositoryAdapter]] - `method` [EXTRACTED]
 - [[Override_17]] - `references` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/Alergia
+#graphify/code #graphify/EXTRACTED #community/ClinicalEntry

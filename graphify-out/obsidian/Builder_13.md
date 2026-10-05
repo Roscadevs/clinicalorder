@@ -11,6 +11,6 @@ tags:
 # Builder
 
 ## Connections
-- [[MedicalRecord]] - `references` [EXTRACTED]
+- [[MedicalRecordAudit]] - `references` [EXTRACTED]
 
 #graphify/code #graphify/EXTRACTED #community/MedicalRecord

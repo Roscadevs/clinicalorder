@@ -1,19 +1,20 @@
 ---
-source_file: "backend/src/main/java/com/clinicadermatologica/app/domain/repository/MedicalRecordRepository.java"
+source_file: "backend/src/main/java/com/clinicadermatologica/app/infrastructure/persistence/adapter/MedicalRecordRepositoryAdapter.java"
 type: "code"
-community: "MedicalRecordController"
-location: "L17"
+community: "MedicalRecord"
+location: "L49"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/MedicalRecordController
+  - community/MedicalRecord
 ---
 
 # .findAuditHistory()
 
 ## Connections
-- [[dot-getAuditHistory()]] - `calls` [INFERRED]
+- [[dot-findByMedicalRecordIdOrderByUpdatedAtDesc()]] - `calls` [INFERRED]
 - [[MedicalRecordAudit]] - `references` [EXTRACTED]
-- [[MedicalRecordRepository]] - `method` [EXTRACTED]
+- [[MedicalRecordRepositoryAdapter]] - `method` [EXTRACTED]
+- [[Override_8]] - `references` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/MedicalRecordController
+#graphify/code #graphify/EXTRACTED #community/MedicalRecord

@@ -12,7 +12,7 @@ tags:
 # .prepareHold()
 
 ## Connections
-- [[dot-findById()_8]] - `calls` [INFERRED]
+- [[dot-findById()_7]] - `calls` [INFERRED]
 - [[dot-testRegisterDeposit_AmountBelowDeposit_Throws()]] - `calls` [EXTRACTED]
 - [[dot-testRegisterDeposit_Cash_ConfirmsAppointment()]] - `calls` [EXTRACTED]
 - [[dot-testRegisterDeposit_ExpiredHold_CancelsAppointment()]] - `calls` [EXTRACTED]

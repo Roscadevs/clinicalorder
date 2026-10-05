@@ -1,12 +1,12 @@
 ---
 source_file: "backend/src/main/java/com/clinicadermatologica/app/infrastructure/ai/GeminiApiClientAdapter.java"
 type: "code"
-community: "GeminiChatResponseDTO"
+community: "DermatologicService"
 location: "L16"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/GeminiChatResponseDTO
+  - community/DermatologicService
 ---
 
 # GeminiApiClientAdapter
@@ -22,4 +22,4 @@ tags:
 - [[org.springframework.stereotype.Component]] - `references` [EXTRACTED]
 - [[org.springframework.web.reactive.function.client.WebClient]] - `references` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/GeminiChatResponseDTO
+#graphify/code #graphify/EXTRACTED #community/DermatologicService

@@ -12,8 +12,8 @@ tags:
 # BankTransferPaymentStrategy
 
 ## Connections
-- [[dot-register()_1]] - `method` [EXTRACTED]
-- [[dot-supportedType()_1]] - `method` [EXTRACTED]
+- [[dot-register()]] - `method` [EXTRACTED]
+- [[dot-supportedType()]] - `method` [EXTRACTED]
 - [[BankTransferPaymentStrategy.java]] - `contains` [EXTRACTED]
 - [[PaymentRegistrationStrategy]] - `implements` [EXTRACTED]
 - [[PaymentTransactionRepository]] - `references` [EXTRACTED]

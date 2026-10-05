@@ -13,7 +13,7 @@ tags:
 
 ## Connections
 - [[dot-createService()_1]] - `calls` [INFERRED]
-- [[dot-existsByName()_2]] - `calls` [INFERRED]
+- [[dot-existsByName()]] - `calls` [INFERRED]
 - [[dot-mapToDTO()_1]] - `calls` [EXTRACTED]
 - [[dot-save()_11]] - `calls` [INFERRED]
 - [[DermatologicServiceService]] - `method` [EXTRACTED]

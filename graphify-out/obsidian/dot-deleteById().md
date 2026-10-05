@@ -13,6 +13,6 @@ tags:
 
 ## Connections
 - [[CalendarBlockRepositoryAdapter]] - `method` [EXTRACTED]
-- [[Override_5]] - `references` [EXTRACTED]
+- [[Override_2]] - `references` [EXTRACTED]
 
 #graphify/code #graphify/EXTRACTED #community/Appointment

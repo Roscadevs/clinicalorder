@@ -1,20 +1,17 @@
 ---
 source_file: ""
 type: "code"
-community: "Appointment"
+community: ".save"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/Appointment
+  - community/save
 ---
 
 # Override
 
 ## Connections
-- [[dot-deleteById()]] - `references` [EXTRACTED]
-- [[dot-findByDateRange()_1]] - `references` [EXTRACTED]
-- [[dot-findById()_4]] - `references` [EXTRACTED]
-- [[dot-findOverlappingBlocks()]] - `references` [EXTRACTED]
-- [[dot-save()_4]] - `references` [EXTRACTED]
+- [[dot-register()]] - `references` [EXTRACTED]
+- [[dot-supportedType()]] - `references` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/Appointment
+#graphify/code #graphify/EXTRACTED #community/save

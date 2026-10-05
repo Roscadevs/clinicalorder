@@ -1,19 +1,18 @@
 ---
-source_file: "backend/src/main/java/com/clinicadermatologica/app/infrastructure/persistence/adapter/ClinicalEntryRepositoryAdapter.java"
+source_file: "backend/src/main/java/com/clinicadermatologica/app/domain/repository/PaymentTransactionRepository.java"
 type: "code"
-community: "ClinicalEntry"
-location: "L28"
+community: "org.springframework.stereotype.Component"
+location: "L12"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/ClinicalEntry
+  - community/orgspringframeworkstereotypeComponent
 ---
 
 # .findById()
 
 ## Connections
-- [[ClinicalEntry]] - `references` [EXTRACTED]
-- [[ClinicalEntryRepositoryAdapter]] - `method` [EXTRACTED]
-- [[Override_16]] - `references` [EXTRACTED]
+- [[PaymentTransaction]] - `references` [EXTRACTED]
+- [[PaymentTransactionRepository]] - `method` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/ClinicalEntry
+#graphify/code #graphify/EXTRACTED #community/orgspringframeworkstereotypeComponent

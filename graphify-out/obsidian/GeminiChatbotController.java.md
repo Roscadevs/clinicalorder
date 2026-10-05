@@ -1,12 +1,12 @@
 ---
 source_file: "backend/src/main/java/com/clinicadermatologica/app/presentation/controller/GeminiChatbotController.java"
 type: "code"
-community: "DermatologicServiceRepository"
+community: "DermatologicService"
 location: "L1"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/DermatologicServiceRepository
+  - community/DermatologicService
 ---
 
 # GeminiChatbotController.java
@@ -19,4 +19,4 @@ tags:
 - [[lombok.RequiredArgsConstructor]] - `imports` [EXTRACTED]
 - [[org.springframework.http.ResponseEntity]] - `imports` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/DermatologicServiceRepository
+#graphify/code #graphify/EXTRACTED #community/DermatologicService

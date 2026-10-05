@@ -10,7 +10,7 @@ members: 17
 ## Members
 - [[dot-addHabito()_1]] - code - backend/src/main/java/com/clinicadermatologica/app/application/service/MedicalRecordService.java
 - [[dot-mapHabitoToDTO()]] - code - backend/src/main/java/com/clinicadermatologica/app/application/service/MedicalRecordService.java
-- [[dot-save()_21]] - code - backend/src/main/java/com/clinicadermatologica/app/domain/repository/HabitoRepository.java
+- [[dot-save()_23]] - code - backend/src/main/java/com/clinicadermatologica/app/domain/repository/HabitoRepository.java
 - [[AllArgsConstructor_40]] - code
 - [[AllArgsConstructor_41]] - code
 - [[Builder_37]] - code
@@ -35,9 +35,8 @@ SORT file.name ASC
 
 ## Connections to other communities
 - 5 edges to [[_COMMUNITY_Habito]]
+- 3 edges to [[_COMMUNITY_MedicalRecordService]]
 - 3 edges to [[_COMMUNITY_MedicalRecordController]]
-- 2 edges to [[_COMMUNITY_MedicalRecordService]]
-- 1 edge to [[_COMMUNITY_MedicalRecordDTO]]
 - 1 edge to [[_COMMUNITY_AlergiaId]]
 - 1 edge to [[_COMMUNITY_org.springframework.transaction.annotation.Transactional]]
 
@@ -46,4 +45,4 @@ SORT file.name ASC
 - [[HabitoResponseDTO]] - degree 10, connects to 2 communities
 - [[dot-mapHabitoToDTO()]] - degree 4, connects to 2 communities
 - [[HabitoRequestDTO]] - degree 8, connects to 1 community
-- [[dot-save()_21]] - degree 3, connects to 1 community
+- [[dot-save()_23]] - degree 3, connects to 1 community

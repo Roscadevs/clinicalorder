@@ -12,8 +12,8 @@ tags:
 # MedicalRecordRepository
 
 ## Connections
-- [[dot-findAuditHistory()]] - `method` [EXTRACTED]
-- [[dot-findById()_15]] - `method` [EXTRACTED]
+- [[dot-findAuditHistory()_1]] - `method` [EXTRACTED]
+- [[dot-findById()_14]] - `method` [EXTRACTED]
 - [[dot-findByPatientId()_5]] - `method` [EXTRACTED]
 - [[dot-save()_12]] - `method` [EXTRACTED]
 - [[dot-saveAudit()_1]] - `method` [EXTRACTED]

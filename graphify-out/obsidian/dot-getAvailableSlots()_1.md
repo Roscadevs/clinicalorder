@@ -1,12 +1,12 @@
 ---
 source_file: "backend/src/main/java/com/clinicadermatologica/app/presentation/controller/AppointmentController.java"
 type: "code"
-community: "AppointmentController"
+community: "lombok.RequiredArgsConstructor"
 location: "L32"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/AppointmentController
+  - community/lombokRequiredArgsConstructor
 ---
 
 # .getAvailableSlots()
@@ -18,4 +18,4 @@ tags:
 - [[TimeSlotDTO]] - `references` [EXTRACTED]
 - [[org.springframework.http.ResponseEntity]] - `references` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/AppointmentController
+#graphify/code #graphify/EXTRACTED #community/lombokRequiredArgsConstructor

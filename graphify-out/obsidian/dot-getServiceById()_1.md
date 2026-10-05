@@ -12,7 +12,7 @@ tags:
 # .getServiceById()
 
 ## Connections
-- [[dot-findById()_12]] - `calls` [INFERRED]
+- [[dot-findById()_11]] - `calls` [INFERRED]
 - [[dot-getServiceById()]] - `calls` [INFERRED]
 - [[DermatologicServiceService]] - `method` [EXTRACTED]
 - [[ResourceNotFoundException]] - `calls` [EXTRACTED]

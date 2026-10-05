@@ -1,11 +1,11 @@
 ---
 type: community
-members: 62
+members: 61
 ---
 
 # Appointment
 
-**Members:** 62 nodes
+**Members:** 61 nodes
 
 ## Members
 - [[dot-deleteById()]] - code - backend/src/main/java/com/clinicadermatologica/app/infrastructure/persistence/adapter/CalendarBlockRepositoryAdapter.java
@@ -13,9 +13,9 @@ members: 62
 - [[dot-findByDateRange()_1]] - code - backend/src/main/java/com/clinicadermatologica/app/infrastructure/persistence/adapter/CalendarBlockRepositoryAdapter.java
 - [[dot-findByDateRange()_2]] - code - backend/src/main/java/com/clinicadermatologica/app/infrastructure/persistence/jpa/JpaAppointmentRepository.java
 - [[dot-findByDateRange()_3]] - code - backend/src/main/java/com/clinicadermatologica/app/infrastructure/persistence/jpa/JpaCalendarBlockRepository.java
-- [[dot-findById()_2]] - code - backend/src/main/java/com/clinicadermatologica/app/domain/repository/CalendarBlockRepository.java
-- [[dot-findById()_3]] - code - backend/src/main/java/com/clinicadermatologica/app/infrastructure/persistence/adapter/AppointmentRepositoryAdapter.java
-- [[dot-findById()_4]] - code - backend/src/main/java/com/clinicadermatologica/app/infrastructure/persistence/adapter/CalendarBlockRepositoryAdapter.java
+- [[dot-findById()_1]] - code - backend/src/main/java/com/clinicadermatologica/app/domain/repository/CalendarBlockRepository.java
+- [[dot-findById()_2]] - code - backend/src/main/java/com/clinicadermatologica/app/infrastructure/persistence/adapter/AppointmentRepositoryAdapter.java
+- [[dot-findById()_3]] - code - backend/src/main/java/com/clinicadermatologica/app/infrastructure/persistence/adapter/CalendarBlockRepositoryAdapter.java
 - [[dot-findByPatientId()]] - code - backend/src/main/java/com/clinicadermatologica/app/domain/repository/AppointmentRepository.java
 - [[dot-findByPatientId()_1]] - code - backend/src/main/java/com/clinicadermatologica/app/infrastructure/persistence/adapter/AppointmentRepositoryAdapter.java
 - [[dot-findByPatientIdOrderByStartTimeDesc()]] - code - backend/src/main/java/com/clinicadermatologica/app/infrastructure/persistence/jpa/JpaAppointmentRepository.java
@@ -25,9 +25,9 @@ members: 62
 - [[dot-findOverlappingAppointments()]] - code - backend/src/main/java/com/clinicadermatologica/app/infrastructure/persistence/adapter/AppointmentRepositoryAdapter.java
 - [[dot-findOverlappingBlocks()]] - code - backend/src/main/java/com/clinicadermatologica/app/infrastructure/persistence/adapter/CalendarBlockRepositoryAdapter.java
 - [[dot-findOverlappingBlocks()_1]] - code - backend/src/main/java/com/clinicadermatologica/app/infrastructure/persistence/jpa/JpaCalendarBlockRepository.java
-- [[dot-save()_2]] - code - backend/src/main/java/com/clinicadermatologica/app/domain/repository/CalendarBlockRepository.java
-- [[dot-save()_3]] - code - backend/src/main/java/com/clinicadermatologica/app/infrastructure/persistence/adapter/AppointmentRepositoryAdapter.java
-- [[dot-save()_4]] - code - backend/src/main/java/com/clinicadermatologica/app/infrastructure/persistence/adapter/CalendarBlockRepositoryAdapter.java
+- [[dot-save()_1]] - code - backend/src/main/java/com/clinicadermatologica/app/domain/repository/CalendarBlockRepository.java
+- [[dot-save()_2]] - code - backend/src/main/java/com/clinicadermatologica/app/infrastructure/persistence/adapter/AppointmentRepositoryAdapter.java
+- [[dot-save()_3]] - code - backend/src/main/java/com/clinicadermatologica/app/infrastructure/persistence/adapter/CalendarBlockRepositoryAdapter.java
 - [[ATTENDED]] - code - backend/src/main/java/com/clinicadermatologica/app/domain/model/AppointmentStatus.java
 - [[AllArgsConstructor_1]] - code
 - [[AllArgsConstructor_2]] - code
@@ -36,7 +36,6 @@ members: 62
 - [[AppointmentRepository.java]] - code - backend/src/main/java/com/clinicadermatologica/app/domain/repository/AppointmentRepository.java
 - [[AppointmentRepositoryAdapter]] - code - backend/src/main/java/com/clinicadermatologica/app/infrastructure/persistence/adapter/AppointmentRepositoryAdapter.java
 - [[AppointmentRepositoryAdapter.java]] - code - backend/src/main/java/com/clinicadermatologica/app/infrastructure/persistence/adapter/AppointmentRepositoryAdapter.java
-- [[AppointmentResponseDTO.java]] - code - backend/src/main/java/com/clinicadermatologica/app/presentation/dto/AppointmentResponseDTO.java
 - [[AppointmentStatus]] - code - backend/src/main/java/com/clinicadermatologica/app/domain/model/AppointmentStatus.java
 - [[AppointmentStatus.java]] - code - backend/src/main/java/com/clinicadermatologica/app/domain/model/AppointmentStatus.java
 - [[Builder_1]] - code
@@ -61,8 +60,8 @@ members: 62
 - [[NO_SHOW]] - code - backend/src/main/java/com/clinicadermatologica/app/domain/model/AppointmentStatus.java
 - [[NoArgsConstructor_1]] - code
 - [[NoArgsConstructor_2]] - code
-- [[Override_4]] - code
-- [[Override_5]] - code
+- [[Override_1]] - code
+- [[Override_2]] - code
 - [[PAYMENT_FAILED]] - code - backend/src/main/java/com/clinicadermatologica/app/domain/model/AppointmentStatus.java
 - [[PENDING_PAYMENT]] - code - backend/src/main/java/com/clinicadermatologica/app/domain/model/AppointmentStatus.java
 - [[Setter_1]] - code
@@ -81,15 +80,16 @@ SORT file.name ASC
 ## Connections to other communities
 - 14 edges to [[_COMMUNITY_AppointmentService]]
 - 8 edges to [[_COMMUNITY_org.springframework.data.jpa.repository.JpaRepository]]
-- 5 edges to [[_COMMUNITY_org.springframework.stereotype.Component]]
 - 4 edges to [[_COMMUNITY_CalendarBlockResponseDTO]]
 - 4 edges to [[_COMMUNITY_lombok.RequiredArgsConstructor]]
+- 4 edges to [[_COMMUNITY_org.springframework.stereotype.Component]]
 - 3 edges to [[_COMMUNITY_Patient]]
 - 2 edges to [[_COMMUNITY_User]]
 - 2 edges to [[_COMMUNITY_dot-isExpired]]
-- 2 edges to [[_COMMUNITY_AppointmentController]]
+- 2 edges to [[_COMMUNITY_AppointmentResponseDTO]]
 - 2 edges to [[_COMMUNITY_PaymentServiceTest.java]]
 - 2 edges to [[_COMMUNITY_org.springframework.transaction.annotation.Transactional]]
+- 1 edge to [[_COMMUNITY_PaymentTransaction]]
 - 1 edge to [[_COMMUNITY_DermatologicService]]
 - 1 edge to [[_COMMUNITY_ClinicalEntry]]
 - 1 edge to [[_COMMUNITY_org.junit.jupiter.api.DisplayName]]

@@ -1,19 +1,19 @@
 ---
-source_file: "backend/src/main/java/com/clinicadermatologica/app/infrastructure/persistence/adapter/CalendarBlockRepositoryAdapter.java"
+source_file: "backend/src/main/java/com/clinicadermatologica/app/infrastructure/persistence/adapter/HabitoRepositoryAdapter.java"
 type: "code"
-community: "Appointment"
-location: "L37"
+community: "Habito"
+location: "L36"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/Appointment
+  - community/Habito
 ---
 
 # .save()
 
 ## Connections
-- [[CalendarBlock]] - `references` [EXTRACTED]
-- [[CalendarBlockRepositoryAdapter]] - `method` [EXTRACTED]
-- [[Override_5]] - `references` [EXTRACTED]
+- [[Habito]] - `references` [EXTRACTED]
+- [[HabitoRepositoryAdapter]] - `method` [EXTRACTED]
+- [[Override_4]] - `references` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/Appointment
+#graphify/code #graphify/EXTRACTED #community/Habito

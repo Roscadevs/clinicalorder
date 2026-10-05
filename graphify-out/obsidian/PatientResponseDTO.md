@@ -22,13 +22,13 @@ tags:
 - [[dot-searchPatients()]] - `references` [EXTRACTED]
 - [[dot-updatePatient()]] - `references` [EXTRACTED]
 - [[dot-updatePatient()_1]] - `references` [EXTRACTED]
-- [[AllArgsConstructor_46]] - `references` [EXTRACTED]
-- [[Builder_43]] - `references` [EXTRACTED]
-- [[Getter_46]] - `references` [EXTRACTED]
-- [[NoArgsConstructor_46]] - `references` [EXTRACTED]
+- [[AllArgsConstructor_45]] - `references` [EXTRACTED]
+- [[Builder_42]] - `references` [EXTRACTED]
+- [[Getter_45]] - `references` [EXTRACTED]
+- [[NoArgsConstructor_45]] - `references` [EXTRACTED]
 - [[PatientController.java]] - `imports` [EXTRACTED]
 - [[PatientResponseDTO.java]] - `contains` [EXTRACTED]
 - [[PatientService.java]] - `imports` [EXTRACTED]
-- [[Setter_46]] - `references` [EXTRACTED]
+- [[Setter_45]] - `references` [EXTRACTED]
 
 #graphify/code #graphify/EXTRACTED #community/orgspringframeworktransactionannotationTransactional

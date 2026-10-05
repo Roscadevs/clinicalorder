@@ -12,7 +12,7 @@ tags:
 # .findByMedicalRecordIdOrderByUpdatedAtDesc()
 
 ## Connections
-- [[dot-findAuditHistory()_1]] - `calls` [INFERRED]
+- [[dot-findAuditHistory()]] - `calls` [INFERRED]
 - [[JpaMedicalRecordAuditRepository]] - `method` [EXTRACTED]
 - [[MedicalRecordAudit]] - `references` [EXTRACTED]
 

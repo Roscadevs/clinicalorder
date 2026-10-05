@@ -12,8 +12,8 @@ tags:
 # .testSaveInitialMedicalRecord_Success()
 
 ## Connections
-- [[dot-findById()_13]] - `calls` [INFERRED]
-- [[dot-findById()_7]] - `calls` [INFERRED]
+- [[dot-findById()_12]] - `calls` [INFERRED]
+- [[dot-findById()_6]] - `calls` [INFERRED]
 - [[dot-findByMedicalRecordId()_2]] - `calls` [INFERRED]
 - [[dot-findByMedicalRecordId()_3]] - `calls` [INFERRED]
 - [[dot-findByMedicalRecordId()_4]] - `calls` [INFERRED]

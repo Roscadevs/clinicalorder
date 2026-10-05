@@ -1,16 +1,16 @@
 ---
 source_file: ""
 type: "code"
-community: "AppointmentController"
+community: "AppointmentServiceTest.java"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/AppointmentController
+  - community/AppointmentServiceTestjava
 ---
 
 # Getter
 
 ## Connections
-- [[AppointmentResponseDTO]] - `references` [EXTRACTED]
+- [[BookAppointmentRequestDTO]] - `references` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/AppointmentController
+#graphify/code #graphify/EXTRACTED #community/AppointmentServiceTestjava

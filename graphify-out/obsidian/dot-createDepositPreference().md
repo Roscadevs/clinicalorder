@@ -1,12 +1,12 @@
 ---
 source_file: "backend/src/main/java/com/clinicadermatologica/app/infrastructure/payment/MercadoPagoPaymentAdapter.java"
 type: "code"
-community: "lombok.extern.slf4j.Slf4j"
+community: "MercadoPagoPaymentAdapter"
 location: "L38"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/lombokexternslf4jSlf4j
+  - community/MercadoPagoPaymentAdapter
 ---
 
 # .createDepositPreference()
@@ -17,4 +17,4 @@ tags:
 - [[MercadoPagoPaymentAdapter]] - `method` [EXTRACTED]
 - [[com.mercadopago.resources.preference.Preference]] - `references` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/lombokexternslf4jSlf4j
+#graphify/code #graphify/EXTRACTED #community/MercadoPagoPaymentAdapter

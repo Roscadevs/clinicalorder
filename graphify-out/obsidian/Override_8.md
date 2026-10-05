@@ -11,8 +11,8 @@ tags:
 # Override
 
 ## Connections
-- [[dot-findAuditHistory()_1]] - `references` [EXTRACTED]
-- [[dot-findById()_9]] - `references` [EXTRACTED]
+- [[dot-findAuditHistory()]] - `references` [EXTRACTED]
+- [[dot-findById()_8]] - `references` [EXTRACTED]
 - [[dot-findByPatientId()_3]] - `references` [EXTRACTED]
 - [[dot-save()_7]] - `references` [EXTRACTED]
 - [[dot-saveAudit()]] - `references` [EXTRACTED]

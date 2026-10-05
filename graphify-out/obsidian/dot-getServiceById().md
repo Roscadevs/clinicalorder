@@ -13,7 +13,7 @@ tags:
 
 ## Connections
 - [[dot-getServiceById()_1]] - `calls` [INFERRED]
-- [[GetMapping_1]] - `references` [EXTRACTED]
+- [[GetMapping]] - `references` [EXTRACTED]
 - [[ServiceCatalogController]] - `method` [EXTRACTED]
 - [[ServiceResponseDTO]] - `references` [EXTRACTED]
 - [[org.springframework.http.ResponseEntity]] - `references` [EXTRACTED]

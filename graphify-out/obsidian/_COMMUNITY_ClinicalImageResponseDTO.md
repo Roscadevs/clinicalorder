@@ -37,19 +37,19 @@ SORT file.name ASC
 ```
 
 ## Connections to other communities
-- 10 edges to [[_COMMUNITY_org.springframework.transaction.annotation.Transactional]]
-- 4 edges to [[_COMMUNITY_MedicalRecordController]]
+- 6 edges to [[_COMMUNITY_lombok.extern.slf4j.Slf4j]]
+- 6 edges to [[_COMMUNITY_org.springframework.transaction.annotation.Transactional]]
 - 4 edges to [[_COMMUNITY_ClinicalImage]]
-- 2 edges to [[_COMMUNITY_lombok.extern.slf4j.Slf4j]]
+- 3 edges to [[_COMMUNITY_MedicalRecordController]]
+- 3 edges to [[_COMMUNITY_lombok.RequiredArgsConstructor]]
+- 2 edges to [[_COMMUNITY_DermatologicService]]
 - 2 edges to [[_COMMUNITY_org.springframework.stereotype.Component]]
-- 2 edges to [[_COMMUNITY_GeminiChatResponseDTO]]
-- 2 edges to [[_COMMUNITY_lombok.RequiredArgsConstructor]]
-- 1 edge to [[_COMMUNITY_ClinicalEntry]]
+- 1 edge to [[_COMMUNITY_ClinicalEntryAudit]]
 - 1 edge to [[_COMMUNITY_MedicalRecordService]]
 
 ## Top bridge nodes
-- [[dot-uploadClinicalImage()]] - degree 10, connects to 3 communities
+- [[dot-uploadClinicalImage()]] - degree 10, connects to 4 communities
 - [[SupabaseStorageAdapter]] - degree 9, connects to 3 communities
+- [[dot-getClinicalPhotos()]] - degree 5, connects to 3 communities
 - [[dot-uploadClinicalPhoto()]] - degree 6, connects to 2 communities
 - [[org.springframework.web.multipart.MultipartFile]] - degree 6, connects to 2 communities
-- [[dot-mapToDTO()_3]] - degree 5, connects to 2 communities

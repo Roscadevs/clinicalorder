@@ -12,7 +12,7 @@ tags:
 # .markAsAttended()
 
 ## Connections
-- [[dot-findById()_8]] - `calls` [INFERRED]
+- [[dot-findById()_7]] - `calls` [INFERRED]
 - [[dot-markAsAttended()_1]] - `calls` [INFERRED]
 - [[dot-save()_10]] - `calls` [INFERRED]
 - [[dot-testMarkAsAttended_ConfirmedToAttended()]] - `calls` [INFERRED]

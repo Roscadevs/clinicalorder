@@ -1,11 +1,11 @@
 ---
 source_file: ""
 type: "code"
-community: "SecurityConfig.java"
+community: "GlobalExceptionHandler"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/SecurityConfigjava
+  - community/GlobalExceptionHandler
 ---
 
 # org.springframework.security.config.annotation.web.configuration.EnableWebSecurity
@@ -14,4 +14,4 @@ tags:
 - [[SecurityConfig]] - `references` [EXTRACTED]
 - [[SecurityConfig.java]] - `imports` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/SecurityConfigjava
+#graphify/code #graphify/EXTRACTED #community/GlobalExceptionHandler

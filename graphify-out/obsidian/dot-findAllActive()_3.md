@@ -1,20 +1,20 @@
 ---
-source_file: "backend/src/main/java/com/clinicadermatologica/app/domain/repository/DermatologicServiceRepository.java"
+source_file: "backend/src/main/java/com/clinicadermatologica/app/infrastructure/persistence/adapter/DermatologicServiceRepositoryAdapter.java"
 type: "code"
-community: "GeminiChatRequestDTO"
-location: "L14"
+community: "DermatologicService"
+location: "L31"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/GeminiChatRequestDTO
+  - community/DermatologicService
 ---
 
 # .findAllActive()
 
 ## Connections
-- [[dot-getAllActiveServices()]] - `calls` [INFERRED]
-- [[dot-processUserMessage()]] - `calls` [INFERRED]
+- [[dot-findByActiveTrue()_1]] - `calls` [INFERRED]
 - [[DermatologicService]] - `references` [EXTRACTED]
-- [[DermatologicServiceRepository]] - `method` [EXTRACTED]
+- [[DermatologicServiceRepositoryAdapter]] - `method` [EXTRACTED]
+- [[Override_16]] - `references` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/GeminiChatRequestDTO
+#graphify/code #graphify/EXTRACTED #community/DermatologicService

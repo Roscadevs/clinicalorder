@@ -12,9 +12,9 @@ tags:
 # .updatePatient()
 
 ## Connections
-- [[dot-findById()_13]] - `calls` [INFERRED]
+- [[dot-findById()_12]] - `calls` [INFERRED]
 - [[dot-mapToDTO()_4]] - `calls` [EXTRACTED]
-- [[dot-save()_23]] - `calls` [INFERRED]
+- [[dot-save()_14]] - `calls` [INFERRED]
 - [[dot-updatePatient()]] - `calls` [INFERRED]
 - [[PatientRequestDTO]] - `references` [EXTRACTED]
 - [[PatientResponseDTO]] - `references` [EXTRACTED]

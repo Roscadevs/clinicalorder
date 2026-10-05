@@ -1,19 +1,19 @@
 ---
-source_file: "backend/src/main/java/com/clinicadermatologica/app/infrastructure/payment/strategy/CashPaymentStrategy.java"
+source_file: "backend/src/main/java/com/clinicadermatologica/app/infrastructure/payment/strategy/MercadoPagoPaymentStrategy.java"
 type: "code"
-community: "org.springframework.stereotype.Component"
+community: ".register"
 location: "L25"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/orgspringframeworkstereotypeComponent
+  - community/register
 ---
 
 # .supportedType()
 
 ## Connections
-- [[CashPaymentStrategy]] - `method` [EXTRACTED]
-- [[Override_1]] - `references` [EXTRACTED]
+- [[MercadoPagoPaymentStrategy]] - `method` [EXTRACTED]
+- [[Override_7]] - `references` [EXTRACTED]
 - [[PaymentType_4]] - `references` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/orgspringframeworkstereotypeComponent
+#graphify/code #graphify/EXTRACTED #community/register

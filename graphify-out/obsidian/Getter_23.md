@@ -1,16 +1,16 @@
 ---
 source_file: ""
 type: "code"
-community: "AlergiaId"
+community: "MedicalRecordService"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/AlergiaId
+  - community/MedicalRecordService
 ---
 
 # Getter
 
 ## Connections
-- [[AlergiaId]] - `references` [EXTRACTED]
+- [[MedicalRecordDTO]] - `references` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/AlergiaId
+#graphify/code #graphify/EXTRACTED #community/MedicalRecordService

@@ -1,12 +1,12 @@
 ---
 source_file: "backend/src/main/java/com/clinicadermatologica/app/infrastructure/security/JwtAuthenticationFilter.java"
 type: "code"
-community: "JwtAuthenticationFilter"
+community: "GlobalExceptionHandler"
 location: "L1"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/JwtAuthenticationFilter
+  - community/GlobalExceptionHandler
 ---
 
 # JwtAuthenticationFilter.java
@@ -21,4 +21,4 @@ tags:
 - [[org.springframework.stereotype.Component]] - `imports` [EXTRACTED]
 - [[org.springframework.web.filter.OncePerRequestFilter]] - `imports` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/JwtAuthenticationFilter
+#graphify/code #graphify/EXTRACTED #community/GlobalExceptionHandler

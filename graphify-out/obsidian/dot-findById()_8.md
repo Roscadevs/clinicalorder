@@ -1,30 +1,19 @@
 ---
-source_file: "backend/src/main/java/com/clinicadermatologica/app/domain/repository/AppointmentRepository.java"
+source_file: "backend/src/main/java/com/clinicadermatologica/app/infrastructure/persistence/adapter/MedicalRecordRepositoryAdapter.java"
 type: "code"
-community: "org.junit.jupiter.api.DisplayName"
-location: "L17"
+community: "MedicalRecord"
+location: "L29"
 tags:
   - graphify/code
-  - graphify/INFERRED
-  - community/orgjunitjupiterapiDisplayName
+  - graphify/EXTRACTED
+  - community/MedicalRecord
 ---
 
 # .findById()
 
 ## Connections
-- [[dot-addClinicalEntry()_1]] - `calls` [INFERRED]
-- [[dot-cancelAppointment()]] - `calls` [INFERRED]
-- [[dot-getAppointmentById()]] - `calls` [INFERRED]
-- [[dot-markAsAttended()]] - `calls` [INFERRED]
-- [[dot-prepareHold()]] - `calls` [INFERRED]
-- [[dot-registerDepositPayment()]] - `calls` [INFERRED]
-- [[dot-registerFinalPayment()]] - `calls` [INFERRED]
-- [[dot-testAddClinicalEntry_EncryptsContent()]] - `calls` [INFERRED]
-- [[dot-testMarkAsAttended_ConfirmedToAttended()]] - `calls` [INFERRED]
-- [[dot-testMarkAsAttended_NotConfirmed_Throws()]] - `calls` [INFERRED]
-- [[dot-testRegisterFinalPayment_DelegatesToStrategy_CompletesAppointment()]] - `calls` [INFERRED]
-- [[dot-testRegisterFinalPayment_NotAttended_ThrowsException()]] - `calls` [INFERRED]
-- [[Appointment]] - `references` [EXTRACTED]
-- [[AppointmentRepository]] - `method` [EXTRACTED]
+- [[MedicalRecord]] - `references` [EXTRACTED]
+- [[MedicalRecordRepositoryAdapter]] - `method` [EXTRACTED]
+- [[Override_8]] - `references` [EXTRACTED]
 
-#graphify/code #graphify/INFERRED #community/orgjunitjupiterapiDisplayName
+#graphify/code #graphify/EXTRACTED #community/MedicalRecord

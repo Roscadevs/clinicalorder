@@ -1,32 +1,30 @@
 ---
-source_file: "backend/src/main/java/com/clinicadermatologica/app/domain/repository/UserRepository.java"
+source_file: "backend/src/main/java/com/clinicadermatologica/app/domain/repository/AppointmentRepository.java"
 type: "code"
-community: ".findById"
-location: "L11"
+community: "org.junit.jupiter.api.DisplayName"
+location: "L17"
 tags:
   - graphify/code
   - graphify/INFERRED
-  - community/findById
+  - community/orgjunitjupiterapiDisplayName
 ---
 
 # .findById()
 
 ## Connections
 - [[dot-addClinicalEntry()_1]] - `calls` [INFERRED]
-- [[dot-bookTemporaryHold()]] - `calls` [INFERRED]
-- [[dot-createBlock()]] - `calls` [INFERRED]
+- [[dot-cancelAppointment()]] - `calls` [INFERRED]
+- [[dot-getAppointmentById()]] - `calls` [INFERRED]
+- [[dot-markAsAttended()]] - `calls` [INFERRED]
+- [[dot-prepareHold()]] - `calls` [INFERRED]
 - [[dot-registerDepositPayment()]] - `calls` [INFERRED]
 - [[dot-registerFinalPayment()]] - `calls` [INFERRED]
-- [[dot-saveOrUpdateMedicalRecord()]] - `calls` [INFERRED]
 - [[dot-testAddClinicalEntry_EncryptsContent()]] - `calls` [INFERRED]
-- [[dot-testBookTemporaryHold_ExpiredOverlappingHold_IsReleased()]] - `calls` [INFERRED]
-- [[dot-testBookTemporaryHold_SlotUnavailable_ThrowsException()]] - `calls` [INFERRED]
-- [[dot-testBookTemporaryHold_Success()]] - `calls` [INFERRED]
-- [[dot-testRegisterDeposit_Cash_ConfirmsAppointment()]] - `calls` [INFERRED]
+- [[dot-testMarkAsAttended_ConfirmedToAttended()]] - `calls` [INFERRED]
+- [[dot-testMarkAsAttended_NotConfirmed_Throws()]] - `calls` [INFERRED]
 - [[dot-testRegisterFinalPayment_DelegatesToStrategy_CompletesAppointment()]] - `calls` [INFERRED]
-- [[dot-testSaveInitialMedicalRecord_Success()]] - `calls` [INFERRED]
-- [[dot-updateClinicalEntry()_1]] - `calls` [INFERRED]
-- [[User]] - `references` [EXTRACTED]
-- [[UserRepository]] - `method` [EXTRACTED]
+- [[dot-testRegisterFinalPayment_NotAttended_ThrowsException()]] - `calls` [INFERRED]
+- [[Appointment]] - `references` [EXTRACTED]
+- [[AppointmentRepository]] - `method` [EXTRACTED]
 
-#graphify/code #graphify/INFERRED #community/findById
+#graphify/code #graphify/INFERRED #community/orgjunitjupiterapiDisplayName

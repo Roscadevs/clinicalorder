@@ -1,16 +1,16 @@
 ---
 source_file: ""
 type: "code"
-community: "ClinicalEntryRequestDTO"
+community: "Habito"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/ClinicalEntryRequestDTO
+  - community/Habito
 ---
 
 # Setter
 
 ## Connections
-- [[ClinicalEntryRequestDTO]] - `references` [EXTRACTED]
+- [[Habito]] - `references` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/ClinicalEntryRequestDTO
+#graphify/code #graphify/EXTRACTED #community/Habito

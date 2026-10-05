@@ -1,8 +1,8 @@
 ---
-source_file: "backend/src/main/java/com/clinicadermatologica/app/application/service/CalendarBlockService.java"
+source_file: "backend/src/main/java/com/clinicadermatologica/app/presentation/controller/CalendarBlockController.java"
 type: "code"
 community: "CalendarBlockResponseDTO"
-location: "L64"
+location: "L42"
 tags:
   - graphify/code
   - graphify/EXTRACTED
@@ -13,8 +13,8 @@ tags:
 
 ## Connections
 - [[dot-deleteBlock()]] - `calls` [INFERRED]
-- [[dot-deleteById()_1]] - `calls` [INFERRED]
-- [[CalendarBlockService]] - `method` [EXTRACTED]
-- [[org.springframework.transaction.annotation.Transactional]] - `references` [EXTRACTED]
+- [[CalendarBlockController]] - `method` [EXTRACTED]
+- [[DeleteMapping_2]] - `references` [EXTRACTED]
+- [[org.springframework.http.ResponseEntity]] - `references` [EXTRACTED]
 
 #graphify/code #graphify/EXTRACTED #community/CalendarBlockResponseDTO

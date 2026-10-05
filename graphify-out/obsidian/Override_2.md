@@ -1,17 +1,20 @@
 ---
 source_file: ""
 type: "code"
-community: "org.springframework.stereotype.Component"
+community: "Appointment"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/orgspringframeworkstereotypeComponent
+  - community/Appointment
 ---
 
 # Override
 
 ## Connections
-- [[dot-register()_3]] - `references` [EXTRACTED]
-- [[dot-supportedType()_3]] - `references` [EXTRACTED]
+- [[dot-deleteById()]] - `references` [EXTRACTED]
+- [[dot-findByDateRange()_1]] - `references` [EXTRACTED]
+- [[dot-findById()_3]] - `references` [EXTRACTED]
+- [[dot-findOverlappingBlocks()]] - `references` [EXTRACTED]
+- [[dot-save()_3]] - `references` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/orgspringframeworkstereotypeComponent
+#graphify/code #graphify/EXTRACTED #community/Appointment

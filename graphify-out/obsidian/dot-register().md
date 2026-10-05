@@ -1,23 +1,23 @@
 ---
-source_file: "backend/src/main/java/com/clinicadermatologica/app/application/strategy/PaymentRegistrationStrategy.java"
+source_file: "backend/src/main/java/com/clinicadermatologica/app/infrastructure/payment/strategy/BankTransferPaymentStrategy.java"
 type: "code"
-community: "org.springframework.stereotype.Component"
-location: "L41"
+community: ".save"
+location: "L30"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/orgspringframeworkstereotypeComponent
+  - community/save
 ---
 
 # .register()
 
 ## Connections
-- [[dot-testRegisterDeposit_Cash_ConfirmsAppointment()]] - `calls` [INFERRED]
-- [[dot-testRegisterFinalPayment_DelegatesToStrategy_CompletesAppointment()]] - `calls` [INFERRED]
+- [[dot-save()_5]] - `calls` [INFERRED]
 - [[Appointment_3]] - `references` [EXTRACTED]
+- [[BankTransferPaymentStrategy]] - `method` [EXTRACTED]
+- [[Override_5]] - `references` [EXTRACTED]
 - [[PaymentConcept_2]] - `references` [EXTRACTED]
-- [[PaymentRegistrationStrategy]] - `method` [EXTRACTED]
 - [[PaymentTransaction]] - `references` [EXTRACTED]
 - [[User]] - `references` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/orgspringframeworkstereotypeComponent
+#graphify/code #graphify/EXTRACTED #community/save

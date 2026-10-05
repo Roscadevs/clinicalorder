@@ -1,883 +1,883 @@
 {
   "TestUrl.java": {
-    "mtime": 1791242496.6359158,
-    "seen": 1791242532.060315,
+    "mtime": 1791242552.2485797,
+    "seen": 1791242948.747616,
     "ast_hash": "1b19e7cdc8249e84fccfc015fa057ae7",
     "semantic_hash": ""
   },
   "backend/pom.xml": {
-    "mtime": 1791242496.6365254,
-    "seen": 1791242532.060319,
+    "mtime": 1791242552.2492871,
+    "seen": 1791242948.74762,
     "ast_hash": "cc858482d0444e61bf818d717d60a5a7",
     "semantic_hash": ""
   },
   "backend/src/main/java/com/clinicadermatologica/app/ClinicaDermatologicaApplication.java": {
-    "mtime": 1791242496.6368473,
-    "seen": 1791242532.06032,
+    "mtime": 1791242552.2496183,
+    "seen": 1791242948.747621,
     "ast_hash": "68cbb7aa1307f8b7b33ee18510b386ae",
     "semantic_hash": ""
   },
   "backend/src/main/java/com/clinicadermatologica/app/application/service/AppointmentService.java": {
-    "mtime": 1791242496.6371222,
-    "seen": 1791242532.060321,
+    "mtime": 1791242552.2499142,
+    "seen": 1791242948.7476218,
     "ast_hash": "b68cfafdac86ac6c543dcb868f2a9150",
     "semantic_hash": ""
   },
   "backend/src/main/java/com/clinicadermatologica/app/application/service/AuthService.java": {
-    "mtime": 1791242496.637261,
-    "seen": 1791242532.060321,
+    "mtime": 1791242552.2500613,
+    "seen": 1791242948.747623,
     "ast_hash": "cca780bc8cc1725df51ec6ed86e9795e",
     "semantic_hash": ""
   },
   "backend/src/main/java/com/clinicadermatologica/app/application/service/CalendarBlockService.java": {
-    "mtime": 1791242496.6373622,
-    "seen": 1791242532.060322,
+    "mtime": 1791242552.2501662,
+    "seen": 1791242948.747624,
     "ast_hash": "43cd37f538c13c4895167dae3d53f8b4",
     "semantic_hash": ""
   },
   "backend/src/main/java/com/clinicadermatologica/app/application/service/ClinicalImageService.java": {
-    "mtime": 1791242496.6374896,
-    "seen": 1791242532.060322,
+    "mtime": 1791242552.2503047,
+    "seen": 1791242948.747624,
     "ast_hash": "65bc68dc40867eda943a3807027636a3",
     "semantic_hash": ""
   },
   "backend/src/main/java/com/clinicadermatologica/app/application/service/DermatologicServiceService.java": {
-    "mtime": 1791242496.6376963,
-    "seen": 1791242532.060323,
+    "mtime": 1791242552.250426,
+    "seen": 1791242948.7476249,
     "ast_hash": "8f0bae82f140f8b2ee52625445103a5a",
     "semantic_hash": ""
   },
   "backend/src/main/java/com/clinicadermatologica/app/application/service/GeminiChatbotService.java": {
-    "mtime": 1791242496.6377885,
-    "seen": 1791242532.0603242,
+    "mtime": 1791242552.2505136,
+    "seen": 1791242948.747626,
     "ast_hash": "107de9677c7600b59b00d41a1291889a",
     "semantic_hash": ""
   },
   "backend/src/main/java/com/clinicadermatologica/app/application/service/MedicalRecordService.java": {
-    "mtime": 1791242496.6379185,
-    "seen": 1791242532.0603242,
+    "mtime": 1791242552.2506495,
+    "seen": 1791242948.747626,
     "ast_hash": "b5060d3c3679d8f54717e72351dc50f9",
     "semantic_hash": ""
   },
   "backend/src/main/java/com/clinicadermatologica/app/application/service/PatientService.java": {
-    "mtime": 1791242496.6381605,
-    "seen": 1791242532.0603251,
+    "mtime": 1791242552.2507877,
+    "seen": 1791242948.747627,
     "ast_hash": "a245d3a4b4055dedcf387eae2769a590",
     "semantic_hash": ""
   },
   "backend/src/main/java/com/clinicadermatologica/app/application/service/PaymentService.java": {
-    "mtime": 1791242496.6384425,
-    "seen": 1791242532.0603251,
-    "ast_hash": "8e36298db5867d9875e3023c154d17d7",
+    "mtime": 1791242914.5173712,
+    "seen": 1791242948.747628,
+    "ast_hash": "54b6c571bf72fd2396f9e80c51d37b69",
     "semantic_hash": ""
   },
   "backend/src/main/java/com/clinicadermatologica/app/application/strategy/PaymentRegistrationStrategy.java": {
-    "mtime": 1791242496.638708,
-    "seen": 1791242532.0603259,
+    "mtime": 1791242552.2511098,
+    "seen": 1791242948.747628,
     "ast_hash": "ad846230da601ba51a5b6aecac259b4d",
     "semantic_hash": ""
   },
   "backend/src/main/java/com/clinicadermatologica/app/application/strategy/PaymentStrategyFactory.java": {
-    "mtime": 1791242496.6388247,
-    "seen": 1791242532.0603259,
+    "mtime": 1791242552.2512255,
+    "seen": 1791242948.7476292,
     "ast_hash": "078aff9ee22dcf0463dbedf51bd5d2d7",
     "semantic_hash": ""
   },
   "backend/src/main/java/com/clinicadermatologica/app/domain/exception/BusinessRuleException.java": {
-    "mtime": 1791242496.639051,
-    "seen": 1791242532.0603268,
+    "mtime": 1791242552.2514656,
+    "seen": 1791242948.7476301,
     "ast_hash": "1f587b3a56fe2373797d9deb0908a46f",
     "semantic_hash": ""
   },
   "backend/src/main/java/com/clinicadermatologica/app/domain/exception/DuplicateResourceException.java": {
-    "mtime": 1791242496.6391473,
-    "seen": 1791242532.0603268,
+    "mtime": 1791242552.251561,
+    "seen": 1791242948.7476301,
     "ast_hash": "6e6b1f85b771e772e71f9953d7c7c15a",
     "semantic_hash": ""
   },
   "backend/src/main/java/com/clinicadermatologica/app/domain/exception/ResourceNotFoundException.java": {
-    "mtime": 1791242496.6392379,
-    "seen": 1791242532.060328,
+    "mtime": 1791242552.2516487,
+    "seen": 1791242948.747631,
     "ast_hash": "e4651e9de81fcc33abcf2b9aadd293ca",
     "semantic_hash": ""
   },
   "backend/src/main/java/com/clinicadermatologica/app/domain/exception/SlotUnavailableException.java": {
-    "mtime": 1791242496.6393251,
-    "seen": 1791242532.060328,
+    "mtime": 1791242552.2517433,
+    "seen": 1791242948.747632,
     "ast_hash": "836d9cfe40fd61cfcfef82fffcd0dfb0",
     "semantic_hash": ""
   },
   "backend/src/main/java/com/clinicadermatologica/app/domain/exception/UnauthorizedAccessException.java": {
-    "mtime": 1791242496.6394136,
-    "seen": 1791242532.060329,
+    "mtime": 1791242552.2518325,
+    "seen": 1791242948.747632,
     "ast_hash": "8be2b57a521af016c828dfcfcb3103fc",
     "semantic_hash": ""
   },
   "backend/src/main/java/com/clinicadermatologica/app/domain/model/Alergia.java": {
-    "mtime": 1791242496.639556,
-    "seen": 1791242532.060329,
+    "mtime": 1791242552.2519794,
+    "seen": 1791242948.747633,
     "ast_hash": "6f702c92bd985d07e85e8b4e59ab8997",
     "semantic_hash": ""
   },
   "backend/src/main/java/com/clinicadermatologica/app/domain/model/AlergiaId.java": {
-    "mtime": 1791242496.6396663,
-    "seen": 1791242532.06033,
+    "mtime": 1791242552.2520895,
+    "seen": 1791242948.747634,
     "ast_hash": "41a340faf1ea41ad5d46a4e713cda7b5",
     "semantic_hash": ""
   },
   "backend/src/main/java/com/clinicadermatologica/app/domain/model/AntecedentePatologico.java": {
-    "mtime": 1791242496.6397622,
-    "seen": 1791242532.06033,
+    "mtime": 1791242552.2521904,
+    "seen": 1791242948.747634,
     "ast_hash": "fc4d2e28439d9493ad138cf2bcc109f7",
     "semantic_hash": ""
   },
   "backend/src/main/java/com/clinicadermatologica/app/domain/model/AntecedentePatologicoId.java": {
-    "mtime": 1791242496.6398485,
-    "seen": 1791242532.060331,
+    "mtime": 1791242552.2522905,
+    "seen": 1791242948.747635,
     "ast_hash": "808c2928f1c3257098dc59b8eab69154",
     "semantic_hash": ""
   },
   "backend/src/main/java/com/clinicadermatologica/app/domain/model/Appointment.java": {
-    "mtime": 1791242496.6399431,
-    "seen": 1791242532.060331,
+    "mtime": 1791242552.252406,
+    "seen": 1791242948.747636,
     "ast_hash": "d523c5c3882f68ce08358518cbbff491",
     "semantic_hash": ""
   },
   "backend/src/main/java/com/clinicadermatologica/app/domain/model/AppointmentStatus.java": {
-    "mtime": 1791242496.6400406,
-    "seen": 1791242532.060332,
+    "mtime": 1791242552.2525198,
+    "seen": 1791242948.747636,
     "ast_hash": "fb1c1e23b0db0a86f68135b4bc6b8d1d",
     "semantic_hash": ""
   },
   "backend/src/main/java/com/clinicadermatologica/app/domain/model/CalendarBlock.java": {
-    "mtime": 1791242496.6401393,
-    "seen": 1791242532.060332,
+    "mtime": 1791242552.252621,
+    "seen": 1791242948.747637,
     "ast_hash": "c0c0792c3655be10ff8edc5bed49d8e7",
     "semantic_hash": ""
   },
   "backend/src/main/java/com/clinicadermatologica/app/domain/model/ClinicalEntry.java": {
-    "mtime": 1791242496.6403546,
-    "seen": 1791242532.060333,
+    "mtime": 1791242552.2527232,
+    "seen": 1791242948.747637,
     "ast_hash": "3af0c7bd341694e06a16792d180d35be",
     "semantic_hash": ""
   },
   "backend/src/main/java/com/clinicadermatologica/app/domain/model/ClinicalEntryAudit.java": {
-    "mtime": 1791242496.6405,
-    "seen": 1791242532.060333,
+    "mtime": 1791242552.2528217,
+    "seen": 1791242948.747638,
     "ast_hash": "ba0c740a2c9b457924f922027d884eac",
     "semantic_hash": ""
   },
   "backend/src/main/java/com/clinicadermatologica/app/domain/model/ClinicalImage.java": {
-    "mtime": 1791242496.6406329,
-    "seen": 1791242532.060334,
+    "mtime": 1791242552.2529433,
+    "seen": 1791242948.747639,
     "ast_hash": "1c20e215bc828acf77cb11a85b101f88",
     "semantic_hash": ""
   },
   "backend/src/main/java/com/clinicadermatologica/app/domain/model/DermatologicService.java": {
-    "mtime": 1791242496.6407337,
-    "seen": 1791242532.060334,
+    "mtime": 1791242552.2530692,
+    "seen": 1791242948.747639,
     "ast_hash": "340140e9e4b122950f575e3e76d3aed3",
     "semantic_hash": ""
   },
   "backend/src/main/java/com/clinicadermatologica/app/domain/model/Habito.java": {
-    "mtime": 1791242496.6408186,
-    "seen": 1791242532.0603352,
+    "mtime": 1791242552.2531586,
+    "seen": 1791242948.7476401,
     "ast_hash": "d6b417ab49640c9402baf3ef89ca33f1",
     "semantic_hash": ""
   },
   "backend/src/main/java/com/clinicadermatologica/app/domain/model/HabitoId.java": {
-    "mtime": 1791242496.640902,
-    "seen": 1791242532.0603352,
+    "mtime": 1791242552.2532482,
+    "seen": 1791242948.747641,
     "ast_hash": "f6101b7d9441c3654050578f6a8607f1",
     "semantic_hash": ""
   },
   "backend/src/main/java/com/clinicadermatologica/app/domain/model/HoldPolicy.java": {
-    "mtime": 1791242496.640985,
-    "seen": 1791242532.0603352,
+    "mtime": 1791242552.2533374,
+    "seen": 1791242948.747641,
     "ast_hash": "4c50a2a3760d82c8e12a0e7e3c14309f",
     "semantic_hash": ""
   },
   "backend/src/main/java/com/clinicadermatologica/app/domain/model/MedicalRecord.java": {
-    "mtime": 1791242496.6410754,
-    "seen": 1791242532.060336,
+    "mtime": 1791242552.2534373,
+    "seen": 1791242948.747642,
     "ast_hash": "fcdec31868e546a69358f86fcf820a87",
     "semantic_hash": ""
   },
   "backend/src/main/java/com/clinicadermatologica/app/domain/model/MedicalRecordAudit.java": {
-    "mtime": 1791242496.6411552,
-    "seen": 1791242532.0603368,
+    "mtime": 1791242552.2535393,
+    "seen": 1791242948.747643,
     "ast_hash": "c8373b3590d0e0d1b258c79399b30f52",
     "semantic_hash": ""
   },
   "backend/src/main/java/com/clinicadermatologica/app/domain/model/PasswordResetToken.java": {
-    "mtime": 1791242496.6412587,
-    "seen": 1791242532.0603368,
+    "mtime": 1791242552.2536519,
+    "seen": 1791242948.747643,
     "ast_hash": "928fca8b711a116df3b38e0fc8673358",
     "semantic_hash": ""
   },
   "backend/src/main/java/com/clinicadermatologica/app/domain/model/Patient.java": {
-    "mtime": 1791242496.641365,
-    "seen": 1791242532.060338,
+    "mtime": 1791242552.2537386,
+    "seen": 1791242948.747644,
     "ast_hash": "086e9d4e13a8a01d357536eb70509c4e",
     "semantic_hash": ""
   },
   "backend/src/main/java/com/clinicadermatologica/app/domain/model/PaymentConcept.java": {
-    "mtime": 1791242496.6414475,
-    "seen": 1791242532.060338,
+    "mtime": 1791242552.2538147,
+    "seen": 1791242948.747644,
     "ast_hash": "20009844d34fa9bd8eaf8fb6ce8d8ef6",
     "semantic_hash": ""
   },
   "backend/src/main/java/com/clinicadermatologica/app/domain/model/PaymentStatus.java": {
-    "mtime": 1791242496.6415298,
-    "seen": 1791242532.060339,
+    "mtime": 1791242552.254013,
+    "seen": 1791242948.747645,
     "ast_hash": "158fa6c12be56720520062b42a63086b",
     "semantic_hash": ""
   },
   "backend/src/main/java/com/clinicadermatologica/app/domain/model/PaymentTransaction.java": {
-    "mtime": 1791242496.641618,
-    "seen": 1791242532.060339,
+    "mtime": 1791242552.2541049,
+    "seen": 1791242948.7476459,
     "ast_hash": "a2ca617e32c6c4edd84aebdb047c4bb9",
     "semantic_hash": ""
   },
   "backend/src/main/java/com/clinicadermatologica/app/domain/model/PaymentType.java": {
-    "mtime": 1791242496.6416957,
-    "seen": 1791242532.06034,
+    "mtime": 1791242552.2541947,
+    "seen": 1791242948.7476459,
     "ast_hash": "5a41dd33cffe560620ff35366e1f70ae",
     "semantic_hash": ""
   },
   "backend/src/main/java/com/clinicadermatologica/app/domain/model/User.java": {
-    "mtime": 1791242496.6417768,
-    "seen": 1791242532.06034,
+    "mtime": 1791242552.2542887,
+    "seen": 1791242948.747647,
     "ast_hash": "ef9ee2ea7d7b1c41f8ffd2b883f623df",
     "semantic_hash": ""
   },
   "backend/src/main/java/com/clinicadermatologica/app/domain/model/UserRole.java": {
-    "mtime": 1791242496.6418571,
-    "seen": 1791242532.060341,
+    "mtime": 1791242552.2543838,
+    "seen": 1791242948.747647,
     "ast_hash": "701b47e0db3a6c2f75b0695e15bd9b0a",
     "semantic_hash": ""
   },
   "backend/src/main/java/com/clinicadermatologica/app/domain/repository/AlergiaRepository.java": {
-    "mtime": 1791242496.6419904,
-    "seen": 1791242532.060341,
+    "mtime": 1791242552.2545364,
+    "seen": 1791242948.747648,
     "ast_hash": "d65e8cbd10427079b9c7a5566e0cbbbd",
     "semantic_hash": ""
   },
   "backend/src/main/java/com/clinicadermatologica/app/domain/repository/AntecedentePatologicoRepository.java": {
-    "mtime": 1791242496.6420736,
-    "seen": 1791242532.060342,
+    "mtime": 1791242552.2546363,
+    "seen": 1791242948.747649,
     "ast_hash": "a347d909f761cbf6438ee58200bfc8ea",
     "semantic_hash": ""
   },
   "backend/src/main/java/com/clinicadermatologica/app/domain/repository/AppointmentRepository.java": {
-    "mtime": 1791242496.6421547,
-    "seen": 1791242532.060342,
+    "mtime": 1791242552.2547748,
+    "seen": 1791242948.747649,
     "ast_hash": "e11de820e022a92a6d8662641f220af7",
     "semantic_hash": ""
   },
   "backend/src/main/java/com/clinicadermatologica/app/domain/repository/CalendarBlockRepository.java": {
-    "mtime": 1791242496.6422343,
-    "seen": 1791242532.060343,
+    "mtime": 1791242552.2548943,
+    "seen": 1791242948.7476501,
     "ast_hash": "8cf6a06f9dc9531ec69eacacc88e26ad",
     "semantic_hash": ""
   },
   "backend/src/main/java/com/clinicadermatologica/app/domain/repository/ClinicalEntryRepository.java": {
-    "mtime": 1791242496.6423209,
-    "seen": 1791242532.060343,
+    "mtime": 1791242552.255003,
+    "seen": 1791242948.7476501,
     "ast_hash": "92835e6e5f20f189f22331c569b110de",
     "semantic_hash": ""
   },
   "backend/src/main/java/com/clinicadermatologica/app/domain/repository/ClinicalImageRepository.java": {
-    "mtime": 1791242496.6424031,
-    "seen": 1791242532.060344,
+    "mtime": 1791242552.2550988,
+    "seen": 1791242948.747651,
     "ast_hash": "d905ff49315d8eab070289ab2072603e",
     "semantic_hash": ""
   },
   "backend/src/main/java/com/clinicadermatologica/app/domain/repository/DermatologicServiceRepository.java": {
-    "mtime": 1791242496.6424868,
-    "seen": 1791242532.060344,
+    "mtime": 1791242552.2551944,
+    "seen": 1791242948.747652,
     "ast_hash": "fa48a1f2bc7703c280ef605285221e4a",
     "semantic_hash": ""
   },
   "backend/src/main/java/com/clinicadermatologica/app/domain/repository/HabitoRepository.java": {
-    "mtime": 1791242496.6425667,
-    "seen": 1791242532.0603452,
+    "mtime": 1791242552.2553005,
+    "seen": 1791242948.747652,
     "ast_hash": "054b81a03c90732559a825331692200d",
     "semantic_hash": ""
   },
   "backend/src/main/java/com/clinicadermatologica/app/domain/repository/MedicalRecordRepository.java": {
-    "mtime": 1791242496.6426427,
-    "seen": 1791242532.0603452,
+    "mtime": 1791242552.2553923,
+    "seen": 1791242948.747653,
     "ast_hash": "d05f9473be5da67fc33be05587757fbe",
     "semantic_hash": ""
   },
   "backend/src/main/java/com/clinicadermatologica/app/domain/repository/PasswordResetTokenRepository.java": {
-    "mtime": 1791242496.6427176,
-    "seen": 1791242532.0603461,
+    "mtime": 1791242552.2554789,
+    "seen": 1791242948.747653,
     "ast_hash": "5fe0e5ea9f2cfb88da8e41cde5ffedbc",
     "semantic_hash": ""
   },
   "backend/src/main/java/com/clinicadermatologica/app/domain/repository/PatientRepository.java": {
-    "mtime": 1791242496.6427906,
-    "seen": 1791242532.0603461,
+    "mtime": 1791242552.2555647,
+    "seen": 1791242948.747654,
     "ast_hash": "8a37e47ce3ed610fd955ef3840983989",
     "semantic_hash": ""
   },
   "backend/src/main/java/com/clinicadermatologica/app/domain/repository/PaymentTransactionRepository.java": {
-    "mtime": 1791242496.6428845,
-    "seen": 1791242532.0603468,
+    "mtime": 1791242552.2556777,
+    "seen": 1791242948.747655,
     "ast_hash": "f700b451b2474453339752e3a42cb21e",
     "semantic_hash": ""
   },
   "backend/src/main/java/com/clinicadermatologica/app/domain/repository/UserRepository.java": {
-    "mtime": 1791242496.6429605,
-    "seen": 1791242532.0603468,
+    "mtime": 1791242552.255773,
+    "seen": 1791242948.747655,
     "ast_hash": "0c8219dce155bdd4786e2ece1ff519c6",
     "semantic_hash": ""
   },
   "backend/src/main/java/com/clinicadermatologica/app/infrastructure/ai/GeminiApiClientAdapter.java": {
-    "mtime": 1791242496.6431742,
-    "seen": 1791242532.0603478,
+    "mtime": 1791242552.2560487,
+    "seen": 1791242948.7476559,
     "ast_hash": "a0a6a313ea6008249a4a14a37d692823",
     "semantic_hash": ""
   },
   "backend/src/main/java/com/clinicadermatologica/app/infrastructure/notification/EmailNotificationService.java": {
-    "mtime": 1791242496.6433,
-    "seen": 1791242532.0603478,
+    "mtime": 1791242552.2562077,
+    "seen": 1791242948.7476559,
     "ast_hash": "f1759a6f06937f9f24a250f3cd1e3e0d",
     "semantic_hash": ""
   },
   "backend/src/main/java/com/clinicadermatologica/app/infrastructure/payment/MercadoPagoPaymentAdapter.java": {
-    "mtime": 1791242496.6434667,
-    "seen": 1791242532.0603478,
+    "mtime": 1791242552.256399,
+    "seen": 1791242948.747657,
     "ast_hash": "5f5664af52393603cd59d9779cf0756a",
     "semantic_hash": ""
   },
   "backend/src/main/java/com/clinicadermatologica/app/infrastructure/payment/strategy/BankTransferPaymentStrategy.java": {
-    "mtime": 1791242496.6436148,
-    "seen": 1791242532.060349,
+    "mtime": 1791242552.2565603,
+    "seen": 1791242948.747658,
     "ast_hash": "6b43367b2bea89df17ee22eb116b60c6",
     "semantic_hash": ""
   },
   "backend/src/main/java/com/clinicadermatologica/app/infrastructure/payment/strategy/CashPaymentStrategy.java": {
-    "mtime": 1791242496.6438189,
-    "seen": 1791242532.060349,
+    "mtime": 1791242552.2566526,
+    "seen": 1791242948.747658,
     "ast_hash": "299ec1499badc246125067a32d7ba512",
     "semantic_hash": ""
   },
   "backend/src/main/java/com/clinicadermatologica/app/infrastructure/payment/strategy/MercadoPagoPaymentStrategy.java": {
-    "mtime": 1791242496.6439102,
-    "seen": 1791242532.06035,
+    "mtime": 1791242552.2567337,
+    "seen": 1791242948.747659,
     "ast_hash": "68c80260cb2b4b20b54075824b6cebd3",
     "semantic_hash": ""
   },
   "backend/src/main/java/com/clinicadermatologica/app/infrastructure/persistence/adapter/AlergiaRepositoryAdapter.java": {
-    "mtime": 1791242496.6441264,
-    "seen": 1791242532.06035,
+    "mtime": 1791242552.2569761,
+    "seen": 1791242948.747659,
     "ast_hash": "854d5210045e6541e5c2c658c9d9d9a3",
     "semantic_hash": ""
   },
   "backend/src/main/java/com/clinicadermatologica/app/infrastructure/persistence/adapter/AntecedentePatologicoRepositoryAdapter.java": {
-    "mtime": 1791242496.6442232,
-    "seen": 1791242532.060351,
+    "mtime": 1791242552.2570608,
+    "seen": 1791242948.74766,
     "ast_hash": "2de4a6f51a946e246353a249ad7513f7",
     "semantic_hash": ""
   },
   "backend/src/main/java/com/clinicadermatologica/app/infrastructure/persistence/adapter/AppointmentRepositoryAdapter.java": {
-    "mtime": 1791242496.6443048,
-    "seen": 1791242532.060351,
+    "mtime": 1791242552.2571495,
+    "seen": 1791242948.747661,
     "ast_hash": "d74f1d3699acf07e8468483a4e7e2b60",
     "semantic_hash": ""
   },
   "backend/src/main/java/com/clinicadermatologica/app/infrastructure/persistence/adapter/CalendarBlockRepositoryAdapter.java": {
-    "mtime": 1791242496.6444001,
-    "seen": 1791242532.060352,
+    "mtime": 1791242552.2572548,
+    "seen": 1791242948.747661,
     "ast_hash": "9096637c3e19ca280f3aec22c475fca0",
     "semantic_hash": ""
   },
   "backend/src/main/java/com/clinicadermatologica/app/infrastructure/persistence/adapter/ClinicalEntryRepositoryAdapter.java": {
-    "mtime": 1791242496.6444783,
-    "seen": 1791242532.060352,
+    "mtime": 1791242552.257339,
+    "seen": 1791242948.747662,
     "ast_hash": "03d756c32e93f48f853a3f1aba8ffb93",
     "semantic_hash": ""
   },
   "backend/src/main/java/com/clinicadermatologica/app/infrastructure/persistence/adapter/ClinicalImageRepositoryAdapter.java": {
-    "mtime": 1791242496.644552,
-    "seen": 1791242532.060353,
+    "mtime": 1791242552.257425,
+    "seen": 1791242948.747662,
     "ast_hash": "86a90d3e9352c202caed292495057cf1",
     "semantic_hash": ""
   },
   "backend/src/main/java/com/clinicadermatologica/app/infrastructure/persistence/adapter/DermatologicServiceRepositoryAdapter.java": {
-    "mtime": 1791242496.6446407,
-    "seen": 1791242532.060353,
+    "mtime": 1791242552.2575576,
+    "seen": 1791242948.747663,
     "ast_hash": "b1ed3fde1ea876ff12c5e40796739042",
     "semantic_hash": ""
   },
   "backend/src/main/java/com/clinicadermatologica/app/infrastructure/persistence/adapter/HabitoRepositoryAdapter.java": {
-    "mtime": 1791242496.6447177,
-    "seen": 1791242532.060354,
+    "mtime": 1791242552.2576647,
+    "seen": 1791242948.747664,
     "ast_hash": "6f2c0447829f113ad4be7ba2deeca6dc",
     "semantic_hash": ""
   },
   "backend/src/main/java/com/clinicadermatologica/app/infrastructure/persistence/adapter/MedicalRecordRepositoryAdapter.java": {
-    "mtime": 1791242496.644808,
-    "seen": 1791242532.060354,
+    "mtime": 1791242552.2577674,
+    "seen": 1791242948.747664,
     "ast_hash": "b0c0f1bf841508a8aead5ddfe1af2c82",
     "semantic_hash": ""
   },
   "backend/src/main/java/com/clinicadermatologica/app/infrastructure/persistence/adapter/PasswordResetTokenRepositoryAdapter.java": {
-    "mtime": 1791242496.6448898,
-    "seen": 1791242532.0603552,
+    "mtime": 1791242552.2578678,
+    "seen": 1791242948.747665,
     "ast_hash": "2aab7dc31f232ac72bc9f5adc1801d75",
     "semantic_hash": ""
   },
   "backend/src/main/java/com/clinicadermatologica/app/infrastructure/persistence/adapter/PatientRepositoryAdapter.java": {
-    "mtime": 1791242496.6449678,
-    "seen": 1791242532.0603552,
+    "mtime": 1791242552.2579672,
+    "seen": 1791242948.747665,
     "ast_hash": "32f37fc703c55a1e3af9ab531a7dfea2",
     "semantic_hash": ""
   },
   "backend/src/main/java/com/clinicadermatologica/app/infrastructure/persistence/adapter/PaymentTransactionRepositoryAdapter.java": {
-    "mtime": 1791242496.6450467,
-    "seen": 1791242532.0603561,
+    "mtime": 1791242552.2580698,
+    "seen": 1791242948.747666,
     "ast_hash": "5ff4813821e1a674224f1c8498faa919",
     "semantic_hash": ""
   },
   "backend/src/main/java/com/clinicadermatologica/app/infrastructure/persistence/adapter/UserRepositoryAdapter.java": {
-    "mtime": 1791242496.6451254,
-    "seen": 1791242532.0603561,
+    "mtime": 1791242552.2581685,
+    "seen": 1791242948.7476668,
     "ast_hash": "5fb752cf57bfd2eb237bbce45e678e26",
     "semantic_hash": ""
   },
   "backend/src/main/java/com/clinicadermatologica/app/infrastructure/persistence/jpa/JpaAlergiaRepository.java": {
-    "mtime": 1791242496.645278,
-    "seen": 1791242532.060357,
+    "mtime": 1791242552.2583442,
+    "seen": 1791242948.7476668,
     "ast_hash": "aa091acb5667405a8fec0339777822d6",
     "semantic_hash": ""
   },
   "backend/src/main/java/com/clinicadermatologica/app/infrastructure/persistence/jpa/JpaAntecedentePatologicoRepository.java": {
-    "mtime": 1791242496.645353,
-    "seen": 1791242532.060357,
+    "mtime": 1791242552.2584317,
+    "seen": 1791242948.747668,
     "ast_hash": "dcbcfe6edbe1a0c20cc23d0e42831c8a",
     "semantic_hash": ""
   },
   "backend/src/main/java/com/clinicadermatologica/app/infrastructure/persistence/jpa/JpaAppointmentRepository.java": {
-    "mtime": 1791242496.6454246,
-    "seen": 1791242532.0603578,
+    "mtime": 1791242552.2585192,
+    "seen": 1791242948.747669,
     "ast_hash": "d461c10cd2c912390e685848a9931731",
     "semantic_hash": ""
   },
   "backend/src/main/java/com/clinicadermatologica/app/infrastructure/persistence/jpa/JpaCalendarBlockRepository.java": {
-    "mtime": 1791242496.645497,
-    "seen": 1791242532.0603578,
+    "mtime": 1791242552.2586086,
+    "seen": 1791242948.747669,
     "ast_hash": "dfd490dec09b7e1f5607adfb7d8f83dd",
     "semantic_hash": ""
   },
   "backend/src/main/java/com/clinicadermatologica/app/infrastructure/persistence/jpa/JpaClinicalEntryAuditRepository.java": {
-    "mtime": 1791242496.6455789,
-    "seen": 1791242532.060359,
+    "mtime": 1791242552.2586915,
+    "seen": 1791242948.74767,
     "ast_hash": "34b4d6271f6c9569ce85053c5b5fbce2",
     "semantic_hash": ""
   },
   "backend/src/main/java/com/clinicadermatologica/app/infrastructure/persistence/jpa/JpaClinicalEntryRepository.java": {
-    "mtime": 1791242496.6456578,
-    "seen": 1791242532.060359,
+    "mtime": 1791242552.2587867,
+    "seen": 1791242948.7476711,
     "ast_hash": "686097e55e34994b1fbae625dbdb6d50",
     "semantic_hash": ""
   },
   "backend/src/main/java/com/clinicadermatologica/app/infrastructure/persistence/jpa/JpaClinicalImageRepository.java": {
-    "mtime": 1791242496.6457434,
-    "seen": 1791242532.06036,
+    "mtime": 1791242552.2588925,
+    "seen": 1791242948.747672,
     "ast_hash": "89fbdc0e670302b99c2313c0bad4fb7b",
     "semantic_hash": ""
   },
   "backend/src/main/java/com/clinicadermatologica/app/infrastructure/persistence/jpa/JpaDermatologicServiceRepository.java": {
-    "mtime": 1791242496.6458218,
-    "seen": 1791242532.06036,
+    "mtime": 1791242552.258975,
+    "seen": 1791242948.747672,
     "ast_hash": "62b8897955fec7c3ad2c3fcab53fe08a",
     "semantic_hash": ""
   },
   "backend/src/main/java/com/clinicadermatologica/app/infrastructure/persistence/jpa/JpaHabitoRepository.java": {
-    "mtime": 1791242496.6458948,
-    "seen": 1791242532.060361,
+    "mtime": 1791242552.259057,
+    "seen": 1791242948.747673,
     "ast_hash": "ba2c434096c1b501e44d16fc53a5d479",
     "semantic_hash": ""
   },
   "backend/src/main/java/com/clinicadermatologica/app/infrastructure/persistence/jpa/JpaMedicalRecordAuditRepository.java": {
-    "mtime": 1791242496.6459675,
-    "seen": 1791242532.060361,
+    "mtime": 1791242552.2591467,
+    "seen": 1791242948.7476742,
     "ast_hash": "54db43e90debad64ba1e291d33789c01",
     "semantic_hash": ""
   },
   "backend/src/main/java/com/clinicadermatologica/app/infrastructure/persistence/jpa/JpaMedicalRecordRepository.java": {
-    "mtime": 1791242496.646048,
-    "seen": 1791242532.060362,
+    "mtime": 1791242552.259231,
+    "seen": 1791242948.7476742,
     "ast_hash": "d59d87d2c6d99cbc9862c3f8ccdd0f24",
     "semantic_hash": ""
   },
   "backend/src/main/java/com/clinicadermatologica/app/infrastructure/persistence/jpa/JpaPasswordResetTokenRepository.java": {
-    "mtime": 1791242496.6461456,
-    "seen": 1791242532.060363,
+    "mtime": 1791242552.259307,
+    "seen": 1791242948.747675,
     "ast_hash": "0b0702804a9a67d8a3077e5ca2aa0c48",
     "semantic_hash": ""
   },
   "backend/src/main/java/com/clinicadermatologica/app/infrastructure/persistence/jpa/JpaPatientRepository.java": {
-    "mtime": 1791242496.6462321,
-    "seen": 1791242532.060363,
+    "mtime": 1791242552.2593946,
+    "seen": 1791242948.747675,
     "ast_hash": "aaff72d5a284e72e70ae65d08d433214",
     "semantic_hash": ""
   },
   "backend/src/main/java/com/clinicadermatologica/app/infrastructure/persistence/jpa/JpaPaymentTransactionRepository.java": {
-    "mtime": 1791242496.6463084,
-    "seen": 1791242532.060364,
+    "mtime": 1791242552.2594776,
+    "seen": 1791242948.747676,
     "ast_hash": "d297177502c6ffd67d63149f985d92b7",
     "semantic_hash": ""
   },
   "backend/src/main/java/com/clinicadermatologica/app/infrastructure/persistence/jpa/JpaUserRepository.java": {
-    "mtime": 1791242496.6463883,
-    "seen": 1791242532.060364,
+    "mtime": 1791242552.2595644,
+    "seen": 1791242948.747676,
     "ast_hash": "abeb11e7455c51547e0565aa66bd9df7",
     "semantic_hash": ""
   },
   "backend/src/main/java/com/clinicadermatologica/app/infrastructure/scheduling/HoldExpirationScheduler.java": {
-    "mtime": 1791242496.6466448,
-    "seen": 1791242532.060365,
+    "mtime": 1791242552.2597208,
+    "seen": 1791242948.7476768,
     "ast_hash": "9d314037ae25364b170eb6f2c3c4971f",
     "semantic_hash": ""
   },
   "backend/src/main/java/com/clinicadermatologica/app/infrastructure/security/AesEncryptionService.java": {
-    "mtime": 1791242496.646815,
-    "seen": 1791242532.060365,
+    "mtime": 1791242552.2599082,
+    "seen": 1791242948.747678,
     "ast_hash": "816accbbc63b7b5cbe7229df8aaa5646",
     "semantic_hash": ""
   },
   "backend/src/main/java/com/clinicadermatologica/app/infrastructure/security/CustomUserDetailsService.java": {
-    "mtime": 1791242496.647006,
-    "seen": 1791242532.060365,
+    "mtime": 1791242552.2600112,
+    "seen": 1791242948.747678,
     "ast_hash": "6e1b4e673034ee51830af4488aca4d0f",
     "semantic_hash": ""
   },
   "backend/src/main/java/com/clinicadermatologica/app/infrastructure/security/JwtAuthenticationFilter.java": {
-    "mtime": 1791242496.6471143,
-    "seen": 1791242532.0603662,
+    "mtime": 1791242552.260104,
+    "seen": 1791242948.747679,
     "ast_hash": "81f6cac56d98319185c7d21ec328f883",
     "semantic_hash": ""
   },
   "backend/src/main/java/com/clinicadermatologica/app/infrastructure/security/JwtTokenProvider.java": {
-    "mtime": 1791242496.6472263,
-    "seen": 1791242532.0603662,
+    "mtime": 1791242552.2601979,
+    "seen": 1791242948.74768,
     "ast_hash": "4b75fb4157a72b715e0a497da26aca17",
     "semantic_hash": ""
   },
   "backend/src/main/java/com/clinicadermatologica/app/infrastructure/security/SecurityConfig.java": {
-    "mtime": 1791242496.6473525,
-    "seen": 1791242532.060367,
+    "mtime": 1791242552.2603264,
+    "seen": 1791242948.74768,
     "ast_hash": "55abfc2ea4368fc5889d8ec51f2917b6",
     "semantic_hash": ""
   },
   "backend/src/main/java/com/clinicadermatologica/app/infrastructure/storage/SupabaseStorageAdapter.java": {
-    "mtime": 1791242496.6474967,
-    "seen": 1791242532.060367,
+    "mtime": 1791242552.2604861,
+    "seen": 1791242948.7476811,
     "ast_hash": "e4eb681f77ef41f3ef6f04a4342318b3",
     "semantic_hash": ""
   },
   "backend/src/main/java/com/clinicadermatologica/app/presentation/advice/GlobalExceptionHandler.java": {
-    "mtime": 1791242496.6477091,
-    "seen": 1791242532.0603678,
+    "mtime": 1791242552.2607386,
+    "seen": 1791242948.747682,
     "ast_hash": "4aafece55b638ee4dce9d58e6c389f1b",
     "semantic_hash": ""
   },
   "backend/src/main/java/com/clinicadermatologica/app/presentation/controller/AppointmentController.java": {
-    "mtime": 1791242496.6478927,
-    "seen": 1791242532.0603678,
+    "mtime": 1791242552.2609284,
+    "seen": 1791242948.747682,
     "ast_hash": "b4475241fe62b51f68a64071024839f2",
     "semantic_hash": ""
   },
   "backend/src/main/java/com/clinicadermatologica/app/presentation/controller/AuthController.java": {
-    "mtime": 1791242496.6480098,
-    "seen": 1791242532.060369,
+    "mtime": 1791242552.2610202,
+    "seen": 1791242948.747683,
     "ast_hash": "b2fb7e0100f3046f8d1fa14c6a011377",
     "semantic_hash": ""
   },
   "backend/src/main/java/com/clinicadermatologica/app/presentation/controller/CalendarBlockController.java": {
-    "mtime": 1791242496.648119,
-    "seen": 1791242532.060369,
+    "mtime": 1791242552.261111,
+    "seen": 1791242948.747683,
     "ast_hash": "f79165706dc7440d4e40da757873d7df",
     "semantic_hash": ""
   },
   "backend/src/main/java/com/clinicadermatologica/app/presentation/controller/GeminiChatbotController.java": {
-    "mtime": 1791242496.6482186,
-    "seen": 1791242532.06037,
+    "mtime": 1791242552.2612183,
+    "seen": 1791242948.747684,
     "ast_hash": "971f6cc7f650e9e3d7e0e360178dada9",
     "semantic_hash": ""
   },
   "backend/src/main/java/com/clinicadermatologica/app/presentation/controller/MedicalRecordController.java": {
-    "mtime": 1791242496.6483583,
-    "seen": 1791242532.06037,
+    "mtime": 1791242552.261329,
+    "seen": 1791242948.747684,
     "ast_hash": "61d643653efa987bcb1f9a1eeed7bf83",
     "semantic_hash": ""
   },
   "backend/src/main/java/com/clinicadermatologica/app/presentation/controller/PatientController.java": {
-    "mtime": 1791242496.6484568,
-    "seen": 1791242532.060371,
+    "mtime": 1791242552.261434,
+    "seen": 1791242948.7476852,
     "ast_hash": "1dc90180b2de83a9d860f1ee0356a854",
     "semantic_hash": ""
   },
   "backend/src/main/java/com/clinicadermatologica/app/presentation/controller/PaymentWebhookController.java": {
-    "mtime": 1791242496.6485646,
-    "seen": 1791242532.060371,
+    "mtime": 1791242552.2615292,
+    "seen": 1791242948.7476852,
     "ast_hash": "23cc2cecf2b0213280d9f493104e4c31",
     "semantic_hash": ""
   },
   "backend/src/main/java/com/clinicadermatologica/app/presentation/controller/ServiceCatalogController.java": {
-    "mtime": 1791242496.6486454,
-    "seen": 1791242532.0603719,
+    "mtime": 1791242552.2616153,
+    "seen": 1791242948.747686,
     "ast_hash": "47778667896f4b218df3f5b3cea4eef8",
     "semantic_hash": ""
   },
   "backend/src/main/java/com/clinicadermatologica/app/presentation/dto/AlergiaRequestDTO.java": {
-    "mtime": 1791242496.6487944,
-    "seen": 1791242532.0603719,
+    "mtime": 1791242552.261765,
+    "seen": 1791242948.7476869,
     "ast_hash": "6245f202213e77ca4ce0a54609872dc4",
     "semantic_hash": ""
   },
   "backend/src/main/java/com/clinicadermatologica/app/presentation/dto/AlergiaResponseDTO.java": {
-    "mtime": 1791242496.6488833,
-    "seen": 1791242532.060373,
+    "mtime": 1791242552.2618575,
+    "seen": 1791242948.7476869,
     "ast_hash": "e4b98cf931dc06ca162125cc7669c9e8",
     "semantic_hash": ""
   },
   "backend/src/main/java/com/clinicadermatologica/app/presentation/dto/AntecedentePatologicoRequestDTO.java": {
-    "mtime": 1791242496.6489613,
-    "seen": 1791242532.060373,
+    "mtime": 1791242552.2619443,
+    "seen": 1791242948.747688,
     "ast_hash": "56a7ee9b411a562f5b9ebf53ece749c6",
     "semantic_hash": ""
   },
   "backend/src/main/java/com/clinicadermatologica/app/presentation/dto/AntecedentePatologicoResponseDTO.java": {
-    "mtime": 1791242496.6491034,
-    "seen": 1791242532.060374,
+    "mtime": 1791242552.2620254,
+    "seen": 1791242948.747689,
     "ast_hash": "ca5f505ada7073947077a8fab590213a",
     "semantic_hash": ""
   },
   "backend/src/main/java/com/clinicadermatologica/app/presentation/dto/AppointmentResponseDTO.java": {
-    "mtime": 1791242496.6493802,
-    "seen": 1791242532.060374,
+    "mtime": 1791242552.2621207,
+    "seen": 1791242948.747689,
     "ast_hash": "cadb41f8f84b430d9b40982bcc43b174",
     "semantic_hash": ""
   },
   "backend/src/main/java/com/clinicadermatologica/app/presentation/dto/AuthRequestDTO.java": {
-    "mtime": 1791242496.6495175,
-    "seen": 1791242532.060375,
+    "mtime": 1791242552.2622237,
+    "seen": 1791242948.74769,
     "ast_hash": "59b66c1dbd260c81a53d73188e20d3e1",
     "semantic_hash": ""
   },
   "backend/src/main/java/com/clinicadermatologica/app/presentation/dto/AuthResponseDTO.java": {
-    "mtime": 1791242496.6496146,
-    "seen": 1791242532.060375,
+    "mtime": 1791242552.2623096,
+    "seen": 1791242948.74769,
     "ast_hash": "079c9a784a0344d1200b9891916f263a",
     "semantic_hash": ""
   },
   "backend/src/main/java/com/clinicadermatologica/app/presentation/dto/BookAppointmentRequestDTO.java": {
-    "mtime": 1791242496.6497092,
-    "seen": 1791242532.0603762,
+    "mtime": 1791242552.2623975,
+    "seen": 1791242948.747691,
     "ast_hash": "b7d522e33c31d4197be33e90c3b6b244",
     "semantic_hash": ""
   },
   "backend/src/main/java/com/clinicadermatologica/app/presentation/dto/CalendarBlockRequestDTO.java": {
-    "mtime": 1791242496.6504154,
-    "seen": 1791242532.0603762,
+    "mtime": 1791242552.2624848,
+    "seen": 1791242948.747692,
     "ast_hash": "ba2ababb44cafd401477716caa39f904",
     "semantic_hash": ""
   },
   "backend/src/main/java/com/clinicadermatologica/app/presentation/dto/CalendarBlockResponseDTO.java": {
-    "mtime": 1791242496.6507087,
-    "seen": 1791242532.0603771,
+    "mtime": 1791242552.262581,
+    "seen": 1791242948.747692,
     "ast_hash": "1c79f9c77397decd9a0612060cf6bf77",
     "semantic_hash": ""
   },
   "backend/src/main/java/com/clinicadermatologica/app/presentation/dto/ClinicalEntryRequestDTO.java": {
-    "mtime": 1791242496.6508656,
-    "seen": 1791242532.0603771,
+    "mtime": 1791242552.26267,
+    "seen": 1791242948.747693,
     "ast_hash": "29c32047a1b21035d0b86363b6e01843",
     "semantic_hash": ""
   },
   "backend/src/main/java/com/clinicadermatologica/app/presentation/dto/ClinicalEntryResponseDTO.java": {
-    "mtime": 1791242496.6509764,
-    "seen": 1791242532.060378,
+    "mtime": 1791242552.2627532,
+    "seen": 1791242948.747694,
     "ast_hash": "a06011d34d7a5288ff0995f2ec3de325",
     "semantic_hash": ""
   },
   "backend/src/main/java/com/clinicadermatologica/app/presentation/dto/ClinicalImageResponseDTO.java": {
-    "mtime": 1791242496.6510642,
-    "seen": 1791242532.060378,
+    "mtime": 1791242552.262841,
+    "seen": 1791242948.747694,
     "ast_hash": "0736f35b47f07a824c4ebb5dbbd9ed4d",
     "semantic_hash": ""
   },
   "backend/src/main/java/com/clinicadermatologica/app/presentation/dto/FinalizePaymentRequestDTO.java": {
-    "mtime": 1791242496.6511545,
-    "seen": 1791242532.0603788,
+    "mtime": 1791242552.2629273,
+    "seen": 1791242948.7476952,
     "ast_hash": "78df6a6d489db7c021032e65d547ad0f",
     "semantic_hash": ""
   },
   "backend/src/main/java/com/clinicadermatologica/app/presentation/dto/ForgotPasswordRequestDTO.java": {
-    "mtime": 1791242496.6512465,
-    "seen": 1791242532.0603788,
+    "mtime": 1791242552.2630224,
+    "seen": 1791242948.7476952,
     "ast_hash": "42e254c0e8089c7a794173fad734ea05",
     "semantic_hash": ""
   },
   "backend/src/main/java/com/clinicadermatologica/app/presentation/dto/GeminiChatRequestDTO.java": {
-    "mtime": 1791242496.6513681,
-    "seen": 1791242532.06038,
+    "mtime": 1791242552.2631197,
+    "seen": 1791242948.7476962,
     "ast_hash": "aaefde592dd48cac2212da28d8c3c2e6",
     "semantic_hash": ""
   },
   "backend/src/main/java/com/clinicadermatologica/app/presentation/dto/GeminiChatResponseDTO.java": {
-    "mtime": 1791242496.651461,
-    "seen": 1791242532.06038,
+    "mtime": 1791242552.2632184,
+    "seen": 1791242948.7476962,
     "ast_hash": "d9a6e18e8d7f1938a62987a70f27e834",
     "semantic_hash": ""
   },
   "backend/src/main/java/com/clinicadermatologica/app/presentation/dto/HabitoRequestDTO.java": {
-    "mtime": 1791242496.6515472,
-    "seen": 1791242532.060381,
+    "mtime": 1791242552.2633014,
+    "seen": 1791242948.7476969,
     "ast_hash": "261dd141806aa691da6eec3c02f46b96",
     "semantic_hash": ""
   },
   "backend/src/main/java/com/clinicadermatologica/app/presentation/dto/HabitoResponseDTO.java": {
-    "mtime": 1791242496.6516259,
-    "seen": 1791242532.060381,
+    "mtime": 1791242552.2633908,
+    "seen": 1791242948.7476978,
     "ast_hash": "d732009f634835e61ca4fef3a8ec91d2",
     "semantic_hash": ""
   },
   "backend/src/main/java/com/clinicadermatologica/app/presentation/dto/MedicalRecordDTO.java": {
-    "mtime": 1791242496.6517134,
-    "seen": 1791242532.060381,
+    "mtime": 1791242552.2634814,
+    "seen": 1791242948.7476978,
     "ast_hash": "38d8106cbce45ad486000fce6dc3833f",
     "semantic_hash": ""
   },
   "backend/src/main/java/com/clinicadermatologica/app/presentation/dto/PatientRequestDTO.java": {
-    "mtime": 1791242496.6517913,
-    "seen": 1791242532.060382,
+    "mtime": 1791242552.2635658,
+    "seen": 1791242948.747699,
     "ast_hash": "497b3c0bd7ce0ec2431b6be169801007",
     "semantic_hash": ""
   },
   "backend/src/main/java/com/clinicadermatologica/app/presentation/dto/PatientResponseDTO.java": {
-    "mtime": 1791242496.651864,
-    "seen": 1791242532.060382,
+    "mtime": 1791242552.263648,
+    "seen": 1791242948.747699,
     "ast_hash": "288a062e017ee089de9cc3c4905118ba",
     "semantic_hash": ""
   },
   "backend/src/main/java/com/clinicadermatologica/app/presentation/dto/PaymentPreferenceResponseDTO.java": {
-    "mtime": 1791242496.6519487,
-    "seen": 1791242532.060383,
+    "mtime": 1791242552.2637339,
+    "seen": 1791242948.7477,
     "ast_hash": "a5c3437e65cb015b4ddca1d141fe9e46",
     "semantic_hash": ""
   },
   "backend/src/main/java/com/clinicadermatologica/app/presentation/dto/PaymentReceiptDTO.java": {
-    "mtime": 1791242496.6520388,
-    "seen": 1791242532.060383,
+    "mtime": 1791242552.2638185,
+    "seen": 1791242948.747701,
     "ast_hash": "1380bbf66354778e2e3825ae043040ac",
     "semantic_hash": ""
   },
   "backend/src/main/java/com/clinicadermatologica/app/presentation/dto/RegisterPaymentRequestDTO.java": {
-    "mtime": 1791242496.6521282,
-    "seen": 1791242532.060384,
+    "mtime": 1791242552.2639122,
+    "seen": 1791242948.747701,
     "ast_hash": "1d10640f997425759daef73cadc072e1",
     "semantic_hash": ""
   },
   "backend/src/main/java/com/clinicadermatologica/app/presentation/dto/RegisterUserRequestDTO.java": {
-    "mtime": 1791242496.652213,
-    "seen": 1791242532.060384,
+    "mtime": 1791242552.2639976,
+    "seen": 1791242948.7477021,
     "ast_hash": "f2aad5daec4cac0688b39441ec1b744d",
     "semantic_hash": ""
   },
   "backend/src/main/java/com/clinicadermatologica/app/presentation/dto/ResetPasswordRequestDTO.java": {
-    "mtime": 1791242496.652291,
-    "seen": 1791242532.060385,
+    "mtime": 1791242552.2640889,
+    "seen": 1791242948.7477021,
     "ast_hash": "04d09f192b9657a187ba896796277db2",
     "semantic_hash": ""
   },
   "backend/src/main/java/com/clinicadermatologica/app/presentation/dto/ServiceRequestDTO.java": {
-    "mtime": 1791242496.652368,
-    "seen": 1791242532.060385,
+    "mtime": 1791242552.2641625,
+    "seen": 1791242948.747703,
     "ast_hash": "4b87aa2c9534eb057b764d38bd3abd38",
     "semantic_hash": ""
   },
   "backend/src/main/java/com/clinicadermatologica/app/presentation/dto/ServiceResponseDTO.java": {
-    "mtime": 1791242496.6524427,
-    "seen": 1791242532.060386,
+    "mtime": 1791242552.2642508,
+    "seen": 1791242948.747703,
     "ast_hash": "52c20442654e6abc8d8ffe513e9ff4b1",
     "semantic_hash": ""
   },
   "backend/src/main/java/com/clinicadermatologica/app/presentation/dto/TimeSlotDTO.java": {
-    "mtime": 1791242496.6525211,
-    "seen": 1791242532.060386,
+    "mtime": 1791242552.2643297,
+    "seen": 1791242948.747704,
     "ast_hash": "b76612fb7dd215bcf5d1c705cb29c116",
     "semantic_hash": ""
   },
   "backend/src/main/resources/db/migration/V1__initial_schema.sql": {
-    "mtime": 1791242496.653207,
-    "seen": 1791242532.0603871,
+    "mtime": 1791242552.2657118,
+    "seen": 1791242948.747705,
     "ast_hash": "2bb1d965b2b5f4b2b9b7228bb100f235",
     "semantic_hash": ""
   },
   "backend/src/main/resources/db/migration/V2__audit_triggers_and_tables.sql": {
-    "mtime": 1791242496.6532936,
-    "seen": 1791242532.0603871,
+    "mtime": 1791242552.265932,
+    "seen": 1791242948.747705,
     "ast_hash": "52320d544f954a28b26b74537cbae818",
     "semantic_hash": ""
   },
   "backend/src/main/resources/db/migration/V3__seed_initial_data.sql": {
-    "mtime": 1791242496.653431,
-    "seen": 1791242532.060388,
+    "mtime": 1791242552.2660697,
+    "seen": 1791242948.7477062,
     "ast_hash": "6ad588b2b135cde207d96407462ff11a",
     "semantic_hash": ""
   },
   "backend/src/main/resources/db/migration/V4__schema_redesign.sql": {
-    "mtime": 1791242496.6535792,
-    "seen": 1791242532.060388,
+    "mtime": 1791242552.2662158,
+    "seen": 1791242948.7477062,
     "ast_hash": "cb98981a81655aa590bef99305e5e232",
     "semantic_hash": ""
   },
   "backend/src/main/resources/db/migration/V5__seed_updated_data.sql": {
-    "mtime": 1791242496.6537337,
-    "seen": 1791242532.060389,
+    "mtime": 1791242552.2663445,
+    "seen": 1791242948.747707,
     "ast_hash": "2ddd61157296ba7481c1e975137f2171",
     "semantic_hash": ""
   },
   "backend/src/main/resources/db/migration/V6__spec_alignment.sql": {
-    "mtime": 1791242496.654061,
-    "seen": 1791242532.060389,
+    "mtime": 1791242552.266559,
+    "seen": 1791242948.747707,
     "ast_hash": "58290ccc4f295be640150ddfe1aace6c",
     "semantic_hash": ""
   },
   "backend/src/test/java/com/clinicadermatologica/app/application/AppointmentServiceTest.java": {
-    "mtime": 1791242496.6548095,
-    "seen": 1791242532.060389,
+    "mtime": 1791242552.2670217,
+    "seen": 1791242948.7477078,
     "ast_hash": "9069ef98e91fa5f507ba393f2a5cf8c1",
     "semantic_hash": ""
   },
   "backend/src/test/java/com/clinicadermatologica/app/application/AuthServiceTest.java": {
-    "mtime": 1791242496.6549692,
-    "seen": 1791242532.06039,
+    "mtime": 1791242552.2671483,
+    "seen": 1791242948.747709,
     "ast_hash": "da98f7aaba9767cd2ae2cfd512adf0f3",
     "semantic_hash": ""
   },
   "backend/src/test/java/com/clinicadermatologica/app/application/MedicalRecordServiceTest.java": {
-    "mtime": 1791242496.6551013,
-    "seen": 1791242532.06039,
+    "mtime": 1791242552.2672672,
+    "seen": 1791242948.747709,
     "ast_hash": "d89919a240edcff444b19caff972c485",
     "semantic_hash": ""
   },
   "backend/src/test/java/com/clinicadermatologica/app/application/PaymentServiceTest.java": {
-    "mtime": 1791242496.655207,
-    "seen": 1791242532.060391,
-    "ast_hash": "1d6551c1d319aad5ba6d23b90a7212a4",
+    "mtime": 1791242890.0557463,
+    "seen": 1791242948.74771,
+    "ast_hash": "7d1b6226c0fe48c64e36935b2ae840d9",
     "semantic_hash": ""
   },
   "backend/src/test/java/com/clinicadermatologica/app/infrastructure/AesEncryptionServiceTest.java": {
-    "mtime": 1791242496.6554947,
-    "seen": 1791242532.060391,
+    "mtime": 1791242552.2675893,
+    "seen": 1791242948.74771,
     "ast_hash": "24f8cfb6c7b0f1eaae2264d91f1f4395",
     "semantic_hash": ""
   },
@@ -1284,8 +1284,8 @@
     "semantic_hash": ""
   },
   "vercel.json": {
-    "mtime": 1791242496.6702163,
-    "seen": 1791242532.060425,
+    "mtime": 1791242552.6757371,
+    "seen": 1791242948.7477582,
     "ast_hash": "a32ba85f965bda6ac856da4c84981217",
     "semantic_hash": ""
   },
@@ -1668,26 +1668,26 @@
     "semantic_hash": ""
   },
   ".github/workflows/backend-ci.yml": {
-    "mtime": 1791242496.63462,
-    "seen": 1791242532.060456,
+    "mtime": 1791242552.2476363,
+    "seen": 1791242948.747802,
     "ast_hash": "e81bd67ac4e43b0878606d82c7d9d2ad",
     "semantic_hash": ""
   },
   ".github/workflows/frontend-ci.yml": {
-    "mtime": 1791242496.6347616,
-    "seen": 1791242532.060456,
+    "mtime": 1791242552.2477567,
+    "seen": 1791242948.747802,
     "ast_hash": "be4b0eb337a9b70274f539b0ff5913ba",
     "semantic_hash": ""
   },
   "InformationArchitecture/01_content_and_functionality_inventory.md": {
-    "mtime": 1791242496.6355948,
-    "seen": 1791242532.060457,
+    "mtime": 1791242552.2482119,
+    "seen": 1791242948.747803,
     "ast_hash": "815200d3f34b2bef8e583cb8063e9d44",
     "semantic_hash": ""
   },
   "README.md": {
-    "mtime": 1791242496.6358192,
-    "seen": 1791242532.060457,
+    "mtime": 1791242552.2484517,
+    "seen": 1791242948.747803,
     "ast_hash": "b594a454ff52103be2e67b21c59288f6",
     "semantic_hash": ""
   },
@@ -1698,170 +1698,170 @@
     "semantic_hash": ""
   },
   "backend/src/main/resources/application.yml": {
-    "mtime": 1791242525.2239003,
-    "seen": 1791242532.060458,
+    "mtime": 1791242552.2647693,
+    "seen": 1791242948.7478049,
     "ast_hash": "d1d32ed02cf59f5ca74fb244f6fc31cc",
     "semantic_hash": ""
   },
   "docker-compose.yml": {
-    "mtime": 1791242512.8428283,
-    "seen": 1791242532.060459,
+    "mtime": 1791242552.267772,
+    "seen": 1791242948.7478049,
     "ast_hash": "2176e17ea91ac9c30484ef1403c7391f",
     "semantic_hash": ""
   },
   "documentacion/00_INDICE_GENERAL.md": {
-    "mtime": 1791242496.6559799,
-    "seen": 1791242532.060459,
+    "mtime": 1791242552.2680912,
+    "seen": 1791242948.7478058,
     "ast_hash": "99d8a89a23c2a53172ba3c3105b25ce6",
     "semantic_hash": ""
   },
   "documentacion/GUIA_MAESTRA_ESTANDAR_INGENIERIA_Y_AGENTES_IA.md": {
-    "mtime": 1791242496.6561553,
-    "seen": 1791242532.06046,
+    "mtime": 1791242552.2682922,
+    "seen": 1791242948.747807,
     "ast_hash": "e9a59b29576239f201ec931389d30d82",
     "semantic_hash": ""
   },
   "documentacion/fase10_diseno_mobile_y_responsive/FASE_10_DISENO_MOBILE_Y_RESPONSIVE.md": {
-    "mtime": 1791242496.656335,
-    "seen": 1791242532.06046,
+    "mtime": 1791242552.2684698,
+    "seen": 1791242948.747807,
     "ast_hash": "aae6e3950162ade0802fd5354f405f0a",
     "semantic_hash": ""
   },
   "documentacion/fase11_landing_y_enrutamiento/FASE_11_LANDING_Y_ENRUTAMIENTO.md": {
-    "mtime": 1791242496.6564674,
-    "seen": 1791242532.060461,
+    "mtime": 1791242552.26862,
+    "seen": 1791242948.747808,
     "ast_hash": "77915e4e3742c5b2428e16aa8903c319",
     "semantic_hash": ""
   },
   "documentacion/fase1_especificacion_y_diseno/ARQUITECTURA_Y_DISENO_TECNICO.md": {
-    "mtime": 1791242496.656639,
-    "seen": 1791242532.060461,
+    "mtime": 1791242552.2688115,
+    "seen": 1791242948.747809,
     "ast_hash": "b0d345c13e820a3858f9e074d7fdd87a",
     "semantic_hash": ""
   },
   "documentacion/fase1_especificacion_y_diseno/GLOSARIO_TECNICO_Y_METODOS.md": {
-    "mtime": 1791242496.6568139,
-    "seen": 1791242532.060462,
+    "mtime": 1791242552.2691777,
+    "seen": 1791242948.7478101,
     "ast_hash": "a5482c51665eb42a12c24ffdc01f9da2",
     "semantic_hash": ""
   },
   "documentacion/fase2_backend_y_calidad/FASE_2_IMPLEMENTACION_Y_TESTS.md": {
-    "mtime": 1791242496.6569865,
-    "seen": 1791242532.060462,
+    "mtime": 1791242552.2693992,
+    "seen": 1791242948.7478101,
     "ast_hash": "0f0e0fd1c50105bae7a79f9bb08b47ef",
     "semantic_hash": ""
   },
   "documentacion/fase3_frontend_avanzado_y_devops/FASE_3_FRONTEND_UIUX_Y_DEVOPS.md": {
-    "mtime": 1791242496.6572309,
-    "seen": 1791242532.0604632,
+    "mtime": 1791242552.2695434,
+    "seen": 1791242948.747811,
     "ast_hash": "11e32b57bb353f03530cbac4cb729dc7",
     "semantic_hash": ""
   },
   "documentacion/fase4_bpmn_y_casos_de_uso/FASE_4_PROCESOS_BPMN_Y_CASOS_DE_USO.md": {
-    "mtime": 1791242496.6574016,
-    "seen": 1791242532.0604632,
+    "mtime": 1791242552.2697327,
+    "seen": 1791242948.747811,
     "ast_hash": "087e9a75883be83b7202dd3e38ed77cf",
     "semantic_hash": ""
   },
   "documentacion/fase5_cicd_y_calidad_continua/FASE_5_PIPELINES_CICD_GITHUB_ACTIONS.md": {
-    "mtime": 1791242496.6575952,
-    "seen": 1791242532.0604641,
+    "mtime": 1791242552.2699296,
+    "seen": 1791242948.747812,
     "ast_hash": "0d20f8aab46eeef2f3671433a8a68013",
     "semantic_hash": ""
   },
   "documentacion/fase6_comprobantes_y_consentimientos_pdf/FASE_6_DOCUMENTOS_CLINICOS_Y_PDF.md": {
-    "mtime": 1791242496.6577609,
-    "seen": 1791242532.0604641,
+    "mtime": 1791242552.2701151,
+    "seen": 1791242948.7478132,
     "ast_hash": "bbef9eb089ebfb5b918f831bcda2d26a",
     "semantic_hash": ""
   },
   "documentacion/fase7_dashboard_metricas_y_kpis/FASE_7_DASHBOARD_METRICAS_Y_KPIS.md": {
-    "mtime": 1791242496.6578937,
-    "seen": 1791242532.0604649,
+    "mtime": 1791242552.270263,
+    "seen": 1791242948.7478132,
     "ast_hash": "ea334f968f15768923cfd73c3ef6ed6c",
     "semantic_hash": ""
   },
   "documentacion/fase8_recordatorios_y_calendario_sync/FASE_8_SISTEMA_RECORDATORIOS_Y_CALENDARIOS.md": {
-    "mtime": 1791242496.658026,
-    "seen": 1791242532.0604649,
+    "mtime": 1791242552.2704108,
+    "seen": 1791242948.747814,
     "ast_hash": "9fdd37bb5338ff67f8da6fe054743d40",
     "semantic_hash": ""
   },
   "documentacion/fase9_guia_de_defensa_y_pitch/GUIA_DE_DEFENSA_Y_DEMOSTRACION.md": {
-    "mtime": 1791242496.6582317,
-    "seen": 1791242532.0604658,
+    "mtime": 1791242552.2706091,
+    "seen": 1791242948.747815,
     "ast_hash": "e04915e277d0a0e5587c2967012279e8",
     "semantic_hash": ""
   },
   "documentacion/historial_prds/CHANGELOG_PRDS.md": {
-    "mtime": 1791242496.658398,
-    "seen": 1791242532.0604658,
+    "mtime": 1791242552.2710044,
+    "seen": 1791242948.747815,
     "ast_hash": "0dfffbb6d90721ca4e749e938a688bfb",
     "semantic_hash": ""
   },
   "documentacion/historial_prds/PRD_v1.0_Fase1_Inicial.md": {
-    "mtime": 1791242496.658518,
-    "seen": 1791242532.060467,
+    "mtime": 1791242552.2711384,
+    "seen": 1791242948.7478158,
     "ast_hash": "02df9eeca5cf5baf84fcbc659a269672",
     "semantic_hash": ""
   },
   "documentacion/historial_prds/PRD_v10.0_Fase10_Mobile_Responsive_Master.md": {
-    "mtime": 1791242496.6586733,
-    "seen": 1791242532.060467,
+    "mtime": 1791242552.2713006,
+    "seen": 1791242948.7478158,
     "ast_hash": "369b714af4b13b12d304d48a6d9e1cfe",
     "semantic_hash": ""
   },
   "documentacion/historial_prds/PRD_v11.0_Fase11_Landing_Login.md": {
-    "mtime": 1791242496.658768,
-    "seen": 1791242532.060468,
+    "mtime": 1791242552.2713883,
+    "seen": 1791242948.747817,
     "ast_hash": "492a124a0518c251f3610104ae676b86",
     "semantic_hash": ""
   },
   "documentacion/historial_prds/PRD_v2.0_Fase2_Backend_Storage_Tests.md": {
-    "mtime": 1791242496.658888,
-    "seen": 1791242532.060468,
+    "mtime": 1791242552.2715056,
+    "seen": 1791242948.747818,
     "ast_hash": "fcdc44338250f6aa866e51f1cc2063b0",
     "semantic_hash": ""
   },
   "documentacion/historial_prds/PRD_v3.0_Fase3_Frontend_DevOps_Master.md": {
-    "mtime": 1791242496.6590095,
-    "seen": 1791242532.060469,
+    "mtime": 1791242552.271656,
+    "seen": 1791242948.747818,
     "ast_hash": "5ed92bad1a4c89bb1d7f3dfe6225c245",
     "semantic_hash": ""
   },
   "documentacion/historial_prds/PRD_v4.0_Fase4_BPMN_CasosDeUso_Master.md": {
-    "mtime": 1791242496.6591423,
-    "seen": 1791242532.060469,
+    "mtime": 1791242552.271815,
+    "seen": 1791242948.747819,
     "ast_hash": "9a6d1a31fa86c255d9202a27ae2953e1",
     "semantic_hash": ""
   },
   "documentacion/historial_prds/PRD_v5.0_Fase5_CICD_Calidad_Master.md": {
-    "mtime": 1791242496.659256,
-    "seen": 1791242532.06047,
+    "mtime": 1791242552.2719455,
+    "seen": 1791242948.7478201,
     "ast_hash": "8fdf44bb07d290db387f67f280341059",
     "semantic_hash": ""
   },
   "documentacion/historial_prds/PRD_v6.0_Fase6_Documentos_PDF_Master.md": {
-    "mtime": 1791242496.659378,
-    "seen": 1791242532.06047,
+    "mtime": 1791242552.2720857,
+    "seen": 1791242948.7478201,
     "ast_hash": "0e108835724296a105416991dc0f66b5",
     "semantic_hash": ""
   },
   "documentacion/historial_prds/PRD_v7.0_Fase7_Dashboard_KPIs_Master.md": {
-    "mtime": 1791242496.6595557,
-    "seen": 1791242532.060471,
+    "mtime": 1791242552.2721956,
+    "seen": 1791242948.747821,
     "ast_hash": "9d44ecf8a04bd07865160d3c9799a2d8",
     "semantic_hash": ""
   },
   "documentacion/historial_prds/PRD_v8.0_Fase8_Recordatorios_Calendario_Master.md": {
-    "mtime": 1791242496.6596556,
-    "seen": 1791242532.060471,
+    "mtime": 1791242552.2723014,
+    "seen": 1791242948.747822,
     "ast_hash": "198b6b1aab21769f12043ddec0d97d8d",
     "semantic_hash": ""
   },
   "documentacion/historial_prds/PRD_v9.0_Fase9_Master_Defensa_Integral.md": {
-    "mtime": 1791242496.6597633,
-    "seen": 1791242532.060472,
+    "mtime": 1791242552.2724159,
+    "seen": 1791242948.747822,
     "ast_hash": "7fb03717665f5bc92dec931794677a1d",
     "semantic_hash": ""
   },
@@ -1878,20 +1878,20 @@
     "semantic_hash": ""
   },
   "documentacion/recursos_academicos_originales/2.- Microservicios y RestSimplificado.pdf": {
-    "mtime": 1791242496.6612732,
-    "seen": 1791242532.0604732,
+    "mtime": 1791242552.2734437,
+    "seen": 1791242948.7478242,
     "ast_hash": "96e783b67407ab127eb992e46414e01f",
     "semantic_hash": ""
   },
   "documentacion/recursos_academicos_originales/HISTORIA CL\u00cdNICA MODELO.pdf": {
-    "mtime": 1791242496.6631052,
-    "seen": 1791242532.0604742,
+    "mtime": 1791242552.2747326,
+    "seen": 1791242948.747825,
     "ast_hash": "2fc1ef67653153cf0d29d229fab893c1",
     "semantic_hash": ""
   },
   "documentacion/recursos_academicos_originales/CasosDeUso.drawio.png": {
-    "mtime": 1791242496.6625881,
-    "seen": 1791242532.0604749,
+    "mtime": 1791242552.2742577,
+    "seen": 1791242948.7478259,
     "ast_hash": "779eb584331f4b8de042972d3c5456e3",
     "semantic_hash": ""
   },

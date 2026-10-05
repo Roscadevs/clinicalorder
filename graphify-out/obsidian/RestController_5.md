@@ -1,16 +1,16 @@
 ---
 source_file: ""
 type: "code"
-community: "AuthController"
+community: "lombok.RequiredArgsConstructor"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/AuthController
+  - community/lombokRequiredArgsConstructor
 ---
 
 # RestController
 
 ## Connections
-- [[AuthController]] - `references` [EXTRACTED]
+- [[AppointmentController]] - `references` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/AuthController
+#graphify/code #graphify/EXTRACTED #community/lombokRequiredArgsConstructor

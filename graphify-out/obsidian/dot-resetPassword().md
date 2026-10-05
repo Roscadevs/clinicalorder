@@ -14,7 +14,7 @@ tags:
 ## Connections
 - [[dot-resetPassword()_1]] - `calls` [INFERRED]
 - [[AuthController]] - `method` [EXTRACTED]
-- [[PostMapping_5]] - `references` [EXTRACTED]
+- [[PostMapping_7]] - `references` [EXTRACTED]
 - [[ResetPasswordRequestDTO]] - `references` [EXTRACTED]
 - [[org.springframework.http.ResponseEntity]] - `references` [EXTRACTED]
 

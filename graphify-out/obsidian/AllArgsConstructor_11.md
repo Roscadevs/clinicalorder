@@ -11,6 +11,6 @@ tags:
 # AllArgsConstructor
 
 ## Connections
-- [[FinalizePaymentRequestDTO]] - `references` [EXTRACTED]
+- [[RegisterPaymentRequestDTO]] - `references` [EXTRACTED]
 
 #graphify/code #graphify/EXTRACTED #community/PaymentServiceTestjava

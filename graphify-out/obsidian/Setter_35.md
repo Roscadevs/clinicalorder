@@ -11,6 +11,6 @@ tags:
 # Setter
 
 ## Connections
-- [[ClinicalEntryAudit]] - `references` [EXTRACTED]
+- [[ClinicalEntry]] - `references` [EXTRACTED]
 
 #graphify/code #graphify/EXTRACTED #community/ClinicalEntry

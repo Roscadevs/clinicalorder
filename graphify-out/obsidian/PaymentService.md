@@ -1,12 +1,12 @@
 ---
 source_file: "backend/src/main/java/com/clinicadermatologica/app/application/service/PaymentService.java"
 type: "code"
-community: "lombok.extern.slf4j.Slf4j"
-location: "L34"
+community: "org.junit.jupiter.api.DisplayName"
+location: "L35"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/lombokexternslf4jSlf4j
+  - community/orgjunitjupiterapiDisplayName
 ---
 
 # PaymentService
@@ -33,4 +33,4 @@ tags:
 - [[lombok.extern.slf4j.Slf4j]] - `references` [EXTRACTED]
 - [[org.springframework.stereotype.Service]] - `references` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/lombokexternslf4jSlf4j
+#graphify/code #graphify/EXTRACTED #community/orgjunitjupiterapiDisplayName

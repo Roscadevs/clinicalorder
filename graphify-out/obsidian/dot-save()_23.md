@@ -1,21 +1,19 @@
 ---
-source_file: "backend/src/main/java/com/clinicadermatologica/app/domain/repository/PatientRepository.java"
+source_file: "backend/src/main/java/com/clinicadermatologica/app/domain/repository/HabitoRepository.java"
 type: "code"
-community: "org.springframework.transaction.annotation.Transactional"
-location: "L17"
+community: ".addHabito"
+location: "L22"
 tags:
   - graphify/code
-  - graphify/INFERRED
-  - community/orgspringframeworktransactionannotationTransactional
+  - graphify/EXTRACTED
+  - community/addHabito
 ---
 
 # .save()
 
 ## Connections
-- [[dot-createPatient()_1]] - `calls` [INFERRED]
-- [[dot-deactivatePatient()_1]] - `calls` [INFERRED]
-- [[dot-updatePatient()_1]] - `calls` [INFERRED]
-- [[Patient_1]] - `references` [EXTRACTED]
-- [[PatientRepository]] - `method` [EXTRACTED]
+- [[dot-addHabito()_1]] - `calls` [INFERRED]
+- [[Habito]] - `references` [EXTRACTED]
+- [[HabitoRepository]] - `method` [EXTRACTED]
 
-#graphify/code #graphify/INFERRED #community/orgspringframeworktransactionannotationTransactional
+#graphify/code #graphify/EXTRACTED #community/addHabito

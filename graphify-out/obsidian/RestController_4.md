@@ -1,16 +1,16 @@
 ---
 source_file: ""
 type: "code"
-community: "AppointmentController"
+community: "DermatologicService"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/AppointmentController
+  - community/DermatologicService
 ---
 
 # RestController
 
 ## Connections
-- [[AppointmentController]] - `references` [EXTRACTED]
+- [[GeminiChatbotController]] - `references` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/AppointmentController
+#graphify/code #graphify/EXTRACTED #community/DermatologicService

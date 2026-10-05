@@ -1,12 +1,12 @@
 ---
 source_file: "backend/src/main/java/com/clinicadermatologica/app/application/service/ClinicalImageService.java"
 type: "code"
-community: "org.springframework.transaction.annotation.Transactional"
+community: "lombok.extern.slf4j.Slf4j"
 location: "L31"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/orgspringframeworktransactionannotationTransactional
+  - community/lombokexternslf4jSlf4j
 ---
 
 # ClinicalImageService
@@ -25,4 +25,4 @@ tags:
 - [[lombok.extern.slf4j.Slf4j]] - `references` [EXTRACTED]
 - [[org.springframework.stereotype.Service]] - `references` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/orgspringframeworktransactionannotationTransactional
+#graphify/code #graphify/EXTRACTED #community/lombokexternslf4jSlf4j

@@ -12,12 +12,12 @@ tags:
 # ClinicalEntryRepositoryAdapter
 
 ## Connections
-- [[dot-findAuditByEntryId()_1]] - `method` [EXTRACTED]
-- [[dot-findByAppointmentId()_3]] - `method` [EXTRACTED]
-- [[dot-findById()_22]] - `method` [EXTRACTED]
+- [[dot-findAuditByEntryId()]] - `method` [EXTRACTED]
+- [[dot-findByAppointmentId()_2]] - `method` [EXTRACTED]
+- [[dot-findById()_20]] - `method` [EXTRACTED]
 - [[dot-findByPatientId()_6]] - `method` [EXTRACTED]
-- [[dot-save()_19]] - `method` [EXTRACTED]
-- [[dot-saveAudit()_3]] - `method` [EXTRACTED]
+- [[dot-save()_20]] - `method` [EXTRACTED]
+- [[dot-saveAudit()_2]] - `method` [EXTRACTED]
 - [[ClinicalEntryRepository]] - `implements` [EXTRACTED]
 - [[ClinicalEntryRepositoryAdapter.java]] - `contains` [EXTRACTED]
 - [[JpaClinicalEntryAuditRepository]] - `references` [EXTRACTED]

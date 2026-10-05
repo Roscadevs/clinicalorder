@@ -14,8 +14,8 @@ tags:
 ## Connections
 - [[dot-cancelAppointment()]] - `calls` [EXTRACTED]
 - [[dot-expireHold()]] - `calls` [EXTRACTED]
-- [[dot-findByAppointmentId()]] - `calls` [INFERRED]
-- [[dot-save()]] - `calls` [INFERRED]
+- [[dot-findByAppointmentId()_1]] - `calls` [INFERRED]
+- [[dot-save()_5]] - `calls` [INFERRED]
 - [[Appointment_8]] - `references` [EXTRACTED]
 - [[AppointmentService]] - `method` [EXTRACTED]
 

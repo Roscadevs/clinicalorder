@@ -14,12 +14,12 @@ tags:
 ## Connections
 - [[dot-getAvailableSlots()]] - `references` [EXTRACTED]
 - [[dot-getAvailableSlots()_1]] - `references` [EXTRACTED]
-- [[AllArgsConstructor_30]] - `references` [EXTRACTED]
+- [[AllArgsConstructor_33]] - `references` [EXTRACTED]
 - [[AppointmentServiceTest.java]] - `imports` [EXTRACTED]
-- [[Builder_27]] - `references` [EXTRACTED]
-- [[Getter_30]] - `references` [EXTRACTED]
-- [[NoArgsConstructor_30]] - `references` [EXTRACTED]
-- [[Setter_30]] - `references` [EXTRACTED]
+- [[Builder_30]] - `references` [EXTRACTED]
+- [[Getter_33]] - `references` [EXTRACTED]
+- [[NoArgsConstructor_33]] - `references` [EXTRACTED]
+- [[Setter_33]] - `references` [EXTRACTED]
 - [[TimeSlotDTO.java]] - `contains` [EXTRACTED]
 
 #graphify/code #graphify/EXTRACTED #community/AppointmentServiceTestjava

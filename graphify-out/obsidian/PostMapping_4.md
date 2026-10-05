@@ -1,20 +1,16 @@
 ---
 source_file: ""
 type: "code"
-community: "AppointmentController"
+community: "DermatologicService"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/AppointmentController
+  - community/DermatologicService
 ---
 
 # PostMapping
 
 ## Connections
-- [[dot-bookTemporaryHold()_1]] - `references` [EXTRACTED]
-- [[dot-cancelAppointment()_1]] - `references` [EXTRACTED]
-- [[dot-finalizePayment()]] - `references` [EXTRACTED]
-- [[dot-markAsAttended()_1]] - `references` [EXTRACTED]
-- [[dot-registerDepositPayment()_1]] - `references` [EXTRACTED]
+- [[dot-sendMessage()]] - `references` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/AppointmentController
+#graphify/code #graphify/EXTRACTED #community/DermatologicService
