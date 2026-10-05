@@ -49,7 +49,7 @@ security:
 # Generar con: openssl rand -base64 32
 app:
   encryption:
-    key: ${AES_ENCRYPTION_KEY}
+    key: ${AES_ENCRYPTION_KEY:c2VjcmV0RW5jcnlwdGlvbktleUZvckRldmVsb3BtZW50MjAyNiE=}
 
 # Configuración de Pasarela de Pagos MercadoPago
 mercadopago:
