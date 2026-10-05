@@ -2,7 +2,7 @@
 source_file: "backend/src/main/java/com/clinicadermatologica/app/infrastructure/payment/MercadoPagoPaymentAdapter.java"
 type: "code"
 community: "MercadoPagoPaymentAdapter"
-location: "L38"
+location: "L41"
 tags:
   - graphify/code
   - graphify/EXTRACTED

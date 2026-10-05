@@ -32,6 +32,9 @@ public class MercadoPagoPaymentAdapter {
     @Value("${mercadopago.back-urls.pending}")
     private String pendingUrl;
 
+    @Value("${mercadopago.notification-url:#{null}}")
+    private String notificationUrl;
+
     /**
      * Crea una preferencia de pago en MercadoPago por el 50% de la seña (compatibilidad básica).
      */
@@ -94,7 +97,7 @@ public class MercadoPagoPaymentAdapter {
             OffsetDateTime expirationDate = OffsetDateTime.now().plusMinutes(10);
 
             // Construye la solicitud completa de preferencia con descriptor bancario
-            PreferenceRequest preferenceRequest = PreferenceRequest.builder()
+            PreferenceRequest.PreferenceRequestBuilder preferenceRequestBuilder = PreferenceRequest.builder()
                     .items(Collections.singletonList(itemRequest))
                     .backUrls(backUrls)
                     .payer(payerRequest)
@@ -102,8 +105,13 @@ public class MercadoPagoPaymentAdapter {
                     .autoReturn("approved") // Redirección automática si el pago se aprueba
                     .expires(true) // Activa expiración
                     .dateOfExpiration(expirationDate) // Fecha de expiración (10 min)
-                    .externalReference(String.valueOf(appointmentId)) // Identificador del turno para conciliación
-                    .build();
+                    .externalReference(String.valueOf(appointmentId)); // Identificador del turno para conciliación
+
+            if (notificationUrl != null && !notificationUrl.isBlank()) {
+                preferenceRequestBuilder.notificationUrl(notificationUrl);
+            }
+
+            PreferenceRequest preferenceRequest = preferenceRequestBuilder.build();
 
             // Ejecuta la llamada a MercadoPago y retorna la preferencia con el init_point
             PreferenceClient client = new PreferenceClient();

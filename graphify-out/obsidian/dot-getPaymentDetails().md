@@ -2,7 +2,7 @@
 source_file: "backend/src/main/java/com/clinicadermatologica/app/infrastructure/payment/MercadoPagoPaymentAdapter.java"
 type: "code"
 community: "org.junit.jupiter.api.DisplayName"
-location: "L125"
+location: "L133"
 tags:
   - graphify/code
   - graphify/INFERRED

@@ -348,9 +348,9 @@
     "semantic_hash": ""
   },
   "backend/src/main/java/com/clinicadermatologica/app/infrastructure/payment/MercadoPagoPaymentAdapter.java": {
-    "mtime": 1791242552.256399,
-    "seen": 1791242948.747657,
-    "ast_hash": "5f5664af52393603cd59d9779cf0756a",
+    "mtime": 1791243848.188754,
+    "seen": 1791243874.543343,
+    "ast_hash": "53f30eb80a6d7e3c6368476cf16d074d",
     "semantic_hash": ""
   },
   "backend/src/main/java/com/clinicadermatologica/app/infrastructure/payment/strategy/BankTransferPaymentStrategy.java": {
@@ -1698,9 +1698,9 @@
     "semantic_hash": ""
   },
   "backend/src/main/resources/application.yml": {
-    "mtime": 1791242552.2647693,
-    "seen": 1791242948.7478049,
-    "ast_hash": "d1d32ed02cf59f5ca74fb244f6fc31cc",
+    "mtime": 1791243839.361509,
+    "seen": 1791243874.543496,
+    "ast_hash": "427b176262a3a67d8c7300122cd8ba01",
     "semantic_hash": ""
   },
   "docker-compose.yml": {

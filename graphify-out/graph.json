@@ -4141,19 +4141,19 @@
             "callee": "setAccessToken",
             "receiver_type": "MercadoPagoConfig",
             "lang": "java",
-            "line": "L127"
+            "line": "L135"
           },
           {
             "callee": "get",
             "receiver_type": "PaymentClient",
             "lang": "java",
-            "line": "L129"
+            "line": "L137"
           }
         ]
       },
       "norm_label": ".getpaymentdetails()",
       "source_file": "backend/src/main/java/com/clinicadermatologica/app/infrastructure/payment/MercadoPagoPaymentAdapter.java",
-      "source_location": "L125"
+      "source_location": "L133"
     },
     {
       "id": "backend_src_test_java_com_clinicadermatologica_app_application_appointmentservicetest_appointmentservicetest_testmarkasattended_confirmedtoattended",
@@ -8289,85 +8289,97 @@
             "callee": "setAccessToken",
             "receiver_type": "MercadoPagoConfig",
             "lang": "java",
-            "line": "L50"
+            "line": "L53"
           },
           {
             "callee": "builder",
             "receiver_type": "PreferenceItemRequest",
             "lang": "java",
-            "line": "L53"
+            "line": "L56"
           },
           {
             "callee": "valueOf",
             "receiver_type": "String",
             "lang": "java",
-            "line": "L54"
+            "line": "L57"
           },
           {
             "callee": "builder",
             "receiver_type": "PreferenceBackUrlsRequest",
             "lang": "java",
-            "line": "L64"
+            "line": "L67"
           },
           {
             "callee": "builder",
             "receiver_type": "PreferencePayerRequest",
             "lang": "java",
-            "line": "L71"
+            "line": "L74"
           },
           {
             "callee": "name",
             "receiver_type": "PreferencePayerRequestBuilder",
             "lang": "java",
-            "line": "L75"
+            "line": "L78"
           },
           {
             "callee": "identification",
             "receiver_type": "PreferencePayerRequestBuilder",
             "lang": "java",
-            "line": "L79"
+            "line": "L82"
           },
           {
             "callee": "phone",
             "receiver_type": "PreferencePayerRequestBuilder",
             "lang": "java",
-            "line": "L86"
+            "line": "L89"
           },
           {
             "callee": "build",
             "receiver_type": "PreferencePayerRequestBuilder",
             "lang": "java",
-            "line": "L91"
+            "line": "L94"
           },
           {
             "callee": "now",
             "receiver_type": "OffsetDateTime",
             "lang": "java",
-            "line": "L94"
+            "line": "L97"
           },
           {
             "callee": "builder",
             "receiver_type": "PreferenceRequest",
             "lang": "java",
-            "line": "L97"
+            "line": "L100"
           },
           {
             "callee": "singletonList",
             "receiver_type": "Collections",
             "lang": "java",
-            "line": "L98"
+            "line": "L101"
+          },
+          {
+            "callee": "notificationUrl",
+            "receiver_type": "PreferenceRequestBuilder",
+            "lang": "java",
+            "line": "L111"
+          },
+          {
+            "callee": "build",
+            "receiver_type": "PreferenceRequestBuilder",
+            "lang": "java",
+            "line": "L114"
           },
           {
             "callee": "create",
             "receiver_type": "PreferenceClient",
             "lang": "java",
-            "line": "L110"
+            "line": "L118"
           }
         ]
       },
       "norm_label": ".createdepositpreference()",
       "source_file": "backend/src/main/java/com/clinicadermatologica/app/infrastructure/payment/MercadoPagoPaymentAdapter.java",
-      "source_location": "L38"
+      "source_location": "L41"
     },
     {
       "id": "backend_src_main_java_com_clinicadermatologica_app_application_service_clinicalimageservice_clinicalimageservice_getimagesbyclinicalentry",
@@ -37935,7 +37947,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "backend/src/main/java/com/clinicadermatologica/app/infrastructure/payment/MercadoPagoPaymentAdapter.java",
-      "source_location": "L39",
+      "source_location": "L42",
       "weight": 1.0
     },
     {
@@ -55709,7 +55721,7 @@
       "confidence_score": 1.0,
       "context": "return_type",
       "source_file": "backend/src/main/java/com/clinicadermatologica/app/infrastructure/payment/MercadoPagoPaymentAdapter.java",
-      "source_location": "L46",
+      "source_location": "L49",
       "weight": 1.0
     },
     {
@@ -55721,7 +55733,7 @@
       "confidence_score": 1.0,
       "context": "return_type",
       "source_file": "backend/src/main/java/com/clinicadermatologica/app/infrastructure/payment/MercadoPagoPaymentAdapter.java",
-      "source_location": "L125",
+      "source_location": "L133",
       "weight": 1.0
     },
     {
@@ -72538,7 +72550,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "backend/src/main/java/com/clinicadermatologica/app/infrastructure/payment/MercadoPagoPaymentAdapter.java",
-      "source_location": "L125",
+      "source_location": "L133",
       "weight": 1.0
     },
     {
@@ -72549,7 +72561,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "backend/src/main/java/com/clinicadermatologica/app/infrastructure/payment/MercadoPagoPaymentAdapter.java",
-      "source_location": "L46",
+      "source_location": "L49",
       "weight": 1.0
     },
     {
@@ -79467,5 +79479,5 @@
     }
   ],
   "hyperedges": [],
-  "built_at_commit": "74e1cccbe5ffced3271500bfe89f25bc178647a5"
+  "built_at_commit": "7e0d6700842feaf1d52df3e2ef2b593af8053ca2"
 }

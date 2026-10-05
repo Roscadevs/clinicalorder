@@ -56,6 +56,7 @@ mercadopago:
   access-token: ${MERCADOPAGO_ACCESS_TOKEN:TEST-8031893331544574-082123-75359de71994fa0989744ffa69fc1bc0-333038110}
   public-key: ${MERCADOPAGO_PUBLIC_KEY:TEST-7bfe7629-c425-4def-a3d2-cd5c67cd44a0}
   webhook-secret: ${MERCADOPAGO_WEBHOOK_SECRET:test_webhook_secret}
+  notification-url: ${NOTIFICATION_URL:${BACKEND_BASE_URL:http://localhost:8080}/api/v1/pagos/webhook}
   back-urls:
     success: ${FRONTEND_BASE_URL:http://localhost:5173}/turnos/confirmado
     failure: ${FRONTEND_BASE_URL:http://localhost:5173}/turnos/fallido
