@@ -1,0 +1,20 @@
+---
+source_file: ""
+type: "code"
+community: "Alergia"
+tags:
+  - graphify/code
+  - graphify/EXTRACTED
+  - community/Alergia
+---
+
+# Override
+
+## Connections
+- [[dot-delete()_5]] - `references` [EXTRACTED]
+- [[dot-existsById()_5]] - `references` [EXTRACTED]
+- [[dot-findById()_23]] - `references` [EXTRACTED]
+- [[dot-findByMedicalRecordId()_5]] - `references` [EXTRACTED]
+- [[dot-save()_20]] - `references` [EXTRACTED]
+
+#graphify/code #graphify/EXTRACTED #community/Alergia

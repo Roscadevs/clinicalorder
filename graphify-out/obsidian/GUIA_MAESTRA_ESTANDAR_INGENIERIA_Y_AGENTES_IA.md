@@ -1,0 +1,18 @@
+---
+source_file: "documentacion/GUIA_MAESTRA_ESTANDAR_INGENIERIA_Y_AGENTES_IA.md"
+type: "document"
+community: "📘 Manual Maestro de Ingeniería de Software, Metodología de Especificación y Desarrollo Ágil con Agentes de IA"
+location: "L1"
+tags:
+  - graphify/document
+  - graphify/EXTRACTED
+  - community/_Manual_Maestro_de_Ingeniería_de_Software_Metodología_de_Especificación_y_Desarrollo_Ágil_con_Agentes_de_IA
+---
+
+# GUIA_MAESTRA_ESTANDAR_INGENIERIA_Y_AGENTES_IA.md
+
+## Connections
+- [[README]] - `references` [EXTRACTED]
+- [[📘 Manual Maestro de Ingeniería de Software, Metodología de Especificación y Desarrollo Ágil con Agentes de IA]] - `contains` [EXTRACTED]
+
+#graphify/document #graphify/EXTRACTED #community/_Manual_Maestro_de_Ingeniería_de_Software_Metodología_de_Especificación_y_Desarrollo_Ágil_con_Agentes_de_IA

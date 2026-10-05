@@ -1,0 +1,18 @@
+---
+source_file: "frontend/src/features/appointments/PatientSearch.tsx"
+type: "code"
+community: "MedicalRecordView.tsx"
+location: "L7"
+tags:
+  - graphify/code
+  - graphify/EXTRACTED
+  - community/MedicalRecordViewtsx
+---
+
+# PatientSearchProps
+
+## Connections
+- [[Patient]] - `references` [EXTRACTED]
+- [[PatientSearch.tsx]] - `contains` [EXTRACTED]
+
+#graphify/code #graphify/EXTRACTED #community/MedicalRecordViewtsx

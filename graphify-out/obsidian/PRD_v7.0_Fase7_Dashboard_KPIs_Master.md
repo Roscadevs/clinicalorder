@@ -1,0 +1,18 @@
+---
+source_file: "documentacion/historial_prds/PRD_v7.0_Fase7_Dashboard_KPIs_Master.md"
+type: "document"
+community: "PRD v7.0 (Master): Sistema Integral Dermatológico, Estética y Asistente IA con Dashboard Analítico & Métricas de Gestión (KPIs)"
+location: "L1"
+tags:
+  - graphify/document
+  - graphify/EXTRACTED
+  - community/PRD_v70_Master_Sistema_Integral_Dermatológico_Estética_y_Asistente_IA_con_Dashboard_Analítico__Métricas_de_Gestión_KPIs
+---
+
+# PRD_v7.0_Fase7_Dashboard_KPIs_Master.md
+
+## Connections
+- [[PRD v7.0 (Master) Sistema Integral Dermatológico, Estética y Asistente IA con Dashboard Analítico & Métricas de Gestión (KPIs)]] - `contains` [EXTRACTED]
+- [[README]] - `references` [EXTRACTED]
+
+#graphify/document #graphify/EXTRACTED #community/PRD_v70_Master_Sistema_Integral_Dermatológico_Estética_y_Asistente_IA_con_Dashboard_Analítico__Métricas_de_Gestión_KPIs

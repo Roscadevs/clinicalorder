@@ -1,0 +1,23 @@
+---
+source_file: ""
+type: "code"
+community: "Appointment"
+tags:
+  - graphify/code
+  - graphify/EXTRACTED
+  - community/Appointment
+---
+
+# org.springframework.data.jpa.repository.Query
+
+## Connections
+- [[dot-findByDateRange()_2]] - `references` [EXTRACTED]
+- [[dot-findByDateRange()_3]] - `references` [EXTRACTED]
+- [[dot-findOverlappingActiveAppointments()]] - `references` [EXTRACTED]
+- [[dot-findOverlappingBlocks()_1]] - `references` [EXTRACTED]
+- [[dot-searchByNameOrDni()_2]] - `references` [EXTRACTED]
+- [[JpaAppointmentRepository.java]] - `imports` [EXTRACTED]
+- [[JpaCalendarBlockRepository.java]] - `imports` [EXTRACTED]
+- [[JpaPatientRepository.java]] - `imports` [EXTRACTED]
+
+#graphify/code #graphify/EXTRACTED #community/Appointment
