@@ -681,6 +681,7 @@ export const BookingWizard: React.FC = () => {
                     patientPhone={patient.phone}
                     initPointUrl={hold.data.initPointUrl}
                     holdExpired={holdExpired}
+                    isToday={date === todayInAR()}
                     onBack={() => goTo(STEP.REVIEW)}
                     onPaid={({ receipt, change }) => setOutcome({ kind: 'CONFIRMED', receipt, change })}
                     onVirtualSent={() => setOutcome({ kind: 'PENDING_VIRTUAL' })}

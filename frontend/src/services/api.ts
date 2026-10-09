@@ -376,8 +376,9 @@ export const appointmentsApi = {
       paymentType: Exclude<PaymentType, 'MERCADOPAGO'>;
       amount: number;
       agreedPrice: number;
-      /** Concepto elegido por el staff: seña (DEPOSIT) o pago total (FULL). */
+      /** Concepto elegido: seña (DEPOSIT) o pago total (FULL). */
       concept?: Exclude<PaymentConcept, 'BALANCE'>;
+      paymentConcept?: PaymentConcept;
     }
   ): Promise<PaymentReceipt> => {
     // Si no viene explícito, se infiere por el monto respecto del precio acordado.
@@ -386,7 +387,12 @@ export const appointmentsApi = {
     try {
       const response = await api.post<PaymentReceipt>(
         `/citas/${id}/registrar-pago`,
-        { paymentType: payload.paymentType, amount: payload.amount, concept },
+        {
+          paymentType: payload.paymentType,
+          paymentConcept: payload.paymentConcept ?? concept,
+          concept,
+          amount: payload.amount,
+        },
         { params: { userId: currentUserId() } }
       );
       return response.data;
