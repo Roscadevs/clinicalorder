@@ -1,4 +1,4 @@
-﻿import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react';
+import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import {
   AlertCircle, ArrowLeft, ArrowRight, Calendar, CheckCircle, Clock, Pencil, Printer,
@@ -13,6 +13,7 @@ import { Button, Card, Modal, Spinner } from '../../components/ui';
 import { Stepper, Step, GlideSelect } from '../../components/reactbits';
 import { AppointmentReceiptModal } from '../documents/AppointmentReceiptModal';
 import { ReminderNotificationModal } from '../reminders/ReminderNotificationModal';
+import { PacienteForm } from '../clinical/PacienteForm';
 import { PatientSearch } from './PatientSearch';
 import { RegisterPaymentStep } from './RegisterPaymentStep';
 
@@ -714,18 +715,21 @@ export const BookingWizard: React.FC = () => {
         </p>
       </Modal>
 
-      {/* E-1: alta de paciente (pendiente de implementación) */}
+      {/* E-1: alta quirúrgica de paciente con validación Zod defensiva */}
       <Modal
         isOpen={addPatientQuery !== null}
         onClose={() => setAddPatientQuery(null)}
-        title="Agregar nuevo paciente"
-        footer={<Button onClick={() => setAddPatientQuery(null)}>Entendido</Button>}
+        title="Alta Quirúrgica de Paciente (E-1)"
       >
-        <p className="text-sm text-sand-600">
-          No encontramos pacientes para <strong className="text-sand-800">“{addPatientQuery}”</strong>. El alta de
-          pacientes desde esta ventana se implementará en la próxima etapa; al guardarlo, la reserva continuará con el
-          paciente nuevo.
-        </p>
+        <PacienteForm
+          showHeader={false}
+          initialQuery={addPatientQuery ?? ''}
+          onSuccess={(newPatient) => {
+            setPatient(newPatient);
+            setAddPatientQuery(null);
+          }}
+          onCancel={() => setAddPatientQuery(null)}
+        />
       </Modal>
     </div>
   );
