@@ -17,6 +17,10 @@ import { MedicalRecordView } from './features/clinical/MedicalRecordView';
 import { AdminServicesView } from './features/admin/AdminServicesView';
 import { AnalyticsDashboardView } from './features/analytics/AnalyticsDashboardView';
 
+// Auth / Role guards
+import { ProtectedRoute } from './components/ProtectedRoute';
+import { RoleGuard } from './components/RoleGuard';
+
 import { PageTransition } from './components/PageTransition';
 
 export function App() {
@@ -88,14 +92,24 @@ export function App() {
           }
         />
 
-        {/* Internal Dashboard Routes */}
-        <Route path="/app" element={<DashboardLayout />}>
-          <Route index element={<Navigate to="/app/agenda" replace />} />
-          <Route path="booking" element={<BookingWizard />} />
-          <Route path="agenda" element={<AgendaView />} />
-          <Route path="clinical" element={<MedicalRecordView />} />
-          <Route path="admin" element={<AdminServicesView />} />
-          <Route path="analytics" element={<AnalyticsDashboardView />} />
+        {/* Internal Dashboard Routes — require valid auth token */}
+        <Route element={<ProtectedRoute />}>
+          <Route path="/app" element={<DashboardLayout />}>
+            <Route index element={<Navigate to="/app/agenda" replace />} />
+            <Route path="booking" element={<BookingWizard />} />
+            <Route path="agenda" element={<AgendaView />} />
+            <Route path="analytics" element={<AnalyticsDashboardView />} />
+
+            {/* Clinical module — DOCTORA only */}
+            <Route element={<RoleGuard allowedRoles={['DOCTORA']} />}>
+              <Route path="clinical" element={<MedicalRecordView />} />
+            </Route>
+
+            {/* Admin panel — ADMIN only */}
+            <Route element={<RoleGuard allowedRoles={['ADMIN']} />}>
+              <Route path="admin" element={<AdminServicesView />} />
+            </Route>
+          </Route>
         </Route>
 
         {/* Fallback route */}
