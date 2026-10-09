@@ -12,7 +12,7 @@ tags:
 # .findOverlappingActiveAppointments()
 
 ## Connections
-- [[dot-findOverlappingAppointments()]] - `calls` [INFERRED]
+- [[dot-findOverlappingAppointments()_1]] - `calls` [INFERRED]
 - [[Appointment]] - `references` [EXTRACTED]
 - [[JpaAppointmentRepository]] - `method` [EXTRACTED]
 - [[org.springframework.data.jpa.repository.Query]] - `references` [EXTRACTED]

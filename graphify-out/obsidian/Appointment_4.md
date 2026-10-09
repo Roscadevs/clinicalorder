@@ -1,16 +1,16 @@
 ---
 source_file: ""
 type: "code"
-community: "org.junit.jupiter.api.DisplayName"
+community: "lombok.extern.slf4j.Slf4j"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/orgjunitjupiterapiDisplayName
+  - community/lombokexternslf4jSlf4j
 ---
 
 # Appointment
 
 ## Connections
-- [[PaymentServiceTest]] - `references` [EXTRACTED]
+- [[dot-rejectPendingTransactions()]] - `references` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/orgjunitjupiterapiDisplayName
+#graphify/code #graphify/EXTRACTED #community/lombokexternslf4jSlf4j

@@ -1,12 +1,12 @@
 ---
 source_file: "backend/src/main/java/com/clinicadermatologica/app/domain/model/AppointmentStatus.java"
 type: "code"
-community: "Appointment"
+community: "AppointmentStatus"
 location: "L11"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/Appointment
+  - community/AppointmentStatus
 ---
 
 # COMPLETED
@@ -14,4 +14,4 @@ tags:
 ## Connections
 - [[AppointmentStatus]] - `case_of` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/Appointment
+#graphify/code #graphify/EXTRACTED #community/AppointmentStatus

@@ -1,12 +1,12 @@
 ---
 source_file: "backend/src/main/java/com/clinicadermatologica/app/infrastructure/security/JwtAuthenticationFilter.java"
 type: "code"
-community: "GlobalExceptionHandler"
+community: "JwtAuthenticationFilter"
 location: "L60"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/GlobalExceptionHandler
+  - community/JwtAuthenticationFilter
 ---
 
 # .getJwtFromRequest()
@@ -16,4 +16,4 @@ tags:
 - [[JwtAuthenticationFilter]] - `method` [EXTRACTED]
 - [[jakarta.servlet.http.HttpServletRequest]] - `references` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/GlobalExceptionHandler
+#graphify/code #graphify/EXTRACTED #community/JwtAuthenticationFilter

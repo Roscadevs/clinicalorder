@@ -13,7 +13,7 @@ tags:
 
 ## Connections
 - [[dot-getAllServicesForAdmin()]] - `calls` [INFERRED]
-- [[DermatologicService]] - `references` [EXTRACTED]
+- [[DermatologicService_1]] - `references` [EXTRACTED]
 - [[DermatologicServiceRepository]] - `method` [EXTRACTED]
 
 #graphify/code #graphify/EXTRACTED #community/DermatologicService

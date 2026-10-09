@@ -1,19 +1,19 @@
 ---
-source_file: "backend/src/main/java/com/clinicadermatologica/app/infrastructure/persistence/adapter/UserRepositoryAdapter.java"
+source_file: "backend/src/main/java/com/clinicadermatologica/app/infrastructure/persistence/adapter/ClinicalEntryRepositoryAdapter.java"
 type: "code"
-community: "User"
-location: "L35"
+community: "ClinicalEntry"
+location: "L43"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/User
+  - community/ClinicalEntry
 ---
 
 # .save()
 
 ## Connections
-- [[Override_13]] - `references` [EXTRACTED]
-- [[User]] - `references` [EXTRACTED]
-- [[UserRepositoryAdapter]] - `method` [EXTRACTED]
+- [[ClinicalEntry]] - `references` [EXTRACTED]
+- [[ClinicalEntryRepositoryAdapter]] - `method` [EXTRACTED]
+- [[Override_15]] - `references` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/User
+#graphify/code #graphify/EXTRACTED #community/ClinicalEntry

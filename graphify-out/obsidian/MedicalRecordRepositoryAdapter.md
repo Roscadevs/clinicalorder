@@ -12,11 +12,11 @@ tags:
 # MedicalRecordRepositoryAdapter
 
 ## Connections
-- [[dot-findAuditHistory()]] - `method` [EXTRACTED]
-- [[dot-findById()_9]] - `method` [EXTRACTED]
+- [[dot-findAuditHistory()_1]] - `method` [EXTRACTED]
+- [[dot-findById()_8]] - `method` [EXTRACTED]
 - [[dot-findByPatientId()_3]] - `method` [EXTRACTED]
 - [[dot-save()_8]] - `method` [EXTRACTED]
-- [[dot-saveAudit()]] - `method` [EXTRACTED]
+- [[dot-saveAudit()_1]] - `method` [EXTRACTED]
 - [[JpaMedicalRecordAuditRepository]] - `references` [EXTRACTED]
 - [[JpaMedicalRecordRepository]] - `references` [EXTRACTED]
 - [[MedicalRecordRepository]] - `implements` [EXTRACTED]

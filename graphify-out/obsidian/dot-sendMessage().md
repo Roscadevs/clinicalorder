@@ -16,7 +16,7 @@ tags:
 - [[GeminiChatRequestDTO]] - `references` [EXTRACTED]
 - [[GeminiChatResponseDTO]] - `references` [EXTRACTED]
 - [[GeminiChatbotController]] - `method` [EXTRACTED]
-- [[PostMapping_2]] - `references` [EXTRACTED]
+- [[PostMapping_4]] - `references` [EXTRACTED]
 - [[org.springframework.http.ResponseEntity]] - `references` [EXTRACTED]
 
 #graphify/code #graphify/EXTRACTED #community/DermatologicService

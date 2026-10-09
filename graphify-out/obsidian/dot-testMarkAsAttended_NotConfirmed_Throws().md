@@ -12,7 +12,7 @@ tags:
 # .testMarkAsAttended_NotConfirmed_Throws()
 
 ## Connections
-- [[dot-findById()_12]] - `calls` [INFERRED]
+- [[dot-findById()_11]] - `calls` [INFERRED]
 - [[dot-markAsAttended()]] - `calls` [INFERRED]
 - [[AppointmentServiceTest]] - `method` [EXTRACTED]
 - [[org.junit.jupiter.api.DisplayName]] - `references` [EXTRACTED]

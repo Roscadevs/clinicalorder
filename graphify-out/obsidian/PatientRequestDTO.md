@@ -1,12 +1,12 @@
 ---
 source_file: "backend/src/main/java/com/clinicadermatologica/app/presentation/dto/PatientRequestDTO.java"
 type: "code"
-community: "org.springframework.transaction.annotation.Transactional"
+community: "PatientResponseDTO"
 location: "L11"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/orgspringframeworktransactionannotationTransactional
+  - community/PatientResponseDTO
 ---
 
 # PatientRequestDTO
@@ -16,13 +16,13 @@ tags:
 - [[dot-createPatient()_1]] - `references` [EXTRACTED]
 - [[dot-updatePatient()]] - `references` [EXTRACTED]
 - [[dot-updatePatient()_1]] - `references` [EXTRACTED]
-- [[AllArgsConstructor_45]] - `references` [EXTRACTED]
-- [[Builder_42]] - `references` [EXTRACTED]
-- [[Getter_45]] - `references` [EXTRACTED]
-- [[NoArgsConstructor_45]] - `references` [EXTRACTED]
+- [[AllArgsConstructor_46]] - `references` [EXTRACTED]
+- [[Builder_43]] - `references` [EXTRACTED]
+- [[Getter_46]] - `references` [EXTRACTED]
+- [[NoArgsConstructor_46]] - `references` [EXTRACTED]
 - [[PatientController.java]] - `imports` [EXTRACTED]
 - [[PatientRequestDTO.java]] - `contains` [EXTRACTED]
 - [[PatientService.java]] - `imports` [EXTRACTED]
-- [[Setter_45]] - `references` [EXTRACTED]
+- [[Setter_46]] - `references` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/orgspringframeworktransactionannotationTransactional
+#graphify/code #graphify/EXTRACTED #community/PatientResponseDTO

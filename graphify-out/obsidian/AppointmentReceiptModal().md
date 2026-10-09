@@ -15,9 +15,9 @@ tags:
 - [[AgendaView.tsx]] - `imports` [EXTRACTED]
 - [[AppointmentReceiptModal.tsx]] - `contains` [EXTRACTED]
 - [[BookingWizard.tsx]] - `imports` [EXTRACTED]
-- [[ars()_1]] - `calls` [EXTRACTED]
+- [[ars()_5]] - `calls` [EXTRACTED]
 - [[downloadIcsCalendarFile()]] - `calls` [EXTRACTED]
-- [[fmt()]] - `calls` [EXTRACTED]
+- [[fmt()_1]] - `calls` [EXTRACTED]
 - [[generateGoogleCalendarUrl()]] - `calls` [EXTRACTED]
 
 #graphify/code #graphify/EXTRACTED #community/AppointmentReceiptModaltsx

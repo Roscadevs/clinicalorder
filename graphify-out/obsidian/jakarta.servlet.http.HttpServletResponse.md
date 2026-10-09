@@ -1,11 +1,11 @@
 ---
 source_file: ""
 type: "code"
-community: "GlobalExceptionHandler"
+community: "JwtAuthenticationFilter"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/GlobalExceptionHandler
+  - community/JwtAuthenticationFilter
 ---
 
 # jakarta.servlet.http.HttpServletResponse
@@ -14,4 +14,4 @@ tags:
 - [[dot-doFilterInternal()]] - `references` [EXTRACTED]
 - [[JwtAuthenticationFilter.java]] - `imports` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/GlobalExceptionHandler
+#graphify/code #graphify/EXTRACTED #community/JwtAuthenticationFilter

@@ -50,7 +50,7 @@
       }
     },
     {
-      "query": "tag:#community/orgspringframeworktransactionannotationTransactional",
+      "query": "tag:#community/PatientResponseDTO",
       "color": {
         "a": 1,
         "rgb": 16752039
@@ -64,7 +64,7 @@
       }
     },
     {
-      "query": "tag:#community/lombokexternslf4jSlf4j",
+      "query": "tag:#community/UserRepository",
       "color": {
         "a": 1,
         "rgb": 12234924
@@ -106,14 +106,14 @@
       }
     },
     {
-      "query": "tag:#community/PaymentServiceTestjava",
+      "query": "tag:#community/lombokexternslf4jSlf4j",
       "color": {
         "a": 1,
         "rgb": 15583560
       }
     },
     {
-      "query": "tag:#community/PaymentService",
+      "query": "tag:#community/AppointmentStatus",
       "color": {
         "a": 1,
         "rgb": 11565729
@@ -190,14 +190,14 @@
       }
     },
     {
-      "query": "tag:#community/MedicalRecordDTO",
+      "query": "tag:#community/JwtAuthenticationFilter",
       "color": {
         "a": 1,
         "rgb": 16752039
       }
     },
     {
-      "query": "tag:#community/3__Especificaci\u00f3n_Formal_de_Casos_de_Uso_Detallados_CU-01_a_CU-08",
+      "query": "tag:#community/AdminServicesViewtsx",
       "color": {
         "a": 1,
         "rgb": 10253663
@@ -253,7 +253,7 @@
       }
     },
     {
-      "query": "tag:#community/AuthController",
+      "query": "tag:#community/UserRole",
       "color": {
         "a": 1,
         "rgb": 11565729
@@ -302,7 +302,7 @@
       }
     },
     {
-      "query": "tag:#community/2__Modelado_de_Procesos_de_Negocio_en_BPMN_20",
+      "query": "tag:#community/3__Especificaci\u00f3n_Formal_de_Casos_de_Uso_Detallados_CU-01_a_CU-08",
       "color": {
         "a": 1,
         "rgb": 7780274
@@ -323,14 +323,14 @@
       }
     },
     {
-      "query": "tag:#community/UserRole",
+      "query": "tag:#community/BookingWizardtsx",
       "color": {
         "a": 1,
         "rgb": 11565729
       }
     },
     {
-      "query": "tag:#community/AesEncryptionService",
+      "query": "tag:#community/orgspringframeworktransactionannotationTransactional",
       "color": {
         "a": 1,
         "rgb": 16752039
@@ -344,7 +344,7 @@
       }
     },
     {
-      "query": "tag:#community/TreatmentPhotostsx",
+      "query": "tag:#community/PaymentReceiptDTO",
       "color": {
         "a": 1,
         "rgb": 12234924
@@ -379,7 +379,7 @@
       }
     },
     {
-      "query": "tag:#community/addAlergia",
+      "query": "tag:#community/AnamnesisFormtsx",
       "color": {
         "a": 1,
         "rgb": 5873999
@@ -393,10 +393,17 @@
       }
     },
     {
-      "query": "tag:#community/PaymentWebhookController",
+      "query": "tag:#community/AppointmentRepositoryAdapter",
       "color": {
         "a": 1,
         "rgb": 11565729
+      }
+    },
+    {
+      "query": "tag:#community/register",
+      "color": {
+        "a": 1,
+        "rgb": 16752039
       }
     },
     {
@@ -407,7 +414,7 @@
       }
     },
     {
-      "query": "tag:#community/ServicesCatalogViewtsx",
+      "query": "tag:#community/reactbits/indexts",
       "color": {
         "a": 1,
         "rgb": 12234924
@@ -425,6 +432,13 @@
       "color": {
         "a": 1,
         "rgb": 15896107
+      }
+    },
+    {
+      "query": "tag:#community/BlurTexttsx",
+      "color": {
+        "a": 1,
+        "rgb": 14767961
       }
     },
     {
@@ -477,7 +491,14 @@
       }
     },
     {
-      "query": "tag:#community/MedicalRecordAudit",
+      "query": "tag:#community/isExpired",
+      "color": {
+        "a": 1,
+        "rgb": 5142951
+      }
+    },
+    {
+      "query": "tag:#community/PRD_v100_Master_Final_Consolidado_Sistema_Integral_Dermatol\u00f3gico_Est\u00e9tica_y_Asistente_IA__Especificaci\u00f3n_de_Arquitectura_Mobile-First__Responsive_UX",
       "color": {
         "a": 1,
         "rgb": 15896107
@@ -533,7 +554,7 @@
       }
     },
     {
-      "query": "tag:#community/READMEmd",
+      "query": "tag:#community/Documento_de_M\u00e9tricas_KPIs_y_Dashboard_de_Gesti\u00f3n_Fase_7",
       "color": {
         "a": 1,
         "rgb": 12234924
@@ -652,6 +673,13 @@
       }
     },
     {
+      "query": "tag:#community/register",
+      "color": {
+        "a": 1,
+        "rgb": 11565729
+      }
+    },
+    {
       "query": "tag:#community/_Product_Requirements_Document_PRD_-_v110",
       "color": {
         "a": 1,
@@ -736,13 +764,6 @@
       }
     },
     {
-      "query": "tag:#community/AlergiaRequestDTO",
-      "color": {
-        "a": 1,
-        "rgb": 12234924
-      }
-    },
-    {
       "query": "tag:#community/register",
       "color": {
         "a": 1,
@@ -785,7 +806,7 @@
       }
     },
     {
-      "query": "tag:#community/PRD_v60_Master_Sistema_Integral_Dermatol\u00f3gico_Est\u00e9tica_y_Asistente_IA_con_Comprobantes_Imprimibles__Consentimiento_M\u00e9dico-Legal",
+      "query": "tag:#community/READMEmd",
       "color": {
         "a": 1,
         "rgb": 16752039

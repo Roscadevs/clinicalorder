@@ -1,11 +1,11 @@
 ---
 source_file: ""
 type: "code"
-community: "lombok.extern.slf4j.Slf4j"
+community: "org.springframework.transaction.annotation.Transactional"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/lombokexternslf4jSlf4j
+  - community/orgspringframeworktransactionannotationTransactional
 ---
 
 # org.springframework.stereotype.Service
@@ -36,4 +36,4 @@ tags:
 - [[PaymentService]] - `references` [EXTRACTED]
 - [[PaymentService.java]] - `imports` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/lombokexternslf4jSlf4j
+#graphify/code #graphify/EXTRACTED #community/orgspringframeworktransactionannotationTransactional

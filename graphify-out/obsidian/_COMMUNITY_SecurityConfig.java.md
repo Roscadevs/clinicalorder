@@ -36,9 +36,10 @@ SORT file.name ASC
 ```
 
 ## Connections to other communities
-- 4 edges to [[_COMMUNITY_lombok.extern.slf4j.Slf4j]]
+- 2 edges to [[_COMMUNITY_lombok.extern.slf4j.Slf4j]]
 - 2 edges to [[_COMMUNITY_lombok.RequiredArgsConstructor]]
-- 1 edge to [[_COMMUNITY_GlobalExceptionHandler]]
+- 2 edges to [[_COMMUNITY_UserRepository]]
+- 1 edge to [[_COMMUNITY_JwtAuthenticationFilter]]
 
 ## Top bridge nodes
 - [[SecurityConfig.java]] - degree 11, connects to 2 communities

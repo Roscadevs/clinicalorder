@@ -1,18 +1,18 @@
 ---
 source_file: "frontend/src/features/clinical/ClinicalNoteModal.tsx"
 type: "code"
-community: "MedicalRecordView.tsx"
+community: "api.ts"
 location: "L11"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/MedicalRecordViewtsx
+  - community/apits
 ---
 
 # ClinicalNoteModalProps
 
 ## Connections
-- [[ClinicalEntry]] - `references` [EXTRACTED]
+- [[ClinicalEntry_1]] - `references` [EXTRACTED]
 - [[ClinicalNoteModal.tsx]] - `contains` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/MedicalRecordViewtsx
+#graphify/code #graphify/EXTRACTED #community/apits

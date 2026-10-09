@@ -1,12 +1,12 @@
 ---
 source_file: "frontend/src/utils/session.ts"
 type: "code"
-community: "MedicalRecordView.tsx"
-location: "L11"
+community: "DashboardLayout.tsx"
+location: "L22"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/MedicalRecordViewtsx
+  - community/DashboardLayouttsx
 ---
 
 # currentRole()
@@ -14,4 +14,4 @@ tags:
 ## Connections
 - [[session.ts]] - `contains` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/MedicalRecordViewtsx
+#graphify/code #graphify/EXTRACTED #community/DashboardLayouttsx

@@ -23,6 +23,7 @@ tags:
 - [[Navbar.tsx]] - `imports_from` [EXTRACTED]
 - [[PageTransition()]] - `imports` [EXTRACTED]
 - [[PageTransition.tsx]] - `imports_from` [EXTRACTED]
+- [[ROLE_TO_USER_ID]] - `imports` [EXTRACTED]
 - [[RoleType]] - `imports` [EXTRACTED]
 - [[TabType]] - `imports` [EXTRACTED]
 - [[navConfig.ts]] - `imports_from` [EXTRACTED]
@@ -30,6 +31,7 @@ tags:
 - [[react]] - `imports_from` [EXTRACTED]
 - [[react-router-dom]] - `imports_from` [EXTRACTED]
 - [[roleLanding]] - `contains` [EXTRACTED]
+- [[session.ts]] - `imports_from` [EXTRACTED]
 - [[tabToPath()]] - `contains` [EXTRACTED]
 
 #graphify/code #graphify/EXTRACTED #community/DashboardLayouttsx

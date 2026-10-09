@@ -12,9 +12,9 @@ tags:
 # .uploadClinicalImage()
 
 ## Connections
-- [[dot-findById()_19]] - `calls` [INFERRED]
+- [[dot-findById()_17]] - `calls` [INFERRED]
 - [[dot-mapToDTO()_3]] - `calls` [EXTRACTED]
-- [[dot-save()_15]] - `calls` [INFERRED]
+- [[dot-save()_13]] - `calls` [INFERRED]
 - [[dot-uploadClinicalPhoto()]] - `calls` [INFERRED]
 - [[dot-uploadFile()]] - `calls` [INFERRED]
 - [[ClinicalImageResponseDTO]] - `references` [EXTRACTED]

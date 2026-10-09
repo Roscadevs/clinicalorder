@@ -1,11 +1,11 @@
 ---
 source_file: ""
 type: "code"
-community: "GlobalExceptionHandler"
+community: "JwtAuthenticationFilter"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/GlobalExceptionHandler
+  - community/JwtAuthenticationFilter
 ---
 
 # Override
@@ -13,4 +13,4 @@ tags:
 ## Connections
 - [[dot-doFilterInternal()]] - `references` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/GlobalExceptionHandler
+#graphify/code #graphify/EXTRACTED #community/JwtAuthenticationFilter

@@ -1,12 +1,12 @@
 ---
 source_file: "backend/src/test/java/com/clinicadermatologica/app/application/AuthServiceTest.java"
 type: "code"
-community: "lombok.extern.slf4j.Slf4j"
+community: "UserRepository"
 location: "L168"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/lombokexternslf4jSlf4j
+  - community/UserRepository
 ---
 
 # .testResetPassword_ExpiredToken_ThrowsException()
@@ -18,4 +18,4 @@ tags:
 - [[org.junit.jupiter.api.DisplayName]] - `references` [EXTRACTED]
 - [[org.junit.jupiter.api.Test]] - `references` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/lombokexternslf4jSlf4j
+#graphify/code #graphify/EXTRACTED #community/UserRepository

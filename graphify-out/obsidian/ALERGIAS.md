@@ -1,12 +1,12 @@
 ---
 source_file: "frontend/src/features/clinical/AnamnesisForm.tsx"
 type: "code"
-community: "MedicalRecordView.tsx"
+community: "AnamnesisForm.tsx"
 location: "L27"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/MedicalRecordViewtsx
+  - community/AnamnesisFormtsx
 ---
 
 # ALERGIAS
@@ -14,4 +14,4 @@ tags:
 ## Connections
 - [[AnamnesisForm.tsx]] - `contains` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/MedicalRecordViewtsx
+#graphify/code #graphify/EXTRACTED #community/AnamnesisFormtsx

@@ -12,7 +12,7 @@ tags:
 # CalendarBlock
 
 ## Connections
-- [[dot-findByDateRange()_5]] - `references` [EXTRACTED]
+- [[dot-findByDateRange()_4]] - `references` [EXTRACTED]
 - [[dot-findByDateRange()]] - `references` [EXTRACTED]
 - [[dot-findByDateRange()_1]] - `references` [EXTRACTED]
 - [[dot-findById()_1]] - `references` [EXTRACTED]

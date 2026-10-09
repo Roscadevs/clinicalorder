@@ -13,7 +13,7 @@ tags:
 
 ## Connections
 - [[dot-findByToken()_1]] - `calls` [INFERRED]
-- [[Override_19]] - `references` [EXTRACTED]
+- [[Override_20]] - `references` [EXTRACTED]
 - [[PasswordResetToken]] - `references` [EXTRACTED]
 - [[PasswordResetTokenRepositoryAdapter]] - `method` [EXTRACTED]
 

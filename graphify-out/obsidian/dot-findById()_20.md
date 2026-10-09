@@ -1,19 +1,23 @@
 ---
-source_file: "backend/src/main/java/com/clinicadermatologica/app/domain/repository/AlergiaRepository.java"
+source_file: "backend/src/main/java/com/clinicadermatologica/app/domain/repository/MedicalRecordRepository.java"
 type: "code"
 community: "AlergiaId"
-location: "L22"
+location: "L13"
 tags:
   - graphify/code
-  - graphify/EXTRACTED
+  - graphify/INFERRED
   - community/AlergiaId
 ---
 
 # .findById()
 
 ## Connections
-- [[Alergia]] - `references` [EXTRACTED]
-- [[AlergiaId]] - `references` [EXTRACTED]
-- [[AlergiaRepository]] - `method` [EXTRACTED]
+- [[dot-addAlergia()_1]] - `calls` [INFERRED]
+- [[dot-addAntecedentePatologico()]] - `calls` [INFERRED]
+- [[dot-addHabito()]] - `calls` [INFERRED]
+- [[dot-testAddAlergia_DuplicateTipo_Throws()]] - `calls` [INFERRED]
+- [[dot-testAddAlergia_Success()]] - `calls` [INFERRED]
+- [[MedicalRecord]] - `references` [EXTRACTED]
+- [[MedicalRecordRepository]] - `method` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/AlergiaId
+#graphify/code #graphify/INFERRED #community/AlergiaId

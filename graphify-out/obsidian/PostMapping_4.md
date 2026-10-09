@@ -1,16 +1,16 @@
 ---
 source_file: ""
 type: "code"
-community: "org.springframework.http.ResponseEntity"
+community: "DermatologicService"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/orgspringframeworkhttpResponseEntity
+  - community/DermatologicService
 ---
 
 # PostMapping
 
 ## Connections
-- [[dot-createService()_1]] - `references` [EXTRACTED]
+- [[dot-sendMessage()]] - `references` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/orgspringframeworkhttpResponseEntity
+#graphify/code #graphify/EXTRACTED #community/DermatologicService

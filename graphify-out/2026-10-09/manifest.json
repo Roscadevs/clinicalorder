@@ -18,9 +18,9 @@
     "semantic_hash": ""
   },
   "backend/src/main/java/com/clinicadermatologica/app/application/service/AppointmentService.java": {
-    "mtime": 1791558427.0269005,
-    "seen": 1791558851.423257,
-    "ast_hash": "b7d639597fb23a6e27efc80534ea13a6",
+    "mtime": 1791559192.3957286,
+    "seen": 1791559257.79852,
+    "ast_hash": "387f44ee79ce12902088b77e4eb336cb",
     "semantic_hash": ""
   },
   "backend/src/main/java/com/clinicadermatologica/app/application/service/AuthService.java": {
@@ -348,9 +348,9 @@
     "semantic_hash": ""
   },
   "backend/src/main/java/com/clinicadermatologica/app/infrastructure/payment/MercadoPagoPaymentAdapter.java": {
-    "mtime": 1791558178.3046966,
-    "seen": 1791558851.423295,
-    "ast_hash": "5bc92c9a065d05226af7d209efd74899",
+    "mtime": 1791559176.5526302,
+    "seen": 1791559257.798562,
+    "ast_hash": "0784cf69b30b2e7e2ec8a8acdd79c898",
     "semantic_hash": ""
   },
   "backend/src/main/java/com/clinicadermatologica/app/infrastructure/payment/strategy/BankTransferPaymentStrategy.java": {
@@ -852,9 +852,9 @@
     "semantic_hash": ""
   },
   "backend/src/test/java/com/clinicadermatologica/app/application/AppointmentServiceTest.java": {
-    "mtime": 1791558690.7377937,
-    "seen": 1791558851.42335,
-    "ast_hash": "c53162cd8e4d0822d2b0452e13c01049",
+    "mtime": 1791559232.938221,
+    "seen": 1791559257.7986162,
+    "ast_hash": "e9bff632c2dfd4054fb651a64c59d8f4",
     "semantic_hash": ""
   },
   "backend/src/test/java/com/clinicadermatologica/app/application/AuthServiceTest.java": {
@@ -879,12 +879,6 @@
     "mtime": 1791242552.2675893,
     "seen": 1791242948.74771,
     "ast_hash": "24f8cfb6c7b0f1eaae2264d91f1f4395",
-    "semantic_hash": ""
-  },
-  "flujo_pago_mercadopago.visual-check.json": {
-    "mtime": 1790092489.482411,
-    "seen": 1791242532.060392,
-    "ast_hash": "035f21b5de02d4d9a17e3cc41875ee87",
     "semantic_hash": ""
   },
   "frontend/package.json": {
@@ -1865,12 +1859,6 @@
     "ast_hash": "7fb03717665f5bc92dec931794677a1d",
     "semantic_hash": ""
   },
-  "flujo_pago_mercadopago.visual-check.html": {
-    "mtime": 1790092489.4819565,
-    "seen": 1791242532.060472,
-    "ast_hash": "ce06e2c78f5aa41880d3e66f03fa040d",
-    "semantic_hash": ""
-  },
   "frontend/index.html": {
     "mtime": 1790719771.3649766,
     "seen": 1791242532.0604732,
@@ -1893,30 +1881,6 @@
     "mtime": 1791242552.2742577,
     "seen": 1791242948.7478259,
     "ast_hash": "779eb584331f4b8de042972d3c5456e3",
-    "semantic_hash": ""
-  },
-  "flujo_pago_mercadopago.visual-check.1440x900.dark.png": {
-    "mtime": 1790092489.0688655,
-    "seen": 1791242532.0604749,
-    "ast_hash": "d2f0b6fd69dec5b0f43f3295dc8e2acc",
-    "semantic_hash": ""
-  },
-  "flujo_pago_mercadopago.visual-check.1440x900.light.png": {
-    "mtime": 1790092487.6093442,
-    "seen": 1791242532.0604758,
-    "ast_hash": "bd51826e93b1856fe35710f9a36a2f4c",
-    "semantic_hash": ""
-  },
-  "flujo_pago_mercadopago.visual-check.2048x1320.dark.png": {
-    "mtime": 1790092489.4801075,
-    "seen": 1791242532.0604758,
-    "ast_hash": "706973f1e1acb65cc24c37bbeb06547a",
-    "semantic_hash": ""
-  },
-  "flujo_pago_mercadopago.visual-check.2048x1320.light.png": {
-    "mtime": 1790092488.6849933,
-    "seen": 1791242532.060477,
-    "ast_hash": "3b8b4c08b771caf8f0b7089ab218f659",
     "semantic_hash": ""
   },
   "frontend/public/favicon.svg": {

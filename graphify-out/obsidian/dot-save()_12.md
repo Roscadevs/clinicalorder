@@ -1,20 +1,19 @@
 ---
-source_file: "backend/src/main/java/com/clinicadermatologica/app/domain/repository/DermatologicServiceRepository.java"
+source_file: "backend/src/main/java/com/clinicadermatologica/app/infrastructure/persistence/adapter/PatientRepositoryAdapter.java"
 type: "code"
-community: "ServiceResponseDTO"
-location: "L16"
+community: "Patient"
+location: "L46"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/ServiceResponseDTO
+  - community/Patient
 ---
 
 # .save()
 
 ## Connections
-- [[dot-createService()]] - `calls` [INFERRED]
-- [[dot-updateService()]] - `calls` [INFERRED]
-- [[DermatologicService]] - `references` [EXTRACTED]
-- [[DermatologicServiceRepository]] - `method` [EXTRACTED]
+- [[Override_11]] - `references` [EXTRACTED]
+- [[Patient_1]] - `references` [EXTRACTED]
+- [[PatientRepositoryAdapter]] - `method` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/ServiceResponseDTO
+#graphify/code #graphify/EXTRACTED #community/Patient

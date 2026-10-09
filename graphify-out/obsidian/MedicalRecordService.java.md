@@ -1,12 +1,12 @@
 ---
 source_file: "backend/src/main/java/com/clinicadermatologica/app/application/service/MedicalRecordService.java"
 type: "code"
-community: "MedicalRecordService"
+community: "org.springframework.transaction.annotation.Transactional"
 location: "L1"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/MedicalRecordService
+  - community/orgspringframeworktransactionannotationTransactional
 ---
 
 # MedicalRecordService.java
@@ -20,4 +20,4 @@ tags:
 - [[org.springframework.stereotype.Service]] - `imports` [EXTRACTED]
 - [[org.springframework.transaction.annotation.Transactional]] - `imports` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/MedicalRecordService
+#graphify/code #graphify/EXTRACTED #community/orgspringframeworktransactionannotationTransactional

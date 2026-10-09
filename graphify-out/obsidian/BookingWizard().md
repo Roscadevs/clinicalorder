@@ -1,12 +1,12 @@
 ---
 source_file: "frontend/src/features/appointments/BookingWizard.tsx"
 type: "code"
-community: "api.ts"
+community: "BookingWizard.tsx"
 location: "L57"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/apits
+  - community/BookingWizardtsx
 ---
 
 # BookingWizard()
@@ -19,4 +19,4 @@ tags:
 - [[formatDateTime()]] - `calls` [EXTRACTED]
 - [[todayInAR()]] - `calls` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/apits
+#graphify/code #graphify/EXTRACTED #community/BookingWizardtsx

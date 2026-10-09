@@ -1,16 +1,16 @@
 ---
 source_file: ""
 type: "code"
-community: "org.springframework.transaction.annotation.Transactional"
+community: "PasswordResetToken"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/orgspringframeworktransactionannotationTransactional
+  - community/PasswordResetToken
 ---
 
 # NoArgsConstructor
 
 ## Connections
-- [[PatientRequestDTO]] - `references` [EXTRACTED]
+- [[PasswordResetToken]] - `references` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/orgspringframeworktransactionannotationTransactional
+#graphify/code #graphify/EXTRACTED #community/PasswordResetToken

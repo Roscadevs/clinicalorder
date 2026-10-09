@@ -12,7 +12,7 @@ tags:
 # .findByName()
 
 ## Connections
-- [[DermatologicService]] - `references` [EXTRACTED]
+- [[DermatologicService_1]] - `references` [EXTRACTED]
 - [[DermatologicServiceRepository]] - `method` [EXTRACTED]
 
 #graphify/code #graphify/EXTRACTED #community/DermatologicService

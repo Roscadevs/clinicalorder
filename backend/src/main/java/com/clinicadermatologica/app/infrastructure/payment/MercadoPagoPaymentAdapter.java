@@ -70,13 +70,6 @@ public class MercadoPagoPaymentAdapter {
                     .currencyId("ARS") // Moneda local argentina
                     .build();
 
-            // Configura las URLs de retorno tras el proceso de pago
-            PreferenceBackUrlsRequest backUrls = PreferenceBackUrlsRequest.builder()
-                    .success(successUrl)
-                    .failure(failureUrl)
-                    .pending(pendingUrl)
-                    .build();
-
             // Configura los datos del pagador para maximizar la tasa de aprobación de pagos
             PreferencePayerRequest.PreferencePayerRequestBuilder payerBuilder = PreferencePayerRequest.builder()
                     .email(patientEmail);
@@ -113,14 +106,30 @@ public class MercadoPagoPaymentAdapter {
             // Construye la solicitud completa de preferencia con descriptor bancario
             PreferenceRequest.PreferenceRequestBuilder preferenceRequestBuilder = PreferenceRequest.builder()
                     .items(Collections.singletonList(itemRequest))
-                    .backUrls(backUrls)
                     .payer(payerRequest)
                     .paymentMethods(paymentMethods)
                     .statementDescriptor("CLINICA DERMA") // Texto visible en el resumen de tarjeta (13 chars max)
-                    .autoReturn("approved") // Redirección automática si el pago se aprueba
                     .expires(true) // Activa expiración
                     .dateOfExpiration(expirationDate) // Fecha de expiración (10 min)
                     .externalReference(String.valueOf(appointmentId)); // Identificador del turno para conciliación
+
+            // Configura las URLs de retorno tras el proceso de pago si están disponibles
+            if (successUrl != null && !successUrl.isBlank() && (successUrl.startsWith("http://") || successUrl.startsWith("https://"))) {
+                PreferenceBackUrlsRequest.PreferenceBackUrlsRequestBuilder backUrlsBuilder = PreferenceBackUrlsRequest.builder()
+                        .success(successUrl);
+                if (failureUrl != null && !failureUrl.isBlank() && (failureUrl.startsWith("http://") || failureUrl.startsWith("https://"))) {
+                    backUrlsBuilder.failure(failureUrl);
+                }
+                if (pendingUrl != null && !pendingUrl.isBlank() && (pendingUrl.startsWith("http://") || pendingUrl.startsWith("https://"))) {
+                    backUrlsBuilder.pending(pendingUrl);
+                }
+                preferenceRequestBuilder.backUrls(backUrlsBuilder.build());
+
+                // Mercado Pago exige HTTPS para autoReturn("approved")
+                if (successUrl.startsWith("https://")) {
+                    preferenceRequestBuilder.autoReturn("approved");
+                }
+            }
 
             if (notificationUrl != null && !notificationUrl.isBlank()) {
                 preferenceRequestBuilder.notificationUrl(notificationUrl);

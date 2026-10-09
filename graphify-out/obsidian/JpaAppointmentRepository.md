@@ -12,7 +12,7 @@ tags:
 # JpaAppointmentRepository
 
 ## Connections
-- [[dot-findByDateRange()_3]] - `method` [EXTRACTED]
+- [[dot-findByDateRange()_2]] - `method` [EXTRACTED]
 - [[dot-findByPatientIdOrderByStartTimeDesc()]] - `method` [EXTRACTED]
 - [[dot-findByStatusAndCreatedAtBefore()]] - `method` [EXTRACTED]
 - [[dot-findOverlappingActiveAppointments()]] - `method` [EXTRACTED]

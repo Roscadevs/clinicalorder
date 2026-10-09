@@ -1,16 +1,16 @@
 ---
 source_file: ""
 type: "code"
-community: "ClinicalImageService"
+community: "ClinicalEntry"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/ClinicalImageService
+  - community/ClinicalEntry
 ---
 
 # Setter
 
 ## Connections
-- [[ClinicalImageResponseDTO]] - `references` [EXTRACTED]
+- [[ClinicalEntryAudit]] - `references` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/ClinicalImageService
+#graphify/code #graphify/EXTRACTED #community/ClinicalEntry

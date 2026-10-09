@@ -11,6 +11,6 @@ tags:
 # NoArgsConstructor
 
 ## Connections
-- [[ServiceResponseDTO]] - `references` [EXTRACTED]
+- [[ServiceRequestDTO]] - `references` [EXTRACTED]
 
 #graphify/code #graphify/EXTRACTED #community/ServiceResponseDTO

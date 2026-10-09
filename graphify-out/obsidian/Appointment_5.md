@@ -1,16 +1,16 @@
 ---
 source_file: ""
 type: "code"
-community: "PaymentService"
+community: ".register"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/PaymentService
+  - community/register
 ---
 
 # Appointment
 
 ## Connections
-- [[dot-rejectPendingTransactions()]] - `references` [EXTRACTED]
+- [[dot-register()_1]] - `references` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/PaymentService
+#graphify/code #graphify/EXTRACTED #community/register

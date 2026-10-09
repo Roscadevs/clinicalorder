@@ -1,20 +1,23 @@
 ---
-source_file: "backend/src/main/java/com/clinicadermatologica/app/application/service/MedicalRecordService.java"
+source_file: "backend/src/main/java/com/clinicadermatologica/app/infrastructure/security/AesEncryptionService.java"
 type: "code"
-community: "MedicalRecordService"
-location: "L259"
+community: "org.junit.jupiter.api.DisplayName"
+location: "L108"
 tags:
   - graphify/code
-  - graphify/EXTRACTED
-  - community/MedicalRecordService
+  - graphify/INFERRED
+  - community/orgjunitjupiterapiDisplayName
 ---
 
 # .decrypt()
 
 ## Connections
 - [[dot-decrypt()_1]] - `calls` [INFERRED]
-- [[dot-mapEntryToDTO()]] - `calls` [EXTRACTED]
-- [[dot-mapRecordToDTO()]] - `calls` [EXTRACTED]
-- [[MedicalRecordService]] - `method` [EXTRACTED]
+- [[dot-testAddClinicalEntry_EncryptsContent()]] - `calls` [INFERRED]
+- [[dot-testRoundTrip()]] - `calls` [INFERRED]
+- [[dot-testTamperedCiphertextThrows()]] - `calls` [INFERRED]
+- [[dot-testUnicodeContent()]] - `calls` [INFERRED]
+- [[dot-testUniqueIvPerEncryption()]] - `calls` [INFERRED]
+- [[AesEncryptionService]] - `method` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/MedicalRecordService
+#graphify/code #graphify/INFERRED #community/orgjunitjupiterapiDisplayName

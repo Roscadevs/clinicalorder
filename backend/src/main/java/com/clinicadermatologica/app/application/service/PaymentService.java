@@ -362,8 +362,14 @@ public class PaymentService {
                     + agreedPrice.toPlainString() + ")");
         }
 
-        User registeredBy = userRepository.findById(registeredByUserId)
-                .orElseThrow(() -> new ResourceNotFoundException("Usuario no encontrado"));
+        User registeredBy = null;
+        if (registeredByUserId != null) {
+            registeredBy = userRepository.findById(registeredByUserId).orElse(null);
+        }
+        if (registeredBy == null) {
+            registeredBy = userRepository.findById(1L)
+                    .orElseThrow(() -> new ResourceNotFoundException("No existen usuarios registrados en el sistema"));
+        }
 
         PaymentConcept concept = amount.compareTo(agreedPrice) >= 0 ? PaymentConcept.FULL : PaymentConcept.DEPOSIT;
 
@@ -416,8 +422,14 @@ public class PaymentService {
             throw new BusinessRuleException("Solo se puede liquidar el saldo de turnos ya atendidos por el médico");
         }
 
-        User registeredBy = userRepository.findById(registeredByUserId)
-                .orElseThrow(() -> new ResourceNotFoundException("Usuario no encontrado"));
+        User registeredBy = null;
+        if (registeredByUserId != null) {
+            registeredBy = userRepository.findById(registeredByUserId).orElse(null);
+        }
+        if (registeredBy == null) {
+            registeredBy = userRepository.findById(1L)
+                    .orElseThrow(() -> new ResourceNotFoundException("No existen usuarios registrados en el sistema"));
+        }
 
         // Patrón Strategy: delega en la estrategia del canal indicado sin if/else
         paymentStrategyFactory

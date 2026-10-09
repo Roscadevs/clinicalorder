@@ -12,7 +12,7 @@ tags:
 # DermatologicService.java
 
 ## Connections
-- [[DermatologicService]] - `contains` [EXTRACTED]
+- [[DermatologicService_1]] - `contains` [EXTRACTED]
 - [[GeminiChatbotService.java]] - `imports` [EXTRACTED]
 
 #graphify/code #graphify/EXTRACTED #community/DermatologicService

@@ -1,16 +1,16 @@
 ---
 source_file: ""
 type: "code"
-community: "ServiceResponseDTO"
+community: "lombok.extern.slf4j.Slf4j"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/ServiceResponseDTO
+  - community/lombokexternslf4jSlf4j
 ---
 
 # RestController
 
 ## Connections
-- [[ServiceCatalogController]] - `references` [EXTRACTED]
+- [[PaymentWebhookController]] - `references` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/ServiceResponseDTO
+#graphify/code #graphify/EXTRACTED #community/lombokexternslf4jSlf4j

@@ -1,12 +1,12 @@
 ---
 source_file: "backend/src/main/java/com/clinicadermatologica/app/domain/model/PaymentConcept.java"
 type: "code"
-community: "PaymentServiceTest.java"
+community: "PaymentReceiptDTO"
 location: "L13"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/PaymentServiceTestjava
+  - community/PaymentReceiptDTO
 ---
 
 # PaymentConcept
@@ -20,4 +20,4 @@ tags:
 - [[PaymentReceiptDTO.java]] - `imports` [EXTRACTED]
 - [[PaymentTransaction]] - `references` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/PaymentServiceTestjava
+#graphify/code #graphify/EXTRACTED #community/PaymentReceiptDTO

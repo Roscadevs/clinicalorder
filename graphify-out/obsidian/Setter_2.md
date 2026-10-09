@@ -11,6 +11,6 @@ tags:
 # Setter
 
 ## Connections
-- [[ClinicalEntryResponseDTO]] - `references` [EXTRACTED]
+- [[ClinicalEntryRequestDTO]] - `references` [EXTRACTED]
 
 #graphify/code #graphify/EXTRACTED #community/MedicalRecordController

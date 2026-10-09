@@ -12,9 +12,9 @@ tags:
 # JpaUserRepository
 
 ## Connections
-- [[dot-existsByEmail()_3]] - `method` [EXTRACTED]
+- [[dot-existsByEmail()_4]] - `method` [EXTRACTED]
 - [[dot-existsByUsername()_1]] - `method` [EXTRACTED]
-- [[dot-findByEmail()_3]] - `method` [EXTRACTED]
+- [[dot-findByEmail()_4]] - `method` [EXTRACTED]
 - [[dot-findByUsername()_1]] - `method` [EXTRACTED]
 - [[JpaUserRepository.java]] - `contains` [EXTRACTED]
 - [[User]] - `references` [EXTRACTED]

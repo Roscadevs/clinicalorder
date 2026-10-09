@@ -12,7 +12,7 @@ tags:
 # .testRegisterFinalPayment_NotAttended_ThrowsException()
 
 ## Connections
-- [[dot-findById()_12]] - `calls` [INFERRED]
+- [[dot-findById()_11]] - `calls` [INFERRED]
 - [[dot-registerFinalPayment()]] - `calls` [INFERRED]
 - [[PaymentServiceTest]] - `method` [EXTRACTED]
 - [[org.junit.jupiter.api.DisplayName]] - `references` [EXTRACTED]

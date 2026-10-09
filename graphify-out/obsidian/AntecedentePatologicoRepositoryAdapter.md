@@ -14,8 +14,8 @@ tags:
 ## Connections
 - [[dot-delete()_3]] - `method` [EXTRACTED]
 - [[dot-existsById()_3]] - `method` [EXTRACTED]
-- [[dot-findById()_11]] - `method` [EXTRACTED]
-- [[dot-findByMedicalRecordId()_3]] - `method` [EXTRACTED]
+- [[dot-findById()_10]] - `method` [EXTRACTED]
+- [[dot-findByMedicalRecordId()_2]] - `method` [EXTRACTED]
 - [[dot-save()_10]] - `method` [EXTRACTED]
 - [[AntecedentePatologicoRepository]] - `implements` [EXTRACTED]
 - [[AntecedentePatologicoRepositoryAdapter.java]] - `contains` [EXTRACTED]

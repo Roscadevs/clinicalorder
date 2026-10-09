@@ -41,15 +41,14 @@ SORT file.name ASC
 ## Connections to other communities
 - 3 edges to [[_COMMUNITY_AppointmentService]]
 - 3 edges to [[_COMMUNITY_org.springframework.http.ResponseEntity]]
+- 3 edges to [[_COMMUNITY_MedicalRecordService]]
 - 2 edges to [[_COMMUNITY_dot-bookTemporaryHold]]
 - 2 edges to [[_COMMUNITY_org.junit.jupiter.api.DisplayName]]
-- 2 edges to [[_COMMUNITY_MedicalRecordService]]
-- 1 edge to [[_COMMUNITY_PaymentService]]
+- 1 edge to [[_COMMUNITY_lombok.extern.slf4j.Slf4j]]
 - 1 edge to [[_COMMUNITY_GlobalExceptionHandler]]
-- 1 edge to [[_COMMUNITY_AesEncryptionService]]
 
 ## Top bridge nodes
-- [[AppointmentServiceTest.java]] - degree 15, connects to 6 communities
+- [[AppointmentServiceTest.java]] - degree 15, connects to 5 communities
 - [[BookAppointmentRequestDTO]] - degree 9, connects to 2 communities
 - [[PaymentPreferenceResponseDTO]] - degree 9, connects to 2 communities
 - [[TimeSlotDTO]] - degree 9, connects to 2 communities

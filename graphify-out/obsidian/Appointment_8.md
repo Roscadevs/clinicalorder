@@ -1,11 +1,11 @@
 ---
 source_file: ""
 type: "code"
-community: "lombok.RequiredArgsConstructor"
+community: ".register"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/lombokRequiredArgsConstructor
+  - community/register
 ---
 
 # Appointment
@@ -13,4 +13,4 @@ tags:
 ## Connections
 - [[dot-register()_4]] - `references` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/lombokRequiredArgsConstructor
+#graphify/code #graphify/EXTRACTED #community/register

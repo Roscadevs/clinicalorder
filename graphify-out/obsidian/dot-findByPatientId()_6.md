@@ -1,20 +1,20 @@
 ---
-source_file: "backend/src/main/java/com/clinicadermatologica/app/infrastructure/persistence/adapter/ClinicalEntryRepositoryAdapter.java"
+source_file: "backend/src/main/java/com/clinicadermatologica/app/infrastructure/persistence/adapter/AppointmentRepositoryAdapter.java"
 type: "code"
-community: "ClinicalEntry"
+community: "AppointmentRepositoryAdapter"
 location: "L33"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/ClinicalEntry
+  - community/AppointmentRepositoryAdapter
 ---
 
 # .findByPatientId()
 
 ## Connections
-- [[dot-findByPatientIdOrderByCreatedAtDesc()]] - `calls` [INFERRED]
-- [[ClinicalEntry_1]] - `references` [EXTRACTED]
-- [[ClinicalEntryRepositoryAdapter]] - `method` [EXTRACTED]
-- [[Override_15]] - `references` [EXTRACTED]
+- [[dot-findByPatientIdOrderByStartTimeDesc()]] - `calls` [INFERRED]
+- [[Appointment]] - `references` [EXTRACTED]
+- [[AppointmentRepositoryAdapter]] - `method` [EXTRACTED]
+- [[Override_18]] - `references` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/ClinicalEntry
+#graphify/code #graphify/EXTRACTED #community/AppointmentRepositoryAdapter

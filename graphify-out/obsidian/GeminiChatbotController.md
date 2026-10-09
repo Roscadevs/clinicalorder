@@ -15,8 +15,8 @@ tags:
 - [[dot-sendMessage()]] - `method` [EXTRACTED]
 - [[GeminiChatbotController.java]] - `contains` [EXTRACTED]
 - [[GeminiChatbotService]] - `references` [EXTRACTED]
-- [[RequestMapping_3]] - `references` [EXTRACTED]
-- [[RestController_3]] - `references` [EXTRACTED]
+- [[RequestMapping_4]] - `references` [EXTRACTED]
+- [[RestController_4]] - `references` [EXTRACTED]
 - [[lombok.RequiredArgsConstructor]] - `references` [EXTRACTED]
 
 #graphify/code #graphify/EXTRACTED #community/DermatologicService

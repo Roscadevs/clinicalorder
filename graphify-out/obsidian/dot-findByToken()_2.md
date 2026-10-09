@@ -1,12 +1,12 @@
 ---
 source_file: "backend/src/main/java/com/clinicadermatologica/app/domain/repository/PasswordResetTokenRepository.java"
 type: "code"
-community: "lombok.extern.slf4j.Slf4j"
+community: "UserRepository"
 location: "L11"
 tags:
   - graphify/code
   - graphify/INFERRED
-  - community/lombokexternslf4jSlf4j
+  - community/UserRepository
 ---
 
 # .findByToken()
@@ -19,4 +19,4 @@ tags:
 - [[PasswordResetToken]] - `references` [EXTRACTED]
 - [[PasswordResetTokenRepository]] - `method` [EXTRACTED]
 
-#graphify/code #graphify/INFERRED #community/lombokexternslf4jSlf4j
+#graphify/code #graphify/INFERRED #community/UserRepository

@@ -1,16 +1,17 @@
 ---
 source_file: ""
 type: "code"
-community: "lombok.extern.slf4j.Slf4j"
+community: "PasswordResetToken"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/lombokexternslf4jSlf4j
+  - community/PasswordResetToken
 ---
 
 # Override
 
 ## Connections
-- [[dot-loadUserByUsername()]] - `references` [EXTRACTED]
+- [[dot-findByToken()]] - `references` [EXTRACTED]
+- [[dot-save()_22]] - `references` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/lombokexternslf4jSlf4j
+#graphify/code #graphify/EXTRACTED #community/PasswordResetToken

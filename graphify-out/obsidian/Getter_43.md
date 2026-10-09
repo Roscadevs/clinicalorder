@@ -1,11 +1,11 @@
 ---
 source_file: ""
 type: "code"
-community: ".addAlergia"
+community: "AlergiaId"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/addAlergia
+  - community/AlergiaId
 ---
 
 # Getter
@@ -13,4 +13,4 @@ tags:
 ## Connections
 - [[AlergiaResponseDTO]] - `references` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/addAlergia
+#graphify/code #graphify/EXTRACTED #community/AlergiaId

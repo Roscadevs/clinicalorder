@@ -14,6 +14,6 @@ tags:
 ## Connections
 - [[dot-findByPatientId()_3]] - `calls` [INFERRED]
 - [[JpaMedicalRecordRepository]] - `method` [EXTRACTED]
-- [[MedicalRecord_1]] - `references` [EXTRACTED]
+- [[MedicalRecord]] - `references` [EXTRACTED]
 
 #graphify/code #graphify/EXTRACTED #community/MedicalRecord

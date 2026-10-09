@@ -1,12 +1,12 @@
 ---
 source_file: "frontend/src/components/reactbits/Aurora.tsx"
 type: "code"
-community: "ServicesCatalogView.tsx"
+community: "reactbits/index.ts"
 location: "L159"
 tags:
   - graphify/code
   - graphify/INFERRED
-  - community/ServicesCatalogViewtsx
+  - community/reactbits/indexts
 ---
 
 # resize()
@@ -14,4 +14,4 @@ tags:
 ## Connections
 - [[Aurora()]] - `indirect_call` [INFERRED]
 
-#graphify/code #graphify/INFERRED #community/ServicesCatalogViewtsx
+#graphify/code #graphify/INFERRED #community/reactbits/indexts

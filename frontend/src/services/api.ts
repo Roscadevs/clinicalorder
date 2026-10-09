@@ -42,10 +42,18 @@ const isNetworkError = (err: unknown): boolean => {
   return false;
 };
 
-const currentUserId = (): number | undefined => {
+const ROLE_FALLBACK_IDS: Record<string, number> = {
+  ADMIN: 1,
+  DOCTORA: 2,
+  SECRETARIA: 3,
+};
+
+const currentUserId = (): number => {
   const raw = localStorage.getItem('userId');
   const n = raw ? Number(raw) : NaN;
-  return Number.isFinite(n) ? n : undefined;
+  if (Number.isFinite(n) && n > 0 && n !== 999) return n;
+  const role = localStorage.getItem('role') || 'ADMIN';
+  return ROLE_FALLBACK_IDS[role] ?? 1;
 };
 
 // Instancia configurada de Axios con base URL hacia la API de Spring Boot

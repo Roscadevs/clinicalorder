@@ -19,10 +19,10 @@ members: 17
 - [[ReminderNotificationModal()]] - code - frontend/src/features/reminders/ReminderNotificationModal.tsx
 - [[ReminderNotificationModal.tsx]] - code - frontend/src/features/reminders/ReminderNotificationModal.tsx
 - [[ReminderNotificationModalProps]] - code - frontend/src/features/reminders/ReminderNotificationModal.tsx
-- [[ars()_1]] - code - frontend/src/features/documents/AppointmentReceiptModal.tsx
+- [[ars()_5]] - code - frontend/src/features/documents/AppointmentReceiptModal.tsx
 - [[calendarGenerator.ts]] - code - frontend/src/utils/calendarGenerator.ts
 - [[downloadIcsCalendarFile()]] - code - frontend/src/utils/calendarGenerator.ts
-- [[fmt()]] - code - frontend/src/features/documents/AppointmentReceiptModal.tsx
+- [[fmt()_1]] - code - frontend/src/features/documents/AppointmentReceiptModal.tsx
 - [[formatToIcsDate()]] - code - frontend/src/utils/calendarGenerator.ts
 - [[generateGoogleCalendarUrl()]] - code - frontend/src/utils/calendarGenerator.ts
 
@@ -34,15 +34,15 @@ SORT file.name ASC
 ```
 
 ## Connections to other communities
-- 12 edges to [[_COMMUNITY_api.ts]]
+- 8 edges to [[_COMMUNITY_react]]
+- 5 edges to [[_COMMUNITY_api.ts]]
+- 5 edges to [[_COMMUNITY_BookingWizard.tsx]]
+- 4 edges to [[_COMMUNITY_cn]]
 - 4 edges to [[_COMMUNITY_AgendaView.tsx]]
-- 4 edges to [[_COMMUNITY_react]]
-- 4 edges to [[_COMMUNITY_ServicesCatalogView.tsx]]
-- 2 edges to [[_COMMUNITY_cn]]
 
 ## Top bridge nodes
 - [[AppointmentReceiptModal.tsx]] - degree 21, connects to 5 communities
-- [[ReminderNotificationModal.tsx]] - degree 11, connects to 4 communities
+- [[ReminderNotificationModal.tsx]] - degree 11, connects to 3 communities
 - [[AppointmentReceiptModal()]] - degree 7, connects to 2 communities
+- [[PaymentType_1]] - degree 5, connects to 2 communities
 - [[ReminderNotificationModal()]] - degree 5, connects to 2 communities
-- [[PaymentType_1]] - degree 5, connects to 1 community

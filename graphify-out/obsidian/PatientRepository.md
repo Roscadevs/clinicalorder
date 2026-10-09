@@ -1,26 +1,26 @@
 ---
 source_file: "backend/src/main/java/com/clinicadermatologica/app/domain/repository/PatientRepository.java"
 type: "code"
-community: "org.springframework.transaction.annotation.Transactional"
+community: "Patient"
 location: "L11"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/orgspringframeworktransactionannotationTransactional
+  - community/Patient
 ---
 
 # PatientRepository
 
 ## Connections
-- [[dot-existsByDni()_2]] - `method` [EXTRACTED]
-- [[dot-existsByEmail()_4]] - `method` [EXTRACTED]
-- [[dot-existsByPhone()_2]] - `method` [EXTRACTED]
-- [[dot-findAllActive()_3]] - `method` [EXTRACTED]
-- [[dot-findByDni()_2]] - `method` [EXTRACTED]
-- [[dot-findByEmail()_4]] - `method` [EXTRACTED]
-- [[dot-findById()_7]] - `method` [EXTRACTED]
+- [[dot-existsByDni()]] - `method` [EXTRACTED]
+- [[dot-existsByEmail()]] - `method` [EXTRACTED]
+- [[dot-existsByPhone()]] - `method` [EXTRACTED]
+- [[dot-findAllActive()]] - `method` [EXTRACTED]
+- [[dot-findByDni()]] - `method` [EXTRACTED]
+- [[dot-findByEmail()]] - `method` [EXTRACTED]
+- [[dot-findById()_6]] - `method` [EXTRACTED]
 - [[dot-save()_23]] - `method` [EXTRACTED]
-- [[dot-searchByNameOrDni()_1]] - `method` [EXTRACTED]
+- [[dot-searchByNameOrDni()]] - `method` [EXTRACTED]
 - [[AppointmentService]] - `references` [EXTRACTED]
 - [[AppointmentServiceTest]] - `references` [EXTRACTED]
 - [[MedicalRecordService]] - `references` [EXTRACTED]
@@ -31,4 +31,4 @@ tags:
 - [[PatientService]] - `references` [EXTRACTED]
 - [[PatientService.java]] - `imports` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/orgspringframeworktransactionannotationTransactional
+#graphify/code #graphify/EXTRACTED #community/Patient

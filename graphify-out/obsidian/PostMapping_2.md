@@ -1,16 +1,16 @@
 ---
 source_file: ""
 type: "code"
-community: "DermatologicService"
+community: "ServiceResponseDTO"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/DermatologicService
+  - community/ServiceResponseDTO
 ---
 
 # PostMapping
 
 ## Connections
-- [[dot-sendMessage()]] - `references` [EXTRACTED]
+- [[dot-createService()_1]] - `references` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/DermatologicService
+#graphify/code #graphify/EXTRACTED #community/ServiceResponseDTO

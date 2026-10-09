@@ -13,7 +13,7 @@ tags:
 
 ## Connections
 - [[dot-createBlock()_1]] - `calls` [INFERRED]
-- [[dot-findById()_8]] - `calls` [INFERRED]
+- [[dot-findById()_7]] - `calls` [INFERRED]
 - [[dot-mapToDTO()_2]] - `calls` [EXTRACTED]
 - [[dot-save()_1]] - `calls` [INFERRED]
 - [[CalendarBlockRequestDTO]] - `references` [EXTRACTED]

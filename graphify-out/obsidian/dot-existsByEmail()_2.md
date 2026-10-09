@@ -1,19 +1,18 @@
 ---
-source_file: "backend/src/main/java/com/clinicadermatologica/app/infrastructure/persistence/adapter/UserRepositoryAdapter.java"
+source_file: "backend/src/main/java/com/clinicadermatologica/app/infrastructure/persistence/jpa/JpaPatientRepository.java"
 type: "code"
-community: "User"
-location: "L45"
+community: "Patient"
+location: "L27"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/User
+  - community/Patient
 ---
 
 # .existsByEmail()
 
 ## Connections
-- [[dot-existsByEmail()_3]] - `calls` [INFERRED]
-- [[Override_13]] - `references` [EXTRACTED]
-- [[UserRepositoryAdapter]] - `method` [EXTRACTED]
+- [[dot-existsByEmail()_1]] - `calls` [INFERRED]
+- [[JpaPatientRepository]] - `method` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/User
+#graphify/code #graphify/EXTRACTED #community/Patient

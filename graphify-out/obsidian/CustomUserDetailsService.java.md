@@ -1,12 +1,12 @@
 ---
 source_file: "backend/src/main/java/com/clinicadermatologica/app/infrastructure/security/CustomUserDetailsService.java"
 type: "code"
-community: "lombok.extern.slf4j.Slf4j"
+community: "JwtAuthenticationFilter"
 location: "L1"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/lombokexternslf4jSlf4j
+  - community/JwtAuthenticationFilter
 ---
 
 # CustomUserDetailsService.java
@@ -20,4 +20,4 @@ tags:
 - [[lombok.RequiredArgsConstructor]] - `imports` [EXTRACTED]
 - [[org.springframework.stereotype.Service]] - `imports` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/lombokexternslf4jSlf4j
+#graphify/code #graphify/EXTRACTED #community/JwtAuthenticationFilter

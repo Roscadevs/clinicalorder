@@ -1,5 +1,5 @@
 ---
-source_file: "backend/src/main/java/com/clinicadermatologica/app/infrastructure/payment/strategy/BankTransferPaymentStrategy.java"
+source_file: "backend/src/main/java/com/clinicadermatologica/app/infrastructure/payment/strategy/MercadoPagoPaymentStrategy.java"
 type: "code"
 community: ".register"
 location: "L30"
@@ -12,10 +12,10 @@ tags:
 # .register()
 
 ## Connections
-- [[dot-save()_7]] - `calls` [INFERRED]
-- [[Appointment_3]] - `references` [EXTRACTED]
-- [[BankTransferPaymentStrategy]] - `method` [EXTRACTED]
-- [[Override_4]] - `references` [EXTRACTED]
+- [[dot-save()_6]] - `calls` [INFERRED]
+- [[Appointment_5]] - `references` [EXTRACTED]
+- [[MercadoPagoPaymentStrategy]] - `method` [EXTRACTED]
+- [[Override_5]] - `references` [EXTRACTED]
 - [[PaymentConcept_3]] - `references` [EXTRACTED]
 - [[PaymentTransaction]] - `references` [EXTRACTED]
 - [[User]] - `references` [EXTRACTED]

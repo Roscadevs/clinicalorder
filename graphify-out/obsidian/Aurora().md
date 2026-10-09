@@ -1,12 +1,12 @@
 ---
 source_file: "frontend/src/components/reactbits/Aurora.tsx"
 type: "code"
-community: "ServicesCatalogView.tsx"
+community: "reactbits/index.ts"
 location: "L130"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/ServicesCatalogViewtsx
+  - community/reactbits/indexts
 ---
 
 # Aurora()
@@ -16,4 +16,4 @@ tags:
 - [[LandingPageView.tsx]] - `imports` [EXTRACTED]
 - [[resize()]] - `indirect_call` [INFERRED]
 
-#graphify/code #graphify/EXTRACTED #community/ServicesCatalogViewtsx
+#graphify/code #graphify/EXTRACTED #community/reactbits/indexts

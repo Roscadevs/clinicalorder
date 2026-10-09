@@ -18,9 +18,9 @@
     "semantic_hash": ""
   },
   "backend/src/main/java/com/clinicadermatologica/app/application/service/AppointmentService.java": {
-    "mtime": 1791559192.3957286,
-    "seen": 1791559257.79852,
-    "ast_hash": "387f44ee79ce12902088b77e4eb336cb",
+    "mtime": 1791562048.2473907,
+    "seen": 1791562387.250441,
+    "ast_hash": "e7045c03f44e22ca637ec636d8b5e369",
     "semantic_hash": ""
   },
   "backend/src/main/java/com/clinicadermatologica/app/application/service/AuthService.java": {
@@ -30,9 +30,9 @@
     "semantic_hash": ""
   },
   "backend/src/main/java/com/clinicadermatologica/app/application/service/CalendarBlockService.java": {
-    "mtime": 1791242552.2501662,
-    "seen": 1791242948.747624,
-    "ast_hash": "43cd37f538c13c4895167dae3d53f8b4",
+    "mtime": 1791562097.1654692,
+    "seen": 1791562387.250443,
+    "ast_hash": "32d7a1bdf9743e38633edcc68b63fd16",
     "semantic_hash": ""
   },
   "backend/src/main/java/com/clinicadermatologica/app/application/service/ClinicalImageService.java": {
@@ -66,9 +66,9 @@
     "semantic_hash": ""
   },
   "backend/src/main/java/com/clinicadermatologica/app/application/service/PaymentService.java": {
-    "mtime": 1791558746.8644104,
-    "seen": 1791558851.423263,
-    "ast_hash": "45a1f9aabc03d9137b6de24565d4961e",
+    "mtime": 1791562081.4965117,
+    "seen": 1791562387.250448,
+    "ast_hash": "c2cece3124eb479e6fc9082a4d875997",
     "semantic_hash": ""
   },
   "backend/src/main/java/com/clinicadermatologica/app/application/strategy/PaymentRegistrationStrategy.java": {
@@ -348,9 +348,9 @@
     "semantic_hash": ""
   },
   "backend/src/main/java/com/clinicadermatologica/app/infrastructure/payment/MercadoPagoPaymentAdapter.java": {
-    "mtime": 1791559176.5526302,
-    "seen": 1791559257.798562,
-    "ast_hash": "0784cf69b30b2e7e2ec8a8acdd79c898",
+    "mtime": 1791562171.3546474,
+    "seen": 1791562387.250481,
+    "ast_hash": "4a7d682b42bf72eb4cec8b1a1a811de0",
     "semantic_hash": ""
   },
   "backend/src/main/java/com/clinicadermatologica/app/infrastructure/payment/strategy/BankTransferPaymentStrategy.java": {
@@ -906,9 +906,9 @@
     "semantic_hash": ""
   },
   "frontend/src/components/DashboardLayout.tsx": {
-    "mtime": 1790719771.3689642,
-    "seen": 1791242532.060394,
-    "ast_hash": "7c847476e342040ee64c2e031309d954",
+    "mtime": 1791562316.0758884,
+    "seen": 1791562387.250541,
+    "ast_hash": "430911a841671d236fb36bf4e6ffe74d",
     "semantic_hash": ""
   },
   "frontend/src/components/ErrorBoundary.tsx": {
@@ -1110,9 +1110,9 @@
     "semantic_hash": ""
   },
   "frontend/src/features/auth/LoginView.tsx": {
-    "mtime": 1790719771.3748028,
-    "seen": 1791242532.060411,
-    "ast_hash": "f9d215ea65a073e3708b78b4f6d5c972",
+    "mtime": 1791562241.3405511,
+    "seen": 1791562387.2505631,
+    "ast_hash": "869fbb1c9c72b243abc06adb3521f779",
     "semantic_hash": ""
   },
   "frontend/src/features/auth/PasswordRecoveryView.tsx": {
@@ -1194,9 +1194,9 @@
     "semantic_hash": ""
   },
   "frontend/src/services/api.ts": {
-    "mtime": 1791558483.3193672,
-    "seen": 1791558851.423388,
-    "ast_hash": "389d88d0fca1bf2c8424c60130abe15f",
+    "mtime": 1791562221.5228264,
+    "seen": 1791562387.250572,
+    "ast_hash": "9afec3442a50182f25c853f44717deb3",
     "semantic_hash": ""
   },
   "frontend/src/services/supabaseClient.ts": {
@@ -1224,9 +1224,9 @@
     "semantic_hash": ""
   },
   "frontend/src/utils/session.ts": {
-    "mtime": 1790719771.378427,
-    "seen": 1791242532.06042,
-    "ast_hash": "9f45b510fec995fc651abb0f614cfe89",
+    "mtime": 1791562342.0938332,
+    "seen": 1791562387.2505758,
+    "ast_hash": "ddcbf148007214c27f8bd073a1add2d8",
     "semantic_hash": ""
   },
   "frontend/src/vite-env.d.ts": {

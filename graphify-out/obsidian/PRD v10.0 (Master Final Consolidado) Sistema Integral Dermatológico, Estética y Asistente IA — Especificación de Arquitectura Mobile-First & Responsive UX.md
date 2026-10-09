@@ -1,12 +1,12 @@
 ---
 source_file: "documentacion/historial_prds/PRD_v10.0_Fase10_Mobile_Responsive_Master.md"
 type: "document"
-community: "README.md"
+community: "PRD v10.0 (Master Final Consolidado): Sistema Integral Dermatológico, Estética y Asistente IA — Especificación de Arquitectura Mobile-First & Responsive UX"
 location: "L1"
 tags:
   - graphify/document
   - graphify/EXTRACTED
-  - community/READMEmd
+  - community/PRD_v100_Master_Final_Consolidado_Sistema_Integral_Dermatológico_Estética_y_Asistente_IA__Especificación_de_Arquitectura_Mobile-First__Responsive_UX
 ---
 
 # PRD v10.0 (Master Final Consolidado): Sistema Integral Dermatológico, Estética y Asistente IA — Especificación de Arquitectura Mobile-First & Responsive UX
@@ -17,4 +17,4 @@ tags:
 - [[2. Historias de Usuario Principales_7]] - `contains` [EXTRACTED]
 - [[PRD_v10.0_Fase10_Mobile_Responsive_Master]] - `contains` [EXTRACTED]
 
-#graphify/document #graphify/EXTRACTED #community/READMEmd
+#graphify/document #graphify/EXTRACTED #community/PRD_v100_Master_Final_Consolidado_Sistema_Integral_Dermatológico_Estética_y_Asistente_IA__Especificación_de_Arquitectura_Mobile-First__Responsive_UX

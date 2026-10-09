@@ -1,12 +1,12 @@
 ---
 source_file: "frontend/src/components/ui/Badge.tsx"
 type: "code"
-community: "cn"
+community: "MedicalRecordView.tsx"
 location: "L23"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/cn
+  - community/MedicalRecordViewtsx
 ---
 
 # Badge()
@@ -20,4 +20,4 @@ tags:
 - [[cn()]] - `calls` [EXTRACTED]
 - [[uiindex.ts]] - `re_exports` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/cn
+#graphify/code #graphify/EXTRACTED #community/MedicalRecordViewtsx

@@ -1,12 +1,12 @@
 ---
 source_file: "frontend/src/features/admin/AdminServicesView.tsx"
 type: "code"
-community: "cn"
+community: "AdminServicesView.tsx"
 location: "L1"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/cn
+  - community/AdminServicesViewtsx
 ---
 
 # AdminServicesView.tsx
@@ -18,14 +18,14 @@ tags:
 - [[Badge()]] - `imports` [EXTRACTED]
 - [[Button]] - `imports` [EXTRACTED]
 - [[Card]] - `imports` [EXTRACTED]
-- [[DermatologicService_1]] - `imports` [EXTRACTED]
+- [[DermatologicService]] - `imports` [EXTRACTED]
 - [[ServiceFormModal()]] - `imports` [EXTRACTED]
 - [[ServiceFormModal.tsx]] - `imports_from` [EXTRACTED]
 - [[Spinner()]] - `imports` [EXTRACTED]
 - [[UserFormModal()]] - `imports` [EXTRACTED]
 - [[UserFormModal.tsx]] - `imports_from` [EXTRACTED]
 - [[api.ts]] - `imports_from` [EXTRACTED]
-- [[ars()_5]] - `contains` [EXTRACTED]
+- [[ars()]] - `contains` [EXTRACTED]
 - [[cn()]] - `imports` [EXTRACTED]
 - [[cn.ts]] - `imports_from` [EXTRACTED]
 - [[lucide-react]] - `imports_from` [EXTRACTED]
@@ -34,4 +34,4 @@ tags:
 - [[typesindex.ts]] - `imports_from` [EXTRACTED]
 - [[uiindex.ts]] - `imports_from` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/cn
+#graphify/code #graphify/EXTRACTED #community/AdminServicesViewtsx

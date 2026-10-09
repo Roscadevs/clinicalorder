@@ -1,12 +1,12 @@
 ---
 source_file: "backend/src/main/java/com/clinicadermatologica/app/application/service/PaymentService.java"
 type: "code"
-community: "PaymentServiceTest.java"
+community: "lombok.extern.slf4j.Slf4j"
 location: "L1"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/PaymentServiceTestjava
+  - community/lombokexternslf4jSlf4j
 ---
 
 # PaymentService.java
@@ -24,4 +24,4 @@ tags:
 - [[org.springframework.stereotype.Service]] - `imports` [EXTRACTED]
 - [[org.springframework.transaction.annotation.Transactional]] - `imports` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/PaymentServiceTestjava
+#graphify/code #graphify/EXTRACTED #community/lombokexternslf4jSlf4j

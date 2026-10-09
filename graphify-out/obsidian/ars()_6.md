@@ -1,8 +1,8 @@
 ---
-source_file: "frontend/src/features/admin/ServiceFormModal.tsx"
+source_file: "frontend/src/features/agenda/CollectBalanceModal.tsx"
 type: "code"
 community: "cn"
-location: "L14"
+location: "L16"
 tags:
   - graphify/code
   - graphify/EXTRACTED
@@ -12,7 +12,7 @@ tags:
 # ars()
 
 ## Connections
-- [[ServiceFormModal()]] - `calls` [EXTRACTED]
-- [[ServiceFormModal.tsx]] - `contains` [EXTRACTED]
+- [[CollectBalanceModal()]] - `calls` [EXTRACTED]
+- [[CollectBalanceModal.tsx]] - `contains` [EXTRACTED]
 
 #graphify/code #graphify/EXTRACTED #community/cn

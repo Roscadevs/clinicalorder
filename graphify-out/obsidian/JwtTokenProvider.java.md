@@ -1,12 +1,12 @@
 ---
 source_file: "backend/src/main/java/com/clinicadermatologica/app/infrastructure/security/JwtTokenProvider.java"
 type: "code"
-community: "User"
+community: "UserRepository"
 location: "L1"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/User
+  - community/UserRepository
 ---
 
 # JwtTokenProvider.java
@@ -17,4 +17,4 @@ tags:
 - [[javax.crypto.SecretKey]] - `imports` [EXTRACTED]
 - [[org.springframework.stereotype.Component]] - `imports` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/User
+#graphify/code #graphify/EXTRACTED #community/UserRepository

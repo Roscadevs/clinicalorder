@@ -1,12 +1,12 @@
 ---
 source_file: "backend/src/main/java/com/clinicadermatologica/app/infrastructure/security/AesEncryptionService.java"
 type: "code"
-community: "AesEncryptionService"
+community: "org.junit.jupiter.api.DisplayName"
 location: "L64"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/AesEncryptionService
+  - community/orgjunitjupiterapiDisplayName
 ---
 
 # .AesEncryptionService()
@@ -14,4 +14,4 @@ tags:
 ## Connections
 - [[AesEncryptionService]] - `method` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/AesEncryptionService
+#graphify/code #graphify/EXTRACTED #community/orgjunitjupiterapiDisplayName

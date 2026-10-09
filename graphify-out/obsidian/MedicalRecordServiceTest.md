@@ -12,7 +12,7 @@ tags:
 # MedicalRecordServiceTest
 
 ## Connections
-- [[dot-setUp()_2]] - `method` [EXTRACTED]
+- [[dot-setUp()_3]] - `method` [EXTRACTED]
 - [[dot-testAddAlergia_DuplicateTipo_Throws()]] - `method` [EXTRACTED]
 - [[dot-testAddAlergia_Success()]] - `method` [EXTRACTED]
 - [[dot-testAddClinicalEntry_EncryptsContent()]] - `method` [EXTRACTED]

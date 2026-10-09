@@ -1,16 +1,16 @@
 ---
 source_file: ""
 type: "code"
-community: "MedicalRecordAudit"
+community: "PasswordResetToken"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/MedicalRecordAudit
+  - community/PasswordResetToken
 ---
 
 # Entity
 
 ## Connections
-- [[MedicalRecordAudit]] - `references` [EXTRACTED]
+- [[PasswordResetToken]] - `references` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/MedicalRecordAudit
+#graphify/code #graphify/EXTRACTED #community/PasswordResetToken

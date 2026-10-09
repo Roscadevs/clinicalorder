@@ -1,18 +1,18 @@
 ---
-source_file: "backend/src/test/java/com/clinicadermatologica/app/application/AuthServiceTest.java"
+source_file: "backend/src/test/java/com/clinicadermatologica/app/application/AppointmentServiceTest.java"
 type: "code"
-community: "AesEncryptionService"
-location: "L45"
+community: "MedicalRecordService"
+location: "L51"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/AesEncryptionService
+  - community/MedicalRecordService
 ---
 
 # .setUp()
 
 ## Connections
-- [[AuthServiceTest]] - `method` [EXTRACTED]
+- [[AppointmentServiceTest]] - `method` [EXTRACTED]
 - [[org.junit.jupiter.api.BeforeEach]] - `references` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/AesEncryptionService
+#graphify/code #graphify/EXTRACTED #community/MedicalRecordService

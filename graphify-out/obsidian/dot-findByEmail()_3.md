@@ -1,8 +1,8 @@
 ---
-source_file: "backend/src/main/java/com/clinicadermatologica/app/infrastructure/persistence/jpa/JpaUserRepository.java"
+source_file: "backend/src/main/java/com/clinicadermatologica/app/infrastructure/persistence/adapter/UserRepositoryAdapter.java"
 type: "code"
 community: "User"
-location: "L15"
+location: "L30"
 tags:
   - graphify/code
   - graphify/EXTRACTED
@@ -12,8 +12,9 @@ tags:
 # .findByEmail()
 
 ## Connections
-- [[dot-findByEmail()_2]] - `calls` [INFERRED]
-- [[JpaUserRepository]] - `method` [EXTRACTED]
+- [[dot-findByEmail()_4]] - `calls` [INFERRED]
+- [[Override_13]] - `references` [EXTRACTED]
 - [[User]] - `references` [EXTRACTED]
+- [[UserRepositoryAdapter]] - `method` [EXTRACTED]
 
 #graphify/code #graphify/EXTRACTED #community/User

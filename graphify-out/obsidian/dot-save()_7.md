@@ -1,26 +1,20 @@
 ---
-source_file: "backend/src/main/java/com/clinicadermatologica/app/domain/repository/PaymentTransactionRepository.java"
+source_file: "backend/src/main/java/com/clinicadermatologica/app/domain/repository/MedicalRecordRepository.java"
 type: "code"
-community: "PaymentService"
-location: "L16"
+community: "MedicalRecord"
+location: "L15"
 tags:
   - graphify/code
-  - graphify/INFERRED
-  - community/PaymentService
+  - graphify/EXTRACTED
+  - community/MedicalRecord
 ---
 
 # .save()
 
 ## Connections
-- [[dot-bookTemporaryHold()]] - `calls` [INFERRED]
-- [[dot-processMercadoPagoWebhook()]] - `calls` [INFERRED]
-- [[dot-refundPayment()]] - `calls` [INFERRED]
-- [[dot-register()_1]] - `calls` [INFERRED]
-- [[dot-register()_4]] - `calls` [INFERRED]
-- [[dot-register()_2]] - `calls` [INFERRED]
-- [[dot-rejectPendingTransactions()_1]] - `calls` [INFERRED]
-- [[dot-rejectPendingTransactions()]] - `calls` [INFERRED]
-- [[PaymentTransaction]] - `references` [EXTRACTED]
-- [[PaymentTransactionRepository]] - `method` [EXTRACTED]
+- [[dot-saveOrUpdateMedicalRecord()]] - `calls` [INFERRED]
+- [[dot-testSaveInitialMedicalRecord_Success()]] - `calls` [INFERRED]
+- [[MedicalRecord]] - `references` [EXTRACTED]
+- [[MedicalRecordRepository]] - `method` [EXTRACTED]
 
-#graphify/code #graphify/INFERRED #community/PaymentService
+#graphify/code #graphify/EXTRACTED #community/MedicalRecord

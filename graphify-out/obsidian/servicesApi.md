@@ -1,12 +1,12 @@
 ---
 source_file: "frontend/src/services/api.ts"
 type: "code"
-community: "cn"
-location: "L101"
+community: "AdminServicesView.tsx"
+location: "L109"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/cn
+  - community/AdminServicesViewtsx
 ---
 
 # servicesApi
@@ -18,4 +18,4 @@ tags:
 - [[ServicesCatalogView.tsx]] - `imports` [EXTRACTED]
 - [[api.ts]] - `contains` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/cn
+#graphify/code #graphify/EXTRACTED #community/AdminServicesViewtsx

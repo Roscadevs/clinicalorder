@@ -1,17 +1,21 @@
 ---
 source_file: ""
 type: "code"
-community: "lombok.RequiredArgsConstructor"
+community: "AppointmentRepositoryAdapter"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/lombokRequiredArgsConstructor
+  - community/AppointmentRepositoryAdapter
 ---
 
 # Override
 
 ## Connections
-- [[dot-register()_4]] - `references` [EXTRACTED]
-- [[dot-supportedType()_3]] - `references` [EXTRACTED]
+- [[dot-findByDateRange()_5]] - `references` [EXTRACTED]
+- [[dot-findById()_22]] - `references` [EXTRACTED]
+- [[dot-findByPatientId()_6]] - `references` [EXTRACTED]
+- [[dot-findExpiredHolds()_1]] - `references` [EXTRACTED]
+- [[dot-findOverlappingAppointments()_1]] - `references` [EXTRACTED]
+- [[dot-save()_21]] - `references` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/lombokRequiredArgsConstructor
+#graphify/code #graphify/EXTRACTED #community/AppointmentRepositoryAdapter

@@ -1,12 +1,12 @@
 ---
 source_file: "frontend/src/features/agenda/appointmentStatus.ts"
 type: "code"
-community: "AgendaView.tsx"
+community: "MedicalRecordView.tsx"
 location: "L42"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/AgendaViewtsx
+  - community/MedicalRecordViewtsx
 ---
 
 # STATUS_STYLES
@@ -17,4 +17,4 @@ tags:
 - [[PatientDirectoryView.tsx]] - `imports` [EXTRACTED]
 - [[appointmentStatus.ts]] - `contains` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/AgendaViewtsx
+#graphify/code #graphify/EXTRACTED #community/MedicalRecordViewtsx

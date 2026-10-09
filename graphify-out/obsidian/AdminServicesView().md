@@ -1,12 +1,12 @@
 ---
 source_file: "frontend/src/features/admin/AdminServicesView.tsx"
 type: "code"
-community: "cn"
+community: "AdminServicesView.tsx"
 location: "L17"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/cn
+  - community/AdminServicesViewtsx
 ---
 
 # AdminServicesView()
@@ -14,7 +14,7 @@ tags:
 ## Connections
 - [[AdminServicesView.tsx]] - `contains` [EXTRACTED]
 - [[App.tsx]] - `imports` [EXTRACTED]
-- [[ars()_5]] - `calls` [EXTRACTED]
+- [[ars()]] - `calls` [EXTRACTED]
 - [[cn()]] - `calls` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/cn
+#graphify/code #graphify/EXTRACTED #community/AdminServicesViewtsx

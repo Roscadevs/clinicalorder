@@ -1,12 +1,12 @@
 ---
 source_file: "frontend/package.json"
 type: "concept"
-community: "ServicesCatalogView.tsx"
+community: "reactbits/index.ts"
 location: "L20"
 tags:
   - graphify/concept
   - graphify/EXTRACTED
-  - community/ServicesCatalogViewtsx
+  - community/reactbits/indexts
 ---
 
 # ogl
@@ -16,4 +16,4 @@ tags:
 - [[SpecularButton.tsx]] - `imports_from` [EXTRACTED]
 - [[package.json]] - `imports` [EXTRACTED]
 
-#graphify/concept #graphify/EXTRACTED #community/ServicesCatalogViewtsx
+#graphify/concept #graphify/EXTRACTED #community/reactbits/indexts

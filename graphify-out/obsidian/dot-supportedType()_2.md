@@ -1,19 +1,19 @@
 ---
-source_file: "backend/src/main/java/com/clinicadermatologica/app/application/strategy/PaymentRegistrationStrategy.java"
+source_file: "backend/src/main/java/com/clinicadermatologica/app/infrastructure/payment/strategy/CashPaymentStrategy.java"
 type: "code"
-community: "lombok.RequiredArgsConstructor"
-location: "L29"
+community: ".register"
+location: "L25"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/lombokRequiredArgsConstructor
+  - community/register
 ---
 
 # .supportedType()
 
 ## Connections
-- [[dot-testStrategyFactory_ReturnsCorrectStrategy()]] - `calls` [INFERRED]
-- [[PaymentRegistrationStrategy]] - `method` [EXTRACTED]
+- [[CashPaymentStrategy]] - `method` [EXTRACTED]
+- [[Override_19]] - `references` [EXTRACTED]
 - [[PaymentType_4]] - `references` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/lombokRequiredArgsConstructor
+#graphify/code #graphify/EXTRACTED #community/register

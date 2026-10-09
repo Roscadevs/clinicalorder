@@ -2,7 +2,7 @@
 source_file: "backend/src/main/java/com/clinicadermatologica/app/application/service/AppointmentService.java"
 type: "code"
 community: "AppointmentService"
-location: "L271"
+location: "L277"
 tags:
   - graphify/code
   - graphify/EXTRACTED
@@ -14,8 +14,8 @@ tags:
 ## Connections
 - [[dot-bookTemporaryHold()]] - `calls` [EXTRACTED]
 - [[dot-rejectPendingTransactions()_1]] - `calls` [EXTRACTED]
-- [[dot-save()_6]] - `calls` [INFERRED]
-- [[Appointment_7]] - `references` [EXTRACTED]
+- [[dot-save()_5]] - `calls` [INFERRED]
+- [[Appointment_6]] - `references` [EXTRACTED]
 - [[AppointmentService]] - `method` [EXTRACTED]
 
 #graphify/code #graphify/EXTRACTED #community/AppointmentService

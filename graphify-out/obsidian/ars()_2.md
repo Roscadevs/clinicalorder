@@ -1,18 +1,19 @@
 ---
-source_file: "frontend/src/features/agenda/CollectBalanceModal.tsx"
+source_file: "frontend/src/features/agenda/AgendaView.tsx"
 type: "code"
-community: "api.ts"
-location: "L16"
+community: "AgendaView.tsx"
+location: "L18"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/apits
+  - community/AgendaViewtsx
 ---
 
 # ars()
 
 ## Connections
-- [[CollectBalanceModal()]] - `calls` [EXTRACTED]
-- [[CollectBalanceModal.tsx]] - `contains` [EXTRACTED]
+- [[AgendaView()]] - `calls` [EXTRACTED]
+- [[AgendaView.tsx]] - `contains` [EXTRACTED]
+- [[AppointmentDetail()]] - `calls` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/apits
+#graphify/code #graphify/EXTRACTED #community/AgendaViewtsx

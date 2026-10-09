@@ -11,6 +11,6 @@ tags:
 # AllArgsConstructor
 
 ## Connections
-- [[DermatologicService]] - `references` [EXTRACTED]
+- [[DermatologicService_1]] - `references` [EXTRACTED]
 
 #graphify/code #graphify/EXTRACTED #community/DermatologicService

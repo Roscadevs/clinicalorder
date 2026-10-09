@@ -2,7 +2,7 @@
 source_file: "backend/src/main/java/com/clinicadermatologica/app/application/service/AppointmentService.java"
 type: "code"
 community: "AppointmentService"
-location: "L236"
+location: "L242"
 tags:
   - graphify/code
   - graphify/INFERRED
@@ -12,9 +12,9 @@ tags:
 # .markAsAttended()
 
 ## Connections
-- [[dot-findById()_12]] - `calls` [INFERRED]
+- [[dot-findById()_11]] - `calls` [INFERRED]
 - [[dot-markAsAttended()_1]] - `calls` [INFERRED]
-- [[dot-save()_6]] - `calls` [INFERRED]
+- [[dot-save()_5]] - `calls` [INFERRED]
 - [[dot-testMarkAsAttended_ConfirmedToAttended()]] - `calls` [INFERRED]
 - [[dot-testMarkAsAttended_NotConfirmed_Throws()]] - `calls` [INFERRED]
 - [[AppointmentService]] - `method` [EXTRACTED]

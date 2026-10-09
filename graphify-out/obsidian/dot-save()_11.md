@@ -1,21 +1,20 @@
 ---
-source_file: "backend/src/main/java/com/clinicadermatologica/app/domain/repository/ClinicalEntryRepository.java"
+source_file: "backend/src/main/java/com/clinicadermatologica/app/domain/repository/DermatologicServiceRepository.java"
 type: "code"
-community: "AppointmentService"
-location: "L20"
+community: "ServiceResponseDTO"
+location: "L16"
 tags:
   - graphify/code
-  - graphify/INFERRED
-  - community/AppointmentService
+  - graphify/EXTRACTED
+  - community/ServiceResponseDTO
 ---
 
 # .save()
 
 ## Connections
-- [[dot-addClinicalEntry()_1]] - `calls` [INFERRED]
-- [[dot-testAddClinicalEntry_EncryptsContent()]] - `calls` [INFERRED]
-- [[dot-updateClinicalEntry()_1]] - `calls` [INFERRED]
-- [[ClinicalEntry_1]] - `references` [EXTRACTED]
-- [[ClinicalEntryRepository]] - `method` [EXTRACTED]
+- [[dot-createService()]] - `calls` [INFERRED]
+- [[dot-updateService()]] - `calls` [INFERRED]
+- [[DermatologicService_1]] - `references` [EXTRACTED]
+- [[DermatologicServiceRepository]] - `method` [EXTRACTED]
 
-#graphify/code #graphify/INFERRED #community/AppointmentService
+#graphify/code #graphify/EXTRACTED #community/ServiceResponseDTO

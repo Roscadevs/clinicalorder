@@ -1,19 +1,19 @@
 ---
 source_file: "backend/src/main/java/com/clinicadermatologica/app/domain/repository/MedicalRecordRepository.java"
 type: "code"
-community: "MedicalRecordAudit"
+community: "MedicalRecord"
 location: "L1"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/MedicalRecordAudit
+  - community/MedicalRecord
 ---
 
 # MedicalRecordRepository.java
 
 ## Connections
-- [[MedicalRecord_1]] - `imports` [EXTRACTED]
+- [[MedicalRecord]] - `imports` [EXTRACTED]
 - [[MedicalRecordAudit]] - `imports` [EXTRACTED]
 - [[MedicalRecordRepository]] - `contains` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/MedicalRecordAudit
+#graphify/code #graphify/EXTRACTED #community/MedicalRecord

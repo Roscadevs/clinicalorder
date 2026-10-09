@@ -17,12 +17,12 @@ tags:
 - [[dot-mapToDTO()_3]] - `references` [EXTRACTED]
 - [[dot-uploadClinicalImage()]] - `references` [EXTRACTED]
 - [[dot-uploadClinicalPhoto()]] - `references` [EXTRACTED]
-- [[AllArgsConstructor_38]] - `references` [EXTRACTED]
-- [[Builder_36]] - `references` [EXTRACTED]
+- [[AllArgsConstructor_39]] - `references` [EXTRACTED]
+- [[Builder_37]] - `references` [EXTRACTED]
 - [[ClinicalImageResponseDTO.java]] - `contains` [EXTRACTED]
 - [[ClinicalImageService.java]] - `imports` [EXTRACTED]
-- [[Getter_38]] - `references` [EXTRACTED]
-- [[NoArgsConstructor_38]] - `references` [EXTRACTED]
-- [[Setter_38]] - `references` [EXTRACTED]
+- [[Getter_39]] - `references` [EXTRACTED]
+- [[NoArgsConstructor_39]] - `references` [EXTRACTED]
+- [[Setter_39]] - `references` [EXTRACTED]
 
 #graphify/code #graphify/EXTRACTED #community/ClinicalImageService

@@ -12,7 +12,7 @@ tags:
 # .findAll()
 
 ## Connections
-- [[DermatologicService]] - `references` [EXTRACTED]
+- [[DermatologicService_1]] - `references` [EXTRACTED]
 - [[DermatologicServiceRepositoryAdapter]] - `method` [EXTRACTED]
 - [[Override_14]] - `references` [EXTRACTED]
 

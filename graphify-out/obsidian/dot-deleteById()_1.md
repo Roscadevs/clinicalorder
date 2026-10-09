@@ -1,18 +1,18 @@
 ---
-source_file: "backend/src/main/java/com/clinicadermatologica/app/infrastructure/persistence/adapter/CalendarBlockRepositoryAdapter.java"
+source_file: "backend/src/main/java/com/clinicadermatologica/app/domain/repository/CalendarBlockRepository.java"
 type: "code"
-community: "CalendarBlock"
-location: "L42"
+community: "CalendarBlockResponseDTO"
+location: "L17"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/CalendarBlock
+  - community/CalendarBlockResponseDTO
 ---
 
 # .deleteById()
 
 ## Connections
-- [[CalendarBlockRepositoryAdapter]] - `method` [EXTRACTED]
-- [[Override_1]] - `references` [EXTRACTED]
+- [[dot-deleteBlock()]] - `calls` [INFERRED]
+- [[CalendarBlockRepository]] - `method` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/CalendarBlock
+#graphify/code #graphify/EXTRACTED #community/CalendarBlockResponseDTO

@@ -1,19 +1,20 @@
 ---
 source_file: ""
 type: "code"
-community: "AuthController"
+community: "org.springframework.http.ResponseEntity"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/AuthController
+  - community/orgspringframeworkhttpResponseEntity
 ---
 
 # PostMapping
 
 ## Connections
-- [[dot-forgotPassword()]] - `references` [EXTRACTED]
-- [[dot-login()]] - `references` [EXTRACTED]
-- [[dot-register()_3]] - `references` [EXTRACTED]
-- [[dot-resetPassword()]] - `references` [EXTRACTED]
+- [[dot-bookTemporaryHold()_1]] - `references` [EXTRACTED]
+- [[dot-cancelAppointment()_1]] - `references` [EXTRACTED]
+- [[dot-finalizePayment()]] - `references` [EXTRACTED]
+- [[dot-markAsAttended()_1]] - `references` [EXTRACTED]
+- [[dot-registerDepositPayment()_1]] - `references` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/AuthController
+#graphify/code #graphify/EXTRACTED #community/orgspringframeworkhttpResponseEntity

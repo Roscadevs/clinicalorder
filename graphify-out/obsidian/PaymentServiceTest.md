@@ -14,7 +14,7 @@ tags:
 ## Connections
 - [[dot-cash()]] - `method` [EXTRACTED]
 - [[dot-prepareHold()]] - `method` [EXTRACTED]
-- [[dot-setUp()_3]] - `method` [EXTRACTED]
+- [[dot-setUp()_4]] - `method` [EXTRACTED]
 - [[dot-testIsValidSignature_SuccessAndFailure()]] - `method` [EXTRACTED]
 - [[dot-testRefundPayment_Success()]] - `method` [EXTRACTED]
 - [[dot-testRegisterDeposit_AmountBelowDeposit_Throws()]] - `method` [EXTRACTED]
@@ -31,7 +31,7 @@ tags:
 - [[dot-testWebhook_InProcess_MaintainsPendingAppointment()]] - `method` [EXTRACTED]
 - [[dot-testWebhook_QueryParams_Approved()]] - `method` [EXTRACTED]
 - [[dot-testWebhook_Rejected_MarksPaymentFailed()]] - `method` [EXTRACTED]
-- [[Appointment_4]] - `references` [EXTRACTED]
+- [[Appointment_3]] - `references` [EXTRACTED]
 - [[AppointmentRepository]] - `references` [EXTRACTED]
 - [[MercadoPagoPaymentAdapter]] - `references` [EXTRACTED]
 - [[PaymentService]] - `references` [EXTRACTED]

@@ -13,7 +13,7 @@ tags:
 
 ## Connections
 - [[dot-findByName()_2]] - `calls` [INFERRED]
-- [[DermatologicService]] - `references` [EXTRACTED]
+- [[DermatologicService_1]] - `references` [EXTRACTED]
 - [[DermatologicServiceRepositoryAdapter]] - `method` [EXTRACTED]
 - [[Override_14]] - `references` [EXTRACTED]
 

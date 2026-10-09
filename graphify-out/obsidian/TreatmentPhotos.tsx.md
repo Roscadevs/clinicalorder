@@ -1,12 +1,12 @@
 ---
 source_file: "frontend/src/features/clinical/TreatmentPhotos.tsx"
 type: "code"
-community: "TreatmentPhotos.tsx"
+community: "api.ts"
 location: "L1"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/TreatmentPhotostsx
+  - community/apits
 ---
 
 # TreatmentPhotos.tsx
@@ -26,4 +26,4 @@ tags:
 - [[typesindex.ts]] - `imports_from` [EXTRACTED]
 - [[uiindex.ts]] - `imports_from` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/TreatmentPhotostsx
+#graphify/code #graphify/EXTRACTED #community/apits

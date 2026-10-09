@@ -1,16 +1,16 @@
 ---
 source_file: ""
 type: "code"
-community: "org.springframework.http.ResponseEntity"
+community: "DermatologicService"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/orgspringframeworkhttpResponseEntity
+  - community/DermatologicService
 ---
 
 # RequestMapping
 
 ## Connections
-- [[AppointmentController]] - `references` [EXTRACTED]
+- [[GeminiChatbotController]] - `references` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/orgspringframeworkhttpResponseEntity
+#graphify/code #graphify/EXTRACTED #community/DermatologicService

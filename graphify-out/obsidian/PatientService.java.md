@@ -14,7 +14,7 @@ tags:
 ## Connections
 - [[BusinessRuleException]] - `imports` [EXTRACTED]
 - [[BusinessRuleException.java]] - `imports` [EXTRACTED]
-- [[Patient]] - `imports` [EXTRACTED]
+- [[Patient_1]] - `imports` [EXTRACTED]
 - [[PatientRepository]] - `imports` [EXTRACTED]
 - [[PatientRequestDTO]] - `imports` [EXTRACTED]
 - [[PatientResponseDTO]] - `imports` [EXTRACTED]

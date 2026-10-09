@@ -13,7 +13,7 @@ tags:
 
 ## Connections
 - [[JpaPatientRepository]] - `contains` [EXTRACTED]
-- [[Patient]] - `imports` [EXTRACTED]
+- [[Patient_1]] - `imports` [EXTRACTED]
 - [[org.springframework.data.jpa.repository.JpaRepository]] - `imports` [EXTRACTED]
 - [[org.springframework.data.jpa.repository.Query]] - `imports` [EXTRACTED]
 - [[org.springframework.stereotype.Repository]] - `imports` [EXTRACTED]

@@ -1,16 +1,16 @@
 ---
 source_file: ""
 type: "code"
-community: "AlergiaRequestDTO"
+community: "MedicalRecordController"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/AlergiaRequestDTO
+  - community/MedicalRecordController
 ---
 
 # Builder
 
 ## Connections
-- [[ClinicalEntryRequestDTO]] - `references` [EXTRACTED]
+- [[MedicalRecordDTO]] - `references` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/AlergiaRequestDTO
+#graphify/code #graphify/EXTRACTED #community/MedicalRecordController

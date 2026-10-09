@@ -1,12 +1,12 @@
 ---
 source_file: "frontend/src/features/clinical/AnamnesisForm.tsx"
 type: "code"
-community: "MedicalRecordView.tsx"
+community: "AnamnesisForm.tsx"
 location: "L1"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/MedicalRecordViewtsx
+  - community/AnamnesisFormtsx
 ---
 
 # AnamnesisForm.tsx
@@ -17,7 +17,7 @@ tags:
 - [[AnamnesisFormProps]] - `contains` [EXTRACTED]
 - [[Button]] - `imports` [EXTRACTED]
 - [[FITZ]] - `contains` [EXTRACTED]
-- [[MedicalRecord]] - `imports` [EXTRACTED]
+- [[MedicalRecord_1]] - `imports` [EXTRACTED]
 - [[MedicalRecordView.tsx]] - `imports_from` [EXTRACTED]
 - [[PATOLOGIAS]] - `contains` [EXTRACTED]
 - [[ReadRow()]] - `contains` [EXTRACTED]
@@ -32,4 +32,4 @@ tags:
 - [[typesindex.ts]] - `imports_from` [EXTRACTED]
 - [[uiindex.ts]] - `imports_from` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/MedicalRecordViewtsx
+#graphify/code #graphify/EXTRACTED #community/AnamnesisFormtsx

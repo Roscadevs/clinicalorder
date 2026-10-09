@@ -1,16 +1,16 @@
 ---
 source_file: ""
 type: "code"
-community: "org.springframework.http.ResponseEntity"
+community: "UserRole"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/orgspringframeworkhttpResponseEntity
+  - community/UserRole
 ---
 
 # NoArgsConstructor
 
 ## Connections
-- [[AppointmentResponseDTO]] - `references` [EXTRACTED]
+- [[AuthRequestDTO]] - `references` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/orgspringframeworkhttpResponseEntity
+#graphify/code #graphify/EXTRACTED #community/UserRole

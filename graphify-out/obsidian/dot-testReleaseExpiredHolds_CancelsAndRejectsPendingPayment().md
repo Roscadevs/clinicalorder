@@ -13,7 +13,7 @@ tags:
 
 ## Connections
 - [[dot-findByAppointmentId()_1]] - `calls` [INFERRED]
-- [[dot-findExpiredHolds()_1]] - `calls` [INFERRED]
+- [[dot-findExpiredHolds()]] - `calls` [INFERRED]
 - [[dot-releaseExpiredHolds()]] - `calls` [INFERRED]
 - [[AppointmentServiceTest]] - `method` [EXTRACTED]
 - [[org.junit.jupiter.api.DisplayName]] - `references` [EXTRACTED]

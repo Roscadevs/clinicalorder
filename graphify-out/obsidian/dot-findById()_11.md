@@ -1,20 +1,33 @@
 ---
-source_file: "backend/src/main/java/com/clinicadermatologica/app/infrastructure/persistence/adapter/AntecedentePatologicoRepositoryAdapter.java"
+source_file: "backend/src/main/java/com/clinicadermatologica/app/domain/repository/AppointmentRepository.java"
 type: "code"
-community: "AntecedentePatologico"
-location: "L31"
+community: "AppointmentService"
+location: "L17"
 tags:
   - graphify/code
-  - graphify/EXTRACTED
-  - community/AntecedentePatologico
+  - graphify/INFERRED
+  - community/AppointmentService
 ---
 
 # .findById()
 
 ## Connections
-- [[AntecedentePatologico]] - `references` [EXTRACTED]
-- [[AntecedentePatologicoId]] - `references` [EXTRACTED]
-- [[AntecedentePatologicoRepositoryAdapter]] - `method` [EXTRACTED]
-- [[Override_9]] - `references` [EXTRACTED]
+- [[dot-addClinicalEntry()_1]] - `calls` [INFERRED]
+- [[dot-cancelAppointment()]] - `calls` [INFERRED]
+- [[dot-getAppointmentById()]] - `calls` [INFERRED]
+- [[dot-getAppointmentPublicStatus()]] - `calls` [INFERRED]
+- [[dot-markAsAttended()]] - `calls` [INFERRED]
+- [[dot-prepareHold()]] - `calls` [INFERRED]
+- [[dot-registerDepositPayment()]] - `calls` [INFERRED]
+- [[dot-registerFinalPayment()]] - `calls` [INFERRED]
+- [[dot-testAddClinicalEntry_EncryptsContent()]] - `calls` [INFERRED]
+- [[dot-testCancelAppointment_WithApprovedMercadoPagoPayment_TriggersRefund()]] - `calls` [INFERRED]
+- [[dot-testGetAppointmentPublicStatus()]] - `calls` [INFERRED]
+- [[dot-testMarkAsAttended_ConfirmedToAttended()]] - `calls` [INFERRED]
+- [[dot-testMarkAsAttended_NotConfirmed_Throws()]] - `calls` [INFERRED]
+- [[dot-testRegisterFinalPayment_DelegatesToStrategy_CompletesAppointment()]] - `calls` [INFERRED]
+- [[dot-testRegisterFinalPayment_NotAttended_ThrowsException()]] - `calls` [INFERRED]
+- [[Appointment]] - `references` [EXTRACTED]
+- [[AppointmentRepository]] - `method` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/AntecedentePatologico
+#graphify/code #graphify/INFERRED #community/AppointmentService

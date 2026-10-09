@@ -1,17 +1,17 @@
 ---
-source_file: "frontend/src/components/ui/Button.tsx"
+source_file: "frontend/src/components/reactbits/SpecularButton.tsx"
 type: "code"
-community: "cn"
-location: "L6"
+community: "reactbits/index.ts"
+location: "L67"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/cn
+  - community/reactbits/indexts
 ---
 
 # ButtonSize
 
 ## Connections
-- [[Button.tsx]] - `contains` [EXTRACTED]
+- [[SpecularButton.tsx]] - `contains` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/cn
+#graphify/code #graphify/EXTRACTED #community/reactbits/indexts

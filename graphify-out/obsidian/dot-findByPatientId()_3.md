@@ -13,8 +13,8 @@ tags:
 
 ## Connections
 - [[dot-findByPatientId()_4]] - `calls` [INFERRED]
-- [[MedicalRecord_1]] - `references` [EXTRACTED]
+- [[MedicalRecord]] - `references` [EXTRACTED]
 - [[MedicalRecordRepositoryAdapter]] - `method` [EXTRACTED]
-- [[Override_7]] - `references` [EXTRACTED]
+- [[Override_6]] - `references` [EXTRACTED]
 
 #graphify/code #graphify/EXTRACTED #community/MedicalRecord

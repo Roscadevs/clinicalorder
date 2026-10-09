@@ -1,8 +1,8 @@
 ---
-source_file: "backend/src/main/java/com/clinicadermatologica/app/domain/repository/AppointmentRepository.java"
+source_file: "backend/src/main/java/com/clinicadermatologica/app/domain/repository/CalendarBlockRepository.java"
 type: "code"
 community: "AppointmentService"
-location: "L20"
+location: "L15"
 tags:
   - graphify/code
   - graphify/INFERRED
@@ -12,10 +12,10 @@ tags:
 # .findByDateRange()
 
 ## Connections
-- [[dot-getAppointmentsByRange()]] - `calls` [INFERRED]
 - [[dot-getAvailableSlots()]] - `calls` [INFERRED]
+- [[dot-getBlocksByRange()]] - `calls` [INFERRED]
 - [[dot-testGetAvailableSlots()]] - `calls` [INFERRED]
-- [[Appointment]] - `references` [EXTRACTED]
-- [[AppointmentRepository]] - `method` [EXTRACTED]
+- [[CalendarBlock]] - `references` [EXTRACTED]
+- [[CalendarBlockRepository]] - `method` [EXTRACTED]
 
 #graphify/code #graphify/INFERRED #community/AppointmentService

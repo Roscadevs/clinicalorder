@@ -1,11 +1,11 @@
 ---
 type: community
-members: 23
+members: 24
 ---
 
 # ClinicalImage
 
-**Members:** 23 nodes
+**Members:** 24 nodes
 
 ## Members
 - [[dot-deleteById()_2]] - code - backend/src/main/java/com/clinicadermatologica/app/domain/repository/ClinicalImageRepository.java
@@ -13,10 +13,10 @@ members: 23
 - [[dot-findByClinicalEntryId()]] - code - backend/src/main/java/com/clinicadermatologica/app/domain/repository/ClinicalImageRepository.java
 - [[dot-findByClinicalEntryId()_1]] - code - backend/src/main/java/com/clinicadermatologica/app/infrastructure/persistence/adapter/ClinicalImageRepositoryAdapter.java
 - [[dot-findByClinicalEntryIdOrderByUploadedAtDesc()]] - code - backend/src/main/java/com/clinicadermatologica/app/infrastructure/persistence/jpa/JpaClinicalImageRepository.java
-- [[dot-findById()_14]] - code - backend/src/main/java/com/clinicadermatologica/app/domain/repository/ClinicalImageRepository.java
-- [[dot-findById()_15]] - code - backend/src/main/java/com/clinicadermatologica/app/infrastructure/persistence/adapter/ClinicalImageRepositoryAdapter.java
-- [[dot-save()_15]] - code - backend/src/main/java/com/clinicadermatologica/app/domain/repository/ClinicalImageRepository.java
-- [[dot-save()_16]] - code - backend/src/main/java/com/clinicadermatologica/app/infrastructure/persistence/adapter/ClinicalImageRepositoryAdapter.java
+- [[dot-findById()_13]] - code - backend/src/main/java/com/clinicadermatologica/app/domain/repository/ClinicalImageRepository.java
+- [[dot-findById()_14]] - code - backend/src/main/java/com/clinicadermatologica/app/infrastructure/persistence/adapter/ClinicalImageRepositoryAdapter.java
+- [[dot-save()_13]] - code - backend/src/main/java/com/clinicadermatologica/app/domain/repository/ClinicalImageRepository.java
+- [[dot-save()_14]] - code - backend/src/main/java/com/clinicadermatologica/app/infrastructure/persistence/adapter/ClinicalImageRepositoryAdapter.java
 - [[AllArgsConstructor_24]] - code
 - [[Builder_22]] - code
 - [[ClinicalImage]] - code - backend/src/main/java/com/clinicadermatologica/app/domain/model/ClinicalImage.java
@@ -25,12 +25,13 @@ members: 23
 - [[ClinicalImageRepository.java]] - code - backend/src/main/java/com/clinicadermatologica/app/domain/repository/ClinicalImageRepository.java
 - [[ClinicalImageRepositoryAdapter]] - code - backend/src/main/java/com/clinicadermatologica/app/infrastructure/persistence/adapter/ClinicalImageRepositoryAdapter.java
 - [[ClinicalImageRepositoryAdapter.java]] - code - backend/src/main/java/com/clinicadermatologica/app/infrastructure/persistence/adapter/ClinicalImageRepositoryAdapter.java
-- [[Entity_7]] - code
+- [[Entity_8]] - code
 - [[Getter_24]] - code
+- [[JpaClinicalImageRepository]] - code - backend/src/main/java/com/clinicadermatologica/app/infrastructure/persistence/jpa/JpaClinicalImageRepository.java
 - [[NoArgsConstructor_24]] - code
 - [[Override_12]] - code
 - [[Setter_24]] - code
-- [[Table_7]] - code
+- [[Table_8]] - code
 
 ## Live Query (requires Dataview plugin)
 
@@ -40,7 +41,7 @@ SORT file.name ASC
 ```
 
 ## Connections to other communities
-- 5 edges to [[_COMMUNITY_org.springframework.data.jpa.repository.JpaRepository]]
+- 4 edges to [[_COMMUNITY_org.springframework.data.jpa.repository.JpaRepository]]
 - 4 edges to [[_COMMUNITY_ClinicalImageService]]
 - 4 edges to [[_COMMUNITY_lombok.RequiredArgsConstructor]]
 - 2 edges to [[_COMMUNITY_org.springframework.transaction.annotation.Transactional]]
@@ -49,6 +50,6 @@ SORT file.name ASC
 ## Top bridge nodes
 - [[ClinicalImage]] - degree 22, connects to 4 communities
 - [[ClinicalImageRepository]] - degree 9, connects to 2 communities
-- [[ClinicalImageRepositoryAdapter]] - degree 9, connects to 2 communities
-- [[ClinicalImageRepositoryAdapter.java]] - degree 6, connects to 2 communities
-- [[dot-findByClinicalEntryId()]] - degree 3, connects to 1 community
+- [[ClinicalImageRepositoryAdapter]] - degree 9, connects to 1 community
+- [[JpaClinicalImageRepository]] - degree 7, connects to 1 community
+- [[ClinicalImageRepositoryAdapter.java]] - degree 6, connects to 1 community

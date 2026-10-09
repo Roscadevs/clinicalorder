@@ -1,12 +1,12 @@
 ---
 source_file: "frontend/src/config/contact.ts"
 type: "code"
-community: "ServicesCatalogView.tsx"
+community: "react"
 location: "L7"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/ServicesCatalogViewtsx
+  - community/react
 ---
 
 # WHATSAPP_NUMBER
@@ -14,4 +14,4 @@ tags:
 ## Connections
 - [[contact.ts]] - `contains` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/ServicesCatalogViewtsx
+#graphify/code #graphify/EXTRACTED #community/react

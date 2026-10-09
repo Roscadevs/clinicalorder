@@ -13,7 +13,7 @@ tags:
 
 ## Connections
 - [[JpaPatientRepository]] - `imports` [EXTRACTED]
-- [[Patient]] - `imports` [EXTRACTED]
+- [[Patient_1]] - `imports` [EXTRACTED]
 - [[PatientRepository]] - `imports` [EXTRACTED]
 - [[PatientRepositoryAdapter]] - `contains` [EXTRACTED]
 - [[lombok.RequiredArgsConstructor]] - `imports` [EXTRACTED]

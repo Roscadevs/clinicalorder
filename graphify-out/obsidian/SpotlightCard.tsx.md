@@ -1,12 +1,12 @@
 ---
 source_file: "frontend/src/components/reactbits/SpotlightCard.tsx"
 type: "code"
-community: "ServicesCatalogView.tsx"
+community: "reactbits/index.ts"
 location: "L1"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/ServicesCatalogViewtsx
+  - community/reactbits/indexts
 ---
 
 # SpotlightCard.tsx
@@ -17,4 +17,4 @@ tags:
 - [[react]] - `imports_from` [EXTRACTED]
 - [[reactbitsindex.ts]] - `re_exports` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/ServicesCatalogViewtsx
+#graphify/code #graphify/EXTRACTED #community/reactbits/indexts

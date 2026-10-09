@@ -13,6 +13,6 @@ tags:
 ## Connections
 - [[dot-getActiveServices()]] - `references` [EXTRACTED]
 - [[dot-getAllServicesForAdmin()_1]] - `references` [EXTRACTED]
-- [[dot-getServiceById()]] - `references` [EXTRACTED]
+- [[dot-getServiceById()_1]] - `references` [EXTRACTED]
 
 #graphify/code #graphify/EXTRACTED #community/ServiceResponseDTO

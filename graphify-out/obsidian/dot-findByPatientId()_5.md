@@ -1,21 +1,20 @@
 ---
-source_file: "backend/src/main/java/com/clinicadermatologica/app/domain/repository/MedicalRecordRepository.java"
+source_file: "backend/src/main/java/com/clinicadermatologica/app/infrastructure/persistence/adapter/ClinicalEntryRepositoryAdapter.java"
 type: "code"
-community: "MedicalRecordDTO"
-location: "L14"
+community: "ClinicalEntry"
+location: "L33"
 tags:
   - graphify/code
-  - graphify/INFERRED
-  - community/MedicalRecordDTO
+  - graphify/EXTRACTED
+  - community/ClinicalEntry
 ---
 
 # .findByPatientId()
 
 ## Connections
-- [[dot-getMedicalRecordByPatientId()]] - `calls` [INFERRED]
-- [[dot-saveOrUpdateMedicalRecord()]] - `calls` [INFERRED]
-- [[dot-testSaveInitialMedicalRecord_Success()]] - `calls` [INFERRED]
-- [[MedicalRecord_1]] - `references` [EXTRACTED]
-- [[MedicalRecordRepository]] - `method` [EXTRACTED]
+- [[dot-findByPatientIdOrderByCreatedAtDesc()]] - `calls` [INFERRED]
+- [[ClinicalEntry]] - `references` [EXTRACTED]
+- [[ClinicalEntryRepositoryAdapter]] - `method` [EXTRACTED]
+- [[Override_15]] - `references` [EXTRACTED]
 
-#graphify/code #graphify/INFERRED #community/MedicalRecordDTO
+#graphify/code #graphify/EXTRACTED #community/ClinicalEntry

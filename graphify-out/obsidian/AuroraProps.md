@@ -1,12 +1,12 @@
 ---
 source_file: "frontend/src/components/reactbits/Aurora.tsx"
 type: "code"
-community: "ServicesCatalogView.tsx"
+community: "reactbits/index.ts"
 location: "L117"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/ServicesCatalogViewtsx
+  - community/reactbits/indexts
 ---
 
 # AuroraProps
@@ -14,4 +14,4 @@ tags:
 ## Connections
 - [[Aurora.tsx]] - `contains` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/ServicesCatalogViewtsx
+#graphify/code #graphify/EXTRACTED #community/reactbits/indexts

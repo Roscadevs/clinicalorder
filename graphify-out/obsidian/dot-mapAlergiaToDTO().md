@@ -1,12 +1,12 @@
 ---
 source_file: "backend/src/main/java/com/clinicadermatologica/app/application/service/MedicalRecordService.java"
 type: "code"
-community: ".addAlergia"
+community: "AlergiaId"
 location: "L332"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/addAlergia
+  - community/AlergiaId
 ---
 
 # .mapAlergiaToDTO()
@@ -17,4 +17,4 @@ tags:
 - [[AlergiaResponseDTO]] - `references` [EXTRACTED]
 - [[MedicalRecordService]] - `method` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/addAlergia
+#graphify/code #graphify/EXTRACTED #community/AlergiaId

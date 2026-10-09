@@ -1,12 +1,12 @@
 ---
 source_file: "backend/src/main/java/com/clinicadermatologica/app/domain/exception/PaymentGatewayException.java"
 type: "code"
-community: "PaymentService"
+community: "lombok.extern.slf4j.Slf4j"
 location: "L8"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/PaymentService
+  - community/lombokexternslf4jSlf4j
 ---
 
 # .PaymentGatewayException()
@@ -14,4 +14,4 @@ tags:
 ## Connections
 - [[PaymentGatewayException]] - `method` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/PaymentService
+#graphify/code #graphify/EXTRACTED #community/lombokexternslf4jSlf4j

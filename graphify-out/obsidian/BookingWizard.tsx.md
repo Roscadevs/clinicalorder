@@ -1,12 +1,12 @@
 ---
 source_file: "frontend/src/features/appointments/BookingWizard.tsx"
 type: "code"
-community: "api.ts"
+community: "BookingWizard.tsx"
 location: "L1"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/apits
+  - community/BookingWizardtsx
 ---
 
 # BookingWizard.tsx
@@ -18,14 +18,14 @@ tags:
 - [[BookingWizard()]] - `contains` [EXTRACTED]
 - [[Button]] - `imports` [EXTRACTED]
 - [[Card]] - `imports` [EXTRACTED]
-- [[DermatologicService_1]] - `imports` [EXTRACTED]
+- [[DermatologicService]] - `imports` [EXTRACTED]
 - [[GlideSelect()]] - `imports` [EXTRACTED]
 - [[Hold]] - `contains` [EXTRACTED]
 - [[Modal()]] - `imports` [EXTRACTED]
 - [[Outcome]] - `contains` [EXTRACTED]
 - [[PAYMENT_CONCEPT_LABELS]] - `imports` [EXTRACTED]
 - [[PAYMENT_TYPE_LABELS]] - `imports` [EXTRACTED]
-- [[Patient_1]] - `imports` [EXTRACTED]
+- [[Patient]] - `imports` [EXTRACTED]
 - [[PatientSearch()]] - `imports` [EXTRACTED]
 - [[PatientSearch.tsx]] - `imports_from` [EXTRACTED]
 - [[PaymentPreferenceResponse]] - `imports` [EXTRACTED]
@@ -54,4 +54,4 @@ tags:
 - [[typesindex.ts]] - `imports_from` [EXTRACTED]
 - [[uiindex.ts]] - `imports_from` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/apits
+#graphify/code #graphify/EXTRACTED #community/BookingWizardtsx

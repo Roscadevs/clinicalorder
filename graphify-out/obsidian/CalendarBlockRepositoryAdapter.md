@@ -12,7 +12,7 @@ tags:
 # CalendarBlockRepositoryAdapter
 
 ## Connections
-- [[dot-deleteById()_1]] - `method` [EXTRACTED]
+- [[dot-deleteById()]] - `method` [EXTRACTED]
 - [[dot-findByDateRange()]] - `method` [EXTRACTED]
 - [[dot-findById()_2]] - `method` [EXTRACTED]
 - [[dot-findOverlappingBlocks()]] - `method` [EXTRACTED]

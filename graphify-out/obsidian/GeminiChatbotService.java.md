@@ -12,7 +12,7 @@ tags:
 # GeminiChatbotService.java
 
 ## Connections
-- [[DermatologicService]] - `imports` [EXTRACTED]
+- [[DermatologicService_1]] - `imports` [EXTRACTED]
 - [[DermatologicService.java]] - `imports` [EXTRACTED]
 - [[DermatologicServiceRepository]] - `imports` [EXTRACTED]
 - [[GeminiApiClientAdapter]] - `imports` [EXTRACTED]

@@ -1,19 +1,20 @@
 ---
-source_file: "backend/src/main/java/com/clinicadermatologica/app/domain/repository/PatientRepository.java"
+source_file: "backend/src/main/java/com/clinicadermatologica/app/infrastructure/persistence/adapter/DermatologicServiceRepositoryAdapter.java"
 type: "code"
-community: "org.springframework.transaction.annotation.Transactional"
-location: "L16"
+community: "DermatologicService"
+location: "L31"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/orgspringframeworktransactionannotationTransactional
+  - community/DermatologicService
 ---
 
 # .findAllActive()
 
 ## Connections
-- [[dot-getAllActivePatients()]] - `calls` [INFERRED]
-- [[Patient]] - `references` [EXTRACTED]
-- [[PatientRepository]] - `method` [EXTRACTED]
+- [[dot-findByActiveTrue()_1]] - `calls` [INFERRED]
+- [[DermatologicService_1]] - `references` [EXTRACTED]
+- [[DermatologicServiceRepositoryAdapter]] - `method` [EXTRACTED]
+- [[Override_14]] - `references` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/orgspringframeworktransactionannotationTransactional
+#graphify/code #graphify/EXTRACTED #community/DermatologicService

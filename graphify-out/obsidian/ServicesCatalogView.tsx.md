@@ -1,12 +1,12 @@
 ---
 source_file: "frontend/src/features/public/ServicesCatalogView.tsx"
 type: "code"
-community: "ServicesCatalogView.tsx"
+community: "react"
 location: "L1"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/ServicesCatalogViewtsx
+  - community/react
 ---
 
 # ServicesCatalogView.tsx
@@ -15,7 +15,7 @@ tags:
 - [[App.tsx]] - `imports_from` [EXTRACTED]
 - [[BOOKING_MESSAGE]] - `imports` [EXTRACTED]
 - [[BlurText()]] - `imports` [EXTRACTED]
-- [[DermatologicService_1]] - `imports` [EXTRACTED]
+- [[DermatologicService]] - `imports` [EXTRACTED]
 - [[Logo()]] - `imports` [EXTRACTED]
 - [[ServicesCatalogView()]] - `contains` [EXTRACTED]
 - [[Spinner()]] - `imports` [EXTRACTED]
@@ -31,4 +31,4 @@ tags:
 - [[uiindex.ts]] - `imports_from` [EXTRACTED]
 - [[whatsappLink()]] - `imports` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/ServicesCatalogViewtsx
+#graphify/code #graphify/EXTRACTED #community/react

@@ -11,6 +11,6 @@ tags:
 # NoArgsConstructor
 
 ## Connections
-- [[AntecedentePatologicoResponseDTO]] - `references` [EXTRACTED]
+- [[AntecedentePatologicoRequestDTO]] - `references` [EXTRACTED]
 
 #graphify/code #graphify/EXTRACTED #community/AntecedentePatologico

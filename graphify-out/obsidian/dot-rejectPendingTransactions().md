@@ -1,12 +1,12 @@
 ---
 source_file: "backend/src/main/java/com/clinicadermatologica/app/application/service/PaymentService.java"
 type: "code"
-community: "PaymentService"
-location: "L396"
+community: "lombok.extern.slf4j.Slf4j"
+location: "L402"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/PaymentService
+  - community/lombokexternslf4jSlf4j
 ---
 
 # .rejectPendingTransactions()
@@ -14,9 +14,9 @@ tags:
 ## Connections
 - [[dot-findByAppointmentId()_1]] - `calls` [INFERRED]
 - [[dot-registerDepositPayment()]] - `calls` [EXTRACTED]
-- [[dot-save()_7]] - `calls` [INFERRED]
-- [[Appointment_5]] - `references` [EXTRACTED]
+- [[dot-save()_6]] - `calls` [INFERRED]
+- [[Appointment_4]] - `references` [EXTRACTED]
 - [[PaymentService]] - `method` [EXTRACTED]
 - [[PaymentTransaction]] - `references` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/PaymentService
+#graphify/code #graphify/EXTRACTED #community/lombokexternslf4jSlf4j

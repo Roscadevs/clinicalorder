@@ -1,12 +1,12 @@
 ---
 source_file: "frontend/src/services/api.ts"
 type: "code"
-community: "api.ts"
-location: "L193"
+community: "MedicalRecordView.tsx"
+location: "L201"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/apits
+  - community/MedicalRecordViewtsx
 ---
 
 # appointmentsApi
@@ -21,4 +21,4 @@ tags:
 - [[RegisterPaymentStep.tsx]] - `imports` [EXTRACTED]
 - [[api.ts]] - `contains` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/apits
+#graphify/code #graphify/EXTRACTED #community/MedicalRecordViewtsx

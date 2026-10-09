@@ -12,8 +12,8 @@ tags:
 # .findByPatientIdOrderByCreatedAtDesc()
 
 ## Connections
-- [[dot-findByPatientId()_6]] - `calls` [INFERRED]
-- [[ClinicalEntry_1]] - `references` [EXTRACTED]
+- [[dot-findByPatientId()_5]] - `calls` [INFERRED]
+- [[ClinicalEntry]] - `references` [EXTRACTED]
 - [[JpaClinicalEntryRepository]] - `method` [EXTRACTED]
 
 #graphify/code #graphify/EXTRACTED #community/ClinicalEntry

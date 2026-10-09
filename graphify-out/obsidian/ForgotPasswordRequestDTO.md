@@ -1,12 +1,12 @@
 ---
 source_file: "backend/src/main/java/com/clinicadermatologica/app/presentation/dto/ForgotPasswordRequestDTO.java"
 type: "code"
-community: "AuthController"
+community: "UserRole"
 location: "L10"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/AuthController
+  - community/UserRole
 ---
 
 # ForgotPasswordRequestDTO
@@ -21,4 +21,4 @@ tags:
 - [[NoArgsConstructor_34]] - `references` [EXTRACTED]
 - [[Setter_34]] - `references` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/AuthController
+#graphify/code #graphify/EXTRACTED #community/UserRole

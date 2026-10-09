@@ -1,19 +1,19 @@
 ---
-source_file: "backend/src/main/java/com/clinicadermatologica/app/infrastructure/persistence/adapter/UserRepositoryAdapter.java"
+source_file: "backend/src/main/java/com/clinicadermatologica/app/infrastructure/persistence/adapter/DermatologicServiceRepositoryAdapter.java"
 type: "code"
-community: "User"
-location: "L20"
+community: "DermatologicService"
+location: "L21"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/User
+  - community/DermatologicService
 ---
 
 # .findById()
 
 ## Connections
-- [[Override_13]] - `references` [EXTRACTED]
-- [[User]] - `references` [EXTRACTED]
-- [[UserRepositoryAdapter]] - `method` [EXTRACTED]
+- [[DermatologicService_1]] - `references` [EXTRACTED]
+- [[DermatologicServiceRepositoryAdapter]] - `method` [EXTRACTED]
+- [[Override_14]] - `references` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/User
+#graphify/code #graphify/EXTRACTED #community/DermatologicService

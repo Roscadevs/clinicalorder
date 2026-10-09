@@ -13,10 +13,10 @@ tags:
 
 ## Connections
 - [[dot-bookTemporaryHold()]] - `calls` [INFERRED]
-- [[dot-findById()_7]] - `calls` [INFERRED]
 - [[dot-findById()_6]] - `calls` [INFERRED]
-- [[dot-findById()_8]] - `calls` [INFERRED]
-- [[dot-findOverlappingAppointments()_1]] - `calls` [INFERRED]
+- [[dot-findById()_5]] - `calls` [INFERRED]
+- [[dot-findById()_7]] - `calls` [INFERRED]
+- [[dot-findOverlappingAppointments()]] - `calls` [INFERRED]
 - [[dot-findOverlappingBlocks()_2]] - `calls` [INFERRED]
 - [[AppointmentServiceTest]] - `method` [EXTRACTED]
 - [[org.junit.jupiter.api.DisplayName]] - `references` [EXTRACTED]

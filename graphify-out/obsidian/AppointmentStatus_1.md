@@ -1,12 +1,12 @@
 ---
 source_file: "frontend/src/types/index.ts"
 type: "code"
-community: "AgendaView.tsx"
+community: "api.ts"
 location: "L40"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/AgendaViewtsx
+  - community/apits
 ---
 
 # AppointmentStatus
@@ -16,4 +16,4 @@ tags:
 - [[appointmentStatus.ts]] - `imports` [EXTRACTED]
 - [[typesindex.ts]] - `contains` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/AgendaViewtsx
+#graphify/code #graphify/EXTRACTED #community/apits

@@ -29,19 +29,25 @@ export const LoginView: React.FC = () => {
       else if (response.role === 'ADMIN') navigate('/app/admin');
       else navigate('/app');
     } catch (err: any) {
-      if (err.response?.status === 401 || err.response?.status === 403) {
-        setErrorMsg('Usuario o contraseña incorrectos.');
+      if (err.response?.status === 400 || err.response?.status === 401 || err.response?.status === 403) {
+        setErrorMsg(err.response?.data?.message || 'Usuario o contraseña incorrectos.');
       } else {
         // FALLBACK: Simulación local si el backend no está conectado (Modo Demo)
         console.warn('Backend no disponible. Iniciando sesión simulada en Modo Demo.');
 
         let simulatedRole = 'ADMIN';
-        if (username.includes('recepcion') || username.includes('secretaria')) simulatedRole = 'SECRETARIA';
-        if (username.includes('paula') || username.includes('doctora')) simulatedRole = 'DOCTORA';
+        let simulatedUserId = 1;
+        if (username.includes('recepcion') || username.includes('secretaria')) {
+          simulatedRole = 'SECRETARIA';
+          simulatedUserId = 3;
+        } else if (username.includes('paula') || username.includes('doctora') || username.includes('valeria')) {
+          simulatedRole = 'DOCTORA';
+          simulatedUserId = 2;
+        }
 
         localStorage.setItem('token', 'demo-token-12345');
         localStorage.setItem('role', simulatedRole);
-        localStorage.setItem('userId', '999');
+        localStorage.setItem('userId', String(simulatedUserId));
         localStorage.setItem('fullName', 'Usuario Demo');
 
         if (simulatedRole === 'SECRETARIA') navigate('/app/agenda');

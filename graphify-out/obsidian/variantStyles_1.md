@@ -1,8 +1,8 @@
 ---
-source_file: "frontend/src/components/ui/Button.tsx"
+source_file: "frontend/src/components/ui/Badge.tsx"
 type: "code"
 community: "cn"
-location: "L17"
+location: "L10"
 tags:
   - graphify/code
   - graphify/EXTRACTED
@@ -12,6 +12,6 @@ tags:
 # variantStyles
 
 ## Connections
-- [[Button.tsx]] - `contains` [EXTRACTED]
+- [[Badge.tsx]] - `contains` [EXTRACTED]
 
 #graphify/code #graphify/EXTRACTED #community/cn

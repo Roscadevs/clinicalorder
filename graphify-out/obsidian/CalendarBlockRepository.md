@@ -12,8 +12,8 @@ tags:
 # CalendarBlockRepository
 
 ## Connections
-- [[dot-deleteById()]] - `method` [EXTRACTED]
-- [[dot-findByDateRange()_5]] - `method` [EXTRACTED]
+- [[dot-deleteById()_1]] - `method` [EXTRACTED]
+- [[dot-findByDateRange()_4]] - `method` [EXTRACTED]
 - [[dot-findById()_1]] - `method` [EXTRACTED]
 - [[dot-findOverlappingBlocks()_2]] - `method` [EXTRACTED]
 - [[dot-save()_1]] - `method` [EXTRACTED]

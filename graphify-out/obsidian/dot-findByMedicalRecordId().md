@@ -1,8 +1,8 @@
 ---
-source_file: "backend/src/main/java/com/clinicadermatologica/app/domain/repository/HabitoRepository.java"
+source_file: "backend/src/main/java/com/clinicadermatologica/app/infrastructure/persistence/adapter/HabitoRepositoryAdapter.java"
 type: "code"
 community: "Habito"
-location: "L18"
+location: "L26"
 tags:
   - graphify/code
   - graphify/EXTRACTED
@@ -12,9 +12,9 @@ tags:
 # .findByMedicalRecordId()
 
 ## Connections
-- [[dot-mapRecordToDTO()]] - `calls` [INFERRED]
-- [[dot-testSaveInitialMedicalRecord_Success()]] - `calls` [INFERRED]
+- [[dot-findByIdMedicalRecordId()]] - `calls` [INFERRED]
 - [[Habito]] - `references` [EXTRACTED]
-- [[HabitoRepository]] - `method` [EXTRACTED]
+- [[HabitoRepositoryAdapter]] - `method` [EXTRACTED]
+- [[Override_3]] - `references` [EXTRACTED]
 
 #graphify/code #graphify/EXTRACTED #community/Habito

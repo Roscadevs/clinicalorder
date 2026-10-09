@@ -1,17 +1,17 @@
 ---
 source_file: ""
 type: "code"
-community: "PasswordResetToken"
+community: ".register"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/PasswordResetToken
+  - community/register
 ---
 
 # Override
 
 ## Connections
-- [[dot-findByToken()]] - `references` [EXTRACTED]
-- [[dot-save()_22]] - `references` [EXTRACTED]
+- [[dot-register()_3]] - `references` [EXTRACTED]
+- [[dot-supportedType()_2]] - `references` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/PasswordResetToken
+#graphify/code #graphify/EXTRACTED #community/register

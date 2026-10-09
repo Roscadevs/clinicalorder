@@ -12,11 +12,11 @@ tags:
 # .updateClinicalEntry()
 
 ## Connections
-- [[dot-encrypt()]] - `calls` [EXTRACTED]
-- [[dot-findById()_19]] - `calls` [INFERRED]
-- [[dot-findById()_8]] - `calls` [INFERRED]
+- [[dot-encrypt()_1]] - `calls` [EXTRACTED]
+- [[dot-findById()_17]] - `calls` [INFERRED]
+- [[dot-findById()_7]] - `calls` [INFERRED]
 - [[dot-mapEntryToDTO()]] - `calls` [EXTRACTED]
-- [[dot-save()_11]] - `calls` [INFERRED]
+- [[dot-save()_18]] - `calls` [INFERRED]
 - [[dot-saveAudit()_2]] - `calls` [INFERRED]
 - [[dot-updateClinicalEntry()]] - `calls` [INFERRED]
 - [[ClinicalEntryResponseDTO]] - `references` [EXTRACTED]

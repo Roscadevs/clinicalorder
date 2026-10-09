@@ -1,11 +1,11 @@
 ---
 source_file: ""
 type: "code"
-community: "AlergiaRequestDTO"
+community: "MedicalRecordController"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/AlergiaRequestDTO
+  - community/MedicalRecordController
 ---
 
 # PostMapping
@@ -18,4 +18,4 @@ tags:
 - [[dot-saveMedicalRecord()]] - `references` [EXTRACTED]
 - [[dot-uploadClinicalPhoto()]] - `references` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/AlergiaRequestDTO
+#graphify/code #graphify/EXTRACTED #community/MedicalRecordController

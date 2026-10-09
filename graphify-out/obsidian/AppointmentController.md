@@ -24,8 +24,8 @@ tags:
 - [[AppointmentController.java]] - `contains` [EXTRACTED]
 - [[AppointmentService]] - `references` [EXTRACTED]
 - [[PaymentService]] - `references` [EXTRACTED]
-- [[RequestMapping_4]] - `references` [EXTRACTED]
-- [[RestController_4]] - `references` [EXTRACTED]
+- [[RequestMapping_5]] - `references` [EXTRACTED]
+- [[RestController_5]] - `references` [EXTRACTED]
 - [[lombok.RequiredArgsConstructor]] - `references` [EXTRACTED]
 
 #graphify/code #graphify/EXTRACTED #community/orgspringframeworkhttpResponseEntity

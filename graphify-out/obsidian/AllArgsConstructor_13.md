@@ -11,6 +11,6 @@ tags:
 # AllArgsConstructor
 
 ## Connections
-- [[MedicalRecord_1]] - `references` [EXTRACTED]
+- [[MedicalRecord]] - `references` [EXTRACTED]
 
 #graphify/code #graphify/EXTRACTED #community/MedicalRecord

@@ -1,12 +1,12 @@
 ---
 source_file: "backend/src/main/java/com/clinicadermatologica/app/application/service/AuthService.java"
 type: "code"
-community: "lombok.extern.slf4j.Slf4j"
+community: "UserRepository"
 location: "L97"
 tags:
   - graphify/code
   - graphify/INFERRED
-  - community/lombokexternslf4jSlf4j
+  - community/UserRepository
 ---
 
 # .resetPassword()
@@ -23,4 +23,4 @@ tags:
 - [[ResetPasswordRequestDTO]] - `references` [EXTRACTED]
 - [[org.springframework.transaction.annotation.Transactional]] - `references` [EXTRACTED]
 
-#graphify/code #graphify/INFERRED #community/lombokexternslf4jSlf4j
+#graphify/code #graphify/INFERRED #community/UserRepository

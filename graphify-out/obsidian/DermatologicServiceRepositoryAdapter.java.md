@@ -12,7 +12,7 @@ tags:
 # DermatologicServiceRepositoryAdapter.java
 
 ## Connections
-- [[DermatologicService]] - `imports` [EXTRACTED]
+- [[DermatologicService_1]] - `imports` [EXTRACTED]
 - [[DermatologicServiceRepository]] - `imports` [EXTRACTED]
 - [[DermatologicServiceRepositoryAdapter]] - `contains` [EXTRACTED]
 - [[JpaDermatologicServiceRepository]] - `imports` [EXTRACTED]

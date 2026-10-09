@@ -11,7 +11,7 @@ tags:
 # Override
 
 ## Connections
-- [[dot-deleteById()_1]] - `references` [EXTRACTED]
+- [[dot-deleteById()]] - `references` [EXTRACTED]
 - [[dot-findByDateRange()]] - `references` [EXTRACTED]
 - [[dot-findById()_2]] - `references` [EXTRACTED]
 - [[dot-findOverlappingBlocks()]] - `references` [EXTRACTED]

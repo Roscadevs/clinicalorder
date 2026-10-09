@@ -13,7 +13,7 @@ tags:
 
 ## Connections
 - [[dot-getClinicalEntriesByPatient()]] - `calls` [INFERRED]
-- [[ClinicalEntry_1]] - `references` [EXTRACTED]
+- [[ClinicalEntry]] - `references` [EXTRACTED]
 - [[ClinicalEntryRepository]] - `method` [EXTRACTED]
 
 #graphify/code #graphify/EXTRACTED #community/MedicalRecordController

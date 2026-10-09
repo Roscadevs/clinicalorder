@@ -1,20 +1,20 @@
 ---
-source_file: "backend/src/main/java/com/clinicadermatologica/app/infrastructure/persistence/adapter/HabitoRepositoryAdapter.java"
+source_file: "backend/src/main/java/com/clinicadermatologica/app/domain/repository/AntecedentePatologicoRepository.java"
 type: "code"
-community: "Habito"
-location: "L26"
+community: "AntecedentePatologico"
+location: "L18"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/Habito
+  - community/AntecedentePatologico
 ---
 
 # .findByMedicalRecordId()
 
 ## Connections
-- [[dot-findByIdMedicalRecordId()]] - `calls` [INFERRED]
-- [[Habito]] - `references` [EXTRACTED]
-- [[HabitoRepositoryAdapter]] - `method` [EXTRACTED]
-- [[Override_3]] - `references` [EXTRACTED]
+- [[dot-mapRecordToDTO()]] - `calls` [INFERRED]
+- [[dot-testSaveInitialMedicalRecord_Success()]] - `calls` [INFERRED]
+- [[AntecedentePatologico]] - `references` [EXTRACTED]
+- [[AntecedentePatologicoRepository]] - `method` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/Habito
+#graphify/code #graphify/EXTRACTED #community/AntecedentePatologico

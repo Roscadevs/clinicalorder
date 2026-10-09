@@ -12,7 +12,7 @@ tags:
 # .findByPatientIdOrderByStartTimeDesc()
 
 ## Connections
-- [[dot-findByPatientId()_2]] - `calls` [INFERRED]
+- [[dot-findByPatientId()_6]] - `calls` [INFERRED]
 - [[Appointment]] - `references` [EXTRACTED]
 - [[JpaAppointmentRepository]] - `method` [EXTRACTED]
 

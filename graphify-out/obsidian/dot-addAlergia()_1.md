@@ -1,22 +1,22 @@
 ---
 source_file: "backend/src/main/java/com/clinicadermatologica/app/application/service/MedicalRecordService.java"
 type: "code"
-community: ".addAlergia"
+community: "AlergiaId"
 location: "L153"
 tags:
   - graphify/code
   - graphify/INFERRED
-  - community/addAlergia
+  - community/AlergiaId
 ---
 
 # .addAlergia()
 
 ## Connections
 - [[dot-addAlergia()]] - `calls` [INFERRED]
-- [[dot-existsById()_5]] - `calls` [INFERRED]
-- [[dot-findById()_22]] - `calls` [INFERRED]
+- [[dot-existsById()_4]] - `calls` [INFERRED]
+- [[dot-findById()_20]] - `calls` [INFERRED]
 - [[dot-mapAlergiaToDTO()]] - `calls` [EXTRACTED]
-- [[dot-save()_21]] - `calls` [INFERRED]
+- [[dot-save()_19]] - `calls` [INFERRED]
 - [[dot-testAddAlergia_DuplicateTipo_Throws()]] - `calls` [INFERRED]
 - [[dot-testAddAlergia_Success()]] - `calls` [INFERRED]
 - [[AlergiaId]] - `calls` [INFERRED]
@@ -25,4 +25,4 @@ tags:
 - [[MedicalRecordService]] - `method` [EXTRACTED]
 - [[org.springframework.transaction.annotation.Transactional]] - `references` [EXTRACTED]
 
-#graphify/code #graphify/INFERRED #community/addAlergia
+#graphify/code #graphify/INFERRED #community/AlergiaId

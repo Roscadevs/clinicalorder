@@ -12,8 +12,8 @@ tags:
 # .findByActiveTrue()
 
 ## Connections
-- [[dot-findAllActive()]] - `calls` [INFERRED]
+- [[dot-findAllActive()_1]] - `calls` [INFERRED]
 - [[JpaPatientRepository]] - `method` [EXTRACTED]
-- [[Patient]] - `references` [EXTRACTED]
+- [[Patient_1]] - `references` [EXTRACTED]
 
 #graphify/code #graphify/EXTRACTED #community/Patient

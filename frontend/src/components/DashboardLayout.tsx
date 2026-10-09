@@ -5,6 +5,7 @@ import { BottomNav } from './BottomNav';
 import { GeminiChatbotWidget } from './GeminiChatbotWidget';
 import { PageTransition } from './PageTransition';
 import { NAV_TABS, type TabType, type RoleType } from './navConfig';
+import { ROLE_TO_USER_ID } from '../utils/session';
 
 const pathToTab = (path: string): TabType => {
   const match = NAV_TABS.find((t) => path.includes(t.path));
@@ -60,6 +61,8 @@ export const DashboardLayout: React.FC = () => {
               onChange={(e) => {
                 const role = e.target.value as RoleType;
                 setActiveRole(role);
+                localStorage.setItem('role', role);
+                localStorage.setItem('userId', String(ROLE_TO_USER_ID[role] ?? 1));
                 handleSetTab(roleLanding[role]);
               }}
               className="bg-sand-800 text-primary-200 font-bold px-2 py-0.5 rounded outline-none border border-sand-700 text-[11px] sm:text-xs cursor-pointer"

@@ -1,12 +1,12 @@
 ---
 source_file: "frontend/src/features/agenda/appointmentStatus.ts"
 type: "code"
-community: "AgendaView.tsx"
+community: "MedicalRecordView.tsx"
 location: "L16"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/AgendaViewtsx
+  - community/MedicalRecordViewtsx
 ---
 
 # getVisualStatus()
@@ -22,4 +22,4 @@ tags:
 - [[TodaysAppointments()]] - `calls` [EXTRACTED]
 - [[appointmentStatus.ts]] - `contains` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/AgendaViewtsx
+#graphify/code #graphify/EXTRACTED #community/MedicalRecordViewtsx

@@ -1,12 +1,12 @@
 ---
 source_file: "frontend/src/features/admin/UserFormModal.tsx"
 type: "code"
-community: "cn"
+community: "api.ts"
 location: "L1"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/cn
+  - community/apits
 ---
 
 # UserFormModal.tsx
@@ -28,4 +28,4 @@ tags:
 - [[typesindex.ts]] - `imports_from` [EXTRACTED]
 - [[uiindex.ts]] - `imports_from` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/cn
+#graphify/code #graphify/EXTRACTED #community/apits

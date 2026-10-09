@@ -1,12 +1,12 @@
 ---
 source_file: "backend/src/main/java/com/clinicadermatologica/app/domain/repository/ClinicalEntryRepository.java"
 type: "code"
-community: "MedicalRecordService"
+community: "ClinicalEntry"
 location: "L21"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/MedicalRecordService
+  - community/ClinicalEntry
 ---
 
 # .saveAudit()
@@ -16,4 +16,4 @@ tags:
 - [[ClinicalEntryAudit]] - `references` [EXTRACTED]
 - [[ClinicalEntryRepository]] - `method` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/MedicalRecordService
+#graphify/code #graphify/EXTRACTED #community/ClinicalEntry

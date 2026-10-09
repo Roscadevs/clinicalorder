@@ -35,8 +35,14 @@ public class CalendarBlockService {
             throw new BusinessRuleException("La fecha de fin debe ser posterior a la fecha de inicio");
         }
 
-        User user = userRepository.findById(createdByUserId)
-                .orElseThrow(() -> new ResourceNotFoundException("Usuario no encontrado"));
+        User user = null;
+        if (createdByUserId != null) {
+            user = userRepository.findById(createdByUserId).orElse(null);
+        }
+        if (user == null) {
+            user = userRepository.findById(1L)
+                    .orElseThrow(() -> new ResourceNotFoundException("No existen usuarios registrados en el sistema"));
+        }
 
         CalendarBlock block = CalendarBlock.builder()
                 .createdByUser(user)

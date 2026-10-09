@@ -1,10 +1,21 @@
 import { RoleType } from '../components/navConfig';
 
-/** ID del usuario logueado (desde localStorage), o undefined si no hay sesión. */
-export function currentUserId(): number | undefined {
+export const ROLE_TO_USER_ID: Record<RoleType, number> = {
+  PUBLIC: 1,
+  ADMIN: 1,
+  DOCTORA: 2,
+  SECRETARIA: 3,
+};
+
+/** ID del usuario logueado (desde localStorage), o fallback según rol si no hay sesión / demo. */
+export function currentUserId(): number {
   const raw = localStorage.getItem('userId');
   const n = raw ? Number(raw) : NaN;
-  return Number.isFinite(n) ? n : undefined;
+  if (Number.isFinite(n) && n > 0 && n !== 999) {
+    return n;
+  }
+  const role = (localStorage.getItem('role') as RoleType) || 'ADMIN';
+  return ROLE_TO_USER_ID[role] ?? 1;
 }
 
 /** Rol activo del usuario (localStorage). */

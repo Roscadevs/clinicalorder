@@ -11,6 +11,6 @@ tags:
 # AllArgsConstructor
 
 ## Connections
-- [[AlergiaId]] - `references` [EXTRACTED]
+- [[Alergia]] - `references` [EXTRACTED]
 
 #graphify/code #graphify/EXTRACTED #community/AlergiaId

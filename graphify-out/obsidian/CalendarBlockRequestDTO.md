@@ -14,13 +14,13 @@ tags:
 ## Connections
 - [[dot-createBlock()]] - `references` [EXTRACTED]
 - [[dot-createBlock()_1]] - `references` [EXTRACTED]
-- [[AllArgsConstructor_20]] - `references` [EXTRACTED]
-- [[Builder_18]] - `references` [EXTRACTED]
+- [[AllArgsConstructor_21]] - `references` [EXTRACTED]
+- [[Builder_19]] - `references` [EXTRACTED]
 - [[CalendarBlockController.java]] - `imports` [EXTRACTED]
 - [[CalendarBlockRequestDTO.java]] - `contains` [EXTRACTED]
 - [[CalendarBlockService.java]] - `imports` [EXTRACTED]
-- [[Getter_20]] - `references` [EXTRACTED]
-- [[NoArgsConstructor_20]] - `references` [EXTRACTED]
-- [[Setter_20]] - `references` [EXTRACTED]
+- [[Getter_21]] - `references` [EXTRACTED]
+- [[NoArgsConstructor_21]] - `references` [EXTRACTED]
+- [[Setter_21]] - `references` [EXTRACTED]
 
 #graphify/code #graphify/EXTRACTED #community/CalendarBlockResponseDTO

@@ -1,41 +1,21 @@
 ---
-source_file: "backend/src/main/java/com/clinicadermatologica/app/domain/model/MedicalRecord.java"
+source_file: "frontend/src/types/index.ts"
 type: "code"
-community: "MedicalRecord"
-location: "L21"
+community: "AnamnesisForm.tsx"
+location: "L111"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/MedicalRecord
+  - community/AnamnesisFormtsx
 ---
 
 # MedicalRecord
 
 ## Connections
-- [[dot-findById()_22]] - `references` [EXTRACTED]
-- [[dot-findById()_9]] - `references` [EXTRACTED]
-- [[dot-findByPatientId()_5]] - `references` [EXTRACTED]
-- [[dot-findByPatientId()_3]] - `references` [EXTRACTED]
-- [[dot-findByPatientId()_4]] - `references` [EXTRACTED]
-- [[dot-save()_13]] - `references` [EXTRACTED]
-- [[dot-save()_8]] - `references` [EXTRACTED]
-- [[Alergia]] - `references` [EXTRACTED]
-- [[AllArgsConstructor_13]] - `references` [EXTRACTED]
-- [[AntecedentePatologico]] - `references` [EXTRACTED]
-- [[Builder_12]] - `references` [EXTRACTED]
-- [[Entity_4]] - `references` [EXTRACTED]
-- [[Getter_13]] - `references` [EXTRACTED]
-- [[Habito]] - `references` [EXTRACTED]
-- [[JpaMedicalRecordRepository]] - `references` [EXTRACTED]
-- [[JpaMedicalRecordRepository.java]] - `imports` [EXTRACTED]
-- [[MedicalRecord.java]] - `contains` [EXTRACTED]
-- [[MedicalRecordAudit]] - `references` [EXTRACTED]
-- [[MedicalRecordRepository.java]] - `imports` [EXTRACTED]
-- [[MedicalRecordRepositoryAdapter.java]] - `imports` [EXTRACTED]
-- [[NoArgsConstructor_13]] - `references` [EXTRACTED]
-- [[Patient]] - `references` [EXTRACTED]
-- [[Setter_13]] - `references` [EXTRACTED]
-- [[Table_4]] - `references` [EXTRACTED]
-- [[User]] - `references` [EXTRACTED]
+- [[AnamnesisForm.tsx]] - `imports` [EXTRACTED]
+- [[AnamnesisFormProps]] - `references` [EXTRACTED]
+- [[MedicalRecordView.tsx]] - `imports` [EXTRACTED]
+- [[api.ts]] - `imports` [EXTRACTED]
+- [[typesindex.ts]] - `contains` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/MedicalRecord
+#graphify/code #graphify/EXTRACTED #community/AnamnesisFormtsx

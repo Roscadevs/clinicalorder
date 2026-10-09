@@ -1,11 +1,11 @@
 ---
 type: community
-members: 26
+members: 37
 ---
 
 # react
 
-**Members:** 26 nodes
+**Members:** 37 nodes
 
 ## Members
 - [[dot-componentDidCatch()]] - code - frontend/src/components/ErrorBoundary.tsx
@@ -15,12 +15,16 @@ members: 26
 - [[AnalyticsDashboardView.tsx]] - code - frontend/src/features/analytics/AnalyticsDashboardView.tsx
 - [[App()]] - code - frontend/src/App.tsx
 - [[App.tsx]] - code - frontend/src/App.tsx
+- [[BOOKING_MESSAGE]] - code - frontend/src/config/contact.ts
 - [[BookingFailureView()]] - code - frontend/src/features/appointments/BookingStatusViews.tsx
 - [[BookingPendingView()]] - code - frontend/src/features/appointments/BookingStatusViews.tsx
 - [[BookingStatusViews.tsx]] - code - frontend/src/features/appointments/BookingStatusViews.tsx
 - [[BookingSuccessView()]] - code - frontend/src/features/appointments/BookingStatusViews.tsx
+- [[CLINIC]] - code - frontend/src/config/contact.ts
 - [[ErrorBoundary]] - code - frontend/src/components/ErrorBoundary.tsx
 - [[ErrorBoundary.tsx]] - code - frontend/src/components/ErrorBoundary.tsx
+- [[LandingPageView()]] - code - frontend/src/features/public/LandingPageView.tsx
+- [[LandingPageView.tsx]] - code - frontend/src/features/public/LandingPageView.tsx
 - [[LoginView()]] - code - frontend/src/features/auth/LoginView.tsx
 - [[LoginView.tsx]] - code - frontend/src/features/auth/LoginView.tsx
 - [[PageTransition()]] - code - frontend/src/components/PageTransition.tsx
@@ -29,11 +33,18 @@ members: 26
 - [[PasswordRecoveryView()]] - code - frontend/src/features/auth/PasswordRecoveryView.tsx
 - [[PasswordRecoveryView.tsx]] - code - frontend/src/features/auth/PasswordRecoveryView.tsx
 - [[Props]] - code - frontend/src/components/ErrorBoundary.tsx
+- [[ServicesCatalogView()]] - code - frontend/src/features/public/ServicesCatalogView.tsx
+- [[ServicesCatalogView.tsx]] - code - frontend/src/features/public/ServicesCatalogView.tsx
 - [[State]] - code - frontend/src/components/ErrorBoundary.tsx
+- [[WHATSAPP_NUMBER]] - code - frontend/src/config/contact.ts
+- [[contact.ts]] - code - frontend/src/config/contact.ts
 - [[lucide-react]] - concept - frontend/package.json
 - [[main.tsx]] - code - frontend/src/main.tsx
 - [[react]] - concept - frontend/package.json
 - [[react-router-dom]] - concept - frontend/package.json
+- [[serviceInquiryMessage()]] - code - frontend/src/config/contact.ts
+- [[services]] - code - frontend/src/features/public/LandingPageView.tsx
+- [[whatsappLink()]] - code - frontend/src/config/contact.ts
 
 ## Live Query (requires Dataview plugin)
 
@@ -43,21 +54,24 @@ SORT file.name ASC
 ```
 
 ## Connections to other communities
-- 27 edges to [[_COMMUNITY_cn]]
-- 19 edges to [[_COMMUNITY_api.ts]]
-- 14 edges to [[_COMMUNITY_ServicesCatalogView.tsx]]
-- 10 edges to [[_COMMUNITY_MedicalRecordView.tsx]]
-- 8 edges to [[_COMMUNITY_DashboardLayout.tsx]]
+- 21 edges to [[_COMMUNITY_cn]]
+- 13 edges to [[_COMMUNITY_api.ts]]
+- 11 edges to [[_COMMUNITY_AdminServicesView.tsx]]
+- 11 edges to [[_COMMUNITY_MedicalRecordView.tsx]]
+- 10 edges to [[_COMMUNITY_DashboardLayout.tsx]]
+- 8 edges to [[_COMMUNITY_reactbitsindex.ts]]
+- 8 edges to [[_COMMUNITY_AppointmentReceiptModal.tsx]]
+- 7 edges to [[_COMMUNITY_BookingWizard.tsx]]
 - 4 edges to [[_COMMUNITY_AgendaView.tsx]]
-- 4 edges to [[_COMMUNITY_AppointmentReceiptModal.tsx]]
+- 3 edges to [[_COMMUNITY_BlurText.tsx]]
 - 3 edges to [[_COMMUNITY_package.json]]
-- 2 edges to [[_COMMUNITY_TreatmentPhotos.tsx]]
 - 2 edges to [[_COMMUNITY_GlideSelect.tsx]]
+- 2 edges to [[_COMMUNITY_AnamnesisForm.tsx]]
 - 1 edge to [[_COMMUNITY_Stepper.tsx]]
 
 ## Top bridge nodes
-- [[react]] - degree 45, connects to 11 communities
-- [[lucide-react]] - degree 29, connects to 10 communities
-- [[App.tsx]] - degree 30, connects to 6 communities
-- [[react-router-dom]] - degree 10, connects to 4 communities
-- [[LoginView.tsx]] - degree 11, connects to 2 communities
+- [[react]] - degree 45, connects to 14 communities
+- [[lucide-react]] - degree 29, connects to 11 communities
+- [[App.tsx]] - degree 30, connects to 5 communities
+- [[ServicesCatalogView.tsx]] - degree 18, connects to 5 communities
+- [[LandingPageView.tsx]] - degree 16, connects to 3 communities

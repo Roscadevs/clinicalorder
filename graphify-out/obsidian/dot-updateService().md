@@ -12,9 +12,9 @@ tags:
 # .updateService()
 
 ## Connections
-- [[dot-findById()_6]] - `calls` [INFERRED]
+- [[dot-findById()_5]] - `calls` [INFERRED]
 - [[dot-mapToDTO()_1]] - `calls` [EXTRACTED]
-- [[dot-save()_12]] - `calls` [INFERRED]
+- [[dot-save()_11]] - `calls` [INFERRED]
 - [[dot-updateService()_1]] - `calls` [INFERRED]
 - [[DermatologicServiceService]] - `method` [EXTRACTED]
 - [[ResourceNotFoundException]] - `calls` [EXTRACTED]

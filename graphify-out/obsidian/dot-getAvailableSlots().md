@@ -12,9 +12,9 @@ tags:
 # .getAvailableSlots()
 
 ## Connections
+- [[dot-findByDateRange()_3]] - `calls` [INFERRED]
 - [[dot-findByDateRange()_4]] - `calls` [INFERRED]
-- [[dot-findByDateRange()_5]] - `calls` [INFERRED]
-- [[dot-findById()_6]] - `calls` [INFERRED]
+- [[dot-findById()_5]] - `calls` [INFERRED]
 - [[dot-getAvailableSlots()_1]] - `calls` [INFERRED]
 - [[dot-isExpired()]] - `calls` [EXTRACTED]
 - [[dot-testGetAvailableSlots()]] - `calls` [INFERRED]

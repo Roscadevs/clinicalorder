@@ -12,7 +12,7 @@ tags:
 # .findById()
 
 ## Connections
-- [[ClinicalEntry_1]] - `references` [EXTRACTED]
+- [[ClinicalEntry]] - `references` [EXTRACTED]
 - [[ClinicalEntryRepositoryAdapter]] - `method` [EXTRACTED]
 - [[Override_15]] - `references` [EXTRACTED]
 

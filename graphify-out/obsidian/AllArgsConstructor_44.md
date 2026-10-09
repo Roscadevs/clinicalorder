@@ -1,16 +1,16 @@
 ---
 source_file: ""
 type: "code"
-community: "PasswordResetToken"
+community: "PaymentReceiptDTO"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/PasswordResetToken
+  - community/PaymentReceiptDTO
 ---
 
 # AllArgsConstructor
 
 ## Connections
-- [[PasswordResetToken]] - `references` [EXTRACTED]
+- [[PaymentReceiptDTO]] - `references` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/PasswordResetToken
+#graphify/code #graphify/EXTRACTED #community/PaymentReceiptDTO

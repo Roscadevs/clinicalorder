@@ -17,8 +17,8 @@ tags:
 - [[dot-getBlocks()]] - `method` [EXTRACTED]
 - [[CalendarBlockController.java]] - `contains` [EXTRACTED]
 - [[CalendarBlockService]] - `references` [EXTRACTED]
-- [[RequestMapping_2]] - `references` [EXTRACTED]
-- [[RestController_2]] - `references` [EXTRACTED]
+- [[RequestMapping_3]] - `references` [EXTRACTED]
+- [[RestController_3]] - `references` [EXTRACTED]
 - [[lombok.RequiredArgsConstructor]] - `references` [EXTRACTED]
 - [[org.springframework.security.access.prepost.PreAuthorize]] - `references` [EXTRACTED]
 

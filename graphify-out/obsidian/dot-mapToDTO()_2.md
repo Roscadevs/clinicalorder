@@ -2,7 +2,7 @@
 source_file: "backend/src/main/java/com/clinicadermatologica/app/application/service/CalendarBlockService.java"
 type: "code"
 community: "CalendarBlockResponseDTO"
-location: "L69"
+location: "L75"
 tags:
   - graphify/code
   - graphify/EXTRACTED

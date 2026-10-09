@@ -1,16 +1,16 @@
 ---
 source_file: ""
 type: "code"
-community: "AuthController"
+community: "org.springframework.http.ResponseEntity"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/AuthController
+  - community/orgspringframeworkhttpResponseEntity
 ---
 
 # RequestMapping
 
 ## Connections
-- [[AuthController]] - `references` [EXTRACTED]
+- [[AppointmentController]] - `references` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/AuthController
+#graphify/code #graphify/EXTRACTED #community/orgspringframeworkhttpResponseEntity

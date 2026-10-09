@@ -2,7 +2,7 @@
 source_file: "frontend/src/components/DashboardLayout.tsx"
 type: "code"
 community: "DashboardLayout.tsx"
-location: "L9"
+location: "L10"
 tags:
   - graphify/code
   - graphify/EXTRACTED

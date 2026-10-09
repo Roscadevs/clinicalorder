@@ -1,16 +1,16 @@
 ---
 source_file: ""
 type: "code"
-community: "PaymentWebhookController"
+community: "UserRole"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/PaymentWebhookController
+  - community/UserRole
 ---
 
 # RestController
 
 ## Connections
-- [[PaymentWebhookController]] - `references` [EXTRACTED]
+- [[AuthController]] - `references` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/PaymentWebhookController
+#graphify/code #graphify/EXTRACTED #community/UserRole

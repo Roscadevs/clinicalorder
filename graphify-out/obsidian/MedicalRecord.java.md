@@ -12,6 +12,6 @@ tags:
 # MedicalRecord.java
 
 ## Connections
-- [[MedicalRecord_1]] - `contains` [EXTRACTED]
+- [[MedicalRecord]] - `contains` [EXTRACTED]
 
 #graphify/code #graphify/EXTRACTED #community/MedicalRecord

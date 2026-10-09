@@ -1,12 +1,12 @@
 ---
 source_file: "backend/src/test/java/com/clinicadermatologica/app/application/AuthServiceTest.java"
 type: "code"
-community: "lombok.extern.slf4j.Slf4j"
+community: "UserRepository"
 location: "L1"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/lombokexternslf4jSlf4j
+  - community/UserRepository
 ---
 
 # AuthServiceTest.java
@@ -27,4 +27,4 @@ tags:
 - [[org.mockito.junit.jupiter.MockitoExtension]] - `imports` [EXTRACTED]
 - [[org.springframework.security.crypto.password.PasswordEncoder]] - `imports` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/lombokexternslf4jSlf4j
+#graphify/code #graphify/EXTRACTED #community/UserRepository

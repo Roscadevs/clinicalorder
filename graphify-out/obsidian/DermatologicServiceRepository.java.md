@@ -12,7 +12,7 @@ tags:
 # DermatologicServiceRepository.java
 
 ## Connections
-- [[DermatologicService]] - `imports` [EXTRACTED]
+- [[DermatologicService_1]] - `imports` [EXTRACTED]
 - [[DermatologicServiceRepository]] - `contains` [EXTRACTED]
 
 #graphify/code #graphify/EXTRACTED #community/DermatologicService

@@ -14,7 +14,7 @@ tags:
 ## Connections
 - [[dot-cancelAppointment()]] - `calls` [INFERRED]
 - [[AppointmentController]] - `method` [EXTRACTED]
-- [[PostMapping_3]] - `references` [EXTRACTED]
+- [[PostMapping_5]] - `references` [EXTRACTED]
 - [[org.springframework.http.ResponseEntity]] - `references` [EXTRACTED]
 - [[org.springframework.security.access.prepost.PreAuthorize]] - `references` [EXTRACTED]
 

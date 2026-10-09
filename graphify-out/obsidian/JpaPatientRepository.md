@@ -12,15 +12,15 @@ tags:
 # JpaPatientRepository
 
 ## Connections
-- [[dot-existsByDni()_1]] - `method` [EXTRACTED]
-- [[dot-existsByEmail()_1]] - `method` [EXTRACTED]
-- [[dot-existsByPhone()_1]] - `method` [EXTRACTED]
+- [[dot-existsByDni()_2]] - `method` [EXTRACTED]
+- [[dot-existsByEmail()_2]] - `method` [EXTRACTED]
+- [[dot-existsByPhone()_2]] - `method` [EXTRACTED]
 - [[dot-findByActiveTrue()]] - `method` [EXTRACTED]
-- [[dot-findByDni()_1]] - `method` [EXTRACTED]
-- [[dot-findByEmail()_1]] - `method` [EXTRACTED]
-- [[dot-searchByNameOrDni()]] - `method` [EXTRACTED]
+- [[dot-findByDni()_2]] - `method` [EXTRACTED]
+- [[dot-findByEmail()_2]] - `method` [EXTRACTED]
+- [[dot-searchByNameOrDni()_2]] - `method` [EXTRACTED]
 - [[JpaPatientRepository.java]] - `contains` [EXTRACTED]
-- [[Patient]] - `references` [EXTRACTED]
+- [[Patient_1]] - `references` [EXTRACTED]
 - [[PatientRepositoryAdapter]] - `references` [EXTRACTED]
 - [[PatientRepositoryAdapter.java]] - `imports` [EXTRACTED]
 - [[org.springframework.data.jpa.repository.JpaRepository]] - `inherits` [EXTRACTED]

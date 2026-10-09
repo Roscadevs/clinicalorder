@@ -1,20 +1,19 @@
 ---
-source_file: "backend/src/main/java/com/clinicadermatologica/app/domain/repository/AlergiaRepository.java"
+source_file: "backend/src/main/java/com/clinicadermatologica/app/infrastructure/persistence/adapter/AppointmentRepositoryAdapter.java"
 type: "code"
-community: ".addAlergia"
-location: "L25"
+community: "AppointmentRepositoryAdapter"
+location: "L53"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/addAlergia
+  - community/AppointmentRepositoryAdapter
 ---
 
 # .save()
 
 ## Connections
-- [[dot-addAlergia()_1]] - `calls` [INFERRED]
-- [[dot-testAddAlergia_Success()]] - `calls` [INFERRED]
-- [[Alergia]] - `references` [EXTRACTED]
-- [[AlergiaRepository]] - `method` [EXTRACTED]
+- [[Appointment]] - `references` [EXTRACTED]
+- [[AppointmentRepositoryAdapter]] - `method` [EXTRACTED]
+- [[Override_18]] - `references` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/addAlergia
+#graphify/code #graphify/EXTRACTED #community/AppointmentRepositoryAdapter

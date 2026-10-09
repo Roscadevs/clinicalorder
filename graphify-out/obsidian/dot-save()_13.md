@@ -1,20 +1,19 @@
 ---
-source_file: "backend/src/main/java/com/clinicadermatologica/app/domain/repository/MedicalRecordRepository.java"
+source_file: "backend/src/main/java/com/clinicadermatologica/app/domain/repository/ClinicalImageRepository.java"
 type: "code"
-community: "MedicalRecordDTO"
-location: "L15"
+community: "ClinicalImage"
+location: "L18"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/MedicalRecordDTO
+  - community/ClinicalImage
 ---
 
 # .save()
 
 ## Connections
-- [[dot-saveOrUpdateMedicalRecord()]] - `calls` [INFERRED]
-- [[dot-testSaveInitialMedicalRecord_Success()]] - `calls` [INFERRED]
-- [[MedicalRecord_1]] - `references` [EXTRACTED]
-- [[MedicalRecordRepository]] - `method` [EXTRACTED]
+- [[dot-uploadClinicalImage()]] - `calls` [INFERRED]
+- [[ClinicalImage]] - `references` [EXTRACTED]
+- [[ClinicalImageRepository]] - `method` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/MedicalRecordDTO
+#graphify/code #graphify/EXTRACTED #community/ClinicalImage

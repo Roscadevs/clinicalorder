@@ -1,11 +1,11 @@
 ---
 source_file: ""
 type: "code"
-community: "lombok.extern.slf4j.Slf4j"
+community: "UserRepository"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/lombokexternslf4jSlf4j
+  - community/UserRepository
 ---
 
 # org.springframework.security.crypto.password.PasswordEncoder
@@ -18,4 +18,4 @@ tags:
 - [[AuthServiceTest.java]] - `imports` [EXTRACTED]
 - [[SecurityConfig.java]] - `imports` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/lombokexternslf4jSlf4j
+#graphify/code #graphify/EXTRACTED #community/UserRepository

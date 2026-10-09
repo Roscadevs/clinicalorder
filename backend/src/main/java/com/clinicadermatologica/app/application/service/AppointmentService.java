@@ -126,8 +126,14 @@ public class AppointmentService {
             throw new BusinessRuleException("El servicio seleccionado no se encuentra activo");
         }
 
-        User creator = userRepository.findById(createdByUserId != null ? createdByUserId : 1L)
-                .orElseThrow(() -> new ResourceNotFoundException("Usuario no encontrado"));
+        User creator = null;
+        if (createdByUserId != null) {
+            creator = userRepository.findById(createdByUserId).orElse(null);
+        }
+        if (creator == null) {
+            creator = userRepository.findById(1L)
+                    .orElseThrow(() -> new ResourceNotFoundException("No existen usuarios registrados en el sistema"));
+        }
 
         Instant startTime = request.getStartTime();
         Instant endTime = startTime.plus(service.getDurationMinutes(), ChronoUnit.MINUTES);

@@ -1,12 +1,12 @@
 ---
 source_file: "frontend/src/features/appointments/PatientSearch.tsx"
 type: "code"
-community: "api.ts"
+community: "MedicalRecordView.tsx"
 location: "L18"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/apits
+  - community/MedicalRecordViewtsx
 ---
 
 # Highlight()
@@ -14,4 +14,4 @@ tags:
 ## Connections
 - [[PatientSearch.tsx]] - `contains` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/apits
+#graphify/code #graphify/EXTRACTED #community/MedicalRecordViewtsx

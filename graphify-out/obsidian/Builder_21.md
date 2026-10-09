@@ -11,6 +11,6 @@ tags:
 # Builder
 
 ## Connections
-- [[Patient]] - `references` [EXTRACTED]
+- [[Patient_1]] - `references` [EXTRACTED]
 
 #graphify/code #graphify/EXTRACTED #community/Patient

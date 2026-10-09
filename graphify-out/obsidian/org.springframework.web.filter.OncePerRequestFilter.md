@@ -1,11 +1,11 @@
 ---
 source_file: ""
 type: "code"
-community: "GlobalExceptionHandler"
+community: "JwtAuthenticationFilter"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/GlobalExceptionHandler
+  - community/JwtAuthenticationFilter
 ---
 
 # org.springframework.web.filter.OncePerRequestFilter
@@ -14,4 +14,4 @@ tags:
 - [[JwtAuthenticationFilter]] - `inherits` [EXTRACTED]
 - [[JwtAuthenticationFilter.java]] - `imports` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/GlobalExceptionHandler
+#graphify/code #graphify/EXTRACTED #community/JwtAuthenticationFilter

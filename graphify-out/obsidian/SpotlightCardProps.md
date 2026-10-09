@@ -1,12 +1,12 @@
 ---
 source_file: "frontend/src/components/reactbits/SpotlightCard.tsx"
 type: "code"
-community: "ServicesCatalogView.tsx"
+community: "reactbits/index.ts"
 location: "L4"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/ServicesCatalogViewtsx
+  - community/reactbits/indexts
 ---
 
 # SpotlightCardProps
@@ -14,4 +14,4 @@ tags:
 ## Connections
 - [[SpotlightCard.tsx]] - `contains` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/ServicesCatalogViewtsx
+#graphify/code #graphify/EXTRACTED #community/reactbits/indexts

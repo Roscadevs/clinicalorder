@@ -13,7 +13,7 @@ tags:
 
 ## Connections
 - [[dot-findByName()_1]] - `calls` [INFERRED]
-- [[DermatologicService]] - `references` [EXTRACTED]
+- [[DermatologicService_1]] - `references` [EXTRACTED]
 - [[JpaDermatologicServiceRepository]] - `method` [EXTRACTED]
 
 #graphify/code #graphify/EXTRACTED #community/DermatologicService

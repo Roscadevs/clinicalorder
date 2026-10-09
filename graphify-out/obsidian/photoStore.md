@@ -1,12 +1,12 @@
 ---
 source_file: "frontend/src/features/clinical/photoStore.ts"
 type: "code"
-community: "TreatmentPhotos.tsx"
+community: "api.ts"
 location: "L53"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/TreatmentPhotostsx
+  - community/apits
 ---
 
 # photoStore
@@ -15,4 +15,4 @@ tags:
 - [[TreatmentPhotos.tsx]] - `imports` [EXTRACTED]
 - [[photoStore.ts]] - `contains` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/TreatmentPhotostsx
+#graphify/code #graphify/EXTRACTED #community/apits

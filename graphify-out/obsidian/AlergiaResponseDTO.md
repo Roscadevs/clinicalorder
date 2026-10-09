@@ -1,12 +1,12 @@
 ---
 source_file: "backend/src/main/java/com/clinicadermatologica/app/presentation/dto/AlergiaResponseDTO.java"
 type: "code"
-community: ".addAlergia"
+community: "AlergiaId"
 location: "L10"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/addAlergia
+  - community/AlergiaId
 ---
 
 # AlergiaResponseDTO
@@ -23,4 +23,4 @@ tags:
 - [[NoArgsConstructor_43]] - `references` [EXTRACTED]
 - [[Setter_43]] - `references` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/addAlergia
+#graphify/code #graphify/EXTRACTED #community/AlergiaId

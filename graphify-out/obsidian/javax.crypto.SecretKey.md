@@ -1,11 +1,11 @@
 ---
 source_file: ""
 type: "code"
-community: "User"
+community: "UserRepository"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/User
+  - community/UserRepository
 ---
 
 # javax.crypto.SecretKey
@@ -16,4 +16,4 @@ tags:
 - [[JwtTokenProvider]] - `references` [EXTRACTED]
 - [[JwtTokenProvider.java]] - `imports` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/User
+#graphify/code #graphify/EXTRACTED #community/UserRepository

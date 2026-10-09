@@ -11,6 +11,6 @@ tags:
 # Getter
 
 ## Connections
-- [[CalendarBlockResponseDTO]] - `references` [EXTRACTED]
+- [[CalendarBlockRequestDTO]] - `references` [EXTRACTED]
 
 #graphify/code #graphify/EXTRACTED #community/CalendarBlockResponseDTO

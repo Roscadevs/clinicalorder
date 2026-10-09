@@ -1,16 +1,16 @@
 ---
 source_file: ""
 type: "code"
-community: "PasswordResetToken"
+community: "AlergiaId"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/PasswordResetToken
+  - community/AlergiaId
 ---
 
 # Entity
 
 ## Connections
-- [[PasswordResetToken]] - `references` [EXTRACTED]
+- [[Alergia]] - `references` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/PasswordResetToken
+#graphify/code #graphify/EXTRACTED #community/AlergiaId

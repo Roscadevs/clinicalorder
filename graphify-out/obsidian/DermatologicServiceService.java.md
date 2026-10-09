@@ -14,7 +14,7 @@ tags:
 ## Connections
 - [[BusinessRuleException]] - `imports` [EXTRACTED]
 - [[BusinessRuleException.java]] - `imports` [EXTRACTED]
-- [[DermatologicService]] - `imports` [EXTRACTED]
+- [[DermatologicService_1]] - `imports` [EXTRACTED]
 - [[DermatologicServiceRepository]] - `imports` [EXTRACTED]
 - [[DermatologicServiceService]] - `contains` [EXTRACTED]
 - [[ResourceNotFoundException]] - `imports` [EXTRACTED]

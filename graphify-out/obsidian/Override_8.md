@@ -11,7 +11,10 @@ tags:
 # Override
 
 ## Connections
-- [[dot-equals()_1]] - `references` [EXTRACTED]
-- [[dot-hashCode()_1]] - `references` [EXTRACTED]
+- [[dot-delete()_3]] - `references` [EXTRACTED]
+- [[dot-existsById()_3]] - `references` [EXTRACTED]
+- [[dot-findById()_10]] - `references` [EXTRACTED]
+- [[dot-findByMedicalRecordId()_2]] - `references` [EXTRACTED]
+- [[dot-save()_10]] - `references` [EXTRACTED]
 
 #graphify/code #graphify/EXTRACTED #community/AntecedentePatologico

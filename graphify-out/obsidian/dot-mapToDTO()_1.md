@@ -14,7 +14,7 @@ tags:
 ## Connections
 - [[dot-createService()]] - `calls` [EXTRACTED]
 - [[dot-updateService()]] - `calls` [EXTRACTED]
-- [[DermatologicService]] - `references` [EXTRACTED]
+- [[DermatologicService_1]] - `references` [EXTRACTED]
 - [[DermatologicServiceService]] - `method` [EXTRACTED]
 - [[ServiceResponseDTO]] - `references` [EXTRACTED]
 

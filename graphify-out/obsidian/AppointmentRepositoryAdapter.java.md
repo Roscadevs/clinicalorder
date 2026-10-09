@@ -1,12 +1,12 @@
 ---
 source_file: "backend/src/main/java/com/clinicadermatologica/app/infrastructure/persistence/adapter/AppointmentRepositoryAdapter.java"
 type: "code"
-community: "Appointment"
+community: "lombok.RequiredArgsConstructor"
 location: "L1"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/Appointment
+  - community/lombokRequiredArgsConstructor
 ---
 
 # AppointmentRepositoryAdapter.java
@@ -20,4 +20,4 @@ tags:
 - [[lombok.RequiredArgsConstructor]] - `imports` [EXTRACTED]
 - [[org.springframework.stereotype.Component]] - `imports` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/Appointment
+#graphify/code #graphify/EXTRACTED #community/lombokRequiredArgsConstructor
