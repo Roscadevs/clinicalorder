@@ -43,6 +43,7 @@ export const LoginView: React.FC = () => {
           simulatedUserId = 2;
         }
 
+        sessionStorage.removeItem('demo_session_modal_dismissed');
         localStorage.setItem('token', 'demo-token-12345');
         localStorage.setItem('role', simulatedRole);
         localStorage.setItem('userId', String(simulatedUserId));
