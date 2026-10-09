@@ -13,9 +13,9 @@ tags:
 
 ## Connections
 - [[dot-createBlock()_1]] - `calls` [INFERRED]
-- [[dot-findById()_7]] - `calls` [INFERRED]
+- [[dot-findById()_14]] - `calls` [INFERRED]
 - [[dot-mapToDTO()_2]] - `calls` [EXTRACTED]
-- [[dot-save()_1]] - `calls` [INFERRED]
+- [[dot-save()_12]] - `calls` [INFERRED]
 - [[CalendarBlockRequestDTO]] - `references` [EXTRACTED]
 - [[CalendarBlockResponseDTO]] - `references` [EXTRACTED]
 - [[CalendarBlockService]] - `method` [EXTRACTED]

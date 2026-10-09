@@ -1,20 +1,17 @@
 ---
 source_file: ""
 type: "code"
-community: "CalendarBlock"
+community: "PaymentTransaction"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/CalendarBlock
+  - community/PaymentTransaction
 ---
 
 # Override
 
 ## Connections
-- [[dot-deleteById()]] - `references` [EXTRACTED]
-- [[dot-findByDateRange()]] - `references` [EXTRACTED]
-- [[dot-findById()_2]] - `references` [EXTRACTED]
-- [[dot-findOverlappingBlocks()]] - `references` [EXTRACTED]
-- [[dot-save()_2]] - `references` [EXTRACTED]
+- [[dot-register()_1]] - `references` [EXTRACTED]
+- [[dot-supportedType()_1]] - `references` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/CalendarBlock
+#graphify/code #graphify/EXTRACTED #community/PaymentTransaction

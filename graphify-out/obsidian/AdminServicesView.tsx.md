@@ -1,12 +1,12 @@
 ---
 source_file: "frontend/src/features/admin/AdminServicesView.tsx"
 type: "code"
-community: "AdminServicesView.tsx"
+community: "api.ts"
 location: "L1"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/AdminServicesViewtsx
+  - community/apits
 ---
 
 # AdminServicesView.tsx
@@ -18,14 +18,14 @@ tags:
 - [[Badge()]] - `imports` [EXTRACTED]
 - [[Button]] - `imports` [EXTRACTED]
 - [[Card]] - `imports` [EXTRACTED]
-- [[DermatologicService]] - `imports` [EXTRACTED]
+- [[DermatologicService_1]] - `imports` [EXTRACTED]
 - [[ServiceFormModal()]] - `imports` [EXTRACTED]
 - [[ServiceFormModal.tsx]] - `imports_from` [EXTRACTED]
 - [[Spinner()]] - `imports` [EXTRACTED]
 - [[UserFormModal()]] - `imports` [EXTRACTED]
 - [[UserFormModal.tsx]] - `imports_from` [EXTRACTED]
 - [[api.ts]] - `imports_from` [EXTRACTED]
-- [[ars()]] - `contains` [EXTRACTED]
+- [[ars()_4]] - `contains` [EXTRACTED]
 - [[cn()]] - `imports` [EXTRACTED]
 - [[cn.ts]] - `imports_from` [EXTRACTED]
 - [[lucide-react]] - `imports_from` [EXTRACTED]
@@ -34,4 +34,4 @@ tags:
 - [[typesindex.ts]] - `imports_from` [EXTRACTED]
 - [[uiindex.ts]] - `imports_from` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/AdminServicesViewtsx
+#graphify/code #graphify/EXTRACTED #community/apits

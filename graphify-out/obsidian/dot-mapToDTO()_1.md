@@ -1,21 +1,19 @@
 ---
-source_file: "backend/src/main/java/com/clinicadermatologica/app/application/service/DermatologicServiceService.java"
+source_file: "backend/src/main/java/com/clinicadermatologica/app/application/service/AppointmentService.java"
 type: "code"
-community: "ServiceResponseDTO"
-location: "L98"
+community: "AppointmentService"
+location: "L320"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/ServiceResponseDTO
+  - community/AppointmentService
 ---
 
 # .mapToDTO()
 
 ## Connections
-- [[dot-createService()]] - `calls` [EXTRACTED]
-- [[dot-updateService()]] - `calls` [EXTRACTED]
-- [[DermatologicService_1]] - `references` [EXTRACTED]
-- [[DermatologicServiceService]] - `method` [EXTRACTED]
-- [[ServiceResponseDTO]] - `references` [EXTRACTED]
+- [[Appointment_7]] - `references` [EXTRACTED]
+- [[AppointmentResponseDTO]] - `references` [EXTRACTED]
+- [[AppointmentService]] - `method` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/ServiceResponseDTO
+#graphify/code #graphify/EXTRACTED #community/AppointmentService

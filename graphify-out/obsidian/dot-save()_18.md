@@ -1,21 +1,19 @@
 ---
-source_file: "backend/src/main/java/com/clinicadermatologica/app/domain/repository/ClinicalEntryRepository.java"
+source_file: "backend/src/main/java/com/clinicadermatologica/app/domain/repository/ClinicalImageRepository.java"
 type: "code"
-community: "MedicalRecordService"
-location: "L20"
+community: "ClinicalImageService"
+location: "L18"
 tags:
   - graphify/code
-  - graphify/INFERRED
-  - community/MedicalRecordService
+  - graphify/EXTRACTED
+  - community/ClinicalImageService
 ---
 
 # .save()
 
 ## Connections
-- [[dot-addClinicalEntry()_1]] - `calls` [INFERRED]
-- [[dot-testAddClinicalEntry_EncryptsContent()]] - `calls` [INFERRED]
-- [[dot-updateClinicalEntry()_1]] - `calls` [INFERRED]
-- [[ClinicalEntry]] - `references` [EXTRACTED]
-- [[ClinicalEntryRepository]] - `method` [EXTRACTED]
+- [[dot-uploadClinicalImage()]] - `calls` [INFERRED]
+- [[ClinicalImage]] - `references` [EXTRACTED]
+- [[ClinicalImageRepository]] - `method` [EXTRACTED]
 
-#graphify/code #graphify/INFERRED #community/MedicalRecordService
+#graphify/code #graphify/EXTRACTED #community/ClinicalImageService

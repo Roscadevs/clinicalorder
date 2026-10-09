@@ -12,7 +12,7 @@ tags:
 # ClinicalEntryRepositoryAdapter.java
 
 ## Connections
-- [[ClinicalEntry]] - `imports` [EXTRACTED]
+- [[ClinicalEntry_1]] - `imports` [EXTRACTED]
 - [[ClinicalEntryAudit]] - `imports` [EXTRACTED]
 - [[ClinicalEntryRepository]] - `imports` [EXTRACTED]
 - [[ClinicalEntryRepositoryAdapter]] - `contains` [EXTRACTED]

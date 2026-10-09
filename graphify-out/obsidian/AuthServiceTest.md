@@ -12,7 +12,7 @@ tags:
 # AuthServiceTest
 
 ## Connections
-- [[dot-setUp()_2]] - `method` [EXTRACTED]
+- [[dot-setUp()_1]] - `method` [EXTRACTED]
 - [[dot-testForgotPassword_Success()]] - `method` [EXTRACTED]
 - [[dot-testLogin_InactiveAccount_ThrowsException()]] - `method` [EXTRACTED]
 - [[dot-testLogin_Success()]] - `method` [EXTRACTED]

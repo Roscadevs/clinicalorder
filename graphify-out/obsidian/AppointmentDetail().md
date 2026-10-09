@@ -13,7 +13,7 @@ tags:
 
 ## Connections
 - [[AgendaView.tsx]] - `contains` [EXTRACTED]
-- [[ars()_2]] - `calls` [EXTRACTED]
+- [[ars()]] - `calls` [EXTRACTED]
 - [[getVisualStatus()]] - `calls` [EXTRACTED]
 - [[isActionable()]] - `calls` [EXTRACTED]
 

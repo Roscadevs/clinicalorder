@@ -1,8 +1,8 @@
 ---
-source_file: "backend/src/main/java/com/clinicadermatologica/app/domain/repository/PasswordResetTokenRepository.java"
+source_file: "backend/src/main/java/com/clinicadermatologica/app/domain/repository/UserRepository.java"
 type: "code"
 community: "UserRepository"
-location: "L12"
+location: "L14"
 tags:
   - graphify/code
   - graphify/EXTRACTED
@@ -12,9 +12,9 @@ tags:
 # .save()
 
 ## Connections
-- [[dot-forgotPassword()_1]] - `calls` [INFERRED]
+- [[dot-registerUser()]] - `calls` [INFERRED]
 - [[dot-resetPassword()_1]] - `calls` [INFERRED]
-- [[PasswordResetToken]] - `references` [EXTRACTED]
-- [[PasswordResetTokenRepository]] - `method` [EXTRACTED]
+- [[User]] - `references` [EXTRACTED]
+- [[UserRepository]] - `method` [EXTRACTED]
 
 #graphify/code #graphify/EXTRACTED #community/UserRepository

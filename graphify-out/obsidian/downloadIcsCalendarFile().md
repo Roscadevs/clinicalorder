@@ -1,12 +1,12 @@
 ---
 source_file: "frontend/src/utils/calendarGenerator.ts"
 type: "code"
-community: "AppointmentReceiptModal.tsx"
+community: "BookingWizard.tsx"
 location: "L47"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/AppointmentReceiptModaltsx
+  - community/BookingWizardtsx
 ---
 
 # downloadIcsCalendarFile()
@@ -19,4 +19,4 @@ tags:
 - [[calendarGenerator.ts]] - `contains` [EXTRACTED]
 - [[formatToIcsDate()]] - `calls` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/AppointmentReceiptModaltsx
+#graphify/code #graphify/EXTRACTED #community/BookingWizardtsx

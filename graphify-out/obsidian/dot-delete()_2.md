@@ -12,7 +12,7 @@ tags:
 # .delete()
 
 ## Connections
-- [[dot-removeAntecedentePatologico()_1]] - `calls` [INFERRED]
+- [[dot-removeAntecedentePatologico()]] - `calls` [INFERRED]
 - [[AntecedentePatologicoId]] - `references` [EXTRACTED]
 - [[AntecedentePatologicoRepository]] - `method` [EXTRACTED]
 

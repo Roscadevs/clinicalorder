@@ -1,12 +1,12 @@
 ---
 source_file: "backend/src/main/java/com/clinicadermatologica/app/presentation/dto/TimeSlotDTO.java"
 type: "code"
-community: "AppointmentServiceTest.java"
+community: "TimeSlotDTO"
 location: "L10"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/AppointmentServiceTestjava
+  - community/TimeSlotDTO
 ---
 
 # TimeSlotDTO
@@ -14,12 +14,12 @@ tags:
 ## Connections
 - [[dot-getAvailableSlots()]] - `references` [EXTRACTED]
 - [[dot-getAvailableSlots()_1]] - `references` [EXTRACTED]
-- [[AllArgsConstructor_31]] - `references` [EXTRACTED]
+- [[AllArgsConstructor_17]] - `references` [EXTRACTED]
 - [[AppointmentServiceTest.java]] - `imports` [EXTRACTED]
-- [[Builder_29]] - `references` [EXTRACTED]
-- [[Getter_31]] - `references` [EXTRACTED]
-- [[NoArgsConstructor_31]] - `references` [EXTRACTED]
-- [[Setter_31]] - `references` [EXTRACTED]
+- [[Builder_16]] - `references` [EXTRACTED]
+- [[Getter_17]] - `references` [EXTRACTED]
+- [[NoArgsConstructor_17]] - `references` [EXTRACTED]
+- [[Setter_17]] - `references` [EXTRACTED]
 - [[TimeSlotDTO.java]] - `contains` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/AppointmentServiceTestjava
+#graphify/code #graphify/EXTRACTED #community/TimeSlotDTO

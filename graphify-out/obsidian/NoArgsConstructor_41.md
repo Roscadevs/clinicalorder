@@ -1,16 +1,16 @@
 ---
 source_file: ""
 type: "code"
-community: "AlergiaId"
+community: "PaymentReceiptDTO"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/AlergiaId
+  - community/PaymentReceiptDTO
 ---
 
 # NoArgsConstructor
 
 ## Connections
-- [[AlergiaId]] - `references` [EXTRACTED]
+- [[PaymentReceiptDTO]] - `references` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/AlergiaId
+#graphify/code #graphify/EXTRACTED #community/PaymentReceiptDTO

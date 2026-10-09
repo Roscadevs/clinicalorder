@@ -2,7 +2,7 @@
 source_file: "frontend/src/services/api.ts"
 type: "code"
 community: "MedicalRecordView.tsx"
-location: "L201"
+location: "L273"
 tags:
   - graphify/code
   - graphify/EXTRACTED

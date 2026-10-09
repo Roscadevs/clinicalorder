@@ -14,7 +14,7 @@ tags:
 ## Connections
 - [[dot-findByAppointmentId()_4]] - `method` [EXTRACTED]
 - [[dot-findByPatientIdOrderByCreatedAtDesc()]] - `method` [EXTRACTED]
-- [[ClinicalEntry]] - `references` [EXTRACTED]
+- [[ClinicalEntry_1]] - `references` [EXTRACTED]
 - [[ClinicalEntryRepositoryAdapter]] - `references` [EXTRACTED]
 - [[ClinicalEntryRepositoryAdapter.java]] - `imports` [EXTRACTED]
 - [[JpaClinicalEntryRepository.java]] - `contains` [EXTRACTED]

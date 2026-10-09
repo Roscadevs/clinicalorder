@@ -1,12 +1,12 @@
 ---
 source_file: "backend/src/main/java/com/clinicadermatologica/app/application/service/PatientService.java"
 type: "code"
-community: "PatientResponseDTO"
+community: "PatientRepository"
 location: "L19"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/PatientResponseDTO
+  - community/PatientRepository
 ---
 
 # PatientService
@@ -16,7 +16,7 @@ tags:
 - [[dot-deactivatePatient()]] - `method` [EXTRACTED]
 - [[dot-getAllActivePatients()]] - `method` [EXTRACTED]
 - [[dot-getPatientById()]] - `method` [EXTRACTED]
-- [[dot-mapToDTO()_4]] - `method` [EXTRACTED]
+- [[dot-mapToDTO()]] - `method` [EXTRACTED]
 - [[dot-searchPatients()]] - `method` [EXTRACTED]
 - [[dot-updatePatient()]] - `method` [EXTRACTED]
 - [[PatientController]] - `references` [EXTRACTED]
@@ -26,4 +26,4 @@ tags:
 - [[lombok.RequiredArgsConstructor]] - `references` [EXTRACTED]
 - [[org.springframework.stereotype.Service]] - `references` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/PatientResponseDTO
+#graphify/code #graphify/EXTRACTED #community/PatientRepository

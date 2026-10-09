@@ -13,8 +13,8 @@ tags:
 ## Connections
 - [[dot-delete()_5]] - `references` [EXTRACTED]
 - [[dot-existsById()_5]] - `references` [EXTRACTED]
-- [[dot-findById()_21]] - `references` [EXTRACTED]
+- [[dot-findById()_22]] - `references` [EXTRACTED]
 - [[dot-findByMedicalRecordId()_5]] - `references` [EXTRACTED]
-- [[dot-save()_20]] - `references` [EXTRACTED]
+- [[dot-save()_19]] - `references` [EXTRACTED]
 
 #graphify/code #graphify/EXTRACTED #community/AlergiaId

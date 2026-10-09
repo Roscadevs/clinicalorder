@@ -1,21 +1,16 @@
 ---
 source_file: ""
 type: "code"
-community: "AppointmentRepositoryAdapter"
+community: "org.springframework.transaction.annotation.Transactional"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/AppointmentRepositoryAdapter
+  - community/orgspringframeworktransactionannotationTransactional
 ---
 
 # Override
 
 ## Connections
-- [[dot-findByDateRange()_5]] - `references` [EXTRACTED]
-- [[dot-findById()_22]] - `references` [EXTRACTED]
-- [[dot-findByPatientId()_6]] - `references` [EXTRACTED]
-- [[dot-findExpiredHolds()_1]] - `references` [EXTRACTED]
-- [[dot-findOverlappingAppointments()_1]] - `references` [EXTRACTED]
-- [[dot-save()_21]] - `references` [EXTRACTED]
+- [[dot-loadUserByUsername()]] - `references` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/AppointmentRepositoryAdapter
+#graphify/code #graphify/EXTRACTED #community/orgspringframeworktransactionannotationTransactional

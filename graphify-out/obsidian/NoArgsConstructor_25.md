@@ -1,16 +1,16 @@
 ---
 source_file: ""
 type: "code"
-community: "User"
+community: "ServiceResponseDTO"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/User
+  - community/ServiceResponseDTO
 ---
 
 # NoArgsConstructor
 
 ## Connections
-- [[User]] - `references` [EXTRACTED]
+- [[ServiceResponseDTO]] - `references` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/User
+#graphify/code #graphify/EXTRACTED #community/ServiceResponseDTO

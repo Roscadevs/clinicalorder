@@ -1,12 +1,12 @@
 ---
 source_file: "backend/src/main/java/com/clinicadermatologica/app/infrastructure/persistence/adapter/PasswordResetTokenRepositoryAdapter.java"
 type: "code"
-community: "lombok.RequiredArgsConstructor"
+community: "PasswordResetToken"
 location: "L14"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/lombokRequiredArgsConstructor
+  - community/PasswordResetToken
 ---
 
 # PasswordResetTokenRepositoryAdapter
@@ -20,4 +20,4 @@ tags:
 - [[lombok.RequiredArgsConstructor]] - `references` [EXTRACTED]
 - [[org.springframework.stereotype.Component]] - `references` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/lombokRequiredArgsConstructor
+#graphify/code #graphify/EXTRACTED #community/PasswordResetToken

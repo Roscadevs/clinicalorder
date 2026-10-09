@@ -1,21 +1,19 @@
 ---
 source_file: ""
 type: "code"
-community: "MedicalRecordController"
+community: "AuthController"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/MedicalRecordController
+  - community/AuthController
 ---
 
 # PostMapping
 
 ## Connections
-- [[dot-addAlergia()]] - `references` [EXTRACTED]
-- [[dot-addAntecedentePatologico()_1]] - `references` [EXTRACTED]
-- [[dot-addClinicalEntry()]] - `references` [EXTRACTED]
-- [[dot-addHabito()_1]] - `references` [EXTRACTED]
-- [[dot-saveMedicalRecord()]] - `references` [EXTRACTED]
-- [[dot-uploadClinicalPhoto()]] - `references` [EXTRACTED]
+- [[dot-forgotPassword()]] - `references` [EXTRACTED]
+- [[dot-login()]] - `references` [EXTRACTED]
+- [[dot-register()_4]] - `references` [EXTRACTED]
+- [[dot-resetPassword()]] - `references` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/MedicalRecordController
+#graphify/code #graphify/EXTRACTED #community/AuthController

@@ -1,12 +1,12 @@
 ---
 source_file: "frontend/src/features/reminders/ReminderNotificationModal.tsx"
 type: "code"
-community: "AppointmentReceiptModal.tsx"
+community: "BookingWizard.tsx"
 location: "L1"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/AppointmentReceiptModaltsx
+  - community/BookingWizardtsx
 ---
 
 # ReminderNotificationModal.tsx
@@ -24,4 +24,4 @@ tags:
 - [[lucide-react]] - `imports_from` [EXTRACTED]
 - [[react]] - `imports_from` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/AppointmentReceiptModaltsx
+#graphify/code #graphify/EXTRACTED #community/BookingWizardtsx

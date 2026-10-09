@@ -1,23 +1,20 @@
 ---
-source_file: "backend/src/main/java/com/clinicadermatologica/app/application/service/MedicalRecordService.java"
+source_file: "backend/src/main/java/com/clinicadermatologica/app/presentation/controller/MedicalRecordController.java"
 type: "code"
-community: "MedicalRecordService"
-location: "L173"
+community: "MedicalRecordController"
+location: "L125"
 tags:
   - graphify/code
-  - graphify/INFERRED
-  - community/MedicalRecordService
+  - graphify/EXTRACTED
+  - community/MedicalRecordController
 ---
 
 # .removeAlergia()
 
 ## Connections
-- [[dot-delete()_4]] - `calls` [INFERRED]
-- [[dot-existsById()_4]] - `calls` [INFERRED]
 - [[dot-removeAlergia()]] - `calls` [INFERRED]
-- [[dot-testRemoveAlergia_NotFound_Throws()]] - `calls` [INFERRED]
-- [[AlergiaId]] - `calls` [INFERRED]
-- [[MedicalRecordService]] - `method` [EXTRACTED]
-- [[org.springframework.transaction.annotation.Transactional]] - `references` [EXTRACTED]
+- [[DeleteMapping_2]] - `references` [EXTRACTED]
+- [[MedicalRecordController]] - `method` [EXTRACTED]
+- [[org.springframework.http.ResponseEntity]] - `references` [EXTRACTED]
 
-#graphify/code #graphify/INFERRED #community/MedicalRecordService
+#graphify/code #graphify/EXTRACTED #community/MedicalRecordController

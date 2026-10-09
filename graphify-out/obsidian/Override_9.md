@@ -1,16 +1,17 @@
 ---
 source_file: ""
 type: "code"
-community: "JwtAuthenticationFilter"
+community: "AntecedentePatologico"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/JwtAuthenticationFilter
+  - community/AntecedentePatologico
 ---
 
 # Override
 
 ## Connections
-- [[dot-loadUserByUsername()]] - `references` [EXTRACTED]
+- [[dot-equals()_1]] - `references` [EXTRACTED]
+- [[dot-hashCode()_1]] - `references` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/JwtAuthenticationFilter
+#graphify/code #graphify/EXTRACTED #community/AntecedentePatologico

@@ -1,11 +1,11 @@
 ---
 source_file: ""
 type: "code"
-community: "MedicalRecordService"
+community: "UserRepository"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/MedicalRecordService
+  - community/UserRepository
 ---
 
 # org.mockito.junit.jupiter.MockitoExtension
@@ -20,4 +20,4 @@ tags:
 - [[PaymentServiceTest]] - `references` [EXTRACTED]
 - [[PaymentServiceTest.java]] - `imports` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/MedicalRecordService
+#graphify/code #graphify/EXTRACTED #community/UserRepository

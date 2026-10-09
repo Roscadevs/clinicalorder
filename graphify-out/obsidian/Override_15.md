@@ -13,9 +13,9 @@ tags:
 ## Connections
 - [[dot-findAuditByEntryId()_1]] - `references` [EXTRACTED]
 - [[dot-findByAppointmentId()_3]] - `references` [EXTRACTED]
-- [[dot-findById()_18]] - `references` [EXTRACTED]
+- [[dot-findById()_19]] - `references` [EXTRACTED]
 - [[dot-findByPatientId()_5]] - `references` [EXTRACTED]
-- [[dot-save()_17]] - `references` [EXTRACTED]
-- [[dot-saveAudit()_3]] - `references` [EXTRACTED]
+- [[dot-save()_16]] - `references` [EXTRACTED]
+- [[dot-saveAudit()_2]] - `references` [EXTRACTED]
 
 #graphify/code #graphify/EXTRACTED #community/ClinicalEntry

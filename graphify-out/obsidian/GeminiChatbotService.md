@@ -1,12 +1,12 @@
 ---
 source_file: "backend/src/main/java/com/clinicadermatologica/app/application/service/GeminiChatbotService.java"
 type: "code"
-community: "DermatologicService"
+community: "GeminiChatRequestDTO"
 location: "L17"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/DermatologicService
+  - community/GeminiChatRequestDTO
 ---
 
 # GeminiChatbotService
@@ -21,4 +21,4 @@ tags:
 - [[lombok.RequiredArgsConstructor]] - `references` [EXTRACTED]
 - [[org.springframework.stereotype.Service]] - `references` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/DermatologicService
+#graphify/code #graphify/EXTRACTED #community/GeminiChatRequestDTO

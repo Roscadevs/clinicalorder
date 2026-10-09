@@ -1,53 +1,32 @@
 ---
 type: community
-members: 40
+members: 19
 ---
 
 # MedicalRecordController
 
-**Members:** 40 nodes
+**Members:** 19 nodes
 
 ## Members
-- [[dot-addAlergia()]] - code - backend/src/main/java/com/clinicadermatologica/app/presentation/controller/MedicalRecordController.java
-- [[dot-addClinicalEntry()]] - code - backend/src/main/java/com/clinicadermatologica/app/presentation/controller/MedicalRecordController.java
-- [[dot-findByPatientId()]] - code - backend/src/main/java/com/clinicadermatologica/app/domain/repository/ClinicalEntryRepository.java
-- [[dot-getClinicalEntriesByPatient()]] - code - backend/src/main/java/com/clinicadermatologica/app/application/service/MedicalRecordService.java
-- [[dot-getClinicalEntriesByPatient()_1]] - code - backend/src/main/java/com/clinicadermatologica/app/presentation/controller/MedicalRecordController.java
-- [[dot-getMedicalRecordByPatient()]] - code - backend/src/main/java/com/clinicadermatologica/app/presentation/controller/MedicalRecordController.java
-- [[dot-getMedicalRecordByPatientId()]] - code - backend/src/main/java/com/clinicadermatologica/app/application/service/MedicalRecordService.java
-- [[dot-removeAlergia()]] - code - backend/src/main/java/com/clinicadermatologica/app/presentation/controller/MedicalRecordController.java
-- [[dot-removeAntecedentePatologico()]] - code - backend/src/main/java/com/clinicadermatologica/app/presentation/controller/MedicalRecordController.java
-- [[dot-removeHabito()]] - code - backend/src/main/java/com/clinicadermatologica/app/presentation/controller/MedicalRecordController.java
+- [[dot-addAlergia()_1]] - code - backend/src/main/java/com/clinicadermatologica/app/presentation/controller/MedicalRecordController.java
+- [[dot-addClinicalEntry()_1]] - code - backend/src/main/java/com/clinicadermatologica/app/presentation/controller/MedicalRecordController.java
+- [[dot-findAuditHistory()_1]] - code - backend/src/main/java/com/clinicadermatologica/app/domain/repository/MedicalRecordRepository.java
+- [[dot-findByPatientId()_6]] - code - backend/src/main/java/com/clinicadermatologica/app/domain/repository/MedicalRecordRepository.java
+- [[dot-getAuditHistory()]] - code - backend/src/main/java/com/clinicadermatologica/app/presentation/controller/MedicalRecordController.java
+- [[dot-removeAlergia()_1]] - code - backend/src/main/java/com/clinicadermatologica/app/presentation/controller/MedicalRecordController.java
+- [[dot-removeAntecedentePatologico()_1]] - code - backend/src/main/java/com/clinicadermatologica/app/presentation/controller/MedicalRecordController.java
+- [[dot-removeHabito()_1]] - code - backend/src/main/java/com/clinicadermatologica/app/presentation/controller/MedicalRecordController.java
+- [[dot-save()_21]] - code - backend/src/main/java/com/clinicadermatologica/app/domain/repository/MedicalRecordRepository.java
+- [[dot-saveAudit()_3]] - code - backend/src/main/java/com/clinicadermatologica/app/domain/repository/MedicalRecordRepository.java
 - [[dot-saveMedicalRecord()]] - code - backend/src/main/java/com/clinicadermatologica/app/presentation/controller/MedicalRecordController.java
-- [[dot-updateClinicalEntry()]] - code - backend/src/main/java/com/clinicadermatologica/app/presentation/controller/MedicalRecordController.java
-- [[AllArgsConstructor_2]] - code
-- [[AllArgsConstructor_3]] - code
-- [[AllArgsConstructor_4]] - code
-- [[Builder_2]] - code
-- [[Builder_3]] - code
-- [[Builder_4]] - code
-- [[ClinicalEntryRequestDTO]] - code - backend/src/main/java/com/clinicadermatologica/app/presentation/dto/ClinicalEntryRequestDTO.java
-- [[ClinicalEntryRequestDTO.java]] - code - backend/src/main/java/com/clinicadermatologica/app/presentation/dto/ClinicalEntryRequestDTO.java
-- [[ClinicalEntryResponseDTO]] - code - backend/src/main/java/com/clinicadermatologica/app/presentation/dto/ClinicalEntryResponseDTO.java
-- [[ClinicalEntryResponseDTO.java]] - code - backend/src/main/java/com/clinicadermatologica/app/presentation/dto/ClinicalEntryResponseDTO.java
-- [[DeleteMapping]] - code
-- [[GetMapping]] - code
-- [[Getter_2]] - code
-- [[Getter_3]] - code
-- [[Getter_4]] - code
+- [[dot-saveOrUpdateMedicalRecord()]] - code - backend/src/main/java/com/clinicadermatologica/app/application/service/MedicalRecordService.java
+- [[dot-testSaveInitialMedicalRecord_Success()]] - code - backend/src/test/java/com/clinicadermatologica/app/application/MedicalRecordServiceTest.java
+- [[DeleteMapping_2]] - code
 - [[MedicalRecordController]] - code - backend/src/main/java/com/clinicadermatologica/app/presentation/controller/MedicalRecordController.java
-- [[MedicalRecordDTO]] - code - backend/src/main/java/com/clinicadermatologica/app/presentation/dto/MedicalRecordDTO.java
-- [[MedicalRecordDTO.java]] - code - backend/src/main/java/com/clinicadermatologica/app/presentation/dto/MedicalRecordDTO.java
-- [[NoArgsConstructor_2]] - code
-- [[NoArgsConstructor_3]] - code
-- [[NoArgsConstructor_4]] - code
-- [[PostMapping]] - code
-- [[PutMapping]] - code
-- [[RequestMapping]] - code
-- [[RestController]] - code
-- [[Setter_2]] - code
-- [[Setter_3]] - code
-- [[Setter_4]] - code
+- [[MedicalRecordRepository]] - code - backend/src/main/java/com/clinicadermatologica/app/domain/repository/MedicalRecordRepository.java
+- [[PostMapping_5]] - code
+- [[RequestMapping_5]] - code
+- [[RestController_5]] - code
 
 ## Live Query (requires Dataview plugin)
 
@@ -57,20 +36,25 @@ SORT file.name ASC
 ```
 
 ## Connections to other communities
-- 12 edges to [[_COMMUNITY_MedicalRecordService]]
-- 10 edges to [[_COMMUNITY_org.springframework.http.ResponseEntity]]
-- 6 edges to [[_COMMUNITY_ClinicalImageService]]
-- 6 edges to [[_COMMUNITY_MedicalRecord]]
+- 9 edges to [[_COMMUNITY_MedicalRecordService]]
+- 8 edges to [[_COMMUNITY_MedicalRecord]]
+- 8 edges to [[_COMMUNITY_org.springframework.http.ResponseEntity]]
+- 7 edges to [[_COMMUNITY_ClinicalImageService]]
+- 5 edges to [[_COMMUNITY_MedicalRecordServiceTest]]
+- 5 edges to [[_COMMUNITY_MedicalRecordDTO]]
 - 4 edges to [[_COMMUNITY_AntecedentePatologico]]
 - 4 edges to [[_COMMUNITY_Habito]]
-- 4 edges to [[_COMMUNITY_AlergiaId]]
-- 2 edges to [[_COMMUNITY_ClinicalEntry]]
-- 2 edges to [[_COMMUNITY_org.springframework.transaction.annotation.Transactional]]
+- 4 edges to [[_COMMUNITY_AppointmentService]]
+- 2 edges to [[_COMMUNITY_org.junit.jupiter.api.DisplayName]]
+- 1 edge to [[_COMMUNITY_AlergiaRequestDTO]]
+- 1 edge to [[_COMMUNITY_ClinicalEntryRequestDTO]]
 - 1 edge to [[_COMMUNITY_lombok.RequiredArgsConstructor]]
+- 1 edge to [[_COMMUNITY_AlergiaId]]
+- 1 edge to [[_COMMUNITY_org.springframework.transaction.annotation.Transactional]]
 
 ## Top bridge nodes
 - [[MedicalRecordController]] - degree 22, connects to 7 communities
-- [[MedicalRecordDTO]] - degree 15, connects to 5 communities
-- [[PostMapping]] - degree 6, connects to 3 communities
-- [[dot-getMedicalRecordByPatientId()]] - degree 5, connects to 3 communities
-- [[dot-addAlergia()]] - degree 6, connects to 2 communities
+- [[dot-testSaveInitialMedicalRecord_Success()]] - degree 11, connects to 6 communities
+- [[MedicalRecordRepository]] - degree 12, connects to 4 communities
+- [[dot-saveOrUpdateMedicalRecord()]] - degree 12, connects to 4 communities
+- [[dot-addAlergia()_1]] - degree 6, connects to 4 communities

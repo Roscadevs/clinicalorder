@@ -15,7 +15,7 @@ tags:
 - [[dot-registerFinalPayment()]] - `calls` [INFERRED]
 - [[AppointmentController]] - `method` [EXTRACTED]
 - [[FinalizePaymentRequestDTO]] - `references` [EXTRACTED]
-- [[PostMapping_5]] - `references` [EXTRACTED]
+- [[PostMapping_4]] - `references` [EXTRACTED]
 - [[org.springframework.http.ResponseEntity]] - `references` [EXTRACTED]
 - [[org.springframework.security.access.prepost.PreAuthorize]] - `references` [EXTRACTED]
 

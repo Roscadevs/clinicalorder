@@ -1,18 +1,18 @@
 ---
 source_file: "frontend/src/features/admin/ServiceFormModal.tsx"
 type: "code"
-community: "AdminServicesView.tsx"
+community: "api.ts"
 location: "L6"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/AdminServicesViewtsx
+  - community/apits
 ---
 
 # ServiceFormModalProps
 
 ## Connections
-- [[DermatologicService]] - `references` [EXTRACTED]
+- [[DermatologicService_1]] - `references` [EXTRACTED]
 - [[ServiceFormModal.tsx]] - `contains` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/AdminServicesViewtsx
+#graphify/code #graphify/EXTRACTED #community/apits

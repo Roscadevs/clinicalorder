@@ -1,12 +1,12 @@
 ---
 source_file: "backend/src/main/java/com/clinicadermatologica/app/infrastructure/security/CustomUserDetailsService.java"
 type: "code"
-community: "JwtAuthenticationFilter"
+community: "org.springframework.transaction.annotation.Transactional"
 location: "L1"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/JwtAuthenticationFilter
+  - community/orgspringframeworktransactionannotationTransactional
 ---
 
 # CustomUserDetailsService.java
@@ -20,4 +20,4 @@ tags:
 - [[lombok.RequiredArgsConstructor]] - `imports` [EXTRACTED]
 - [[org.springframework.stereotype.Service]] - `imports` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/JwtAuthenticationFilter
+#graphify/code #graphify/EXTRACTED #community/orgspringframeworktransactionannotationTransactional

@@ -14,8 +14,8 @@ tags:
 ## Connections
 - [[dot-findByToken()_2]] - `calls` [INFERRED]
 - [[dot-resetPassword()]] - `calls` [INFERRED]
-- [[dot-save()_25]] - `calls` [INFERRED]
 - [[dot-save()_24]] - `calls` [INFERRED]
+- [[dot-save()_23]] - `calls` [INFERRED]
 - [[dot-testResetPassword_AlreadyUsedToken_ThrowsException()]] - `calls` [INFERRED]
 - [[dot-testResetPassword_ExpiredToken_ThrowsException()]] - `calls` [INFERRED]
 - [[dot-testResetPassword_Success()]] - `calls` [INFERRED]

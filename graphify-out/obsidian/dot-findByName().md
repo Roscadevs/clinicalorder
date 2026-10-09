@@ -1,8 +1,8 @@
 ---
-source_file: "backend/src/main/java/com/clinicadermatologica/app/domain/repository/DermatologicServiceRepository.java"
+source_file: "backend/src/main/java/com/clinicadermatologica/app/infrastructure/persistence/adapter/DermatologicServiceRepositoryAdapter.java"
 type: "code"
 community: "DermatologicService"
-location: "L13"
+location: "L26"
 tags:
   - graphify/code
   - graphify/EXTRACTED
@@ -12,7 +12,9 @@ tags:
 # .findByName()
 
 ## Connections
-- [[DermatologicService_1]] - `references` [EXTRACTED]
-- [[DermatologicServiceRepository]] - `method` [EXTRACTED]
+- [[dot-findByName()_1]] - `calls` [INFERRED]
+- [[DermatologicService]] - `references` [EXTRACTED]
+- [[DermatologicServiceRepositoryAdapter]] - `method` [EXTRACTED]
+- [[Override_19]] - `references` [EXTRACTED]
 
 #graphify/code #graphify/EXTRACTED #community/DermatologicService

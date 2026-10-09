@@ -1,17 +1,16 @@
 ---
 source_file: ""
 type: "code"
-community: "DermatologicService"
+community: "CalendarBlockResponseDTO"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/DermatologicService
+  - community/CalendarBlockResponseDTO
 ---
 
 # AllArgsConstructor
 
 ## Connections
-- [[ChatMessageItemDTO]] - `references` [EXTRACTED]
-- [[GeminiChatRequestDTO]] - `references` [EXTRACTED]
+- [[CalendarBlockResponseDTO]] - `references` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/DermatologicService
+#graphify/code #graphify/EXTRACTED #community/CalendarBlockResponseDTO

@@ -12,15 +12,15 @@ tags:
 
 ## Connections
 - [[dot-cancelAppointment()_1]] - `references` [EXTRACTED]
-- [[dot-createService()_1]] - `references` [EXTRACTED]
+- [[dot-createService()]] - `references` [EXTRACTED]
 - [[dot-finalizePayment()]] - `references` [EXTRACTED]
 - [[dot-getAgenda()]] - `references` [EXTRACTED]
 - [[dot-getAllServicesForAdmin()_1]] - `references` [EXTRACTED]
 - [[dot-getAppointmentById()_1]] - `references` [EXTRACTED]
 - [[dot-markAsAttended()_1]] - `references` [EXTRACTED]
-- [[dot-register()_2]] - `references` [EXTRACTED]
+- [[dot-register()_4]] - `references` [EXTRACTED]
 - [[dot-registerDepositPayment()_1]] - `references` [EXTRACTED]
-- [[dot-updateService()_1]] - `references` [EXTRACTED]
+- [[dot-updateService()]] - `references` [EXTRACTED]
 - [[AppointmentController.java]] - `imports` [EXTRACTED]
 - [[AuthController.java]] - `imports` [EXTRACTED]
 - [[CalendarBlockController]] - `references` [EXTRACTED]

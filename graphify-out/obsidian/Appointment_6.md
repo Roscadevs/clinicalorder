@@ -1,18 +1,16 @@
 ---
 source_file: ""
 type: "code"
-community: "AppointmentService"
+community: "org.junit.jupiter.api.DisplayName"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/AppointmentService
+  - community/orgjunitjupiterapiDisplayName
 ---
 
 # Appointment
 
 ## Connections
-- [[dot-expireHold()]] - `references` [EXTRACTED]
-- [[dot-mapToDTO()]] - `references` [EXTRACTED]
-- [[dot-rejectPendingTransactions()_1]] - `references` [EXTRACTED]
+- [[PaymentServiceTest]] - `references` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/AppointmentService
+#graphify/code #graphify/EXTRACTED #community/orgjunitjupiterapiDisplayName

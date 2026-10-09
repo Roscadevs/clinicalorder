@@ -13,8 +13,8 @@ tags:
 
 ## Connections
 - [[dot-findByAppointmentId()]] - `method` [EXTRACTED]
-- [[dot-findById()]] - `method` [EXTRACTED]
-- [[dot-findByMpPaymentId()]] - `method` [EXTRACTED]
+- [[dot-findById()_1]] - `method` [EXTRACTED]
+- [[dot-findByMpPaymentId()_1]] - `method` [EXTRACTED]
 - [[dot-findByMpPreferenceId()]] - `method` [EXTRACTED]
 - [[dot-save()]] - `method` [EXTRACTED]
 - [[JpaPaymentTransactionRepository]] - `references` [EXTRACTED]

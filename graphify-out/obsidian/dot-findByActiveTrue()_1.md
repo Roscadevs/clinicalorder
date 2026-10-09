@@ -12,8 +12,8 @@ tags:
 # .findByActiveTrue()
 
 ## Connections
-- [[dot-findAllActive()_3]] - `calls` [INFERRED]
-- [[DermatologicService_1]] - `references` [EXTRACTED]
+- [[dot-findAllActive()_1]] - `calls` [INFERRED]
+- [[DermatologicService]] - `references` [EXTRACTED]
 - [[JpaDermatologicServiceRepository]] - `method` [EXTRACTED]
 
 #graphify/code #graphify/EXTRACTED #community/DermatologicService

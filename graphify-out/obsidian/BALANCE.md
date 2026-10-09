@@ -12,6 +12,6 @@ tags:
 # BALANCE
 
 ## Connections
-- [[PaymentConcept]] - `case_of` [EXTRACTED]
+- [[PaymentConcept_1]] - `case_of` [EXTRACTED]
 
 #graphify/code #graphify/EXTRACTED #community/PaymentReceiptDTO

@@ -1,16 +1,16 @@
 ---
 source_file: ""
 type: "code"
-community: "CalendarBlockResponseDTO"
+community: "GeminiChatRequestDTO"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/CalendarBlockResponseDTO
+  - community/GeminiChatRequestDTO
 ---
 
 # PostMapping
 
 ## Connections
-- [[dot-createBlock()_1]] - `references` [EXTRACTED]
+- [[dot-sendMessage()]] - `references` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/CalendarBlockResponseDTO
+#graphify/code #graphify/EXTRACTED #community/GeminiChatRequestDTO

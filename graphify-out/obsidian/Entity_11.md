@@ -11,6 +11,6 @@ tags:
 # Entity
 
 ## Connections
-- [[ClinicalEntry]] - `references` [EXTRACTED]
+- [[ClinicalEntryAudit]] - `references` [EXTRACTED]
 
 #graphify/code #graphify/EXTRACTED #community/ClinicalEntry

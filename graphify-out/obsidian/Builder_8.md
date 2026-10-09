@@ -1,16 +1,16 @@
 ---
 source_file: ""
 type: "code"
-community: "Appointment"
+community: "AlergiaRequestDTO"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/Appointment
+  - community/AlergiaRequestDTO
 ---
 
 # Builder
 
 ## Connections
-- [[Appointment]] - `references` [EXTRACTED]
+- [[AlergiaRequestDTO]] - `references` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/Appointment
+#graphify/code #graphify/EXTRACTED #community/AlergiaRequestDTO

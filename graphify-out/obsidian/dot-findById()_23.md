@@ -1,18 +1,19 @@
 ---
-source_file: "backend/src/main/java/com/clinicadermatologica/app/domain/repository/PaymentTransactionRepository.java"
+source_file: "backend/src/main/java/com/clinicadermatologica/app/infrastructure/persistence/adapter/DermatologicServiceRepositoryAdapter.java"
 type: "code"
-community: "lombok.RequiredArgsConstructor"
-location: "L12"
+community: "DermatologicService"
+location: "L21"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/lombokRequiredArgsConstructor
+  - community/DermatologicService
 ---
 
 # .findById()
 
 ## Connections
-- [[PaymentTransaction]] - `references` [EXTRACTED]
-- [[PaymentTransactionRepository]] - `method` [EXTRACTED]
+- [[DermatologicService]] - `references` [EXTRACTED]
+- [[DermatologicServiceRepositoryAdapter]] - `method` [EXTRACTED]
+- [[Override_19]] - `references` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/lombokRequiredArgsConstructor
+#graphify/code #graphify/EXTRACTED #community/DermatologicService

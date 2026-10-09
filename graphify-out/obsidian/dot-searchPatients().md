@@ -13,7 +13,7 @@ tags:
 
 ## Connections
 - [[dot-getPatients()]] - `calls` [INFERRED]
-- [[dot-searchByNameOrDni()]] - `calls` [INFERRED]
+- [[dot-searchByNameOrDni()_2]] - `calls` [INFERRED]
 - [[PatientResponseDTO]] - `references` [EXTRACTED]
 - [[PatientService]] - `method` [EXTRACTED]
 - [[org.springframework.transaction.annotation.Transactional]] - `references` [EXTRACTED]

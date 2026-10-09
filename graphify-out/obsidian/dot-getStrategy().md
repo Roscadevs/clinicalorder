@@ -1,12 +1,12 @@
 ---
 source_file: "backend/src/main/java/com/clinicadermatologica/app/application/strategy/PaymentStrategyFactory.java"
 type: "code"
-community: "org.junit.jupiter.api.DisplayName"
+community: "lombok.RequiredArgsConstructor"
 location: "L47"
 tags:
   - graphify/code
   - graphify/INFERRED
-  - community/orgjunitjupiterapiDisplayName
+  - community/lombokRequiredArgsConstructor
 ---
 
 # .getStrategy()
@@ -22,4 +22,4 @@ tags:
 - [[PaymentStrategyFactory]] - `method` [EXTRACTED]
 - [[PaymentType]] - `references` [EXTRACTED]
 
-#graphify/code #graphify/INFERRED #community/orgjunitjupiterapiDisplayName
+#graphify/code #graphify/INFERRED #community/lombokRequiredArgsConstructor

@@ -1,24 +1,16 @@
 ---
 source_file: ""
 type: "code"
-community: "Patient"
+community: "JwtAuthenticationFilter"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/Patient
+  - community/JwtAuthenticationFilter
 ---
 
 # Override
 
 ## Connections
-- [[dot-existsByDni()_1]] - `references` [EXTRACTED]
-- [[dot-existsByEmail()_1]] - `references` [EXTRACTED]
-- [[dot-existsByPhone()_1]] - `references` [EXTRACTED]
-- [[dot-findAllActive()_1]] - `references` [EXTRACTED]
-- [[dot-findByDni()_1]] - `references` [EXTRACTED]
-- [[dot-findByEmail()_1]] - `references` [EXTRACTED]
-- [[dot-findById()_12]] - `references` [EXTRACTED]
-- [[dot-save()_12]] - `references` [EXTRACTED]
-- [[dot-searchByNameOrDni()_1]] - `references` [EXTRACTED]
+- [[dot-doFilterInternal()]] - `references` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/Patient
+#graphify/code #graphify/EXTRACTED #community/JwtAuthenticationFilter

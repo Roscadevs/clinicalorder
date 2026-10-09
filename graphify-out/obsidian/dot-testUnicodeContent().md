@@ -12,8 +12,8 @@ tags:
 # .testUnicodeContent()
 
 ## Connections
-- [[dot-decrypt()]] - `calls` [INFERRED]
-- [[dot-encrypt()]] - `calls` [INFERRED]
+- [[dot-decrypt()_1]] - `calls` [INFERRED]
+- [[dot-encrypt()_1]] - `calls` [INFERRED]
 - [[AesEncryptionServiceTest]] - `method` [EXTRACTED]
 - [[org.junit.jupiter.api.DisplayName]] - `references` [EXTRACTED]
 - [[org.junit.jupiter.api.Test]] - `references` [EXTRACTED]

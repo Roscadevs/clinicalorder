@@ -1,12 +1,12 @@
 ---
 source_file: "backend/src/main/java/com/clinicadermatologica/app/presentation/controller/GeminiChatbotController.java"
 type: "code"
-community: "DermatologicService"
+community: "GeminiChatRequestDTO"
 location: "L24"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/DermatologicService
+  - community/GeminiChatRequestDTO
 ---
 
 # .sendMessage()
@@ -16,7 +16,7 @@ tags:
 - [[GeminiChatRequestDTO]] - `references` [EXTRACTED]
 - [[GeminiChatResponseDTO]] - `references` [EXTRACTED]
 - [[GeminiChatbotController]] - `method` [EXTRACTED]
-- [[PostMapping_4]] - `references` [EXTRACTED]
+- [[PostMapping_3]] - `references` [EXTRACTED]
 - [[org.springframework.http.ResponseEntity]] - `references` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/DermatologicService
+#graphify/code #graphify/EXTRACTED #community/GeminiChatRequestDTO

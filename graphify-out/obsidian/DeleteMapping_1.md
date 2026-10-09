@@ -1,16 +1,16 @@
 ---
 source_file: ""
 type: "code"
-community: "CalendarBlockResponseDTO"
+community: "ResourceNotFoundException"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/CalendarBlockResponseDTO
+  - community/ResourceNotFoundException
 ---
 
 # DeleteMapping
 
 ## Connections
-- [[dot-deleteBlock()_1]] - `references` [EXTRACTED]
+- [[dot-deactivatePatient()_1]] - `references` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/CalendarBlockResponseDTO
+#graphify/code #graphify/EXTRACTED #community/ResourceNotFoundException

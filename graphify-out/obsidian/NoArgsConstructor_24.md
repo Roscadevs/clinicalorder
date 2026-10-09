@@ -1,16 +1,16 @@
 ---
 source_file: ""
 type: "code"
-community: "ClinicalImage"
+community: "AntecedentePatologico"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/ClinicalImage
+  - community/AntecedentePatologico
 ---
 
 # NoArgsConstructor
 
 ## Connections
-- [[ClinicalImage]] - `references` [EXTRACTED]
+- [[AntecedentePatologicoResponseDTO]] - `references` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/ClinicalImage
+#graphify/code #graphify/EXTRACTED #community/AntecedentePatologico

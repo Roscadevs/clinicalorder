@@ -1,19 +1,18 @@
 ---
-source_file: "backend/src/main/java/com/clinicadermatologica/app/infrastructure/persistence/jpa/JpaDermatologicServiceRepository.java"
+source_file: "backend/src/main/java/com/clinicadermatologica/app/domain/repository/DermatologicServiceRepository.java"
 type: "code"
-community: "DermatologicService"
-location: "L15"
+community: "DermatologicServiceRepository"
+location: "L13"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/DermatologicService
+  - community/DermatologicServiceRepository
 ---
 
 # .findByName()
 
 ## Connections
-- [[dot-findByName()_1]] - `calls` [INFERRED]
-- [[DermatologicService_1]] - `references` [EXTRACTED]
-- [[JpaDermatologicServiceRepository]] - `method` [EXTRACTED]
+- [[DermatologicService]] - `references` [EXTRACTED]
+- [[DermatologicServiceRepository]] - `method` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/DermatologicService
+#graphify/code #graphify/EXTRACTED #community/DermatologicServiceRepository

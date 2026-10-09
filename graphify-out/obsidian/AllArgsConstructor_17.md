@@ -1,16 +1,16 @@
 ---
 source_file: ""
 type: "code"
-community: "AntecedentePatologico"
+community: "TimeSlotDTO"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/AntecedentePatologico
+  - community/TimeSlotDTO
 ---
 
 # AllArgsConstructor
 
 ## Connections
-- [[AntecedentePatologicoRequestDTO]] - `references` [EXTRACTED]
+- [[TimeSlotDTO]] - `references` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/AntecedentePatologico
+#graphify/code #graphify/EXTRACTED #community/TimeSlotDTO

@@ -12,7 +12,7 @@ tags:
 # .findByStatusAndCreatedAtBefore()
 
 ## Connections
-- [[dot-findExpiredHolds()_1]] - `calls` [INFERRED]
+- [[dot-findExpiredHolds()]] - `calls` [INFERRED]
 - [[Appointment]] - `references` [EXTRACTED]
 - [[AppointmentStatus]] - `references` [EXTRACTED]
 - [[JpaAppointmentRepository]] - `method` [EXTRACTED]

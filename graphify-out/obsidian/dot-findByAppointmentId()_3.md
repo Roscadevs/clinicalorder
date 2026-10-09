@@ -13,7 +13,7 @@ tags:
 
 ## Connections
 - [[dot-findByAppointmentId()_4]] - `calls` [INFERRED]
-- [[ClinicalEntry]] - `references` [EXTRACTED]
+- [[ClinicalEntry_1]] - `references` [EXTRACTED]
 - [[ClinicalEntryRepositoryAdapter]] - `method` [EXTRACTED]
 - [[Override_15]] - `references` [EXTRACTED]
 

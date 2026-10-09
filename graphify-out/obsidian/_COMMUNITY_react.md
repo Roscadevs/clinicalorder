@@ -55,23 +55,21 @@ SORT file.name ASC
 
 ## Connections to other communities
 - 21 edges to [[_COMMUNITY_cn]]
+- 16 edges to [[_COMMUNITY_BookingWizard.tsx]]
+- 14 edges to [[_COMMUNITY_DashboardLayout.tsx]]
 - 13 edges to [[_COMMUNITY_api.ts]]
-- 11 edges to [[_COMMUNITY_AdminServicesView.tsx]]
 - 11 edges to [[_COMMUNITY_MedicalRecordView.tsx]]
-- 10 edges to [[_COMMUNITY_DashboardLayout.tsx]]
 - 8 edges to [[_COMMUNITY_reactbitsindex.ts]]
-- 8 edges to [[_COMMUNITY_AppointmentReceiptModal.tsx]]
-- 7 edges to [[_COMMUNITY_BookingWizard.tsx]]
+- 8 edges to [[_COMMUNITY_Button]]
 - 4 edges to [[_COMMUNITY_AgendaView.tsx]]
 - 3 edges to [[_COMMUNITY_BlurText.tsx]]
 - 3 edges to [[_COMMUNITY_package.json]]
 - 2 edges to [[_COMMUNITY_GlideSelect.tsx]]
-- 2 edges to [[_COMMUNITY_AnamnesisForm.tsx]]
 - 1 edge to [[_COMMUNITY_Stepper.tsx]]
 
 ## Top bridge nodes
-- [[react]] - degree 45, connects to 14 communities
-- [[lucide-react]] - degree 29, connects to 11 communities
+- [[react]] - degree 45, connects to 12 communities
+- [[lucide-react]] - degree 29, connects to 9 communities
 - [[App.tsx]] - degree 30, connects to 5 communities
 - [[ServicesCatalogView.tsx]] - degree 18, connects to 5 communities
 - [[LandingPageView.tsx]] - degree 16, connects to 3 communities

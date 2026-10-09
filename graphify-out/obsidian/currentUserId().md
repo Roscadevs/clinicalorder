@@ -1,12 +1,12 @@
 ---
 source_file: "frontend/src/utils/session.ts"
 type: "code"
-community: "AnamnesisForm.tsx"
+community: "DashboardLayout.tsx"
 location: "L11"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/AnamnesisFormtsx
+  - community/DashboardLayouttsx
 ---
 
 # currentUserId()
@@ -16,4 +16,4 @@ tags:
 - [[AnamnesisForm.tsx]] - `imports` [EXTRACTED]
 - [[session.ts]] - `contains` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/AnamnesisFormtsx
+#graphify/code #graphify/EXTRACTED #community/DashboardLayouttsx

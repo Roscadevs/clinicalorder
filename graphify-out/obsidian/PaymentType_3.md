@@ -1,11 +1,11 @@
 ---
 source_file: ""
 type: "code"
-community: ".register"
+community: "PaymentTransaction"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/register
+  - community/PaymentTransaction
 ---
 
 # PaymentType
@@ -13,4 +13,4 @@ tags:
 ## Connections
 - [[dot-supportedType()_1]] - `references` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/register
+#graphify/code #graphify/EXTRACTED #community/PaymentTransaction

@@ -1,12 +1,12 @@
 ---
 source_file: "backend/src/main/java/com/clinicadermatologica/app/presentation/controller/ServiceCatalogController.java"
 type: "code"
-community: "ServiceResponseDTO"
+community: "org.springframework.http.ResponseEntity"
 location: "L1"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/ServiceResponseDTO
+  - community/orgspringframeworkhttpResponseEntity
 ---
 
 # ServiceCatalogController.java
@@ -21,4 +21,4 @@ tags:
 - [[org.springframework.http.ResponseEntity]] - `imports` [EXTRACTED]
 - [[org.springframework.security.access.prepost.PreAuthorize]] - `imports` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/ServiceResponseDTO
+#graphify/code #graphify/EXTRACTED #community/orgspringframeworkhttpResponseEntity

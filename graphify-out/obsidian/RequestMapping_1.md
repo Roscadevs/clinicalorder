@@ -1,16 +1,16 @@
 ---
 source_file: ""
 type: "code"
-community: "lombok.extern.slf4j.Slf4j"
+community: "AuthController"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/lombokexternslf4jSlf4j
+  - community/AuthController
 ---
 
 # RequestMapping
 
 ## Connections
-- [[PaymentWebhookController]] - `references` [EXTRACTED]
+- [[AuthController]] - `references` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/lombokexternslf4jSlf4j
+#graphify/code #graphify/EXTRACTED #community/AuthController

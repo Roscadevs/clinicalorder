@@ -1,12 +1,12 @@
 ---
 source_file: "backend/src/main/java/com/clinicadermatologica/app/application/service/PaymentService.java"
 type: "code"
-community: "lombok.extern.slf4j.Slf4j"
+community: "lombok.RequiredArgsConstructor"
 location: "L35"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/lombokexternslf4jSlf4j
+  - community/lombokRequiredArgsConstructor
 ---
 
 # PaymentService
@@ -17,7 +17,7 @@ tags:
 - [[dot-refundPayment()]] - `method` [EXTRACTED]
 - [[dot-registerDepositPayment()]] - `method` [EXTRACTED]
 - [[dot-registerFinalPayment()]] - `method` [EXTRACTED]
-- [[dot-rejectPendingTransactions()]] - `method` [EXTRACTED]
+- [[dot-rejectPendingTransactions()_1]] - `method` [EXTRACTED]
 - [[AppointmentController]] - `references` [EXTRACTED]
 - [[AppointmentController.java]] - `imports` [EXTRACTED]
 - [[AppointmentRepository]] - `references` [EXTRACTED]
@@ -36,4 +36,4 @@ tags:
 - [[lombok.extern.slf4j.Slf4j]] - `references` [EXTRACTED]
 - [[org.springframework.stereotype.Service]] - `references` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/lombokexternslf4jSlf4j
+#graphify/code #graphify/EXTRACTED #community/lombokRequiredArgsConstructor

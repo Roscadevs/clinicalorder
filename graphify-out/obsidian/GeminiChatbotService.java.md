@@ -1,18 +1,18 @@
 ---
 source_file: "backend/src/main/java/com/clinicadermatologica/app/application/service/GeminiChatbotService.java"
 type: "code"
-community: "DermatologicService"
+community: "GeminiChatRequestDTO"
 location: "L1"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/DermatologicService
+  - community/GeminiChatRequestDTO
 ---
 
 # GeminiChatbotService.java
 
 ## Connections
-- [[DermatologicService_1]] - `imports` [EXTRACTED]
+- [[DermatologicService]] - `imports` [EXTRACTED]
 - [[DermatologicService.java]] - `imports` [EXTRACTED]
 - [[DermatologicServiceRepository]] - `imports` [EXTRACTED]
 - [[GeminiApiClientAdapter]] - `imports` [EXTRACTED]
@@ -23,4 +23,4 @@ tags:
 - [[org.springframework.stereotype.Service]] - `imports` [EXTRACTED]
 - [[org.springframework.transaction.annotation.Transactional]] - `imports` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/DermatologicService
+#graphify/code #graphify/EXTRACTED #community/GeminiChatRequestDTO

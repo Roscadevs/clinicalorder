@@ -1,12 +1,12 @@
 ---
 source_file: "frontend/src/types/index.ts"
 type: "code"
-community: "AppointmentReceiptModal.tsx"
+community: "BookingWizard.tsx"
 location: "L105"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/AppointmentReceiptModaltsx
+  - community/BookingWizardtsx
 ---
 
 # PAYMENT_CONCEPT_LABELS
@@ -16,4 +16,4 @@ tags:
 - [[BookingWizard.tsx]] - `imports` [EXTRACTED]
 - [[typesindex.ts]] - `contains` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/AppointmentReceiptModaltsx
+#graphify/code #graphify/EXTRACTED #community/BookingWizardtsx

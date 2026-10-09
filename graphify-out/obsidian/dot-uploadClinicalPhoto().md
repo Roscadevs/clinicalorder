@@ -15,7 +15,7 @@ tags:
 - [[dot-uploadClinicalImage()]] - `calls` [INFERRED]
 - [[ClinicalImageResponseDTO]] - `references` [EXTRACTED]
 - [[MedicalRecordController]] - `method` [EXTRACTED]
-- [[PostMapping]] - `references` [EXTRACTED]
+- [[PostMapping_5]] - `references` [EXTRACTED]
 - [[org.springframework.http.ResponseEntity]] - `references` [EXTRACTED]
 - [[org.springframework.web.multipart.MultipartFile]] - `references` [EXTRACTED]
 

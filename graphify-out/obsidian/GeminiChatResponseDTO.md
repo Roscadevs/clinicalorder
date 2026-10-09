@@ -1,12 +1,12 @@
 ---
 source_file: "backend/src/main/java/com/clinicadermatologica/app/presentation/dto/GeminiChatResponseDTO.java"
 type: "code"
-community: "DermatologicService"
+community: "GeminiChatRequestDTO"
 location: "L10"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/DermatologicService
+  - community/GeminiChatRequestDTO
 ---
 
 # GeminiChatResponseDTO
@@ -15,14 +15,14 @@ tags:
 - [[dot-generateResponse()]] - `references` [EXTRACTED]
 - [[dot-processUserMessage()]] - `references` [EXTRACTED]
 - [[dot-sendMessage()]] - `references` [EXTRACTED]
-- [[AllArgsConstructor_28]] - `references` [EXTRACTED]
-- [[Builder_26]] - `references` [EXTRACTED]
+- [[AllArgsConstructor_32]] - `references` [EXTRACTED]
+- [[Builder_30]] - `references` [EXTRACTED]
 - [[GeminiApiClientAdapter.java]] - `imports` [EXTRACTED]
 - [[GeminiChatResponseDTO.java]] - `contains` [EXTRACTED]
 - [[GeminiChatbotController.java]] - `imports` [EXTRACTED]
 - [[GeminiChatbotService.java]] - `imports` [EXTRACTED]
-- [[Getter_28]] - `references` [EXTRACTED]
-- [[NoArgsConstructor_28]] - `references` [EXTRACTED]
-- [[Setter_28]] - `references` [EXTRACTED]
+- [[Getter_32]] - `references` [EXTRACTED]
+- [[NoArgsConstructor_32]] - `references` [EXTRACTED]
+- [[Setter_32]] - `references` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/DermatologicService
+#graphify/code #graphify/EXTRACTED #community/GeminiChatRequestDTO

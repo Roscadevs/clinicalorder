@@ -12,11 +12,11 @@ tags:
 # PaymentTransactionRepository
 
 ## Connections
-- [[dot-findByAppointmentId()_1]] - `method` [EXTRACTED]
-- [[dot-findById()_23]] - `method` [EXTRACTED]
-- [[dot-findByMpPaymentId()_2]] - `method` [EXTRACTED]
+- [[dot-findByAppointmentId()_2]] - `method` [EXTRACTED]
+- [[dot-findById()]] - `method` [EXTRACTED]
+- [[dot-findByMpPaymentId()]] - `method` [EXTRACTED]
 - [[dot-findByMpPreferenceId()_2]] - `method` [EXTRACTED]
-- [[dot-save()_6]] - `method` [EXTRACTED]
+- [[dot-save()_11]] - `method` [EXTRACTED]
 - [[AppointmentService]] - `references` [EXTRACTED]
 - [[AppointmentServiceTest]] - `references` [EXTRACTED]
 - [[BankTransferPaymentStrategy]] - `references` [EXTRACTED]

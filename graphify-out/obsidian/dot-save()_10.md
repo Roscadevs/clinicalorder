@@ -1,19 +1,27 @@
 ---
-source_file: "backend/src/main/java/com/clinicadermatologica/app/infrastructure/persistence/adapter/AntecedentePatologicoRepositoryAdapter.java"
+source_file: "backend/src/main/java/com/clinicadermatologica/app/domain/repository/AppointmentRepository.java"
 type: "code"
-community: "AntecedentePatologico"
-location: "L36"
+community: "AppointmentService"
+location: "L23"
 tags:
   - graphify/code
-  - graphify/EXTRACTED
-  - community/AntecedentePatologico
+  - graphify/INFERRED
+  - community/AppointmentService
 ---
 
 # .save()
 
 ## Connections
-- [[AntecedentePatologico]] - `references` [EXTRACTED]
-- [[AntecedentePatologicoRepositoryAdapter]] - `method` [EXTRACTED]
-- [[Override_8]] - `references` [EXTRACTED]
+- [[dot-bookTemporaryHold()]] - `calls` [INFERRED]
+- [[dot-cancelAppointment()]] - `calls` [INFERRED]
+- [[dot-expireHold()]] - `calls` [INFERRED]
+- [[dot-markAsAttended()]] - `calls` [INFERRED]
+- [[dot-processMercadoPagoWebhook()]] - `calls` [INFERRED]
+- [[dot-registerDepositPayment()]] - `calls` [INFERRED]
+- [[dot-registerFinalPayment()]] - `calls` [INFERRED]
+- [[dot-testBookTemporaryHold_ExpiredOverlappingHold_IsReleased()]] - `calls` [INFERRED]
+- [[dot-testBookTemporaryHold_Success()]] - `calls` [INFERRED]
+- [[Appointment]] - `references` [EXTRACTED]
+- [[AppointmentRepository]] - `method` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/AntecedentePatologico
+#graphify/code #graphify/INFERRED #community/AppointmentService

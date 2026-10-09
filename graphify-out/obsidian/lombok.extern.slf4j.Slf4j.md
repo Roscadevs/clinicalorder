@@ -1,11 +1,11 @@
 ---
 source_file: ""
 type: "code"
-community: "lombok.extern.slf4j.Slf4j"
+community: "lombok.RequiredArgsConstructor"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/lombokexternslf4jSlf4j
+  - community/lombokRequiredArgsConstructor
 ---
 
 # lombok.extern.slf4j.Slf4j
@@ -40,4 +40,4 @@ tags:
 - [[SupabaseStorageAdapter]] - `references` [EXTRACTED]
 - [[SupabaseStorageAdapter.java]] - `imports` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/lombokexternslf4jSlf4j
+#graphify/code #graphify/EXTRACTED #community/lombokRequiredArgsConstructor

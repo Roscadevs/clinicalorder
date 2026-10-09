@@ -12,7 +12,7 @@ tags:
 # AppointmentServiceTest
 
 ## Connections
-- [[dot-setUp()_1]] - `method` [EXTRACTED]
+- [[dot-setUp()]] - `method` [EXTRACTED]
 - [[dot-testBookTemporaryHold_ExpiredOverlappingHold_IsReleased()]] - `method` [EXTRACTED]
 - [[dot-testBookTemporaryHold_SlotUnavailable_ThrowsException()]] - `method` [EXTRACTED]
 - [[dot-testBookTemporaryHold_Success()]] - `method` [EXTRACTED]

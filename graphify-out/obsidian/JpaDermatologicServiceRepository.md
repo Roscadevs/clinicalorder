@@ -12,10 +12,10 @@ tags:
 # JpaDermatologicServiceRepository
 
 ## Connections
-- [[dot-existsByName()_2]] - `method` [EXTRACTED]
+- [[dot-existsByName()_1]] - `method` [EXTRACTED]
 - [[dot-findByActiveTrue()_1]] - `method` [EXTRACTED]
-- [[dot-findByName()_2]] - `method` [EXTRACTED]
-- [[DermatologicService_1]] - `references` [EXTRACTED]
+- [[dot-findByName()_1]] - `method` [EXTRACTED]
+- [[DermatologicService]] - `references` [EXTRACTED]
 - [[DermatologicServiceRepositoryAdapter]] - `references` [EXTRACTED]
 - [[DermatologicServiceRepositoryAdapter.java]] - `imports` [EXTRACTED]
 - [[JpaDermatologicServiceRepository.java]] - `contains` [EXTRACTED]

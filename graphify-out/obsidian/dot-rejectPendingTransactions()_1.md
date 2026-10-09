@@ -1,8 +1,8 @@
 ---
-source_file: "backend/src/main/java/com/clinicadermatologica/app/application/service/AppointmentService.java"
+source_file: "backend/src/main/java/com/clinicadermatologica/app/application/service/PaymentService.java"
 type: "code"
 community: "AppointmentService"
-location: "L285"
+location: "L402"
 tags:
   - graphify/code
   - graphify/EXTRACTED
@@ -12,11 +12,11 @@ tags:
 # .rejectPendingTransactions()
 
 ## Connections
-- [[dot-cancelAppointment()]] - `calls` [EXTRACTED]
-- [[dot-expireHold()]] - `calls` [EXTRACTED]
-- [[dot-findByAppointmentId()_1]] - `calls` [INFERRED]
-- [[dot-save()_6]] - `calls` [INFERRED]
-- [[Appointment_6]] - `references` [EXTRACTED]
-- [[AppointmentService]] - `method` [EXTRACTED]
+- [[dot-findByAppointmentId()_2]] - `calls` [INFERRED]
+- [[dot-registerDepositPayment()]] - `calls` [EXTRACTED]
+- [[dot-save()_11]] - `calls` [INFERRED]
+- [[Appointment_8]] - `references` [EXTRACTED]
+- [[PaymentService]] - `method` [EXTRACTED]
+- [[PaymentTransaction]] - `references` [EXTRACTED]
 
 #graphify/code #graphify/EXTRACTED #community/AppointmentService

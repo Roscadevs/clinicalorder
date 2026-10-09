@@ -1,11 +1,11 @@
 ---
 type: community
-members: 53
+members: 51
 ---
 
 # AntecedentePatologico
 
-**Members:** 53 nodes
+**Members:** 51 nodes
 
 ## Members
 - [[dot-addAntecedentePatologico()]] - code - backend/src/main/java/com/clinicadermatologica/app/application/service/MedicalRecordService.java
@@ -15,20 +15,20 @@ members: 53
 - [[dot-equals()_1]] - code - backend/src/main/java/com/clinicadermatologica/app/domain/model/AntecedentePatologicoId.java
 - [[dot-existsById()_2]] - code - backend/src/main/java/com/clinicadermatologica/app/domain/repository/AntecedentePatologicoRepository.java
 - [[dot-existsById()_3]] - code - backend/src/main/java/com/clinicadermatologica/app/infrastructure/persistence/adapter/AntecedentePatologicoRepositoryAdapter.java
-- [[dot-findById()_9]] - code - backend/src/main/java/com/clinicadermatologica/app/domain/repository/AntecedentePatologicoRepository.java
-- [[dot-findById()_10]] - code - backend/src/main/java/com/clinicadermatologica/app/infrastructure/persistence/adapter/AntecedentePatologicoRepositoryAdapter.java
+- [[dot-findById()_10]] - code - backend/src/main/java/com/clinicadermatologica/app/domain/repository/AntecedentePatologicoRepository.java
+- [[dot-findById()_11]] - code - backend/src/main/java/com/clinicadermatologica/app/infrastructure/persistence/adapter/AntecedentePatologicoRepositoryAdapter.java
 - [[dot-findByIdMedicalRecordId()_1]] - code - backend/src/main/java/com/clinicadermatologica/app/infrastructure/persistence/jpa/JpaAntecedentePatologicoRepository.java
-- [[dot-findByMedicalRecordId()_1]] - code - backend/src/main/java/com/clinicadermatologica/app/domain/repository/AntecedentePatologicoRepository.java
-- [[dot-findByMedicalRecordId()_2]] - code - backend/src/main/java/com/clinicadermatologica/app/infrastructure/persistence/adapter/AntecedentePatologicoRepositoryAdapter.java
+- [[dot-findByMedicalRecordId()_2]] - code - backend/src/main/java/com/clinicadermatologica/app/domain/repository/AntecedentePatologicoRepository.java
+- [[dot-findByMedicalRecordId()_3]] - code - backend/src/main/java/com/clinicadermatologica/app/infrastructure/persistence/adapter/AntecedentePatologicoRepositoryAdapter.java
 - [[dot-hashCode()_1]] - code - backend/src/main/java/com/clinicadermatologica/app/domain/model/AntecedentePatologicoId.java
 - [[dot-mapAntecedenteToDTO()]] - code - backend/src/main/java/com/clinicadermatologica/app/application/service/MedicalRecordService.java
-- [[dot-removeAntecedentePatologico()_1]] - code - backend/src/main/java/com/clinicadermatologica/app/application/service/MedicalRecordService.java
-- [[dot-save()_9]] - code - backend/src/main/java/com/clinicadermatologica/app/domain/repository/AntecedentePatologicoRepository.java
-- [[dot-save()_10]] - code - backend/src/main/java/com/clinicadermatologica/app/infrastructure/persistence/adapter/AntecedentePatologicoRepositoryAdapter.java
-- [[AllArgsConstructor_15]] - code
-- [[AllArgsConstructor_16]] - code
-- [[AllArgsConstructor_17]] - code
-- [[AllArgsConstructor_18]] - code
+- [[dot-removeAntecedentePatologico()]] - code - backend/src/main/java/com/clinicadermatologica/app/application/service/MedicalRecordService.java
+- [[dot-save()_8]] - code - backend/src/main/java/com/clinicadermatologica/app/domain/repository/AntecedentePatologicoRepository.java
+- [[dot-save()_9]] - code - backend/src/main/java/com/clinicadermatologica/app/infrastructure/persistence/adapter/AntecedentePatologicoRepositoryAdapter.java
+- [[AllArgsConstructor_21]] - code
+- [[AllArgsConstructor_22]] - code
+- [[AllArgsConstructor_23]] - code
+- [[AllArgsConstructor_24]] - code
 - [[AntecedentePatologico]] - code - backend/src/main/java/com/clinicadermatologica/app/domain/model/AntecedentePatologico.java
 - [[AntecedentePatologico.java]] - code - backend/src/main/java/com/clinicadermatologica/app/domain/model/AntecedentePatologico.java
 - [[AntecedentePatologicoId]] - code - backend/src/main/java/com/clinicadermatologica/app/domain/model/AntecedentePatologicoId.java
@@ -40,26 +40,24 @@ members: 53
 - [[AntecedentePatologicoRequestDTO.java]] - code - backend/src/main/java/com/clinicadermatologica/app/presentation/dto/AntecedentePatologicoRequestDTO.java
 - [[AntecedentePatologicoResponseDTO]] - code - backend/src/main/java/com/clinicadermatologica/app/presentation/dto/AntecedentePatologicoResponseDTO.java
 - [[AntecedentePatologicoResponseDTO.java]] - code - backend/src/main/java/com/clinicadermatologica/app/presentation/dto/AntecedentePatologicoResponseDTO.java
-- [[Builder_14]] - code
-- [[Builder_15]] - code
-- [[Builder_16]] - code
+- [[Builder_20]] - code
+- [[Builder_21]] - code
+- [[Builder_22]] - code
 - [[Entity_6]] - code
-- [[Getter_15]] - code
-- [[Getter_16]] - code
-- [[Getter_17]] - code
-- [[Getter_18]] - code
-- [[JpaAntecedentePatologicoRepository]] - code - backend/src/main/java/com/clinicadermatologica/app/infrastructure/persistence/jpa/JpaAntecedentePatologicoRepository.java
-- [[JpaAntecedentePatologicoRepository.java]] - code - backend/src/main/java/com/clinicadermatologica/app/infrastructure/persistence/jpa/JpaAntecedentePatologicoRepository.java
-- [[NoArgsConstructor_15]] - code
-- [[NoArgsConstructor_16]] - code
-- [[NoArgsConstructor_17]] - code
-- [[NoArgsConstructor_18]] - code
-- [[Override_7]] - code
-- [[Override_8]] - code
-- [[Setter_15]] - code
-- [[Setter_16]] - code
-- [[Setter_17]] - code
-- [[Setter_18]] - code
+- [[Getter_21]] - code
+- [[Getter_22]] - code
+- [[Getter_23]] - code
+- [[Getter_24]] - code
+- [[NoArgsConstructor_21]] - code
+- [[NoArgsConstructor_22]] - code
+- [[NoArgsConstructor_23]] - code
+- [[NoArgsConstructor_24]] - code
+- [[Override_9]] - code
+- [[Override_10]] - code
+- [[Setter_21]] - code
+- [[Setter_22]] - code
+- [[Setter_23]] - code
+- [[Setter_24]] - code
 - [[Table_6]] - code
 
 ## Live Query (requires Dataview plugin)
@@ -70,19 +68,20 @@ SORT file.name ASC
 ```
 
 ## Connections to other communities
-- 7 edges to [[_COMMUNITY_MedicalRecordService]]
-- 4 edges to [[_COMMUNITY_MedicalRecordController]]
+- 7 edges to [[_COMMUNITY_org.springframework.data.jpa.repository.JpaRepository]]
+- 5 edges to [[_COMMUNITY_MedicalRecordService]]
 - 4 edges to [[_COMMUNITY_lombok.RequiredArgsConstructor]]
-- 4 edges to [[_COMMUNITY_org.springframework.data.jpa.repository.JpaRepository]]
-- 2 edges to [[_COMMUNITY_Habito]]
+- 4 edges to [[_COMMUNITY_MedicalRecordController]]
+- 2 edges to [[_COMMUNITY_AlergiaId]]
+- 2 edges to [[_COMMUNITY_MedicalRecordServiceTest]]
 - 2 edges to [[_COMMUNITY_org.springframework.transaction.annotation.Transactional]]
 - 1 edge to [[_COMMUNITY_MedicalRecord]]
-- 1 edge to [[_COMMUNITY_AlergiaId]]
+- 1 edge to [[_COMMUNITY_MedicalRecordDTO]]
 - 1 edge to [[_COMMUNITY_org.springframework.http.ResponseEntity]]
 
 ## Top bridge nodes
 - [[dot-addAntecedentePatologico()]] - degree 10, connects to 3 communities
-- [[dot-removeAntecedentePatologico()_1]] - degree 6, connects to 3 communities
-- [[dot-addAntecedentePatologico()_1]] - degree 6, connects to 2 communities
-- [[AntecedentePatologico]] - degree 22, connects to 1 community
-- [[AntecedentePatologicoId]] - degree 21, connects to 1 community
+- [[dot-removeAntecedentePatologico()]] - degree 6, connects to 3 communities
+- [[AntecedentePatologico]] - degree 22, connects to 2 communities
+- [[AntecedentePatologicoId]] - degree 21, connects to 2 communities
+- [[AntecedentePatologicoRepository]] - degree 10, connects to 2 communities

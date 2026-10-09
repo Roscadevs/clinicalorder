@@ -1,8 +1,8 @@
 ---
-source_file: "backend/src/main/java/com/clinicadermatologica/app/domain/repository/AntecedentePatologicoRepository.java"
+source_file: "backend/src/main/java/com/clinicadermatologica/app/infrastructure/persistence/adapter/AntecedentePatologicoRepositoryAdapter.java"
 type: "code"
 community: "AntecedentePatologico"
-location: "L22"
+location: "L36"
 tags:
   - graphify/code
   - graphify/EXTRACTED
@@ -12,8 +12,8 @@ tags:
 # .save()
 
 ## Connections
-- [[dot-addAntecedentePatologico()]] - `calls` [INFERRED]
 - [[AntecedentePatologico]] - `references` [EXTRACTED]
-- [[AntecedentePatologicoRepository]] - `method` [EXTRACTED]
+- [[AntecedentePatologicoRepositoryAdapter]] - `method` [EXTRACTED]
+- [[Override_10]] - `references` [EXTRACTED]
 
 #graphify/code #graphify/EXTRACTED #community/AntecedentePatologico

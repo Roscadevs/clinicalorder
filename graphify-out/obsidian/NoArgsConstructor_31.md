@@ -1,16 +1,17 @@
 ---
 source_file: ""
 type: "code"
-community: "AppointmentServiceTest.java"
+community: "GeminiChatRequestDTO"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/AppointmentServiceTestjava
+  - community/GeminiChatRequestDTO
 ---
 
 # NoArgsConstructor
 
 ## Connections
-- [[TimeSlotDTO]] - `references` [EXTRACTED]
+- [[ChatMessageItemDTO]] - `references` [EXTRACTED]
+- [[GeminiChatRequestDTO]] - `references` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/AppointmentServiceTestjava
+#graphify/code #graphify/EXTRACTED #community/GeminiChatRequestDTO

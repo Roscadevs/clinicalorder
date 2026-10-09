@@ -12,7 +12,7 @@ tags:
 # .delete()
 
 ## Connections
-- [[dot-removeHabito()_1]] - `calls` [INFERRED]
+- [[dot-removeHabito()]] - `calls` [INFERRED]
 - [[HabitoId]] - `references` [EXTRACTED]
 - [[HabitoRepository]] - `method` [EXTRACTED]
 

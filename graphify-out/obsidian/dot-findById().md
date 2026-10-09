@@ -1,8 +1,8 @@
 ---
-source_file: "backend/src/main/java/com/clinicadermatologica/app/infrastructure/persistence/adapter/PaymentTransactionRepositoryAdapter.java"
+source_file: "backend/src/main/java/com/clinicadermatologica/app/domain/repository/PaymentTransactionRepository.java"
 type: "code"
 community: "PaymentTransaction"
-location: "L21"
+location: "L12"
 tags:
   - graphify/code
   - graphify/EXTRACTED
@@ -12,8 +12,7 @@ tags:
 # .findById()
 
 ## Connections
-- [[Override]] - `references` [EXTRACTED]
 - [[PaymentTransaction]] - `references` [EXTRACTED]
-- [[PaymentTransactionRepositoryAdapter]] - `method` [EXTRACTED]
+- [[PaymentTransactionRepository]] - `method` [EXTRACTED]
 
 #graphify/code #graphify/EXTRACTED #community/PaymentTransaction

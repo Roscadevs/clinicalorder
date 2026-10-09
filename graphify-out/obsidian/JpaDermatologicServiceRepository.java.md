@@ -12,7 +12,7 @@ tags:
 # JpaDermatologicServiceRepository.java
 
 ## Connections
-- [[DermatologicService_1]] - `imports` [EXTRACTED]
+- [[DermatologicService]] - `imports` [EXTRACTED]
 - [[JpaDermatologicServiceRepository]] - `contains` [EXTRACTED]
 - [[org.springframework.data.jpa.repository.JpaRepository]] - `imports` [EXTRACTED]
 - [[org.springframework.stereotype.Repository]] - `imports` [EXTRACTED]

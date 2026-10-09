@@ -1,8 +1,8 @@
 ---
-source_file: "backend/src/main/java/com/clinicadermatologica/app/domain/repository/AlergiaRepository.java"
+source_file: "backend/src/main/java/com/clinicadermatologica/app/infrastructure/persistence/adapter/AlergiaRepositoryAdapter.java"
 type: "code"
 community: "AlergiaId"
-location: "L25"
+location: "L37"
 tags:
   - graphify/code
   - graphify/EXTRACTED
@@ -12,9 +12,8 @@ tags:
 # .save()
 
 ## Connections
-- [[dot-addAlergia()_1]] - `calls` [INFERRED]
-- [[dot-testAddAlergia_Success()]] - `calls` [INFERRED]
 - [[Alergia]] - `references` [EXTRACTED]
-- [[AlergiaRepository]] - `method` [EXTRACTED]
+- [[AlergiaRepositoryAdapter]] - `method` [EXTRACTED]
+- [[Override_17]] - `references` [EXTRACTED]
 
 #graphify/code #graphify/EXTRACTED #community/AlergiaId

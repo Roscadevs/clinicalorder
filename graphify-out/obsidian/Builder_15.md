@@ -1,16 +1,16 @@
 ---
 source_file: ""
 type: "code"
-community: "AntecedentePatologico"
+community: "ServiceRequestDTO"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/AntecedentePatologico
+  - community/ServiceRequestDTO
 ---
 
 # Builder
 
 ## Connections
-- [[AntecedentePatologicoRequestDTO]] - `references` [EXTRACTED]
+- [[ServiceRequestDTO]] - `references` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/AntecedentePatologico
+#graphify/code #graphify/EXTRACTED #community/ServiceRequestDTO

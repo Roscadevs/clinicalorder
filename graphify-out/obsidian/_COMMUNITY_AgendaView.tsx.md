@@ -20,7 +20,7 @@ members: 22
 - [[TimeGrid()]] - code - frontend/src/features/agenda/AgendaView.tsx
 - [[VisualStatus]] - code - frontend/src/features/agenda/appointmentStatus.ts
 - [[addDays()]] - code - frontend/src/features/agenda/AgendaView.tsx
-- [[ars()_2]] - code - frontend/src/features/agenda/AgendaView.tsx
+- [[ars()]] - code - frontend/src/features/agenda/AgendaView.tsx
 - [[computeRange()]] - code - frontend/src/features/agenda/AgendaView.tsx
 - [[dayKey()]] - code - frontend/src/features/agenda/AgendaView.tsx
 - [[fmtTime()]] - code - frontend/src/features/agenda/AgendaView.tsx
@@ -41,10 +41,10 @@ SORT file.name ASC
 ## Connections to other communities
 - 12 edges to [[_COMMUNITY_cn]]
 - 11 edges to [[_COMMUNITY_MedicalRecordView.tsx]]
+- 5 edges to [[_COMMUNITY_BookingWizard.tsx]]
 - 4 edges to [[_COMMUNITY_react]]
-- 4 edges to [[_COMMUNITY_AppointmentReceiptModal.tsx]]
-- 2 edges to [[_COMMUNITY_api.ts]]
-- 1 edge to [[_COMMUNITY_AdminServicesView.tsx]]
+- 1 edge to [[_COMMUNITY_Button]]
+- 1 edge to [[_COMMUNITY_api.ts]]
 
 ## Top bridge nodes
 - [[AgendaView.tsx]] - degree 44, connects to 6 communities

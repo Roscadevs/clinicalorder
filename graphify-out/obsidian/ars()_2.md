@@ -1,19 +1,18 @@
 ---
-source_file: "frontend/src/features/agenda/AgendaView.tsx"
+source_file: "frontend/src/features/appointments/RegisterPaymentStep.tsx"
 type: "code"
-community: "AgendaView.tsx"
-location: "L18"
+community: "BookingWizard.tsx"
+location: "L28"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/AgendaViewtsx
+  - community/BookingWizardtsx
 ---
 
 # ars()
 
 ## Connections
-- [[AgendaView()]] - `calls` [EXTRACTED]
-- [[AgendaView.tsx]] - `contains` [EXTRACTED]
-- [[AppointmentDetail()]] - `calls` [EXTRACTED]
+- [[RegisterPaymentStep()]] - `calls` [EXTRACTED]
+- [[RegisterPaymentStep.tsx]] - `contains` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/AgendaViewtsx
+#graphify/code #graphify/EXTRACTED #community/BookingWizardtsx

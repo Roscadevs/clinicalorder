@@ -14,16 +14,16 @@ tags:
 ## Connections
 - [[dot-registerDepositPayment()_1]] - `references` [EXTRACTED]
 - [[dot-registerDepositPayment()]] - `references` [EXTRACTED]
-- [[AllArgsConstructor_44]] - `references` [EXTRACTED]
+- [[AllArgsConstructor_41]] - `references` [EXTRACTED]
 - [[AppointmentStatus]] - `references` [EXTRACTED]
-- [[Builder_41]] - `references` [EXTRACTED]
-- [[Getter_44]] - `references` [EXTRACTED]
-- [[NoArgsConstructor_44]] - `references` [EXTRACTED]
-- [[PaymentConcept]] - `references` [EXTRACTED]
+- [[Builder_38]] - `references` [EXTRACTED]
+- [[Getter_41]] - `references` [EXTRACTED]
+- [[NoArgsConstructor_41]] - `references` [EXTRACTED]
+- [[PaymentConcept_1]] - `references` [EXTRACTED]
 - [[PaymentReceiptDTO.java]] - `contains` [EXTRACTED]
 - [[PaymentService.java]] - `imports` [EXTRACTED]
 - [[PaymentServiceTest.java]] - `imports` [EXTRACTED]
 - [[PaymentType]] - `references` [EXTRACTED]
-- [[Setter_44]] - `references` [EXTRACTED]
+- [[Setter_41]] - `references` [EXTRACTED]
 
 #graphify/code #graphify/EXTRACTED #community/PaymentReceiptDTO

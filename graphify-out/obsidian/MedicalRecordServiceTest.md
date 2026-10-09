@@ -1,18 +1,18 @@
 ---
 source_file: "backend/src/test/java/com/clinicadermatologica/app/application/MedicalRecordServiceTest.java"
 type: "code"
-community: "MedicalRecordService"
+community: "MedicalRecordServiceTest"
 location: "L29"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/MedicalRecordService
+  - community/MedicalRecordServiceTest
 ---
 
 # MedicalRecordServiceTest
 
 ## Connections
-- [[dot-setUp()_3]] - `method` [EXTRACTED]
+- [[dot-setUp()_2]] - `method` [EXTRACTED]
 - [[dot-testAddAlergia_DuplicateTipo_Throws()]] - `method` [EXTRACTED]
 - [[dot-testAddAlergia_Success()]] - `method` [EXTRACTED]
 - [[dot-testAddClinicalEntry_EncryptsContent()]] - `method` [EXTRACTED]
@@ -36,4 +36,4 @@ tags:
 - [[org.junit.jupiter.api.extension.ExtendWith]] - `references` [EXTRACTED]
 - [[org.mockito.junit.jupiter.MockitoExtension]] - `references` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/MedicalRecordService
+#graphify/code #graphify/EXTRACTED #community/MedicalRecordServiceTest

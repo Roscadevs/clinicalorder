@@ -11,10 +11,7 @@ tags:
 # Override
 
 ## Connections
-- [[dot-findByAppointmentId()]] - `references` [EXTRACTED]
-- [[dot-findById()]] - `references` [EXTRACTED]
-- [[dot-findByMpPaymentId()]] - `references` [EXTRACTED]
-- [[dot-findByMpPreferenceId()]] - `references` [EXTRACTED]
-- [[dot-save()]] - `references` [EXTRACTED]
+- [[dot-register()]] - `references` [EXTRACTED]
+- [[dot-supportedType()]] - `references` [EXTRACTED]
 
 #graphify/code #graphify/EXTRACTED #community/PaymentTransaction

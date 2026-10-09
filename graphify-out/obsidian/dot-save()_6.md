@@ -1,26 +1,19 @@
 ---
-source_file: "backend/src/main/java/com/clinicadermatologica/app/domain/repository/PaymentTransactionRepository.java"
+source_file: "backend/src/main/java/com/clinicadermatologica/app/infrastructure/persistence/adapter/AppointmentRepositoryAdapter.java"
 type: "code"
-community: "lombok.extern.slf4j.Slf4j"
-location: "L16"
+community: "Appointment"
+location: "L53"
 tags:
   - graphify/code
-  - graphify/INFERRED
-  - community/lombokexternslf4jSlf4j
+  - graphify/EXTRACTED
+  - community/Appointment
 ---
 
 # .save()
 
 ## Connections
-- [[dot-bookTemporaryHold()]] - `calls` [INFERRED]
-- [[dot-processMercadoPagoWebhook()]] - `calls` [INFERRED]
-- [[dot-refundPayment()]] - `calls` [INFERRED]
-- [[dot-register()]] - `calls` [INFERRED]
-- [[dot-register()_3]] - `calls` [INFERRED]
-- [[dot-register()_1]] - `calls` [INFERRED]
-- [[dot-rejectPendingTransactions()_1]] - `calls` [INFERRED]
-- [[dot-rejectPendingTransactions()]] - `calls` [INFERRED]
-- [[PaymentTransaction]] - `references` [EXTRACTED]
-- [[PaymentTransactionRepository]] - `method` [EXTRACTED]
+- [[Appointment]] - `references` [EXTRACTED]
+- [[AppointmentRepositoryAdapter]] - `method` [EXTRACTED]
+- [[Override_7]] - `references` [EXTRACTED]
 
-#graphify/code #graphify/INFERRED #community/lombokexternslf4jSlf4j
+#graphify/code #graphify/EXTRACTED #community/Appointment

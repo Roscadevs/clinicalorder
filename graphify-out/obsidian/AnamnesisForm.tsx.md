@@ -1,12 +1,12 @@
 ---
 source_file: "frontend/src/features/clinical/AnamnesisForm.tsx"
 type: "code"
-community: "AnamnesisForm.tsx"
+community: "DashboardLayout.tsx"
 location: "L1"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/AnamnesisFormtsx
+  - community/DashboardLayouttsx
 ---
 
 # AnamnesisForm.tsx
@@ -32,4 +32,4 @@ tags:
 - [[typesindex.ts]] - `imports_from` [EXTRACTED]
 - [[uiindex.ts]] - `imports_from` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/AnamnesisFormtsx
+#graphify/code #graphify/EXTRACTED #community/DashboardLayouttsx

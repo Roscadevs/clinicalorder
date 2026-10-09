@@ -1,16 +1,16 @@
 ---
 source_file: ""
 type: "code"
-community: "PaymentReceiptDTO"
+community: "MedicalRecordDTO"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/PaymentReceiptDTO
+  - community/MedicalRecordDTO
 ---
 
 # Setter
 
 ## Connections
-- [[PaymentReceiptDTO]] - `references` [EXTRACTED]
+- [[MedicalRecordDTO]] - `references` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/PaymentReceiptDTO
+#graphify/code #graphify/EXTRACTED #community/MedicalRecordDTO

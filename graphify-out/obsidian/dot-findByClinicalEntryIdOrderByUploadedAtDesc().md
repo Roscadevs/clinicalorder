@@ -12,7 +12,7 @@ tags:
 # .findByClinicalEntryIdOrderByUploadedAtDesc()
 
 ## Connections
-- [[dot-findByClinicalEntryId()_1]] - `calls` [INFERRED]
+- [[dot-findByClinicalEntryId()]] - `calls` [INFERRED]
 - [[ClinicalImage]] - `references` [EXTRACTED]
 - [[JpaClinicalImageRepository]] - `method` [EXTRACTED]
 

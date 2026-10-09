@@ -1,12 +1,12 @@
 ---
 source_file: "backend/src/main/java/com/clinicadermatologica/app/domain/model/PaymentType.java"
 type: "code"
-community: "lombok.extern.slf4j.Slf4j"
+community: "PaymentType"
 location: "L9"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/lombokexternslf4jSlf4j
+  - community/PaymentType
 ---
 
 # PaymentType
@@ -27,4 +27,4 @@ tags:
 - [[RegisterPaymentRequestDTO]] - `references` [EXTRACTED]
 - [[RegisterPaymentRequestDTO.java]] - `imports` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/lombokexternslf4jSlf4j
+#graphify/code #graphify/EXTRACTED #community/PaymentType

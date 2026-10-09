@@ -13,7 +13,7 @@ tags:
 
 ## Connections
 - [[AppointmentStatus]] - `imports` [EXTRACTED]
-- [[PaymentConcept]] - `imports` [EXTRACTED]
+- [[PaymentConcept_1]] - `imports` [EXTRACTED]
 - [[PaymentReceiptDTO]] - `contains` [EXTRACTED]
 - [[PaymentServiceTest.java]] - `imports` [EXTRACTED]
 - [[PaymentType]] - `imports` [EXTRACTED]

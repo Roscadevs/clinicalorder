@@ -1,18 +1,18 @@
 ---
-source_file: "frontend/src/features/documents/AppointmentReceiptModal.tsx"
+source_file: "frontend/src/features/admin/ServiceFormModal.tsx"
 type: "code"
-community: "AppointmentReceiptModal.tsx"
-location: "L42"
+community: "api.ts"
+location: "L14"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/AppointmentReceiptModaltsx
+  - community/apits
 ---
 
 # ars()
 
 ## Connections
-- [[AppointmentReceiptModal()]] - `calls` [EXTRACTED]
-- [[AppointmentReceiptModal.tsx]] - `contains` [EXTRACTED]
+- [[ServiceFormModal()]] - `calls` [EXTRACTED]
+- [[ServiceFormModal.tsx]] - `contains` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/AppointmentReceiptModaltsx
+#graphify/code #graphify/EXTRACTED #community/apits

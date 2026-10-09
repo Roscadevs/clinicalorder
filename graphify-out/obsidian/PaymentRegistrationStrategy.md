@@ -14,7 +14,7 @@ tags:
 ## Connections
 - [[dot-PaymentStrategyFactory()]] - `references` [EXTRACTED]
 - [[dot-getStrategy()]] - `references` [EXTRACTED]
-- [[dot-register()_4]] - `method` [EXTRACTED]
+- [[dot-register()_3]] - `method` [EXTRACTED]
 - [[dot-supportedType()_3]] - `method` [EXTRACTED]
 - [[BankTransferPaymentStrategy]] - `implements` [EXTRACTED]
 - [[BankTransferPaymentStrategy.java]] - `imports` [EXTRACTED]

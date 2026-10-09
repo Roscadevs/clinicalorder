@@ -1,12 +1,12 @@
 ---
 source_file: "backend/src/test/java/com/clinicadermatologica/app/infrastructure/AesEncryptionServiceTest.java"
 type: "code"
-community: "org.junit.jupiter.api.DisplayName"
+community: "MedicalRecordServiceTest"
 location: "L1"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/orgjunitjupiterapiDisplayName
+  - community/MedicalRecordServiceTest
 ---
 
 # AesEncryptionServiceTest.java
@@ -18,4 +18,4 @@ tags:
 - [[org.junit.jupiter.api.DisplayName]] - `imports` [EXTRACTED]
 - [[org.junit.jupiter.api.Test]] - `imports` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/orgjunitjupiterapiDisplayName
+#graphify/code #graphify/EXTRACTED #community/MedicalRecordServiceTest

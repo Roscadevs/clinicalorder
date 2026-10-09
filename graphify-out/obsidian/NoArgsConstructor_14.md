@@ -1,16 +1,16 @@
 ---
 source_file: ""
 type: "code"
-community: "MedicalRecord"
+community: "PaymentPreferenceResponseDTO"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/MedicalRecord
+  - community/PaymentPreferenceResponseDTO
 ---
 
 # NoArgsConstructor
 
 ## Connections
-- [[MedicalRecordAudit]] - `references` [EXTRACTED]
+- [[PaymentPreferenceResponseDTO]] - `references` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/MedicalRecord
+#graphify/code #graphify/EXTRACTED #community/PaymentPreferenceResponseDTO

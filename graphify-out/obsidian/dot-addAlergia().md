@@ -1,22 +1,28 @@
 ---
-source_file: "backend/src/main/java/com/clinicadermatologica/app/presentation/controller/MedicalRecordController.java"
+source_file: "backend/src/main/java/com/clinicadermatologica/app/application/service/MedicalRecordService.java"
 type: "code"
-community: "MedicalRecordController"
-location: "L116"
+community: "MedicalRecordServiceTest"
+location: "L153"
 tags:
   - graphify/code
-  - graphify/EXTRACTED
-  - community/MedicalRecordController
+  - graphify/INFERRED
+  - community/MedicalRecordServiceTest
 ---
 
 # .addAlergia()
 
 ## Connections
 - [[dot-addAlergia()_1]] - `calls` [INFERRED]
+- [[dot-existsById()_4]] - `calls` [INFERRED]
+- [[dot-findById()_20]] - `calls` [INFERRED]
+- [[dot-mapAlergiaToDTO()]] - `calls` [EXTRACTED]
+- [[dot-save()_17]] - `calls` [INFERRED]
+- [[dot-testAddAlergia_DuplicateTipo_Throws()]] - `calls` [INFERRED]
+- [[dot-testAddAlergia_Success()]] - `calls` [INFERRED]
+- [[AlergiaId]] - `calls` [INFERRED]
 - [[AlergiaRequestDTO]] - `references` [EXTRACTED]
 - [[AlergiaResponseDTO]] - `references` [EXTRACTED]
-- [[MedicalRecordController]] - `method` [EXTRACTED]
-- [[PostMapping]] - `references` [EXTRACTED]
-- [[org.springframework.http.ResponseEntity]] - `references` [EXTRACTED]
+- [[MedicalRecordService]] - `method` [EXTRACTED]
+- [[org.springframework.transaction.annotation.Transactional]] - `references` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/MedicalRecordController
+#graphify/code #graphify/INFERRED #community/MedicalRecordServiceTest

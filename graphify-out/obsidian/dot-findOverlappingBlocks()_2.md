@@ -1,12 +1,12 @@
 ---
 source_file: "backend/src/main/java/com/clinicadermatologica/app/domain/repository/CalendarBlockRepository.java"
 type: "code"
-community: ".bookTemporaryHold"
+community: "AppointmentService"
 location: "L14"
 tags:
   - graphify/code
   - graphify/INFERRED
-  - community/bookTemporaryHold
+  - community/AppointmentService
 ---
 
 # .findOverlappingBlocks()
@@ -19,4 +19,4 @@ tags:
 - [[CalendarBlock]] - `references` [EXTRACTED]
 - [[CalendarBlockRepository]] - `method` [EXTRACTED]
 
-#graphify/code #graphify/INFERRED #community/bookTemporaryHold
+#graphify/code #graphify/INFERRED #community/AppointmentService

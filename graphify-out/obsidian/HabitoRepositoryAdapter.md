@@ -14,9 +14,9 @@ tags:
 ## Connections
 - [[dot-delete()_1]] - `method` [EXTRACTED]
 - [[dot-existsById()_1]] - `method` [EXTRACTED]
-- [[dot-findById()_4]] - `method` [EXTRACTED]
-- [[dot-findByMedicalRecordId()]] - `method` [EXTRACTED]
-- [[dot-save()_4]] - `method` [EXTRACTED]
+- [[dot-findById()_6]] - `method` [EXTRACTED]
+- [[dot-findByMedicalRecordId()_1]] - `method` [EXTRACTED]
+- [[dot-save()_5]] - `method` [EXTRACTED]
 - [[HabitoRepository]] - `implements` [EXTRACTED]
 - [[HabitoRepositoryAdapter.java]] - `contains` [EXTRACTED]
 - [[JpaHabitoRepository]] - `references` [EXTRACTED]

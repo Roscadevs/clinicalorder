@@ -1,11 +1,11 @@
 ---
 source_file: ""
 type: "code"
-community: "PatientResponseDTO"
+community: "PatientRequestDTO"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/PatientResponseDTO
+  - community/PatientRequestDTO
 ---
 
 # RequestMapping
@@ -13,4 +13,4 @@ tags:
 ## Connections
 - [[PatientController]] - `references` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/PatientResponseDTO
+#graphify/code #graphify/EXTRACTED #community/PatientRequestDTO

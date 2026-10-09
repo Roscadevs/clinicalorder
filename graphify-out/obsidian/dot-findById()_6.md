@@ -1,27 +1,20 @@
 ---
-source_file: "backend/src/main/java/com/clinicadermatologica/app/domain/repository/PatientRepository.java"
+source_file: "backend/src/main/java/com/clinicadermatologica/app/infrastructure/persistence/adapter/HabitoRepositoryAdapter.java"
 type: "code"
-community: ".bookTemporaryHold"
-location: "L12"
+community: "Habito"
+location: "L31"
 tags:
   - graphify/code
-  - graphify/INFERRED
-  - community/bookTemporaryHold
+  - graphify/EXTRACTED
+  - community/Habito
 ---
 
 # .findById()
 
 ## Connections
-- [[dot-bookTemporaryHold()]] - `calls` [INFERRED]
-- [[dot-deactivatePatient()]] - `calls` [INFERRED]
-- [[dot-getPatientById()]] - `calls` [INFERRED]
-- [[dot-saveOrUpdateMedicalRecord()]] - `calls` [INFERRED]
-- [[dot-testBookTemporaryHold_ExpiredOverlappingHold_IsReleased()]] - `calls` [INFERRED]
-- [[dot-testBookTemporaryHold_SlotUnavailable_ThrowsException()]] - `calls` [INFERRED]
-- [[dot-testBookTemporaryHold_Success()]] - `calls` [INFERRED]
-- [[dot-testSaveInitialMedicalRecord_Success()]] - `calls` [INFERRED]
-- [[dot-updatePatient()]] - `calls` [INFERRED]
-- [[Patient_1]] - `references` [EXTRACTED]
-- [[PatientRepository]] - `method` [EXTRACTED]
+- [[Habito]] - `references` [EXTRACTED]
+- [[HabitoId]] - `references` [EXTRACTED]
+- [[HabitoRepositoryAdapter]] - `method` [EXTRACTED]
+- [[Override_6]] - `references` [EXTRACTED]
 
-#graphify/code #graphify/INFERRED #community/bookTemporaryHold
+#graphify/code #graphify/EXTRACTED #community/Habito

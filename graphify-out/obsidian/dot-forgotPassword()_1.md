@@ -14,7 +14,7 @@ tags:
 ## Connections
 - [[dot-findByEmail()_5]] - `calls` [INFERRED]
 - [[dot-forgotPassword()]] - `calls` [INFERRED]
-- [[dot-save()_24]] - `calls` [INFERRED]
+- [[dot-save()_23]] - `calls` [INFERRED]
 - [[dot-sendPasswordResetEmail()]] - `calls` [INFERRED]
 - [[dot-testForgotPassword_Success()]] - `calls` [INFERRED]
 - [[AuthService]] - `method` [EXTRACTED]

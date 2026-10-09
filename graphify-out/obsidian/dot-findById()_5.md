@@ -1,26 +1,19 @@
 ---
-source_file: "backend/src/main/java/com/clinicadermatologica/app/domain/repository/DermatologicServiceRepository.java"
+source_file: "backend/src/main/java/com/clinicadermatologica/app/domain/repository/HabitoRepository.java"
 type: "code"
-community: ".bookTemporaryHold"
-location: "L12"
+community: "Habito"
+location: "L20"
 tags:
   - graphify/code
-  - graphify/INFERRED
-  - community/bookTemporaryHold
+  - graphify/EXTRACTED
+  - community/Habito
 ---
 
 # .findById()
 
 ## Connections
-- [[dot-bookTemporaryHold()]] - `calls` [INFERRED]
-- [[dot-getAvailableSlots()]] - `calls` [INFERRED]
-- [[dot-getServiceById()]] - `calls` [INFERRED]
-- [[dot-testBookTemporaryHold_ExpiredOverlappingHold_IsReleased()]] - `calls` [INFERRED]
-- [[dot-testBookTemporaryHold_SlotUnavailable_ThrowsException()]] - `calls` [INFERRED]
-- [[dot-testBookTemporaryHold_Success()]] - `calls` [INFERRED]
-- [[dot-testGetAvailableSlots()]] - `calls` [INFERRED]
-- [[dot-updateService()]] - `calls` [INFERRED]
-- [[DermatologicService_1]] - `references` [EXTRACTED]
-- [[DermatologicServiceRepository]] - `method` [EXTRACTED]
+- [[Habito]] - `references` [EXTRACTED]
+- [[HabitoId]] - `references` [EXTRACTED]
+- [[HabitoRepository]] - `method` [EXTRACTED]
 
-#graphify/code #graphify/INFERRED #community/bookTemporaryHold
+#graphify/code #graphify/EXTRACTED #community/Habito

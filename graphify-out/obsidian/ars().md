@@ -1,18 +1,19 @@
 ---
-source_file: "frontend/src/features/admin/AdminServicesView.tsx"
+source_file: "frontend/src/features/agenda/AgendaView.tsx"
 type: "code"
-community: "AdminServicesView.tsx"
-location: "L10"
+community: "AgendaView.tsx"
+location: "L18"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/AdminServicesViewtsx
+  - community/AgendaViewtsx
 ---
 
 # ars()
 
 ## Connections
-- [[AdminServicesView()]] - `calls` [EXTRACTED]
-- [[AdminServicesView.tsx]] - `contains` [EXTRACTED]
+- [[AgendaView()]] - `calls` [EXTRACTED]
+- [[AgendaView.tsx]] - `contains` [EXTRACTED]
+- [[AppointmentDetail()]] - `calls` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/AdminServicesViewtsx
+#graphify/code #graphify/EXTRACTED #community/AgendaViewtsx

@@ -1,21 +1,21 @@
 ---
 source_file: "backend/src/main/java/com/clinicadermatologica/app/application/service/AppointmentService.java"
 type: "code"
-community: "AppointmentStatus"
+community: "AppointmentResponseDTO"
 location: "L294"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/AppointmentStatus
+  - community/AppointmentResponseDTO
 ---
 
 # .getAppointmentsByRange()
 
 ## Connections
-- [[dot-findByDateRange()_3]] - `calls` [INFERRED]
+- [[dot-findByDateRange()_4]] - `calls` [INFERRED]
 - [[dot-getAgenda()]] - `calls` [INFERRED]
 - [[AppointmentResponseDTO]] - `references` [EXTRACTED]
 - [[AppointmentService]] - `method` [EXTRACTED]
 - [[org.springframework.transaction.annotation.Transactional]] - `references` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/AppointmentStatus
+#graphify/code #graphify/EXTRACTED #community/AppointmentResponseDTO

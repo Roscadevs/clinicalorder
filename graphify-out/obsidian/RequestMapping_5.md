@@ -1,16 +1,16 @@
 ---
 source_file: ""
 type: "code"
-community: "org.springframework.http.ResponseEntity"
+community: "MedicalRecordController"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/orgspringframeworkhttpResponseEntity
+  - community/MedicalRecordController
 ---
 
 # RequestMapping
 
 ## Connections
-- [[AppointmentController]] - `references` [EXTRACTED]
+- [[MedicalRecordController]] - `references` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/orgspringframeworkhttpResponseEntity
+#graphify/code #graphify/EXTRACTED #community/MedicalRecordController

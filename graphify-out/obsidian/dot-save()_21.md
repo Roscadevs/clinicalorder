@@ -1,19 +1,20 @@
 ---
-source_file: "backend/src/main/java/com/clinicadermatologica/app/infrastructure/persistence/adapter/AppointmentRepositoryAdapter.java"
+source_file: "backend/src/main/java/com/clinicadermatologica/app/domain/repository/MedicalRecordRepository.java"
 type: "code"
-community: "AppointmentRepositoryAdapter"
-location: "L53"
+community: "MedicalRecordController"
+location: "L15"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/AppointmentRepositoryAdapter
+  - community/MedicalRecordController
 ---
 
 # .save()
 
 ## Connections
-- [[Appointment]] - `references` [EXTRACTED]
-- [[AppointmentRepositoryAdapter]] - `method` [EXTRACTED]
-- [[Override_18]] - `references` [EXTRACTED]
+- [[dot-saveOrUpdateMedicalRecord()]] - `calls` [INFERRED]
+- [[dot-testSaveInitialMedicalRecord_Success()]] - `calls` [INFERRED]
+- [[MedicalRecord]] - `references` [EXTRACTED]
+- [[MedicalRecordRepository]] - `method` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/AppointmentRepositoryAdapter
+#graphify/code #graphify/EXTRACTED #community/MedicalRecordController

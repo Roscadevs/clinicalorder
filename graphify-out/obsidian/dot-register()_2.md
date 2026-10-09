@@ -1,23 +1,23 @@
 ---
-source_file: "backend/src/main/java/com/clinicadermatologica/app/presentation/controller/AuthController.java"
+source_file: "backend/src/main/java/com/clinicadermatologica/app/infrastructure/payment/strategy/MercadoPagoPaymentStrategy.java"
 type: "code"
-community: "UserRole"
-location: "L52"
+community: "PaymentTransaction"
+location: "L30"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/UserRole
+  - community/PaymentTransaction
 ---
 
 # .register()
 
 ## Connections
-- [[dot-registerUser()]] - `calls` [INFERRED]
-- [[AuthController]] - `method` [EXTRACTED]
-- [[PostMapping_6]] - `references` [EXTRACTED]
-- [[RegisterUserRequestDTO]] - `references` [EXTRACTED]
+- [[dot-save()_11]] - `calls` [INFERRED]
+- [[Appointment_4]] - `references` [EXTRACTED]
+- [[MercadoPagoPaymentStrategy]] - `method` [EXTRACTED]
+- [[Override_2]] - `references` [EXTRACTED]
+- [[PaymentConcept_4]] - `references` [EXTRACTED]
+- [[PaymentTransaction]] - `references` [EXTRACTED]
 - [[User]] - `references` [EXTRACTED]
-- [[org.springframework.http.ResponseEntity]] - `references` [EXTRACTED]
-- [[org.springframework.security.access.prepost.PreAuthorize]] - `references` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/UserRole
+#graphify/code #graphify/EXTRACTED #community/PaymentTransaction

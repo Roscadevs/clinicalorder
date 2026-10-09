@@ -1,16 +1,16 @@
 ---
 source_file: ""
 type: "code"
-community: "AppointmentStatus"
+community: "ClinicalEntryRequestDTO"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/AppointmentStatus
+  - community/ClinicalEntryRequestDTO
 ---
 
 # Getter
 
 ## Connections
-- [[AppointmentResponseDTO]] - `references` [EXTRACTED]
+- [[ClinicalEntryRequestDTO]] - `references` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/AppointmentStatus
+#graphify/code #graphify/EXTRACTED #community/ClinicalEntryRequestDTO

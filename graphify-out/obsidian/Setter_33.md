@@ -1,16 +1,16 @@
 ---
 source_file: ""
 type: "code"
-community: "UserRole"
+community: "BookAppointmentRequestDTO"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/UserRole
+  - community/BookAppointmentRequestDTO
 ---
 
 # Setter
 
 ## Connections
-- [[AuthResponseDTO]] - `references` [EXTRACTED]
+- [[BookAppointmentRequestDTO]] - `references` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/UserRole
+#graphify/code #graphify/EXTRACTED #community/BookAppointmentRequestDTO

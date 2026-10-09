@@ -1,12 +1,12 @@
 ---
 source_file: "backend/src/main/java/com/clinicadermatologica/app/infrastructure/payment/MercadoPagoPaymentAdapter.java"
 type: "code"
-community: ".bookTemporaryHold"
+community: "AppointmentService"
 location: "L46"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/bookTemporaryHold
+  - community/AppointmentService
 ---
 
 # .createDepositPreference()
@@ -20,4 +20,4 @@ tags:
 - [[PaymentGatewayException]] - `calls` [EXTRACTED]
 - [[com.mercadopago.resources.preference.Preference]] - `references` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/bookTemporaryHold
+#graphify/code #graphify/EXTRACTED #community/AppointmentService

@@ -1,17 +1,20 @@
 ---
 source_file: ""
 type: "code"
-community: ".register"
+community: "CalendarBlock"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/register
+  - community/CalendarBlock
 ---
 
 # Override
 
 ## Connections
-- [[dot-register()]] - `references` [EXTRACTED]
-- [[dot-supportedType()]] - `references` [EXTRACTED]
+- [[dot-deleteById()]] - `references` [EXTRACTED]
+- [[dot-findByDateRange()]] - `references` [EXTRACTED]
+- [[dot-findById()_3]] - `references` [EXTRACTED]
+- [[dot-findOverlappingBlocks()]] - `references` [EXTRACTED]
+- [[dot-save()_1]] - `references` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/register
+#graphify/code #graphify/EXTRACTED #community/CalendarBlock

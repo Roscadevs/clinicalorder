@@ -1,12 +1,12 @@
 ---
 source_file: "backend/src/test/java/com/clinicadermatologica/app/application/MedicalRecordServiceTest.java"
 type: "code"
-community: "MedicalRecordService"
+community: "MedicalRecordServiceTest"
 location: "L1"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/MedicalRecordService
+  - community/MedicalRecordServiceTest
 ---
 
 # MedicalRecordServiceTest.java
@@ -25,4 +25,4 @@ tags:
 - [[org.junit.jupiter.api.extension.ExtendWith]] - `imports` [EXTRACTED]
 - [[org.mockito.junit.jupiter.MockitoExtension]] - `imports` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/MedicalRecordService
+#graphify/code #graphify/EXTRACTED #community/MedicalRecordServiceTest

@@ -11,6 +11,6 @@ tags:
 # Builder
 
 ## Connections
-- [[ForgotPasswordRequestDTO]] - `references` [EXTRACTED]
+- [[AuthResponseDTO]] - `references` [EXTRACTED]
 
 #graphify/code #graphify/EXTRACTED #community/UserRole

@@ -14,7 +14,7 @@ tags:
 ## Connections
 - [[dot-getAvailableSlots()]] - `calls` [INFERRED]
 - [[AppointmentController]] - `method` [EXTRACTED]
-- [[GetMapping_3]] - `references` [EXTRACTED]
+- [[GetMapping_2]] - `references` [EXTRACTED]
 - [[TimeSlotDTO]] - `references` [EXTRACTED]
 - [[org.springframework.http.ResponseEntity]] - `references` [EXTRACTED]
 

@@ -1,12 +1,12 @@
 ---
 source_file: "backend/src/main/java/com/clinicadermatologica/app/infrastructure/persistence/jpa/JpaPatientRepository.java"
 type: "code"
-community: "org.springframework.data.jpa.repository.JpaRepository"
+community: "CalendarBlock"
 location: "L1"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/orgspringframeworkdatajparepositoryJpaRepository
+  - community/CalendarBlock
 ---
 
 # JpaPatientRepository.java
@@ -18,4 +18,4 @@ tags:
 - [[org.springframework.data.jpa.repository.Query]] - `imports` [EXTRACTED]
 - [[org.springframework.stereotype.Repository]] - `imports` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/orgspringframeworkdatajparepositoryJpaRepository
+#graphify/code #graphify/EXTRACTED #community/CalendarBlock

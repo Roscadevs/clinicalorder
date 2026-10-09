@@ -36,8 +36,7 @@ SORT file.name ASC
 ```
 
 ## Connections to other communities
-- 2 edges to [[_COMMUNITY_lombok.extern.slf4j.Slf4j]]
-- 2 edges to [[_COMMUNITY_lombok.RequiredArgsConstructor]]
+- 4 edges to [[_COMMUNITY_lombok.RequiredArgsConstructor]]
 - 2 edges to [[_COMMUNITY_UserRepository]]
 - 1 edge to [[_COMMUNITY_JwtAuthenticationFilter]]
 

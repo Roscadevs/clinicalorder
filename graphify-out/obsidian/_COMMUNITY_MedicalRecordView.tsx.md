@@ -1,16 +1,17 @@
 ---
 type: community
-members: 30
+members: 31
 ---
 
 # MedicalRecordView.tsx
 
-**Members:** 30 nodes
+**Members:** 31 nodes
 
 ## Members
 - [[Appointment_1]] - code - frontend/src/types/index.ts
 - [[Badge()]] - code - frontend/src/components/ui/Badge.tsx
 - [[ClinicalNoteModal()]] - code - frontend/src/features/clinical/ClinicalNoteModal.tsx
+- [[CollectBalanceModalProps]] - code - frontend/src/features/agenda/CollectBalanceModal.tsx
 - [[EMPTY_RECORD]] - code - frontend/src/features/clinical/MedicalRecordView.tsx
 - [[Highlight()]] - code - frontend/src/features/appointments/PatientSearch.tsx
 - [[InformedConsentModal()]] - code - frontend/src/features/documents/InformedConsentModal.tsx
@@ -48,17 +49,16 @@ SORT file.name ASC
 
 ## Connections to other communities
 - 19 edges to [[_COMMUNITY_cn]]
-- 19 edges to [[_COMMUNITY_api.ts]]
 - 11 edges to [[_COMMUNITY_AgendaView.tsx]]
+- 11 edges to [[_COMMUNITY_BookingWizard.tsx]]
 - 11 edges to [[_COMMUNITY_react]]
-- 5 edges to [[_COMMUNITY_BookingWizard.tsx]]
-- 3 edges to [[_COMMUNITY_AnamnesisForm.tsx]]
-- 2 edges to [[_COMMUNITY_AdminServicesView.tsx]]
-- 2 edges to [[_COMMUNITY_DashboardLayout.tsx]]
+- 9 edges to [[_COMMUNITY_api.ts]]
+- 6 edges to [[_COMMUNITY_Button]]
+- 5 edges to [[_COMMUNITY_DashboardLayout.tsx]]
 
 ## Top bridge nodes
 - [[MedicalRecordView.tsx]] - degree 42, connects to 6 communities
 - [[appointmentsApi]] - degree 8, connects to 5 communities
+- [[PatientDirectoryView.tsx]] - degree 20, connects to 4 communities
 - [[PatientSearch.tsx]] - degree 14, connects to 4 communities
-- [[PatientDirectoryView.tsx]] - degree 20, connects to 3 communities
-- [[Appointment_1]] - degree 8, connects to 3 communities
+- [[Appointment_1]] - degree 8, connects to 4 communities

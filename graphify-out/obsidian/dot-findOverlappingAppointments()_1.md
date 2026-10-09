@@ -1,20 +1,22 @@
 ---
-source_file: "backend/src/main/java/com/clinicadermatologica/app/infrastructure/persistence/adapter/AppointmentRepositoryAdapter.java"
+source_file: "backend/src/main/java/com/clinicadermatologica/app/domain/repository/AppointmentRepository.java"
 type: "code"
-community: "AppointmentRepositoryAdapter"
-location: "L38"
+community: "AppointmentService"
+location: "L19"
 tags:
   - graphify/code
-  - graphify/EXTRACTED
-  - community/AppointmentRepositoryAdapter
+  - graphify/INFERRED
+  - community/AppointmentService
 ---
 
 # .findOverlappingAppointments()
 
 ## Connections
-- [[dot-findOverlappingActiveAppointments()]] - `calls` [INFERRED]
+- [[dot-bookTemporaryHold()]] - `calls` [INFERRED]
+- [[dot-testBookTemporaryHold_ExpiredOverlappingHold_IsReleased()]] - `calls` [INFERRED]
+- [[dot-testBookTemporaryHold_SlotUnavailable_ThrowsException()]] - `calls` [INFERRED]
+- [[dot-testBookTemporaryHold_Success()]] - `calls` [INFERRED]
 - [[Appointment]] - `references` [EXTRACTED]
-- [[AppointmentRepositoryAdapter]] - `method` [EXTRACTED]
-- [[Override_18]] - `references` [EXTRACTED]
+- [[AppointmentRepository]] - `method` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/AppointmentRepositoryAdapter
+#graphify/code #graphify/INFERRED #community/AppointmentService

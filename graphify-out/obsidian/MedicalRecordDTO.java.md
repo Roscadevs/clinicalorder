@@ -1,12 +1,12 @@
 ---
 source_file: "backend/src/main/java/com/clinicadermatologica/app/presentation/dto/MedicalRecordDTO.java"
 type: "code"
-community: "MedicalRecordController"
+community: "MedicalRecordDTO"
 location: "L1"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/MedicalRecordController
+  - community/MedicalRecordDTO
 ---
 
 # MedicalRecordDTO.java
@@ -14,4 +14,4 @@ tags:
 ## Connections
 - [[MedicalRecordDTO]] - `contains` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/MedicalRecordController
+#graphify/code #graphify/EXTRACTED #community/MedicalRecordDTO

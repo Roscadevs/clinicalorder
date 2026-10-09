@@ -14,7 +14,7 @@ tags:
 ## Connections
 - [[App.tsx]] - `imports` [EXTRACTED]
 - [[BookingWizard.tsx]] - `contains` [EXTRACTED]
-- [[ars()_3]] - `calls` [EXTRACTED]
+- [[ars()_1]] - `calls` [EXTRACTED]
 - [[formatCountdown()]] - `calls` [EXTRACTED]
 - [[formatDateTime()]] - `calls` [EXTRACTED]
 - [[todayInAR()]] - `calls` [EXTRACTED]

@@ -1,12 +1,12 @@
 ---
 source_file: "frontend/src/types/index.ts"
 type: "code"
-community: "api.ts"
+community: "BookingWizard.tsx"
 location: "L1"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/apits
+  - community/BookingWizardtsx
 ---
 
 # types/index.ts
@@ -22,11 +22,11 @@ tags:
 - [[BookingWizard.tsx]] - `imports_from` [EXTRACTED]
 - [[ChatMessage]] - `contains` [EXTRACTED]
 - [[ClinicalAuditLog]] - `contains` [EXTRACTED]
-- [[ClinicalEntry_1]] - `contains` [EXTRACTED]
+- [[ClinicalEntry]] - `contains` [EXTRACTED]
 - [[ClinicalNoteModal.tsx]] - `imports_from` [EXTRACTED]
 - [[ClinicalPhoto]] - `contains` [EXTRACTED]
 - [[CollectBalanceModal.tsx]] - `imports_from` [EXTRACTED]
-- [[DermatologicService]] - `contains` [EXTRACTED]
+- [[DermatologicService_1]] - `contains` [EXTRACTED]
 - [[GeminiChatResponse]] - `contains` [EXTRACTED]
 - [[GeminiChatbotWidget.tsx]] - `imports_from` [EXTRACTED]
 - [[MedicalRecord_1]] - `contains` [EXTRACTED]
@@ -36,7 +36,7 @@ tags:
 - [[Patient]] - `contains` [EXTRACTED]
 - [[PatientDirectoryView.tsx]] - `imports_from` [EXTRACTED]
 - [[PatientSearch.tsx]] - `imports_from` [EXTRACTED]
-- [[PaymentConcept_1]] - `contains` [EXTRACTED]
+- [[PaymentConcept]] - `contains` [EXTRACTED]
 - [[PaymentPreferenceResponse]] - `contains` [EXTRACTED]
 - [[PaymentReceipt]] - `contains` [EXTRACTED]
 - [[PaymentType_1]] - `contains` [EXTRACTED]
@@ -51,4 +51,4 @@ tags:
 - [[appointmentStatus.ts]] - `imports_from` [EXTRACTED]
 - [[photoStore.ts]] - `imports_from` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/apits
+#graphify/code #graphify/EXTRACTED #community/BookingWizardtsx

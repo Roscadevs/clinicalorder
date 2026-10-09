@@ -1,11 +1,11 @@
 ---
 source_file: ""
 type: "code"
-community: ".bookTemporaryHold"
+community: "AppointmentService"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/bookTemporaryHold
+  - community/AppointmentService
 ---
 
 # com.mercadopago.resources.preference.Preference
@@ -16,4 +16,4 @@ tags:
 - [[AppointmentService.java]] - `imports` [EXTRACTED]
 - [[MercadoPagoPaymentAdapter.java]] - `imports` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/bookTemporaryHold
+#graphify/code #graphify/EXTRACTED #community/AppointmentService

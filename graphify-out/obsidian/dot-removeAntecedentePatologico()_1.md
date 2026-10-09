@@ -1,22 +1,20 @@
 ---
-source_file: "backend/src/main/java/com/clinicadermatologica/app/application/service/MedicalRecordService.java"
+source_file: "backend/src/main/java/com/clinicadermatologica/app/presentation/controller/MedicalRecordController.java"
 type: "code"
-community: "AntecedentePatologico"
-location: "L206"
+community: "MedicalRecordController"
+location: "L145"
 tags:
   - graphify/code
-  - graphify/INFERRED
-  - community/AntecedentePatologico
+  - graphify/EXTRACTED
+  - community/MedicalRecordController
 ---
 
 # .removeAntecedentePatologico()
 
 ## Connections
-- [[dot-delete()_2]] - `calls` [INFERRED]
-- [[dot-existsById()_2]] - `calls` [INFERRED]
 - [[dot-removeAntecedentePatologico()]] - `calls` [INFERRED]
-- [[AntecedentePatologicoId]] - `calls` [INFERRED]
-- [[MedicalRecordService]] - `method` [EXTRACTED]
-- [[org.springframework.transaction.annotation.Transactional]] - `references` [EXTRACTED]
+- [[DeleteMapping_2]] - `references` [EXTRACTED]
+- [[MedicalRecordController]] - `method` [EXTRACTED]
+- [[org.springframework.http.ResponseEntity]] - `references` [EXTRACTED]
 
-#graphify/code #graphify/INFERRED #community/AntecedentePatologico
+#graphify/code #graphify/EXTRACTED #community/MedicalRecordController

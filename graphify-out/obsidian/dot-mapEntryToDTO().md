@@ -12,9 +12,9 @@ tags:
 # .mapEntryToDTO()
 
 ## Connections
-- [[dot-addClinicalEntry()_1]] - `calls` [EXTRACTED]
-- [[dot-decrypt()_1]] - `calls` [EXTRACTED]
-- [[dot-updateClinicalEntry()_1]] - `calls` [EXTRACTED]
+- [[dot-addClinicalEntry()]] - `calls` [EXTRACTED]
+- [[dot-decrypt()]] - `calls` [EXTRACTED]
+- [[dot-updateClinicalEntry()]] - `calls` [EXTRACTED]
 - [[ClinicalEntry_2]] - `references` [EXTRACTED]
 - [[ClinicalEntryResponseDTO]] - `references` [EXTRACTED]
 - [[MedicalRecordService]] - `method` [EXTRACTED]

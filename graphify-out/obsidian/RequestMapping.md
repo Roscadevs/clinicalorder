@@ -1,16 +1,16 @@
 ---
 source_file: ""
 type: "code"
-community: "MedicalRecordController"
+community: "CalendarBlockController"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/MedicalRecordController
+  - community/CalendarBlockController
 ---
 
 # RequestMapping
 
 ## Connections
-- [[MedicalRecordController]] - `references` [EXTRACTED]
+- [[CalendarBlockController]] - `references` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/MedicalRecordController
+#graphify/code #graphify/EXTRACTED #community/CalendarBlockController

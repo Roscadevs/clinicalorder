@@ -1,19 +1,21 @@
 ---
-source_file: "backend/src/main/java/com/clinicadermatologica/app/domain/repository/HabitoRepository.java"
+source_file: "backend/src/main/java/com/clinicadermatologica/app/domain/repository/PatientRepository.java"
 type: "code"
-community: "Habito"
-location: "L22"
+community: "PatientRepository"
+location: "L17"
 tags:
   - graphify/code
-  - graphify/EXTRACTED
-  - community/Habito
+  - graphify/INFERRED
+  - community/PatientRepository
 ---
 
 # .save()
 
 ## Connections
-- [[dot-addHabito()]] - `calls` [INFERRED]
-- [[Habito]] - `references` [EXTRACTED]
-- [[HabitoRepository]] - `method` [EXTRACTED]
+- [[dot-createPatient()]] - `calls` [INFERRED]
+- [[dot-deactivatePatient()]] - `calls` [INFERRED]
+- [[dot-updatePatient()]] - `calls` [INFERRED]
+- [[Patient_1]] - `references` [EXTRACTED]
+- [[PatientRepository]] - `method` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/Habito
+#graphify/code #graphify/INFERRED #community/PatientRepository

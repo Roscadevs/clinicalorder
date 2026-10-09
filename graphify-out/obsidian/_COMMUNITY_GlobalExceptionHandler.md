@@ -45,11 +45,12 @@ SORT file.name ASC
 ```
 
 ## Connections to other communities
-- 3 edges to [[_COMMUNITY_lombok.extern.slf4j.Slf4j]]
+- 3 edges to [[_COMMUNITY_lombok.RequiredArgsConstructor]]
 - 3 edges to [[_COMMUNITY_JwtAuthenticationFilter]]
-- 2 edges to [[_COMMUNITY_org.springframework.transaction.annotation.Transactional]]
-- 1 edge to [[_COMMUNITY_MedicalRecordService]]
-- 1 edge to [[_COMMUNITY_AppointmentServiceTest.java]]
+- 1 edge to [[_COMMUNITY_ResourceNotFoundException]]
+- 1 edge to [[_COMMUNITY_MedicalRecordServiceTest]]
+- 1 edge to [[_COMMUNITY_UserRepository]]
+- 1 edge to [[_COMMUNITY_org.springframework.transaction.annotation.Transactional]]
 
 ## Top bridge nodes
 - [[GlobalExceptionHandler]] - degree 13, connects to 1 community

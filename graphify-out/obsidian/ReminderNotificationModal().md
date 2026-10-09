@@ -1,12 +1,12 @@
 ---
 source_file: "frontend/src/features/reminders/ReminderNotificationModal.tsx"
 type: "code"
-community: "AppointmentReceiptModal.tsx"
+community: "BookingWizard.tsx"
 location: "L24"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/AppointmentReceiptModaltsx
+  - community/BookingWizardtsx
 ---
 
 # ReminderNotificationModal()
@@ -18,4 +18,4 @@ tags:
 - [[downloadIcsCalendarFile()]] - `calls` [EXTRACTED]
 - [[generateGoogleCalendarUrl()]] - `calls` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/AppointmentReceiptModaltsx
+#graphify/code #graphify/EXTRACTED #community/BookingWizardtsx

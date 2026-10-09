@@ -1,20 +1,20 @@
 ---
 source_file: ""
 type: "code"
-community: "AntecedentePatologico"
+community: "MedicalRecord"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/AntecedentePatologico
+  - community/MedicalRecord
 ---
 
 # Override
 
 ## Connections
-- [[dot-delete()_3]] - `references` [EXTRACTED]
-- [[dot-existsById()_3]] - `references` [EXTRACTED]
-- [[dot-findById()_10]] - `references` [EXTRACTED]
-- [[dot-findByMedicalRecordId()_2]] - `references` [EXTRACTED]
-- [[dot-save()_10]] - `references` [EXTRACTED]
+- [[dot-findAuditHistory()]] - `references` [EXTRACTED]
+- [[dot-findById()_9]] - `references` [EXTRACTED]
+- [[dot-findByPatientId()_3]] - `references` [EXTRACTED]
+- [[dot-save()_7]] - `references` [EXTRACTED]
+- [[dot-saveAudit()_1]] - `references` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/AntecedentePatologico
+#graphify/code #graphify/EXTRACTED #community/MedicalRecord

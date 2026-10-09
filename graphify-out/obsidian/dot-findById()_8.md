@@ -1,19 +1,33 @@
 ---
-source_file: "backend/src/main/java/com/clinicadermatologica/app/infrastructure/persistence/adapter/MedicalRecordRepositoryAdapter.java"
+source_file: "backend/src/main/java/com/clinicadermatologica/app/domain/repository/AppointmentRepository.java"
 type: "code"
-community: "MedicalRecord"
-location: "L29"
+community: "org.junit.jupiter.api.DisplayName"
+location: "L17"
 tags:
   - graphify/code
-  - graphify/EXTRACTED
-  - community/MedicalRecord
+  - graphify/INFERRED
+  - community/orgjunitjupiterapiDisplayName
 ---
 
 # .findById()
 
 ## Connections
-- [[MedicalRecord]] - `references` [EXTRACTED]
-- [[MedicalRecordRepositoryAdapter]] - `method` [EXTRACTED]
-- [[Override_6]] - `references` [EXTRACTED]
+- [[dot-addClinicalEntry()]] - `calls` [INFERRED]
+- [[dot-cancelAppointment()]] - `calls` [INFERRED]
+- [[dot-getAppointmentById()]] - `calls` [INFERRED]
+- [[dot-getAppointmentPublicStatus()]] - `calls` [INFERRED]
+- [[dot-markAsAttended()]] - `calls` [INFERRED]
+- [[dot-prepareHold()]] - `calls` [INFERRED]
+- [[dot-registerDepositPayment()]] - `calls` [INFERRED]
+- [[dot-registerFinalPayment()]] - `calls` [INFERRED]
+- [[dot-testAddClinicalEntry_EncryptsContent()]] - `calls` [INFERRED]
+- [[dot-testCancelAppointment_WithApprovedMercadoPagoPayment_TriggersRefund()]] - `calls` [INFERRED]
+- [[dot-testGetAppointmentPublicStatus()]] - `calls` [INFERRED]
+- [[dot-testMarkAsAttended_ConfirmedToAttended()]] - `calls` [INFERRED]
+- [[dot-testMarkAsAttended_NotConfirmed_Throws()]] - `calls` [INFERRED]
+- [[dot-testRegisterFinalPayment_DelegatesToStrategy_CompletesAppointment()]] - `calls` [INFERRED]
+- [[dot-testRegisterFinalPayment_NotAttended_ThrowsException()]] - `calls` [INFERRED]
+- [[Appointment]] - `references` [EXTRACTED]
+- [[AppointmentRepository]] - `method` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/MedicalRecord
+#graphify/code #graphify/INFERRED #community/orgjunitjupiterapiDisplayName

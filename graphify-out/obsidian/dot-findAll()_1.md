@@ -12,8 +12,8 @@ tags:
 # .findAll()
 
 ## Connections
-- [[DermatologicService_1]] - `references` [EXTRACTED]
+- [[DermatologicService]] - `references` [EXTRACTED]
 - [[DermatologicServiceRepositoryAdapter]] - `method` [EXTRACTED]
-- [[Override_14]] - `references` [EXTRACTED]
+- [[Override_19]] - `references` [EXTRACTED]
 
 #graphify/code #graphify/EXTRACTED #community/DermatologicService

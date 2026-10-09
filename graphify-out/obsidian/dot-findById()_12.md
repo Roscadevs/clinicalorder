@@ -1,19 +1,26 @@
 ---
-source_file: "backend/src/main/java/com/clinicadermatologica/app/infrastructure/persistence/adapter/PatientRepositoryAdapter.java"
+source_file: "backend/src/main/java/com/clinicadermatologica/app/domain/repository/DermatologicServiceRepository.java"
 type: "code"
-community: "Patient"
-location: "L21"
+community: "AppointmentService"
+location: "L12"
 tags:
   - graphify/code
-  - graphify/EXTRACTED
-  - community/Patient
+  - graphify/INFERRED
+  - community/AppointmentService
 ---
 
 # .findById()
 
 ## Connections
-- [[Override_11]] - `references` [EXTRACTED]
-- [[Patient_1]] - `references` [EXTRACTED]
-- [[PatientRepositoryAdapter]] - `method` [EXTRACTED]
+- [[dot-bookTemporaryHold()]] - `calls` [INFERRED]
+- [[dot-getAvailableSlots()]] - `calls` [INFERRED]
+- [[dot-getServiceById()]] - `calls` [INFERRED]
+- [[dot-testBookTemporaryHold_ExpiredOverlappingHold_IsReleased()]] - `calls` [INFERRED]
+- [[dot-testBookTemporaryHold_SlotUnavailable_ThrowsException()]] - `calls` [INFERRED]
+- [[dot-testBookTemporaryHold_Success()]] - `calls` [INFERRED]
+- [[dot-testGetAvailableSlots()]] - `calls` [INFERRED]
+- [[dot-updateService()_1]] - `calls` [INFERRED]
+- [[DermatologicService]] - `references` [EXTRACTED]
+- [[DermatologicServiceRepository]] - `method` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/Patient
+#graphify/code #graphify/INFERRED #community/AppointmentService

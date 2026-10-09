@@ -1,12 +1,12 @@
 ---
 source_file: "frontend/src/components/ui/Button.tsx"
 type: "code"
-community: "AdminServicesView.tsx"
+community: "Button"
 location: "L1"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/AdminServicesViewtsx
+  - community/Button
 ---
 
 # Button.tsx
@@ -24,4 +24,4 @@ tags:
 - [[uiindex.ts]] - `re_exports` [EXTRACTED]
 - [[variantStyles]] - `contains` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/AdminServicesViewtsx
+#graphify/code #graphify/EXTRACTED #community/Button

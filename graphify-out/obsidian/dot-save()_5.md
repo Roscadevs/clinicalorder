@@ -1,27 +1,19 @@
 ---
-source_file: "backend/src/main/java/com/clinicadermatologica/app/domain/repository/AppointmentRepository.java"
+source_file: "backend/src/main/java/com/clinicadermatologica/app/infrastructure/persistence/adapter/HabitoRepositoryAdapter.java"
 type: "code"
-community: ".bookTemporaryHold"
-location: "L23"
+community: "Habito"
+location: "L36"
 tags:
   - graphify/code
-  - graphify/INFERRED
-  - community/bookTemporaryHold
+  - graphify/EXTRACTED
+  - community/Habito
 ---
 
 # .save()
 
 ## Connections
-- [[dot-bookTemporaryHold()]] - `calls` [INFERRED]
-- [[dot-cancelAppointment()]] - `calls` [INFERRED]
-- [[dot-expireHold()]] - `calls` [INFERRED]
-- [[dot-markAsAttended()]] - `calls` [INFERRED]
-- [[dot-processMercadoPagoWebhook()]] - `calls` [INFERRED]
-- [[dot-registerDepositPayment()]] - `calls` [INFERRED]
-- [[dot-registerFinalPayment()]] - `calls` [INFERRED]
-- [[dot-testBookTemporaryHold_ExpiredOverlappingHold_IsReleased()]] - `calls` [INFERRED]
-- [[dot-testBookTemporaryHold_Success()]] - `calls` [INFERRED]
-- [[Appointment]] - `references` [EXTRACTED]
-- [[AppointmentRepository]] - `method` [EXTRACTED]
+- [[Habito]] - `references` [EXTRACTED]
+- [[HabitoRepositoryAdapter]] - `method` [EXTRACTED]
+- [[Override_6]] - `references` [EXTRACTED]
 
-#graphify/code #graphify/INFERRED #community/bookTemporaryHold
+#graphify/code #graphify/EXTRACTED #community/Habito

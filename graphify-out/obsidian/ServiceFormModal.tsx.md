@@ -1,12 +1,12 @@
 ---
 source_file: "frontend/src/features/admin/ServiceFormModal.tsx"
 type: "code"
-community: "AdminServicesView.tsx"
+community: "api.ts"
 location: "L1"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/AdminServicesViewtsx
+  - community/apits
 ---
 
 # ServiceFormModal.tsx
@@ -14,16 +14,16 @@ tags:
 ## Connections
 - [[AdminServicesView.tsx]] - `imports_from` [EXTRACTED]
 - [[Button]] - `imports` [EXTRACTED]
-- [[DermatologicService]] - `imports` [EXTRACTED]
+- [[DermatologicService_1]] - `imports` [EXTRACTED]
 - [[Input]] - `imports` [EXTRACTED]
 - [[Modal()]] - `imports` [EXTRACTED]
 - [[ServiceFormModal()]] - `contains` [EXTRACTED]
 - [[ServiceFormModalProps]] - `contains` [EXTRACTED]
 - [[api.ts]] - `imports_from` [EXTRACTED]
-- [[ars()_1]] - `contains` [EXTRACTED]
+- [[ars()_5]] - `contains` [EXTRACTED]
 - [[react]] - `imports_from` [EXTRACTED]
 - [[servicesApi]] - `imports` [EXTRACTED]
 - [[typesindex.ts]] - `imports_from` [EXTRACTED]
 - [[uiindex.ts]] - `imports_from` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/AdminServicesViewtsx
+#graphify/code #graphify/EXTRACTED #community/apits

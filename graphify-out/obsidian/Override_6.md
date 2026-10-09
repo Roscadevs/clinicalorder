@@ -1,20 +1,20 @@
 ---
 source_file: ""
 type: "code"
-community: "MedicalRecord"
+community: "Habito"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/MedicalRecord
+  - community/Habito
 ---
 
 # Override
 
 ## Connections
-- [[dot-findAuditHistory()_1]] - `references` [EXTRACTED]
-- [[dot-findById()_8]] - `references` [EXTRACTED]
-- [[dot-findByPatientId()_3]] - `references` [EXTRACTED]
-- [[dot-save()_8]] - `references` [EXTRACTED]
-- [[dot-saveAudit()_1]] - `references` [EXTRACTED]
+- [[dot-delete()_1]] - `references` [EXTRACTED]
+- [[dot-existsById()_1]] - `references` [EXTRACTED]
+- [[dot-findById()_6]] - `references` [EXTRACTED]
+- [[dot-findByMedicalRecordId()_1]] - `references` [EXTRACTED]
+- [[dot-save()_5]] - `references` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/MedicalRecord
+#graphify/code #graphify/EXTRACTED #community/Habito

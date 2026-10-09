@@ -1,19 +1,21 @@
 ---
-source_file: "backend/src/main/java/com/clinicadermatologica/app/infrastructure/persistence/adapter/CalendarBlockRepositoryAdapter.java"
+source_file: "backend/src/main/java/com/clinicadermatologica/app/domain/repository/ClinicalEntryRepository.java"
 type: "code"
-community: "CalendarBlock"
-location: "L37"
+community: "MedicalRecordService"
+location: "L20"
 tags:
   - graphify/code
-  - graphify/EXTRACTED
-  - community/CalendarBlock
+  - graphify/INFERRED
+  - community/MedicalRecordService
 ---
 
 # .save()
 
 ## Connections
-- [[CalendarBlock]] - `references` [EXTRACTED]
-- [[CalendarBlockRepositoryAdapter]] - `method` [EXTRACTED]
-- [[Override_1]] - `references` [EXTRACTED]
+- [[dot-addClinicalEntry()]] - `calls` [INFERRED]
+- [[dot-testAddClinicalEntry_EncryptsContent()]] - `calls` [INFERRED]
+- [[dot-updateClinicalEntry()]] - `calls` [INFERRED]
+- [[ClinicalEntry_1]] - `references` [EXTRACTED]
+- [[ClinicalEntryRepository]] - `method` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/CalendarBlock
+#graphify/code #graphify/INFERRED #community/MedicalRecordService

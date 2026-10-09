@@ -12,7 +12,7 @@ tags:
 # .delete()
 
 ## Connections
-- [[dot-removeAlergia()_1]] - `calls` [INFERRED]
+- [[dot-removeAlergia()]] - `calls` [INFERRED]
 - [[AlergiaId]] - `references` [EXTRACTED]
 - [[AlergiaRepository]] - `method` [EXTRACTED]
 

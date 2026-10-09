@@ -22,11 +22,10 @@ SORT file.name ASC
 ```
 
 ## Connections to other communities
+- 3 edges to [[_COMMUNITY_AppointmentService]]
 - 2 edges to [[_COMMUNITY_Appointment]]
-- 2 edges to [[_COMMUNITY_dot-bookTemporaryHold]]
 - 1 edge to [[_COMMUNITY_org.junit.jupiter.api.DisplayName]]
-- 1 edge to [[_COMMUNITY_AppointmentService]]
 
 ## Top bridge nodes
-- [[dot-isExpired()]] - degree 6, connects to 4 communities
+- [[dot-isExpired()]] - degree 6, connects to 3 communities
 - [[dot-expiresAt()]] - degree 4, connects to 2 communities

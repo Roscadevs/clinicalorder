@@ -1,20 +1,22 @@
 ---
-source_file: "backend/src/main/java/com/clinicadermatologica/app/presentation/controller/MedicalRecordController.java"
+source_file: "backend/src/main/java/com/clinicadermatologica/app/application/service/MedicalRecordService.java"
 type: "code"
-community: "MedicalRecordController"
-location: "L165"
+community: "Habito"
+location: "L238"
 tags:
   - graphify/code
-  - graphify/EXTRACTED
-  - community/MedicalRecordController
+  - graphify/INFERRED
+  - community/Habito
 ---
 
 # .removeHabito()
 
 ## Connections
+- [[dot-delete()]] - `calls` [INFERRED]
+- [[dot-existsById()]] - `calls` [INFERRED]
 - [[dot-removeHabito()_1]] - `calls` [INFERRED]
-- [[DeleteMapping]] - `references` [EXTRACTED]
-- [[MedicalRecordController]] - `method` [EXTRACTED]
-- [[org.springframework.http.ResponseEntity]] - `references` [EXTRACTED]
+- [[HabitoId]] - `calls` [INFERRED]
+- [[MedicalRecordService]] - `method` [EXTRACTED]
+- [[org.springframework.transaction.annotation.Transactional]] - `references` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/MedicalRecordController
+#graphify/code #graphify/INFERRED #community/Habito

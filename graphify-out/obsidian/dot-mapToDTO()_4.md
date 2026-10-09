@@ -1,21 +1,21 @@
 ---
-source_file: "backend/src/main/java/com/clinicadermatologica/app/application/service/PatientService.java"
+source_file: "backend/src/main/java/com/clinicadermatologica/app/application/service/DermatologicServiceService.java"
 type: "code"
-community: "PatientResponseDTO"
-location: "L109"
+community: "DermatologicServiceRepository"
+location: "L98"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/PatientResponseDTO
+  - community/DermatologicServiceRepository
 ---
 
 # .mapToDTO()
 
 ## Connections
-- [[dot-createPatient()]] - `calls` [EXTRACTED]
-- [[dot-updatePatient()]] - `calls` [EXTRACTED]
-- [[Patient_1]] - `references` [EXTRACTED]
-- [[PatientResponseDTO]] - `references` [EXTRACTED]
-- [[PatientService]] - `method` [EXTRACTED]
+- [[dot-createService()_1]] - `calls` [EXTRACTED]
+- [[dot-updateService()_1]] - `calls` [EXTRACTED]
+- [[DermatologicService]] - `references` [EXTRACTED]
+- [[DermatologicServiceService]] - `method` [EXTRACTED]
+- [[ServiceResponseDTO]] - `references` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/PatientResponseDTO
+#graphify/code #graphify/EXTRACTED #community/DermatologicServiceRepository

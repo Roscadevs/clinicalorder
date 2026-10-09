@@ -16,7 +16,7 @@ tags:
 - [[AntecedentePatologicoRequestDTO]] - `references` [EXTRACTED]
 - [[AntecedentePatologicoResponseDTO]] - `references` [EXTRACTED]
 - [[MedicalRecordController]] - `method` [EXTRACTED]
-- [[PostMapping]] - `references` [EXTRACTED]
+- [[PostMapping_5]] - `references` [EXTRACTED]
 - [[org.springframework.http.ResponseEntity]] - `references` [EXTRACTED]
 
 #graphify/code #graphify/EXTRACTED #community/AntecedentePatologico

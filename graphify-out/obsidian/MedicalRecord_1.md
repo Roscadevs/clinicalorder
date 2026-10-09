@@ -1,12 +1,12 @@
 ---
 source_file: "frontend/src/types/index.ts"
 type: "code"
-community: "AnamnesisForm.tsx"
+community: "DashboardLayout.tsx"
 location: "L111"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/AnamnesisFormtsx
+  - community/DashboardLayouttsx
 ---
 
 # MedicalRecord
@@ -18,4 +18,4 @@ tags:
 - [[api.ts]] - `imports` [EXTRACTED]
 - [[typesindex.ts]] - `contains` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/AnamnesisFormtsx
+#graphify/code #graphify/EXTRACTED #community/DashboardLayouttsx

@@ -13,11 +13,11 @@ tags:
 
 ## Connections
 - [[dot-cash()]] - `calls` [EXTRACTED]
-- [[dot-findByAppointmentId()_1]] - `calls` [INFERRED]
-- [[dot-findById()_7]] - `calls` [INFERRED]
+- [[dot-findByAppointmentId()_2]] - `calls` [INFERRED]
+- [[dot-findById()_14]] - `calls` [INFERRED]
 - [[dot-getStrategy()]] - `calls` [INFERRED]
 - [[dot-prepareHold()]] - `calls` [EXTRACTED]
-- [[dot-register()_4]] - `calls` [INFERRED]
+- [[dot-register()_3]] - `calls` [INFERRED]
 - [[dot-registerDepositPayment()]] - `calls` [INFERRED]
 - [[PaymentServiceTest]] - `method` [EXTRACTED]
 - [[org.junit.jupiter.api.DisplayName]] - `references` [EXTRACTED]

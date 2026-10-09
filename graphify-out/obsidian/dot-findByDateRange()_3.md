@@ -1,21 +1,20 @@
 ---
-source_file: "backend/src/main/java/com/clinicadermatologica/app/domain/repository/AppointmentRepository.java"
+source_file: "backend/src/main/java/com/clinicadermatologica/app/infrastructure/persistence/jpa/JpaAppointmentRepository.java"
 type: "code"
-community: "AppointmentService"
-location: "L20"
+community: "Appointment"
+location: "L31"
 tags:
   - graphify/code
-  - graphify/INFERRED
-  - community/AppointmentService
+  - graphify/EXTRACTED
+  - community/Appointment
 ---
 
 # .findByDateRange()
 
 ## Connections
-- [[dot-getAppointmentsByRange()]] - `calls` [INFERRED]
-- [[dot-getAvailableSlots()]] - `calls` [INFERRED]
-- [[dot-testGetAvailableSlots()]] - `calls` [INFERRED]
+- [[dot-findByDateRange()_2]] - `calls` [INFERRED]
 - [[Appointment]] - `references` [EXTRACTED]
-- [[AppointmentRepository]] - `method` [EXTRACTED]
+- [[JpaAppointmentRepository]] - `method` [EXTRACTED]
+- [[org.springframework.data.jpa.repository.Query]] - `references` [EXTRACTED]
 
-#graphify/code #graphify/INFERRED #community/AppointmentService
+#graphify/code #graphify/EXTRACTED #community/Appointment

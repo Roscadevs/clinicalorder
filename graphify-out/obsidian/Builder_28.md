@@ -1,16 +1,16 @@
 ---
 source_file: ""
 type: "code"
-community: "AppointmentServiceTest.java"
+community: "User"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/AppointmentServiceTestjava
+  - community/User
 ---
 
 # Builder
 
 ## Connections
-- [[PaymentPreferenceResponseDTO]] - `references` [EXTRACTED]
+- [[User]] - `references` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/AppointmentServiceTestjava
+#graphify/code #graphify/EXTRACTED #community/User

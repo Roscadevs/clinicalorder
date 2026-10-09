@@ -1,12 +1,12 @@
 ---
 source_file: "frontend/src/features/clinical/TreatmentPhotos.tsx"
 type: "code"
-community: "api.ts"
+community: "Button"
 location: "L20"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/apits
+  - community/Button
 ---
 
 # TreatmentPhotos()
@@ -16,4 +16,4 @@ tags:
 - [[TreatmentPhotos.tsx]] - `contains` [EXTRACTED]
 - [[cn()]] - `calls` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/apits
+#graphify/code #graphify/EXTRACTED #community/Button

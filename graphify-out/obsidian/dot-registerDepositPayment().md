@@ -12,13 +12,13 @@ tags:
 # .registerDepositPayment()
 
 ## Connections
-- [[dot-findById()_11]] - `calls` [INFERRED]
-- [[dot-findById()_7]] - `calls` [INFERRED]
+- [[dot-findById()_8]] - `calls` [INFERRED]
+- [[dot-findById()_14]] - `calls` [INFERRED]
 - [[dot-getStrategy()]] - `calls` [INFERRED]
 - [[dot-isExpired()]] - `calls` [EXTRACTED]
 - [[dot-registerDepositPayment()_1]] - `calls` [INFERRED]
-- [[dot-rejectPendingTransactions()]] - `calls` [EXTRACTED]
-- [[dot-save()_5]] - `calls` [INFERRED]
+- [[dot-rejectPendingTransactions()_1]] - `calls` [EXTRACTED]
+- [[dot-save()_10]] - `calls` [INFERRED]
 - [[dot-testRegisterDeposit_AmountBelowDeposit_Throws()]] - `calls` [INFERRED]
 - [[dot-testRegisterDeposit_Cash_ConfirmsAppointment()]] - `calls` [INFERRED]
 - [[dot-testRegisterDeposit_ExpiredHold_CancelsAppointment()]] - `calls` [INFERRED]

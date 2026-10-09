@@ -12,6 +12,6 @@ tags:
 # PaymentConcept.java
 
 ## Connections
-- [[PaymentConcept]] - `contains` [EXTRACTED]
+- [[PaymentConcept_1]] - `contains` [EXTRACTED]
 
 #graphify/code #graphify/EXTRACTED #community/PaymentReceiptDTO

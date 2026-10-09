@@ -1,11 +1,11 @@
 ---
 type: community
-members: 35
+members: 33
 ---
 
 # cn
 
-**Members:** 35 nodes
+**Members:** 33 nodes
 
 ## Members
 - [[Badge.tsx]] - code - frontend/src/components/ui/Badge.tsx
@@ -18,7 +18,6 @@ members: 35
 - [[CardTitle()]] - code - frontend/src/components/ui/Card.tsx
 - [[CollectBalanceModal()]] - code - frontend/src/features/agenda/CollectBalanceModal.tsx
 - [[CollectBalanceModal.tsx]] - code - frontend/src/features/agenda/CollectBalanceModal.tsx
-- [[CollectBalanceModalProps]] - code - frontend/src/features/agenda/CollectBalanceModal.tsx
 - [[Input]] - code - frontend/src/components/ui/Input.tsx
 - [[Input.tsx]] - code - frontend/src/components/ui/Input.tsx
 - [[InputProps]] - code - frontend/src/components/ui/Input.tsx
@@ -30,7 +29,6 @@ members: 35
 - [[Modal.tsx]] - code - frontend/src/components/ui/Modal.tsx
 - [[ModalProps]] - code - frontend/src/components/ui/Modal.tsx
 - [[ModalSize]] - code - frontend/src/components/ui/Modal.tsx
-- [[PAYMENT_TYPE_LABELS]] - code - frontend/src/types/index.ts
 - [[Select]] - code - frontend/src/components/ui/Select.tsx
 - [[Select.tsx]] - code - frontend/src/components/ui/Select.tsx
 - [[SelectProps]] - code - frontend/src/components/ui/Select.tsx
@@ -54,18 +52,16 @@ SORT file.name ASC
 ## Connections to other communities
 - 21 edges to [[_COMMUNITY_react]]
 - 19 edges to [[_COMMUNITY_MedicalRecordView.tsx]]
-- 15 edges to [[_COMMUNITY_AdminServicesView.tsx]]
-- 13 edges to [[_COMMUNITY_api.ts]]
+- 14 edges to [[_COMMUNITY_BookingWizard.tsx]]
+- 14 edges to [[_COMMUNITY_api.ts]]
+- 13 edges to [[_COMMUNITY_DashboardLayout.tsx]]
+- 12 edges to [[_COMMUNITY_Button]]
 - 12 edges to [[_COMMUNITY_AgendaView.tsx]]
-- 10 edges to [[_COMMUNITY_BookingWizard.tsx]]
-- 8 edges to [[_COMMUNITY_DashboardLayout.tsx]]
-- 5 edges to [[_COMMUNITY_AnamnesisForm.tsx]]
-- 4 edges to [[_COMMUNITY_AppointmentReceiptModal.tsx]]
 - 2 edges to [[_COMMUNITY_package.json]]
 
 ## Top bridge nodes
-- [[uiindex.ts]] - degree 36, connects to 9 communities
-- [[cn.ts]] - degree 21, connects to 8 communities
-- [[cn()]] - degree 45, connects to 7 communities
+- [[uiindex.ts]] - degree 36, connects to 7 communities
+- [[cn.ts]] - degree 21, connects to 7 communities
+- [[cn()]] - degree 45, connects to 6 communities
 - [[CollectBalanceModal.tsx]] - degree 19, connects to 6 communities
 - [[Spinner()]] - degree 9, connects to 5 communities

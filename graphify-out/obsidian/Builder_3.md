@@ -1,16 +1,16 @@
 ---
 source_file: ""
 type: "code"
-community: "MedicalRecordController"
+community: "Habito"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/MedicalRecordController
+  - community/Habito
 ---
 
 # Builder
 
 ## Connections
-- [[ClinicalEntryResponseDTO]] - `references` [EXTRACTED]
+- [[Habito]] - `references` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/MedicalRecordController
+#graphify/code #graphify/EXTRACTED #community/Habito

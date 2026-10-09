@@ -1,19 +1,18 @@
 ---
-source_file: "backend/src/main/java/com/clinicadermatologica/app/infrastructure/persistence/adapter/DermatologicServiceRepositoryAdapter.java"
+source_file: "backend/src/main/java/com/clinicadermatologica/app/domain/repository/ClinicalImageRepository.java"
 type: "code"
-community: "DermatologicService"
-location: "L21"
+community: "ClinicalImage"
+location: "L16"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/DermatologicService
+  - community/ClinicalImage
 ---
 
 # .findById()
 
 ## Connections
-- [[DermatologicService_1]] - `references` [EXTRACTED]
-- [[DermatologicServiceRepositoryAdapter]] - `method` [EXTRACTED]
-- [[Override_14]] - `references` [EXTRACTED]
+- [[ClinicalImage]] - `references` [EXTRACTED]
+- [[ClinicalImageRepository]] - `method` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/DermatologicService
+#graphify/code #graphify/EXTRACTED #community/ClinicalImage

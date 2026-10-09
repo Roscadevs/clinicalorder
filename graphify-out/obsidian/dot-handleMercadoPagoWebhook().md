@@ -1,12 +1,12 @@
 ---
 source_file: "backend/src/main/java/com/clinicadermatologica/app/presentation/controller/PaymentWebhookController.java"
 type: "code"
-community: "lombok.extern.slf4j.Slf4j"
+community: "lombok.RequiredArgsConstructor"
 location: "L26"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/lombokexternslf4jSlf4j
+  - community/lombokRequiredArgsConstructor
 ---
 
 # .handleMercadoPagoWebhook()
@@ -14,7 +14,7 @@ tags:
 ## Connections
 - [[dot-processMercadoPagoWebhook()]] - `calls` [INFERRED]
 - [[PaymentWebhookController]] - `method` [EXTRACTED]
-- [[PostMapping_1]] - `references` [EXTRACTED]
+- [[PostMapping_6]] - `references` [EXTRACTED]
 - [[org.springframework.http.ResponseEntity]] - `references` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/lombokexternslf4jSlf4j
+#graphify/code #graphify/EXTRACTED #community/lombokRequiredArgsConstructor

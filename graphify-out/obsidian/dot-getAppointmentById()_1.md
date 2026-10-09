@@ -15,7 +15,7 @@ tags:
 - [[dot-getAppointmentById()]] - `calls` [INFERRED]
 - [[AppointmentController]] - `method` [EXTRACTED]
 - [[AppointmentResponseDTO]] - `references` [EXTRACTED]
-- [[GetMapping_3]] - `references` [EXTRACTED]
+- [[GetMapping_2]] - `references` [EXTRACTED]
 - [[org.springframework.http.ResponseEntity]] - `references` [EXTRACTED]
 - [[org.springframework.security.access.prepost.PreAuthorize]] - `references` [EXTRACTED]
 

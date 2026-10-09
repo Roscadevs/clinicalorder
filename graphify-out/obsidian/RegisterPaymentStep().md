@@ -14,7 +14,7 @@ tags:
 ## Connections
 - [[BookingWizard.tsx]] - `imports` [EXTRACTED]
 - [[RegisterPaymentStep.tsx]] - `contains` [EXTRACTED]
-- [[ars()_4]] - `calls` [EXTRACTED]
+- [[ars()_2]] - `calls` [EXTRACTED]
 - [[cn()]] - `calls` [EXTRACTED]
 
 #graphify/code #graphify/EXTRACTED #community/BookingWizardtsx

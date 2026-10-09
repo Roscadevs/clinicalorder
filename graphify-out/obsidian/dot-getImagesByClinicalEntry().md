@@ -12,7 +12,7 @@ tags:
 # .getImagesByClinicalEntry()
 
 ## Connections
-- [[dot-findByClinicalEntryId()]] - `calls` [INFERRED]
+- [[dot-findByClinicalEntryId()_1]] - `calls` [INFERRED]
 - [[dot-getClinicalPhotos()]] - `calls` [INFERRED]
 - [[ClinicalImageResponseDTO]] - `references` [EXTRACTED]
 - [[ClinicalImageService]] - `method` [EXTRACTED]

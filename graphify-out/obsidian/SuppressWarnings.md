@@ -1,11 +1,11 @@
 ---
 source_file: ""
 type: "code"
-community: "DermatologicService"
+community: "GeminiChatRequestDTO"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/DermatologicService
+  - community/GeminiChatRequestDTO
 ---
 
 # SuppressWarnings
@@ -13,4 +13,4 @@ tags:
 ## Connections
 - [[dot-extractTextFromGeminiResponse()]] - `references` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/DermatologicService
+#graphify/code #graphify/EXTRACTED #community/GeminiChatRequestDTO

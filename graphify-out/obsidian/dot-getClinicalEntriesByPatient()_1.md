@@ -1,12 +1,12 @@
 ---
 source_file: "backend/src/main/java/com/clinicadermatologica/app/presentation/controller/MedicalRecordController.java"
 type: "code"
-community: "MedicalRecordController"
+community: "MedicalRecordService"
 location: "L79"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/MedicalRecordController
+  - community/MedicalRecordService
 ---
 
 # .getClinicalEntriesByPatient()
@@ -14,8 +14,8 @@ tags:
 ## Connections
 - [[dot-getClinicalEntriesByPatient()]] - `calls` [INFERRED]
 - [[ClinicalEntryResponseDTO]] - `references` [EXTRACTED]
-- [[GetMapping]] - `references` [EXTRACTED]
+- [[GetMapping_3]] - `references` [EXTRACTED]
 - [[MedicalRecordController]] - `method` [EXTRACTED]
 - [[org.springframework.http.ResponseEntity]] - `references` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/MedicalRecordController
+#graphify/code #graphify/EXTRACTED #community/MedicalRecordService

@@ -1,18 +1,18 @@
 ---
-source_file: "frontend/src/features/admin/ServiceFormModal.tsx"
+source_file: "frontend/src/features/appointments/BookingWizard.tsx"
 type: "code"
-community: "AdminServicesView.tsx"
-location: "L14"
+community: "BookingWizard.tsx"
+location: "L45"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/AdminServicesViewtsx
+  - community/BookingWizardtsx
 ---
 
 # ars()
 
 ## Connections
-- [[ServiceFormModal()]] - `calls` [EXTRACTED]
-- [[ServiceFormModal.tsx]] - `contains` [EXTRACTED]
+- [[BookingWizard()]] - `calls` [EXTRACTED]
+- [[BookingWizard.tsx]] - `contains` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/AdminServicesViewtsx
+#graphify/code #graphify/EXTRACTED #community/BookingWizardtsx

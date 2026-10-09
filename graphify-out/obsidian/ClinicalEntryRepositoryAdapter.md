@@ -14,10 +14,10 @@ tags:
 ## Connections
 - [[dot-findAuditByEntryId()_1]] - `method` [EXTRACTED]
 - [[dot-findByAppointmentId()_3]] - `method` [EXTRACTED]
-- [[dot-findById()_18]] - `method` [EXTRACTED]
+- [[dot-findById()_19]] - `method` [EXTRACTED]
 - [[dot-findByPatientId()_5]] - `method` [EXTRACTED]
-- [[dot-save()_17]] - `method` [EXTRACTED]
-- [[dot-saveAudit()_3]] - `method` [EXTRACTED]
+- [[dot-save()_16]] - `method` [EXTRACTED]
+- [[dot-saveAudit()_2]] - `method` [EXTRACTED]
 - [[ClinicalEntryRepository]] - `implements` [EXTRACTED]
 - [[ClinicalEntryRepositoryAdapter.java]] - `contains` [EXTRACTED]
 - [[JpaClinicalEntryAuditRepository]] - `references` [EXTRACTED]

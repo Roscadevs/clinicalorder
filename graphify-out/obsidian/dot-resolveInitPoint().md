@@ -1,12 +1,12 @@
 ---
 source_file: "backend/src/main/java/com/clinicadermatologica/app/infrastructure/payment/MercadoPagoPaymentAdapter.java"
 type: "code"
-community: ".bookTemporaryHold"
+community: "AppointmentService"
 location: "L165"
 tags:
   - graphify/code
   - graphify/INFERRED
-  - community/bookTemporaryHold
+  - community/AppointmentService
 ---
 
 # .resolveInitPoint()
@@ -18,4 +18,4 @@ tags:
 - [[MercadoPagoPaymentAdapter]] - `method` [EXTRACTED]
 - [[com.mercadopago.resources.preference.Preference]] - `references` [EXTRACTED]
 
-#graphify/code #graphify/INFERRED #community/bookTemporaryHold
+#graphify/code #graphify/INFERRED #community/AppointmentService

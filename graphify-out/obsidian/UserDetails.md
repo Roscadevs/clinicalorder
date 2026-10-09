@@ -1,11 +1,11 @@
 ---
 source_file: ""
 type: "code"
-community: "JwtAuthenticationFilter"
+community: "org.springframework.transaction.annotation.Transactional"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/JwtAuthenticationFilter
+  - community/orgspringframeworktransactionannotationTransactional
 ---
 
 # UserDetails
@@ -14,4 +14,4 @@ tags:
 - [[dot-loadUserByUsername()]] - `references` [EXTRACTED]
 - [[CustomUserDetailsService.java]] - `imports` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/JwtAuthenticationFilter
+#graphify/code #graphify/EXTRACTED #community/orgspringframeworktransactionannotationTransactional

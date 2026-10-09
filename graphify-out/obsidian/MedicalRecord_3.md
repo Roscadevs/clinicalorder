@@ -1,11 +1,11 @@
 ---
 source_file: ""
 type: "code"
-community: "MedicalRecordService"
+community: "MedicalRecordServiceTest"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/MedicalRecordService
+  - community/MedicalRecordServiceTest
 ---
 
 # MedicalRecord
@@ -13,4 +13,4 @@ tags:
 ## Connections
 - [[MedicalRecordServiceTest]] - `references` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/MedicalRecordService
+#graphify/code #graphify/EXTRACTED #community/MedicalRecordServiceTest

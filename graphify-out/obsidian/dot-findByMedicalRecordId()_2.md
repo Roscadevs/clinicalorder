@@ -1,8 +1,8 @@
 ---
-source_file: "backend/src/main/java/com/clinicadermatologica/app/infrastructure/persistence/adapter/AntecedentePatologicoRepositoryAdapter.java"
+source_file: "backend/src/main/java/com/clinicadermatologica/app/domain/repository/AntecedentePatologicoRepository.java"
 type: "code"
 community: "AntecedentePatologico"
-location: "L26"
+location: "L18"
 tags:
   - graphify/code
   - graphify/EXTRACTED
@@ -12,9 +12,9 @@ tags:
 # .findByMedicalRecordId()
 
 ## Connections
-- [[dot-findByIdMedicalRecordId()_1]] - `calls` [INFERRED]
+- [[dot-mapRecordToDTO()]] - `calls` [INFERRED]
+- [[dot-testSaveInitialMedicalRecord_Success()]] - `calls` [INFERRED]
 - [[AntecedentePatologico]] - `references` [EXTRACTED]
-- [[AntecedentePatologicoRepositoryAdapter]] - `method` [EXTRACTED]
-- [[Override_8]] - `references` [EXTRACTED]
+- [[AntecedentePatologicoRepository]] - `method` [EXTRACTED]
 
 #graphify/code #graphify/EXTRACTED #community/AntecedentePatologico

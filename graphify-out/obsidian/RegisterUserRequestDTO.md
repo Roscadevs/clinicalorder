@@ -12,7 +12,7 @@ tags:
 # RegisterUserRequestDTO
 
 ## Connections
-- [[dot-register()_2]] - `references` [EXTRACTED]
+- [[dot-register()_4]] - `references` [EXTRACTED]
 - [[dot-registerUser()]] - `references` [EXTRACTED]
 - [[AllArgsConstructor_35]] - `references` [EXTRACTED]
 - [[Builder_33]] - `references` [EXTRACTED]

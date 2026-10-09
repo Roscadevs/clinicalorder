@@ -1,12 +1,12 @@
 ---
 source_file: "backend/src/main/java/com/clinicadermatologica/app/domain/model/PaymentType.java"
 type: "code"
-community: "lombok.extern.slf4j.Slf4j"
+community: "PaymentType"
 location: "L12"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/lombokexternslf4jSlf4j
+  - community/PaymentType
 ---
 
 # BANK_TRANSFER
@@ -14,4 +14,4 @@ tags:
 ## Connections
 - [[PaymentType]] - `case_of` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/lombokexternslf4jSlf4j
+#graphify/code #graphify/EXTRACTED #community/PaymentType

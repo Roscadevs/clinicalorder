@@ -1,24 +1,24 @@
 ---
 source_file: "backend/src/main/java/com/clinicadermatologica/app/presentation/dto/AlergiaRequestDTO.java"
 type: "code"
-community: "AlergiaId"
+community: "AlergiaRequestDTO"
 location: "L10"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/AlergiaId
+  - community/AlergiaRequestDTO
 ---
 
 # AlergiaRequestDTO
 
 ## Connections
-- [[dot-addAlergia()_1]] - `references` [EXTRACTED]
 - [[dot-addAlergia()]] - `references` [EXTRACTED]
+- [[dot-addAlergia()_1]] - `references` [EXTRACTED]
 - [[AlergiaRequestDTO.java]] - `contains` [EXTRACTED]
-- [[AllArgsConstructor_42]] - `references` [EXTRACTED]
-- [[Builder_39]] - `references` [EXTRACTED]
-- [[Getter_42]] - `references` [EXTRACTED]
-- [[NoArgsConstructor_42]] - `references` [EXTRACTED]
-- [[Setter_42]] - `references` [EXTRACTED]
+- [[AllArgsConstructor_9]] - `references` [EXTRACTED]
+- [[Builder_8]] - `references` [EXTRACTED]
+- [[Getter_9]] - `references` [EXTRACTED]
+- [[NoArgsConstructor_9]] - `references` [EXTRACTED]
+- [[Setter_9]] - `references` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/AlergiaId
+#graphify/code #graphify/EXTRACTED #community/AlergiaRequestDTO

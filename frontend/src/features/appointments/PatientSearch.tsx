@@ -12,7 +12,7 @@ interface PatientSearchProps {
 }
 
 const MIN_CHARS = 2;
-const DEBOUNCE_MS = 250;
+const DEBOUNCE_MS = 150;
 
 /** Resalta la parte del texto que coincide con la búsqueda. */
 const Highlight: React.FC<{ text: string; query: string }> = ({ text, query }) => {
@@ -49,16 +49,17 @@ export const PatientSearch: React.FC<PatientSearchProps> = ({ onSelect, onAddNew
   // Cantidad de opciones navegables (resultados + opción "agregar" si aplica)
   const optionCount = showAddNew ? 1 : results.length;
 
-  // Búsqueda con debounce; descarta respuestas viejas si el usuario siguió tipeando.
+  // Búsqueda con debounce optimizado; descarta respuestas viejas si el usuario siguió tipeando.
   useEffect(() => {
     if (!canSearch) {
       setResults([]);
       setIsLoading(false);
       return;
     }
-    setIsLoading(true);
+
     const id = ++requestId.current;
     const timer = setTimeout(() => {
+      setIsLoading(true);
       patientsApi
         .getPatients(trimmed)
         .then((list) => {

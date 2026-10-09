@@ -12,7 +12,7 @@ tags:
 # .applyDtoToEntity()
 
 ## Connections
-- [[dot-encrypt()_1]] - `calls` [EXTRACTED]
+- [[dot-encrypt()]] - `calls` [EXTRACTED]
 - [[dot-saveOrUpdateMedicalRecord()]] - `calls` [EXTRACTED]
 - [[MedicalRecord_2]] - `references` [EXTRACTED]
 - [[MedicalRecordDTO]] - `references` [EXTRACTED]

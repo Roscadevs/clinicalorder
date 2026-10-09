@@ -11,6 +11,6 @@ tags:
 # Setter
 
 ## Connections
-- [[HabitoId]] - `references` [EXTRACTED]
+- [[HabitoResponseDTO]] - `references` [EXTRACTED]
 
 #graphify/code #graphify/EXTRACTED #community/Habito

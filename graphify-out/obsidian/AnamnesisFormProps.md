@@ -1,12 +1,12 @@
 ---
 source_file: "frontend/src/features/clinical/AnamnesisForm.tsx"
 type: "code"
-community: "AnamnesisForm.tsx"
+community: "DashboardLayout.tsx"
 location: "L9"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/AnamnesisFormtsx
+  - community/DashboardLayouttsx
 ---
 
 # AnamnesisFormProps
@@ -15,4 +15,4 @@ tags:
 - [[AnamnesisForm.tsx]] - `contains` [EXTRACTED]
 - [[MedicalRecord_1]] - `references` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/AnamnesisFormtsx
+#graphify/code #graphify/EXTRACTED #community/DashboardLayouttsx

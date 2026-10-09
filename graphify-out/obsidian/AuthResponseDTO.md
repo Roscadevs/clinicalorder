@@ -14,12 +14,12 @@ tags:
 ## Connections
 - [[dot-login()]] - `references` [EXTRACTED]
 - [[dot-login()_1]] - `references` [EXTRACTED]
-- [[AllArgsConstructor_33]] - `references` [EXTRACTED]
+- [[AllArgsConstructor_34]] - `references` [EXTRACTED]
 - [[AuthResponseDTO.java]] - `contains` [EXTRACTED]
-- [[Builder_31]] - `references` [EXTRACTED]
-- [[Getter_33]] - `references` [EXTRACTED]
-- [[NoArgsConstructor_33]] - `references` [EXTRACTED]
-- [[Setter_33]] - `references` [EXTRACTED]
+- [[Builder_32]] - `references` [EXTRACTED]
+- [[Getter_34]] - `references` [EXTRACTED]
+- [[NoArgsConstructor_34]] - `references` [EXTRACTED]
+- [[Setter_34]] - `references` [EXTRACTED]
 - [[UserRole]] - `references` [EXTRACTED]
 
 #graphify/code #graphify/EXTRACTED #community/UserRole

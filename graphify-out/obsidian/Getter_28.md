@@ -1,16 +1,16 @@
 ---
 source_file: ""
 type: "code"
-community: "DermatologicService"
+community: "Patient"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/DermatologicService
+  - community/Patient
 ---
 
 # Getter
 
 ## Connections
-- [[GeminiChatResponseDTO]] - `references` [EXTRACTED]
+- [[Patient_1]] - `references` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/DermatologicService
+#graphify/code #graphify/EXTRACTED #community/Patient

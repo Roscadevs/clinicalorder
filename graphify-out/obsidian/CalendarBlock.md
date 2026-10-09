@@ -12,17 +12,17 @@ tags:
 # CalendarBlock
 
 ## Connections
-- [[dot-findByDateRange()_4]] - `references` [EXTRACTED]
+- [[dot-findByDateRange()_5]] - `references` [EXTRACTED]
 - [[dot-findByDateRange()]] - `references` [EXTRACTED]
 - [[dot-findByDateRange()_1]] - `references` [EXTRACTED]
-- [[dot-findById()_1]] - `references` [EXTRACTED]
 - [[dot-findById()_2]] - `references` [EXTRACTED]
+- [[dot-findById()_3]] - `references` [EXTRACTED]
 - [[dot-findOverlappingBlocks()_2]] - `references` [EXTRACTED]
 - [[dot-findOverlappingBlocks()]] - `references` [EXTRACTED]
 - [[dot-findOverlappingBlocks()_1]] - `references` [EXTRACTED]
 - [[dot-mapToDTO()_2]] - `references` [EXTRACTED]
+- [[dot-save()_12]] - `references` [EXTRACTED]
 - [[dot-save()_1]] - `references` [EXTRACTED]
-- [[dot-save()_2]] - `references` [EXTRACTED]
 - [[AllArgsConstructor_1]] - `references` [EXTRACTED]
 - [[Builder_1]] - `references` [EXTRACTED]
 - [[CalendarBlock.java]] - `contains` [EXTRACTED]

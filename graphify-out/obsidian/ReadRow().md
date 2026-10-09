@@ -1,12 +1,12 @@
 ---
 source_file: "frontend/src/features/clinical/AnamnesisForm.tsx"
 type: "code"
-community: "AnamnesisForm.tsx"
+community: "DashboardLayout.tsx"
 location: "L201"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/AnamnesisFormtsx
+  - community/DashboardLayouttsx
 ---
 
 # ReadRow()
@@ -15,4 +15,4 @@ tags:
 - [[AnamnesisForm.tsx]] - `contains` [EXTRACTED]
 - [[cn()]] - `calls` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/AnamnesisFormtsx
+#graphify/code #graphify/EXTRACTED #community/DashboardLayouttsx

@@ -1,16 +1,16 @@
 ---
 source_file: ""
 type: "code"
-community: "ServiceResponseDTO"
+community: "RegisterPaymentRequestDTO"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/ServiceResponseDTO
+  - community/RegisterPaymentRequestDTO
 ---
 
 # Setter
 
 ## Connections
-- [[ServiceResponseDTO]] - `references` [EXTRACTED]
+- [[RegisterPaymentRequestDTO]] - `references` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/ServiceResponseDTO
+#graphify/code #graphify/EXTRACTED #community/RegisterPaymentRequestDTO

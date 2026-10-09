@@ -1,12 +1,12 @@
 ---
 source_file: "backend/src/main/java/com/clinicadermatologica/app/presentation/controller/AppointmentController.java"
 type: "code"
-community: "org.springframework.http.ResponseEntity"
+community: "AppointmentService"
 location: "L1"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/orgspringframeworkhttpResponseEntity
+  - community/AppointmentService
 ---
 
 # AppointmentController.java
@@ -20,4 +20,4 @@ tags:
 - [[org.springframework.http.ResponseEntity]] - `imports` [EXTRACTED]
 - [[org.springframework.security.access.prepost.PreAuthorize]] - `imports` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/orgspringframeworkhttpResponseEntity
+#graphify/code #graphify/EXTRACTED #community/AppointmentService

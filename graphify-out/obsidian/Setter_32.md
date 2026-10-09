@@ -1,16 +1,16 @@
 ---
 source_file: ""
 type: "code"
-community: "UserRole"
+community: "GeminiChatRequestDTO"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/UserRole
+  - community/GeminiChatRequestDTO
 ---
 
 # Setter
 
 ## Connections
-- [[AuthRequestDTO]] - `references` [EXTRACTED]
+- [[GeminiChatResponseDTO]] - `references` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/UserRole
+#graphify/code #graphify/EXTRACTED #community/GeminiChatRequestDTO

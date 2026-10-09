@@ -1,20 +1,19 @@
 ---
-source_file: "backend/src/main/java/com/clinicadermatologica/app/infrastructure/persistence/jpa/JpaPatientRepository.java"
+source_file: "backend/src/main/java/com/clinicadermatologica/app/domain/repository/PatientRepository.java"
 type: "code"
-community: "Patient"
-location: "L22"
+community: "PatientResponseDTO"
+location: "L15"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/Patient
+  - community/PatientResponseDTO
 ---
 
 # .searchByNameOrDni()
 
 ## Connections
-- [[dot-searchByNameOrDni()_1]] - `calls` [INFERRED]
-- [[JpaPatientRepository]] - `method` [EXTRACTED]
+- [[dot-searchPatients()]] - `calls` [INFERRED]
 - [[Patient_1]] - `references` [EXTRACTED]
-- [[org.springframework.data.jpa.repository.Query]] - `references` [EXTRACTED]
+- [[PatientRepository]] - `method` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/Patient
+#graphify/code #graphify/EXTRACTED #community/PatientResponseDTO

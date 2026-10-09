@@ -56,12 +56,18 @@ const currentUserId = (): number => {
   return ROLE_FALLBACK_IDS[role] ?? 1;
 };
 
+export const isDemoSession = (): boolean => {
+  const token = localStorage.getItem('token');
+  return !token || token.startsWith('demo-');
+};
+
 // Instancia configurada de Axios con base URL hacia la API de Spring Boot
 const api = axios.create({
   baseURL: import.meta.env.VITE_API_BASE_URL || '/api/v1', // URL base configurada o proxy relativo
   headers: {
     'Content-Type': 'application/json',
   },
+  timeout: 8000, // Previene bloqueos indefinidos ante problemas de red
 });
 
 // Interceptor para inyectar automáticamente el Bearer JWT en cada solicitud saliente
@@ -172,28 +178,94 @@ export const servicesApi = {
 };
 
 // --- SERVICIOS DE GESTIÓN DE PACIENTES ---
+const INITIAL_DEMO_PATIENTS: Patient[] = [
+  { id: 1, name: 'Lucía Fernández', dni: '38456123', phone: '+54 9 11 1234-5678', email: 'lucia.fernandez@example.com', active: true, createdAt: '2026-08-01' },
+  { id: 2, name: 'Camila Rossi', dni: '40123987', phone: '+54 9 11 8765-4321', email: 'camila.rossi@example.com', active: true, createdAt: '2026-08-10' },
+  { id: 3, name: 'Mariana Díaz', dni: '36987452', phone: '+54 9 11 5555-1234', email: 'mariana.diaz@example.com', active: true, createdAt: '2026-08-12' },
+  { id: 4, name: 'Sofía Álvarez', dni: '39874125', phone: '+54 9 11 9999-8888', email: 'sofia.alvarez@example.com', active: true, createdAt: '2026-08-15' },
+];
+
+const getDemoPatients = (): Patient[] => {
+  const raw = localStorage.getItem('demo_patients');
+  if (raw) {
+    try {
+      const parsed = JSON.parse(raw);
+      if (Array.isArray(parsed) && parsed.length > 0) return parsed;
+    } catch {}
+  }
+  return INITIAL_DEMO_PATIENTS;
+};
+
+const filterDemoPatients = (search?: string): Patient[] => {
+  const list = getDemoPatients();
+  const q = (search ?? '').trim().toLowerCase();
+  if (!q) return list;
+  return list.filter((p) => p.dni.includes(q) || p.name.toLowerCase().includes(q));
+};
+
+const patientSearchCache = new Map<string, { data: Patient[]; timestamp: number }>();
+const PATIENT_CACHE_TTL = 30000;
+
 export const patientsApi = {
   getPatients: async (search?: string): Promise<Patient[]> => {
+    const q = (search ?? '').trim().toLowerCase();
+
+    // En modo demo respondemos de forma inmediata en memoria (sin latencia de red ni esperar el 403 del servidor)
+    if (isDemoSession()) {
+      return filterDemoPatients(q);
+    }
+
+    const cached = patientSearchCache.get(q);
+    if (cached && Date.now() - cached.timestamp < PATIENT_CACHE_TTL) {
+      return cached.data;
+    }
+
     try {
       const response = await api.get<Patient[]>('/pacientes', { params: { search } });
       if (!Array.isArray(response.data)) throw new Error('Expected array');
+      patientSearchCache.set(q, { data: response.data, timestamp: Date.now() });
       return response.data;
     } catch {
-      // Modo demo: filtra localmente por nombre o DNI, igual que el backend.
-      const demo: Patient[] = [
-        { id: 1, name: 'Lucía Fernández', dni: '38456123', phone: '+54 9 11 1234-5678', email: 'lucia.fernandez@example.com', active: true, createdAt: '2026-08-01' },
-        { id: 2, name: 'Camila Rossi', dni: '40123987', phone: '+54 9 11 8765-4321', email: 'camila.rossi@example.com', active: true, createdAt: '2026-08-10' },
-        { id: 3, name: 'Mariana Díaz', dni: '36987452', phone: '+54 9 11 5555-1234', email: 'mariana.diaz@example.com', active: true, createdAt: '2026-08-12' },
-        { id: 4, name: 'Sofía Álvarez', dni: '39874125', phone: '+54 9 11 9999-8888', email: 'sofia.alvarez@example.com', active: true, createdAt: '2026-08-15' },
-      ];
-      const q = (search ?? '').trim().toLowerCase();
-      if (!q) return demo;
-      return demo.filter((p) => p.dni.includes(q) || p.name.toLowerCase().includes(q));
+      return filterDemoPatients(q);
     }
   },
   createPatient: async (patient: Partial<Patient>): Promise<Patient> => {
-    const response = await api.post<Patient>('/pacientes', patient);
-    return response.data;
+    if (isDemoSession()) {
+      const current = getDemoPatients();
+      const newPatient: Patient = {
+        id: current.length > 0 ? Math.max(...current.map((p) => p.id)) + 1 : 1,
+        name: patient.name || '',
+        dni: patient.dni || '',
+        phone: patient.phone || '',
+        email: patient.email || '',
+        active: true,
+        createdAt: new Date().toISOString(),
+      };
+      localStorage.setItem('demo_patients', JSON.stringify([...current, newPatient]));
+      patientSearchCache.clear();
+      return newPatient;
+    }
+
+    try {
+      const response = await api.post<Patient>('/pacientes', patient);
+      patientSearchCache.clear();
+      return response.data;
+    } catch (err) {
+      if (!isNetworkError(err)) throw err;
+      const current = getDemoPatients();
+      const newPatient: Patient = {
+        id: current.length > 0 ? Math.max(...current.map((p) => p.id)) + 1 : 1,
+        name: patient.name || '',
+        dni: patient.dni || '',
+        phone: patient.phone || '',
+        email: patient.email || '',
+        active: true,
+        createdAt: new Date().toISOString(),
+      };
+      localStorage.setItem('demo_patients', JSON.stringify([...current, newPatient]));
+      patientSearchCache.clear();
+      return newPatient;
+    }
   },
 };
 

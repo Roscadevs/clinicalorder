@@ -12,7 +12,7 @@ tags:
 # .findByIdMedicalRecordId()
 
 ## Connections
-- [[dot-findByMedicalRecordId()_2]] - `calls` [INFERRED]
+- [[dot-findByMedicalRecordId()_3]] - `calls` [INFERRED]
 - [[AntecedentePatologico]] - `references` [EXTRACTED]
 - [[JpaAntecedentePatologicoRepository]] - `method` [EXTRACTED]
 

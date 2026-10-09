@@ -1,12 +1,12 @@
 ---
 source_file: "backend/src/main/java/com/clinicadermatologica/app/presentation/dto/TimeSlotDTO.java"
 type: "code"
-community: "AppointmentServiceTest.java"
+community: "TimeSlotDTO"
 location: "L1"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/AppointmentServiceTestjava
+  - community/TimeSlotDTO
 ---
 
 # TimeSlotDTO.java
@@ -15,4 +15,4 @@ tags:
 - [[AppointmentServiceTest.java]] - `imports` [EXTRACTED]
 - [[TimeSlotDTO]] - `contains` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/AppointmentServiceTestjava
+#graphify/code #graphify/EXTRACTED #community/TimeSlotDTO

@@ -1,16 +1,18 @@
 ---
 source_file: ""
 type: "code"
-community: "PatientResponseDTO"
+community: "MedicalRecordController"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/PatientResponseDTO
+  - community/MedicalRecordController
 ---
 
 # DeleteMapping
 
 ## Connections
-- [[dot-deactivatePatient()_1]] - `references` [EXTRACTED]
+- [[dot-removeAlergia()_1]] - `references` [EXTRACTED]
+- [[dot-removeAntecedentePatologico()_1]] - `references` [EXTRACTED]
+- [[dot-removeHabito()_1]] - `references` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/PatientResponseDTO
+#graphify/code #graphify/EXTRACTED #community/MedicalRecordController

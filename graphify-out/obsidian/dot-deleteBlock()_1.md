@@ -1,12 +1,12 @@
 ---
 source_file: "backend/src/main/java/com/clinicadermatologica/app/presentation/controller/CalendarBlockController.java"
 type: "code"
-community: "CalendarBlockResponseDTO"
+community: "CalendarBlockController"
 location: "L42"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/CalendarBlockResponseDTO
+  - community/CalendarBlockController
 ---
 
 # .deleteBlock()
@@ -14,7 +14,7 @@ tags:
 ## Connections
 - [[dot-deleteBlock()]] - `calls` [INFERRED]
 - [[CalendarBlockController]] - `method` [EXTRACTED]
-- [[DeleteMapping_1]] - `references` [EXTRACTED]
+- [[DeleteMapping]] - `references` [EXTRACTED]
 - [[org.springframework.http.ResponseEntity]] - `references` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/CalendarBlockResponseDTO
+#graphify/code #graphify/EXTRACTED #community/CalendarBlockController

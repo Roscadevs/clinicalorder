@@ -1,16 +1,16 @@
 ---
 source_file: ""
 type: "code"
-community: "UserRole"
+community: "ClinicalEntry"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/UserRole
+  - community/ClinicalEntry
 ---
 
 # Builder
 
 ## Connections
-- [[ResetPasswordRequestDTO]] - `references` [EXTRACTED]
+- [[ClinicalEntry_1]] - `references` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/UserRole
+#graphify/code #graphify/EXTRACTED #community/ClinicalEntry

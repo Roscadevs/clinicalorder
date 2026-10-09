@@ -13,7 +13,7 @@ tags:
 
 ## Connections
 - [[dot-addHabito()]] - `calls` [INFERRED]
-- [[dot-removeHabito()_1]] - `calls` [INFERRED]
+- [[dot-removeHabito()]] - `calls` [INFERRED]
 - [[HabitoId]] - `references` [EXTRACTED]
 - [[HabitoRepository]] - `method` [EXTRACTED]
 

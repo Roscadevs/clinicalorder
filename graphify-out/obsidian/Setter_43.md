@@ -1,11 +1,11 @@
 ---
 source_file: ""
 type: "code"
-community: "AlergiaId"
+community: "MedicalRecordDTO"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/AlergiaId
+  - community/MedicalRecordDTO
 ---
 
 # Setter
@@ -13,4 +13,4 @@ tags:
 ## Connections
 - [[AlergiaResponseDTO]] - `references` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/AlergiaId
+#graphify/code #graphify/EXTRACTED #community/MedicalRecordDTO

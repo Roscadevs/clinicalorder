@@ -12,8 +12,8 @@ tags:
 # MercadoPagoPaymentStrategy
 
 ## Connections
-- [[dot-register()_1]] - `method` [EXTRACTED]
-- [[dot-supportedType()_1]] - `method` [EXTRACTED]
+- [[dot-register()_2]] - `method` [EXTRACTED]
+- [[dot-supportedType()_2]] - `method` [EXTRACTED]
 - [[MercadoPagoPaymentStrategy.java]] - `contains` [EXTRACTED]
 - [[PaymentRegistrationStrategy]] - `implements` [EXTRACTED]
 - [[PaymentTransactionRepository]] - `references` [EXTRACTED]

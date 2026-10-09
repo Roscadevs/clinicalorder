@@ -1,19 +1,19 @@
 ---
-source_file: "backend/src/main/java/com/clinicadermatologica/app/infrastructure/persistence/adapter/PatientRepositoryAdapter.java"
+source_file: "backend/src/main/java/com/clinicadermatologica/app/domain/repository/CalendarBlockRepository.java"
 type: "code"
-community: "Patient"
-location: "L46"
+community: "CalendarBlockResponseDTO"
+location: "L16"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/Patient
+  - community/CalendarBlockResponseDTO
 ---
 
 # .save()
 
 ## Connections
-- [[Override_11]] - `references` [EXTRACTED]
-- [[Patient_1]] - `references` [EXTRACTED]
-- [[PatientRepositoryAdapter]] - `method` [EXTRACTED]
+- [[dot-createBlock()]] - `calls` [INFERRED]
+- [[CalendarBlock]] - `references` [EXTRACTED]
+- [[CalendarBlockRepository]] - `method` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/Patient
+#graphify/code #graphify/EXTRACTED #community/CalendarBlockResponseDTO

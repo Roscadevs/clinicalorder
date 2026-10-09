@@ -1,18 +1,16 @@
 ---
 source_file: ""
 type: "code"
-community: "MedicalRecordController"
+community: "CalendarBlockController"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/MedicalRecordController
+  - community/CalendarBlockController
 ---
 
 # DeleteMapping
 
 ## Connections
-- [[dot-removeAlergia()]] - `references` [EXTRACTED]
-- [[dot-removeAntecedentePatologico()]] - `references` [EXTRACTED]
-- [[dot-removeHabito()]] - `references` [EXTRACTED]
+- [[dot-deleteBlock()_1]] - `references` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/MedicalRecordController
+#graphify/code #graphify/EXTRACTED #community/CalendarBlockController

@@ -1,18 +1,18 @@
 ---
 source_file: "backend/src/test/java/com/clinicadermatologica/app/infrastructure/AesEncryptionServiceTest.java"
 type: "code"
-community: "org.junit.jupiter.api.DisplayName"
+community: "MedicalRecordServiceTest"
 location: "L22"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/orgjunitjupiterapiDisplayName
+  - community/MedicalRecordServiceTest
 ---
 
 # AesEncryptionServiceTest
 
 ## Connections
-- [[dot-setUp()]] - `method` [EXTRACTED]
+- [[dot-setUp()_4]] - `method` [EXTRACTED]
 - [[dot-testInvalidKeyLengthThrows()]] - `method` [EXTRACTED]
 - [[dot-testRoundTrip()]] - `method` [EXTRACTED]
 - [[dot-testTamperedCiphertextThrows()]] - `method` [EXTRACTED]
@@ -21,4 +21,4 @@ tags:
 - [[AesEncryptionService]] - `references` [EXTRACTED]
 - [[AesEncryptionServiceTest.java]] - `contains` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/orgjunitjupiterapiDisplayName
+#graphify/code #graphify/EXTRACTED #community/MedicalRecordServiceTest

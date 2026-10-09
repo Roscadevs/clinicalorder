@@ -1,18 +1,18 @@
 ---
-source_file: "backend/src/test/java/com/clinicadermatologica/app/application/AppointmentServiceTest.java"
+source_file: "backend/src/test/java/com/clinicadermatologica/app/application/AuthServiceTest.java"
 type: "code"
-community: "MedicalRecordService"
-location: "L51"
+community: "MedicalRecordServiceTest"
+location: "L45"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/MedicalRecordService
+  - community/MedicalRecordServiceTest
 ---
 
 # .setUp()
 
 ## Connections
-- [[AppointmentServiceTest]] - `method` [EXTRACTED]
+- [[AuthServiceTest]] - `method` [EXTRACTED]
 - [[org.junit.jupiter.api.BeforeEach]] - `references` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/MedicalRecordService
+#graphify/code #graphify/EXTRACTED #community/MedicalRecordServiceTest

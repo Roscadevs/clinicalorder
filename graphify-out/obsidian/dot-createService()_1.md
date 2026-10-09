@@ -1,23 +1,24 @@
 ---
-source_file: "backend/src/main/java/com/clinicadermatologica/app/presentation/controller/ServiceCatalogController.java"
+source_file: "backend/src/main/java/com/clinicadermatologica/app/application/service/DermatologicServiceService.java"
 type: "code"
-community: "ServiceResponseDTO"
-location: "L54"
+community: "DermatologicServiceRepository"
+location: "L58"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/ServiceResponseDTO
+  - community/DermatologicServiceRepository
 ---
 
 # .createService()
 
 ## Connections
 - [[dot-createService()]] - `calls` [INFERRED]
-- [[PostMapping_2]] - `references` [EXTRACTED]
-- [[ServiceCatalogController]] - `method` [EXTRACTED]
+- [[dot-existsByName()_2]] - `calls` [INFERRED]
+- [[dot-mapToDTO()_4]] - `calls` [EXTRACTED]
+- [[dot-save()_25]] - `calls` [INFERRED]
+- [[DermatologicServiceService]] - `method` [EXTRACTED]
 - [[ServiceRequestDTO]] - `references` [EXTRACTED]
 - [[ServiceResponseDTO]] - `references` [EXTRACTED]
-- [[org.springframework.http.ResponseEntity]] - `references` [EXTRACTED]
-- [[org.springframework.security.access.prepost.PreAuthorize]] - `references` [EXTRACTED]
+- [[org.springframework.transaction.annotation.Transactional]] - `references` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/ServiceResponseDTO
+#graphify/code #graphify/EXTRACTED #community/DermatologicServiceRepository

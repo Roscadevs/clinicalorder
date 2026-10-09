@@ -1,20 +1,20 @@
 ---
-source_file: "backend/src/main/java/com/clinicadermatologica/app/domain/repository/UserRepository.java"
+source_file: "backend/src/main/java/com/clinicadermatologica/app/domain/repository/DermatologicServiceRepository.java"
 type: "code"
-community: "UserRepository"
-location: "L14"
+community: "DermatologicServiceRepository"
+location: "L16"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/UserRepository
+  - community/DermatologicServiceRepository
 ---
 
 # .save()
 
 ## Connections
-- [[dot-registerUser()]] - `calls` [INFERRED]
-- [[dot-resetPassword()_1]] - `calls` [INFERRED]
-- [[User]] - `references` [EXTRACTED]
-- [[UserRepository]] - `method` [EXTRACTED]
+- [[dot-createService()_1]] - `calls` [INFERRED]
+- [[dot-updateService()_1]] - `calls` [INFERRED]
+- [[DermatologicService]] - `references` [EXTRACTED]
+- [[DermatologicServiceRepository]] - `method` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/UserRepository
+#graphify/code #graphify/EXTRACTED #community/DermatologicServiceRepository

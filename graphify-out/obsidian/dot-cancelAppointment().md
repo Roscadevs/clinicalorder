@@ -13,10 +13,10 @@ tags:
 
 ## Connections
 - [[dot-cancelAppointment()_1]] - `calls` [INFERRED]
-- [[dot-findByAppointmentId()_1]] - `calls` [INFERRED]
-- [[dot-findById()_11]] - `calls` [INFERRED]
-- [[dot-rejectPendingTransactions()_1]] - `calls` [EXTRACTED]
-- [[dot-save()_5]] - `calls` [INFERRED]
+- [[dot-findByAppointmentId()_2]] - `calls` [INFERRED]
+- [[dot-findById()_8]] - `calls` [INFERRED]
+- [[dot-rejectPendingTransactions()]] - `calls` [EXTRACTED]
+- [[dot-save()_10]] - `calls` [INFERRED]
 - [[dot-testCancelAppointment_WithApprovedMercadoPagoPayment_TriggersRefund()]] - `calls` [INFERRED]
 - [[AppointmentService]] - `method` [EXTRACTED]
 - [[org.springframework.transaction.annotation.Transactional]] - `references` [EXTRACTED]

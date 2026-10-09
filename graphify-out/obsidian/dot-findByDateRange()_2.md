@@ -1,8 +1,8 @@
 ---
-source_file: "backend/src/main/java/com/clinicadermatologica/app/infrastructure/persistence/jpa/JpaAppointmentRepository.java"
+source_file: "backend/src/main/java/com/clinicadermatologica/app/infrastructure/persistence/adapter/AppointmentRepositoryAdapter.java"
 type: "code"
 community: "Appointment"
-location: "L31"
+location: "L43"
 tags:
   - graphify/code
   - graphify/EXTRACTED
@@ -12,9 +12,9 @@ tags:
 # .findByDateRange()
 
 ## Connections
-- [[dot-findByDateRange()_5]] - `calls` [INFERRED]
+- [[dot-findByDateRange()_3]] - `calls` [INFERRED]
 - [[Appointment]] - `references` [EXTRACTED]
-- [[JpaAppointmentRepository]] - `method` [EXTRACTED]
-- [[org.springframework.data.jpa.repository.Query]] - `references` [EXTRACTED]
+- [[AppointmentRepositoryAdapter]] - `method` [EXTRACTED]
+- [[Override_7]] - `references` [EXTRACTED]
 
 #graphify/code #graphify/EXTRACTED #community/Appointment

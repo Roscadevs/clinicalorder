@@ -1,21 +1,21 @@
 ---
 source_file: ""
 type: "code"
-community: "DermatologicService"
+community: "User"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/DermatologicService
+  - community/User
 ---
 
 # Override
 
 ## Connections
-- [[dot-existsByName()_1]] - `references` [EXTRACTED]
-- [[dot-findAll()_1]] - `references` [EXTRACTED]
-- [[dot-findAllActive()_3]] - `references` [EXTRACTED]
-- [[dot-findById()_16]] - `references` [EXTRACTED]
-- [[dot-findByName()_1]] - `references` [EXTRACTED]
-- [[dot-save()_16]] - `references` [EXTRACTED]
+- [[dot-existsByEmail()_3]] - `references` [EXTRACTED]
+- [[dot-existsByUsername()]] - `references` [EXTRACTED]
+- [[dot-findByEmail()_3]] - `references` [EXTRACTED]
+- [[dot-findById()_18]] - `references` [EXTRACTED]
+- [[dot-findByUsername()]] - `references` [EXTRACTED]
+- [[dot-save()_15]] - `references` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/DermatologicService
+#graphify/code #graphify/EXTRACTED #community/User

@@ -1,20 +1,21 @@
 ---
 source_file: ""
 type: "code"
-community: "org.springframework.http.ResponseEntity"
+community: "MedicalRecordController"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/orgspringframeworkhttpResponseEntity
+  - community/MedicalRecordController
 ---
 
 # PostMapping
 
 ## Connections
-- [[dot-bookTemporaryHold()_1]] - `references` [EXTRACTED]
-- [[dot-cancelAppointment()_1]] - `references` [EXTRACTED]
-- [[dot-finalizePayment()]] - `references` [EXTRACTED]
-- [[dot-markAsAttended()_1]] - `references` [EXTRACTED]
-- [[dot-registerDepositPayment()_1]] - `references` [EXTRACTED]
+- [[dot-addAlergia()_1]] - `references` [EXTRACTED]
+- [[dot-addAntecedentePatologico()_1]] - `references` [EXTRACTED]
+- [[dot-addClinicalEntry()_1]] - `references` [EXTRACTED]
+- [[dot-addHabito()_1]] - `references` [EXTRACTED]
+- [[dot-saveMedicalRecord()]] - `references` [EXTRACTED]
+- [[dot-uploadClinicalPhoto()]] - `references` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/orgspringframeworkhttpResponseEntity
+#graphify/code #graphify/EXTRACTED #community/MedicalRecordController

@@ -1,12 +1,12 @@
 ---
 source_file: "backend/src/main/java/com/clinicadermatologica/app/presentation/dto/ResetPasswordRequestDTO.java"
 type: "code"
-community: "UserRole"
+community: "ResetPasswordRequestDTO"
 location: "L10"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/UserRole
+  - community/ResetPasswordRequestDTO
 ---
 
 # ResetPasswordRequestDTO
@@ -14,11 +14,11 @@ tags:
 ## Connections
 - [[dot-resetPassword()_1]] - `references` [EXTRACTED]
 - [[dot-resetPassword()]] - `references` [EXTRACTED]
-- [[AllArgsConstructor_36]] - `references` [EXTRACTED]
-- [[Builder_34]] - `references` [EXTRACTED]
-- [[Getter_36]] - `references` [EXTRACTED]
-- [[NoArgsConstructor_36]] - `references` [EXTRACTED]
+- [[AllArgsConstructor_15]] - `references` [EXTRACTED]
+- [[Builder_14]] - `references` [EXTRACTED]
+- [[Getter_15]] - `references` [EXTRACTED]
+- [[NoArgsConstructor_15]] - `references` [EXTRACTED]
 - [[ResetPasswordRequestDTO.java]] - `contains` [EXTRACTED]
-- [[Setter_36]] - `references` [EXTRACTED]
+- [[Setter_15]] - `references` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/UserRole
+#graphify/code #graphify/EXTRACTED #community/ResetPasswordRequestDTO

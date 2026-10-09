@@ -1,18 +1,19 @@
 ---
-source_file: "backend/src/main/java/com/clinicadermatologica/app/domain/repository/PaymentTransactionRepository.java"
+source_file: "backend/src/main/java/com/clinicadermatologica/app/infrastructure/persistence/jpa/JpaPaymentTransactionRepository.java"
 type: "code"
-community: "lombok.RequiredArgsConstructor"
-location: "L13"
+community: "PaymentTransaction"
+location: "L15"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/lombokRequiredArgsConstructor
+  - community/PaymentTransaction
 ---
 
 # .findByMpPaymentId()
 
 ## Connections
+- [[dot-findByMpPaymentId()_1]] - `calls` [INFERRED]
+- [[JpaPaymentTransactionRepository]] - `method` [EXTRACTED]
 - [[PaymentTransaction]] - `references` [EXTRACTED]
-- [[PaymentTransactionRepository]] - `method` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/lombokRequiredArgsConstructor
+#graphify/code #graphify/EXTRACTED #community/PaymentTransaction

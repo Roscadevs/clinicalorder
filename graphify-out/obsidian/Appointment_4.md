@@ -1,16 +1,16 @@
 ---
 source_file: ""
 type: "code"
-community: "lombok.extern.slf4j.Slf4j"
+community: "PaymentTransaction"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/lombokexternslf4jSlf4j
+  - community/PaymentTransaction
 ---
 
 # Appointment
 
 ## Connections
-- [[dot-rejectPendingTransactions()]] - `references` [EXTRACTED]
+- [[dot-register()_2]] - `references` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/lombokexternslf4jSlf4j
+#graphify/code #graphify/EXTRACTED #community/PaymentTransaction

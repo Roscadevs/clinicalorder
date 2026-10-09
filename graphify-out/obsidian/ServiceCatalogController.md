@@ -12,11 +12,11 @@ tags:
 # ServiceCatalogController
 
 ## Connections
-- [[dot-createService()_1]] - `method` [EXTRACTED]
+- [[dot-createService()]] - `method` [EXTRACTED]
 - [[dot-getActiveServices()]] - `method` [EXTRACTED]
 - [[dot-getAllServicesForAdmin()_1]] - `method` [EXTRACTED]
 - [[dot-getServiceById()_1]] - `method` [EXTRACTED]
-- [[dot-updateService()_1]] - `method` [EXTRACTED]
+- [[dot-updateService()]] - `method` [EXTRACTED]
 - [[DermatologicServiceService]] - `references` [EXTRACTED]
 - [[RequestMapping_2]] - `references` [EXTRACTED]
 - [[RestController_2]] - `references` [EXTRACTED]

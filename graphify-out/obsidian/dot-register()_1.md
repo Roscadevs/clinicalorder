@@ -1,23 +1,23 @@
 ---
-source_file: "backend/src/main/java/com/clinicadermatologica/app/infrastructure/payment/strategy/MercadoPagoPaymentStrategy.java"
+source_file: "backend/src/main/java/com/clinicadermatologica/app/infrastructure/payment/strategy/CashPaymentStrategy.java"
 type: "code"
-community: ".register"
+community: "PaymentTransaction"
 location: "L30"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/register
+  - community/PaymentTransaction
 ---
 
 # .register()
 
 ## Connections
-- [[dot-save()_6]] - `calls` [INFERRED]
-- [[Appointment_5]] - `references` [EXTRACTED]
-- [[MercadoPagoPaymentStrategy]] - `method` [EXTRACTED]
-- [[Override_5]] - `references` [EXTRACTED]
+- [[dot-save()_11]] - `calls` [INFERRED]
+- [[Appointment_3]] - `references` [EXTRACTED]
+- [[CashPaymentStrategy]] - `method` [EXTRACTED]
+- [[Override_1]] - `references` [EXTRACTED]
 - [[PaymentConcept_3]] - `references` [EXTRACTED]
 - [[PaymentTransaction]] - `references` [EXTRACTED]
 - [[User]] - `references` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/register
+#graphify/code #graphify/EXTRACTED #community/PaymentTransaction

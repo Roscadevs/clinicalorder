@@ -1,16 +1,16 @@
 ---
 source_file: ""
 type: "code"
-community: "AppointmentServiceTest.java"
+community: "ClinicalImage"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/AppointmentServiceTestjava
+  - community/ClinicalImage
 ---
 
 # Getter
 
 ## Connections
-- [[BookAppointmentRequestDTO]] - `references` [EXTRACTED]
+- [[ClinicalImage]] - `references` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/AppointmentServiceTestjava
+#graphify/code #graphify/EXTRACTED #community/ClinicalImage

@@ -50,7 +50,7 @@
       }
     },
     {
-      "query": "tag:#community/PatientResponseDTO",
+      "query": "tag:#community/PatientRequestDTO",
       "color": {
         "a": 1,
         "rgb": 16752039
@@ -71,7 +71,7 @@
       }
     },
     {
-      "query": "tag:#community/MedicalRecordController",
+      "query": "tag:#community/MedicalRecordService",
       "color": {
         "a": 1,
         "rgb": 5142951
@@ -106,7 +106,7 @@
       }
     },
     {
-      "query": "tag:#community/lombokexternslf4jSlf4j",
+      "query": "tag:#community/PaymentType",
       "color": {
         "a": 1,
         "rgb": 15583560
@@ -197,7 +197,7 @@
       }
     },
     {
-      "query": "tag:#community/AdminServicesViewtsx",
+      "query": "tag:#community/Button",
       "color": {
         "a": 1,
         "rgb": 10253663
@@ -225,14 +225,14 @@
       }
     },
     {
-      "query": "tag:#community/DermatologicService",
+      "query": "tag:#community/GeminiChatRequestDTO",
       "color": {
         "a": 1,
         "rgb": 14767961
       }
     },
     {
-      "query": "tag:#community/AppointmentServiceTestjava",
+      "query": "tag:#community/BookAppointmentRequestDTO",
       "color": {
         "a": 1,
         "rgb": 7780274
@@ -281,7 +281,7 @@
       }
     },
     {
-      "query": "tag:#community/MedicalRecordService",
+      "query": "tag:#community/MedicalRecordServiceTest",
       "color": {
         "a": 1,
         "rgb": 5142951
@@ -379,7 +379,7 @@
       }
     },
     {
-      "query": "tag:#community/AnamnesisFormtsx",
+      "query": "tag:#community/DermatologicService",
       "color": {
         "a": 1,
         "rgb": 5873999
@@ -393,21 +393,21 @@
       }
     },
     {
-      "query": "tag:#community/AppointmentRepositoryAdapter",
+      "query": "tag:#community/MedicalRecordController",
       "color": {
         "a": 1,
         "rgb": 11565729
       }
     },
     {
-      "query": "tag:#community/register",
+      "query": "tag:#community/MedicalRecordDTO",
       "color": {
         "a": 1,
         "rgb": 16752039
       }
     },
     {
-      "query": "tag:#community/AppointmentReceiptModaltsx",
+      "query": "tag:#community/PatientResponseDTO",
       "color": {
         "a": 1,
         "rgb": 10253663
@@ -673,7 +673,7 @@
       }
     },
     {
-      "query": "tag:#community/register",
+      "query": "tag:#community/DermatologicServiceRepository",
       "color": {
         "a": 1,
         "rgb": 11565729
@@ -764,10 +764,24 @@
       }
     },
     {
-      "query": "tag:#community/register",
+      "query": "tag:#community/PatientRepository",
+      "color": {
+        "a": 1,
+        "rgb": 12234924
+      }
+    },
+    {
+      "query": "tag:#community/CalendarBlockController",
       "color": {
         "a": 1,
         "rgb": 5142951
+      }
+    },
+    {
+      "query": "tag:#community/AppointmentResponseDTO",
+      "color": {
+        "a": 1,
+        "rgb": 15896107
       }
     },
     {
@@ -869,10 +883,24 @@
       }
     },
     {
+      "query": "tag:#community/AuthController",
+      "color": {
+        "a": 1,
+        "rgb": 11565729
+      }
+    },
+    {
       "query": "tag:#community/Documento_de_Sistema_de_Recordatorios_y_Sincronizaci\u00f3n_con_Calendarios_Fase_8",
       "color": {
         "a": 1,
         "rgb": 16752039
+      }
+    },
+    {
+      "query": "tag:#community/AlergiaRequestDTO",
+      "color": {
+        "a": 1,
+        "rgb": 10253663
       }
     },
     {
@@ -904,7 +932,7 @@
       }
     },
     {
-      "query": "tag:#community/bookTemporaryHold",
+      "query": "tag:#community/AuthRequestDTO",
       "color": {
         "a": 1,
         "rgb": 7780274
@@ -1184,10 +1212,59 @@
       }
     },
     {
-      "query": "tag:#community/register",
+      "query": "tag:#community/ClinicalEntryRequestDTO",
+      "color": {
+        "a": 1,
+        "rgb": 7780274
+      }
+    },
+    {
+      "query": "tag:#community/ForgotPasswordRequestDTO",
+      "color": {
+        "a": 1,
+        "rgb": 5873999
+      }
+    },
+    {
+      "query": "tag:#community/PaymentPreferenceResponseDTO",
+      "color": {
+        "a": 1,
+        "rgb": 15583560
+      }
+    },
+    {
+      "query": "tag:#community/ResetPasswordRequestDTO",
       "color": {
         "a": 1,
         "rgb": 11565729
+      }
+    },
+    {
+      "query": "tag:#community/ServiceRequestDTO",
+      "color": {
+        "a": 1,
+        "rgb": 16752039
+      }
+    },
+    {
+      "query": "tag:#community/TimeSlotDTO",
+      "color": {
+        "a": 1,
+        "rgb": 10253663
+      }
+    },
+    {
+      "query": "tag:#community/ResourceNotFoundException",
+      "color": {
+        "a": 1,
+        "rgb": 12234924
+      }
+    },
+    {
+      "query": "tag:#community/RegisterPaymentRequestDTO",
+      "color": {
+        "a": 1,
+        "rgb": 5142951
       }
     }
   ]

@@ -1,16 +1,16 @@
 ---
 source_file: ""
 type: "code"
-community: "UserRole"
+community: "lombok.RequiredArgsConstructor"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/UserRole
+  - community/lombokRequiredArgsConstructor
 ---
 
 # RestController
 
 ## Connections
-- [[AuthController]] - `references` [EXTRACTED]
+- [[PaymentWebhookController]] - `references` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/UserRole
+#graphify/code #graphify/EXTRACTED #community/lombokRequiredArgsConstructor

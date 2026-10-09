@@ -1,22 +1,27 @@
 ---
-source_file: "backend/src/main/java/com/clinicadermatologica/app/presentation/controller/MedicalRecordController.java"
+source_file: "backend/src/main/java/com/clinicadermatologica/app/application/service/MedicalRecordService.java"
 type: "code"
-community: "MedicalRecordController"
-location: "L60"
+community: "MedicalRecordService"
+location: "L98"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/MedicalRecordController
+  - community/MedicalRecordService
 ---
 
 # .addClinicalEntry()
 
 ## Connections
 - [[dot-addClinicalEntry()_1]] - `calls` [INFERRED]
+- [[dot-encrypt()]] - `calls` [EXTRACTED]
+- [[dot-findById()_8]] - `calls` [INFERRED]
+- [[dot-findById()_14]] - `calls` [INFERRED]
+- [[dot-mapEntryToDTO()]] - `calls` [EXTRACTED]
+- [[dot-save()_2]] - `calls` [INFERRED]
+- [[dot-testAddClinicalEntry_EncryptsContent()]] - `calls` [INFERRED]
 - [[ClinicalEntryRequestDTO]] - `references` [EXTRACTED]
 - [[ClinicalEntryResponseDTO]] - `references` [EXTRACTED]
-- [[MedicalRecordController]] - `method` [EXTRACTED]
-- [[PostMapping]] - `references` [EXTRACTED]
-- [[org.springframework.http.ResponseEntity]] - `references` [EXTRACTED]
+- [[MedicalRecordService]] - `method` [EXTRACTED]
+- [[org.springframework.transaction.annotation.Transactional]] - `references` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/MedicalRecordController
+#graphify/code #graphify/EXTRACTED #community/MedicalRecordService

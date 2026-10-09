@@ -1,12 +1,12 @@
 ---
 source_file: "backend/src/main/java/com/clinicadermatologica/app/domain/exception/ResourceNotFoundException.java"
 type: "code"
-community: "org.springframework.transaction.annotation.Transactional"
+community: "ResourceNotFoundException"
 location: "L6"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/orgspringframeworktransactionannotationTransactional
+  - community/ResourceNotFoundException
 ---
 
 # ResourceNotFoundException
@@ -19,7 +19,7 @@ tags:
 - [[dot-getServiceById()]] - `calls` [EXTRACTED]
 - [[dot-handleNotFound()]] - `references` [EXTRACTED]
 - [[dot-updatePatient()]] - `calls` [EXTRACTED]
-- [[dot-updateService()]] - `calls` [EXTRACTED]
+- [[dot-updateService()_1]] - `calls` [EXTRACTED]
 - [[dot-uploadClinicalImage()]] - `calls` [EXTRACTED]
 - [[CalendarBlockService.java]] - `imports` [EXTRACTED]
 - [[ClinicalImageService.java]] - `imports` [EXTRACTED]
@@ -27,4 +27,4 @@ tags:
 - [[PatientService.java]] - `imports` [EXTRACTED]
 - [[ResourceNotFoundException.java]] - `contains` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/orgspringframeworktransactionannotationTransactional
+#graphify/code #graphify/EXTRACTED #community/ResourceNotFoundException

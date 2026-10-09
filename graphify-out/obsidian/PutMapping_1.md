@@ -11,6 +11,6 @@ tags:
 # PutMapping
 
 ## Connections
-- [[dot-updateService()_1]] - `references` [EXTRACTED]
+- [[dot-updateService()]] - `references` [EXTRACTED]
 
 #graphify/code #graphify/EXTRACTED #community/ServiceResponseDTO

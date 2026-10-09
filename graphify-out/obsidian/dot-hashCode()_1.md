@@ -13,6 +13,6 @@ tags:
 
 ## Connections
 - [[AntecedentePatologicoId]] - `method` [EXTRACTED]
-- [[Override_7]] - `references` [EXTRACTED]
+- [[Override_9]] - `references` [EXTRACTED]
 
 #graphify/code #graphify/EXTRACTED #community/AntecedentePatologico

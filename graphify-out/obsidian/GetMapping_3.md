@@ -1,19 +1,19 @@
 ---
 source_file: ""
 type: "code"
-community: "org.springframework.http.ResponseEntity"
+community: "ClinicalImageService"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/orgspringframeworkhttpResponseEntity
+  - community/ClinicalImageService
 ---
 
 # GetMapping
 
 ## Connections
-- [[dot-getAgenda()]] - `references` [EXTRACTED]
-- [[dot-getAppointmentById()_1]] - `references` [EXTRACTED]
-- [[dot-getAppointmentStatus()]] - `references` [EXTRACTED]
-- [[dot-getAvailableSlots()_1]] - `references` [EXTRACTED]
+- [[dot-getAuditHistory()]] - `references` [EXTRACTED]
+- [[dot-getClinicalEntriesByPatient()_1]] - `references` [EXTRACTED]
+- [[dot-getClinicalPhotos()]] - `references` [EXTRACTED]
+- [[dot-getMedicalRecordByPatient()]] - `references` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/orgspringframeworkhttpResponseEntity
+#graphify/code #graphify/EXTRACTED #community/ClinicalImageService

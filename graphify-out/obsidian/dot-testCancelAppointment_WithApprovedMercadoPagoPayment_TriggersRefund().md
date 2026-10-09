@@ -13,8 +13,8 @@ tags:
 
 ## Connections
 - [[dot-cancelAppointment()]] - `calls` [INFERRED]
-- [[dot-findByAppointmentId()_1]] - `calls` [INFERRED]
-- [[dot-findById()_11]] - `calls` [INFERRED]
+- [[dot-findByAppointmentId()_2]] - `calls` [INFERRED]
+- [[dot-findById()_8]] - `calls` [INFERRED]
 - [[AppointmentServiceTest]] - `method` [EXTRACTED]
 - [[org.junit.jupiter.api.DisplayName]] - `references` [EXTRACTED]
 - [[org.junit.jupiter.api.Test]] - `references` [EXTRACTED]

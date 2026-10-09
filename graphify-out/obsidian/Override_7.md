@@ -1,17 +1,21 @@
 ---
 source_file: ""
 type: "code"
-community: "AntecedentePatologico"
+community: "Appointment"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/AntecedentePatologico
+  - community/Appointment
 ---
 
 # Override
 
 ## Connections
-- [[dot-equals()_1]] - `references` [EXTRACTED]
-- [[dot-hashCode()_1]] - `references` [EXTRACTED]
+- [[dot-findByDateRange()_2]] - `references` [EXTRACTED]
+- [[dot-findById()_7]] - `references` [EXTRACTED]
+- [[dot-findByPatientId()_2]] - `references` [EXTRACTED]
+- [[dot-findExpiredHolds()]] - `references` [EXTRACTED]
+- [[dot-findOverlappingAppointments()]] - `references` [EXTRACTED]
+- [[dot-save()_6]] - `references` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/AntecedentePatologico
+#graphify/code #graphify/EXTRACTED #community/Appointment

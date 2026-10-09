@@ -12,9 +12,9 @@ tags:
 # .testGetAvailableSlots()
 
 ## Connections
-- [[dot-findByDateRange()_3]] - `calls` [INFERRED]
 - [[dot-findByDateRange()_4]] - `calls` [INFERRED]
-- [[dot-findById()_5]] - `calls` [INFERRED]
+- [[dot-findByDateRange()_5]] - `calls` [INFERRED]
+- [[dot-findById()_12]] - `calls` [INFERRED]
 - [[dot-getAvailableSlots()]] - `calls` [INFERRED]
 - [[AppointmentServiceTest]] - `method` [EXTRACTED]
 - [[org.junit.jupiter.api.DisplayName]] - `references` [EXTRACTED]

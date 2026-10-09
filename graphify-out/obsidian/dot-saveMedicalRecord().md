@@ -15,7 +15,7 @@ tags:
 - [[dot-saveOrUpdateMedicalRecord()]] - `calls` [INFERRED]
 - [[MedicalRecordController]] - `method` [EXTRACTED]
 - [[MedicalRecordDTO]] - `references` [EXTRACTED]
-- [[PostMapping]] - `references` [EXTRACTED]
+- [[PostMapping_5]] - `references` [EXTRACTED]
 - [[org.springframework.http.ResponseEntity]] - `references` [EXTRACTED]
 
 #graphify/code #graphify/EXTRACTED #community/MedicalRecordController

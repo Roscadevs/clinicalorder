@@ -12,14 +12,14 @@ tags:
 # .processMercadoPagoWebhook()
 
 ## Connections
-- [[dot-findByAppointmentId()_1]] - `calls` [INFERRED]
+- [[dot-findByAppointmentId()_2]] - `calls` [INFERRED]
 - [[dot-findByMpPreferenceId()_2]] - `calls` [INFERRED]
 - [[dot-getPaymentDetails()]] - `calls` [INFERRED]
 - [[dot-handleMercadoPagoWebhook()]] - `calls` [INFERRED]
 - [[dot-isValidSignature()]] - `calls` [EXTRACTED]
 - [[dot-processMercadoPagoWebhook()]] - `calls` [EXTRACTED]
-- [[dot-save()_6]] - `calls` [INFERRED]
-- [[dot-save()_5]] - `calls` [INFERRED]
+- [[dot-save()_11]] - `calls` [INFERRED]
+- [[dot-save()_10]] - `calls` [INFERRED]
 - [[dot-testWebhook_AlreadyApproved_IsIdempotent()]] - `calls` [INFERRED]
 - [[dot-testWebhook_Approved_Deposit_ConfirmsAppointment()]] - `calls` [INFERRED]
 - [[dot-testWebhook_Approved_Full_ConfirmsAppointment()]] - `calls` [INFERRED]

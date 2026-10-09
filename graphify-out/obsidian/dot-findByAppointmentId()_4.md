@@ -13,7 +13,7 @@ tags:
 
 ## Connections
 - [[dot-findByAppointmentId()_3]] - `calls` [INFERRED]
-- [[ClinicalEntry]] - `references` [EXTRACTED]
+- [[ClinicalEntry_1]] - `references` [EXTRACTED]
 - [[JpaClinicalEntryRepository]] - `method` [EXTRACTED]
 
 #graphify/code #graphify/EXTRACTED #community/ClinicalEntry

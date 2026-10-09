@@ -1,12 +1,12 @@
 ---
 source_file: "backend/src/main/java/com/clinicadermatologica/app/presentation/dto/FinalizePaymentRequestDTO.java"
 type: "code"
-community: "lombok.extern.slf4j.Slf4j"
+community: "PaymentType"
 location: "L1"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/lombokexternslf4jSlf4j
+  - community/PaymentType
 ---
 
 # FinalizePaymentRequestDTO.java
@@ -16,4 +16,4 @@ tags:
 - [[PaymentServiceTest.java]] - `imports` [EXTRACTED]
 - [[PaymentType]] - `imports` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/lombokexternslf4jSlf4j
+#graphify/code #graphify/EXTRACTED #community/PaymentType

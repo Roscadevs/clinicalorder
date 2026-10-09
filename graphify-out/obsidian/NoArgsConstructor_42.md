@@ -1,16 +1,16 @@
 ---
 source_file: ""
 type: "code"
-community: "AlergiaId"
+community: "DermatologicService"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/AlergiaId
+  - community/DermatologicService
 ---
 
 # NoArgsConstructor
 
 ## Connections
-- [[AlergiaRequestDTO]] - `references` [EXTRACTED]
+- [[DermatologicService]] - `references` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/AlergiaId
+#graphify/code #graphify/EXTRACTED #community/DermatologicService
