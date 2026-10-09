@@ -6,7 +6,7 @@ import {
 } from 'lucide-react';
 import { servicesApi, appointmentsApi } from '../../services/api';
 import {
-  DermatologicService, Patient, PaymentPreferenceResponse, PaymentReceipt, TimeSlot,
+  DermatologicService, Patient, PaymentConcept, PaymentPreferenceResponse, PaymentReceipt, TimeSlot,
   PAYMENT_CONCEPT_LABELS, PAYMENT_TYPE_LABELS,
 } from '../../types';
 import { Button, Card, Modal, Spinner } from '../../components/ui';
@@ -74,6 +74,9 @@ export const BookingWizard: React.FC = () => {
   const [slotStart, setSlotStart] = useState<string | null>(null);
   const [isHolding, setIsHolding] = useState(false);
   const slotsRequest = useRef(0);
+
+  // Elección del monto a abonar en el turno: seña (parcial) o pago total.
+  const [paymentConcept, setPaymentConcept] = useState<Exclude<PaymentConcept, 'BALANCE'>>('DEPOSIT');
 
   // Bloqueo temporal y resultado
   const [hold, setHold] = useState<Hold | null>(null);
@@ -253,6 +256,8 @@ export const BookingWizard: React.FC = () => {
   };
 
   const depositAmount = hold?.data.depositAmount ?? (service ? (service.basePrice * service.depositPercentage) / 100 : 0);
+  // Monto efectivo a cobrar según la opción elegida (seña parcial o pago total).
+  const amountToPay = paymentConcept === 'FULL' ? (service?.basePrice ?? 0) : depositAmount;
 
   // ─── Pantalla final: turno confirmado / pendiente de pago virtual ──────────────
   if (outcome && patient && service && slotStart && hold) {
@@ -291,7 +296,7 @@ export const BookingWizard: React.FC = () => {
                 )}
               </>
             ) : (
-              <div className="flex justify-between gap-4 pt-2 border-t border-sand-200"><dt className="text-sand-500">Seña a abonar</dt><dd className="font-bold text-primary-600">{ars(depositAmount)}</dd></div>
+              <div className="flex justify-between gap-4 pt-2 border-t border-sand-200"><dt className="text-sand-500">{paymentConcept === 'FULL' ? 'Total a abonar' : 'Seña a abonar'}</dt><dd className="font-bold text-primary-600">{ars(amountToPay)}</dd></div>
             )}
           </dl>
 
@@ -599,10 +604,57 @@ export const BookingWizard: React.FC = () => {
                     </div>
                     <div className="p-4 space-y-1.5">
                       <div className="flex justify-between"><dt className="text-sand-600">Precio total</dt><dd className="font-semibold text-sand-900">{ars(service.basePrice)}</dd></div>
-                      <div className="flex justify-between"><dt className="text-sand-600">Seña ({service.depositPercentage}%)</dt><dd className="font-bold text-primary-600">{ars(depositAmount)}</dd></div>
+                      <div className="flex justify-between"><dt className="text-sand-600">Seña ({service.depositPercentage}%)</dt><dd className="font-semibold text-sand-900">{ars(depositAmount)}</dd></div>
                       <div className="flex justify-between"><dt className="text-sand-600">Saldo en consultorio</dt><dd className="font-semibold text-sand-900">{ars(service.basePrice - depositAmount)}</dd></div>
                     </div>
                   </dl>
+                )}
+
+                {/* Opción de pago: seña (parcial) o total. Refleja el monto a abonar ahora. */}
+                {service && (
+                  <fieldset>
+                    <legend className="block text-xs font-bold text-sand-700 uppercase tracking-wider mb-2">
+                      ¿Qué querés abonar ahora?
+                    </legend>
+                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
+                      {([
+                        { id: 'DEPOSIT', label: PAYMENT_CONCEPT_LABELS.DEPOSIT, hint: `${service.depositPercentage}% del total`, amount: depositAmount },
+                        { id: 'FULL', label: PAYMENT_CONCEPT_LABELS.FULL, hint: 'Abona el 100% ahora', amount: service.basePrice },
+                      ] as const).map((opt) => {
+                        const selected = paymentConcept === opt.id;
+                        return (
+                          <label
+                            key={opt.id}
+                            className={`flex items-center justify-between gap-3 p-3 rounded-xl border cursor-pointer transition-colors ${
+                              selected
+                                ? 'border-primary-500 bg-primary-50/60 ring-2 ring-primary-500/20'
+                                : 'border-sand-200 hover:border-primary-300'
+                            }`}
+                          >
+                            <input
+                              type="radio"
+                              name="payment-concept"
+                              value={opt.id}
+                              checked={selected}
+                              onChange={() => setPaymentConcept(opt.id)}
+                              className="sr-only"
+                            />
+                            <span>
+                              <span className="block text-sm font-semibold text-sand-900">{opt.label}</span>
+                              <span className="block text-xs text-sand-500">{opt.hint}</span>
+                            </span>
+                            <span className={`text-sm font-bold ${selected ? 'text-primary-700' : 'text-sand-700'}`}>
+                              {ars(opt.amount)}
+                            </span>
+                          </label>
+                        );
+                      })}
+                    </div>
+                    <p className="mt-2 flex items-baseline justify-between text-sm">
+                      <span className="text-sand-600">Monto a pagar</span>
+                      <span className="font-display text-xl font-bold text-primary-600">{ars(amountToPay)}</span>
+                    </p>
+                  </fieldset>
                 )}
 
                 <div className="flex justify-between pt-2">
@@ -620,7 +672,8 @@ export const BookingWizard: React.FC = () => {
                 {hold && patient && service ? (
                   <RegisterPaymentStep
                     appointmentId={hold.data.appointmentId}
-                    depositAmount={depositAmount}
+                    amountToPay={amountToPay}
+                    paymentConcept={paymentConcept}
                     depositPercentage={service.depositPercentage}
                     agreedPrice={service.basePrice}
                     serviceName={service.name}

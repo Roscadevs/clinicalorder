@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { Banknote, Smartphone, AlertCircle, Copy, Check, MessageCircle, ArrowLeft, QrCode } from 'lucide-react';
 import { QRCodeSVG } from 'qrcode.react';
 import { appointmentsApi } from '../../services/api';
-import { PaymentReceipt } from '../../types';
+import { PaymentConcept, PaymentReceipt, PAYMENT_CONCEPT_LABELS } from '../../types';
 import { Button, Input } from '../../components/ui';
 import { cn } from '../../utils/cn';
 
@@ -10,7 +10,10 @@ type Method = 'CASH' | 'VIRTUAL';
 
 interface RegisterPaymentStepProps {
   appointmentId: number;
-  depositAmount: number;
+  /** Monto efectivo a cobrar según la opción elegida (seña o total). */
+  amountToPay: number;
+  /** Concepto elegido en el paso de confirmación: seña (DEPOSIT) o pago total (FULL). */
+  paymentConcept: Exclude<PaymentConcept, 'BALANCE'>;
   depositPercentage: number;
   agreedPrice: number;
   serviceName: string;
@@ -33,7 +36,8 @@ const ars = (n: number) => `$${n.toLocaleString('es-AR', { maximumFractionDigits
  */
 export const RegisterPaymentStep: React.FC<RegisterPaymentStepProps> = ({
   appointmentId,
-  depositAmount,
+  amountToPay,
+  paymentConcept,
   depositPercentage,
   agreedPrice,
   serviceName,
@@ -46,21 +50,27 @@ export const RegisterPaymentStep: React.FC<RegisterPaymentStepProps> = ({
   onVirtualSent,
 }) => {
   const [method, setMethod] = useState<Method>('CASH');
-  const [received, setReceived] = useState<string>(String(depositAmount));
+  const [received, setReceived] = useState<string>(String(amountToPay));
   const [fieldError, setFieldError] = useState<string | null>(null);
   const [submitError, setSubmitError] = useState<string | null>(null);
   const [isSaving, setIsSaving] = useState(false);
   const [copied, setCopied] = useState(false);
 
   const receivedNum = Number(received.replace(',', '.'));
-  const change = Number.isFinite(receivedNum) ? Math.max(0, receivedNum - depositAmount) : 0;
+  const change = Number.isFinite(receivedNum) ? Math.max(0, receivedNum - amountToPay) : 0;
+
+  // Mantiene el monto recibido sincronizado si el usuario cambia la opción
+  // (seña/total) en el paso anterior y vuelve a este paso sin remontarlo.
+  React.useEffect(() => {
+    setReceived(String(amountToPay));
+  }, [amountToPay]);
 
   // E-2: validación de los datos ingresados antes de registrar.
   const validate = (): string | null => {
     if (!received.trim() || !Number.isFinite(receivedNum)) return 'Ingresá el monto recibido.';
     if (receivedNum <= 0) return 'El monto debe ser mayor a cero.';
-    if (receivedNum < depositAmount) {
-      return `El monto recibido es menor a la seña requerida (${ars(depositAmount)}).`;
+    if (receivedNum < amountToPay) {
+      return `El monto recibido es menor al importe a cobrar (${ars(amountToPay)}).`;
     }
     return null;
   };
@@ -76,7 +86,8 @@ export const RegisterPaymentStep: React.FC<RegisterPaymentStepProps> = ({
     try {
       const receipt = await appointmentsApi.registerDepositPayment(appointmentId, {
         paymentType: 'CASH',
-        amount: depositAmount,
+        amount: amountToPay,
+        concept: paymentConcept,
         agreedPrice,
       });
       onPaid({ receipt, received: receivedNum, change });
@@ -102,16 +113,20 @@ export const RegisterPaymentStep: React.FC<RegisterPaymentStepProps> = ({
     }
   };
 
+  const conceptLabel = PAYMENT_CONCEPT_LABELS[paymentConcept].toLowerCase();
+
   const patientWhatsapp = patientPhone?.replace(/\D/g, '');
   const virtualMessage = encodeURIComponent(
-    `Hola ${patientName}, te enviamos el link para abonar la seña de tu turno de ${serviceName} (${ars(depositAmount)}). ` +
+    `Hola ${patientName}, te enviamos el link para abonar ${conceptLabel === 'pago total' ? 'el total' : 'la seña'} de tu turno de ${serviceName} (${ars(amountToPay)}). ` +
       `El turno queda reservado por 10 minutos: ${initPointUrl ?? ''}`
   );
 
   return (
     <div className="space-y-5">
       <div>
-        <h2 className="font-display text-2xl font-bold text-sand-900">Registrar pago de la seña</h2>
+        <h2 className="font-display text-2xl font-bold text-sand-900">
+          {paymentConcept === 'FULL' ? 'Registrar pago total' : 'Registrar pago de la seña'}
+        </h2>
         <p className="text-sm text-sand-600">Seleccioná el medio de pago y completá los datos.</p>
       </div>
 
@@ -123,11 +138,13 @@ export const RegisterPaymentStep: React.FC<RegisterPaymentStepProps> = ({
         </div>
         <div>
           <span className="block text-xs text-sand-500">Concepto</span>
-          <span className="font-semibold text-sand-800">Seña ({depositPercentage}%)</span>
+          <span className="font-semibold text-sand-800">
+            {paymentConcept === 'FULL' ? PAYMENT_CONCEPT_LABELS.FULL : `${PAYMENT_CONCEPT_LABELS.DEPOSIT} (${depositPercentage}%)`}
+          </span>
         </div>
         <div className="col-span-2 pt-2 border-t border-sand-200 flex items-baseline justify-between">
           <span className="text-sand-600">Importe a cobrar</span>
-          <span className="font-display text-xl font-bold text-primary-600">{ars(depositAmount)}</span>
+          <span className="font-display text-xl font-bold text-primary-600">{ars(amountToPay)}</span>
         </div>
       </div>
 
