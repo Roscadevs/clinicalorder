@@ -9,7 +9,7 @@ import {
   DermatologicService, Patient, PaymentConcept, PaymentPreferenceResponse, PaymentReceipt, TimeSlot,
   PAYMENT_CONCEPT_LABELS, PAYMENT_TYPE_LABELS,
 } from '../../types';
-import { Button, Card, Modal, Spinner } from '../../components/ui';
+import { Button, Card, Modal, Spinner, Callout } from '../../components/ui';
 import { Stepper, Step, GlideSelect } from '../../components/reactbits';
 import { AppointmentReceiptModal } from '../documents/AppointmentReceiptModal';
 import { ReminderNotificationModal } from '../reminders/ReminderNotificationModal';
@@ -389,9 +389,10 @@ export const BookingWizard: React.FC = () => {
         )}
 
         {errorMsg && (
-          <div role="alert" className="mb-5 p-4 rounded-xl bg-danger-50 border border-danger-100 text-danger-700 text-sm flex items-start gap-3">
-            <AlertCircle className="w-5 h-5 flex-shrink-0" />
-            <span>{errorMsg}</span>
+          <div className="mb-5">
+            <Callout intent="warning" title="Disponibilidad del turno" onClose={() => setErrorMsg(null)}>
+              {errorMsg}
+            </Callout>
           </div>
         )}
 

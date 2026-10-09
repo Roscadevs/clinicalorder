@@ -1,4 +1,5 @@
 import axios from 'axios'; // Cliente HTTP Axios
+import { toast } from '../components/ui/Toast';
 import {
   AuthResponse,
   Patient,
@@ -79,6 +80,58 @@ api.interceptors.request.use((config) => {
   }
   return config;
 });
+
+let isRedirectingToLogin = false;
+
+// Interceptor global de respuestas para manejo amable de fallos HTTP
+api.interceptors.response.use(
+  (response) => response,
+  (error) => {
+    if (axios.isAxiosError(error) && error.response) {
+      const status = error.response.status;
+
+      // 401: Sesión caducada
+      if (status === 401 && !isRedirectingToLogin) {
+        const isAuthRoute =
+          typeof window !== 'undefined' &&
+          (window.location.pathname === '/login' ||
+            window.location.pathname === '/recover-password');
+
+        if (!isAuthRoute) {
+          isRedirectingToLogin = true;
+          toast.friendlyError('Tu sesión ha caducado por seguridad', {
+            description:
+              'Te redirigiremos al inicio de sesión para que continúes de forma segura.',
+            duration: 3500,
+          });
+          setTimeout(() => {
+            localStorage.removeItem('token');
+            if (typeof window !== 'undefined') {
+              window.location.href = '/login';
+            }
+            isRedirectingToLogin = false;
+          }, 2000);
+        }
+      } else if (status >= 500 && !isNetworkError(error)) {
+        // 500+ Error interno no simulado
+        toast.friendlyError('Inconveniente temporal en el servidor', {
+          description:
+            'Los datos están protegidos. Podés reintentar la acción en unos segundos.',
+        });
+      }
+    } else if (isNetworkError(error)) {
+      if (typeof navigator !== 'undefined' && !navigator.onLine) {
+        toast.friendlyError('Sin conexión a internet', {
+          description:
+            'Comprobá tu red. La aplicación volverá a sincronizarse cuando estés en línea.',
+        });
+      }
+    }
+
+    return Promise.reject(error);
+  }
+);
+
 
 // --- SERVICIOS DE AUTENTICACIÓN ---
 export const authApi = {

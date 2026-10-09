@@ -19,13 +19,16 @@ import { AdminServicesView } from './features/admin/AdminServicesView';
 import { AnalyticsDashboardView } from './features/analytics/AnalyticsDashboardView';
 
 import { PageTransition } from './components/PageTransition';
+import { Toaster } from './components/ui';
 
 export function App() {
   const location = useLocation();
 
   return (
-    <AnimatePresence mode="wait">
-      <Routes location={location} key={location.pathname}>
+    <>
+      <Toaster />
+      <AnimatePresence mode="wait">
+        <Routes location={location} key={location.pathname}>
         {/* Public Routes */}
         <Route
           path="/"
@@ -104,6 +107,7 @@ export function App() {
         <Route path="*" element={<Navigate to="/" replace />} />
       </Routes>
     </AnimatePresence>
+  </>
   );
 }
 

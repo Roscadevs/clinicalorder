@@ -4,6 +4,7 @@ import { Navbar } from './Navbar';
 import { BottomNav } from './BottomNav';
 import { GeminiChatbotWidget } from './GeminiChatbotWidget';
 import { PageTransition } from './PageTransition';
+import { ErrorBoundary } from './ErrorBoundary';
 import { NAV_TABS, type TabType, type RoleType } from './navConfig';
 import { ROLE_TO_USER_ID } from '../utils/session';
 
@@ -83,10 +84,12 @@ export const DashboardLayout: React.FC = () => {
         />
 
         <main className="py-4 sm:py-6 pb-24 sm:pb-8">
-          {/* Fundido entre vistas internas al cambiar de pestaña */}
-          <PageTransition key={location.pathname}>
-            <Outlet />
-          </PageTransition>
+          <ErrorBoundary moduleTitle="el panel de gestión clínica">
+            {/* Fundido entre vistas internas al cambiar de pestaña */}
+            <PageTransition key={location.pathname}>
+              <Outlet />
+            </PageTransition>
+          </ErrorBoundary>
         </main>
       </div>
 
