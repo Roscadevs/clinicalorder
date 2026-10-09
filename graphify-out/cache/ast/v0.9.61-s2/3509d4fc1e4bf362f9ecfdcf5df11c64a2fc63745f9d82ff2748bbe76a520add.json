@@ -1,1 +1,0 @@
-{"nodes": [{"id": "$graphify-root$_backend_src_main_resources_db_migration_v5_seed_updated_data_sql", "label": "V5__seed_updated_data.sql", "file_type": "code", "source_file": "backend/src/main/resources/db/migration/V5__seed_updated_data.sql", "source_location": null}], "edges": []}
