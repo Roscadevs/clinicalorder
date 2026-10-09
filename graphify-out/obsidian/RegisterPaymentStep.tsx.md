@@ -1,12 +1,12 @@
 ---
 source_file: "frontend/src/features/appointments/RegisterPaymentStep.tsx"
 type: "code"
-community: "BookingWizard.tsx"
+community: "api.ts"
 location: "L1"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/BookingWizardtsx
+  - community/apits
 ---
 
 # RegisterPaymentStep.tsx
@@ -16,12 +16,14 @@ tags:
 - [[Button]] - `imports` [EXTRACTED]
 - [[Input]] - `imports` [EXTRACTED]
 - [[Method]] - `contains` [EXTRACTED]
+- [[PAYMENT_CONCEPT_LABELS]] - `imports` [EXTRACTED]
+- [[PaymentConcept_1]] - `imports` [EXTRACTED]
 - [[PaymentReceipt]] - `imports` [EXTRACTED]
 - [[RegisterPaymentStep()]] - `contains` [EXTRACTED]
 - [[RegisterPaymentStepProps]] - `contains` [EXTRACTED]
 - [[api.ts]] - `imports_from` [EXTRACTED]
 - [[appointmentsApi]] - `imports` [EXTRACTED]
-- [[ars()_2]] - `contains` [EXTRACTED]
+- [[ars()_4]] - `contains` [EXTRACTED]
 - [[cn()]] - `imports` [EXTRACTED]
 - [[cn.ts]] - `imports_from` [EXTRACTED]
 - [[lucide-react]] - `imports_from` [EXTRACTED]
@@ -30,4 +32,4 @@ tags:
 - [[typesindex.ts]] - `imports_from` [EXTRACTED]
 - [[uiindex.ts]] - `imports_from` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/BookingWizardtsx
+#graphify/code #graphify/EXTRACTED #community/apits

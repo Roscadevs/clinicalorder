@@ -1,19 +1,20 @@
 ---
-source_file: "backend/src/main/java/com/clinicadermatologica/app/infrastructure/persistence/adapter/DermatologicServiceRepositoryAdapter.java"
+source_file: "backend/src/main/java/com/clinicadermatologica/app/domain/repository/AlergiaRepository.java"
 type: "code"
-community: "DermatologicService"
-location: "L41"
+community: "AlergiaId"
+location: "L25"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/DermatologicService
+  - community/AlergiaId
 ---
 
 # .save()
 
 ## Connections
-- [[DermatologicService]] - `references` [EXTRACTED]
-- [[DermatologicServiceRepositoryAdapter]] - `method` [EXTRACTED]
-- [[Override_19]] - `references` [EXTRACTED]
+- [[dot-addAlergia()_1]] - `calls` [INFERRED]
+- [[dot-testAddAlergia_Success()]] - `calls` [INFERRED]
+- [[Alergia]] - `references` [EXTRACTED]
+- [[AlergiaRepository]] - `method` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/DermatologicService
+#graphify/code #graphify/EXTRACTED #community/AlergiaId

@@ -1,12 +1,12 @@
 ---
 source_file: "frontend/src/features/clinical/ClinicalNoteModal.tsx"
 type: "code"
-community: "Button"
+community: "MedicalRecordView.tsx"
 location: "L11"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/Button
+  - community/MedicalRecordViewtsx
 ---
 
 # ClinicalNoteModalProps
@@ -15,4 +15,4 @@ tags:
 - [[ClinicalEntry]] - `references` [EXTRACTED]
 - [[ClinicalNoteModal.tsx]] - `contains` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/Button
+#graphify/code #graphify/EXTRACTED #community/MedicalRecordViewtsx

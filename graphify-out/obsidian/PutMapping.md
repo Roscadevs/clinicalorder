@@ -1,11 +1,11 @@
 ---
 source_file: ""
 type: "code"
-community: "MedicalRecordService"
+community: "ClinicalEntryResponseDTO"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/MedicalRecordService
+  - community/ClinicalEntryResponseDTO
 ---
 
 # PutMapping
@@ -13,4 +13,4 @@ tags:
 ## Connections
 - [[dot-updateClinicalEntry()_1]] - `references` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/MedicalRecordService
+#graphify/code #graphify/EXTRACTED #community/ClinicalEntryResponseDTO

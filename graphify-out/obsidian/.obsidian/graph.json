@@ -1,7 +1,7 @@
 {
   "colorGroups": [
     {
-      "query": "tag:#community/PaymentTransaction",
+      "query": "tag:#community/orgspringframeworkstereotypeComponent",
       "color": {
         "a": 1,
         "rgb": 5142951
@@ -50,7 +50,7 @@
       }
     },
     {
-      "query": "tag:#community/PatientRequestDTO",
+      "query": "tag:#community/orgspringframeworktransactionannotationTransactional",
       "color": {
         "a": 1,
         "rgb": 16752039
@@ -64,14 +64,14 @@
       }
     },
     {
-      "query": "tag:#community/UserRepository",
+      "query": "tag:#community/orgspringframeworkstereotypeService",
       "color": {
         "a": 1,
         "rgb": 12234924
       }
     },
     {
-      "query": "tag:#community/MedicalRecordService",
+      "query": "tag:#community/ClinicalEntryResponseDTO",
       "color": {
         "a": 1,
         "rgb": 5142951
@@ -106,14 +106,14 @@
       }
     },
     {
-      "query": "tag:#community/PaymentType",
+      "query": "tag:#community/PaymentServiceTestjava",
       "color": {
         "a": 1,
         "rgb": 15583560
       }
     },
     {
-      "query": "tag:#community/AppointmentStatus",
+      "query": "tag:#community/orgjunitjupiterapiDisplayName",
       "color": {
         "a": 1,
         "rgb": 11565729
@@ -155,7 +155,7 @@
       }
     },
     {
-      "query": "tag:#community/AppointmentService",
+      "query": "tag:#community/bookTemporaryHold",
       "color": {
         "a": 1,
         "rgb": 14767961
@@ -190,14 +190,14 @@
       }
     },
     {
-      "query": "tag:#community/JwtAuthenticationFilter",
+      "query": "tag:#community/MedicalRecordDTO",
       "color": {
         "a": 1,
         "rgb": 16752039
       }
     },
     {
-      "query": "tag:#community/Button",
+      "query": "tag:#community/AppointmentServiceTest",
       "color": {
         "a": 1,
         "rgb": 10253663
@@ -225,14 +225,14 @@
       }
     },
     {
-      "query": "tag:#community/GeminiChatRequestDTO",
+      "query": "tag:#community/lombokRequiredArgsConstructor",
       "color": {
         "a": 1,
         "rgb": 14767961
       }
     },
     {
-      "query": "tag:#community/BookAppointmentRequestDTO",
+      "query": "tag:#community/AppointmentServiceTestjava",
       "color": {
         "a": 1,
         "rgb": 7780274
@@ -330,7 +330,7 @@
       }
     },
     {
-      "query": "tag:#community/orgspringframeworktransactionannotationTransactional",
+      "query": "tag:#community/login",
       "color": {
         "a": 1,
         "rgb": 16752039
@@ -344,7 +344,7 @@
       }
     },
     {
-      "query": "tag:#community/PaymentReceiptDTO",
+      "query": "tag:#community/addHabito",
       "color": {
         "a": 1,
         "rgb": 12234924
@@ -393,21 +393,21 @@
       }
     },
     {
-      "query": "tag:#community/MedicalRecordController",
+      "query": "tag:#community/MedicalRecordService",
       "color": {
         "a": 1,
         "rgb": 11565729
       }
     },
     {
-      "query": "tag:#community/MedicalRecordDTO",
+      "query": "tag:#community/AlergiaResponseDTO",
       "color": {
         "a": 1,
         "rgb": 16752039
       }
     },
     {
-      "query": "tag:#community/PatientResponseDTO",
+      "query": "tag:#community/Alergia",
       "color": {
         "a": 1,
         "rgb": 10253663
@@ -421,7 +421,7 @@
       }
     },
     {
-      "query": "tag:#community/lombokRequiredArgsConstructor",
+      "query": "tag:#community/AppointmentService",
       "color": {
         "a": 1,
         "rgb": 5142951
@@ -491,7 +491,7 @@
       }
     },
     {
-      "query": "tag:#community/isExpired",
+      "query": "tag:#community/getAvailableSlots",
       "color": {
         "a": 1,
         "rgb": 5142951
@@ -673,7 +673,7 @@
       }
     },
     {
-      "query": "tag:#community/DermatologicServiceRepository",
+      "query": "tag:#community/registerDepositPayment",
       "color": {
         "a": 1,
         "rgb": 11565729
@@ -764,24 +764,17 @@
       }
     },
     {
-      "query": "tag:#community/PatientRepository",
+      "query": "tag:#community/PatientDirectoryViewtsx",
       "color": {
         "a": 1,
         "rgb": 12234924
       }
     },
     {
-      "query": "tag:#community/CalendarBlockController",
+      "query": "tag:#community/AuthServiceTest",
       "color": {
         "a": 1,
         "rgb": 5142951
-      }
-    },
-    {
-      "query": "tag:#community/AppointmentResponseDTO",
-      "color": {
-        "a": 1,
-        "rgb": 15896107
       }
     },
     {
@@ -876,17 +869,10 @@
       }
     },
     {
-      "query": "tag:#community/orgjunitjupiterapiDisplayName",
+      "query": "tag:#community/PaymentServiceTest",
       "color": {
         "a": 1,
         "rgb": 15583560
-      }
-    },
-    {
-      "query": "tag:#community/AuthController",
-      "color": {
-        "a": 1,
-        "rgb": 11565729
       }
     },
     {
@@ -1212,24 +1198,10 @@
       }
     },
     {
-      "query": "tag:#community/ClinicalEntryRequestDTO",
-      "color": {
-        "a": 1,
-        "rgb": 7780274
-      }
-    },
-    {
-      "query": "tag:#community/ForgotPasswordRequestDTO",
+      "query": "tag:#community/forgotPassword",
       "color": {
         "a": 1,
         "rgb": 5873999
-      }
-    },
-    {
-      "query": "tag:#community/PaymentPreferenceResponseDTO",
-      "color": {
-        "a": 1,
-        "rgb": 15583560
       }
     },
     {
@@ -1237,34 +1209,6 @@
       "color": {
         "a": 1,
         "rgb": 11565729
-      }
-    },
-    {
-      "query": "tag:#community/ServiceRequestDTO",
-      "color": {
-        "a": 1,
-        "rgb": 16752039
-      }
-    },
-    {
-      "query": "tag:#community/TimeSlotDTO",
-      "color": {
-        "a": 1,
-        "rgb": 10253663
-      }
-    },
-    {
-      "query": "tag:#community/ResourceNotFoundException",
-      "color": {
-        "a": 1,
-        "rgb": 12234924
-      }
-    },
-    {
-      "query": "tag:#community/RegisterPaymentRequestDTO",
-      "color": {
-        "a": 1,
-        "rgb": 5142951
       }
     }
   ]

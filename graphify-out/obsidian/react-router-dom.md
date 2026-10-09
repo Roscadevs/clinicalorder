@@ -12,10 +12,12 @@ tags:
 # react-router-dom
 
 ## Connections
+- [[AgendaView.tsx]] - `imports_from` [EXTRACTED]
 - [[App.tsx]] - `imports_from` [EXTRACTED]
 - [[BookingStatusViews.tsx]] - `imports_from` [EXTRACTED]
 - [[BookingWizard.tsx]] - `imports_from` [EXTRACTED]
 - [[DashboardLayout.tsx]] - `imports_from` [EXTRACTED]
+- [[EditAppointmentView.tsx]] - `imports_from` [EXTRACTED]
 - [[LandingPageView.tsx]] - `imports_from` [EXTRACTED]
 - [[LoginView.tsx]] - `imports_from` [EXTRACTED]
 - [[PasswordRecoveryView.tsx]] - `imports_from` [EXTRACTED]

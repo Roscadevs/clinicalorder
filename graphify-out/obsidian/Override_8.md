@@ -12,9 +12,9 @@ tags:
 
 ## Connections
 - [[dot-findAuditHistory()]] - `references` [EXTRACTED]
-- [[dot-findById()_9]] - `references` [EXTRACTED]
-- [[dot-findByPatientId()_3]] - `references` [EXTRACTED]
+- [[dot-findById()_7]] - `references` [EXTRACTED]
+- [[dot-findByPatientId()_2]] - `references` [EXTRACTED]
 - [[dot-save()_7]] - `references` [EXTRACTED]
-- [[dot-saveAudit()_1]] - `references` [EXTRACTED]
+- [[dot-saveAudit()]] - `references` [EXTRACTED]
 
 #graphify/code #graphify/EXTRACTED #community/MedicalRecord

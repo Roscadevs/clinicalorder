@@ -1,12 +1,12 @@
 ---
 source_file: "backend/src/main/java/com/clinicadermatologica/app/application/service/MedicalRecordService.java"
 type: "code"
-community: "MedicalRecordService"
+community: "ClinicalEntryResponseDTO"
 location: "L250"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/MedicalRecordService
+  - community/ClinicalEntryResponseDTO
 ---
 
 # .encrypt()
@@ -18,4 +18,4 @@ tags:
 - [[dot-updateClinicalEntry()]] - `calls` [EXTRACTED]
 - [[MedicalRecordService]] - `method` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/MedicalRecordService
+#graphify/code #graphify/EXTRACTED #community/ClinicalEntryResponseDTO

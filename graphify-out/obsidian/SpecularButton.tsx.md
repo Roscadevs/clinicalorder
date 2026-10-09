@@ -12,7 +12,7 @@ tags:
 # SpecularButton.tsx
 
 ## Connections
-- [[ButtonSize_1]] - `contains` [EXTRACTED]
+- [[ButtonSize]] - `contains` [EXTRACTED]
 - [[SpecularButton()]] - `contains` [EXTRACTED]
 - [[SpecularButtonProps]] - `contains` [EXTRACTED]
 - [[SpecularPropsSnapshot]] - `contains` [EXTRACTED]

@@ -1,12 +1,12 @@
 ---
 source_file: "backend/src/main/java/com/clinicadermatologica/app/infrastructure/payment/MercadoPagoPaymentAdapter.java"
 type: "code"
-community: "org.junit.jupiter.api.DisplayName"
+community: "PaymentServiceTest"
 location: "L181"
 tags:
   - graphify/code
   - graphify/INFERRED
-  - community/orgjunitjupiterapiDisplayName
+  - community/PaymentServiceTest
 ---
 
 # .getPaymentDetails()
@@ -22,4 +22,4 @@ tags:
 - [[MercadoPagoPaymentAdapter]] - `method` [EXTRACTED]
 - [[com.mercadopago.resources.payment.Payment]] - `references` [EXTRACTED]
 
-#graphify/code #graphify/INFERRED #community/orgjunitjupiterapiDisplayName
+#graphify/code #graphify/INFERRED #community/PaymentServiceTest

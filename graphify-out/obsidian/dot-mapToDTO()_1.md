@@ -1,19 +1,20 @@
 ---
-source_file: "backend/src/main/java/com/clinicadermatologica/app/application/service/AppointmentService.java"
+source_file: "backend/src/main/java/com/clinicadermatologica/app/application/service/CalendarBlockService.java"
 type: "code"
-community: "AppointmentService"
-location: "L320"
+community: "CalendarBlockResponseDTO"
+location: "L75"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/AppointmentService
+  - community/CalendarBlockResponseDTO
 ---
 
 # .mapToDTO()
 
 ## Connections
-- [[Appointment_7]] - `references` [EXTRACTED]
-- [[AppointmentResponseDTO]] - `references` [EXTRACTED]
-- [[AppointmentService]] - `method` [EXTRACTED]
+- [[dot-createBlock()]] - `calls` [EXTRACTED]
+- [[CalendarBlock]] - `references` [EXTRACTED]
+- [[CalendarBlockResponseDTO]] - `references` [EXTRACTED]
+- [[CalendarBlockService]] - `method` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/AppointmentService
+#graphify/code #graphify/EXTRACTED #community/CalendarBlockResponseDTO

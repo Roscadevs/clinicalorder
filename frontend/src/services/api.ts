@@ -12,6 +12,7 @@ import {
   GeminiChatResponse,
   TimeSlot,
   PaymentType,
+  PaymentConcept,
   PaymentReceipt,
   UserRole
 } from '../types'; // Importación de contratos de tipos
@@ -371,12 +372,21 @@ export const appointmentsApi = {
    */
   registerDepositPayment: async (
     id: number,
-    payload: { paymentType: Exclude<PaymentType, 'MERCADOPAGO'>; amount: number; agreedPrice: number }
+    payload: {
+      paymentType: Exclude<PaymentType, 'MERCADOPAGO'>;
+      amount: number;
+      agreedPrice: number;
+      /** Concepto elegido por el staff: seña (DEPOSIT) o pago total (FULL). */
+      concept?: Exclude<PaymentConcept, 'BALANCE'>;
+    }
   ): Promise<PaymentReceipt> => {
+    // Si no viene explícito, se infiere por el monto respecto del precio acordado.
+    const concept: Exclude<PaymentConcept, 'BALANCE'> =
+      payload.concept ?? (payload.amount >= payload.agreedPrice ? 'FULL' : 'DEPOSIT');
     try {
       const response = await api.post<PaymentReceipt>(
         `/citas/${id}/registrar-pago`,
-        { paymentType: payload.paymentType, amount: payload.amount },
+        { paymentType: payload.paymentType, amount: payload.amount, concept },
         { params: { userId: currentUserId() } }
       );
       return response.data;
@@ -386,7 +396,7 @@ export const appointmentsApi = {
       return {
         appointmentId: id,
         paymentType: payload.paymentType,
-        concept: payload.amount >= payload.agreedPrice ? 'FULL' : 'DEPOSIT',
+        concept,
         amount: payload.amount,
         paymentDate: new Date().toISOString(),
         appointmentStatus: 'CONFIRMED',
@@ -439,6 +449,25 @@ export const appointmentsApi = {
       await api.post(`/citas/${id}/atender`);
     } catch (err) {
       if (!isNetworkError(err)) throw err;
+    }
+  },
+  /**
+   * Reprograma un turno a una nueva fecha/hora, conservando el servicio.
+   * El backend revalida la disponibilidad del nuevo horario. Devuelve el turno
+   * actualizado. En modo demo (sin backend) se simula el cambio localmente.
+   */
+  rescheduleAppointment: async (id: number, newStartTime: string): Promise<Appointment | null> => {
+    try {
+      const response = await api.post<Appointment>(
+        `/citas/${id}/reprogramar`,
+        { startTime: newStartTime },
+        { params: { userId: currentUserId() } }
+      );
+      return response.data;
+    } catch (err) {
+      if (!isNetworkError(err)) throw err;
+      // Modo demo: se considera reprogramado; el refresco de la agenda reflejará el cambio.
+      return null;
     }
   },
   /**

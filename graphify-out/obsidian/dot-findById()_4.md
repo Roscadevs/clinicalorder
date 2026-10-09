@@ -1,20 +1,19 @@
 ---
-source_file: "backend/src/main/java/com/clinicadermatologica/app/domain/repository/ClinicalEntryRepository.java"
+source_file: "backend/src/main/java/com/clinicadermatologica/app/domain/repository/HabitoRepository.java"
 type: "code"
-community: "MedicalRecordService"
-location: "L17"
+community: "Habito"
+location: "L20"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/MedicalRecordService
+  - community/Habito
 ---
 
 # .findById()
 
 ## Connections
-- [[dot-updateClinicalEntry()]] - `calls` [INFERRED]
-- [[dot-uploadClinicalImage()]] - `calls` [INFERRED]
-- [[ClinicalEntry_1]] - `references` [EXTRACTED]
-- [[ClinicalEntryRepository]] - `method` [EXTRACTED]
+- [[Habito]] - `references` [EXTRACTED]
+- [[HabitoId]] - `references` [EXTRACTED]
+- [[HabitoRepository]] - `method` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/MedicalRecordService
+#graphify/code #graphify/EXTRACTED #community/Habito

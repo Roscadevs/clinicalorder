@@ -1,16 +1,16 @@
 ---
 source_file: ""
 type: "code"
-community: "MedicalRecord"
+community: "AntecedentePatologico"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/MedicalRecord
+  - community/AntecedentePatologico
 ---
 
 # Builder
 
 ## Connections
-- [[MedicalRecordAudit]] - `references` [EXTRACTED]
+- [[AntecedentePatologicoResponseDTO]] - `references` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/MedicalRecord
+#graphify/code #graphify/EXTRACTED #community/AntecedentePatologico

@@ -1,16 +1,16 @@
 ---
 source_file: ""
 type: "code"
-community: "ResetPasswordRequestDTO"
+community: "MedicalRecord"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/ResetPasswordRequestDTO
+  - community/MedicalRecord
 ---
 
 # Builder
 
 ## Connections
-- [[ResetPasswordRequestDTO]] - `references` [EXTRACTED]
+- [[MedicalRecord_1]] - `references` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/ResetPasswordRequestDTO
+#graphify/code #graphify/EXTRACTED #community/MedicalRecord

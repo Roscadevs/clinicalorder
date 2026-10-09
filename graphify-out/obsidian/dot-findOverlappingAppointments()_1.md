@@ -1,12 +1,12 @@
 ---
 source_file: "backend/src/main/java/com/clinicadermatologica/app/domain/repository/AppointmentRepository.java"
 type: "code"
-community: "AppointmentService"
+community: ".bookTemporaryHold"
 location: "L19"
 tags:
   - graphify/code
   - graphify/INFERRED
-  - community/AppointmentService
+  - community/bookTemporaryHold
 ---
 
 # .findOverlappingAppointments()
@@ -19,4 +19,4 @@ tags:
 - [[Appointment]] - `references` [EXTRACTED]
 - [[AppointmentRepository]] - `method` [EXTRACTED]
 
-#graphify/code #graphify/INFERRED #community/AppointmentService
+#graphify/code #graphify/INFERRED #community/bookTemporaryHold

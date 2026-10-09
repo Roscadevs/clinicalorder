@@ -1,16 +1,16 @@
 ---
 source_file: ""
 type: "code"
-community: "org.junit.jupiter.api.DisplayName"
+community: "PaymentServiceTest"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/orgjunitjupiterapiDisplayName
+  - community/PaymentServiceTest
 ---
 
 # Appointment
 
 ## Connections
-- [[dot-register()_3]] - `references` [EXTRACTED]
+- [[PaymentServiceTest]] - `references` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/orgjunitjupiterapiDisplayName
+#graphify/code #graphify/EXTRACTED #community/PaymentServiceTest

@@ -1,12 +1,12 @@
 ---
 source_file: "backend/src/main/java/com/clinicadermatologica/app/domain/model/PaymentStatus.java"
 type: "code"
-community: "PaymentTransaction"
+community: "org.springframework.stereotype.Component"
 location: "L6"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/PaymentTransaction
+  - community/orgspringframeworkstereotypeComponent
 ---
 
 # PaymentStatus
@@ -19,4 +19,4 @@ tags:
 - [[REFUNDED]] - `case_of` [EXTRACTED]
 - [[REJECTED]] - `case_of` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/PaymentTransaction
+#graphify/code #graphify/EXTRACTED #community/orgspringframeworkstereotypeComponent

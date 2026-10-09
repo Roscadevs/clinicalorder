@@ -1,12 +1,12 @@
 ---
 source_file: "backend/src/main/java/com/clinicadermatologica/app/domain/model/PaymentType.java"
 type: "code"
-community: "PaymentType"
+community: "PaymentServiceTest.java"
 location: "L9"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/PaymentType
+  - community/PaymentServiceTestjava
 ---
 
 # PaymentType
@@ -27,4 +27,4 @@ tags:
 - [[RegisterPaymentRequestDTO]] - `references` [EXTRACTED]
 - [[RegisterPaymentRequestDTO.java]] - `imports` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/PaymentType
+#graphify/code #graphify/EXTRACTED #community/PaymentServiceTestjava

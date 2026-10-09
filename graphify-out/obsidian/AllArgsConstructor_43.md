@@ -1,11 +1,11 @@
 ---
 source_file: ""
 type: "code"
-community: "MedicalRecordDTO"
+community: "AlergiaResponseDTO"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/MedicalRecordDTO
+  - community/AlergiaResponseDTO
 ---
 
 # AllArgsConstructor
@@ -13,4 +13,4 @@ tags:
 ## Connections
 - [[AlergiaResponseDTO]] - `references` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/MedicalRecordDTO
+#graphify/code #graphify/EXTRACTED #community/AlergiaResponseDTO

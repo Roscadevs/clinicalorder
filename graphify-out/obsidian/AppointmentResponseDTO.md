@@ -1,22 +1,22 @@
 ---
 source_file: "backend/src/main/java/com/clinicadermatologica/app/presentation/dto/AppointmentResponseDTO.java"
 type: "code"
-community: "AppointmentResponseDTO"
+community: "Appointment"
 location: "L12"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/AppointmentResponseDTO
+  - community/Appointment
 ---
 
 # AppointmentResponseDTO
 
 ## Connections
 - [[dot-getAgenda()]] - `references` [EXTRACTED]
-- [[dot-getAppointmentById()_1]] - `references` [EXTRACTED]
 - [[dot-getAppointmentById()]] - `references` [EXTRACTED]
+- [[dot-getAppointmentById()_1]] - `references` [EXTRACTED]
 - [[dot-getAppointmentsByRange()]] - `references` [EXTRACTED]
-- [[dot-mapToDTO()_1]] - `references` [EXTRACTED]
+- [[dot-mapToDTO()_2]] - `references` [EXTRACTED]
 - [[AllArgsConstructor_7]] - `references` [EXTRACTED]
 - [[AppointmentResponseDTO.java]] - `contains` [EXTRACTED]
 - [[AppointmentStatus]] - `references` [EXTRACTED]
@@ -25,4 +25,4 @@ tags:
 - [[NoArgsConstructor_7]] - `references` [EXTRACTED]
 - [[Setter_7]] - `references` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/AppointmentResponseDTO
+#graphify/code #graphify/EXTRACTED #community/Appointment

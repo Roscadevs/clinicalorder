@@ -1,23 +1,32 @@
 ---
-source_file: "backend/src/main/java/com/clinicadermatologica/app/presentation/controller/AppointmentController.java"
+source_file: "backend/src/main/java/com/clinicadermatologica/app/application/service/PaymentService.java"
 type: "code"
-community: "org.springframework.http.ResponseEntity"
-location: "L116"
+community: ".registerDepositPayment"
+location: "L327"
 tags:
   - graphify/code
-  - graphify/EXTRACTED
-  - community/orgspringframeworkhttpResponseEntity
+  - graphify/INFERRED
+  - community/registerDepositPayment
 ---
 
 # .registerDepositPayment()
 
 ## Connections
+- [[dot-findById()_13]] - `calls` [INFERRED]
+- [[dot-findById()_12]] - `calls` [INFERRED]
+- [[dot-getStrategy()]] - `calls` [INFERRED]
+- [[dot-isExpired()]] - `calls` [EXTRACTED]
 - [[dot-registerDepositPayment()]] - `calls` [INFERRED]
-- [[AppointmentController]] - `method` [EXTRACTED]
+- [[dot-rejectPendingTransactions()_1]] - `calls` [EXTRACTED]
+- [[dot-save()_10]] - `calls` [INFERRED]
+- [[dot-testRegisterDeposit_AmountBelowDeposit_Throws()]] - `calls` [INFERRED]
+- [[dot-testRegisterDeposit_Cash_ConfirmsAppointment()]] - `calls` [INFERRED]
+- [[dot-testRegisterDeposit_ExpiredHold_CancelsAppointment()]] - `calls` [INFERRED]
+- [[dot-testRegisterDeposit_MercadoPago_Throws()]] - `calls` [INFERRED]
+- [[BusinessRuleException]] - `calls` [EXTRACTED]
 - [[PaymentReceiptDTO]] - `references` [EXTRACTED]
-- [[PostMapping_4]] - `references` [EXTRACTED]
+- [[PaymentService]] - `method` [EXTRACTED]
 - [[RegisterPaymentRequestDTO]] - `references` [EXTRACTED]
-- [[org.springframework.http.ResponseEntity]] - `references` [EXTRACTED]
-- [[org.springframework.security.access.prepost.PreAuthorize]] - `references` [EXTRACTED]
+- [[org.springframework.transaction.annotation.Transactional]] - `references` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/orgspringframeworkhttpResponseEntity
+#graphify/code #graphify/INFERRED #community/registerDepositPayment

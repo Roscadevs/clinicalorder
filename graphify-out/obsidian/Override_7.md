@@ -12,9 +12,9 @@ tags:
 
 ## Connections
 - [[dot-findByDateRange()_2]] - `references` [EXTRACTED]
-- [[dot-findById()_7]] - `references` [EXTRACTED]
-- [[dot-findByPatientId()_2]] - `references` [EXTRACTED]
-- [[dot-findExpiredHolds()]] - `references` [EXTRACTED]
+- [[dot-findById()_6]] - `references` [EXTRACTED]
+- [[dot-findByPatientId()_1]] - `references` [EXTRACTED]
+- [[dot-findExpiredHolds()_1]] - `references` [EXTRACTED]
 - [[dot-findOverlappingAppointments()]] - `references` [EXTRACTED]
 - [[dot-save()_6]] - `references` [EXTRACTED]
 

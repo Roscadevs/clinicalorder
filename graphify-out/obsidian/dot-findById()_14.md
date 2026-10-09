@@ -1,32 +1,19 @@
 ---
-source_file: "backend/src/main/java/com/clinicadermatologica/app/domain/repository/UserRepository.java"
+source_file: "backend/src/main/java/com/clinicadermatologica/app/infrastructure/persistence/adapter/PatientRepositoryAdapter.java"
 type: "code"
-community: "AppointmentService"
-location: "L11"
+community: "Patient"
+location: "L21"
 tags:
   - graphify/code
-  - graphify/INFERRED
-  - community/AppointmentService
+  - graphify/EXTRACTED
+  - community/Patient
 ---
 
 # .findById()
 
 ## Connections
-- [[dot-addClinicalEntry()]] - `calls` [INFERRED]
-- [[dot-bookTemporaryHold()]] - `calls` [INFERRED]
-- [[dot-createBlock()]] - `calls` [INFERRED]
-- [[dot-registerDepositPayment()]] - `calls` [INFERRED]
-- [[dot-registerFinalPayment()]] - `calls` [INFERRED]
-- [[dot-saveOrUpdateMedicalRecord()]] - `calls` [INFERRED]
-- [[dot-testAddClinicalEntry_EncryptsContent()]] - `calls` [INFERRED]
-- [[dot-testBookTemporaryHold_ExpiredOverlappingHold_IsReleased()]] - `calls` [INFERRED]
-- [[dot-testBookTemporaryHold_SlotUnavailable_ThrowsException()]] - `calls` [INFERRED]
-- [[dot-testBookTemporaryHold_Success()]] - `calls` [INFERRED]
-- [[dot-testRegisterDeposit_Cash_ConfirmsAppointment()]] - `calls` [INFERRED]
-- [[dot-testRegisterFinalPayment_DelegatesToStrategy_CompletesAppointment()]] - `calls` [INFERRED]
-- [[dot-testSaveInitialMedicalRecord_Success()]] - `calls` [INFERRED]
-- [[dot-updateClinicalEntry()]] - `calls` [INFERRED]
-- [[User]] - `references` [EXTRACTED]
-- [[UserRepository]] - `method` [EXTRACTED]
+- [[Override_12]] - `references` [EXTRACTED]
+- [[Patient_1]] - `references` [EXTRACTED]
+- [[PatientRepositoryAdapter]] - `method` [EXTRACTED]
 
-#graphify/code #graphify/INFERRED #community/AppointmentService
+#graphify/code #graphify/EXTRACTED #community/Patient

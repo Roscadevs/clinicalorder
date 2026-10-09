@@ -1,12 +1,12 @@
 ---
 source_file: "backend/src/main/java/com/clinicadermatologica/app/domain/repository/PaymentTransactionRepository.java"
 type: "code"
-community: "org.junit.jupiter.api.DisplayName"
+community: "PaymentServiceTest"
 location: "L14"
 tags:
   - graphify/code
   - graphify/INFERRED
-  - community/orgjunitjupiterapiDisplayName
+  - community/PaymentServiceTest
 ---
 
 # .findByMpPreferenceId()
@@ -22,4 +22,4 @@ tags:
 - [[PaymentTransaction]] - `references` [EXTRACTED]
 - [[PaymentTransactionRepository]] - `method` [EXTRACTED]
 
-#graphify/code #graphify/INFERRED #community/orgjunitjupiterapiDisplayName
+#graphify/code #graphify/INFERRED #community/PaymentServiceTest

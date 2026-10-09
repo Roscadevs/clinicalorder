@@ -1,19 +1,21 @@
 ---
 source_file: ""
 type: "code"
-community: "AuthController"
+community: "AlergiaRequestDTO"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/AuthController
+  - community/AlergiaRequestDTO
 ---
 
 # PostMapping
 
 ## Connections
-- [[dot-forgotPassword()]] - `references` [EXTRACTED]
-- [[dot-login()]] - `references` [EXTRACTED]
-- [[dot-register()_4]] - `references` [EXTRACTED]
-- [[dot-resetPassword()]] - `references` [EXTRACTED]
+- [[dot-addAlergia()]] - `references` [EXTRACTED]
+- [[dot-addAntecedentePatologico()_1]] - `references` [EXTRACTED]
+- [[dot-addClinicalEntry()_1]] - `references` [EXTRACTED]
+- [[dot-addHabito()_1]] - `references` [EXTRACTED]
+- [[dot-saveMedicalRecord()]] - `references` [EXTRACTED]
+- [[dot-uploadClinicalPhoto()]] - `references` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/AuthController
+#graphify/code #graphify/EXTRACTED #community/AlergiaRequestDTO

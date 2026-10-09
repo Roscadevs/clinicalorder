@@ -43,6 +43,7 @@ SORT file.name ASC
 
 ## Connections to other communities
 - 3 edges to [[_COMMUNITY_react]]
+- 2 edges to [[_COMMUNITY_api.ts]]
 - 2 edges to [[_COMMUNITY_cn]]
 - 1 edge to [[_COMMUNITY_scripts]]
 - 1 edge to [[_COMMUNITY_supabaseClient.ts]]
@@ -51,8 +52,6 @@ SORT file.name ASC
 - 1 edge to [[_COMMUNITY_GlideSelect.tsx]]
 - 1 edge to [[_COMMUNITY_dependencies]]
 - 1 edge to [[_COMMUNITY_devDependencies]]
-- 1 edge to [[_COMMUNITY_api.ts]]
-- 1 edge to [[_COMMUNITY_BookingWizard.tsx]]
 
 ## Top bridge nodes
 - [[package.json]] - degree 33, connects to 8 communities

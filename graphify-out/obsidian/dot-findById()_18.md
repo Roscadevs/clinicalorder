@@ -1,19 +1,20 @@
 ---
-source_file: "backend/src/main/java/com/clinicadermatologica/app/infrastructure/persistence/adapter/UserRepositoryAdapter.java"
+source_file: "backend/src/main/java/com/clinicadermatologica/app/domain/repository/ClinicalEntryRepository.java"
 type: "code"
-community: "User"
-location: "L20"
+community: "ClinicalEntry"
+location: "L17"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/User
+  - community/ClinicalEntry
 ---
 
 # .findById()
 
 ## Connections
-- [[Override_14]] - `references` [EXTRACTED]
-- [[User]] - `references` [EXTRACTED]
-- [[UserRepositoryAdapter]] - `method` [EXTRACTED]
+- [[dot-updateClinicalEntry()]] - `calls` [INFERRED]
+- [[dot-uploadClinicalImage()]] - `calls` [INFERRED]
+- [[ClinicalEntry_1]] - `references` [EXTRACTED]
+- [[ClinicalEntryRepository]] - `method` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/User
+#graphify/code #graphify/EXTRACTED #community/ClinicalEntry

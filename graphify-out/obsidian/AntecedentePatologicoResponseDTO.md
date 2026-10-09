@@ -15,12 +15,12 @@ tags:
 - [[dot-addAntecedentePatologico()_1]] - `references` [EXTRACTED]
 - [[dot-addAntecedentePatologico()]] - `references` [EXTRACTED]
 - [[dot-mapAntecedenteToDTO()]] - `references` [EXTRACTED]
-- [[AllArgsConstructor_24]] - `references` [EXTRACTED]
+- [[AllArgsConstructor_20]] - `references` [EXTRACTED]
 - [[AntecedentePatologicoResponseDTO.java]] - `contains` [EXTRACTED]
-- [[Builder_22]] - `references` [EXTRACTED]
-- [[Getter_24]] - `references` [EXTRACTED]
+- [[Builder_18]] - `references` [EXTRACTED]
+- [[Getter_20]] - `references` [EXTRACTED]
 - [[MedicalRecordDTO]] - `references` [EXTRACTED]
-- [[NoArgsConstructor_24]] - `references` [EXTRACTED]
-- [[Setter_24]] - `references` [EXTRACTED]
+- [[NoArgsConstructor_20]] - `references` [EXTRACTED]
+- [[Setter_20]] - `references` [EXTRACTED]
 
 #graphify/code #graphify/EXTRACTED #community/AntecedentePatologico

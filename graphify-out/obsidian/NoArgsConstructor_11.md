@@ -1,11 +1,11 @@
 ---
 source_file: ""
 type: "code"
-community: "PaymentType"
+community: "PaymentServiceTest.java"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/PaymentType
+  - community/PaymentServiceTestjava
 ---
 
 # NoArgsConstructor
@@ -13,4 +13,4 @@ tags:
 ## Connections
 - [[FinalizePaymentRequestDTO]] - `references` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/PaymentType
+#graphify/code #graphify/EXTRACTED #community/PaymentServiceTestjava

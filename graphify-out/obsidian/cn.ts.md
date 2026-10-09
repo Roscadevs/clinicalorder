@@ -20,6 +20,7 @@ tags:
 - [[Button.tsx]] - `imports_from` [EXTRACTED]
 - [[Card.tsx]] - `imports_from` [EXTRACTED]
 - [[CollectBalanceModal.tsx]] - `imports_from` [EXTRACTED]
+- [[EditAppointmentView.tsx]] - `imports_from` [EXTRACTED]
 - [[Input.tsx]] - `imports_from` [EXTRACTED]
 - [[Logo.tsx]] - `imports_from` [EXTRACTED]
 - [[MedicalRecordView.tsx]] - `imports_from` [EXTRACTED]

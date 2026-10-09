@@ -1,24 +1,24 @@
 ---
 source_file: "backend/src/main/java/com/clinicadermatologica/app/application/service/PaymentService.java"
 type: "code"
-community: "org.junit.jupiter.api.DisplayName"
+community: "PaymentServiceTest"
 location: "L53"
 tags:
   - graphify/code
   - graphify/INFERRED
-  - community/orgjunitjupiterapiDisplayName
+  - community/PaymentServiceTest
 ---
 
 # .processMercadoPagoWebhook()
 
 ## Connections
-- [[dot-findByAppointmentId()_2]] - `calls` [INFERRED]
+- [[dot-findByAppointmentId()_1]] - `calls` [INFERRED]
 - [[dot-findByMpPreferenceId()_2]] - `calls` [INFERRED]
 - [[dot-getPaymentDetails()]] - `calls` [INFERRED]
 - [[dot-handleMercadoPagoWebhook()]] - `calls` [INFERRED]
 - [[dot-isValidSignature()]] - `calls` [EXTRACTED]
 - [[dot-processMercadoPagoWebhook()]] - `calls` [EXTRACTED]
-- [[dot-save()_11]] - `calls` [INFERRED]
+- [[dot-save()_13]] - `calls` [INFERRED]
 - [[dot-save()_10]] - `calls` [INFERRED]
 - [[dot-testWebhook_AlreadyApproved_IsIdempotent()]] - `calls` [INFERRED]
 - [[dot-testWebhook_Approved_Deposit_ConfirmsAppointment()]] - `calls` [INFERRED]
@@ -29,4 +29,4 @@ tags:
 - [[PaymentService]] - `method` [EXTRACTED]
 - [[org.springframework.transaction.annotation.Transactional]] - `references` [EXTRACTED]
 
-#graphify/code #graphify/INFERRED #community/orgjunitjupiterapiDisplayName
+#graphify/code #graphify/INFERRED #community/PaymentServiceTest

@@ -12,7 +12,7 @@ tags:
 # .findByActiveTrue()
 
 ## Connections
-- [[dot-findAllActive()]] - `calls` [INFERRED]
+- [[dot-findAllActive()_2]] - `calls` [INFERRED]
 - [[JpaPatientRepository]] - `method` [EXTRACTED]
 - [[Patient_1]] - `references` [EXTRACTED]
 

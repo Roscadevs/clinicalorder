@@ -1,12 +1,12 @@
 ---
 source_file: "backend/src/main/java/com/clinicadermatologica/app/infrastructure/payment/MercadoPagoPaymentAdapter.java"
 type: "code"
-community: "lombok.RequiredArgsConstructor"
+community: "AppointmentService"
 location: "L197"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/lombokRequiredArgsConstructor
+  - community/AppointmentService
 ---
 
 # .refundPayment()
@@ -17,4 +17,4 @@ tags:
 - [[PaymentGatewayException]] - `calls` [EXTRACTED]
 - [[com.mercadopago.resources.payment.PaymentRefund]] - `references` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/lombokRequiredArgsConstructor
+#graphify/code #graphify/EXTRACTED #community/AppointmentService

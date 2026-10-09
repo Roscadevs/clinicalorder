@@ -1,12 +1,12 @@
 ---
 source_file: "backend/src/main/java/com/clinicadermatologica/app/presentation/controller/GeminiChatbotController.java"
 type: "code"
-community: "GeminiChatRequestDTO"
+community: "lombok.RequiredArgsConstructor"
 location: "L14"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/GeminiChatRequestDTO
+  - community/lombokRequiredArgsConstructor
 ---
 
 # GeminiChatbotController
@@ -15,8 +15,8 @@ tags:
 - [[dot-sendMessage()]] - `method` [EXTRACTED]
 - [[GeminiChatbotController.java]] - `contains` [EXTRACTED]
 - [[GeminiChatbotService]] - `references` [EXTRACTED]
-- [[RequestMapping_3]] - `references` [EXTRACTED]
-- [[RestController_3]] - `references` [EXTRACTED]
+- [[RequestMapping_2]] - `references` [EXTRACTED]
+- [[RestController_2]] - `references` [EXTRACTED]
 - [[lombok.RequiredArgsConstructor]] - `references` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/GeminiChatRequestDTO
+#graphify/code #graphify/EXTRACTED #community/lombokRequiredArgsConstructor

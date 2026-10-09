@@ -1,23 +1,23 @@
 ---
-source_file: "backend/src/main/java/com/clinicadermatologica/app/domain/model/PaymentConcept.java"
+source_file: "frontend/src/types/index.ts"
 type: "code"
-community: "PaymentReceiptDTO"
-location: "L13"
+community: "api.ts"
+location: "L86"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/PaymentReceiptDTO
+  - community/apits
 ---
 
 # PaymentConcept
 
 ## Connections
-- [[BALANCE]] - `case_of` [EXTRACTED]
-- [[DEPOSIT]] - `case_of` [EXTRACTED]
-- [[FULL]] - `case_of` [EXTRACTED]
-- [[PaymentConcept.java]] - `contains` [EXTRACTED]
-- [[PaymentReceiptDTO]] - `references` [EXTRACTED]
-- [[PaymentReceiptDTO.java]] - `imports` [EXTRACTED]
-- [[PaymentTransaction]] - `references` [EXTRACTED]
+- [[AppointmentReceiptModal.tsx]] - `imports` [EXTRACTED]
+- [[BookingWizard.tsx]] - `imports` [EXTRACTED]
+- [[ReceiptPayment]] - `references` [EXTRACTED]
+- [[RegisterPaymentStep.tsx]] - `imports` [EXTRACTED]
+- [[RegisterPaymentStepProps]] - `references` [EXTRACTED]
+- [[api.ts]] - `imports` [EXTRACTED]
+- [[typesindex.ts]] - `contains` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/PaymentReceiptDTO
+#graphify/code #graphify/EXTRACTED #community/apits

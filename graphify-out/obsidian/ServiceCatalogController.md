@@ -12,14 +12,14 @@ tags:
 # ServiceCatalogController
 
 ## Connections
-- [[dot-createService()]] - `method` [EXTRACTED]
+- [[dot-createService()_1]] - `method` [EXTRACTED]
 - [[dot-getActiveServices()]] - `method` [EXTRACTED]
 - [[dot-getAllServicesForAdmin()_1]] - `method` [EXTRACTED]
-- [[dot-getServiceById()_1]] - `method` [EXTRACTED]
-- [[dot-updateService()]] - `method` [EXTRACTED]
+- [[dot-getServiceById()]] - `method` [EXTRACTED]
+- [[dot-updateService()_1]] - `method` [EXTRACTED]
 - [[DermatologicServiceService]] - `references` [EXTRACTED]
-- [[RequestMapping_2]] - `references` [EXTRACTED]
-- [[RestController_2]] - `references` [EXTRACTED]
+- [[RequestMapping]] - `references` [EXTRACTED]
+- [[RestController]] - `references` [EXTRACTED]
 - [[ServiceCatalogController.java]] - `contains` [EXTRACTED]
 - [[lombok.RequiredArgsConstructor]] - `references` [EXTRACTED]
 

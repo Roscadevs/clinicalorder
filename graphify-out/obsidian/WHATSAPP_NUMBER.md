@@ -1,12 +1,12 @@
 ---
 source_file: "frontend/src/config/contact.ts"
 type: "code"
-community: "react"
+community: "BookingWizard.tsx"
 location: "L7"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/react
+  - community/BookingWizardtsx
 ---
 
 # WHATSAPP_NUMBER
@@ -14,4 +14,4 @@ tags:
 ## Connections
 - [[contact.ts]] - `contains` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/react
+#graphify/code #graphify/EXTRACTED #community/BookingWizardtsx

@@ -1,18 +1,18 @@
 ---
 source_file: "backend/src/test/java/com/clinicadermatologica/app/application/AuthServiceTest.java"
 type: "code"
-community: "UserRepository"
+community: "AuthServiceTest"
 location: "L31"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/UserRepository
+  - community/AuthServiceTest
 ---
 
 # AuthServiceTest
 
 ## Connections
-- [[dot-setUp()_1]] - `method` [EXTRACTED]
+- [[dot-setUp()_2]] - `method` [EXTRACTED]
 - [[dot-testForgotPassword_Success()]] - `method` [EXTRACTED]
 - [[dot-testLogin_InactiveAccount_ThrowsException()]] - `method` [EXTRACTED]
 - [[dot-testLogin_Success()]] - `method` [EXTRACTED]
@@ -31,4 +31,4 @@ tags:
 - [[org.mockito.junit.jupiter.MockitoExtension]] - `references` [EXTRACTED]
 - [[org.springframework.security.crypto.password.PasswordEncoder]] - `references` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/UserRepository
+#graphify/code #graphify/EXTRACTED #community/AuthServiceTest

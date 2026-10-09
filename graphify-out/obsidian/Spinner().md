@@ -15,6 +15,7 @@ tags:
 - [[AdminServicesView.tsx]] - `imports` [EXTRACTED]
 - [[AgendaView.tsx]] - `imports` [EXTRACTED]
 - [[BookingWizard.tsx]] - `imports` [EXTRACTED]
+- [[EditAppointmentView.tsx]] - `imports` [EXTRACTED]
 - [[MedicalRecordView.tsx]] - `imports` [EXTRACTED]
 - [[PatientDirectoryView.tsx]] - `imports` [EXTRACTED]
 - [[ServicesCatalogView.tsx]] - `imports` [EXTRACTED]

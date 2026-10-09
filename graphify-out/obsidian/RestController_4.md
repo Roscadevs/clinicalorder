@@ -11,6 +11,6 @@ tags:
 # RestController
 
 ## Connections
-- [[AppointmentController]] - `references` [EXTRACTED]
+- [[AuthController]] - `references` [EXTRACTED]
 
 #graphify/code #graphify/EXTRACTED #community/orgspringframeworkhttpResponseEntity

@@ -1,12 +1,12 @@
 ---
 source_file: "backend/src/main/java/com/clinicadermatologica/app/application/strategy/PaymentRegistrationStrategy.java"
 type: "code"
-community: "lombok.RequiredArgsConstructor"
+community: "PaymentServiceTest.java"
 location: "L23"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/lombokRequiredArgsConstructor
+  - community/PaymentServiceTestjava
 ---
 
 # PaymentRegistrationStrategy
@@ -14,7 +14,7 @@ tags:
 ## Connections
 - [[dot-PaymentStrategyFactory()]] - `references` [EXTRACTED]
 - [[dot-getStrategy()]] - `references` [EXTRACTED]
-- [[dot-register()_3]] - `method` [EXTRACTED]
+- [[dot-register()_4]] - `method` [EXTRACTED]
 - [[dot-supportedType()_3]] - `method` [EXTRACTED]
 - [[BankTransferPaymentStrategy]] - `implements` [EXTRACTED]
 - [[BankTransferPaymentStrategy.java]] - `imports` [EXTRACTED]
@@ -26,4 +26,4 @@ tags:
 - [[PaymentServiceTest.java]] - `imports` [EXTRACTED]
 - [[PaymentStrategyFactory]] - `references` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/lombokRequiredArgsConstructor
+#graphify/code #graphify/EXTRACTED #community/PaymentServiceTestjava

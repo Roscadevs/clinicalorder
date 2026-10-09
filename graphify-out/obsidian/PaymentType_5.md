@@ -1,11 +1,11 @@
 ---
 source_file: ""
 type: "code"
-community: "lombok.RequiredArgsConstructor"
+community: "PaymentServiceTest.java"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/lombokRequiredArgsConstructor
+  - community/PaymentServiceTestjava
 ---
 
 # PaymentType
@@ -13,4 +13,4 @@ tags:
 ## Connections
 - [[dot-supportedType()_3]] - `references` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/lombokRequiredArgsConstructor
+#graphify/code #graphify/EXTRACTED #community/PaymentServiceTestjava

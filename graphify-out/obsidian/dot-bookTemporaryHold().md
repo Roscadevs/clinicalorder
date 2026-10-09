@@ -1,12 +1,12 @@
 ---
 source_file: "backend/src/main/java/com/clinicadermatologica/app/application/service/AppointmentService.java"
 type: "code"
-community: "AppointmentService"
+community: ".bookTemporaryHold"
 location: "L117"
 tags:
   - graphify/code
   - graphify/INFERRED
-  - community/AppointmentService
+  - community/bookTemporaryHold
 ---
 
 # .bookTemporaryHold()
@@ -16,15 +16,15 @@ tags:
 - [[dot-createDepositPreference()]] - `calls` [INFERRED]
 - [[dot-expireHold()]] - `calls` [EXTRACTED]
 - [[dot-expiresAt()]] - `calls` [EXTRACTED]
-- [[dot-findById()_13]] - `calls` [INFERRED]
+- [[dot-findById()_11]] - `calls` [INFERRED]
+- [[dot-findById()_10]] - `calls` [INFERRED]
 - [[dot-findById()_12]] - `calls` [INFERRED]
-- [[dot-findById()_14]] - `calls` [INFERRED]
 - [[dot-findOverlappingAppointments()_1]] - `calls` [INFERRED]
 - [[dot-findOverlappingBlocks()_2]] - `calls` [INFERRED]
 - [[dot-isExpired()]] - `calls` [EXTRACTED]
 - [[dot-resolveInitPoint()]] - `calls` [INFERRED]
 - [[dot-save()_10]] - `calls` [INFERRED]
-- [[dot-save()_11]] - `calls` [INFERRED]
+- [[dot-save()_13]] - `calls` [INFERRED]
 - [[dot-testBookTemporaryHold_ExpiredOverlappingHold_IsReleased()]] - `calls` [INFERRED]
 - [[dot-testBookTemporaryHold_SlotUnavailable_ThrowsException()]] - `calls` [INFERRED]
 - [[dot-testBookTemporaryHold_Success()]] - `calls` [INFERRED]
@@ -33,4 +33,4 @@ tags:
 - [[PaymentPreferenceResponseDTO]] - `references` [EXTRACTED]
 - [[org.springframework.transaction.annotation.Transactional]] - `references` [EXTRACTED]
 
-#graphify/code #graphify/INFERRED #community/AppointmentService
+#graphify/code #graphify/INFERRED #community/bookTemporaryHold

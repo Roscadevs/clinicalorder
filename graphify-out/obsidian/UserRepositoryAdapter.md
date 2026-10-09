@@ -14,10 +14,10 @@ tags:
 ## Connections
 - [[dot-existsByEmail()_3]] - `method` [EXTRACTED]
 - [[dot-existsByUsername()]] - `method` [EXTRACTED]
-- [[dot-findByEmail()_3]] - `method` [EXTRACTED]
-- [[dot-findById()_18]] - `method` [EXTRACTED]
+- [[dot-findByEmail()_4]] - `method` [EXTRACTED]
+- [[dot-findById()_17]] - `method` [EXTRACTED]
 - [[dot-findByUsername()]] - `method` [EXTRACTED]
-- [[dot-save()_15]] - `method` [EXTRACTED]
+- [[dot-save()_18]] - `method` [EXTRACTED]
 - [[JpaUserRepository]] - `references` [EXTRACTED]
 - [[UserRepository]] - `implements` [EXTRACTED]
 - [[UserRepositoryAdapter.java]] - `contains` [EXTRACTED]

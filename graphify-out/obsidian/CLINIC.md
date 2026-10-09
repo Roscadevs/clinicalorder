@@ -1,12 +1,12 @@
 ---
 source_file: "frontend/src/config/contact.ts"
 type: "code"
-community: "react"
+community: "BookingWizard.tsx"
 location: "L10"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/react
+  - community/BookingWizardtsx
 ---
 
 # CLINIC
@@ -16,4 +16,4 @@ tags:
 - [[ReminderNotificationModal.tsx]] - `imports` [EXTRACTED]
 - [[contact.ts]] - `contains` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/react
+#graphify/code #graphify/EXTRACTED #community/BookingWizardtsx

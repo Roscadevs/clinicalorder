@@ -2,7 +2,7 @@
 source_file: "frontend/src/features/agenda/AgendaView.tsx"
 type: "code"
 community: "AgendaView.tsx"
-location: "L52"
+location: "L61"
 tags:
   - graphify/code
   - graphify/EXTRACTED
@@ -15,7 +15,6 @@ tags:
 - [[AgendaView.tsx]] - `contains` [EXTRACTED]
 - [[App.tsx]] - `imports` [EXTRACTED]
 - [[addDays()]] - `calls` [EXTRACTED]
-- [[ars()]] - `calls` [EXTRACTED]
 - [[cn()]] - `calls` [EXTRACTED]
 - [[computeRange()]] - `calls` [EXTRACTED]
 - [[dayKey()]] - `calls` [EXTRACTED]

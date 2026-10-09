@@ -1,12 +1,12 @@
 ---
 source_file: "backend/src/test/java/com/clinicadermatologica/app/application/AuthServiceTest.java"
 type: "code"
-community: "UserRepository"
+community: ".login"
 location: "L58"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/UserRepository
+  - community/login
 ---
 
 # .testLogin_Success()
@@ -19,4 +19,4 @@ tags:
 - [[org.junit.jupiter.api.DisplayName]] - `references` [EXTRACTED]
 - [[org.junit.jupiter.api.Test]] - `references` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/UserRepository
+#graphify/code #graphify/EXTRACTED #community/login

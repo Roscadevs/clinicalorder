@@ -1,19 +1,23 @@
 ---
-source_file: "frontend/src/types/index.ts"
+source_file: "backend/src/main/java/com/clinicadermatologica/app/domain/model/PaymentConcept.java"
 type: "code"
-community: "BookingWizard.tsx"
-location: "L86"
+community: "Appointment"
+location: "L13"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/BookingWizardtsx
+  - community/Appointment
 ---
 
 # PaymentConcept
 
 ## Connections
-- [[AppointmentReceiptModal.tsx]] - `imports` [EXTRACTED]
-- [[ReceiptPayment]] - `references` [EXTRACTED]
-- [[typesindex.ts]] - `contains` [EXTRACTED]
+- [[BALANCE]] - `case_of` [EXTRACTED]
+- [[DEPOSIT]] - `case_of` [EXTRACTED]
+- [[FULL]] - `case_of` [EXTRACTED]
+- [[PaymentConcept.java]] - `contains` [EXTRACTED]
+- [[PaymentReceiptDTO]] - `references` [EXTRACTED]
+- [[PaymentReceiptDTO.java]] - `imports` [EXTRACTED]
+- [[PaymentTransaction]] - `references` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/BookingWizardtsx
+#graphify/code #graphify/EXTRACTED #community/Appointment

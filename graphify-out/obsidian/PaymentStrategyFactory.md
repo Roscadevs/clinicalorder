@@ -1,12 +1,12 @@
 ---
 source_file: "backend/src/main/java/com/clinicadermatologica/app/application/strategy/PaymentStrategyFactory.java"
 type: "code"
-community: "lombok.RequiredArgsConstructor"
+community: "PaymentServiceTest.java"
 location: "L23"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/lombokRequiredArgsConstructor
+  - community/PaymentServiceTestjava
 ---
 
 # PaymentStrategyFactory
@@ -26,4 +26,4 @@ tags:
 - [[lombok.extern.slf4j.Slf4j]] - `references` [EXTRACTED]
 - [[org.springframework.stereotype.Component]] - `references` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/lombokRequiredArgsConstructor
+#graphify/code #graphify/EXTRACTED #community/PaymentServiceTestjava

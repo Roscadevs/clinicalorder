@@ -11,6 +11,6 @@ tags:
 # PostMapping
 
 ## Connections
-- [[dot-createService()]] - `references` [EXTRACTED]
+- [[dot-createService()_1]] - `references` [EXTRACTED]
 
 #graphify/code #graphify/EXTRACTED #community/ServiceResponseDTO

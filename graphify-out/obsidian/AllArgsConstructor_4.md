@@ -11,6 +11,6 @@ tags:
 # AllArgsConstructor
 
 ## Connections
-- [[HabitoId]] - `references` [EXTRACTED]
+- [[Habito]] - `references` [EXTRACTED]
 
 #graphify/code #graphify/EXTRACTED #community/Habito

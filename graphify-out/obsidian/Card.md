@@ -16,6 +16,7 @@ tags:
 - [[AgendaView.tsx]] - `imports` [EXTRACTED]
 - [[BookingWizard.tsx]] - `imports` [EXTRACTED]
 - [[Card.tsx]] - `contains` [EXTRACTED]
+- [[EditAppointmentView.tsx]] - `imports` [EXTRACTED]
 - [[MedicalRecordView.tsx]] - `imports` [EXTRACTED]
 - [[PatientDirectoryView.tsx]] - `imports` [EXTRACTED]
 - [[cn()]] - `calls` [EXTRACTED]

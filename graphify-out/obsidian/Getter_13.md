@@ -1,11 +1,11 @@
 ---
 source_file: ""
 type: "code"
-community: "ForgotPasswordRequestDTO"
+community: ".forgotPassword"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/ForgotPasswordRequestDTO
+  - community/forgotPassword
 ---
 
 # Getter
@@ -13,4 +13,4 @@ tags:
 ## Connections
 - [[ForgotPasswordRequestDTO]] - `references` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/ForgotPasswordRequestDTO
+#graphify/code #graphify/EXTRACTED #community/forgotPassword

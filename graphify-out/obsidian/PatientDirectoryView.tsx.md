@@ -1,12 +1,12 @@
 ---
 source_file: "frontend/src/features/clinical/PatientDirectoryView.tsx"
 type: "code"
-community: "MedicalRecordView.tsx"
+community: "PatientDirectoryView.tsx"
 location: "L1"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/MedicalRecordViewtsx
+  - community/PatientDirectoryViewtsx
 ---
 
 # PatientDirectoryView.tsx
@@ -33,4 +33,4 @@ tags:
 - [[typesindex.ts]] - `imports_from` [EXTRACTED]
 - [[uiindex.ts]] - `imports_from` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/MedicalRecordViewtsx
+#graphify/code #graphify/EXTRACTED #community/PatientDirectoryViewtsx

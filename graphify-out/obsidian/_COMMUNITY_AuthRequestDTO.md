@@ -24,8 +24,8 @@ SORT file.name ASC
 ```
 
 ## Connections to other communities
-- 1 edge to [[_COMMUNITY_UserRepository]]
-- 1 edge to [[_COMMUNITY_AuthController]]
+- 1 edge to [[_COMMUNITY_dot-login]]
+- 1 edge to [[_COMMUNITY_org.springframework.http.ResponseEntity]]
 
 ## Top bridge nodes
 - [[AuthRequestDTO]] - degree 8, connects to 2 communities

@@ -1,20 +1,16 @@
 ---
 source_file: ""
 type: "code"
-community: "AlergiaId"
+community: ".login"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/AlergiaId
+  - community/login
 ---
 
 # Override
 
 ## Connections
-- [[dot-delete()_5]] - `references` [EXTRACTED]
-- [[dot-existsById()_5]] - `references` [EXTRACTED]
-- [[dot-findById()_22]] - `references` [EXTRACTED]
-- [[dot-findByMedicalRecordId()_5]] - `references` [EXTRACTED]
-- [[dot-save()_19]] - `references` [EXTRACTED]
+- [[dot-loadUserByUsername()]] - `references` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/AlergiaId
+#graphify/code #graphify/EXTRACTED #community/login

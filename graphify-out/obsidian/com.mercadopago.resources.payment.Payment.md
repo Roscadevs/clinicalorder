@@ -1,11 +1,11 @@
 ---
 source_file: ""
 type: "code"
-community: "lombok.RequiredArgsConstructor"
+community: "PaymentServiceTest.java"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/lombokRequiredArgsConstructor
+  - community/PaymentServiceTestjava
 ---
 
 # com.mercadopago.resources.payment.Payment
@@ -16,4 +16,4 @@ tags:
 - [[PaymentService.java]] - `imports` [EXTRACTED]
 - [[PaymentServiceTest.java]] - `imports` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/lombokRequiredArgsConstructor
+#graphify/code #graphify/EXTRACTED #community/PaymentServiceTestjava

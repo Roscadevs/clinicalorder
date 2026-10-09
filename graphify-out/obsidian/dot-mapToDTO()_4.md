@@ -1,21 +1,21 @@
 ---
-source_file: "backend/src/main/java/com/clinicadermatologica/app/application/service/DermatologicServiceService.java"
+source_file: "backend/src/main/java/com/clinicadermatologica/app/application/service/PatientService.java"
 type: "code"
-community: "DermatologicServiceRepository"
-location: "L98"
+community: "org.springframework.transaction.annotation.Transactional"
+location: "L109"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/DermatologicServiceRepository
+  - community/orgspringframeworktransactionannotationTransactional
 ---
 
 # .mapToDTO()
 
 ## Connections
-- [[dot-createService()_1]] - `calls` [EXTRACTED]
-- [[dot-updateService()_1]] - `calls` [EXTRACTED]
-- [[DermatologicService]] - `references` [EXTRACTED]
-- [[DermatologicServiceService]] - `method` [EXTRACTED]
-- [[ServiceResponseDTO]] - `references` [EXTRACTED]
+- [[dot-createPatient()]] - `calls` [EXTRACTED]
+- [[dot-updatePatient()]] - `calls` [EXTRACTED]
+- [[Patient_1]] - `references` [EXTRACTED]
+- [[PatientResponseDTO]] - `references` [EXTRACTED]
+- [[PatientService]] - `method` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/DermatologicServiceRepository
+#graphify/code #graphify/EXTRACTED #community/orgspringframeworktransactionannotationTransactional

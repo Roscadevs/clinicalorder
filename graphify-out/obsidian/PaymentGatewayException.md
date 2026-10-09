@@ -1,12 +1,12 @@
 ---
 source_file: "backend/src/main/java/com/clinicadermatologica/app/domain/exception/PaymentGatewayException.java"
 type: "code"
-community: "lombok.RequiredArgsConstructor"
+community: "GlobalExceptionHandler"
 location: "L7"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/lombokRequiredArgsConstructor
+  - community/GlobalExceptionHandler
 ---
 
 # PaymentGatewayException
@@ -19,4 +19,4 @@ tags:
 - [[MercadoPagoPaymentAdapter.java]] - `imports` [EXTRACTED]
 - [[PaymentGatewayException.java]] - `contains` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/lombokRequiredArgsConstructor
+#graphify/code #graphify/EXTRACTED #community/GlobalExceptionHandler

@@ -1,11 +1,11 @@
 ---
 source_file: ""
 type: "code"
-community: "lombok.RequiredArgsConstructor"
+community: "org.springframework.stereotype.Component"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/lombokRequiredArgsConstructor
+  - community/orgspringframeworkstereotypeComponent
 ---
 
 # org.springframework.stereotype.Component
@@ -58,4 +58,4 @@ tags:
 - [[UserRepositoryAdapter]] - `references` [EXTRACTED]
 - [[UserRepositoryAdapter.java]] - `imports` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/lombokRequiredArgsConstructor
+#graphify/code #graphify/EXTRACTED #community/orgspringframeworkstereotypeComponent

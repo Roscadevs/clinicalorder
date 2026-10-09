@@ -1,12 +1,12 @@
 ---
 source_file: "frontend/src/features/admin/ServiceFormModal.tsx"
 type: "code"
-community: "api.ts"
+community: "cn"
 location: "L1"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/apits
+  - community/cn
 ---
 
 # ServiceFormModal.tsx
@@ -20,10 +20,10 @@ tags:
 - [[ServiceFormModal()]] - `contains` [EXTRACTED]
 - [[ServiceFormModalProps]] - `contains` [EXTRACTED]
 - [[api.ts]] - `imports_from` [EXTRACTED]
-- [[ars()_5]] - `contains` [EXTRACTED]
+- [[ars()_6]] - `contains` [EXTRACTED]
 - [[react]] - `imports_from` [EXTRACTED]
 - [[servicesApi]] - `imports` [EXTRACTED]
 - [[typesindex.ts]] - `imports_from` [EXTRACTED]
 - [[uiindex.ts]] - `imports_from` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/apits
+#graphify/code #graphify/EXTRACTED #community/cn

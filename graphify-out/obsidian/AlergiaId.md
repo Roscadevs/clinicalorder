@@ -12,14 +12,14 @@ tags:
 # AlergiaId
 
 ## Connections
-- [[dot-addAlergia()]] - `calls` [INFERRED]
+- [[dot-addAlergia()_1]] - `calls` [INFERRED]
 - [[dot-delete()_4]] - `references` [EXTRACTED]
 - [[dot-delete()_5]] - `references` [EXTRACTED]
 - [[dot-equals()_2]] - `method` [EXTRACTED]
 - [[dot-existsById()_4]] - `references` [EXTRACTED]
 - [[dot-existsById()_5]] - `references` [EXTRACTED]
-- [[dot-findById()_21]] - `references` [EXTRACTED]
-- [[dot-findById()_22]] - `references` [EXTRACTED]
+- [[dot-findById()_20]] - `references` [EXTRACTED]
+- [[dot-findById()_23]] - `references` [EXTRACTED]
 - [[dot-hashCode()_2]] - `method` [EXTRACTED]
 - [[dot-removeAlergia()]] - `calls` [INFERRED]
 - [[dot-testAddAlergia_DuplicateTipo_Throws()]] - `calls` [INFERRED]
@@ -29,12 +29,12 @@ tags:
 - [[AlergiaId.java]] - `contains` [EXTRACTED]
 - [[AlergiaRepository.java]] - `imports` [EXTRACTED]
 - [[AlergiaRepositoryAdapter.java]] - `imports` [EXTRACTED]
-- [[AllArgsConstructor_40]] - `references` [EXTRACTED]
-- [[Getter_40]] - `references` [EXTRACTED]
+- [[AllArgsConstructor_39]] - `references` [EXTRACTED]
+- [[Getter_39]] - `references` [EXTRACTED]
 - [[JpaAlergiaRepository]] - `references` [EXTRACTED]
 - [[JpaAlergiaRepository.java]] - `imports` [EXTRACTED]
-- [[NoArgsConstructor_40]] - `references` [EXTRACTED]
-- [[Setter_40]] - `references` [EXTRACTED]
+- [[NoArgsConstructor_39]] - `references` [EXTRACTED]
+- [[Setter_39]] - `references` [EXTRACTED]
 - [[jakarta.persistence.Embeddable]] - `references` [EXTRACTED]
 
 #graphify/code #graphify/EXTRACTED #community/AlergiaId

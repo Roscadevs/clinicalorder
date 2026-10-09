@@ -1,16 +1,16 @@
 ---
 source_file: ""
 type: "code"
-community: "ClinicalEntryRequestDTO"
+community: "PaymentServiceTest.java"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/ClinicalEntryRequestDTO
+  - community/PaymentServiceTestjava
 ---
 
 # NoArgsConstructor
 
 ## Connections
-- [[ClinicalEntryRequestDTO]] - `references` [EXTRACTED]
+- [[RegisterPaymentRequestDTO]] - `references` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/ClinicalEntryRequestDTO
+#graphify/code #graphify/EXTRACTED #community/PaymentServiceTestjava

@@ -1,12 +1,12 @@
 ---
 source_file: "backend/src/main/java/com/clinicadermatologica/app/infrastructure/security/JwtTokenProvider.java"
 type: "code"
-community: "UserRepository"
+community: "GlobalExceptionHandler"
 location: "L22"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/UserRepository
+  - community/GlobalExceptionHandler
 ---
 
 # .JwtTokenProvider()
@@ -14,4 +14,4 @@ tags:
 ## Connections
 - [[JwtTokenProvider]] - `method` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/UserRepository
+#graphify/code #graphify/EXTRACTED #community/GlobalExceptionHandler

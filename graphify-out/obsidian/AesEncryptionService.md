@@ -1,12 +1,12 @@
 ---
 source_file: "backend/src/main/java/com/clinicadermatologica/app/infrastructure/security/AesEncryptionService.java"
 type: "code"
-community: "MedicalRecordServiceTest"
+community: "org.junit.jupiter.api.DisplayName"
 location: "L48"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/MedicalRecordServiceTest
+  - community/orgjunitjupiterapiDisplayName
 ---
 
 # AesEncryptionService
@@ -15,7 +15,7 @@ tags:
 - [[dot-AesEncryptionService()]] - `method` [EXTRACTED]
 - [[dot-decrypt()_1]] - `method` [EXTRACTED]
 - [[dot-encrypt()_1]] - `method` [EXTRACTED]
-- [[dot-setUp()_4]] - `calls` [EXTRACTED]
+- [[dot-setUp()]] - `calls` [EXTRACTED]
 - [[dot-testInvalidKeyLengthThrows()]] - `calls` [EXTRACTED]
 - [[AesEncryptionService.java]] - `contains` [EXTRACTED]
 - [[AesEncryptionServiceTest]] - `references` [EXTRACTED]
@@ -28,4 +28,4 @@ tags:
 - [[org.springframework.context.annotation.Scope]] - `references` [EXTRACTED]
 - [[org.springframework.stereotype.Service]] - `references` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/MedicalRecordServiceTest
+#graphify/code #graphify/EXTRACTED #community/orgjunitjupiterapiDisplayName

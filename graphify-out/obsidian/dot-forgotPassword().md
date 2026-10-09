@@ -1,21 +1,24 @@
 ---
-source_file: "backend/src/main/java/com/clinicadermatologica/app/presentation/controller/AuthController.java"
+source_file: "backend/src/main/java/com/clinicadermatologica/app/application/service/AuthService.java"
 type: "code"
-community: "AuthController"
-location: "L34"
+community: ".forgotPassword"
+location: "L73"
 tags:
   - graphify/code
-  - graphify/EXTRACTED
-  - community/AuthController
+  - graphify/INFERRED
+  - community/forgotPassword
 ---
 
 # .forgotPassword()
 
 ## Connections
+- [[dot-findByEmail()]] - `calls` [INFERRED]
 - [[dot-forgotPassword()_1]] - `calls` [INFERRED]
-- [[AuthController]] - `method` [EXTRACTED]
+- [[dot-save()_23]] - `calls` [INFERRED]
+- [[dot-sendPasswordResetEmail()]] - `calls` [INFERRED]
+- [[dot-testForgotPassword_Success()]] - `calls` [INFERRED]
+- [[AuthService]] - `method` [EXTRACTED]
 - [[ForgotPasswordRequestDTO]] - `references` [EXTRACTED]
-- [[PostMapping]] - `references` [EXTRACTED]
-- [[org.springframework.http.ResponseEntity]] - `references` [EXTRACTED]
+- [[org.springframework.transaction.annotation.Transactional]] - `references` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/AuthController
+#graphify/code #graphify/INFERRED #community/forgotPassword

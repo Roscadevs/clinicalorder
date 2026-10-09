@@ -1,19 +1,19 @@
 ---
-source_file: "backend/src/main/java/com/clinicadermatologica/app/infrastructure/persistence/adapter/AppointmentRepositoryAdapter.java"
+source_file: "backend/src/main/java/com/clinicadermatologica/app/infrastructure/persistence/adapter/MedicalRecordRepositoryAdapter.java"
 type: "code"
-community: "Appointment"
-location: "L28"
+community: "MedicalRecord"
+location: "L29"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/Appointment
+  - community/MedicalRecord
 ---
 
 # .findById()
 
 ## Connections
-- [[Appointment]] - `references` [EXTRACTED]
-- [[AppointmentRepositoryAdapter]] - `method` [EXTRACTED]
-- [[Override_7]] - `references` [EXTRACTED]
+- [[MedicalRecord_1]] - `references` [EXTRACTED]
+- [[MedicalRecordRepositoryAdapter]] - `method` [EXTRACTED]
+- [[Override_8]] - `references` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/Appointment
+#graphify/code #graphify/EXTRACTED #community/MedicalRecord

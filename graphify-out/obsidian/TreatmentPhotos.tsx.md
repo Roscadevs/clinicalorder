@@ -1,12 +1,12 @@
 ---
 source_file: "frontend/src/features/clinical/TreatmentPhotos.tsx"
 type: "code"
-community: "Button"
+community: "MedicalRecordView.tsx"
 location: "L1"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/Button
+  - community/MedicalRecordViewtsx
 ---
 
 # TreatmentPhotos.tsx
@@ -26,4 +26,4 @@ tags:
 - [[typesindex.ts]] - `imports_from` [EXTRACTED]
 - [[uiindex.ts]] - `imports_from` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/Button
+#graphify/code #graphify/EXTRACTED #community/MedicalRecordViewtsx

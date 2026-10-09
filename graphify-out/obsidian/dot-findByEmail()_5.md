@@ -1,20 +1,19 @@
 ---
-source_file: "backend/src/main/java/com/clinicadermatologica/app/domain/repository/UserRepository.java"
+source_file: "backend/src/main/java/com/clinicadermatologica/app/infrastructure/persistence/jpa/JpaUserRepository.java"
 type: "code"
-community: "UserRepository"
-location: "L13"
+community: "User"
+location: "L15"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/UserRepository
+  - community/User
 ---
 
 # .findByEmail()
 
 ## Connections
-- [[dot-forgotPassword()_1]] - `calls` [INFERRED]
-- [[dot-testForgotPassword_Success()]] - `calls` [INFERRED]
+- [[dot-findByEmail()_4]] - `calls` [INFERRED]
+- [[JpaUserRepository]] - `method` [EXTRACTED]
 - [[User]] - `references` [EXTRACTED]
-- [[UserRepository]] - `method` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/UserRepository
+#graphify/code #graphify/EXTRACTED #community/User

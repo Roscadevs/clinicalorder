@@ -13,9 +13,9 @@ tags:
 
 ## Connections
 - [[dot-findByDateRange()_2]] - `method` [EXTRACTED]
-- [[dot-findById()_7]] - `method` [EXTRACTED]
-- [[dot-findByPatientId()_2]] - `method` [EXTRACTED]
-- [[dot-findExpiredHolds()]] - `method` [EXTRACTED]
+- [[dot-findById()_6]] - `method` [EXTRACTED]
+- [[dot-findByPatientId()_1]] - `method` [EXTRACTED]
+- [[dot-findExpiredHolds()_1]] - `method` [EXTRACTED]
 - [[dot-findOverlappingAppointments()]] - `method` [EXTRACTED]
 - [[dot-save()_6]] - `method` [EXTRACTED]
 - [[AppointmentRepository]] - `implements` [EXTRACTED]

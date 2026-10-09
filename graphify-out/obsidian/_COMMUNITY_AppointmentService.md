@@ -1,49 +1,36 @@
 ---
 type: community
-members: 36
+members: 23
 ---
 
 # AppointmentService
 
-**Members:** 36 nodes
+**Members:** 23 nodes
 
 ## Members
-- [[dot-bookTemporaryHold()]] - code - backend/src/main/java/com/clinicadermatologica/app/application/service/AppointmentService.java
-- [[dot-cancelAppointment()]] - code - backend/src/main/java/com/clinicadermatologica/app/application/service/AppointmentService.java
-- [[dot-createDepositPreference()]] - code - backend/src/main/java/com/clinicadermatologica/app/infrastructure/payment/MercadoPagoPaymentAdapter.java
-- [[dot-expireHold()]] - code - backend/src/main/java/com/clinicadermatologica/app/application/service/AppointmentService.java
-- [[dot-findByAppointmentId()_2]] - code - backend/src/main/java/com/clinicadermatologica/app/domain/repository/PaymentTransactionRepository.java
-- [[dot-findByDateRange()_4]] - code - backend/src/main/java/com/clinicadermatologica/app/domain/repository/AppointmentRepository.java
-- [[dot-findByDateRange()_5]] - code - backend/src/main/java/com/clinicadermatologica/app/domain/repository/CalendarBlockRepository.java
-- [[dot-findById()_12]] - code - backend/src/main/java/com/clinicadermatologica/app/domain/repository/DermatologicServiceRepository.java
-- [[dot-findById()_13]] - code - backend/src/main/java/com/clinicadermatologica/app/domain/repository/PatientRepository.java
-- [[dot-findById()_14]] - code - backend/src/main/java/com/clinicadermatologica/app/domain/repository/UserRepository.java
-- [[dot-findExpiredHolds()_1]] - code - backend/src/main/java/com/clinicadermatologica/app/domain/repository/AppointmentRepository.java
-- [[dot-findOverlappingAppointments()_1]] - code - backend/src/main/java/com/clinicadermatologica/app/domain/repository/AppointmentRepository.java
-- [[dot-findOverlappingBlocks()_2]] - code - backend/src/main/java/com/clinicadermatologica/app/domain/repository/CalendarBlockRepository.java
-- [[dot-getAvailableSlots()]] - code - backend/src/main/java/com/clinicadermatologica/app/application/service/AppointmentService.java
-- [[dot-mapToDTO()_1]] - code - backend/src/main/java/com/clinicadermatologica/app/application/service/AppointmentService.java
-- [[dot-rejectPendingTransactions()]] - code - backend/src/main/java/com/clinicadermatologica/app/application/service/AppointmentService.java
-- [[dot-rejectPendingTransactions()_1]] - code - backend/src/main/java/com/clinicadermatologica/app/application/service/PaymentService.java
+- [[dot-getAppointmentById()_1]] - code - backend/src/main/java/com/clinicadermatologica/app/application/service/AppointmentService.java
+- [[dot-getAppointmentsByRange()]] - code - backend/src/main/java/com/clinicadermatologica/app/application/service/AppointmentService.java
+- [[dot-handleMercadoPagoWebhook()]] - code - backend/src/main/java/com/clinicadermatologica/app/presentation/controller/PaymentWebhookController.java
+- [[dot-refundPayment()]] - code - backend/src/main/java/com/clinicadermatologica/app/application/service/PaymentService.java
+- [[dot-refundPayment()_1]] - code - backend/src/main/java/com/clinicadermatologica/app/infrastructure/payment/MercadoPagoPaymentAdapter.java
 - [[dot-releaseExpiredHolds()]] - code - backend/src/main/java/com/clinicadermatologica/app/application/service/AppointmentService.java
-- [[dot-resolveInitPoint()]] - code - backend/src/main/java/com/clinicadermatologica/app/infrastructure/payment/MercadoPagoPaymentAdapter.java
-- [[dot-save()_10]] - code - backend/src/main/java/com/clinicadermatologica/app/domain/repository/AppointmentRepository.java
-- [[dot-save()_11]] - code - backend/src/main/java/com/clinicadermatologica/app/domain/repository/PaymentTransactionRepository.java
-- [[dot-testBookTemporaryHold_ExpiredOverlappingHold_IsReleased()]] - code - backend/src/test/java/com/clinicadermatologica/app/application/AppointmentServiceTest.java
-- [[dot-testBookTemporaryHold_SlotUnavailable_ThrowsException()]] - code - backend/src/test/java/com/clinicadermatologica/app/application/AppointmentServiceTest.java
-- [[dot-testBookTemporaryHold_Success()]] - code - backend/src/test/java/com/clinicadermatologica/app/application/AppointmentServiceTest.java
-- [[dot-testCancelAppointment_WithApprovedMercadoPagoPayment_TriggersRefund()]] - code - backend/src/test/java/com/clinicadermatologica/app/application/AppointmentServiceTest.java
-- [[dot-testGetAvailableSlots()]] - code - backend/src/test/java/com/clinicadermatologica/app/application/AppointmentServiceTest.java
-- [[dot-testReleaseExpiredHolds_CancelsAndRejectsPendingPayment()]] - code - backend/src/test/java/com/clinicadermatologica/app/application/AppointmentServiceTest.java
-- [[Appointment_7]] - code
-- [[Appointment_8]] - code
-- [[AppointmentController.java]] - code - backend/src/main/java/com/clinicadermatologica/app/presentation/controller/AppointmentController.java
-- [[AppointmentRepository]] - code - backend/src/main/java/com/clinicadermatologica/app/domain/repository/AppointmentRepository.java
+- [[dot-releaseExpiredHolds()_1]] - code - backend/src/main/java/com/clinicadermatologica/app/infrastructure/scheduling/HoldExpirationScheduler.java
 - [[AppointmentService]] - code - backend/src/main/java/com/clinicadermatologica/app/application/service/AppointmentService.java
-- [[AppointmentServiceTest]] - code - backend/src/test/java/com/clinicadermatologica/app/application/AppointmentServiceTest.java
-- [[DermatologicService_2]] - code
-- [[Patient_2]] - code
-- [[com.mercadopago.resources.preference.Preference]] - code
+- [[AppointmentService.java]] - code - backend/src/main/java/com/clinicadermatologica/app/application/service/AppointmentService.java
+- [[HoldExpirationScheduler]] - code - backend/src/main/java/com/clinicadermatologica/app/infrastructure/scheduling/HoldExpirationScheduler.java
+- [[HoldExpirationScheduler.java]] - code - backend/src/main/java/com/clinicadermatologica/app/infrastructure/scheduling/HoldExpirationScheduler.java
+- [[MercadoPagoPaymentAdapter]] - code - backend/src/main/java/com/clinicadermatologica/app/infrastructure/payment/MercadoPagoPaymentAdapter.java
+- [[MercadoPagoPaymentAdapter.java]] - code - backend/src/main/java/com/clinicadermatologica/app/infrastructure/payment/MercadoPagoPaymentAdapter.java
+- [[PaymentService]] - code - backend/src/main/java/com/clinicadermatologica/app/application/service/PaymentService.java
+- [[PaymentService.java]] - code - backend/src/main/java/com/clinicadermatologica/app/application/service/PaymentService.java
+- [[PaymentWebhookController]] - code - backend/src/main/java/com/clinicadermatologica/app/presentation/controller/PaymentWebhookController.java
+- [[PaymentWebhookController.java]] - code - backend/src/main/java/com/clinicadermatologica/app/presentation/controller/PaymentWebhookController.java
+- [[PostMapping_6]] - code
+- [[RequestMapping_6]] - code
+- [[RestController_6]] - code
+- [[com.mercadopago.resources.payment.PaymentRefund]] - code
+- [[lombok.extern.slf4j.Slf4j]] - code
+- [[org.springframework.scheduling.annotation.Scheduled]] - code
 
 ## Live Query (requires Dataview plugin)
 
@@ -53,35 +40,31 @@ SORT file.name ASC
 ```
 
 ## Connections to other communities
-- 33 edges to [[_COMMUNITY_org.junit.jupiter.api.DisplayName]]
-- 25 edges to [[_COMMUNITY_lombok.RequiredArgsConstructor]]
-- 12 edges to [[_COMMUNITY_org.springframework.transaction.annotation.Transactional]]
+- 11 edges to [[_COMMUNITY_AppointmentServiceTest]]
+- 10 edges to [[_COMMUNITY_lombok.RequiredArgsConstructor]]
+- 10 edges to [[_COMMUNITY_org.springframework.stereotype.Service]]
+- 9 edges to [[_COMMUNITY_PaymentServiceTest.java]]
 - 8 edges to [[_COMMUNITY_org.springframework.http.ResponseEntity]]
-- 7 edges to [[_COMMUNITY_Appointment]]
-- 7 edges to [[_COMMUNITY_UserRepository]]
-- 6 edges to [[_COMMUNITY_PaymentTransaction]]
-- 4 edges to [[_COMMUNITY_PatientRepository]]
-- 4 edges to [[_COMMUNITY_DermatologicServiceRepository]]
-- 4 edges to [[_COMMUNITY_MedicalRecordController]]
-- 3 edges to [[_COMMUNITY_MedicalRecordService]]
-- 3 edges to [[_COMMUNITY_AppointmentResponseDTO]]
-- 3 edges to [[_COMMUNITY_dot-isExpired]]
-- 2 edges to [[_COMMUNITY_CalendarBlock]]
-- 2 edges to [[_COMMUNITY_MedicalRecordServiceTest]]
-- 2 edges to [[_COMMUNITY_User]]
-- 1 edge to [[_COMMUNITY_PaymentPreferenceResponseDTO]]
-- 1 edge to [[_COMMUNITY_TimeSlotDTO]]
-- 1 edge to [[_COMMUNITY_Patient]]
-- 1 edge to [[_COMMUNITY_BookAppointmentRequestDTO]]
-- 1 edge to [[_COMMUNITY_DermatologicService]]
-- 1 edge to [[_COMMUNITY_ResourceNotFoundException]]
+- 8 edges to [[_COMMUNITY_org.springframework.transaction.annotation.Transactional]]
+- 7 edges to [[_COMMUNITY_org.springframework.stereotype.Component]]
+- 7 edges to [[_COMMUNITY_dot-bookTemporaryHold]]
+- 6 edges to [[_COMMUNITY_Appointment]]
+- 6 edges to [[_COMMUNITY_PaymentServiceTest]]
+- 4 edges to [[_COMMUNITY_GlobalExceptionHandler]]
+- 3 edges to [[_COMMUNITY_ClinicalImageService]]
+- 2 edges to [[_COMMUNITY_SecurityConfig.java]]
+- 2 edges to [[_COMMUNITY_MedicalRecordService]]
+- 2 edges to [[_COMMUNITY_AppointmentServiceTest.java]]
+- 2 edges to [[_COMMUNITY_dot-getAvailableSlots]]
+- 2 edges to [[_COMMUNITY_org.junit.jupiter.api.DisplayName]]
+- 1 edge to [[_COMMUNITY_CalendarBlock]]
 - 1 edge to [[_COMMUNITY_ServiceResponseDTO]]
-- 1 edge to [[_COMMUNITY_PatientResponseDTO]]
-- 1 edge to [[_COMMUNITY_CalendarBlockResponseDTO]]
+- 1 edge to [[_COMMUNITY_Patient]]
+- 1 edge to [[_COMMUNITY_dot-registerDepositPayment]]
 
 ## Top bridge nodes
-- [[AppointmentService]] - degree 29, connects to 8 communities
-- [[AppointmentServiceTest]] - degree 25, connects to 8 communities
-- [[dot-findById()_14]] - degree 16, connects to 7 communities
-- [[dot-bookTemporaryHold()]] - degree 20, connects to 5 communities
-- [[AppointmentRepository]] - degree 15, connects to 5 communities
+- [[AppointmentService]] - degree 29, connects to 12 communities
+- [[PaymentService]] - degree 23, connects to 10 communities
+- [[lombok.extern.slf4j.Slf4j]] - degree 28, connects to 8 communities
+- [[MercadoPagoPaymentAdapter]] - degree 15, connects to 6 communities
+- [[PaymentService.java]] - degree 11, connects to 5 communities

@@ -1,8 +1,8 @@
 ---
-source_file: "backend/src/main/java/com/clinicadermatologica/app/application/service/DermatologicServiceService.java"
+source_file: "backend/src/main/java/com/clinicadermatologica/app/presentation/controller/ServiceCatalogController.java"
 type: "code"
 community: "ServiceResponseDTO"
-location: "L48"
+location: "L46"
 tags:
   - graphify/code
   - graphify/EXTRACTED
@@ -12,11 +12,10 @@ tags:
 # .getServiceById()
 
 ## Connections
-- [[dot-findById()_12]] - `calls` [INFERRED]
 - [[dot-getServiceById()_1]] - `calls` [INFERRED]
-- [[DermatologicServiceService]] - `method` [EXTRACTED]
-- [[ResourceNotFoundException]] - `calls` [EXTRACTED]
+- [[GetMapping]] - `references` [EXTRACTED]
+- [[ServiceCatalogController]] - `method` [EXTRACTED]
 - [[ServiceResponseDTO]] - `references` [EXTRACTED]
-- [[org.springframework.transaction.annotation.Transactional]] - `references` [EXTRACTED]
+- [[org.springframework.http.ResponseEntity]] - `references` [EXTRACTED]
 
 #graphify/code #graphify/EXTRACTED #community/ServiceResponseDTO

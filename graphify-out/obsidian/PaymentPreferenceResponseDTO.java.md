@@ -1,12 +1,12 @@
 ---
 source_file: "backend/src/main/java/com/clinicadermatologica/app/presentation/dto/PaymentPreferenceResponseDTO.java"
 type: "code"
-community: "PaymentPreferenceResponseDTO"
+community: "AppointmentServiceTest.java"
 location: "L1"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/PaymentPreferenceResponseDTO
+  - community/AppointmentServiceTestjava
 ---
 
 # PaymentPreferenceResponseDTO.java
@@ -15,4 +15,4 @@ tags:
 - [[AppointmentServiceTest.java]] - `imports` [EXTRACTED]
 - [[PaymentPreferenceResponseDTO]] - `contains` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/PaymentPreferenceResponseDTO
+#graphify/code #graphify/EXTRACTED #community/AppointmentServiceTestjava

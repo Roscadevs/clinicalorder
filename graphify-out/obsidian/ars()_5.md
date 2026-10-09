@@ -1,18 +1,18 @@
 ---
-source_file: "frontend/src/features/admin/ServiceFormModal.tsx"
+source_file: "frontend/src/features/admin/AdminServicesView.tsx"
 type: "code"
-community: "api.ts"
-location: "L14"
+community: "cn"
+location: "L10"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/apits
+  - community/cn
 ---
 
 # ars()
 
 ## Connections
-- [[ServiceFormModal()]] - `calls` [EXTRACTED]
-- [[ServiceFormModal.tsx]] - `contains` [EXTRACTED]
+- [[AdminServicesView()]] - `calls` [EXTRACTED]
+- [[AdminServicesView.tsx]] - `contains` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/apits
+#graphify/code #graphify/EXTRACTED #community/cn

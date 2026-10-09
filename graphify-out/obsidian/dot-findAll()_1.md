@@ -14,6 +14,6 @@ tags:
 ## Connections
 - [[DermatologicService]] - `references` [EXTRACTED]
 - [[DermatologicServiceRepositoryAdapter]] - `method` [EXTRACTED]
-- [[Override_19]] - `references` [EXTRACTED]
+- [[Override_18]] - `references` [EXTRACTED]
 
 #graphify/code #graphify/EXTRACTED #community/DermatologicService

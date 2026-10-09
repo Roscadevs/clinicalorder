@@ -1,11 +1,11 @@
 ---
 source_file: ""
 type: "code"
-community: "MedicalRecordService"
+community: "MedicalRecordDTO"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/MedicalRecordService
+  - community/MedicalRecordDTO
 ---
 
 # MedicalRecord
@@ -14,4 +14,4 @@ tags:
 - [[dot-applyDtoToEntity()]] - `references` [EXTRACTED]
 - [[dot-mapRecordToDTO()]] - `references` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/MedicalRecordService
+#graphify/code #graphify/EXTRACTED #community/MedicalRecordDTO

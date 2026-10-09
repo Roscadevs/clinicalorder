@@ -1,12 +1,12 @@
 ---
 source_file: "frontend/src/features/appointments/RegisterPaymentStep.tsx"
 type: "code"
-community: "BookingWizard.tsx"
-location: "L34"
+community: "api.ts"
+location: "L37"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/BookingWizardtsx
+  - community/apits
 ---
 
 # RegisterPaymentStep()
@@ -14,7 +14,7 @@ tags:
 ## Connections
 - [[BookingWizard.tsx]] - `imports` [EXTRACTED]
 - [[RegisterPaymentStep.tsx]] - `contains` [EXTRACTED]
-- [[ars()_2]] - `calls` [EXTRACTED]
+- [[ars()_4]] - `calls` [EXTRACTED]
 - [[cn()]] - `calls` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/BookingWizardtsx
+#graphify/code #graphify/EXTRACTED #community/apits

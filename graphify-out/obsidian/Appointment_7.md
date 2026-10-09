@@ -1,18 +1,16 @@
 ---
 source_file: ""
 type: "code"
-community: "AppointmentService"
+community: "AppointmentServiceTest"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/AppointmentService
+  - community/AppointmentServiceTest
 ---
 
 # Appointment
 
 ## Connections
-- [[dot-expireHold()]] - `references` [EXTRACTED]
-- [[dot-mapToDTO()_1]] - `references` [EXTRACTED]
-- [[dot-rejectPendingTransactions()]] - `references` [EXTRACTED]
+- [[dot-rejectPendingTransactions()_1]] - `references` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/AppointmentService
+#graphify/code #graphify/EXTRACTED #community/AppointmentServiceTest

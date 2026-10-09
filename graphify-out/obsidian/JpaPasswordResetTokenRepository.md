@@ -12,7 +12,7 @@ tags:
 # JpaPasswordResetTokenRepository
 
 ## Connections
-- [[dot-findByToken()_1]] - `method` [EXTRACTED]
+- [[dot-findByToken()_2]] - `method` [EXTRACTED]
 - [[JpaPasswordResetTokenRepository.java]] - `contains` [EXTRACTED]
 - [[PasswordResetToken]] - `references` [EXTRACTED]
 - [[PasswordResetTokenRepositoryAdapter]] - `references` [EXTRACTED]

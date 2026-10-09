@@ -13,10 +13,10 @@ tags:
 
 ## Connections
 - [[dot-findAuditHistory()]] - `method` [EXTRACTED]
-- [[dot-findById()_9]] - `method` [EXTRACTED]
-- [[dot-findByPatientId()_3]] - `method` [EXTRACTED]
+- [[dot-findById()_7]] - `method` [EXTRACTED]
+- [[dot-findByPatientId()_2]] - `method` [EXTRACTED]
 - [[dot-save()_7]] - `method` [EXTRACTED]
-- [[dot-saveAudit()_1]] - `method` [EXTRACTED]
+- [[dot-saveAudit()]] - `method` [EXTRACTED]
 - [[JpaMedicalRecordAuditRepository]] - `references` [EXTRACTED]
 - [[JpaMedicalRecordRepository]] - `references` [EXTRACTED]
 - [[MedicalRecordRepository]] - `implements` [EXTRACTED]

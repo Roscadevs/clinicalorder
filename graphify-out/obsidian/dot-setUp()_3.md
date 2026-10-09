@@ -1,8 +1,8 @@
 ---
-source_file: "backend/src/test/java/com/clinicadermatologica/app/application/PaymentServiceTest.java"
+source_file: "backend/src/test/java/com/clinicadermatologica/app/application/MedicalRecordServiceTest.java"
 type: "code"
 community: "MedicalRecordServiceTest"
-location: "L51"
+location: "L52"
 tags:
   - graphify/code
   - graphify/EXTRACTED
@@ -12,7 +12,7 @@ tags:
 # .setUp()
 
 ## Connections
-- [[PaymentServiceTest]] - `method` [EXTRACTED]
+- [[MedicalRecordServiceTest]] - `method` [EXTRACTED]
 - [[org.junit.jupiter.api.BeforeEach]] - `references` [EXTRACTED]
 
 #graphify/code #graphify/EXTRACTED #community/MedicalRecordServiceTest

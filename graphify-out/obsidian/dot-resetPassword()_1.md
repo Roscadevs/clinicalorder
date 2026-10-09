@@ -1,26 +1,21 @@
 ---
-source_file: "backend/src/main/java/com/clinicadermatologica/app/application/service/AuthService.java"
+source_file: "backend/src/main/java/com/clinicadermatologica/app/presentation/controller/AuthController.java"
 type: "code"
-community: "UserRepository"
-location: "L97"
+community: "org.springframework.http.ResponseEntity"
+location: "L43"
 tags:
   - graphify/code
-  - graphify/INFERRED
-  - community/UserRepository
+  - graphify/EXTRACTED
+  - community/orgspringframeworkhttpResponseEntity
 ---
 
 # .resetPassword()
 
 ## Connections
-- [[dot-findByToken()_2]] - `calls` [INFERRED]
 - [[dot-resetPassword()]] - `calls` [INFERRED]
-- [[dot-save()_24]] - `calls` [INFERRED]
-- [[dot-save()_23]] - `calls` [INFERRED]
-- [[dot-testResetPassword_AlreadyUsedToken_ThrowsException()]] - `calls` [INFERRED]
-- [[dot-testResetPassword_ExpiredToken_ThrowsException()]] - `calls` [INFERRED]
-- [[dot-testResetPassword_Success()]] - `calls` [INFERRED]
-- [[AuthService]] - `method` [EXTRACTED]
+- [[AuthController]] - `method` [EXTRACTED]
+- [[PostMapping_5]] - `references` [EXTRACTED]
 - [[ResetPasswordRequestDTO]] - `references` [EXTRACTED]
-- [[org.springframework.transaction.annotation.Transactional]] - `references` [EXTRACTED]
+- [[org.springframework.http.ResponseEntity]] - `references` [EXTRACTED]
 
-#graphify/code #graphify/INFERRED #community/UserRepository
+#graphify/code #graphify/EXTRACTED #community/orgspringframeworkhttpResponseEntity

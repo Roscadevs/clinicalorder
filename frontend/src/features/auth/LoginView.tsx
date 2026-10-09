@@ -24,10 +24,8 @@ export const LoginView: React.FC = () => {
       localStorage.setItem('userId', response.userId.toString());
       localStorage.setItem('fullName', response.fullName);
 
-      if (response.role === 'SECRETARIA') navigate('/app/agenda');
-      else if (response.role === 'DOCTORA') navigate('/app/clinical');
-      else if (response.role === 'ADMIN') navigate('/app/admin');
-      else navigate('/app');
+      // La Agenda es la vista principal del sistema para todos los roles.
+      navigate('/app/agenda');
     } catch (err: any) {
       if (err.response?.status === 400 || err.response?.status === 401 || err.response?.status === 403) {
         setErrorMsg(err.response?.data?.message || 'Usuario o contraseña incorrectos.');
@@ -50,9 +48,7 @@ export const LoginView: React.FC = () => {
         localStorage.setItem('userId', String(simulatedUserId));
         localStorage.setItem('fullName', 'Usuario Demo');
 
-        if (simulatedRole === 'SECRETARIA') navigate('/app/agenda');
-        else if (simulatedRole === 'DOCTORA') navigate('/app/clinical');
-        else navigate('/app/admin');
+        navigate('/app/agenda');
       }
     } finally {
       setIsLoading(false);

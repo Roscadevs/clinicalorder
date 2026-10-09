@@ -13,8 +13,8 @@ tags:
 ## Connections
 - [[dot-delete()_3]] - `references` [EXTRACTED]
 - [[dot-existsById()_3]] - `references` [EXTRACTED]
-- [[dot-findById()_11]] - `references` [EXTRACTED]
-- [[dot-findByMedicalRecordId()_3]] - `references` [EXTRACTED]
+- [[dot-findById()_9]] - `references` [EXTRACTED]
+- [[dot-findByMedicalRecordId()_1]] - `references` [EXTRACTED]
 - [[dot-save()_9]] - `references` [EXTRACTED]
 
 #graphify/code #graphify/EXTRACTED #community/AntecedentePatologico

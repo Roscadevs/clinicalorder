@@ -1,18 +1,18 @@
 ---
 source_file: "backend/src/main/java/com/clinicadermatologica/app/presentation/controller/MedicalRecordController.java"
 type: "code"
-community: "MedicalRecordController"
+community: "MedicalRecordService"
 location: "L30"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/MedicalRecordController
+  - community/MedicalRecordService
 ---
 
 # MedicalRecordController
 
 ## Connections
-- [[dot-addAlergia()_1]] - `method` [EXTRACTED]
+- [[dot-addAlergia()]] - `method` [EXTRACTED]
 - [[dot-addAntecedentePatologico()_1]] - `method` [EXTRACTED]
 - [[dot-addClinicalEntry()_1]] - `method` [EXTRACTED]
 - [[dot-addHabito()_1]] - `method` [EXTRACTED]
@@ -35,4 +35,4 @@ tags:
 - [[lombok.RequiredArgsConstructor]] - `references` [EXTRACTED]
 - [[org.springframework.security.access.prepost.PreAuthorize]] - `references` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/MedicalRecordController
+#graphify/code #graphify/EXTRACTED #community/MedicalRecordService

@@ -1,12 +1,12 @@
 ---
 source_file: "frontend/src/features/appointments/PatientSearch.tsx"
 type: "code"
-community: "MedicalRecordView.tsx"
+community: "PatientDirectoryView.tsx"
 location: "L1"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/MedicalRecordViewtsx
+  - community/PatientDirectoryViewtsx
 ---
 
 # PatientSearch.tsx
@@ -27,4 +27,4 @@ tags:
 - [[react]] - `imports_from` [EXTRACTED]
 - [[typesindex.ts]] - `imports_from` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/MedicalRecordViewtsx
+#graphify/code #graphify/EXTRACTED #community/PatientDirectoryViewtsx

@@ -1,12 +1,12 @@
 ---
 source_file: "backend/src/main/java/com/clinicadermatologica/app/presentation/dto/FinalizePaymentRequestDTO.java"
 type: "code"
-community: "PaymentType"
+community: "PaymentServiceTest.java"
 location: "L15"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/PaymentType
+  - community/PaymentServiceTestjava
 ---
 
 # FinalizePaymentRequestDTO
@@ -24,4 +24,4 @@ tags:
 - [[PaymentType]] - `references` [EXTRACTED]
 - [[Setter_11]] - `references` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/PaymentType
+#graphify/code #graphify/EXTRACTED #community/PaymentServiceTestjava

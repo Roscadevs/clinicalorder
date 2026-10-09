@@ -1,12 +1,12 @@
 ---
 source_file: "backend/src/main/java/com/clinicadermatologica/app/infrastructure/security/JwtTokenProvider.java"
 type: "code"
-community: "MedicalRecordServiceTest"
+community: "GlobalExceptionHandler"
 location: "L1"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/MedicalRecordServiceTest
+  - community/GlobalExceptionHandler
 ---
 
 # JwtTokenProvider.java
@@ -17,4 +17,4 @@ tags:
 - [[javax.crypto.SecretKey]] - `imports` [EXTRACTED]
 - [[org.springframework.stereotype.Component]] - `imports` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/MedicalRecordServiceTest
+#graphify/code #graphify/EXTRACTED #community/GlobalExceptionHandler

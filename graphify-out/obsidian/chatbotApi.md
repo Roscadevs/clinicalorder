@@ -1,12 +1,12 @@
 ---
 source_file: "frontend/src/services/api.ts"
 type: "code"
-community: "DashboardLayout.tsx"
-location: "L685"
+community: "api.ts"
+location: "L714"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/DashboardLayouttsx
+  - community/apits
 ---
 
 # chatbotApi
@@ -15,4 +15,4 @@ tags:
 - [[GeminiChatbotWidget.tsx]] - `imports` [EXTRACTED]
 - [[api.ts]] - `contains` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/DashboardLayouttsx
+#graphify/code #graphify/EXTRACTED #community/apits

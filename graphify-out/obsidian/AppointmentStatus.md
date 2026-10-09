@@ -1,12 +1,12 @@
 ---
 source_file: "backend/src/main/java/com/clinicadermatologica/app/domain/model/AppointmentStatus.java"
 type: "code"
-community: "AppointmentStatus"
+community: "Appointment"
 location: "L6"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/AppointmentStatus
+  - community/Appointment
 ---
 
 # AppointmentStatus
@@ -29,4 +29,4 @@ tags:
 - [[PaymentReceiptDTO]] - `references` [EXTRACTED]
 - [[PaymentReceiptDTO.java]] - `imports` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/AppointmentStatus
+#graphify/code #graphify/EXTRACTED #community/Appointment

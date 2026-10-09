@@ -1,12 +1,12 @@
 ---
 source_file: "frontend/src/types/index.ts"
 type: "code"
-community: "api.ts"
+community: "cn"
 location: "L29"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/apits
+  - community/cn
 ---
 
 # DermatologicService
@@ -20,4 +20,4 @@ tags:
 - [[api.ts]] - `imports` [EXTRACTED]
 - [[typesindex.ts]] - `contains` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/apits
+#graphify/code #graphify/EXTRACTED #community/cn

@@ -1,20 +1,27 @@
 ---
-source_file: "backend/src/main/java/com/clinicadermatologica/app/infrastructure/persistence/adapter/AntecedentePatologicoRepositoryAdapter.java"
+source_file: "backend/src/main/java/com/clinicadermatologica/app/domain/repository/PatientRepository.java"
 type: "code"
-community: "AntecedentePatologico"
-location: "L31"
+community: ".bookTemporaryHold"
+location: "L12"
 tags:
   - graphify/code
-  - graphify/EXTRACTED
-  - community/AntecedentePatologico
+  - graphify/INFERRED
+  - community/bookTemporaryHold
 ---
 
 # .findById()
 
 ## Connections
-- [[AntecedentePatologico]] - `references` [EXTRACTED]
-- [[AntecedentePatologicoId]] - `references` [EXTRACTED]
-- [[AntecedentePatologicoRepositoryAdapter]] - `method` [EXTRACTED]
-- [[Override_10]] - `references` [EXTRACTED]
+- [[dot-bookTemporaryHold()]] - `calls` [INFERRED]
+- [[dot-deactivatePatient()]] - `calls` [INFERRED]
+- [[dot-getPatientById()]] - `calls` [INFERRED]
+- [[dot-saveOrUpdateMedicalRecord()]] - `calls` [INFERRED]
+- [[dot-testBookTemporaryHold_ExpiredOverlappingHold_IsReleased()]] - `calls` [INFERRED]
+- [[dot-testBookTemporaryHold_SlotUnavailable_ThrowsException()]] - `calls` [INFERRED]
+- [[dot-testBookTemporaryHold_Success()]] - `calls` [INFERRED]
+- [[dot-testSaveInitialMedicalRecord_Success()]] - `calls` [INFERRED]
+- [[dot-updatePatient()]] - `calls` [INFERRED]
+- [[Patient_1]] - `references` [EXTRACTED]
+- [[PatientRepository]] - `method` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/AntecedentePatologico
+#graphify/code #graphify/INFERRED #community/bookTemporaryHold

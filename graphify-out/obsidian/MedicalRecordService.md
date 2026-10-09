@@ -12,7 +12,7 @@ tags:
 # MedicalRecordService
 
 ## Connections
-- [[dot-addAlergia()]] - `method` [EXTRACTED]
+- [[dot-addAlergia()_1]] - `method` [EXTRACTED]
 - [[dot-addAntecedentePatologico()]] - `method` [EXTRACTED]
 - [[dot-addClinicalEntry()]] - `method` [EXTRACTED]
 - [[dot-addHabito()]] - `method` [EXTRACTED]

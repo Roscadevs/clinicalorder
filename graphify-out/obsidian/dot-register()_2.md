@@ -1,18 +1,18 @@
 ---
 source_file: "backend/src/main/java/com/clinicadermatologica/app/infrastructure/payment/strategy/MercadoPagoPaymentStrategy.java"
 type: "code"
-community: "PaymentTransaction"
+community: "org.springframework.stereotype.Component"
 location: "L30"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/PaymentTransaction
+  - community/orgspringframeworkstereotypeComponent
 ---
 
 # .register()
 
 ## Connections
-- [[dot-save()_11]] - `calls` [INFERRED]
+- [[dot-save()_13]] - `calls` [INFERRED]
 - [[Appointment_4]] - `references` [EXTRACTED]
 - [[MercadoPagoPaymentStrategy]] - `method` [EXTRACTED]
 - [[Override_2]] - `references` [EXTRACTED]
@@ -20,4 +20,4 @@ tags:
 - [[PaymentTransaction]] - `references` [EXTRACTED]
 - [[User]] - `references` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/PaymentTransaction
+#graphify/code #graphify/EXTRACTED #community/orgspringframeworkstereotypeComponent

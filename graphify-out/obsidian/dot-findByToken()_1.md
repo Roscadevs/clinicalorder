@@ -1,8 +1,8 @@
 ---
-source_file: "backend/src/main/java/com/clinicadermatologica/app/infrastructure/persistence/jpa/JpaPasswordResetTokenRepository.java"
+source_file: "backend/src/main/java/com/clinicadermatologica/app/infrastructure/persistence/adapter/PasswordResetTokenRepositoryAdapter.java"
 type: "code"
 community: "PasswordResetToken"
-location: "L14"
+location: "L20"
 tags:
   - graphify/code
   - graphify/EXTRACTED
@@ -12,8 +12,9 @@ tags:
 # .findByToken()
 
 ## Connections
-- [[dot-findByToken()]] - `calls` [INFERRED]
-- [[JpaPasswordResetTokenRepository]] - `method` [EXTRACTED]
+- [[dot-findByToken()_2]] - `calls` [INFERRED]
+- [[Override_20]] - `references` [EXTRACTED]
 - [[PasswordResetToken]] - `references` [EXTRACTED]
+- [[PasswordResetTokenRepositoryAdapter]] - `method` [EXTRACTED]
 
 #graphify/code #graphify/EXTRACTED #community/PasswordResetToken

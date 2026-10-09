@@ -1,12 +1,12 @@
 ---
 source_file: "backend/src/main/java/com/clinicadermatologica/app/infrastructure/payment/strategy/BankTransferPaymentStrategy.java"
 type: "code"
-community: "lombok.RequiredArgsConstructor"
+community: "org.springframework.stereotype.Component"
 location: "L1"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/lombokRequiredArgsConstructor
+  - community/orgspringframeworkstereotypeComponent
 ---
 
 # BankTransferPaymentStrategy.java
@@ -18,4 +18,4 @@ tags:
 - [[lombok.RequiredArgsConstructor]] - `imports` [EXTRACTED]
 - [[org.springframework.stereotype.Component]] - `imports` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/lombokRequiredArgsConstructor
+#graphify/code #graphify/EXTRACTED #community/orgspringframeworkstereotypeComponent

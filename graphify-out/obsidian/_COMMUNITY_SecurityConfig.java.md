@@ -36,9 +36,10 @@ SORT file.name ASC
 ```
 
 ## Connections to other communities
-- 4 edges to [[_COMMUNITY_lombok.RequiredArgsConstructor]]
-- 2 edges to [[_COMMUNITY_UserRepository]]
-- 1 edge to [[_COMMUNITY_JwtAuthenticationFilter]]
+- 2 edges to [[_COMMUNITY_AppointmentService]]
+- 2 edges to [[_COMMUNITY_lombok.RequiredArgsConstructor]]
+- 2 edges to [[_COMMUNITY_org.springframework.stereotype.Service]]
+- 1 edge to [[_COMMUNITY_GlobalExceptionHandler]]
 
 ## Top bridge nodes
 - [[SecurityConfig.java]] - degree 11, connects to 2 communities

@@ -1,12 +1,12 @@
 ---
 source_file: "backend/src/main/java/com/clinicadermatologica/app/presentation/controller/MedicalRecordController.java"
 type: "code"
-community: "Habito"
+community: ".addHabito"
 location: "L156"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/Habito
+  - community/addHabito
 ---
 
 # .addHabito()
@@ -16,7 +16,7 @@ tags:
 - [[HabitoRequestDTO]] - `references` [EXTRACTED]
 - [[HabitoResponseDTO]] - `references` [EXTRACTED]
 - [[MedicalRecordController]] - `method` [EXTRACTED]
-- [[PostMapping_5]] - `references` [EXTRACTED]
+- [[PostMapping]] - `references` [EXTRACTED]
 - [[org.springframework.http.ResponseEntity]] - `references` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/Habito
+#graphify/code #graphify/EXTRACTED #community/addHabito

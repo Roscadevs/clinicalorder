@@ -1,16 +1,16 @@
 ---
 source_file: ""
 type: "code"
-community: "ServiceResponseDTO"
+community: "lombok.RequiredArgsConstructor"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/ServiceResponseDTO
+  - community/lombokRequiredArgsConstructor
 ---
 
 # RequestMapping
 
 ## Connections
-- [[ServiceCatalogController]] - `references` [EXTRACTED]
+- [[GeminiChatbotController]] - `references` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/ServiceResponseDTO
+#graphify/code #graphify/EXTRACTED #community/lombokRequiredArgsConstructor

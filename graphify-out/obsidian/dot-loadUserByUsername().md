@@ -1,12 +1,12 @@
 ---
 source_file: "backend/src/main/java/com/clinicadermatologica/app/infrastructure/security/CustomUserDetailsService.java"
 type: "code"
-community: "org.springframework.transaction.annotation.Transactional"
+community: ".login"
 location: "L26"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/orgspringframeworktransactionannotationTransactional
+  - community/login
 ---
 
 # .loadUserByUsername()
@@ -15,8 +15,8 @@ tags:
 - [[dot-doFilterInternal()]] - `calls` [INFERRED]
 - [[dot-findByUsername()_2]] - `calls` [INFERRED]
 - [[CustomUserDetailsService]] - `method` [EXTRACTED]
-- [[Override_18]] - `references` [EXTRACTED]
+- [[Override_17]] - `references` [EXTRACTED]
 - [[User]] - `calls` [INFERRED]
 - [[UserDetails]] - `references` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/orgspringframeworktransactionannotationTransactional
+#graphify/code #graphify/EXTRACTED #community/login

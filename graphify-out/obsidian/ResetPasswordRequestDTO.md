@@ -12,13 +12,13 @@ tags:
 # ResetPasswordRequestDTO
 
 ## Connections
-- [[dot-resetPassword()_1]] - `references` [EXTRACTED]
 - [[dot-resetPassword()]] - `references` [EXTRACTED]
-- [[AllArgsConstructor_15]] - `references` [EXTRACTED]
-- [[Builder_14]] - `references` [EXTRACTED]
-- [[Getter_15]] - `references` [EXTRACTED]
-- [[NoArgsConstructor_15]] - `references` [EXTRACTED]
+- [[dot-resetPassword()_1]] - `references` [EXTRACTED]
+- [[AllArgsConstructor_14]] - `references` [EXTRACTED]
+- [[Builder_13]] - `references` [EXTRACTED]
+- [[Getter_14]] - `references` [EXTRACTED]
+- [[NoArgsConstructor_14]] - `references` [EXTRACTED]
 - [[ResetPasswordRequestDTO.java]] - `contains` [EXTRACTED]
-- [[Setter_15]] - `references` [EXTRACTED]
+- [[Setter_14]] - `references` [EXTRACTED]
 
 #graphify/code #graphify/EXTRACTED #community/ResetPasswordRequestDTO

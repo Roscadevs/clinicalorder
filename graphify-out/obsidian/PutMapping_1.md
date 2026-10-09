@@ -1,16 +1,16 @@
 ---
 source_file: ""
 type: "code"
-community: "ServiceResponseDTO"
+community: "org.springframework.http.ResponseEntity"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/ServiceResponseDTO
+  - community/orgspringframeworkhttpResponseEntity
 ---
 
 # PutMapping
 
 ## Connections
-- [[dot-updateService()]] - `references` [EXTRACTED]
+- [[dot-updateService()_1]] - `references` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/ServiceResponseDTO
+#graphify/code #graphify/EXTRACTED #community/orgspringframeworkhttpResponseEntity

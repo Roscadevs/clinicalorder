@@ -1,16 +1,16 @@
 ---
 source_file: ""
 type: "code"
-community: "BookAppointmentRequestDTO"
+community: "AppointmentServiceTest.java"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/BookAppointmentRequestDTO
+  - community/AppointmentServiceTestjava
 ---
 
 # AllArgsConstructor
 
 ## Connections
-- [[BookAppointmentRequestDTO]] - `references` [EXTRACTED]
+- [[TimeSlotDTO]] - `references` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/BookAppointmentRequestDTO
+#graphify/code #graphify/EXTRACTED #community/AppointmentServiceTestjava

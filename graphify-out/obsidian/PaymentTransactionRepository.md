@@ -1,22 +1,22 @@
 ---
 source_file: "backend/src/main/java/com/clinicadermatologica/app/domain/repository/PaymentTransactionRepository.java"
 type: "code"
-community: "lombok.RequiredArgsConstructor"
+community: "org.springframework.stereotype.Component"
 location: "L11"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/lombokRequiredArgsConstructor
+  - community/orgspringframeworkstereotypeComponent
 ---
 
 # PaymentTransactionRepository
 
 ## Connections
-- [[dot-findByAppointmentId()_2]] - `method` [EXTRACTED]
+- [[dot-findByAppointmentId()_1]] - `method` [EXTRACTED]
 - [[dot-findById()]] - `method` [EXTRACTED]
 - [[dot-findByMpPaymentId()]] - `method` [EXTRACTED]
 - [[dot-findByMpPreferenceId()_2]] - `method` [EXTRACTED]
-- [[dot-save()_11]] - `method` [EXTRACTED]
+- [[dot-save()_13]] - `method` [EXTRACTED]
 - [[AppointmentService]] - `references` [EXTRACTED]
 - [[AppointmentServiceTest]] - `references` [EXTRACTED]
 - [[BankTransferPaymentStrategy]] - `references` [EXTRACTED]
@@ -31,4 +31,4 @@ tags:
 - [[PaymentTransactionRepositoryAdapter]] - `implements` [EXTRACTED]
 - [[PaymentTransactionRepositoryAdapter.java]] - `imports` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/lombokRequiredArgsConstructor
+#graphify/code #graphify/EXTRACTED #community/orgspringframeworkstereotypeComponent

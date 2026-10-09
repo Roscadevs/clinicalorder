@@ -1,12 +1,12 @@
 ---
 source_file: "backend/src/main/java/com/clinicadermatologica/app/domain/exception/SlotUnavailableException.java"
 type: "code"
-community: "GlobalExceptionHandler"
+community: "AppointmentServiceTest.java"
 location: "L6"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/GlobalExceptionHandler
+  - community/AppointmentServiceTestjava
 ---
 
 # SlotUnavailableException
@@ -17,4 +17,4 @@ tags:
 - [[AppointmentServiceTest.java]] - `imports` [EXTRACTED]
 - [[SlotUnavailableException.java]] - `contains` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/GlobalExceptionHandler
+#graphify/code #graphify/EXTRACTED #community/AppointmentServiceTestjava

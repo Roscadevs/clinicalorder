@@ -1,16 +1,16 @@
 ---
 source_file: ""
 type: "code"
-community: "TimeSlotDTO"
+community: "AntecedentePatologico"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/TimeSlotDTO
+  - community/AntecedentePatologico
 ---
 
 # Builder
 
 ## Connections
-- [[TimeSlotDTO]] - `references` [EXTRACTED]
+- [[AntecedentePatologico]] - `references` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/TimeSlotDTO
+#graphify/code #graphify/EXTRACTED #community/AntecedentePatologico

@@ -1,16 +1,16 @@
 ---
 source_file: ""
 type: "code"
-community: "AlergiaId"
+community: ".addHabito"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/AlergiaId
+  - community/addHabito
 ---
 
 # AllArgsConstructor
 
 ## Connections
-- [[AlergiaId]] - `references` [EXTRACTED]
+- [[HabitoRequestDTO]] - `references` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/AlergiaId
+#graphify/code #graphify/EXTRACTED #community/addHabito

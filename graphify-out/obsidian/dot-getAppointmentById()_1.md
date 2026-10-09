@@ -1,22 +1,21 @@
 ---
-source_file: "backend/src/main/java/com/clinicadermatologica/app/presentation/controller/AppointmentController.java"
+source_file: "backend/src/main/java/com/clinicadermatologica/app/application/service/AppointmentService.java"
 type: "code"
-community: "org.springframework.http.ResponseEntity"
-location: "L64"
+community: "AppointmentService"
+location: "L301"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/orgspringframeworkhttpResponseEntity
+  - community/AppointmentService
 ---
 
 # .getAppointmentById()
 
 ## Connections
+- [[dot-findById()_13]] - `calls` [INFERRED]
 - [[dot-getAppointmentById()]] - `calls` [INFERRED]
-- [[AppointmentController]] - `method` [EXTRACTED]
 - [[AppointmentResponseDTO]] - `references` [EXTRACTED]
-- [[GetMapping_2]] - `references` [EXTRACTED]
-- [[org.springframework.http.ResponseEntity]] - `references` [EXTRACTED]
-- [[org.springframework.security.access.prepost.PreAuthorize]] - `references` [EXTRACTED]
+- [[AppointmentService]] - `method` [EXTRACTED]
+- [[org.springframework.transaction.annotation.Transactional]] - `references` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/orgspringframeworkhttpResponseEntity
+#graphify/code #graphify/EXTRACTED #community/AppointmentService

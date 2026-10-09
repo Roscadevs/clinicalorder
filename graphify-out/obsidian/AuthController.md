@@ -1,25 +1,25 @@
 ---
 source_file: "backend/src/main/java/com/clinicadermatologica/app/presentation/controller/AuthController.java"
 type: "code"
-community: "AuthController"
+community: "org.springframework.http.ResponseEntity"
 location: "L16"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/AuthController
+  - community/orgspringframeworkhttpResponseEntity
 ---
 
 # AuthController
 
 ## Connections
-- [[dot-forgotPassword()]] - `method` [EXTRACTED]
+- [[dot-forgotPassword()_1]] - `method` [EXTRACTED]
 - [[dot-login()]] - `method` [EXTRACTED]
-- [[dot-register()_4]] - `method` [EXTRACTED]
-- [[dot-resetPassword()]] - `method` [EXTRACTED]
+- [[dot-register()_3]] - `method` [EXTRACTED]
+- [[dot-resetPassword()_1]] - `method` [EXTRACTED]
 - [[AuthController.java]] - `contains` [EXTRACTED]
 - [[AuthService]] - `references` [EXTRACTED]
-- [[RequestMapping_1]] - `references` [EXTRACTED]
-- [[RestController_1]] - `references` [EXTRACTED]
+- [[RequestMapping_4]] - `references` [EXTRACTED]
+- [[RestController_4]] - `references` [EXTRACTED]
 - [[lombok.RequiredArgsConstructor]] - `references` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/AuthController
+#graphify/code #graphify/EXTRACTED #community/orgspringframeworkhttpResponseEntity

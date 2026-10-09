@@ -1,12 +1,12 @@
 ---
 source_file: "backend/src/main/java/com/clinicadermatologica/app/domain/repository/MedicalRecordRepository.java"
 type: "code"
-community: "MedicalRecordController"
+community: "MedicalRecordService"
 location: "L17"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/MedicalRecordController
+  - community/MedicalRecordService
 ---
 
 # .findAuditHistory()
@@ -16,4 +16,4 @@ tags:
 - [[MedicalRecordAudit]] - `references` [EXTRACTED]
 - [[MedicalRecordRepository]] - `method` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/MedicalRecordController
+#graphify/code #graphify/EXTRACTED #community/MedicalRecordService

@@ -1,11 +1,11 @@
 ---
 source_file: ""
 type: "code"
-community: "MedicalRecordController"
+community: "MedicalRecordService"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/MedicalRecordController
+  - community/MedicalRecordService
 ---
 
 # RestController
@@ -13,4 +13,4 @@ tags:
 ## Connections
 - [[MedicalRecordController]] - `references` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/MedicalRecordController
+#graphify/code #graphify/EXTRACTED #community/MedicalRecordService

@@ -1,8 +1,8 @@
 ---
-source_file: "backend/src/main/java/com/clinicadermatologica/app/infrastructure/persistence/adapter/AppointmentRepositoryAdapter.java"
+source_file: "backend/src/main/java/com/clinicadermatologica/app/domain/repository/AppointmentRepository.java"
 type: "code"
 community: "Appointment"
-location: "L48"
+location: "L22"
 tags:
   - graphify/code
   - graphify/EXTRACTED
@@ -12,9 +12,9 @@ tags:
 # .findExpiredHolds()
 
 ## Connections
-- [[dot-findByStatusAndCreatedAtBefore()]] - `calls` [INFERRED]
+- [[dot-releaseExpiredHolds()]] - `calls` [INFERRED]
+- [[dot-testReleaseExpiredHolds_CancelsAndRejectsPendingPayment()]] - `calls` [INFERRED]
 - [[Appointment]] - `references` [EXTRACTED]
-- [[AppointmentRepositoryAdapter]] - `method` [EXTRACTED]
-- [[Override_7]] - `references` [EXTRACTED]
+- [[AppointmentRepository]] - `method` [EXTRACTED]
 
 #graphify/code #graphify/EXTRACTED #community/Appointment

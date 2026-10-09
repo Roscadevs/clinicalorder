@@ -1,18 +1,18 @@
 ---
 source_file: "backend/src/main/java/com/clinicadermatologica/app/domain/model/PaymentTransaction.java"
 type: "code"
-community: "PaymentTransaction"
+community: "org.springframework.stereotype.Component"
 location: "L20"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/PaymentTransaction
+  - community/orgspringframeworkstereotypeComponent
 ---
 
 # PaymentTransaction
 
 ## Connections
-- [[dot-findByAppointmentId()_2]] - `references` [EXTRACTED]
+- [[dot-findByAppointmentId()_1]] - `references` [EXTRACTED]
 - [[dot-findByAppointmentId()]] - `references` [EXTRACTED]
 - [[dot-findByAppointmentIdOrderByCreatedAtAsc()]] - `references` [EXTRACTED]
 - [[dot-findById()]] - `references` [EXTRACTED]
@@ -24,12 +24,12 @@ tags:
 - [[dot-findByMpPreferenceId()]] - `references` [EXTRACTED]
 - [[dot-findByMpPreferenceId()_1]] - `references` [EXTRACTED]
 - [[dot-refundPayment()]] - `references` [EXTRACTED]
-- [[dot-register()_3]] - `references` [EXTRACTED]
+- [[dot-register()_4]] - `references` [EXTRACTED]
 - [[dot-register()]] - `references` [EXTRACTED]
 - [[dot-register()_1]] - `references` [EXTRACTED]
 - [[dot-register()_2]] - `references` [EXTRACTED]
 - [[dot-rejectPendingTransactions()_1]] - `references` [EXTRACTED]
-- [[dot-save()_11]] - `references` [EXTRACTED]
+- [[dot-save()_13]] - `references` [EXTRACTED]
 - [[dot-save()]] - `references` [EXTRACTED]
 - [[AllArgsConstructor]] - `references` [EXTRACTED]
 - [[Appointment]] - `references` [EXTRACTED]
@@ -39,7 +39,7 @@ tags:
 - [[JpaPaymentTransactionRepository]] - `references` [EXTRACTED]
 - [[JpaPaymentTransactionRepository.java]] - `imports` [EXTRACTED]
 - [[NoArgsConstructor]] - `references` [EXTRACTED]
-- [[PaymentConcept_1]] - `references` [EXTRACTED]
+- [[PaymentConcept]] - `references` [EXTRACTED]
 - [[PaymentStatus]] - `references` [EXTRACTED]
 - [[PaymentTransaction.java]] - `contains` [EXTRACTED]
 - [[PaymentTransactionRepository.java]] - `imports` [EXTRACTED]
@@ -49,4 +49,4 @@ tags:
 - [[Table]] - `references` [EXTRACTED]
 - [[User]] - `references` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/PaymentTransaction
+#graphify/code #graphify/EXTRACTED #community/orgspringframeworkstereotypeComponent

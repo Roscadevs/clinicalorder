@@ -1,12 +1,12 @@
 ---
 source_file: "backend/src/main/java/com/clinicadermatologica/app/infrastructure/security/JwtTokenProvider.java"
 type: "code"
-community: "UserRepository"
+community: ".login"
 location: "L40"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/UserRepository
+  - community/login
 ---
 
 # .generateToken()
@@ -17,4 +17,4 @@ tags:
 - [[JwtTokenProvider]] - `method` [EXTRACTED]
 - [[User]] - `references` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/UserRepository
+#graphify/code #graphify/EXTRACTED #community/login

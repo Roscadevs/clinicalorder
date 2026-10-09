@@ -1,16 +1,16 @@
 ---
 source_file: ""
 type: "code"
-community: "User"
+community: "lombok.RequiredArgsConstructor"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/User
+  - community/lombokRequiredArgsConstructor
 ---
 
 # Setter
 
 ## Connections
-- [[User]] - `references` [EXTRACTED]
+- [[GeminiChatResponseDTO]] - `references` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/User
+#graphify/code #graphify/EXTRACTED #community/lombokRequiredArgsConstructor

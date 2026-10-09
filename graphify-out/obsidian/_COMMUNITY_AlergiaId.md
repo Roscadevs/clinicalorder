@@ -1,47 +1,35 @@
 ---
 type: community
-members: 35
+members: 23
 ---
 
 # AlergiaId
 
-**Members:** 35 nodes
+**Members:** 23 nodes
 
 ## Members
+- [[dot-addAlergia()_1]] - code - backend/src/main/java/com/clinicadermatologica/app/application/service/MedicalRecordService.java
 - [[dot-delete()_4]] - code - backend/src/main/java/com/clinicadermatologica/app/domain/repository/AlergiaRepository.java
-- [[dot-delete()_5]] - code - backend/src/main/java/com/clinicadermatologica/app/infrastructure/persistence/adapter/AlergiaRepositoryAdapter.java
 - [[dot-equals()_2]] - code - backend/src/main/java/com/clinicadermatologica/app/domain/model/AlergiaId.java
-- [[dot-existsById()_5]] - code - backend/src/main/java/com/clinicadermatologica/app/infrastructure/persistence/adapter/AlergiaRepositoryAdapter.java
-- [[dot-findById()_21]] - code - backend/src/main/java/com/clinicadermatologica/app/domain/repository/AlergiaRepository.java
-- [[dot-findById()_22]] - code - backend/src/main/java/com/clinicadermatologica/app/infrastructure/persistence/adapter/AlergiaRepositoryAdapter.java
-- [[dot-findByIdMedicalRecordId()_2]] - code - backend/src/main/java/com/clinicadermatologica/app/infrastructure/persistence/jpa/JpaAlergiaRepository.java
-- [[dot-findByMedicalRecordId()_4]] - code - backend/src/main/java/com/clinicadermatologica/app/domain/repository/AlergiaRepository.java
-- [[dot-findByMedicalRecordId()_5]] - code - backend/src/main/java/com/clinicadermatologica/app/infrastructure/persistence/adapter/AlergiaRepositoryAdapter.java
+- [[dot-existsById()_4]] - code - backend/src/main/java/com/clinicadermatologica/app/domain/repository/AlergiaRepository.java
+- [[dot-findById()_20]] - code - backend/src/main/java/com/clinicadermatologica/app/domain/repository/AlergiaRepository.java
+- [[dot-findById()_21]] - code - backend/src/main/java/com/clinicadermatologica/app/domain/repository/MedicalRecordRepository.java
 - [[dot-hashCode()_2]] - code - backend/src/main/java/com/clinicadermatologica/app/domain/model/AlergiaId.java
-- [[dot-save()_19]] - code - backend/src/main/java/com/clinicadermatologica/app/infrastructure/persistence/adapter/AlergiaRepositoryAdapter.java
-- [[Alergia]] - code - backend/src/main/java/com/clinicadermatologica/app/domain/model/Alergia.java
-- [[Alergia.java]] - code - backend/src/main/java/com/clinicadermatologica/app/domain/model/Alergia.java
+- [[dot-save()_20]] - code - backend/src/main/java/com/clinicadermatologica/app/domain/repository/AlergiaRepository.java
+- [[dot-testAddAlergia_DuplicateTipo_Throws()]] - code - backend/src/test/java/com/clinicadermatologica/app/application/MedicalRecordServiceTest.java
+- [[dot-testAddAlergia_Success()]] - code - backend/src/test/java/com/clinicadermatologica/app/application/MedicalRecordServiceTest.java
 - [[AlergiaId]] - code - backend/src/main/java/com/clinicadermatologica/app/domain/model/AlergiaId.java
 - [[AlergiaId.java]] - code - backend/src/main/java/com/clinicadermatologica/app/domain/model/AlergiaId.java
 - [[AlergiaRepository]] - code - backend/src/main/java/com/clinicadermatologica/app/domain/repository/AlergiaRepository.java
 - [[AlergiaRepository.java]] - code - backend/src/main/java/com/clinicadermatologica/app/domain/repository/AlergiaRepository.java
-- [[AlergiaRepositoryAdapter]] - code - backend/src/main/java/com/clinicadermatologica/app/infrastructure/persistence/adapter/AlergiaRepositoryAdapter.java
 - [[AlergiaRepositoryAdapter.java]] - code - backend/src/main/java/com/clinicadermatologica/app/infrastructure/persistence/adapter/AlergiaRepositoryAdapter.java
 - [[AllArgsConstructor_39]] - code
-- [[AllArgsConstructor_40]] - code
 - [[AntecedentePatologicoId.java]] - code - backend/src/main/java/com/clinicadermatologica/app/domain/model/AntecedentePatologicoId.java
-- [[Builder_37]] - code
-- [[Entity_12]] - code
 - [[Getter_39]] - code
-- [[Getter_40]] - code
 - [[HabitoId.java]] - code - backend/src/main/java/com/clinicadermatologica/app/domain/model/HabitoId.java
 - [[NoArgsConstructor_39]] - code
-- [[NoArgsConstructor_40]] - code
 - [[Override_16]] - code
-- [[Override_17]] - code
 - [[Setter_39]] - code
-- [[Setter_40]] - code
-- [[Table_12]] - code
 - [[jakarta.persistence.Embeddable]] - code
 
 ## Live Query (requires Dataview plugin)
@@ -52,19 +40,25 @@ SORT file.name ASC
 ```
 
 ## Connections to other communities
-- 11 edges to [[_COMMUNITY_MedicalRecordServiceTest]]
-- 7 edges to [[_COMMUNITY_org.springframework.data.jpa.repository.JpaRepository]]
-- 4 edges to [[_COMMUNITY_lombok.RequiredArgsConstructor]]
-- 2 edges to [[_COMMUNITY_MedicalRecordService]]
+- 10 edges to [[_COMMUNITY_Alergia]]
+- 6 edges to [[_COMMUNITY_org.junit.jupiter.api.DisplayName]]
+- 5 edges to [[_COMMUNITY_MedicalRecordService]]
+- 3 edges to [[_COMMUNITY_AntecedentePatologico]]
+- 3 edges to [[_COMMUNITY_MedicalRecordServiceTest]]
+- 3 edges to [[_COMMUNITY_org.springframework.data.jpa.repository.JpaRepository]]
 - 2 edges to [[_COMMUNITY_Habito]]
-- 2 edges to [[_COMMUNITY_AntecedentePatologico]]
+- 2 edges to [[_COMMUNITY_AlergiaRequestDTO]]
+- 2 edges to [[_COMMUNITY_MedicalRecordDTO]]
+- 2 edges to [[_COMMUNITY_AlergiaResponseDTO]]
 - 1 edge to [[_COMMUNITY_MedicalRecord]]
-- 1 edge to [[_COMMUNITY_MedicalRecordDTO]]
-- 1 edge to [[_COMMUNITY_MedicalRecordController]]
+- 1 edge to [[_COMMUNITY_org.springframework.transaction.annotation.Transactional]]
+- 1 edge to [[_COMMUNITY_dot-addHabito]]
+- 1 edge to [[_COMMUNITY_org.springframework.stereotype.Component]]
+- 1 edge to [[_COMMUNITY_lombok.RequiredArgsConstructor]]
 
 ## Top bridge nodes
-- [[Alergia]] - degree 22, connects to 4 communities
-- [[AlergiaId]] - degree 24, connects to 2 communities
-- [[AlergiaRepository]] - degree 10, connects to 2 communities
-- [[AlergiaRepositoryAdapter]] - degree 10, connects to 2 communities
-- [[AlergiaRepositoryAdapter.java]] - degree 7, connects to 2 communities
+- [[AlergiaId]] - degree 24, connects to 4 communities
+- [[dot-addAlergia()_1]] - degree 12, connects to 4 communities
+- [[AlergiaRepository]] - degree 10, connects to 4 communities
+- [[dot-findById()_21]] - degree 7, connects to 4 communities
+- [[AlergiaRepositoryAdapter.java]] - degree 7, connects to 4 communities

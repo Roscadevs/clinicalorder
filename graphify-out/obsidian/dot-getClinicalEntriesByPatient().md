@@ -12,7 +12,7 @@ tags:
 # .getClinicalEntriesByPatient()
 
 ## Connections
-- [[dot-findByPatientId()]] - `calls` [INFERRED]
+- [[dot-findByPatientId()_6]] - `calls` [INFERRED]
 - [[dot-getClinicalEntriesByPatient()_1]] - `calls` [INFERRED]
 - [[ClinicalEntryResponseDTO]] - `references` [EXTRACTED]
 - [[MedicalRecordService]] - `method` [EXTRACTED]

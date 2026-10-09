@@ -12,8 +12,8 @@ tags:
 # PasswordResetTokenRepositoryAdapter
 
 ## Connections
-- [[dot-findByToken()]] - `method` [EXTRACTED]
-- [[dot-save()_22]] - `method` [EXTRACTED]
+- [[dot-findByToken()_1]] - `method` [EXTRACTED]
+- [[dot-save()_24]] - `method` [EXTRACTED]
 - [[JpaPasswordResetTokenRepository]] - `references` [EXTRACTED]
 - [[PasswordResetTokenRepository]] - `implements` [EXTRACTED]
 - [[PasswordResetTokenRepositoryAdapter.java]] - `contains` [EXTRACTED]

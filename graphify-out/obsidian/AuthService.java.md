@@ -1,12 +1,12 @@
 ---
 source_file: "backend/src/main/java/com/clinicadermatologica/app/application/service/AuthService.java"
 type: "code"
-community: "UserRepository"
+community: "org.springframework.stereotype.Service"
 location: "L1"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/UserRepository
+  - community/orgspringframeworkstereotypeService
 ---
 
 # AuthService.java
@@ -23,4 +23,4 @@ tags:
 - [[org.springframework.stereotype.Service]] - `imports` [EXTRACTED]
 - [[org.springframework.transaction.annotation.Transactional]] - `imports` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/UserRepository
+#graphify/code #graphify/EXTRACTED #community/orgspringframeworkstereotypeService

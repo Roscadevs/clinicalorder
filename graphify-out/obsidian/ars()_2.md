@@ -1,8 +1,8 @@
 ---
-source_file: "frontend/src/features/appointments/RegisterPaymentStep.tsx"
+source_file: "frontend/src/features/documents/AppointmentReceiptModal.tsx"
 type: "code"
 community: "BookingWizard.tsx"
-location: "L28"
+location: "L42"
 tags:
   - graphify/code
   - graphify/EXTRACTED
@@ -12,7 +12,7 @@ tags:
 # ars()
 
 ## Connections
-- [[RegisterPaymentStep()]] - `calls` [EXTRACTED]
-- [[RegisterPaymentStep.tsx]] - `contains` [EXTRACTED]
+- [[AppointmentReceiptModal()]] - `calls` [EXTRACTED]
+- [[AppointmentReceiptModal.tsx]] - `contains` [EXTRACTED]
 
 #graphify/code #graphify/EXTRACTED #community/BookingWizardtsx

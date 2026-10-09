@@ -1,21 +1,21 @@
 ---
-source_file: "backend/src/main/java/com/clinicadermatologica/app/domain/repository/PatientRepository.java"
+source_file: "backend/src/main/java/com/clinicadermatologica/app/domain/repository/ClinicalEntryRepository.java"
 type: "code"
-community: "PatientRepository"
-location: "L17"
+community: "ClinicalEntryResponseDTO"
+location: "L20"
 tags:
   - graphify/code
   - graphify/INFERRED
-  - community/PatientRepository
+  - community/ClinicalEntryResponseDTO
 ---
 
 # .save()
 
 ## Connections
-- [[dot-createPatient()]] - `calls` [INFERRED]
-- [[dot-deactivatePatient()]] - `calls` [INFERRED]
-- [[dot-updatePatient()]] - `calls` [INFERRED]
-- [[Patient_1]] - `references` [EXTRACTED]
-- [[PatientRepository]] - `method` [EXTRACTED]
+- [[dot-addClinicalEntry()]] - `calls` [INFERRED]
+- [[dot-testAddClinicalEntry_EncryptsContent()]] - `calls` [INFERRED]
+- [[dot-updateClinicalEntry()]] - `calls` [INFERRED]
+- [[ClinicalEntry_1]] - `references` [EXTRACTED]
+- [[ClinicalEntryRepository]] - `method` [EXTRACTED]
 
-#graphify/code #graphify/INFERRED #community/PatientRepository
+#graphify/code #graphify/INFERRED #community/ClinicalEntryResponseDTO

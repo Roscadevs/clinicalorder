@@ -1,12 +1,12 @@
 ---
 source_file: "backend/src/main/java/com/clinicadermatologica/app/application/service/MedicalRecordService.java"
 type: "code"
-community: "Habito"
+community: ".addHabito"
 location: "L218"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/Habito
+  - community/addHabito
 ---
 
 # .addHabito()
@@ -14,7 +14,7 @@ tags:
 ## Connections
 - [[dot-addHabito()_1]] - `calls` [INFERRED]
 - [[dot-existsById()]] - `calls` [INFERRED]
-- [[dot-findById()_20]] - `calls` [INFERRED]
+- [[dot-findById()_21]] - `calls` [INFERRED]
 - [[dot-mapHabitoToDTO()]] - `calls` [EXTRACTED]
 - [[dot-save()_4]] - `calls` [INFERRED]
 - [[HabitoId]] - `calls` [INFERRED]
@@ -23,4 +23,4 @@ tags:
 - [[MedicalRecordService]] - `method` [EXTRACTED]
 - [[org.springframework.transaction.annotation.Transactional]] - `references` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/Habito
+#graphify/code #graphify/EXTRACTED #community/addHabito

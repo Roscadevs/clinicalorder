@@ -1,11 +1,11 @@
 ---
 source_file: ""
 type: "code"
-community: "AppointmentService"
+community: "AppointmentServiceTest"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/AppointmentService
+  - community/AppointmentServiceTest
 ---
 
 # DermatologicService
@@ -13,4 +13,4 @@ tags:
 ## Connections
 - [[AppointmentServiceTest]] - `references` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/AppointmentService
+#graphify/code #graphify/EXTRACTED #community/AppointmentServiceTest

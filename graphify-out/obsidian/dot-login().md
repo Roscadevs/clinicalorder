@@ -1,12 +1,12 @@
 ---
 source_file: "backend/src/main/java/com/clinicadermatologica/app/presentation/controller/AuthController.java"
 type: "code"
-community: "AuthController"
+community: "org.springframework.http.ResponseEntity"
 location: "L26"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/AuthController
+  - community/orgspringframeworkhttpResponseEntity
 ---
 
 # .login()
@@ -16,7 +16,7 @@ tags:
 - [[AuthController]] - `method` [EXTRACTED]
 - [[AuthRequestDTO]] - `references` [EXTRACTED]
 - [[AuthResponseDTO]] - `references` [EXTRACTED]
-- [[PostMapping]] - `references` [EXTRACTED]
+- [[PostMapping_5]] - `references` [EXTRACTED]
 - [[org.springframework.http.ResponseEntity]] - `references` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/AuthController
+#graphify/code #graphify/EXTRACTED #community/orgspringframeworkhttpResponseEntity

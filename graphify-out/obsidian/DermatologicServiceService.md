@@ -1,23 +1,23 @@
 ---
 source_file: "backend/src/main/java/com/clinicadermatologica/app/application/service/DermatologicServiceService.java"
 type: "code"
-community: "DermatologicServiceRepository"
+community: "ServiceResponseDTO"
 location: "L19"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/DermatologicServiceRepository
+  - community/ServiceResponseDTO
 ---
 
 # DermatologicServiceService
 
 ## Connections
-- [[dot-createService()_1]] - `method` [EXTRACTED]
+- [[dot-createService()]] - `method` [EXTRACTED]
 - [[dot-getAllActiveServices()]] - `method` [EXTRACTED]
 - [[dot-getAllServicesForAdmin()]] - `method` [EXTRACTED]
-- [[dot-getServiceById()]] - `method` [EXTRACTED]
-- [[dot-mapToDTO()_4]] - `method` [EXTRACTED]
-- [[dot-updateService()_1]] - `method` [EXTRACTED]
+- [[dot-getServiceById()_1]] - `method` [EXTRACTED]
+- [[dot-mapToDTO()]] - `method` [EXTRACTED]
+- [[dot-updateService()]] - `method` [EXTRACTED]
 - [[DermatologicServiceRepository]] - `references` [EXTRACTED]
 - [[DermatologicServiceService.java]] - `contains` [EXTRACTED]
 - [[ServiceCatalogController]] - `references` [EXTRACTED]
@@ -25,4 +25,4 @@ tags:
 - [[lombok.RequiredArgsConstructor]] - `references` [EXTRACTED]
 - [[org.springframework.stereotype.Service]] - `references` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/DermatologicServiceRepository
+#graphify/code #graphify/EXTRACTED #community/ServiceResponseDTO

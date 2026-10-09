@@ -1,12 +1,12 @@
 ---
 source_file: "backend/src/main/java/com/clinicadermatologica/app/domain/repository/PatientRepository.java"
 type: "code"
-community: "PatientRepository"
+community: "Patient"
 location: "L18"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/PatientRepository
+  - community/Patient
 ---
 
 # .existsByDni()
@@ -15,4 +15,4 @@ tags:
 - [[dot-createPatient()]] - `calls` [INFERRED]
 - [[PatientRepository]] - `method` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/PatientRepository
+#graphify/code #graphify/EXTRACTED #community/Patient

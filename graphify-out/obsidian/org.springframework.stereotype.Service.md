@@ -1,11 +1,11 @@
 ---
 source_file: ""
 type: "code"
-community: "org.springframework.transaction.annotation.Transactional"
+community: "org.springframework.stereotype.Service"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/orgspringframeworktransactionannotationTransactional
+  - community/orgspringframeworkstereotypeService
 ---
 
 # org.springframework.stereotype.Service
@@ -36,4 +36,4 @@ tags:
 - [[PaymentService]] - `references` [EXTRACTED]
 - [[PaymentService.java]] - `imports` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/orgspringframeworktransactionannotationTransactional
+#graphify/code #graphify/EXTRACTED #community/orgspringframeworkstereotypeService

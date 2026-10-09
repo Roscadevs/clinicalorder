@@ -1,12 +1,12 @@
 ---
 source_file: "backend/src/main/java/com/clinicadermatologica/app/application/service/CalendarBlockService.java"
 type: "code"
-community: "org.springframework.transaction.annotation.Transactional"
+community: "CalendarBlockResponseDTO"
 location: "L22"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/orgspringframeworktransactionannotationTransactional
+  - community/CalendarBlockResponseDTO
 ---
 
 # CalendarBlockService
@@ -15,7 +15,7 @@ tags:
 - [[dot-createBlock()]] - `method` [EXTRACTED]
 - [[dot-deleteBlock()]] - `method` [EXTRACTED]
 - [[dot-getBlocksByRange()]] - `method` [EXTRACTED]
-- [[dot-mapToDTO()_2]] - `method` [EXTRACTED]
+- [[dot-mapToDTO()_1]] - `method` [EXTRACTED]
 - [[CalendarBlockController]] - `references` [EXTRACTED]
 - [[CalendarBlockController.java]] - `imports` [EXTRACTED]
 - [[CalendarBlockRepository]] - `references` [EXTRACTED]
@@ -24,4 +24,4 @@ tags:
 - [[lombok.RequiredArgsConstructor]] - `references` [EXTRACTED]
 - [[org.springframework.stereotype.Service]] - `references` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/orgspringframeworktransactionannotationTransactional
+#graphify/code #graphify/EXTRACTED #community/CalendarBlockResponseDTO

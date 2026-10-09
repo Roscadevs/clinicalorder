@@ -15,7 +15,7 @@ tags:
 - [[dot-findByAppointmentId()_3]] - `references` [EXTRACTED]
 - [[dot-findById()_19]] - `references` [EXTRACTED]
 - [[dot-findByPatientId()_5]] - `references` [EXTRACTED]
-- [[dot-save()_16]] - `references` [EXTRACTED]
-- [[dot-saveAudit()_2]] - `references` [EXTRACTED]
+- [[dot-save()_19]] - `references` [EXTRACTED]
+- [[dot-saveAudit()_3]] - `references` [EXTRACTED]
 
 #graphify/code #graphify/EXTRACTED #community/ClinicalEntry

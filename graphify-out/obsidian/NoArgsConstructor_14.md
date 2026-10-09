@@ -1,16 +1,16 @@
 ---
 source_file: ""
 type: "code"
-community: "PaymentPreferenceResponseDTO"
+community: "ResetPasswordRequestDTO"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/PaymentPreferenceResponseDTO
+  - community/ResetPasswordRequestDTO
 ---
 
 # NoArgsConstructor
 
 ## Connections
-- [[PaymentPreferenceResponseDTO]] - `references` [EXTRACTED]
+- [[ResetPasswordRequestDTO]] - `references` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/PaymentPreferenceResponseDTO
+#graphify/code #graphify/EXTRACTED #community/ResetPasswordRequestDTO

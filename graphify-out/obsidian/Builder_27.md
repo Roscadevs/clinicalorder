@@ -1,16 +1,17 @@
 ---
 source_file: ""
 type: "code"
-community: "ClinicalImage"
+community: "lombok.RequiredArgsConstructor"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/ClinicalImage
+  - community/lombokRequiredArgsConstructor
 ---
 
 # Builder
 
 ## Connections
-- [[ClinicalImage]] - `references` [EXTRACTED]
+- [[ChatMessageItemDTO]] - `references` [EXTRACTED]
+- [[GeminiChatRequestDTO]] - `references` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/ClinicalImage
+#graphify/code #graphify/EXTRACTED #community/lombokRequiredArgsConstructor

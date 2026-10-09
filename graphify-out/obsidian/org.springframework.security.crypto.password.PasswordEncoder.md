@@ -1,11 +1,11 @@
 ---
 source_file: ""
 type: "code"
-community: "UserRepository"
+community: "org.springframework.stereotype.Service"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/UserRepository
+  - community/orgspringframeworkstereotypeService
 ---
 
 # org.springframework.security.crypto.password.PasswordEncoder
@@ -18,4 +18,4 @@ tags:
 - [[AuthServiceTest.java]] - `imports` [EXTRACTED]
 - [[SecurityConfig.java]] - `imports` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/UserRepository
+#graphify/code #graphify/EXTRACTED #community/orgspringframeworkstereotypeService

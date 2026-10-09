@@ -11,6 +11,6 @@ tags:
 # Getter
 
 ## Connections
-- [[HabitoRequestDTO]] - `references` [EXTRACTED]
+- [[HabitoId]] - `references` [EXTRACTED]
 
 #graphify/code #graphify/EXTRACTED #community/Habito

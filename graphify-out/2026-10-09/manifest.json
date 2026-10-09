@@ -1098,9 +1098,9 @@
     "semantic_hash": ""
   },
   "frontend/src/features/appointments/PatientSearch.tsx": {
-    "mtime": 1790719771.3743777,
-    "seen": 1791242532.06041,
-    "ast_hash": "c871af4e29aca82ce4f354a4d52cedb0",
+    "mtime": 1791570068.3520403,
+    "seen": 1791570101.7758799,
+    "ast_hash": "0c4d765dbb1d278341c792ae07d63c1f",
     "semantic_hash": ""
   },
   "frontend/src/features/appointments/RegisterPaymentStep.tsx": {
@@ -1194,9 +1194,9 @@
     "semantic_hash": ""
   },
   "frontend/src/services/api.ts": {
-    "mtime": 1791562221.5228264,
-    "seen": 1791562387.250572,
-    "ast_hash": "9afec3442a50182f25c853f44717deb3",
+    "mtime": 1791570039.346602,
+    "seen": 1791570101.775897,
+    "ast_hash": "a711be73ef2365544b7689f7569990fb",
     "semantic_hash": ""
   },
   "frontend/src/services/supabaseClient.ts": {

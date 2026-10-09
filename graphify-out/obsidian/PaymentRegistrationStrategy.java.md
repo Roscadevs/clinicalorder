@@ -1,12 +1,12 @@
 ---
 source_file: "backend/src/main/java/com/clinicadermatologica/app/application/strategy/PaymentRegistrationStrategy.java"
 type: "code"
-community: "lombok.RequiredArgsConstructor"
+community: "PaymentServiceTest.java"
 location: "L1"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/lombokRequiredArgsConstructor
+  - community/PaymentServiceTestjava
 ---
 
 # PaymentRegistrationStrategy.java
@@ -14,4 +14,4 @@ tags:
 ## Connections
 - [[PaymentRegistrationStrategy]] - `contains` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/lombokRequiredArgsConstructor
+#graphify/code #graphify/EXTRACTED #community/PaymentServiceTestjava

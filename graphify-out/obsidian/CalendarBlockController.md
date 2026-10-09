@@ -1,12 +1,12 @@
 ---
 source_file: "backend/src/main/java/com/clinicadermatologica/app/presentation/controller/CalendarBlockController.java"
 type: "code"
-community: "CalendarBlockController"
+community: "CalendarBlockResponseDTO"
 location: "L20"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/CalendarBlockController
+  - community/CalendarBlockResponseDTO
 ---
 
 # CalendarBlockController
@@ -17,9 +17,9 @@ tags:
 - [[dot-getBlocks()]] - `method` [EXTRACTED]
 - [[CalendarBlockController.java]] - `contains` [EXTRACTED]
 - [[CalendarBlockService]] - `references` [EXTRACTED]
-- [[RequestMapping]] - `references` [EXTRACTED]
-- [[RestController]] - `references` [EXTRACTED]
+- [[RequestMapping_1]] - `references` [EXTRACTED]
+- [[RestController_1]] - `references` [EXTRACTED]
 - [[lombok.RequiredArgsConstructor]] - `references` [EXTRACTED]
 - [[org.springframework.security.access.prepost.PreAuthorize]] - `references` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/CalendarBlockController
+#graphify/code #graphify/EXTRACTED #community/CalendarBlockResponseDTO

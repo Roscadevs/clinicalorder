@@ -1,12 +1,12 @@
 ---
 source_file: "frontend/src/components/ui/Button.tsx"
 type: "code"
-community: "Button"
+community: "cn"
 location: "L1"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/Button
+  - community/cn
 ---
 
 # Button.tsx
@@ -14,7 +14,7 @@ tags:
 ## Connections
 - [[Button]] - `contains` [EXTRACTED]
 - [[ButtonProps]] - `contains` [EXTRACTED]
-- [[ButtonSize]] - `contains` [EXTRACTED]
+- [[ButtonSize_1]] - `contains` [EXTRACTED]
 - [[ButtonVariant]] - `contains` [EXTRACTED]
 - [[cn()]] - `imports` [EXTRACTED]
 - [[cn.ts]] - `imports_from` [EXTRACTED]
@@ -22,6 +22,6 @@ tags:
 - [[react]] - `imports_from` [EXTRACTED]
 - [[sizeStyles]] - `contains` [EXTRACTED]
 - [[uiindex.ts]] - `re_exports` [EXTRACTED]
-- [[variantStyles]] - `contains` [EXTRACTED]
+- [[variantStyles_1]] - `contains` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/Button
+#graphify/code #graphify/EXTRACTED #community/cn

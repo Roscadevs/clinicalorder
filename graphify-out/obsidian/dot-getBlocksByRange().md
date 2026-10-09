@@ -1,12 +1,12 @@
 ---
 source_file: "backend/src/main/java/com/clinicadermatologica/app/application/service/CalendarBlockService.java"
 type: "code"
-community: "org.springframework.transaction.annotation.Transactional"
+community: "CalendarBlockResponseDTO"
 location: "L60"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/orgspringframeworktransactionannotationTransactional
+  - community/CalendarBlockResponseDTO
 ---
 
 # .getBlocksByRange()
@@ -18,4 +18,4 @@ tags:
 - [[CalendarBlockService]] - `method` [EXTRACTED]
 - [[org.springframework.transaction.annotation.Transactional]] - `references` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/orgspringframeworktransactionannotationTransactional
+#graphify/code #graphify/EXTRACTED #community/CalendarBlockResponseDTO

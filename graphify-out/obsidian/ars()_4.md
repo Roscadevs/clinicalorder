@@ -1,8 +1,8 @@
 ---
-source_file: "frontend/src/features/admin/AdminServicesView.tsx"
+source_file: "frontend/src/features/appointments/RegisterPaymentStep.tsx"
 type: "code"
 community: "api.ts"
-location: "L10"
+location: "L31"
 tags:
   - graphify/code
   - graphify/EXTRACTED
@@ -12,7 +12,7 @@ tags:
 # ars()
 
 ## Connections
-- [[AdminServicesView()]] - `calls` [EXTRACTED]
-- [[AdminServicesView.tsx]] - `contains` [EXTRACTED]
+- [[RegisterPaymentStep()]] - `calls` [EXTRACTED]
+- [[RegisterPaymentStep.tsx]] - `contains` [EXTRACTED]
 
 #graphify/code #graphify/EXTRACTED #community/apits

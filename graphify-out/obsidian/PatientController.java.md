@@ -1,12 +1,12 @@
 ---
 source_file: "backend/src/main/java/com/clinicadermatologica/app/presentation/controller/PatientController.java"
 type: "code"
-community: "PatientRequestDTO"
+community: "org.springframework.http.ResponseEntity"
 location: "L1"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/PatientRequestDTO
+  - community/orgspringframeworkhttpResponseEntity
 ---
 
 # PatientController.java
@@ -21,4 +21,4 @@ tags:
 - [[org.springframework.http.ResponseEntity]] - `imports` [EXTRACTED]
 - [[org.springframework.security.access.prepost.PreAuthorize]] - `imports` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/PatientRequestDTO
+#graphify/code #graphify/EXTRACTED #community/orgspringframeworkhttpResponseEntity

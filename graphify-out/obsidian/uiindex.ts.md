@@ -27,6 +27,7 @@ tags:
 - [[CardTitle()]] - `re_exports` [EXTRACTED]
 - [[ClinicalNoteModal.tsx]] - `imports_from` [EXTRACTED]
 - [[CollectBalanceModal.tsx]] - `imports_from` [EXTRACTED]
+- [[EditAppointmentView.tsx]] - `imports_from` [EXTRACTED]
 - [[Input]] - `re_exports` [EXTRACTED]
 - [[Input.tsx]] - `re_exports` [EXTRACTED]
 - [[LandingPageView.tsx]] - `imports_from` [EXTRACTED]

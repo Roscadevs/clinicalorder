@@ -1,12 +1,12 @@
 ---
 source_file: "backend/src/main/java/com/clinicadermatologica/app/infrastructure/payment/strategy/MercadoPagoPaymentStrategy.java"
 type: "code"
-community: "PaymentTransaction"
+community: "org.springframework.stereotype.Component"
 location: "L25"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/PaymentTransaction
+  - community/orgspringframeworkstereotypeComponent
 ---
 
 # .supportedType()
@@ -16,4 +16,4 @@ tags:
 - [[Override_2]] - `references` [EXTRACTED]
 - [[PaymentType_4]] - `references` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/PaymentTransaction
+#graphify/code #graphify/EXTRACTED #community/orgspringframeworkstereotypeComponent

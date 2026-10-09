@@ -1,16 +1,16 @@
 ---
 source_file: ""
 type: "code"
-community: "DermatologicService"
+community: "Alergia"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/DermatologicService
+  - community/Alergia
 ---
 
 # Entity
 
 ## Connections
-- [[DermatologicService]] - `references` [EXTRACTED]
+- [[Alergia]] - `references` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/DermatologicService
+#graphify/code #graphify/EXTRACTED #community/Alergia

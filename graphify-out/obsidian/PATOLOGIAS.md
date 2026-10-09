@@ -1,12 +1,12 @@
 ---
 source_file: "frontend/src/features/clinical/AnamnesisForm.tsx"
 type: "code"
-community: "DashboardLayout.tsx"
+community: "MedicalRecordView.tsx"
 location: "L15"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/DashboardLayouttsx
+  - community/MedicalRecordViewtsx
 ---
 
 # PATOLOGIAS
@@ -14,4 +14,4 @@ tags:
 ## Connections
 - [[AnamnesisForm.tsx]] - `contains` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/DashboardLayouttsx
+#graphify/code #graphify/EXTRACTED #community/MedicalRecordViewtsx

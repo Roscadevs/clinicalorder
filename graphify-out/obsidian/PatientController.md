@@ -1,12 +1,12 @@
 ---
 source_file: "backend/src/main/java/com/clinicadermatologica/app/presentation/controller/PatientController.java"
 type: "code"
-community: "PatientRequestDTO"
+community: "org.springframework.transaction.annotation.Transactional"
 location: "L19"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/PatientRequestDTO
+  - community/orgspringframeworktransactionannotationTransactional
 ---
 
 # PatientController
@@ -24,4 +24,4 @@ tags:
 - [[lombok.RequiredArgsConstructor]] - `references` [EXTRACTED]
 - [[org.springframework.security.access.prepost.PreAuthorize]] - `references` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/PatientRequestDTO
+#graphify/code #graphify/EXTRACTED #community/orgspringframeworktransactionannotationTransactional

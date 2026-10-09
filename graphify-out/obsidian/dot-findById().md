@@ -1,12 +1,12 @@
 ---
 source_file: "backend/src/main/java/com/clinicadermatologica/app/domain/repository/PaymentTransactionRepository.java"
 type: "code"
-community: "PaymentTransaction"
+community: "org.springframework.stereotype.Component"
 location: "L12"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/PaymentTransaction
+  - community/orgspringframeworkstereotypeComponent
 ---
 
 # .findById()
@@ -15,4 +15,4 @@ tags:
 - [[PaymentTransaction]] - `references` [EXTRACTED]
 - [[PaymentTransactionRepository]] - `method` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/PaymentTransaction
+#graphify/code #graphify/EXTRACTED #community/orgspringframeworkstereotypeComponent

@@ -1,11 +1,11 @@
 ---
 source_file: ""
 type: "code"
-community: "PatientResponseDTO"
+community: "org.springframework.transaction.annotation.Transactional"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/PatientResponseDTO
+  - community/orgspringframeworktransactionannotationTransactional
 ---
 
 # GetMapping
@@ -14,4 +14,4 @@ tags:
 - [[dot-getPatientById()_1]] - `references` [EXTRACTED]
 - [[dot-getPatients()]] - `references` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/PatientResponseDTO
+#graphify/code #graphify/EXTRACTED #community/orgspringframeworktransactionannotationTransactional

@@ -1,12 +1,12 @@
 ---
 source_file: "backend/src/main/java/com/clinicadermatologica/app/domain/model/User.java"
 type: "code"
-community: "org.springframework.transaction.annotation.Transactional"
+community: "org.springframework.stereotype.Service"
 location: "L1"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/orgspringframeworktransactionannotationTransactional
+  - community/orgspringframeworkstereotypeService
 ---
 
 # User.java
@@ -16,4 +16,4 @@ tags:
 - [[CustomUserDetailsService.java]] - `imports` [EXTRACTED]
 - [[User]] - `contains` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/orgspringframeworktransactionannotationTransactional
+#graphify/code #graphify/EXTRACTED #community/orgspringframeworkstereotypeService

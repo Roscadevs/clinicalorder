@@ -1,12 +1,12 @@
 ---
 source_file: "backend/src/main/java/com/clinicadermatologica/app/infrastructure/persistence/jpa/JpaUserRepository.java"
 type: "code"
-community: "User"
+community: "org.springframework.data.jpa.repository.JpaRepository"
 location: "L1"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/User
+  - community/orgspringframeworkdatajparepositoryJpaRepository
 ---
 
 # JpaUserRepository.java
@@ -17,4 +17,4 @@ tags:
 - [[org.springframework.data.jpa.repository.JpaRepository]] - `imports` [EXTRACTED]
 - [[org.springframework.stereotype.Repository]] - `imports` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/User
+#graphify/code #graphify/EXTRACTED #community/orgspringframeworkdatajparepositoryJpaRepository

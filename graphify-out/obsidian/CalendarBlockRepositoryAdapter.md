@@ -12,11 +12,11 @@ tags:
 # CalendarBlockRepositoryAdapter
 
 ## Connections
-- [[dot-deleteById()]] - `method` [EXTRACTED]
+- [[dot-deleteById()_1]] - `method` [EXTRACTED]
 - [[dot-findByDateRange()]] - `method` [EXTRACTED]
 - [[dot-findById()_3]] - `method` [EXTRACTED]
 - [[dot-findOverlappingBlocks()]] - `method` [EXTRACTED]
-- [[dot-save()_1]] - `method` [EXTRACTED]
+- [[dot-save()_2]] - `method` [EXTRACTED]
 - [[CalendarBlockRepository]] - `implements` [EXTRACTED]
 - [[CalendarBlockRepositoryAdapter.java]] - `contains` [EXTRACTED]
 - [[JpaCalendarBlockRepository]] - `references` [EXTRACTED]

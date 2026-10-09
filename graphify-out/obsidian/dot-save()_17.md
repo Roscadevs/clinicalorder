@@ -1,20 +1,19 @@
 ---
-source_file: "backend/src/main/java/com/clinicadermatologica/app/domain/repository/AlergiaRepository.java"
+source_file: "backend/src/main/java/com/clinicadermatologica/app/infrastructure/persistence/adapter/ClinicalImageRepositoryAdapter.java"
 type: "code"
-community: "MedicalRecordServiceTest"
-location: "L25"
+community: "ClinicalImage"
+location: "L35"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/MedicalRecordServiceTest
+  - community/ClinicalImage
 ---
 
 # .save()
 
 ## Connections
-- [[dot-addAlergia()]] - `calls` [INFERRED]
-- [[dot-testAddAlergia_Success()]] - `calls` [INFERRED]
-- [[Alergia]] - `references` [EXTRACTED]
-- [[AlergiaRepository]] - `method` [EXTRACTED]
+- [[ClinicalImage]] - `references` [EXTRACTED]
+- [[ClinicalImageRepositoryAdapter]] - `method` [EXTRACTED]
+- [[Override_13]] - `references` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/MedicalRecordServiceTest
+#graphify/code #graphify/EXTRACTED #community/ClinicalImage

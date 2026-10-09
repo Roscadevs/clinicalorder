@@ -1,18 +1,16 @@
 ---
 source_file: ""
 type: "code"
-community: "MedicalRecordController"
+community: "org.springframework.transaction.annotation.Transactional"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/MedicalRecordController
+  - community/orgspringframeworktransactionannotationTransactional
 ---
 
 # DeleteMapping
 
 ## Connections
-- [[dot-removeAlergia()_1]] - `references` [EXTRACTED]
-- [[dot-removeAntecedentePatologico()_1]] - `references` [EXTRACTED]
-- [[dot-removeHabito()_1]] - `references` [EXTRACTED]
+- [[dot-deactivatePatient()_1]] - `references` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/MedicalRecordController
+#graphify/code #graphify/EXTRACTED #community/orgspringframeworktransactionannotationTransactional

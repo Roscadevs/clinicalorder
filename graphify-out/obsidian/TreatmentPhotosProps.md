@@ -1,12 +1,12 @@
 ---
 source_file: "frontend/src/features/clinical/TreatmentPhotos.tsx"
 type: "code"
-community: "Button"
+community: "MedicalRecordView.tsx"
 location: "L8"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/Button
+  - community/MedicalRecordViewtsx
 ---
 
 # TreatmentPhotosProps
@@ -14,4 +14,4 @@ tags:
 ## Connections
 - [[TreatmentPhotos.tsx]] - `contains` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/Button
+#graphify/code #graphify/EXTRACTED #community/MedicalRecordViewtsx

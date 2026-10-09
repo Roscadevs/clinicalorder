@@ -1,16 +1,16 @@
 ---
 source_file: ""
 type: "code"
-community: "AntecedentePatologico"
+community: "CalendarBlockResponseDTO"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/AntecedentePatologico
+  - community/CalendarBlockResponseDTO
 ---
 
 # AllArgsConstructor
 
 ## Connections
-- [[AntecedentePatologicoResponseDTO]] - `references` [EXTRACTED]
+- [[CalendarBlockResponseDTO]] - `references` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/AntecedentePatologico
+#graphify/code #graphify/EXTRACTED #community/CalendarBlockResponseDTO

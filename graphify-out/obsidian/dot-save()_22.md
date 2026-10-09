@@ -1,19 +1,19 @@
 ---
-source_file: "backend/src/main/java/com/clinicadermatologica/app/infrastructure/persistence/adapter/PasswordResetTokenRepositoryAdapter.java"
+source_file: "backend/src/main/java/com/clinicadermatologica/app/infrastructure/persistence/adapter/AlergiaRepositoryAdapter.java"
 type: "code"
-community: "PasswordResetToken"
-location: "L25"
+community: "Alergia"
+location: "L37"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/PasswordResetToken
+  - community/Alergia
 ---
 
 # .save()
 
 ## Connections
-- [[Override_20]] - `references` [EXTRACTED]
-- [[PasswordResetToken]] - `references` [EXTRACTED]
-- [[PasswordResetTokenRepositoryAdapter]] - `method` [EXTRACTED]
+- [[Alergia]] - `references` [EXTRACTED]
+- [[AlergiaRepositoryAdapter]] - `method` [EXTRACTED]
+- [[Override_19]] - `references` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/PasswordResetToken
+#graphify/code #graphify/EXTRACTED #community/Alergia

@@ -1,21 +1,25 @@
 ---
-source_file: "backend/src/main/java/com/clinicadermatologica/app/presentation/controller/AppointmentController.java"
+source_file: "backend/src/main/java/com/clinicadermatologica/app/application/service/AppointmentService.java"
 type: "code"
-community: "org.springframework.http.ResponseEntity"
-location: "L32"
+community: ".getAvailableSlots"
+location: "L42"
 tags:
   - graphify/code
-  - graphify/EXTRACTED
-  - community/orgspringframeworkhttpResponseEntity
+  - graphify/INFERRED
+  - community/getAvailableSlots
 ---
 
 # .getAvailableSlots()
 
 ## Connections
+- [[dot-findByDateRange()_4]] - `calls` [INFERRED]
+- [[dot-findByDateRange()_5]] - `calls` [INFERRED]
+- [[dot-findById()_10]] - `calls` [INFERRED]
 - [[dot-getAvailableSlots()]] - `calls` [INFERRED]
-- [[AppointmentController]] - `method` [EXTRACTED]
-- [[GetMapping_2]] - `references` [EXTRACTED]
+- [[dot-isExpired()]] - `calls` [EXTRACTED]
+- [[dot-testGetAvailableSlots()]] - `calls` [INFERRED]
+- [[AppointmentService]] - `method` [EXTRACTED]
 - [[TimeSlotDTO]] - `references` [EXTRACTED]
-- [[org.springframework.http.ResponseEntity]] - `references` [EXTRACTED]
+- [[org.springframework.transaction.annotation.Transactional]] - `references` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/orgspringframeworkhttpResponseEntity
+#graphify/code #graphify/INFERRED #community/getAvailableSlots

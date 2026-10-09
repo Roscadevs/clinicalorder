@@ -1,21 +1,22 @@
 ---
-source_file: "backend/src/main/java/com/clinicadermatologica/app/presentation/controller/ServiceCatalogController.java"
+source_file: "backend/src/main/java/com/clinicadermatologica/app/application/service/DermatologicServiceService.java"
 type: "code"
-community: "ServiceResponseDTO"
-location: "L46"
+community: "org.springframework.transaction.annotation.Transactional"
+location: "L48"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/ServiceResponseDTO
+  - community/orgspringframeworktransactionannotationTransactional
 ---
 
 # .getServiceById()
 
 ## Connections
+- [[dot-findById()_10]] - `calls` [INFERRED]
 - [[dot-getServiceById()]] - `calls` [INFERRED]
-- [[GetMapping_1]] - `references` [EXTRACTED]
-- [[ServiceCatalogController]] - `method` [EXTRACTED]
+- [[DermatologicServiceService]] - `method` [EXTRACTED]
+- [[ResourceNotFoundException]] - `calls` [EXTRACTED]
 - [[ServiceResponseDTO]] - `references` [EXTRACTED]
-- [[org.springframework.http.ResponseEntity]] - `references` [EXTRACTED]
+- [[org.springframework.transaction.annotation.Transactional]] - `references` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/ServiceResponseDTO
+#graphify/code #graphify/EXTRACTED #community/orgspringframeworktransactionannotationTransactional

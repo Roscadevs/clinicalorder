@@ -1,11 +1,11 @@
 ---
 source_file: ""
 type: "code"
-community: "MedicalRecordServiceTest"
+community: "GlobalExceptionHandler"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/MedicalRecordServiceTest
+  - community/GlobalExceptionHandler
 ---
 
 # javax.crypto.SecretKey
@@ -16,4 +16,4 @@ tags:
 - [[JwtTokenProvider]] - `references` [EXTRACTED]
 - [[JwtTokenProvider.java]] - `imports` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/MedicalRecordServiceTest
+#graphify/code #graphify/EXTRACTED #community/GlobalExceptionHandler

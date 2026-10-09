@@ -1,12 +1,12 @@
 ---
 source_file: "backend/src/main/java/com/clinicadermatologica/app/domain/model/AppointmentStatus.java"
 type: "code"
-community: "AppointmentStatus"
+community: "Appointment"
 location: "L12"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/AppointmentStatus
+  - community/Appointment
 ---
 
 # PAYMENT_FAILED
@@ -14,4 +14,4 @@ tags:
 ## Connections
 - [[AppointmentStatus]] - `case_of` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/AppointmentStatus
+#graphify/code #graphify/EXTRACTED #community/Appointment

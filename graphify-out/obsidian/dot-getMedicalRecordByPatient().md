@@ -1,12 +1,12 @@
 ---
 source_file: "backend/src/main/java/com/clinicadermatologica/app/presentation/controller/MedicalRecordController.java"
 type: "code"
-community: "MedicalRecordDTO"
+community: "MedicalRecordService"
 location: "L42"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/MedicalRecordDTO
+  - community/MedicalRecordService
 ---
 
 # .getMedicalRecordByPatient()
@@ -18,4 +18,4 @@ tags:
 - [[MedicalRecordDTO]] - `references` [EXTRACTED]
 - [[org.springframework.http.ResponseEntity]] - `references` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/MedicalRecordDTO
+#graphify/code #graphify/EXTRACTED #community/MedicalRecordService

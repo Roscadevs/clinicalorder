@@ -1,19 +1,19 @@
 ---
 source_file: "frontend/src/features/documents/AppointmentReceiptModal.tsx"
 type: "code"
-community: "BookingWizard.tsx"
+community: "api.ts"
 location: "L15"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/BookingWizardtsx
+  - community/apits
 ---
 
 # ReceiptPayment
 
 ## Connections
 - [[AppointmentReceiptModal.tsx]] - `contains` [EXTRACTED]
-- [[PaymentConcept]] - `references` [EXTRACTED]
+- [[PaymentConcept_1]] - `references` [EXTRACTED]
 - [[PaymentType_1]] - `references` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/BookingWizardtsx
+#graphify/code #graphify/EXTRACTED #community/apits

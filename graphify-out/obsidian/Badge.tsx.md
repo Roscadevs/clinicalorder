@@ -19,6 +19,6 @@ tags:
 - [[cn.ts]] - `imports_from` [EXTRACTED]
 - [[react]] - `imports_from` [EXTRACTED]
 - [[uiindex.ts]] - `re_exports` [EXTRACTED]
-- [[variantStyles_1]] - `contains` [EXTRACTED]
+- [[variantStyles]] - `contains` [EXTRACTED]
 
 #graphify/code #graphify/EXTRACTED #community/cn

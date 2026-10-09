@@ -1,12 +1,12 @@
 ---
 source_file: "backend/src/main/java/com/clinicadermatologica/app/presentation/dto/HabitoRequestDTO.java"
 type: "code"
-community: "Habito"
+community: ".addHabito"
 location: "L10"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/Habito
+  - community/addHabito
 ---
 
 # HabitoRequestDTO
@@ -14,11 +14,11 @@ tags:
 ## Connections
 - [[dot-addHabito()]] - `references` [EXTRACTED]
 - [[dot-addHabito()_1]] - `references` [EXTRACTED]
-- [[AllArgsConstructor_5]] - `references` [EXTRACTED]
-- [[Builder_4]] - `references` [EXTRACTED]
-- [[Getter_5]] - `references` [EXTRACTED]
+- [[AllArgsConstructor_40]] - `references` [EXTRACTED]
+- [[Builder_37]] - `references` [EXTRACTED]
+- [[Getter_40]] - `references` [EXTRACTED]
 - [[HabitoRequestDTO.java]] - `contains` [EXTRACTED]
-- [[NoArgsConstructor_5]] - `references` [EXTRACTED]
-- [[Setter_5]] - `references` [EXTRACTED]
+- [[NoArgsConstructor_40]] - `references` [EXTRACTED]
+- [[Setter_40]] - `references` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/Habito
+#graphify/code #graphify/EXTRACTED #community/addHabito

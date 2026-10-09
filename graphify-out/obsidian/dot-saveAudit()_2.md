@@ -1,8 +1,8 @@
 ---
-source_file: "backend/src/main/java/com/clinicadermatologica/app/infrastructure/persistence/adapter/ClinicalEntryRepositoryAdapter.java"
+source_file: "backend/src/main/java/com/clinicadermatologica/app/domain/repository/ClinicalEntryRepository.java"
 type: "code"
 community: "ClinicalEntry"
-location: "L48"
+location: "L21"
 tags:
   - graphify/code
   - graphify/EXTRACTED
@@ -12,8 +12,8 @@ tags:
 # .saveAudit()
 
 ## Connections
+- [[dot-updateClinicalEntry()]] - `calls` [INFERRED]
 - [[ClinicalEntryAudit]] - `references` [EXTRACTED]
-- [[ClinicalEntryRepositoryAdapter]] - `method` [EXTRACTED]
-- [[Override_15]] - `references` [EXTRACTED]
+- [[ClinicalEntryRepository]] - `method` [EXTRACTED]
 
 #graphify/code #graphify/EXTRACTED #community/ClinicalEntry

@@ -1,22 +1,22 @@
 ---
 source_file: "backend/src/main/java/com/clinicadermatologica/app/domain/repository/MedicalRecordRepository.java"
 type: "code"
-community: "MedicalRecordController"
+community: "MedicalRecordDTO"
 location: "L12"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/MedicalRecordController
+  - community/MedicalRecordDTO
 ---
 
 # MedicalRecordRepository
 
 ## Connections
 - [[dot-findAuditHistory()_1]] - `method` [EXTRACTED]
-- [[dot-findById()_20]] - `method` [EXTRACTED]
-- [[dot-findByPatientId()_6]] - `method` [EXTRACTED]
-- [[dot-save()_21]] - `method` [EXTRACTED]
-- [[dot-saveAudit()_3]] - `method` [EXTRACTED]
+- [[dot-findById()_21]] - `method` [EXTRACTED]
+- [[dot-findByPatientId()_4]] - `method` [EXTRACTED]
+- [[dot-save()_12]] - `method` [EXTRACTED]
+- [[dot-saveAudit()_1]] - `method` [EXTRACTED]
 - [[MedicalRecordController]] - `references` [EXTRACTED]
 - [[MedicalRecordController.java]] - `imports` [EXTRACTED]
 - [[MedicalRecordRepository.java]] - `contains` [EXTRACTED]
@@ -25,4 +25,4 @@ tags:
 - [[MedicalRecordService]] - `references` [EXTRACTED]
 - [[MedicalRecordServiceTest]] - `references` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/MedicalRecordController
+#graphify/code #graphify/EXTRACTED #community/MedicalRecordDTO

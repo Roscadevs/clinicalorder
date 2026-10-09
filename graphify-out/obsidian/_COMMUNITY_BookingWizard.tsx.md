@@ -1,11 +1,11 @@
 ---
 type: community
-members: 37
+members: 27
 ---
 
 # BookingWizard.tsx
 
-**Members:** 37 nodes
+**Members:** 27 nodes
 
 ## Members
 - [[AppointmentReceiptModal()]] - code - frontend/src/features/documents/AppointmentReceiptModal.tsx
@@ -13,30 +13,21 @@ members: 37
 - [[AppointmentReceiptModalProps]] - code - frontend/src/features/documents/AppointmentReceiptModal.tsx
 - [[BookingWizard()]] - code - frontend/src/features/appointments/BookingWizard.tsx
 - [[BookingWizard.tsx]] - code - frontend/src/features/appointments/BookingWizard.tsx
+- [[CLINIC]] - code - frontend/src/config/contact.ts
 - [[CalendarEventData]] - code - frontend/src/utils/calendarGenerator.ts
 - [[Hold]] - code - frontend/src/features/appointments/BookingWizard.tsx
-- [[Method]] - code - frontend/src/features/appointments/RegisterPaymentStep.tsx
 - [[Outcome]] - code - frontend/src/features/appointments/BookingWizard.tsx
-- [[PAYMENT_CONCEPT_LABELS]] - code - frontend/src/types/index.ts
-- [[PAYMENT_TYPE_LABELS]] - code - frontend/src/types/index.ts
-- [[PaymentConcept]] - code - frontend/src/types/index.ts
 - [[PaymentPreferenceResponse]] - code - frontend/src/types/index.ts
-- [[PaymentReceipt]] - code - frontend/src/types/index.ts
-- [[PaymentType_1]] - code - frontend/src/types/index.ts
-- [[ReceiptPayment]] - code - frontend/src/features/documents/AppointmentReceiptModal.tsx
-- [[RegisterPaymentStep()]] - code - frontend/src/features/appointments/RegisterPaymentStep.tsx
-- [[RegisterPaymentStep.tsx]] - code - frontend/src/features/appointments/RegisterPaymentStep.tsx
-- [[RegisterPaymentStepProps]] - code - frontend/src/features/appointments/RegisterPaymentStep.tsx
 - [[ReminderNotificationModal()]] - code - frontend/src/features/reminders/ReminderNotificationModal.tsx
 - [[ReminderNotificationModal.tsx]] - code - frontend/src/features/reminders/ReminderNotificationModal.tsx
 - [[ReminderNotificationModalProps]] - code - frontend/src/features/reminders/ReminderNotificationModal.tsx
 - [[STEP]] - code - frontend/src/features/appointments/BookingWizard.tsx
 - [[STEP_LABELS]] - code - frontend/src/features/appointments/BookingWizard.tsx
-- [[TimeSlot]] - code - frontend/src/types/index.ts
+- [[WHATSAPP_NUMBER]] - code - frontend/src/config/contact.ts
 - [[ars()_1]] - code - frontend/src/features/appointments/BookingWizard.tsx
-- [[ars()_2]] - code - frontend/src/features/appointments/RegisterPaymentStep.tsx
-- [[ars()_3]] - code - frontend/src/features/documents/AppointmentReceiptModal.tsx
+- [[ars()_2]] - code - frontend/src/features/documents/AppointmentReceiptModal.tsx
 - [[calendarGenerator.ts]] - code - frontend/src/utils/calendarGenerator.ts
+- [[contact.ts]] - code - frontend/src/config/contact.ts
 - [[downloadIcsCalendarFile()]] - code - frontend/src/utils/calendarGenerator.ts
 - [[fmt()_1]] - code - frontend/src/features/documents/AppointmentReceiptModal.tsx
 - [[formatCountdown()]] - code - frontend/src/features/appointments/BookingWizard.tsx
@@ -44,7 +35,6 @@ members: 37
 - [[formatToIcsDate()]] - code - frontend/src/utils/calendarGenerator.ts
 - [[generateGoogleCalendarUrl()]] - code - frontend/src/utils/calendarGenerator.ts
 - [[todayInAR()]] - code - frontend/src/features/appointments/BookingWizard.tsx
-- [[typesindex.ts]] - code - frontend/src/types/index.ts
 
 ## Live Query (requires Dataview plugin)
 
@@ -55,20 +45,18 @@ SORT file.name ASC
 
 ## Connections to other communities
 - 18 edges to [[_COMMUNITY_api.ts]]
-- 16 edges to [[_COMMUNITY_react]]
-- 14 edges to [[_COMMUNITY_cn]]
-- 11 edges to [[_COMMUNITY_MedicalRecordView.tsx]]
-- 7 edges to [[_COMMUNITY_Button]]
-- 5 edges to [[_COMMUNITY_AgendaView.tsx]]
-- 4 edges to [[_COMMUNITY_DashboardLayout.tsx]]
+- 14 edges to [[_COMMUNITY_react]]
+- 8 edges to [[_COMMUNITY_cn]]
+- 4 edges to [[_COMMUNITY_AgendaView.tsx]]
+- 3 edges to [[_COMMUNITY_PatientDirectoryView.tsx]]
 - 2 edges to [[_COMMUNITY_reactbitsindex.ts]]
 - 1 edge to [[_COMMUNITY_GlideSelect.tsx]]
 - 1 edge to [[_COMMUNITY_Stepper.tsx]]
-- 1 edge to [[_COMMUNITY_package.json]]
+- 1 edge to [[_COMMUNITY_MedicalRecordView.tsx]]
 
 ## Top bridge nodes
-- [[BookingWizard.tsx]] - degree 41, connects to 8 communities
-- [[typesindex.ts]] - degree 38, connects to 7 communities
-- [[RegisterPaymentStep.tsx]] - degree 17, connects to 6 communities
-- [[AppointmentReceiptModal.tsx]] - degree 21, connects to 3 communities
+- [[BookingWizard.tsx]] - degree 42, connects to 8 communities
+- [[AppointmentReceiptModal.tsx]] - degree 21, connects to 4 communities
 - [[ReminderNotificationModal.tsx]] - degree 11, connects to 2 communities
+- [[contact.ts]] - degree 9, connects to 1 community
+- [[AppointmentReceiptModal()]] - degree 7, connects to 1 community

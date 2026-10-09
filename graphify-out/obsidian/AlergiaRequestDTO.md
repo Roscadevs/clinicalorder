@@ -12,8 +12,8 @@ tags:
 # AlergiaRequestDTO
 
 ## Connections
-- [[dot-addAlergia()]] - `references` [EXTRACTED]
 - [[dot-addAlergia()_1]] - `references` [EXTRACTED]
+- [[dot-addAlergia()]] - `references` [EXTRACTED]
 - [[AlergiaRequestDTO.java]] - `contains` [EXTRACTED]
 - [[AllArgsConstructor_9]] - `references` [EXTRACTED]
 - [[Builder_8]] - `references` [EXTRACTED]

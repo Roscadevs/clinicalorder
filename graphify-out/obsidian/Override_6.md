@@ -13,8 +13,8 @@ tags:
 ## Connections
 - [[dot-delete()_1]] - `references` [EXTRACTED]
 - [[dot-existsById()_1]] - `references` [EXTRACTED]
-- [[dot-findById()_6]] - `references` [EXTRACTED]
-- [[dot-findByMedicalRecordId()_1]] - `references` [EXTRACTED]
+- [[dot-findById()_5]] - `references` [EXTRACTED]
+- [[dot-findByMedicalRecordId()]] - `references` [EXTRACTED]
 - [[dot-save()_5]] - `references` [EXTRACTED]
 
 #graphify/code #graphify/EXTRACTED #community/Habito

@@ -1,12 +1,12 @@
 ---
 source_file: "backend/src/main/java/com/clinicadermatologica/app/presentation/controller/MedicalRecordController.java"
 type: "code"
-community: "ClinicalImageService"
+community: "org.springframework.http.ResponseEntity"
 location: "L1"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/ClinicalImageService
+  - community/orgspringframeworkhttpResponseEntity
 ---
 
 # MedicalRecordController.java
@@ -23,4 +23,4 @@ tags:
 - [[org.springframework.security.access.prepost.PreAuthorize]] - `imports` [EXTRACTED]
 - [[org.springframework.web.multipart.MultipartFile]] - `imports` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/ClinicalImageService
+#graphify/code #graphify/EXTRACTED #community/orgspringframeworkhttpResponseEntity

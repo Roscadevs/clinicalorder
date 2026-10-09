@@ -1,11 +1,11 @@
 ---
 source_file: ""
 type: "code"
-community: "CalendarBlockController"
+community: "CalendarBlockResponseDTO"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/CalendarBlockController
+  - community/CalendarBlockResponseDTO
 ---
 
 # DeleteMapping
@@ -13,4 +13,4 @@ tags:
 ## Connections
 - [[dot-deleteBlock()_1]] - `references` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/CalendarBlockController
+#graphify/code #graphify/EXTRACTED #community/CalendarBlockResponseDTO

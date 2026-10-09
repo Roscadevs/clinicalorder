@@ -11,6 +11,6 @@ tags:
 # Getter
 
 ## Connections
-- [[Alergia]] - `references` [EXTRACTED]
+- [[AlergiaId]] - `references` [EXTRACTED]
 
 #graphify/code #graphify/EXTRACTED #community/AlergiaId

@@ -28,6 +28,7 @@ tags:
 - [[Patient]] - `imports` [EXTRACTED]
 - [[PatientSearch()]] - `imports` [EXTRACTED]
 - [[PatientSearch.tsx]] - `imports_from` [EXTRACTED]
+- [[PaymentConcept_1]] - `imports` [EXTRACTED]
 - [[PaymentPreferenceResponse]] - `imports` [EXTRACTED]
 - [[PaymentReceipt]] - `imports` [EXTRACTED]
 - [[RegisterPaymentStep()]] - `imports` [EXTRACTED]

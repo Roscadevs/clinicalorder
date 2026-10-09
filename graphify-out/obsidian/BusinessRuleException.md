@@ -14,7 +14,7 @@ tags:
 ## Connections
 - [[dot-BusinessRuleException()]] - `method` [EXTRACTED]
 - [[dot-handleBusinessRule()]] - `references` [EXTRACTED]
-- [[dot-registerDepositPayment()]] - `calls` [EXTRACTED]
+- [[dot-registerDepositPayment()_1]] - `calls` [EXTRACTED]
 - [[dot-registerFinalPayment()]] - `calls` [EXTRACTED]
 - [[AuthServiceTest.java]] - `imports` [EXTRACTED]
 - [[BusinessRuleException.java]] - `contains` [EXTRACTED]

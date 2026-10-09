@@ -14,7 +14,7 @@ tags:
 ## Connections
 - [[dot-existsByEmail()_4]] - `method` [EXTRACTED]
 - [[dot-existsByUsername()_1]] - `method` [EXTRACTED]
-- [[dot-findByEmail()_4]] - `method` [EXTRACTED]
+- [[dot-findByEmail()_5]] - `method` [EXTRACTED]
 - [[dot-findByUsername()_1]] - `method` [EXTRACTED]
 - [[JpaUserRepository.java]] - `contains` [EXTRACTED]
 - [[User]] - `references` [EXTRACTED]

@@ -1,26 +1,20 @@
 ---
-source_file: "backend/src/main/java/com/clinicadermatologica/app/domain/repository/PaymentTransactionRepository.java"
+source_file: "backend/src/main/java/com/clinicadermatologica/app/domain/repository/DermatologicServiceRepository.java"
 type: "code"
-community: "AppointmentService"
+community: "ServiceResponseDTO"
 location: "L16"
 tags:
   - graphify/code
-  - graphify/INFERRED
-  - community/AppointmentService
+  - graphify/EXTRACTED
+  - community/ServiceResponseDTO
 ---
 
 # .save()
 
 ## Connections
-- [[dot-bookTemporaryHold()]] - `calls` [INFERRED]
-- [[dot-processMercadoPagoWebhook()]] - `calls` [INFERRED]
-- [[dot-refundPayment()]] - `calls` [INFERRED]
-- [[dot-register()]] - `calls` [INFERRED]
-- [[dot-register()_1]] - `calls` [INFERRED]
-- [[dot-register()_2]] - `calls` [INFERRED]
-- [[dot-rejectPendingTransactions()]] - `calls` [INFERRED]
-- [[dot-rejectPendingTransactions()_1]] - `calls` [INFERRED]
-- [[PaymentTransaction]] - `references` [EXTRACTED]
-- [[PaymentTransactionRepository]] - `method` [EXTRACTED]
+- [[dot-createService()]] - `calls` [INFERRED]
+- [[dot-updateService()]] - `calls` [INFERRED]
+- [[DermatologicService]] - `references` [EXTRACTED]
+- [[DermatologicServiceRepository]] - `method` [EXTRACTED]
 
-#graphify/code #graphify/INFERRED #community/AppointmentService
+#graphify/code #graphify/EXTRACTED #community/ServiceResponseDTO

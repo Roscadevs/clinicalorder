@@ -1,11 +1,11 @@
 ---
 source_file: ""
 type: "code"
-community: "ClinicalImageService"
+community: "MedicalRecordService"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/ClinicalImageService
+  - community/MedicalRecordService
 ---
 
 # GetMapping
@@ -16,4 +16,4 @@ tags:
 - [[dot-getClinicalPhotos()]] - `references` [EXTRACTED]
 - [[dot-getMedicalRecordByPatient()]] - `references` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/ClinicalImageService
+#graphify/code #graphify/EXTRACTED #community/MedicalRecordService

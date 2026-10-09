@@ -1,12 +1,12 @@
 ---
 source_file: "frontend/src/types/index.ts"
 type: "code"
-community: "BookingWizard.tsx"
+community: "api.ts"
 location: "L83"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/BookingWizardtsx
+  - community/apits
 ---
 
 # PaymentType
@@ -18,4 +18,4 @@ tags:
 - [[api.ts]] - `imports` [EXTRACTED]
 - [[typesindex.ts]] - `contains` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/BookingWizardtsx
+#graphify/code #graphify/EXTRACTED #community/apits

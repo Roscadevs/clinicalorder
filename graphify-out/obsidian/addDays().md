@@ -2,7 +2,7 @@
 source_file: "frontend/src/features/agenda/AgendaView.tsx"
 type: "code"
 community: "AgendaView.tsx"
-location: "L24"
+location: "L33"
 tags:
   - graphify/code
   - graphify/EXTRACTED

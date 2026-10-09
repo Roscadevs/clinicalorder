@@ -1,21 +1,20 @@
 ---
 source_file: ""
 type: "code"
-community: "DermatologicService"
+community: "Alergia"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/DermatologicService
+  - community/Alergia
 ---
 
 # Override
 
 ## Connections
-- [[dot-existsByName()]] - `references` [EXTRACTED]
-- [[dot-findAll()_1]] - `references` [EXTRACTED]
-- [[dot-findAllActive()_1]] - `references` [EXTRACTED]
+- [[dot-delete()_5]] - `references` [EXTRACTED]
+- [[dot-existsById()_5]] - `references` [EXTRACTED]
 - [[dot-findById()_23]] - `references` [EXTRACTED]
-- [[dot-findByName()]] - `references` [EXTRACTED]
-- [[dot-save()_20]] - `references` [EXTRACTED]
+- [[dot-findByMedicalRecordId()_5]] - `references` [EXTRACTED]
+- [[dot-save()_22]] - `references` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/DermatologicService
+#graphify/code #graphify/EXTRACTED #community/Alergia

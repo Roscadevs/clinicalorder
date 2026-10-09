@@ -14,7 +14,7 @@ tags:
 ## Connections
 - [[JpaMedicalRecordAuditRepository]] - `imports` [EXTRACTED]
 - [[JpaMedicalRecordRepository]] - `imports` [EXTRACTED]
-- [[MedicalRecord]] - `imports` [EXTRACTED]
+- [[MedicalRecord_1]] - `imports` [EXTRACTED]
 - [[MedicalRecordAudit]] - `imports` [EXTRACTED]
 - [[MedicalRecordRepository]] - `imports` [EXTRACTED]
 - [[MedicalRecordRepositoryAdapter]] - `contains` [EXTRACTED]

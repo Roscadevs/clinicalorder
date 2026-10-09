@@ -11,6 +11,6 @@ tags:
 # NoArgsConstructor
 
 ## Connections
-- [[Appointment]] - `references` [EXTRACTED]
+- [[PaymentReceiptDTO]] - `references` [EXTRACTED]
 
 #graphify/code #graphify/EXTRACTED #community/Appointment

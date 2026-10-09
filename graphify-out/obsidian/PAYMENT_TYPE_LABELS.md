@@ -1,12 +1,12 @@
 ---
 source_file: "frontend/src/types/index.ts"
 type: "code"
-community: "BookingWizard.tsx"
+community: "api.ts"
 location: "L99"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/BookingWizardtsx
+  - community/apits
 ---
 
 # PAYMENT_TYPE_LABELS
@@ -17,4 +17,4 @@ tags:
 - [[CollectBalanceModal.tsx]] - `imports` [EXTRACTED]
 - [[typesindex.ts]] - `contains` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/BookingWizardtsx
+#graphify/code #graphify/EXTRACTED #community/apits

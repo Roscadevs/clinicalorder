@@ -1,11 +1,11 @@
 ---
 source_file: ""
 type: "code"
-community: "JwtAuthenticationFilter"
+community: "GlobalExceptionHandler"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/JwtAuthenticationFilter
+  - community/GlobalExceptionHandler
 ---
 
 # org.springframework.security.core.userdetails.UserDetails
@@ -13,4 +13,4 @@ tags:
 ## Connections
 - [[JwtAuthenticationFilter.java]] - `imports` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/JwtAuthenticationFilter
+#graphify/code #graphify/EXTRACTED #community/GlobalExceptionHandler

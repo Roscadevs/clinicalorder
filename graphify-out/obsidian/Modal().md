@@ -12,6 +12,7 @@ tags:
 # Modal()
 
 ## Connections
+- [[AgendaView.tsx]] - `imports` [EXTRACTED]
 - [[BookingWizard.tsx]] - `imports` [EXTRACTED]
 - [[ClinicalNoteModal.tsx]] - `imports` [EXTRACTED]
 - [[CollectBalanceModal.tsx]] - `imports` [EXTRACTED]

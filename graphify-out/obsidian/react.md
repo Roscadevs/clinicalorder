@@ -29,6 +29,7 @@ tags:
 - [[ClinicalNoteModal.tsx]] - `imports_from` [EXTRACTED]
 - [[CollectBalanceModal.tsx]] - `imports_from` [EXTRACTED]
 - [[DashboardLayout.tsx]] - `imports_from` [EXTRACTED]
+- [[EditAppointmentView.tsx]] - `imports_from` [EXTRACTED]
 - [[ErrorBoundary.tsx]] - `imports_from` [EXTRACTED]
 - [[GeminiChatbotWidget.tsx]] - `imports_from` [EXTRACTED]
 - [[GlideSelect.tsx]] - `imports_from` [EXTRACTED]

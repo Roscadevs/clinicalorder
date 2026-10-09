@@ -1,18 +1,18 @@
 ---
-source_file: "frontend/src/features/documents/AppointmentReceiptModal.tsx"
+source_file: "frontend/src/features/agenda/CollectBalanceModal.tsx"
 type: "code"
-community: "BookingWizard.tsx"
-location: "L42"
+community: "api.ts"
+location: "L16"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/BookingWizardtsx
+  - community/apits
 ---
 
 # ars()
 
 ## Connections
-- [[AppointmentReceiptModal()]] - `calls` [EXTRACTED]
-- [[AppointmentReceiptModal.tsx]] - `contains` [EXTRACTED]
+- [[CollectBalanceModal()]] - `calls` [EXTRACTED]
+- [[CollectBalanceModal.tsx]] - `contains` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/BookingWizardtsx
+#graphify/code #graphify/EXTRACTED #community/apits

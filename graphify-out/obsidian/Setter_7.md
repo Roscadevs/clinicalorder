@@ -1,11 +1,11 @@
 ---
 source_file: ""
 type: "code"
-community: "AppointmentResponseDTO"
+community: "Appointment"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/AppointmentResponseDTO
+  - community/Appointment
 ---
 
 # Setter
@@ -13,4 +13,4 @@ tags:
 ## Connections
 - [[AppointmentResponseDTO]] - `references` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/AppointmentResponseDTO
+#graphify/code #graphify/EXTRACTED #community/Appointment

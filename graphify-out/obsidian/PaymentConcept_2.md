@@ -1,11 +1,11 @@
 ---
 source_file: ""
 type: "code"
-community: "PaymentTransaction"
+community: "org.springframework.stereotype.Component"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/PaymentTransaction
+  - community/orgspringframeworkstereotypeComponent
 ---
 
 # PaymentConcept
@@ -13,4 +13,4 @@ tags:
 ## Connections
 - [[dot-register()]] - `references` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/PaymentTransaction
+#graphify/code #graphify/EXTRACTED #community/orgspringframeworkstereotypeComponent

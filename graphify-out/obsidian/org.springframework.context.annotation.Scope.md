@@ -1,11 +1,11 @@
 ---
 source_file: ""
 type: "code"
-community: "MedicalRecordServiceTest"
+community: "org.junit.jupiter.api.DisplayName"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/MedicalRecordServiceTest
+  - community/orgjunitjupiterapiDisplayName
 ---
 
 # org.springframework.context.annotation.Scope
@@ -14,4 +14,4 @@ tags:
 - [[AesEncryptionService]] - `references` [EXTRACTED]
 - [[AesEncryptionService.java]] - `imports` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/MedicalRecordServiceTest
+#graphify/code #graphify/EXTRACTED #community/orgjunitjupiterapiDisplayName

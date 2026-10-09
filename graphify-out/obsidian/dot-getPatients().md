@@ -1,12 +1,12 @@
 ---
 source_file: "backend/src/main/java/com/clinicadermatologica/app/presentation/controller/PatientController.java"
 type: "code"
-community: "PatientResponseDTO"
+community: "org.springframework.transaction.annotation.Transactional"
 location: "L37"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/PatientResponseDTO
+  - community/orgspringframeworktransactionannotationTransactional
 ---
 
 # .getPatients()
@@ -19,4 +19,4 @@ tags:
 - [[PatientResponseDTO]] - `references` [EXTRACTED]
 - [[org.springframework.http.ResponseEntity]] - `references` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/PatientResponseDTO
+#graphify/code #graphify/EXTRACTED #community/orgspringframeworktransactionannotationTransactional

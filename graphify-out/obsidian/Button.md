@@ -1,12 +1,12 @@
 ---
 source_file: "frontend/src/components/ui/Button.tsx"
 type: "code"
-community: "Button"
+community: "MedicalRecordView.tsx"
 location: "L44"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/Button
+  - community/MedicalRecordViewtsx
 ---
 
 # Button
@@ -19,6 +19,7 @@ tags:
 - [[Button.tsx]] - `contains` [EXTRACTED]
 - [[ClinicalNoteModal.tsx]] - `imports` [EXTRACTED]
 - [[CollectBalanceModal.tsx]] - `imports` [EXTRACTED]
+- [[EditAppointmentView.tsx]] - `imports` [EXTRACTED]
 - [[LoginView.tsx]] - `imports` [EXTRACTED]
 - [[MedicalRecordView.tsx]] - `imports` [EXTRACTED]
 - [[PasswordRecoveryView.tsx]] - `imports` [EXTRACTED]
@@ -29,4 +30,4 @@ tags:
 - [[cn()]] - `calls` [EXTRACTED]
 - [[uiindex.ts]] - `re_exports` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/Button
+#graphify/code #graphify/EXTRACTED #community/MedicalRecordViewtsx

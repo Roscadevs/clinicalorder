@@ -11,7 +11,7 @@ tags:
 # Override
 
 ## Connections
-- [[dot-findByToken()]] - `references` [EXTRACTED]
-- [[dot-save()_22]] - `references` [EXTRACTED]
+- [[dot-findByToken()_1]] - `references` [EXTRACTED]
+- [[dot-save()_24]] - `references` [EXTRACTED]
 
 #graphify/code #graphify/EXTRACTED #community/PasswordResetToken

@@ -1,12 +1,12 @@
 ---
 source_file: "backend/src/test/java/com/clinicadermatologica/app/application/PaymentServiceTest.java"
 type: "code"
-community: "org.junit.jupiter.api.DisplayName"
+community: ".registerDepositPayment"
 location: "L373"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/orgjunitjupiterapiDisplayName
+  - community/registerDepositPayment
 ---
 
 # .cash()
@@ -18,4 +18,4 @@ tags:
 - [[PaymentServiceTest]] - `method` [EXTRACTED]
 - [[RegisterPaymentRequestDTO]] - `references` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/orgjunitjupiterapiDisplayName
+#graphify/code #graphify/EXTRACTED #community/registerDepositPayment

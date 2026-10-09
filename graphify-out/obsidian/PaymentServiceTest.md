@@ -1,12 +1,12 @@
 ---
 source_file: "backend/src/test/java/com/clinicadermatologica/app/application/PaymentServiceTest.java"
 type: "code"
-community: "org.junit.jupiter.api.DisplayName"
+community: "PaymentServiceTest"
 location: "L36"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/orgjunitjupiterapiDisplayName
+  - community/PaymentServiceTest
 ---
 
 # PaymentServiceTest
@@ -14,7 +14,7 @@ tags:
 ## Connections
 - [[dot-cash()]] - `method` [EXTRACTED]
 - [[dot-prepareHold()]] - `method` [EXTRACTED]
-- [[dot-setUp()_3]] - `method` [EXTRACTED]
+- [[dot-setUp()_4]] - `method` [EXTRACTED]
 - [[dot-testIsValidSignature_SuccessAndFailure()]] - `method` [EXTRACTED]
 - [[dot-testRefundPayment_Success()]] - `method` [EXTRACTED]
 - [[dot-testRegisterDeposit_AmountBelowDeposit_Throws()]] - `method` [EXTRACTED]
@@ -31,7 +31,7 @@ tags:
 - [[dot-testWebhook_InProcess_MaintainsPendingAppointment()]] - `method` [EXTRACTED]
 - [[dot-testWebhook_QueryParams_Approved()]] - `method` [EXTRACTED]
 - [[dot-testWebhook_Rejected_MarksPaymentFailed()]] - `method` [EXTRACTED]
-- [[Appointment_6]] - `references` [EXTRACTED]
+- [[Appointment_5]] - `references` [EXTRACTED]
 - [[AppointmentRepository]] - `references` [EXTRACTED]
 - [[MercadoPagoPaymentAdapter]] - `references` [EXTRACTED]
 - [[PaymentService]] - `references` [EXTRACTED]
@@ -43,4 +43,4 @@ tags:
 - [[org.junit.jupiter.api.extension.ExtendWith]] - `references` [EXTRACTED]
 - [[org.mockito.junit.jupiter.MockitoExtension]] - `references` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/orgjunitjupiterapiDisplayName
+#graphify/code #graphify/EXTRACTED #community/PaymentServiceTest

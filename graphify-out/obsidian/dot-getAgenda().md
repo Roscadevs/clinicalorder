@@ -1,12 +1,12 @@
 ---
 source_file: "backend/src/main/java/com/clinicadermatologica/app/presentation/controller/AppointmentController.java"
 type: "code"
-community: "AppointmentResponseDTO"
+community: "org.springframework.http.ResponseEntity"
 location: "L53"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/AppointmentResponseDTO
+  - community/orgspringframeworkhttpResponseEntity
 ---
 
 # .getAgenda()
@@ -19,4 +19,4 @@ tags:
 - [[org.springframework.http.ResponseEntity]] - `references` [EXTRACTED]
 - [[org.springframework.security.access.prepost.PreAuthorize]] - `references` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/AppointmentResponseDTO
+#graphify/code #graphify/EXTRACTED #community/orgspringframeworkhttpResponseEntity

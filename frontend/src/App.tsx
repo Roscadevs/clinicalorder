@@ -13,6 +13,7 @@ import { DashboardLayout } from './components/DashboardLayout';
 import { BookingWizard } from './features/appointments/BookingWizard';
 import { BookingSuccessView, BookingFailureView, BookingPendingView } from './features/appointments/BookingStatusViews';
 import { AgendaView } from './features/agenda/AgendaView';
+import { EditAppointmentView } from './features/agenda/EditAppointmentView';
 import { MedicalRecordView } from './features/clinical/MedicalRecordView';
 import { AdminServicesView } from './features/admin/AdminServicesView';
 import { AnalyticsDashboardView } from './features/analytics/AnalyticsDashboardView';
@@ -93,6 +94,7 @@ export function App() {
           <Route index element={<Navigate to="/app/agenda" replace />} />
           <Route path="booking" element={<BookingWizard />} />
           <Route path="agenda" element={<AgendaView />} />
+          <Route path="agenda/:id/editar" element={<EditAppointmentView />} />
           <Route path="clinical" element={<MedicalRecordView />} />
           <Route path="admin" element={<AdminServicesView />} />
           <Route path="analytics" element={<AnalyticsDashboardView />} />

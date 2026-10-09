@@ -1,19 +1,20 @@
 ---
-source_file: "backend/src/main/java/com/clinicadermatologica/app/domain/repository/PatientRepository.java"
+source_file: "backend/src/main/java/com/clinicadermatologica/app/infrastructure/persistence/adapter/PatientRepositoryAdapter.java"
 type: "code"
-community: "PatientResponseDTO"
-location: "L16"
+community: "Patient"
+location: "L41"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/PatientResponseDTO
+  - community/Patient
 ---
 
 # .findAllActive()
 
 ## Connections
-- [[dot-getAllActivePatients()]] - `calls` [INFERRED]
+- [[dot-findByActiveTrue()]] - `calls` [INFERRED]
+- [[Override_12]] - `references` [EXTRACTED]
 - [[Patient_1]] - `references` [EXTRACTED]
-- [[PatientRepository]] - `method` [EXTRACTED]
+- [[PatientRepositoryAdapter]] - `method` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/PatientResponseDTO
+#graphify/code #graphify/EXTRACTED #community/Patient

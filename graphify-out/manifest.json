@@ -894,9 +894,9 @@
     "semantic_hash": ""
   },
   "frontend/src/App.tsx": {
-    "mtime": 1790719771.3666368,
-    "seen": 1791242532.0603929,
-    "ast_hash": "4e7a6367b94ebb30c9656cdb2bf6f98e",
+    "mtime": 1791584922.6247876,
+    "seen": 1791585053.658499,
+    "ast_hash": "b86c5ae6ffc1d1d62d1d145c4a517b2d",
     "semantic_hash": ""
   },
   "frontend/src/components/BottomNav.tsx": {
@@ -918,9 +918,9 @@
     "semantic_hash": ""
   },
   "frontend/src/components/GeminiChatbotWidget.tsx": {
-    "mtime": 1790719771.3692613,
-    "seen": 1791242532.060395,
-    "ast_hash": "7415cc36306e8d26c7e0b5b319b00009",
+    "mtime": 1791584922.625308,
+    "seen": 1791585053.6585011,
+    "ast_hash": "9e99b69d825afc157915fd1332728569",
     "semantic_hash": ""
   },
   "frontend/src/components/Navbar.tsx": {
@@ -1062,9 +1062,9 @@
     "semantic_hash": ""
   },
   "frontend/src/features/agenda/AgendaView.tsx": {
-    "mtime": 1790719771.3733635,
-    "seen": 1791242532.060407,
-    "ast_hash": "2bc7262cf4a059982519b2793d411513",
+    "mtime": 1791584922.6258492,
+    "seen": 1791585053.658517,
+    "ast_hash": "0d10df2533bde867da6617bf3ec22c1e",
     "semantic_hash": ""
   },
   "frontend/src/features/agenda/CollectBalanceModal.tsx": {
@@ -1080,9 +1080,9 @@
     "semantic_hash": ""
   },
   "frontend/src/features/analytics/AnalyticsDashboardView.tsx": {
-    "mtime": 1790719771.3738437,
-    "seen": 1791242532.060409,
-    "ast_hash": "8ea35ce6dde80bd6e75dd0a9dbafaf85",
+    "mtime": 1791584922.6264327,
+    "seen": 1791585053.6585212,
+    "ast_hash": "d53dd20efe73205fbe4912d55ba8df36",
     "semantic_hash": ""
   },
   "frontend/src/features/appointments/BookingStatusViews.tsx": {
@@ -1092,9 +1092,9 @@
     "semantic_hash": ""
   },
   "frontend/src/features/appointments/BookingWizard.tsx": {
-    "mtime": 1790719771.3742187,
-    "seen": 1791242532.06041,
-    "ast_hash": "d9cd2c03a19c4a0efd86789434a1c2d9",
+    "mtime": 1791584922.6268988,
+    "seen": 1791585053.6585221,
+    "ast_hash": "2a79715ed8862d01160b75475c199ca2",
     "semantic_hash": ""
   },
   "frontend/src/features/appointments/PatientSearch.tsx": {
@@ -1104,15 +1104,15 @@
     "semantic_hash": ""
   },
   "frontend/src/features/appointments/RegisterPaymentStep.tsx": {
-    "mtime": 1790719771.3745313,
-    "seen": 1791242532.060411,
-    "ast_hash": "4f7cd1e7bfcde48a211a79b28931b215",
+    "mtime": 1791584922.6272538,
+    "seen": 1791585053.6585228,
+    "ast_hash": "ed257e58387977a8f3bce2f209081941",
     "semantic_hash": ""
   },
   "frontend/src/features/auth/LoginView.tsx": {
-    "mtime": 1791562241.3405511,
-    "seen": 1791562387.2505631,
-    "ast_hash": "869fbb1c9c72b243abc06adb3521f779",
+    "mtime": 1791584922.6277556,
+    "seen": 1791585053.6585238,
+    "ast_hash": "579638d45668cbffdf3a1f5d66fcc22d",
     "semantic_hash": ""
   },
   "frontend/src/features/auth/PasswordRecoveryView.tsx": {
@@ -1182,9 +1182,9 @@
     "semantic_hash": ""
   },
   "frontend/src/features/reminders/ReminderNotificationModal.tsx": {
-    "mtime": 1790719771.3768883,
-    "seen": 1791242532.060417,
-    "ast_hash": "dfd9d7eef9935dfe23340554805ab3fe",
+    "mtime": 1791584922.62834,
+    "seen": 1791585053.6585321,
+    "ast_hash": "6f0f43644b8071e5063445387828ff72",
     "semantic_hash": ""
   },
   "frontend/src/main.tsx": {
@@ -1194,9 +1194,9 @@
     "semantic_hash": ""
   },
   "frontend/src/services/api.ts": {
-    "mtime": 1791570039.346602,
-    "seen": 1791570101.775897,
-    "ast_hash": "a711be73ef2365544b7689f7569990fb",
+    "mtime": 1791584922.629219,
+    "seen": 1791585053.658533,
+    "ast_hash": "0f698cf2fd2f6d68472c5fff40af6e71",
     "semantic_hash": ""
   },
   "frontend/src/services/supabaseClient.ts": {
@@ -1917,6 +1917,12 @@
     "mtime": 1791558138.2255137,
     "seen": 1791558851.423295,
     "ast_hash": "dcf185da6df4df63b3c56c8c0d55725a",
+    "semantic_hash": ""
+  },
+  "frontend/src/features/agenda/EditAppointmentView.tsx": {
+    "mtime": 1791584922.6260796,
+    "seen": 1791585053.658519,
+    "ast_hash": "454d73356166521c4c61fd1fbb920859",
     "semantic_hash": ""
   }
 }

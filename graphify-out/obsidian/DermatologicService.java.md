@@ -1,12 +1,12 @@
 ---
 source_file: "backend/src/main/java/com/clinicadermatologica/app/domain/model/DermatologicService.java"
 type: "code"
-community: "GeminiChatRequestDTO"
+community: "DermatologicService"
 location: "L1"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/GeminiChatRequestDTO
+  - community/DermatologicService
 ---
 
 # DermatologicService.java
@@ -15,4 +15,4 @@ tags:
 - [[DermatologicService]] - `contains` [EXTRACTED]
 - [[GeminiChatbotService.java]] - `imports` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/GeminiChatRequestDTO
+#graphify/code #graphify/EXTRACTED #community/DermatologicService

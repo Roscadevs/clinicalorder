@@ -12,7 +12,7 @@ tags:
 # .save()
 
 ## Connections
-- [[MedicalRecord]] - `references` [EXTRACTED]
+- [[MedicalRecord_1]] - `references` [EXTRACTED]
 - [[MedicalRecordRepositoryAdapter]] - `method` [EXTRACTED]
 - [[Override_8]] - `references` [EXTRACTED]
 

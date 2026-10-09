@@ -1,12 +1,12 @@
 ---
 source_file: "frontend/src/features/clinical/PatientDirectoryView.tsx"
 type: "code"
-community: "MedicalRecordView.tsx"
+community: "PatientDirectoryView.tsx"
 location: "L10"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/MedicalRecordViewtsx
+  - community/PatientDirectoryViewtsx
 ---
 
 # fmt()
@@ -15,4 +15,4 @@ tags:
 - [[PatientDirectoryView()]] - `calls` [EXTRACTED]
 - [[PatientDirectoryView.tsx]] - `contains` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/MedicalRecordViewtsx
+#graphify/code #graphify/EXTRACTED #community/PatientDirectoryViewtsx

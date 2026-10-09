@@ -1,12 +1,12 @@
 ---
 source_file: "backend/src/test/java/com/clinicadermatologica/app/application/MedicalRecordServiceTest.java"
 type: "code"
-community: "MedicalRecordServiceTest"
+community: "org.junit.jupiter.api.DisplayName"
 location: "L176"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/MedicalRecordServiceTest
+  - community/orgjunitjupiterapiDisplayName
 ---
 
 # .testRemoveAlergia_NotFound_Throws()
@@ -19,4 +19,4 @@ tags:
 - [[org.junit.jupiter.api.DisplayName]] - `references` [EXTRACTED]
 - [[org.junit.jupiter.api.Test]] - `references` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/MedicalRecordServiceTest
+#graphify/code #graphify/EXTRACTED #community/orgjunitjupiterapiDisplayName

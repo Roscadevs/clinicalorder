@@ -1,11 +1,11 @@
 ---
 source_file: ""
 type: "code"
-community: "UserRepository"
+community: "MedicalRecordServiceTest"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/UserRepository
+  - community/MedicalRecordServiceTest
 ---
 
 # org.junit.jupiter.api.extension.ExtendWith
@@ -20,4 +20,4 @@ tags:
 - [[PaymentServiceTest]] - `references` [EXTRACTED]
 - [[PaymentServiceTest.java]] - `imports` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/UserRepository
+#graphify/code #graphify/EXTRACTED #community/MedicalRecordServiceTest

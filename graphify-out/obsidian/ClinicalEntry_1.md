@@ -12,16 +12,16 @@ tags:
 # ClinicalEntry
 
 ## Connections
-- [[dot-findByAppointmentId()_1]] - `references` [EXTRACTED]
+- [[dot-findByAppointmentId()_2]] - `references` [EXTRACTED]
 - [[dot-findByAppointmentId()_3]] - `references` [EXTRACTED]
 - [[dot-findByAppointmentId()_4]] - `references` [EXTRACTED]
-- [[dot-findById()_4]] - `references` [EXTRACTED]
+- [[dot-findById()_18]] - `references` [EXTRACTED]
 - [[dot-findById()_19]] - `references` [EXTRACTED]
-- [[dot-findByPatientId()]] - `references` [EXTRACTED]
+- [[dot-findByPatientId()_6]] - `references` [EXTRACTED]
 - [[dot-findByPatientId()_5]] - `references` [EXTRACTED]
 - [[dot-findByPatientIdOrderByCreatedAtDesc()]] - `references` [EXTRACTED]
-- [[dot-save()_2]] - `references` [EXTRACTED]
-- [[dot-save()_16]] - `references` [EXTRACTED]
+- [[dot-save()_3]] - `references` [EXTRACTED]
+- [[dot-save()_19]] - `references` [EXTRACTED]
 - [[AllArgsConstructor_36]] - `references` [EXTRACTED]
 - [[Appointment]] - `references` [EXTRACTED]
 - [[Builder_34]] - `references` [EXTRACTED]

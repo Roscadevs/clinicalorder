@@ -1,16 +1,16 @@
 ---
 source_file: ""
 type: "code"
-community: "GeminiChatRequestDTO"
+community: "org.springframework.http.ResponseEntity"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/GeminiChatRequestDTO
+  - community/orgspringframeworkhttpResponseEntity
 ---
 
 # RestController
 
 ## Connections
-- [[GeminiChatbotController]] - `references` [EXTRACTED]
+- [[AppointmentController]] - `references` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/GeminiChatRequestDTO
+#graphify/code #graphify/EXTRACTED #community/orgspringframeworkhttpResponseEntity

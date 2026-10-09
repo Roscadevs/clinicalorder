@@ -1,11 +1,11 @@
 ---
 source_file: ""
 type: "code"
-community: "lombok.RequiredArgsConstructor"
+community: "AppointmentService"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/lombokRequiredArgsConstructor
+  - community/AppointmentService
 ---
 
 # PostMapping
@@ -13,4 +13,4 @@ tags:
 ## Connections
 - [[dot-handleMercadoPagoWebhook()]] - `references` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/lombokRequiredArgsConstructor
+#graphify/code #graphify/EXTRACTED #community/AppointmentService

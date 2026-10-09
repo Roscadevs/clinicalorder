@@ -1,12 +1,12 @@
 ---
 source_file: "backend/src/main/java/com/clinicadermatologica/app/presentation/dto/ServiceRequestDTO.java"
 type: "code"
-community: "ServiceRequestDTO"
+community: "ServiceResponseDTO"
 location: "L1"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/ServiceRequestDTO
+  - community/ServiceResponseDTO
 ---
 
 # ServiceRequestDTO.java
@@ -14,4 +14,4 @@ tags:
 ## Connections
 - [[ServiceRequestDTO]] - `contains` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/ServiceRequestDTO
+#graphify/code #graphify/EXTRACTED #community/ServiceResponseDTO

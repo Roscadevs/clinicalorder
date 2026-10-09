@@ -1,23 +1,23 @@
 ---
 source_file: "backend/src/main/java/com/clinicadermatologica/app/domain/repository/DermatologicServiceRepository.java"
 type: "code"
-community: "DermatologicServiceRepository"
+community: "ServiceResponseDTO"
 location: "L11"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/DermatologicServiceRepository
+  - community/ServiceResponseDTO
 ---
 
 # DermatologicServiceRepository
 
 ## Connections
-- [[dot-existsByName()_2]] - `method` [EXTRACTED]
+- [[dot-existsByName()]] - `method` [EXTRACTED]
 - [[dot-findAll()]] - `method` [EXTRACTED]
-- [[dot-findAllActive()_3]] - `method` [EXTRACTED]
-- [[dot-findById()_12]] - `method` [EXTRACTED]
-- [[dot-findByName()_2]] - `method` [EXTRACTED]
-- [[dot-save()_25]] - `method` [EXTRACTED]
+- [[dot-findAllActive()]] - `method` [EXTRACTED]
+- [[dot-findById()_10]] - `method` [EXTRACTED]
+- [[dot-findByName()]] - `method` [EXTRACTED]
+- [[dot-save()_11]] - `method` [EXTRACTED]
 - [[AppointmentService]] - `references` [EXTRACTED]
 - [[AppointmentServiceTest]] - `references` [EXTRACTED]
 - [[DermatologicServiceRepository.java]] - `contains` [EXTRACTED]
@@ -28,4 +28,4 @@ tags:
 - [[GeminiChatbotService]] - `references` [EXTRACTED]
 - [[GeminiChatbotService.java]] - `imports` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/DermatologicServiceRepository
+#graphify/code #graphify/EXTRACTED #community/ServiceResponseDTO

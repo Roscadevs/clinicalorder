@@ -19,13 +19,13 @@ tags:
 - [[dot-saveMedicalRecord()]] - `references` [EXTRACTED]
 - [[dot-saveOrUpdateMedicalRecord()]] - `references` [EXTRACTED]
 - [[AlergiaResponseDTO]] - `references` [EXTRACTED]
-- [[AllArgsConstructor_44]] - `references` [EXTRACTED]
+- [[AllArgsConstructor_25]] - `references` [EXTRACTED]
 - [[AntecedentePatologicoResponseDTO]] - `references` [EXTRACTED]
-- [[Builder_41]] - `references` [EXTRACTED]
-- [[Getter_44]] - `references` [EXTRACTED]
+- [[Builder_23]] - `references` [EXTRACTED]
+- [[Getter_25]] - `references` [EXTRACTED]
 - [[HabitoResponseDTO]] - `references` [EXTRACTED]
 - [[MedicalRecordDTO.java]] - `contains` [EXTRACTED]
-- [[NoArgsConstructor_44]] - `references` [EXTRACTED]
-- [[Setter_44]] - `references` [EXTRACTED]
+- [[NoArgsConstructor_25]] - `references` [EXTRACTED]
+- [[Setter_25]] - `references` [EXTRACTED]
 
 #graphify/code #graphify/EXTRACTED #community/MedicalRecordDTO

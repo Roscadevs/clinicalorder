@@ -1,16 +1,16 @@
 ---
 source_file: ""
 type: "code"
-community: "PaymentReceiptDTO"
+community: ".addHabito"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/PaymentReceiptDTO
+  - community/addHabito
 ---
 
 # Builder
 
 ## Connections
-- [[PaymentReceiptDTO]] - `references` [EXTRACTED]
+- [[HabitoResponseDTO]] - `references` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/PaymentReceiptDTO
+#graphify/code #graphify/EXTRACTED #community/addHabito

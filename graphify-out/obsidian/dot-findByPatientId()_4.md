@@ -1,19 +1,21 @@
 ---
-source_file: "backend/src/main/java/com/clinicadermatologica/app/infrastructure/persistence/jpa/JpaMedicalRecordRepository.java"
+source_file: "backend/src/main/java/com/clinicadermatologica/app/domain/repository/MedicalRecordRepository.java"
 type: "code"
-community: "MedicalRecord"
+community: "MedicalRecordDTO"
 location: "L14"
 tags:
   - graphify/code
-  - graphify/EXTRACTED
-  - community/MedicalRecord
+  - graphify/INFERRED
+  - community/MedicalRecordDTO
 ---
 
 # .findByPatientId()
 
 ## Connections
-- [[dot-findByPatientId()_3]] - `calls` [INFERRED]
-- [[JpaMedicalRecordRepository]] - `method` [EXTRACTED]
-- [[MedicalRecord]] - `references` [EXTRACTED]
+- [[dot-getMedicalRecordByPatientId()]] - `calls` [INFERRED]
+- [[dot-saveOrUpdateMedicalRecord()]] - `calls` [INFERRED]
+- [[dot-testSaveInitialMedicalRecord_Success()]] - `calls` [INFERRED]
+- [[MedicalRecord_1]] - `references` [EXTRACTED]
+- [[MedicalRecordRepository]] - `method` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/MedicalRecord
+#graphify/code #graphify/INFERRED #community/MedicalRecordDTO

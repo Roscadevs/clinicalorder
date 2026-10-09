@@ -1,20 +1,19 @@
 ---
-source_file: "backend/src/main/java/com/clinicadermatologica/app/domain/repository/MedicalRecordRepository.java"
+source_file: "backend/src/main/java/com/clinicadermatologica/app/infrastructure/persistence/adapter/DermatologicServiceRepositoryAdapter.java"
 type: "code"
-community: "MedicalRecordController"
-location: "L15"
+community: "DermatologicService"
+location: "L41"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/MedicalRecordController
+  - community/DermatologicService
 ---
 
 # .save()
 
 ## Connections
-- [[dot-saveOrUpdateMedicalRecord()]] - `calls` [INFERRED]
-- [[dot-testSaveInitialMedicalRecord_Success()]] - `calls` [INFERRED]
-- [[MedicalRecord]] - `references` [EXTRACTED]
-- [[MedicalRecordRepository]] - `method` [EXTRACTED]
+- [[DermatologicService]] - `references` [EXTRACTED]
+- [[DermatologicServiceRepositoryAdapter]] - `method` [EXTRACTED]
+- [[Override_18]] - `references` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/MedicalRecordController
+#graphify/code #graphify/EXTRACTED #community/DermatologicService

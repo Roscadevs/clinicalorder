@@ -1,12 +1,12 @@
 ---
 source_file: "backend/src/main/java/com/clinicadermatologica/app/presentation/controller/MedicalRecordController.java"
 type: "code"
-community: "MedicalRecordController"
+community: "AlergiaRequestDTO"
 location: "L48"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/MedicalRecordController
+  - community/AlergiaRequestDTO
 ---
 
 # .saveMedicalRecord()
@@ -15,7 +15,7 @@ tags:
 - [[dot-saveOrUpdateMedicalRecord()]] - `calls` [INFERRED]
 - [[MedicalRecordController]] - `method` [EXTRACTED]
 - [[MedicalRecordDTO]] - `references` [EXTRACTED]
-- [[PostMapping_5]] - `references` [EXTRACTED]
+- [[PostMapping]] - `references` [EXTRACTED]
 - [[org.springframework.http.ResponseEntity]] - `references` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/MedicalRecordController
+#graphify/code #graphify/EXTRACTED #community/AlergiaRequestDTO

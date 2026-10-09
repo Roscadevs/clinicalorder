@@ -2,7 +2,7 @@
 source_file: "frontend/src/features/agenda/AgendaView.tsx"
 type: "code"
 community: "AgendaView.tsx"
-location: "L18"
+location: "L27"
 tags:
   - graphify/code
   - graphify/EXTRACTED
@@ -12,7 +12,6 @@ tags:
 # ars()
 
 ## Connections
-- [[AgendaView()]] - `calls` [EXTRACTED]
 - [[AgendaView.tsx]] - `contains` [EXTRACTED]
 - [[AppointmentDetail()]] - `calls` [EXTRACTED]
 

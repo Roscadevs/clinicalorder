@@ -1,19 +1,20 @@
 ---
-source_file: "backend/src/main/java/com/clinicadermatologica/app/infrastructure/persistence/adapter/MedicalRecordRepositoryAdapter.java"
+source_file: "backend/src/main/java/com/clinicadermatologica/app/infrastructure/persistence/adapter/AntecedentePatologicoRepositoryAdapter.java"
 type: "code"
-community: "MedicalRecord"
-location: "L29"
+community: "AntecedentePatologico"
+location: "L31"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/MedicalRecord
+  - community/AntecedentePatologico
 ---
 
 # .findById()
 
 ## Connections
-- [[MedicalRecord]] - `references` [EXTRACTED]
-- [[MedicalRecordRepositoryAdapter]] - `method` [EXTRACTED]
-- [[Override_8]] - `references` [EXTRACTED]
+- [[AntecedentePatologico]] - `references` [EXTRACTED]
+- [[AntecedentePatologicoId]] - `references` [EXTRACTED]
+- [[AntecedentePatologicoRepositoryAdapter]] - `method` [EXTRACTED]
+- [[Override_10]] - `references` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/MedicalRecord
+#graphify/code #graphify/EXTRACTED #community/AntecedentePatologico

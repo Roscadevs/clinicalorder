@@ -1,12 +1,12 @@
 ---
 source_file: "backend/src/main/java/com/clinicadermatologica/app/presentation/controller/MedicalRecordController.java"
 type: "code"
-community: "MedicalRecordController"
+community: "ClinicalEntryResponseDTO"
 location: "L60"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/MedicalRecordController
+  - community/ClinicalEntryResponseDTO
 ---
 
 # .addClinicalEntry()
@@ -16,7 +16,7 @@ tags:
 - [[ClinicalEntryRequestDTO]] - `references` [EXTRACTED]
 - [[ClinicalEntryResponseDTO]] - `references` [EXTRACTED]
 - [[MedicalRecordController]] - `method` [EXTRACTED]
-- [[PostMapping_5]] - `references` [EXTRACTED]
+- [[PostMapping]] - `references` [EXTRACTED]
 - [[org.springframework.http.ResponseEntity]] - `references` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/MedicalRecordController
+#graphify/code #graphify/EXTRACTED #community/ClinicalEntryResponseDTO

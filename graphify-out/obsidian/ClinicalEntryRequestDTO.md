@@ -1,12 +1,12 @@
 ---
 source_file: "backend/src/main/java/com/clinicadermatologica/app/presentation/dto/ClinicalEntryRequestDTO.java"
 type: "code"
-community: "ClinicalEntryRequestDTO"
+community: "ClinicalEntryResponseDTO"
 location: "L16"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/ClinicalEntryRequestDTO
+  - community/ClinicalEntryResponseDTO
 ---
 
 # ClinicalEntryRequestDTO
@@ -14,11 +14,11 @@ tags:
 ## Connections
 - [[dot-addClinicalEntry()]] - `references` [EXTRACTED]
 - [[dot-addClinicalEntry()_1]] - `references` [EXTRACTED]
-- [[AllArgsConstructor_12]] - `references` [EXTRACTED]
-- [[Builder_11]] - `references` [EXTRACTED]
+- [[AllArgsConstructor_2]] - `references` [EXTRACTED]
+- [[Builder_2]] - `references` [EXTRACTED]
 - [[ClinicalEntryRequestDTO.java]] - `contains` [EXTRACTED]
-- [[Getter_12]] - `references` [EXTRACTED]
-- [[NoArgsConstructor_12]] - `references` [EXTRACTED]
-- [[Setter_12]] - `references` [EXTRACTED]
+- [[Getter_2]] - `references` [EXTRACTED]
+- [[NoArgsConstructor_2]] - `references` [EXTRACTED]
+- [[Setter_2]] - `references` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/ClinicalEntryRequestDTO
+#graphify/code #graphify/EXTRACTED #community/ClinicalEntryResponseDTO

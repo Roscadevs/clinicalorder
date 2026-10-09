@@ -1,21 +1,21 @@
 ---
 source_file: "backend/src/main/java/com/clinicadermatologica/app/application/service/PatientService.java"
 type: "code"
-community: "PatientResponseDTO"
+community: "org.springframework.transaction.annotation.Transactional"
 location: "L65"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/PatientResponseDTO
+  - community/orgspringframeworktransactionannotationTransactional
 ---
 
 # .searchPatients()
 
 ## Connections
 - [[dot-getPatients()]] - `calls` [INFERRED]
-- [[dot-searchByNameOrDni()_2]] - `calls` [INFERRED]
+- [[dot-searchByNameOrDni()]] - `calls` [INFERRED]
 - [[PatientResponseDTO]] - `references` [EXTRACTED]
 - [[PatientService]] - `method` [EXTRACTED]
 - [[org.springframework.transaction.annotation.Transactional]] - `references` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/PatientResponseDTO
+#graphify/code #graphify/EXTRACTED #community/orgspringframeworktransactionannotationTransactional

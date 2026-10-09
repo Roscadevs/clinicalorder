@@ -48,3 +48,6 @@ temp/
 *.bkp
 .*.bkp
 *.visual-check.*
+
+# Graphify generated output
+graphify-out/

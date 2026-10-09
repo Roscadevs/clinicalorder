@@ -1,12 +1,12 @@
 ---
 source_file: "backend/src/main/java/com/clinicadermatologica/app/infrastructure/persistence/adapter/DermatologicServiceRepositoryAdapter.java"
 type: "code"
-community: "DermatologicService"
+community: "ServiceResponseDTO"
 location: "L1"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/DermatologicService
+  - community/ServiceResponseDTO
 ---
 
 # DermatologicServiceRepositoryAdapter.java
@@ -19,4 +19,4 @@ tags:
 - [[lombok.RequiredArgsConstructor]] - `imports` [EXTRACTED]
 - [[org.springframework.stereotype.Component]] - `imports` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/DermatologicService
+#graphify/code #graphify/EXTRACTED #community/ServiceResponseDTO

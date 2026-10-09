@@ -1,12 +1,12 @@
 ---
 source_file: "backend/src/main/java/com/clinicadermatologica/app/application/service/AppointmentService.java"
 type: "code"
-community: "AppointmentService"
+community: ".bookTemporaryHold"
 location: "L277"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/AppointmentService
+  - community/bookTemporaryHold
 ---
 
 # .expireHold()
@@ -15,7 +15,7 @@ tags:
 - [[dot-bookTemporaryHold()]] - `calls` [EXTRACTED]
 - [[dot-rejectPendingTransactions()]] - `calls` [EXTRACTED]
 - [[dot-save()_10]] - `calls` [INFERRED]
-- [[Appointment_7]] - `references` [EXTRACTED]
+- [[Appointment_6]] - `references` [EXTRACTED]
 - [[AppointmentService]] - `method` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/AppointmentService
+#graphify/code #graphify/EXTRACTED #community/bookTemporaryHold

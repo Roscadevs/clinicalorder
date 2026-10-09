@@ -14,8 +14,8 @@ tags:
 ## Connections
 - [[dot-deleteById()_3]] - `method` [EXTRACTED]
 - [[dot-findByClinicalEntryId()]] - `method` [EXTRACTED]
-- [[dot-findById()_17]] - `method` [EXTRACTED]
-- [[dot-save()_14]] - `method` [EXTRACTED]
+- [[dot-findById()_16]] - `method` [EXTRACTED]
+- [[dot-save()_17]] - `method` [EXTRACTED]
 - [[ClinicalImageRepository]] - `implements` [EXTRACTED]
 - [[ClinicalImageRepositoryAdapter.java]] - `contains` [EXTRACTED]
 - [[JpaClinicalImageRepository]] - `references` [EXTRACTED]

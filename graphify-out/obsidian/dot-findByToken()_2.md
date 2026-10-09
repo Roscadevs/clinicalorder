@@ -1,22 +1,19 @@
 ---
-source_file: "backend/src/main/java/com/clinicadermatologica/app/domain/repository/PasswordResetTokenRepository.java"
+source_file: "backend/src/main/java/com/clinicadermatologica/app/infrastructure/persistence/jpa/JpaPasswordResetTokenRepository.java"
 type: "code"
-community: "UserRepository"
-location: "L11"
+community: "PasswordResetToken"
+location: "L14"
 tags:
   - graphify/code
-  - graphify/INFERRED
-  - community/UserRepository
+  - graphify/EXTRACTED
+  - community/PasswordResetToken
 ---
 
 # .findByToken()
 
 ## Connections
-- [[dot-resetPassword()_1]] - `calls` [INFERRED]
-- [[dot-testResetPassword_AlreadyUsedToken_ThrowsException()]] - `calls` [INFERRED]
-- [[dot-testResetPassword_ExpiredToken_ThrowsException()]] - `calls` [INFERRED]
-- [[dot-testResetPassword_Success()]] - `calls` [INFERRED]
+- [[dot-findByToken()_1]] - `calls` [INFERRED]
+- [[JpaPasswordResetTokenRepository]] - `method` [EXTRACTED]
 - [[PasswordResetToken]] - `references` [EXTRACTED]
-- [[PasswordResetTokenRepository]] - `method` [EXTRACTED]
 
-#graphify/code #graphify/INFERRED #community/UserRepository
+#graphify/code #graphify/EXTRACTED #community/PasswordResetToken

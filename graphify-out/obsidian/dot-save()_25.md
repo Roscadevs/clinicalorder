@@ -1,20 +1,20 @@
 ---
-source_file: "backend/src/main/java/com/clinicadermatologica/app/domain/repository/DermatologicServiceRepository.java"
+source_file: "backend/src/main/java/com/clinicadermatologica/app/domain/repository/UserRepository.java"
 type: "code"
-community: "DermatologicServiceRepository"
-location: "L16"
+community: "org.springframework.stereotype.Service"
+location: "L14"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/DermatologicServiceRepository
+  - community/orgspringframeworkstereotypeService
 ---
 
 # .save()
 
 ## Connections
-- [[dot-createService()_1]] - `calls` [INFERRED]
-- [[dot-updateService()_1]] - `calls` [INFERRED]
-- [[DermatologicService]] - `references` [EXTRACTED]
-- [[DermatologicServiceRepository]] - `method` [EXTRACTED]
+- [[dot-registerUser()]] - `calls` [INFERRED]
+- [[dot-resetPassword()]] - `calls` [INFERRED]
+- [[User]] - `references` [EXTRACTED]
+- [[UserRepository]] - `method` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/DermatologicServiceRepository
+#graphify/code #graphify/EXTRACTED #community/orgspringframeworkstereotypeService

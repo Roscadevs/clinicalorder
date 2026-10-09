@@ -12,24 +12,24 @@ tags:
 # ServiceResponseDTO
 
 ## Connections
-- [[dot-createService()]] - `references` [EXTRACTED]
 - [[dot-createService()_1]] - `references` [EXTRACTED]
+- [[dot-createService()]] - `references` [EXTRACTED]
 - [[dot-getActiveServices()]] - `references` [EXTRACTED]
 - [[dot-getAllActiveServices()]] - `references` [EXTRACTED]
 - [[dot-getAllServicesForAdmin()]] - `references` [EXTRACTED]
 - [[dot-getAllServicesForAdmin()_1]] - `references` [EXTRACTED]
-- [[dot-getServiceById()_1]] - `references` [EXTRACTED]
 - [[dot-getServiceById()]] - `references` [EXTRACTED]
-- [[dot-mapToDTO()_4]] - `references` [EXTRACTED]
-- [[dot-updateService()]] - `references` [EXTRACTED]
+- [[dot-getServiceById()_1]] - `references` [EXTRACTED]
+- [[dot-mapToDTO()]] - `references` [EXTRACTED]
 - [[dot-updateService()_1]] - `references` [EXTRACTED]
-- [[AllArgsConstructor_25]] - `references` [EXTRACTED]
-- [[Builder_23]] - `references` [EXTRACTED]
+- [[dot-updateService()]] - `references` [EXTRACTED]
+- [[AllArgsConstructor_22]] - `references` [EXTRACTED]
+- [[Builder_20]] - `references` [EXTRACTED]
 - [[DermatologicServiceService.java]] - `imports` [EXTRACTED]
-- [[Getter_25]] - `references` [EXTRACTED]
-- [[NoArgsConstructor_25]] - `references` [EXTRACTED]
+- [[Getter_22]] - `references` [EXTRACTED]
+- [[NoArgsConstructor_22]] - `references` [EXTRACTED]
 - [[ServiceCatalogController.java]] - `imports` [EXTRACTED]
 - [[ServiceResponseDTO.java]] - `contains` [EXTRACTED]
-- [[Setter_25]] - `references` [EXTRACTED]
+- [[Setter_22]] - `references` [EXTRACTED]
 
 #graphify/code #graphify/EXTRACTED #community/ServiceResponseDTO

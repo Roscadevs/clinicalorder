@@ -12,7 +12,7 @@ tags:
 # MedicalRecordRepository.java
 
 ## Connections
-- [[MedicalRecord]] - `imports` [EXTRACTED]
+- [[MedicalRecord_1]] - `imports` [EXTRACTED]
 - [[MedicalRecordAudit]] - `imports` [EXTRACTED]
 - [[MedicalRecordRepository]] - `contains` [EXTRACTED]
 

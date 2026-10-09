@@ -1,11 +1,11 @@
 ---
 type: community
-members: 37
+members: 34
 ---
 
 # react
 
-**Members:** 37 nodes
+**Members:** 34 nodes
 
 ## Members
 - [[dot-componentDidCatch()]] - code - frontend/src/components/ErrorBoundary.tsx
@@ -20,7 +20,6 @@ members: 37
 - [[BookingPendingView()]] - code - frontend/src/features/appointments/BookingStatusViews.tsx
 - [[BookingStatusViews.tsx]] - code - frontend/src/features/appointments/BookingStatusViews.tsx
 - [[BookingSuccessView()]] - code - frontend/src/features/appointments/BookingStatusViews.tsx
-- [[CLINIC]] - code - frontend/src/config/contact.ts
 - [[ErrorBoundary]] - code - frontend/src/components/ErrorBoundary.tsx
 - [[ErrorBoundary.tsx]] - code - frontend/src/components/ErrorBoundary.tsx
 - [[LandingPageView()]] - code - frontend/src/features/public/LandingPageView.tsx
@@ -36,8 +35,6 @@ members: 37
 - [[ServicesCatalogView()]] - code - frontend/src/features/public/ServicesCatalogView.tsx
 - [[ServicesCatalogView.tsx]] - code - frontend/src/features/public/ServicesCatalogView.tsx
 - [[State]] - code - frontend/src/components/ErrorBoundary.tsx
-- [[WHATSAPP_NUMBER]] - code - frontend/src/config/contact.ts
-- [[contact.ts]] - code - frontend/src/config/contact.ts
 - [[lucide-react]] - concept - frontend/package.json
 - [[main.tsx]] - code - frontend/src/main.tsx
 - [[react]] - concept - frontend/package.json
@@ -54,22 +51,22 @@ SORT file.name ASC
 ```
 
 ## Connections to other communities
-- 21 edges to [[_COMMUNITY_cn]]
-- 16 edges to [[_COMMUNITY_BookingWizard.tsx]]
-- 14 edges to [[_COMMUNITY_DashboardLayout.tsx]]
-- 13 edges to [[_COMMUNITY_api.ts]]
-- 11 edges to [[_COMMUNITY_MedicalRecordView.tsx]]
+- 28 edges to [[_COMMUNITY_cn]]
+- 19 edges to [[_COMMUNITY_api.ts]]
+- 14 edges to [[_COMMUNITY_MedicalRecordView.tsx]]
+- 14 edges to [[_COMMUNITY_BookingWizard.tsx]]
+- 10 edges to [[_COMMUNITY_DashboardLayout.tsx]]
 - 8 edges to [[_COMMUNITY_reactbitsindex.ts]]
-- 8 edges to [[_COMMUNITY_Button]]
-- 4 edges to [[_COMMUNITY_AgendaView.tsx]]
+- 5 edges to [[_COMMUNITY_AgendaView.tsx]]
+- 4 edges to [[_COMMUNITY_PatientDirectoryView.tsx]]
 - 3 edges to [[_COMMUNITY_BlurText.tsx]]
 - 3 edges to [[_COMMUNITY_package.json]]
 - 2 edges to [[_COMMUNITY_GlideSelect.tsx]]
 - 1 edge to [[_COMMUNITY_Stepper.tsx]]
 
 ## Top bridge nodes
-- [[react]] - degree 45, connects to 12 communities
-- [[lucide-react]] - degree 29, connects to 9 communities
-- [[App.tsx]] - degree 30, connects to 5 communities
+- [[react]] - degree 46, connects to 12 communities
+- [[lucide-react]] - degree 30, connects to 9 communities
+- [[App.tsx]] - degree 32, connects to 6 communities
 - [[ServicesCatalogView.tsx]] - degree 18, connects to 5 communities
-- [[LandingPageView.tsx]] - degree 16, connects to 3 communities
+- [[react-router-dom]] - degree 12, connects to 5 communities

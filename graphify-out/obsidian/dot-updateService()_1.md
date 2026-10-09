@@ -1,25 +1,23 @@
 ---
-source_file: "backend/src/main/java/com/clinicadermatologica/app/application/service/DermatologicServiceService.java"
+source_file: "backend/src/main/java/com/clinicadermatologica/app/presentation/controller/ServiceCatalogController.java"
 type: "code"
-community: "DermatologicServiceRepository"
-location: "L80"
+community: "org.springframework.http.ResponseEntity"
+location: "L63"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/DermatologicServiceRepository
+  - community/orgspringframeworkhttpResponseEntity
 ---
 
 # .updateService()
 
 ## Connections
-- [[dot-findById()_12]] - `calls` [INFERRED]
-- [[dot-mapToDTO()_4]] - `calls` [EXTRACTED]
-- [[dot-save()_25]] - `calls` [INFERRED]
 - [[dot-updateService()]] - `calls` [INFERRED]
-- [[DermatologicServiceService]] - `method` [EXTRACTED]
-- [[ResourceNotFoundException]] - `calls` [EXTRACTED]
+- [[PutMapping_1]] - `references` [EXTRACTED]
+- [[ServiceCatalogController]] - `method` [EXTRACTED]
 - [[ServiceRequestDTO]] - `references` [EXTRACTED]
 - [[ServiceResponseDTO]] - `references` [EXTRACTED]
-- [[org.springframework.transaction.annotation.Transactional]] - `references` [EXTRACTED]
+- [[org.springframework.http.ResponseEntity]] - `references` [EXTRACTED]
+- [[org.springframework.security.access.prepost.PreAuthorize]] - `references` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/DermatologicServiceRepository
+#graphify/code #graphify/EXTRACTED #community/orgspringframeworkhttpResponseEntity
