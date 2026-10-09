@@ -90,12 +90,12 @@ public class AppointmentController {
      */
     @PostMapping("/{id}/liquidar-saldo") // Mapea HTTP POST /api/v1/citas/{id}/liquidar-saldo
     @PreAuthorize("hasAnyRole('SECRETARIA', 'ADMIN', 'DOCTORA')")
-    public ResponseEntity<Void> finalizePayment(
+    public ResponseEntity<PaymentReceiptDTO> finalizePayment(
             @PathVariable Long id,
             @Valid @RequestBody FinalizePaymentRequestDTO request,
             @RequestParam Long receptionistUserId) {
-        paymentService.registerFinalPayment(id, request, receptionistUserId);
-        return ResponseEntity.ok().build();
+        PaymentReceiptDTO receipt = paymentService.registerFinalPayment(id, request, receptionistUserId);
+        return ResponseEntity.ok(receipt);
     }
 
     /**

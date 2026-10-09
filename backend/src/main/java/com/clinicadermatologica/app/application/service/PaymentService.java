@@ -362,14 +362,7 @@ public class PaymentService {
                     + agreedPrice.toPlainString() + ")");
         }
 
-        User registeredBy = null;
-        if (registeredByUserId != null) {
-            registeredBy = userRepository.findById(registeredByUserId).orElse(null);
-        }
-        if (registeredBy == null) {
-            registeredBy = userRepository.findById(1L)
-                    .orElseThrow(() -> new ResourceNotFoundException("No existen usuarios registrados en el sistema"));
-        }
+        User registeredBy = resolveAuditorUser(registeredByUserId);
 
         PaymentConcept concept = amount.compareTo(agreedPrice) >= 0 ? PaymentConcept.FULL : PaymentConcept.DEPOSIT;
 
@@ -411,10 +404,12 @@ public class PaymentService {
     /**
      * Registra el cobro del saldo final en mostrador y finaliza la cita.
      * Delega en la estrategia correspondiente al canal de pago indicado en el DTO.
-     * Solo permitido cuando la cita está en estado CONFIRMED.
+     * Solo permitido cuando la cita está en estado ATTENDED.
+     * Valida defensivamente que el monto abonado coincida exactamente con el saldo adeudado.
+     * Retorna el comprobante de pago oficial emitido (PaymentReceiptDTO).
      */
     @Transactional
-    public void registerFinalPayment(Long appointmentId, FinalizePaymentRequestDTO request, Long registeredByUserId) {
+    public PaymentReceiptDTO registerFinalPayment(Long appointmentId, FinalizePaymentRequestDTO request, Long registeredByUserId) {
         Appointment appointment = appointmentRepository.findById(appointmentId)
                 .orElseThrow(() -> new ResourceNotFoundException("Turno no encontrado con ID " + appointmentId));
 
@@ -422,17 +417,11 @@ public class PaymentService {
             throw new BusinessRuleException("Solo se puede liquidar el saldo de turnos ya atendidos por el médico");
         }
 
-        User registeredBy = null;
-        if (registeredByUserId != null) {
-            registeredBy = userRepository.findById(registeredByUserId).orElse(null);
-        }
-        if (registeredBy == null) {
-            registeredBy = userRepository.findById(1L)
-                    .orElseThrow(() -> new ResourceNotFoundException("No existen usuarios registrados en el sistema"));
-        }
+        validateRemainingBalance(appointment, request.getAmount());
+        User registeredBy = resolveAuditorUser(registeredByUserId);
 
         // Patrón Strategy: delega en la estrategia del canal indicado sin if/else
-        paymentStrategyFactory
+        PaymentTransaction transaction = paymentStrategyFactory
                 .getStrategy(request.getPaymentType())
                 .register(appointment, request.getAmount(), PaymentConcept.BALANCE, registeredBy, null);
 
@@ -440,5 +429,55 @@ public class PaymentService {
         appointmentRepository.save(appointment);
         log.info("Cita #{} COMPLETADA con cobro de saldo final ({}) por usuario {}",
                 appointmentId, request.getPaymentType(), registeredBy.getUsername());
+
+        return PaymentReceiptDTO.builder()
+                .appointmentId(appointmentId)
+                .transactionId(transaction != null ? transaction.getId() : null)
+                .paymentType(request.getPaymentType())
+                .concept(PaymentConcept.BALANCE)
+                .amount(request.getAmount())
+                .paymentDate(transaction != null && transaction.getPaymentDate() != null
+                        ? transaction.getPaymentDate() : Instant.now())
+                .appointmentStatus(appointment.getStatus())
+                .build();
+    }
+
+    /**
+     * Resuelve el usuario auditor responsable de la operación en mostrador.
+     * Si no se especifica o no se encuentra, recurre al usuario por defecto del sistema (ID 1L).
+     */
+    private User resolveAuditorUser(Long registeredByUserId) {
+        if (registeredByUserId != null) {
+            User user = userRepository.findById(registeredByUserId).orElse(null);
+            if (user != null) {
+                return user;
+            }
+        }
+        return userRepository.findById(1L)
+                .orElseThrow(() -> new ResourceNotFoundException("No existen usuarios registrados en el sistema"));
+    }
+
+    /**
+     * Valida defensivamente que el monto a liquidar coincida exactamente con el saldo adeudado real.
+     */
+    private void validateRemainingBalance(Appointment appointment, BigDecimal amountToPay) {
+        List<PaymentTransaction> existingTransactions = paymentTransactionRepository.findByAppointmentId(appointment.getId());
+        BigDecimal totalPaid = existingTransactions.stream()
+                .filter(tx -> tx.getStatus() == PaymentStatus.APPROVED)
+                .map(PaymentTransaction::getAmount)
+                .reduce(BigDecimal.ZERO, BigDecimal::add);
+
+        BigDecimal agreedPrice = appointment.getAgreedPrice() != null ? appointment.getAgreedPrice() : BigDecimal.ZERO;
+        BigDecimal remainingBalance = agreedPrice.subtract(totalPaid);
+
+        if (remainingBalance.compareTo(BigDecimal.ZERO) <= 0) {
+            throw new BusinessRuleException("El turno no posee saldo pendiente de pago");
+        }
+
+        if (amountToPay == null || amountToPay.compareTo(remainingBalance) != 0) {
+            throw new BusinessRuleException(String.format(
+                    "El monto a liquidar ($%s) no coincide con el saldo adeudado ($%s)",
+                    amountToPay, remainingBalance));
+        }
     }
 }
