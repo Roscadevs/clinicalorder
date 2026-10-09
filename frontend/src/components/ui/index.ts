@@ -1,12 +1,18 @@
 /**
- * Barrel de la librería de componentes de UI.
- * Uso: import { Button, Card, Badge } from '@/components/ui';
+ * UI Kit Centralizado (Atomic Design System)
+ * Exporta todos los componentes primitivos y variantes del sistema de diseño.
+ *
+ * Ejemplo de uso:
+ * import { Button, Input, Select, Card, Badge, Modal } from '@/components/ui';
  */
-export { Button } from './Button';
-export { Card, CardHeader, CardTitle } from './Card';
-export { Badge } from './Badge';
-export { Input } from './Input';
-export { Select } from './Select';
-export { Modal } from './Modal';
-export { Spinner } from './Spinner';
-export { Logo } from './Logo';
+
+export * from './Button';
+export * from './Input';
+export * from './Select';
+export * from './Card';
+export * from './Badge';
+export * from './Modal';
+export * from './Callout';
+export * from './Spinner';
+export * from './Toast';
+export * from './Logo';

@@ -1,4 +1,5 @@
 import axios from 'axios'; // Cliente HTTP Axios
+import { toast } from '../components/ui/Toast';
 import {
   AuthResponse,
   Patient,
@@ -19,6 +20,11 @@ import {
 
 /** URL absoluta de la API (para requests fuera de axios, p. ej. fetch keepalive). */
 export const API_BASE_URL: string = import.meta.env.VITE_API_BASE_URL || '/api/v1';
+
+export const isDemoSession = (): boolean => {
+  const token = localStorage.getItem('token');
+  return !token || token.startsWith('demo-');
+};
 
 /**
  * true sólo si el backend no está disponible (modo demo):
@@ -43,6 +49,16 @@ const isNetworkError = (err: unknown): boolean => {
   return false;
 };
 
+/**
+ * En modo demo (token simulado o no autenticado), las rutas protegidas del backend
+ * responden con 401/403 o fallos de conexión. Este helper asegura que en tales casos
+ * se active inmediatamente el comportamiento simulado en lugar de romper el flujo.
+ */
+const shouldFallbackToDemo = (err: unknown): boolean => {
+  if (isDemoSession()) return true;
+  return isNetworkError(err);
+};
+
 const ROLE_FALLBACK_IDS: Record<string, number> = {
   ADMIN: 1,
   DOCTORA: 2,
@@ -55,11 +71,6 @@ const currentUserId = (): number => {
   if (Number.isFinite(n) && n > 0 && n !== 999) return n;
   const role = localStorage.getItem('role') || 'ADMIN';
   return ROLE_FALLBACK_IDS[role] ?? 1;
-};
-
-export const isDemoSession = (): boolean => {
-  const token = localStorage.getItem('token');
-  return !token || token.startsWith('demo-');
 };
 
 // Instancia configurada de Axios con base URL hacia la API de Spring Boot
@@ -79,6 +90,58 @@ api.interceptors.request.use((config) => {
   }
   return config;
 });
+
+let isRedirectingToLogin = false;
+
+// Interceptor global de respuestas para manejo amable de fallos HTTP
+api.interceptors.response.use(
+  (response) => response,
+  (error) => {
+    if (axios.isAxiosError(error) && error.response) {
+      const status = error.response.status;
+
+      // 401: Sesión caducada
+      if (status === 401 && !isRedirectingToLogin) {
+        const isAuthRoute =
+          typeof window !== 'undefined' &&
+          (window.location.pathname === '/login' ||
+            window.location.pathname === '/recover-password');
+
+        if (!isAuthRoute) {
+          isRedirectingToLogin = true;
+          toast.friendlyError('Tu sesión ha caducado por seguridad', {
+            description:
+              'Te redirigiremos al inicio de sesión para que continúes de forma segura.',
+            duration: 3500,
+          });
+          setTimeout(() => {
+            localStorage.removeItem('token');
+            if (typeof window !== 'undefined') {
+              window.location.href = '/login';
+            }
+            isRedirectingToLogin = false;
+          }, 2000);
+        }
+      } else if (status >= 500 && !isNetworkError(error)) {
+        // 500+ Error interno no simulado
+        toast.friendlyError('Inconveniente temporal en el servidor', {
+          description:
+            'Los datos están protegidos. Podés reintentar la acción en unos segundos.',
+        });
+      }
+    } else if (isNetworkError(error)) {
+      if (typeof navigator !== 'undefined' && !navigator.onLine) {
+        toast.friendlyError('Sin conexión a internet', {
+          description:
+            'Comprobá tu red. La aplicación volverá a sincronizarse cuando estés en línea.',
+        });
+      }
+    }
+
+    return Promise.reject(error);
+  }
+);
+
 
 // --- SERVICIOS DE AUTENTICACIÓN ---
 export const authApi = {
@@ -320,13 +383,22 @@ export const appointmentsApi = {
     serviceId: number;
     startTime: string;
   }): Promise<PaymentPreferenceResponse> => {
+    if (isDemoSession()) {
+      return {
+        appointmentId: Math.floor(Math.random() * 9000) + 1000,
+        preferenceId: 'PREF-MP-2026-SIMULATED',
+        initPointUrl: 'https://www.mercadopago.com.ar/checkout/v1/redirect?pref_id=simulated',
+        depositAmount: 21000,
+        holdExpiresAt: new Date(Date.now() + 600000).toISOString(),
+      };
+    }
     try {
       const response = await api.post<PaymentPreferenceResponse>('/citas/reservar-temporal', data, {
         params: { userId: currentUserId() },
       });
       return response.data;
     } catch (err) {
-      if (!isNetworkError(err)) throw err;
+      if (!shouldFallbackToDemo(err)) throw err;
       return {
         appointmentId: Math.floor(Math.random() * 9000) + 1000,
         preferenceId: 'PREF-MP-2026-SIMULATED',
@@ -361,7 +433,7 @@ export const appointmentsApi = {
     try {
       await api.post(`/citas/${id}/cancelar`);
     } catch (err) {
-      if (!isNetworkError(err)) throw err;
+      if (!shouldFallbackToDemo(err)) throw err;
     }
   },
 
@@ -384,6 +456,18 @@ export const appointmentsApi = {
     // Si no viene explícito, se infiere por el monto respecto del precio acordado.
     const concept: Exclude<PaymentConcept, 'BALANCE'> =
       payload.concept ?? (payload.amount >= payload.agreedPrice ? 'FULL' : 'DEPOSIT');
+
+    if (isDemoSession()) {
+      return {
+        appointmentId: id,
+        paymentType: payload.paymentType,
+        concept,
+        amount: payload.amount,
+        paymentDate: new Date().toISOString(),
+        appointmentStatus: 'CONFIRMED',
+      };
+    }
+
     try {
       const response = await api.post<PaymentReceipt>(
         `/citas/${id}/registrar-pago`,
@@ -397,8 +481,8 @@ export const appointmentsApi = {
       );
       return response.data;
     } catch (err) {
-      if (!isNetworkError(err)) throw err;
-      // Modo demo: se considera registrado.
+      if (!shouldFallbackToDemo(err)) throw err;
+      // Modo demo o caída de red: se considera registrado.
       return {
         appointmentId: id,
         paymentType: payload.paymentType,
@@ -416,7 +500,7 @@ export const appointmentsApi = {
       if (!Array.isArray(response.data)) throw new Error('Expected array');
       return response.data;
     } catch (err) {
-      if (!isNetworkError(err) && !(err instanceof Error && err.message === 'Expected array')) throw err;
+      if (!shouldFallbackToDemo(err) && !(err instanceof Error && err.message === 'Expected array')) throw err;
       return demoAgenda(start, end);
     }
   },
@@ -424,7 +508,7 @@ export const appointmentsApi = {
     try {
       await api.post(`/citas/${id}/cancelar`);
     } catch (err) {
-      if (!isNetworkError(err)) throw err;
+      if (!shouldFallbackToDemo(err)) throw err;
     }
   },
   /** Consulta pública del estado de un turno (usado en la pantalla de retorno de Mercado Pago). */
@@ -440,7 +524,7 @@ export const appointmentsApi = {
       }>(`/citas/${id}/estado`);
       return response.data;
     } catch (err) {
-      if (!isNetworkError(err)) throw err;
+      if (!shouldFallbackToDemo(err)) throw err;
       return {
         appointmentId: id,
         status: 'CONFIRMED',
@@ -454,7 +538,7 @@ export const appointmentsApi = {
     try {
       await api.post(`/citas/${id}/atender`);
     } catch (err) {
-      if (!isNetworkError(err)) throw err;
+      if (!shouldFallbackToDemo(err)) throw err;
     }
   },
   /**
@@ -471,7 +555,7 @@ export const appointmentsApi = {
       );
       return response.data;
     } catch (err) {
-      if (!isNetworkError(err)) throw err;
+      if (!shouldFallbackToDemo(err)) throw err;
       // Modo demo: se considera reprogramado; el refresco de la agenda reflejará el cambio.
       return null;
     }
@@ -486,7 +570,7 @@ export const appointmentsApi = {
         params: { receptionistUserId: currentUserId() },
       });
     } catch (err) {
-      if (!isNetworkError(err)) throw err;
+      if (!shouldFallbackToDemo(err)) throw err;
     }
   },
 };
