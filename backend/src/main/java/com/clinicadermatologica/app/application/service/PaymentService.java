@@ -51,8 +51,8 @@ public class PaymentService {
      * sin validación de firma (compatibilidad con invocaciones internas y pruebas).
      */
     @Transactional
-    public void processMercadoPagoWebhook(Map<String, Object> payload) {
-        processMercadoPagoWebhook(payload, null, null, null);
+    public boolean processMercadoPagoWebhook(Map<String, Object> payload) {
+        return processMercadoPagoWebhook(payload, null, null, null);
     }
 
     /**
@@ -104,9 +104,9 @@ public class PaymentService {
                 return true;
             }
 
-            // Validar firma HMAC si está presente
+            // Validar firma HMAC
             if (!isValidSignature(xSignature, xRequestId, paymentIdStr)) {
-                log.warn("Firma de webhook MercadoPago inválida para pago ID: {}", paymentIdStr);
+                log.warn("Firma de webhook MercadoPago inválida o no autorizada para pago ID: {}", paymentIdStr);
                 return false;
             }
 
@@ -125,7 +125,7 @@ public class PaymentService {
                 return true;
             }
 
-            // Busca la transacción PENDING por externalReference (preferenceId o appointmentId)
+            // Busca la transacción por externalReference (preferenceId o appointmentId)
             String externalReference = mpPayment.getExternalReference();
             if (externalReference == null || externalReference.isBlank()) {
                 log.warn("El pago {} no tiene externalReference asociado", paymentId);
@@ -141,7 +141,7 @@ public class PaymentService {
                     Long appointmentId = Long.parseLong(externalReference.trim());
                     List<PaymentTransaction> txs = paymentTransactionRepository.findByAppointmentId(appointmentId);
                     transaction = txs.stream()
-                            .filter(t -> t.getPaymentType() == PaymentType.MERCADOPAGO && t.getStatus() == PaymentStatus.PENDING)
+                            .filter(t -> t.getPaymentType() == PaymentType.MERCADOPAGO)
                             .findFirst()
                             .orElse(null);
                 } catch (NumberFormatException ignored) {
@@ -149,7 +149,14 @@ public class PaymentService {
             }
 
             if (transaction == null) {
-                log.warn("No se encontró transacción pendiente para externalReference: {}", externalReference);
+                log.warn("No se encontró transacción para externalReference: {}", externalReference);
+                return true;
+            }
+
+            // IDEMPOTENCIA: Si la transacción ya fue aprobada previamente, evitar reprocesamiento
+            if (transaction.getStatus() == PaymentStatus.APPROVED) {
+                log.info("Idempotencia webhook: Pago {} ya fue aprobado previamente para cita #{}. Omitiendo reprocesamiento.",
+                        paymentIdStr, transaction.getAppointment().getId());
                 return true;
             }
 
@@ -177,11 +184,25 @@ public class PaymentService {
                     log.info("Cita #{} COMPLETADA tras pago de saldo vía MercadoPago", appointment.getId());
                 }
 
+            } else if ("in_process".equalsIgnoreCase(status) || "pending".equalsIgnoreCase(status) || "authorized".equalsIgnoreCase(status)) {
+                // Pago electrónico en revisión o pendiente de contingencia bancaria:
+                // Se registra el ID de pago de MercadoPago y se mantiene el turno retenido sin marcarlo fallido
+                transaction.setMpPaymentId(paymentIdStr);
+                log.info("Pago {} para cita #{} en estado intermedio: {}. Manteniendo reserva activa.",
+                        paymentIdStr, appointment.getId(), status);
+
             } else if ("rejected".equalsIgnoreCase(status) || "cancelled".equalsIgnoreCase(status)) {
                 transaction.setStatus(PaymentStatus.REJECTED);
                 transaction.setMpPaymentId(paymentIdStr);
                 appointment.setStatus(AppointmentStatus.PAYMENT_FAILED);
-                log.warn("Pago rechazado para cita #{}. Estado: PAYMENT_FAILED.", appointment.getId());
+                log.warn("Pago rechazado o cancelado para cita #{}. Estado: PAYMENT_FAILED.", appointment.getId());
+
+            } else if ("refunded".equalsIgnoreCase(status) || "charged_back".equalsIgnoreCase(status)) {
+                transaction.setStatus(PaymentStatus.REFUNDED);
+                transaction.setMpPaymentId(paymentIdStr);
+                appointment.setStatus(AppointmentStatus.CANCELED);
+                log.warn("Pago {} para cita #{} fue reembolsado o contracargado en MercadoPago. Cita cancelada.",
+                        paymentIdStr, appointment.getId());
             }
 
             paymentTransactionRepository.save(transaction);
@@ -198,13 +219,20 @@ public class PaymentService {
      * Valida la firma HMAC SHA-256 enviada en el header x-signature de MercadoPago.
      */
     public boolean isValidSignature(String xSignature, String xRequestId, String dataId) {
-        // En entornos locales o si no se ha configurado un secret específico, omitir para permitir pruebas
-        if (webhookSecret == null || webhookSecret.isBlank() || "test_webhook_secret".equalsIgnoreCase(webhookSecret)) {
-            return true;
-        }
-        if (xSignature == null || xSignature.isBlank()) {
+        if (webhookSecret == null || webhookSecret.isBlank()) {
+            if (xSignature == null || xSignature.isBlank()) {
+                log.warn("Aviso: Webhook procesado sin firma porque MERCADOPAGO_WEBHOOK_SECRET no está configurado (modo de prueba local).");
+                return true;
+            }
+            log.warn("MERCADOPAGO_WEBHOOK_SECRET no está configurado pero se envió x-signature. Rechazando firma por seguridad.");
             return false;
         }
+
+        if (xSignature == null || xSignature.isBlank()) {
+            log.warn("Rechazo de webhook: Se requiere firma x-signature pero no fue provista en los encabezados.");
+            return false;
+        }
+
         try {
             String ts = null;
             String v1 = null;
@@ -219,6 +247,7 @@ public class PaymentService {
                 }
             }
             if (ts == null || v1 == null) {
+                log.warn("Firma x-signature incompleta: ts={} v1={}", ts, v1);
                 return false;
             }
 
@@ -235,7 +264,7 @@ public class PaymentService {
 
             javax.crypto.Mac mac = javax.crypto.Mac.getInstance("HmacSHA256");
             javax.crypto.spec.SecretKeySpec secretKey = new javax.crypto.spec.SecretKeySpec(
-                    webhookSecret.getBytes(java.nio.charset.StandardCharsets.UTF_8), "HmacSHA256");
+                    webhookSecret.trim().getBytes(java.nio.charset.StandardCharsets.UTF_8), "HmacSHA256");
             mac.init(secretKey);
             byte[] hash = mac.doFinal(manifest.toString().getBytes(java.nio.charset.StandardCharsets.UTF_8));
 
@@ -250,6 +279,36 @@ public class PaymentService {
         } catch (Exception e) {
             log.error("Error al validar firma HMAC de webhook MercadoPago: {}", e.getMessage());
             return false;
+        }
+    }
+
+    /**
+     * Emite el reembolso de un pago aprobado de Mercado Pago y actualiza la transacción a REFUNDED.
+     */
+    @Transactional
+    public void refundPayment(PaymentTransaction transaction) {
+        if (transaction == null || transaction.getPaymentType() != PaymentType.MERCADOPAGO) {
+            return;
+        }
+
+        String mpPaymentIdStr = transaction.getMpPaymentId();
+        if (mpPaymentIdStr == null || mpPaymentIdStr.isBlank()) {
+            log.warn("No se puede reembolsar la transacción #{}: no posee mpPaymentId registrado", transaction.getId());
+            transaction.setStatus(PaymentStatus.REFUNDED);
+            paymentTransactionRepository.save(transaction);
+            return;
+        }
+
+        try {
+            Long mpPaymentId = Long.parseLong(mpPaymentIdStr.trim());
+            mercadoPagoAdapter.refundPayment(mpPaymentId);
+            transaction.setStatus(PaymentStatus.REFUNDED);
+            paymentTransactionRepository.save(transaction);
+            log.info("Transacción #{} reembolsada exitosamente en MercadoPago (Payment ID: {})",
+                    transaction.getId(), mpPaymentId);
+        } catch (NumberFormatException e) {
+            log.error("ID de pago inválido para reembolso: {}", mpPaymentIdStr);
+            throw new PaymentGatewayException("ID de pago de MercadoPago no válido: " + mpPaymentIdStr, e);
         }
     }
 

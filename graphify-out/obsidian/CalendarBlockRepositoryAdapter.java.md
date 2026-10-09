@@ -1,12 +1,12 @@
 ---
 source_file: "backend/src/main/java/com/clinicadermatologica/app/infrastructure/persistence/adapter/CalendarBlockRepositoryAdapter.java"
 type: "code"
-community: "Appointment"
+community: "CalendarBlock"
 location: "L1"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/Appointment
+  - community/CalendarBlock
 ---
 
 # CalendarBlockRepositoryAdapter.java
@@ -19,4 +19,4 @@ tags:
 - [[lombok.RequiredArgsConstructor]] - `imports` [EXTRACTED]
 - [[org.springframework.stereotype.Component]] - `imports` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/Appointment
+#graphify/code #graphify/EXTRACTED #community/CalendarBlock

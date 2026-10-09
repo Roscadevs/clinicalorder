@@ -1,16 +1,16 @@
 ---
 source_file: ""
 type: "code"
-community: "ClinicalEntryAudit"
+community: "PasswordResetToken"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/ClinicalEntryAudit
+  - community/PasswordResetToken
 ---
 
 # AllArgsConstructor
 
 ## Connections
-- [[ClinicalEntryAudit]] - `references` [EXTRACTED]
+- [[PasswordResetToken]] - `references` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/ClinicalEntryAudit
+#graphify/code #graphify/EXTRACTED #community/PasswordResetToken

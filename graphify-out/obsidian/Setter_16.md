@@ -11,6 +11,6 @@ tags:
 # Setter
 
 ## Connections
-- [[AntecedentePatologicoId]] - `references` [EXTRACTED]
+- [[AntecedentePatologicoRequestDTO]] - `references` [EXTRACTED]
 
 #graphify/code #graphify/EXTRACTED #community/AntecedentePatologico

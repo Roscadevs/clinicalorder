@@ -29,8 +29,8 @@ SORT file.name ASC
 ```
 
 ## Connections to other communities
-- 2 edges to [[_COMMUNITY_reactbitsindex.ts]]
-- 1 edge to [[_COMMUNITY_BookingWizard.tsx]]
+- 2 edges to [[_COMMUNITY_ServicesCatalogView.tsx]]
+- 1 edge to [[_COMMUNITY_api.ts]]
 - 1 edge to [[_COMMUNITY_react]]
 
 ## Top bridge nodes

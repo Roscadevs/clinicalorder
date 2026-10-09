@@ -1,22 +1,25 @@
 ---
-source_file: "backend/src/main/java/com/clinicadermatologica/app/presentation/controller/PatientController.java"
+source_file: "backend/src/main/java/com/clinicadermatologica/app/application/service/PatientService.java"
 type: "code"
-community: "PatientRequestDTO"
-location: "L46"
+community: "org.springframework.transaction.annotation.Transactional"
+location: "L85"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/PatientRequestDTO
+  - community/orgspringframeworktransactionannotationTransactional
 ---
 
 # .updatePatient()
 
 ## Connections
+- [[dot-findById()_7]] - `calls` [INFERRED]
+- [[dot-mapToDTO()_4]] - `calls` [EXTRACTED]
+- [[dot-save()_23]] - `calls` [INFERRED]
 - [[dot-updatePatient()_1]] - `calls` [INFERRED]
-- [[PatientController]] - `method` [EXTRACTED]
 - [[PatientRequestDTO]] - `references` [EXTRACTED]
 - [[PatientResponseDTO]] - `references` [EXTRACTED]
-- [[PutMapping_1]] - `references` [EXTRACTED]
-- [[org.springframework.http.ResponseEntity]] - `references` [EXTRACTED]
+- [[PatientService]] - `method` [EXTRACTED]
+- [[ResourceNotFoundException]] - `calls` [EXTRACTED]
+- [[org.springframework.transaction.annotation.Transactional]] - `references` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/PatientRequestDTO
+#graphify/code #graphify/EXTRACTED #community/orgspringframeworktransactionannotationTransactional

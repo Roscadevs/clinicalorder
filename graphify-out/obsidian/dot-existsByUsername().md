@@ -13,7 +13,7 @@ tags:
 
 ## Connections
 - [[dot-existsByUsername()_1]] - `calls` [INFERRED]
-- [[Override_15]] - `references` [EXTRACTED]
+- [[Override_13]] - `references` [EXTRACTED]
 - [[UserRepositoryAdapter]] - `method` [EXTRACTED]
 
 #graphify/code #graphify/EXTRACTED #community/User

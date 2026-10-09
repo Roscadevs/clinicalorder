@@ -1,12 +1,12 @@
 ---
 source_file: "backend/src/main/java/com/clinicadermatologica/app/infrastructure/security/SecurityConfig.java"
 type: "code"
-community: "GlobalExceptionHandler"
-location: "L74"
+community: "SecurityConfig.java"
+location: "L75"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/GlobalExceptionHandler
+  - community/SecurityConfigjava
 ---
 
 # .corsConfigurationSource()
@@ -17,4 +17,4 @@ tags:
 - [[SecurityConfig]] - `method` [EXTRACTED]
 - [[org.springframework.context.annotation.Bean]] - `references` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/GlobalExceptionHandler
+#graphify/code #graphify/EXTRACTED #community/SecurityConfigjava

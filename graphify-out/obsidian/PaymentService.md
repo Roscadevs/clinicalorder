@@ -1,12 +1,12 @@
 ---
 source_file: "backend/src/main/java/com/clinicadermatologica/app/application/service/PaymentService.java"
 type: "code"
-community: "org.junit.jupiter.api.DisplayName"
+community: "PaymentService"
 location: "L35"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/orgjunitjupiterapiDisplayName
+  - community/PaymentService
 ---
 
 # PaymentService
@@ -14,12 +14,15 @@ tags:
 ## Connections
 - [[dot-isValidSignature()]] - `method` [EXTRACTED]
 - [[dot-processMercadoPagoWebhook()]] - `method` [EXTRACTED]
+- [[dot-refundPayment()]] - `method` [EXTRACTED]
 - [[dot-registerDepositPayment()]] - `method` [EXTRACTED]
 - [[dot-registerFinalPayment()]] - `method` [EXTRACTED]
 - [[dot-rejectPendingTransactions()]] - `method` [EXTRACTED]
 - [[AppointmentController]] - `references` [EXTRACTED]
 - [[AppointmentController.java]] - `imports` [EXTRACTED]
 - [[AppointmentRepository]] - `references` [EXTRACTED]
+- [[AppointmentService]] - `references` [EXTRACTED]
+- [[AppointmentServiceTest]] - `references` [EXTRACTED]
 - [[MercadoPagoPaymentAdapter]] - `references` [EXTRACTED]
 - [[PaymentService.java]] - `contains` [EXTRACTED]
 - [[PaymentServiceTest]] - `references` [EXTRACTED]
@@ -33,4 +36,4 @@ tags:
 - [[lombok.extern.slf4j.Slf4j]] - `references` [EXTRACTED]
 - [[org.springframework.stereotype.Service]] - `references` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/orgjunitjupiterapiDisplayName
+#graphify/code #graphify/EXTRACTED #community/PaymentService

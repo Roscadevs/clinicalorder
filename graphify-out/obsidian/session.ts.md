@@ -1,12 +1,12 @@
 ---
 source_file: "frontend/src/utils/session.ts"
 type: "code"
-community: "DashboardLayout.tsx"
+community: "MedicalRecordView.tsx"
 location: "L1"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/DashboardLayouttsx
+  - community/MedicalRecordViewtsx
 ---
 
 # session.ts
@@ -17,8 +17,8 @@ tags:
 - [[MedicalRecordView.tsx]] - `imports_from` [EXTRACTED]
 - [[RoleType]] - `imports` [EXTRACTED]
 - [[currentRole()]] - `contains` [EXTRACTED]
-- [[currentUserId()_1]] - `contains` [EXTRACTED]
+- [[currentUserId()]] - `contains` [EXTRACTED]
 - [[isMedicalStaff()]] - `contains` [EXTRACTED]
 - [[navConfig.ts]] - `imports_from` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/DashboardLayouttsx
+#graphify/code #graphify/EXTRACTED #community/MedicalRecordViewtsx

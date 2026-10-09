@@ -1,18 +1,23 @@
 ---
-source_file: "backend/src/main/java/com/clinicadermatologica/app/domain/repository/PaymentTransactionRepository.java"
+source_file: "backend/src/main/java/com/clinicadermatologica/app/domain/repository/MedicalRecordRepository.java"
 type: "code"
-community: "org.springframework.stereotype.Component"
-location: "L12"
+community: ".addAlergia"
+location: "L13"
 tags:
   - graphify/code
-  - graphify/EXTRACTED
-  - community/orgspringframeworkstereotypeComponent
+  - graphify/INFERRED
+  - community/addAlergia
 ---
 
 # .findById()
 
 ## Connections
-- [[PaymentTransaction]] - `references` [EXTRACTED]
-- [[PaymentTransactionRepository]] - `method` [EXTRACTED]
+- [[dot-addAlergia()_1]] - `calls` [INFERRED]
+- [[dot-addAntecedentePatologico()]] - `calls` [INFERRED]
+- [[dot-addHabito()]] - `calls` [INFERRED]
+- [[dot-testAddAlergia_DuplicateTipo_Throws()]] - `calls` [INFERRED]
+- [[dot-testAddAlergia_Success()]] - `calls` [INFERRED]
+- [[MedicalRecord_1]] - `references` [EXTRACTED]
+- [[MedicalRecordRepository]] - `method` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/orgspringframeworkstereotypeComponent
+#graphify/code #graphify/INFERRED #community/addAlergia

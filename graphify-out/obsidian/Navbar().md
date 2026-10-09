@@ -1,12 +1,12 @@
 ---
 source_file: "frontend/src/components/Navbar.tsx"
 type: "code"
-community: "DashboardLayout.tsx"
+community: "cn"
 location: "L21"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/DashboardLayouttsx
+  - community/cn
 ---
 
 # Navbar()
@@ -16,4 +16,4 @@ tags:
 - [[Navbar.tsx]] - `contains` [EXTRACTED]
 - [[cn()]] - `calls` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/DashboardLayouttsx
+#graphify/code #graphify/EXTRACTED #community/cn

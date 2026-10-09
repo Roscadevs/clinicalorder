@@ -14,11 +14,11 @@ tags:
 ## Connections
 - [[dot-ResourceNotFoundException()]] - `method` [EXTRACTED]
 - [[dot-createBlock()]] - `calls` [EXTRACTED]
-- [[dot-deactivatePatient()_1]] - `calls` [EXTRACTED]
+- [[dot-deactivatePatient()]] - `calls` [EXTRACTED]
 - [[dot-getPatientById()]] - `calls` [EXTRACTED]
 - [[dot-getServiceById()_1]] - `calls` [EXTRACTED]
 - [[dot-handleNotFound()]] - `references` [EXTRACTED]
-- [[dot-updatePatient()_1]] - `calls` [EXTRACTED]
+- [[dot-updatePatient()]] - `calls` [EXTRACTED]
 - [[dot-updateService()]] - `calls` [EXTRACTED]
 - [[dot-uploadClinicalImage()]] - `calls` [EXTRACTED]
 - [[CalendarBlockService.java]] - `imports` [EXTRACTED]

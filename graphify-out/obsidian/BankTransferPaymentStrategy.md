@@ -1,18 +1,18 @@
 ---
 source_file: "backend/src/main/java/com/clinicadermatologica/app/infrastructure/payment/strategy/BankTransferPaymentStrategy.java"
 type: "code"
-community: "org.springframework.stereotype.Component"
+community: "lombok.RequiredArgsConstructor"
 location: "L19"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/orgspringframeworkstereotypeComponent
+  - community/lombokRequiredArgsConstructor
 ---
 
 # BankTransferPaymentStrategy
 
 ## Connections
-- [[dot-register()]] - `method` [EXTRACTED]
+- [[dot-register()_1]] - `method` [EXTRACTED]
 - [[dot-supportedType()]] - `method` [EXTRACTED]
 - [[BankTransferPaymentStrategy.java]] - `contains` [EXTRACTED]
 - [[PaymentRegistrationStrategy]] - `implements` [EXTRACTED]
@@ -20,4 +20,4 @@ tags:
 - [[lombok.RequiredArgsConstructor]] - `references` [EXTRACTED]
 - [[org.springframework.stereotype.Component]] - `references` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/orgspringframeworkstereotypeComponent
+#graphify/code #graphify/EXTRACTED #community/lombokRequiredArgsConstructor

@@ -1,16 +1,17 @@
 ---
 source_file: ""
 type: "code"
-community: "User"
+community: "DermatologicService"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/User
+  - community/DermatologicService
 ---
 
 # Getter
 
 ## Connections
-- [[User]] - `references` [EXTRACTED]
+- [[ChatMessageItemDTO]] - `references` [EXTRACTED]
+- [[GeminiChatRequestDTO]] - `references` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/User
+#graphify/code #graphify/EXTRACTED #community/DermatologicService

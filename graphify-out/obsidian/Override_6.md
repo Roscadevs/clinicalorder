@@ -11,7 +11,7 @@ tags:
 # Override
 
 ## Connections
-- [[dot-register()_1]] - `references` [EXTRACTED]
+- [[dot-register()_2]] - `references` [EXTRACTED]
 - [[dot-supportedType()_1]] - `references` [EXTRACTED]
 
 #graphify/code #graphify/EXTRACTED #community/register

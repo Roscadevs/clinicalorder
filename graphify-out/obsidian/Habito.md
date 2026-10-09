@@ -12,17 +12,17 @@ tags:
 # Habito
 
 ## Connections
+- [[dot-findById()_3]] - `references` [EXTRACTED]
 - [[dot-findById()_4]] - `references` [EXTRACTED]
-- [[dot-findById()_5]] - `references` [EXTRACTED]
 - [[dot-findByIdMedicalRecordId()]] - `references` [EXTRACTED]
-- [[dot-findByMedicalRecordId()_4]] - `references` [EXTRACTED]
 - [[dot-findByMedicalRecordId()]] - `references` [EXTRACTED]
+- [[dot-findByMedicalRecordId()_1]] - `references` [EXTRACTED]
 - [[dot-mapHabitoToDTO()]] - `references` [EXTRACTED]
-- [[dot-save()_23]] - `references` [EXTRACTED]
+- [[dot-save()_3]] - `references` [EXTRACTED]
 - [[dot-save()_4]] - `references` [EXTRACTED]
 - [[AllArgsConstructor_5]] - `references` [EXTRACTED]
 - [[Builder_5]] - `references` [EXTRACTED]
-- [[Entity_3]] - `references` [EXTRACTED]
+- [[Entity_2]] - `references` [EXTRACTED]
 - [[Getter_5]] - `references` [EXTRACTED]
 - [[Habito.java]] - `contains` [EXTRACTED]
 - [[HabitoId]] - `references` [EXTRACTED]
@@ -30,9 +30,9 @@ tags:
 - [[HabitoRepositoryAdapter.java]] - `imports` [EXTRACTED]
 - [[JpaHabitoRepository]] - `references` [EXTRACTED]
 - [[JpaHabitoRepository.java]] - `imports` [EXTRACTED]
-- [[MedicalRecord]] - `references` [EXTRACTED]
+- [[MedicalRecord_1]] - `references` [EXTRACTED]
 - [[NoArgsConstructor_5]] - `references` [EXTRACTED]
 - [[Setter_5]] - `references` [EXTRACTED]
-- [[Table_3]] - `references` [EXTRACTED]
+- [[Table_2]] - `references` [EXTRACTED]
 
 #graphify/code #graphify/EXTRACTED #community/Habito

@@ -1,12 +1,12 @@
 ---
 source_file: "backend/src/test/java/com/clinicadermatologica/app/application/AuthServiceTest.java"
 type: "code"
-community: ".forgotPassword"
+community: "lombok.extern.slf4j.Slf4j"
 location: "L106"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/forgotPassword
+  - community/lombokexternslf4jSlf4j
 ---
 
 # .testForgotPassword_Success()
@@ -18,4 +18,4 @@ tags:
 - [[org.junit.jupiter.api.DisplayName]] - `references` [EXTRACTED]
 - [[org.junit.jupiter.api.Test]] - `references` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/forgotPassword
+#graphify/code #graphify/EXTRACTED #community/lombokexternslf4jSlf4j

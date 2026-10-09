@@ -11,6 +11,6 @@ tags:
 # Builder
 
 ## Connections
-- [[BookAppointmentRequestDTO]] - `references` [EXTRACTED]
+- [[PaymentPreferenceResponseDTO]] - `references` [EXTRACTED]
 
 #graphify/code #graphify/EXTRACTED #community/AppointmentServiceTestjava

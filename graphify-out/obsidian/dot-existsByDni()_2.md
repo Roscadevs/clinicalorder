@@ -1,18 +1,18 @@
 ---
-source_file: "backend/src/main/java/com/clinicadermatologica/app/infrastructure/persistence/jpa/JpaPatientRepository.java"
+source_file: "backend/src/main/java/com/clinicadermatologica/app/domain/repository/PatientRepository.java"
 type: "code"
-community: "Patient"
-location: "L25"
+community: "org.springframework.transaction.annotation.Transactional"
+location: "L18"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/Patient
+  - community/orgspringframeworktransactionannotationTransactional
 ---
 
 # .existsByDni()
 
 ## Connections
-- [[dot-existsByDni()_1]] - `calls` [INFERRED]
-- [[JpaPatientRepository]] - `method` [EXTRACTED]
+- [[dot-createPatient()]] - `calls` [INFERRED]
+- [[PatientRepository]] - `method` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/Patient
+#graphify/code #graphify/EXTRACTED #community/orgspringframeworktransactionannotationTransactional

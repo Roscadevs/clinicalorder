@@ -1,16 +1,16 @@
 ---
 source_file: ""
 type: "code"
-community: ".login"
+community: "org.springframework.transaction.annotation.Transactional"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/login
+  - community/orgspringframeworktransactionannotationTransactional
 ---
 
 # Getter
 
 ## Connections
-- [[AuthRequestDTO]] - `references` [EXTRACTED]
+- [[PatientResponseDTO]] - `references` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/login
+#graphify/code #graphify/EXTRACTED #community/orgspringframeworktransactionannotationTransactional

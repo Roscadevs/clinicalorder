@@ -1,12 +1,12 @@
 ---
 source_file: "backend/src/main/java/com/clinicadermatologica/app/infrastructure/persistence/adapter/AlergiaRepositoryAdapter.java"
 type: "code"
-community: "Alergia"
+community: "AlergiaId"
 location: "L1"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/Alergia
+  - community/AlergiaId
 ---
 
 # AlergiaRepositoryAdapter.java
@@ -20,4 +20,4 @@ tags:
 - [[lombok.RequiredArgsConstructor]] - `imports` [EXTRACTED]
 - [[org.springframework.stereotype.Component]] - `imports` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/Alergia
+#graphify/code #graphify/EXTRACTED #community/AlergiaId

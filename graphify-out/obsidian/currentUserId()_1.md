@@ -1,19 +1,17 @@
 ---
-source_file: "frontend/src/utils/session.ts"
+source_file: "frontend/src/services/api.ts"
 type: "code"
-community: "AnamnesisForm.tsx"
-location: "L4"
+community: "api.ts"
+location: "L45"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/AnamnesisFormtsx
+  - community/apits
 ---
 
 # currentUserId()
 
 ## Connections
-- [[AnamnesisForm()]] - `calls` [EXTRACTED]
-- [[AnamnesisForm.tsx]] - `imports` [EXTRACTED]
-- [[session.ts]] - `contains` [EXTRACTED]
+- [[api.ts]] - `contains` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/AnamnesisFormtsx
+#graphify/code #graphify/EXTRACTED #community/apits

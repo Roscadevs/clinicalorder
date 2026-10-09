@@ -1,12 +1,12 @@
 ---
 source_file: "backend/src/main/java/com/clinicadermatologica/app/application/strategy/PaymentRegistrationStrategy.java"
 type: "code"
-community: "org.springframework.stereotype.Component"
+community: "lombok.RequiredArgsConstructor"
 location: "L1"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/orgspringframeworkstereotypeComponent
+  - community/lombokRequiredArgsConstructor
 ---
 
 # PaymentRegistrationStrategy.java
@@ -14,4 +14,4 @@ tags:
 ## Connections
 - [[PaymentRegistrationStrategy]] - `contains` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/orgspringframeworkstereotypeComponent
+#graphify/code #graphify/EXTRACTED #community/lombokRequiredArgsConstructor

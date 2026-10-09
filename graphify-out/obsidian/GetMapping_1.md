@@ -1,16 +1,18 @@
 ---
 source_file: ""
 type: "code"
-community: "CalendarBlockResponseDTO"
+community: "ServiceResponseDTO"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/CalendarBlockResponseDTO
+  - community/ServiceResponseDTO
 ---
 
 # GetMapping
 
 ## Connections
-- [[dot-getBlocks()]] - `references` [EXTRACTED]
+- [[dot-getActiveServices()]] - `references` [EXTRACTED]
+- [[dot-getAllServicesForAdmin()_1]] - `references` [EXTRACTED]
+- [[dot-getServiceById()]] - `references` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/CalendarBlockResponseDTO
+#graphify/code #graphify/EXTRACTED #community/ServiceResponseDTO

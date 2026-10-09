@@ -14,14 +14,14 @@ tags:
 ## Connections
 - [[dot-finalizePayment()]] - `references` [EXTRACTED]
 - [[dot-registerFinalPayment()]] - `references` [EXTRACTED]
-- [[AllArgsConstructor_9]] - `references` [EXTRACTED]
-- [[Builder_8]] - `references` [EXTRACTED]
+- [[AllArgsConstructor_10]] - `references` [EXTRACTED]
+- [[Builder_9]] - `references` [EXTRACTED]
 - [[FinalizePaymentRequestDTO.java]] - `contains` [EXTRACTED]
-- [[Getter_9]] - `references` [EXTRACTED]
-- [[NoArgsConstructor_9]] - `references` [EXTRACTED]
+- [[Getter_10]] - `references` [EXTRACTED]
+- [[NoArgsConstructor_10]] - `references` [EXTRACTED]
 - [[PaymentService.java]] - `imports` [EXTRACTED]
 - [[PaymentServiceTest.java]] - `imports` [EXTRACTED]
 - [[PaymentType]] - `references` [EXTRACTED]
-- [[Setter_9]] - `references` [EXTRACTED]
+- [[Setter_10]] - `references` [EXTRACTED]
 
 #graphify/code #graphify/EXTRACTED #community/PaymentServiceTestjava

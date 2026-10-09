@@ -1,12 +1,12 @@
 ---
 source_file: "backend/src/main/java/com/clinicadermatologica/app/application/service/AppointmentService.java"
 type: "code"
-community: "AppointmentResponseDTO"
+community: "AppointmentService"
 location: "L288"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/AppointmentResponseDTO
+  - community/AppointmentService
 ---
 
 # .getAppointmentsByRange()
@@ -18,4 +18,4 @@ tags:
 - [[AppointmentService]] - `method` [EXTRACTED]
 - [[org.springframework.transaction.annotation.Transactional]] - `references` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/AppointmentResponseDTO
+#graphify/code #graphify/EXTRACTED #community/AppointmentService

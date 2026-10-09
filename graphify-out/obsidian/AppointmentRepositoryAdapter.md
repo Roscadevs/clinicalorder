@@ -12,12 +12,12 @@ tags:
 # AppointmentRepositoryAdapter
 
 ## Connections
-- [[dot-findByDateRange()]] - `method` [EXTRACTED]
-- [[dot-findById()_2]] - `method` [EXTRACTED]
-- [[dot-findByPatientId()_1]] - `method` [EXTRACTED]
+- [[dot-findByDateRange()_2]] - `method` [EXTRACTED]
+- [[dot-findById()_5]] - `method` [EXTRACTED]
+- [[dot-findByPatientId()_2]] - `method` [EXTRACTED]
 - [[dot-findExpiredHolds()]] - `method` [EXTRACTED]
 - [[dot-findOverlappingAppointments()]] - `method` [EXTRACTED]
-- [[dot-save()_2]] - `method` [EXTRACTED]
+- [[dot-save()_5]] - `method` [EXTRACTED]
 - [[AppointmentRepository]] - `implements` [EXTRACTED]
 - [[AppointmentRepositoryAdapter.java]] - `contains` [EXTRACTED]
 - [[JpaAppointmentRepository]] - `references` [EXTRACTED]

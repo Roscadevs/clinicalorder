@@ -2,7 +2,7 @@
 source_file: "backend/src/test/java/com/clinicadermatologica/app/application/PaymentServiceTest.java"
 type: "code"
 community: "org.junit.jupiter.api.DisplayName"
-location: "L230"
+location: "L348"
 tags:
   - graphify/code
   - graphify/EXTRACTED
@@ -12,7 +12,7 @@ tags:
 # .testRegisterFinalPayment_NotAttended_ThrowsException()
 
 ## Connections
-- [[dot-findById()_7]] - `calls` [INFERRED]
+- [[dot-findById()_12]] - `calls` [INFERRED]
 - [[dot-registerFinalPayment()]] - `calls` [INFERRED]
 - [[PaymentServiceTest]] - `method` [EXTRACTED]
 - [[org.junit.jupiter.api.DisplayName]] - `references` [EXTRACTED]

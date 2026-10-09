@@ -11,6 +11,6 @@ tags:
 # Getter
 
 ## Connections
-- [[PatientResponseDTO]] - `references` [EXTRACTED]
+- [[PatientRequestDTO]] - `references` [EXTRACTED]
 
 #graphify/code #graphify/EXTRACTED #community/orgspringframeworktransactionannotationTransactional

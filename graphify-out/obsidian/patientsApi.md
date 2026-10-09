@@ -1,12 +1,12 @@
 ---
 source_file: "frontend/src/services/api.ts"
 type: "code"
-community: "MedicalRecordView.tsx"
+community: "api.ts"
 location: "L167"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/MedicalRecordViewtsx
+  - community/apits
 ---
 
 # patientsApi
@@ -17,4 +17,4 @@ tags:
 - [[PatientSearch.tsx]] - `imports` [EXTRACTED]
 - [[api.ts]] - `contains` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/MedicalRecordViewtsx
+#graphify/code #graphify/EXTRACTED #community/apits

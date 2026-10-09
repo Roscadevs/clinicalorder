@@ -1,11 +1,11 @@
 ---
 source_file: ""
 type: "code"
-community: "GlobalExceptionHandler"
+community: "SecurityConfig.java"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/GlobalExceptionHandler
+  - community/SecurityConfigjava
 ---
 
 # CorsConfigurationSource
@@ -13,4 +13,4 @@ tags:
 ## Connections
 - [[dot-corsConfigurationSource()]] - `references` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/GlobalExceptionHandler
+#graphify/code #graphify/EXTRACTED #community/SecurityConfigjava

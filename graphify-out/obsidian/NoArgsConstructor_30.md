@@ -1,16 +1,16 @@
 ---
 source_file: ""
 type: "code"
-community: "DermatologicService"
+community: "AppointmentServiceTest.java"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/DermatologicService
+  - community/AppointmentServiceTestjava
 ---
 
 # NoArgsConstructor
 
 ## Connections
-- [[GeminiChatResponseDTO]] - `references` [EXTRACTED]
+- [[PaymentPreferenceResponseDTO]] - `references` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/DermatologicService
+#graphify/code #graphify/EXTRACTED #community/AppointmentServiceTestjava

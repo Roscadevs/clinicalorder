@@ -1,12 +1,12 @@
 ---
 source_file: "documentacion/fase7_dashboard_metricas_y_kpis/FASE_7_DASHBOARD_METRICAS_Y_KPIS.md"
 type: "document"
-community: "Documento de Métricas, KPIs y Dashboard de Gestión (Fase 7)"
+community: "README.md"
 location: "L1"
 tags:
   - graphify/document
   - graphify/EXTRACTED
-  - community/Documento_de_Métricas_KPIs_y_Dashboard_de_Gestión_Fase_7
+  - community/READMEmd
 ---
 
 # Documento de Métricas, KPIs y Dashboard de Gestión (Fase 7)
@@ -18,4 +18,4 @@ tags:
 - [[📊 2. Indicadores Clave de Rendimiento (KPIs)]] - `contains` [EXTRACTED]
 - [[📑 1. Objetivos del Módulo Analítico]] - `contains` [EXTRACTED]
 
-#graphify/document #graphify/EXTRACTED #community/Documento_de_Métricas_KPIs_y_Dashboard_de_Gestión_Fase_7
+#graphify/document #graphify/EXTRACTED #community/READMEmd

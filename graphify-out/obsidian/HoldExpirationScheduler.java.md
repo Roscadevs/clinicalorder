@@ -1,12 +1,12 @@
 ---
 source_file: "backend/src/main/java/com/clinicadermatologica/app/infrastructure/scheduling/HoldExpirationScheduler.java"
 type: "code"
-community: "HoldExpirationScheduler.java"
+community: "lombok.RequiredArgsConstructor"
 location: "L1"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/HoldExpirationSchedulerjava
+  - community/lombokRequiredArgsConstructor
 ---
 
 # HoldExpirationScheduler.java
@@ -19,4 +19,4 @@ tags:
 - [[org.springframework.scheduling.annotation.Scheduled]] - `imports` [EXTRACTED]
 - [[org.springframework.stereotype.Component]] - `imports` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/HoldExpirationSchedulerjava
+#graphify/code #graphify/EXTRACTED #community/lombokRequiredArgsConstructor

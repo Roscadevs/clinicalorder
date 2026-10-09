@@ -17,6 +17,7 @@ tags:
 - [[dot-handleDuplicate()]] - `references` [EXTRACTED]
 - [[dot-handleGeneralException()]] - `references` [EXTRACTED]
 - [[dot-handleNotFound()]] - `references` [EXTRACTED]
+- [[dot-handlePaymentGateway()]] - `references` [EXTRACTED]
 - [[dot-handleSlotUnavailable()]] - `references` [EXTRACTED]
 - [[dot-handleUnauthorized()]] - `references` [EXTRACTED]
 - [[dot-handleValidationErrors()]] - `references` [EXTRACTED]

@@ -1,20 +1,18 @@
 ---
-source_file: "backend/src/main/java/com/clinicadermatologica/app/domain/repository/ClinicalEntryRepository.java"
+source_file: "backend/src/main/java/com/clinicadermatologica/app/domain/repository/PaymentTransactionRepository.java"
 type: "code"
-community: "ClinicalEntryAudit"
-location: "L17"
+community: "lombok.RequiredArgsConstructor"
+location: "L12"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/ClinicalEntryAudit
+  - community/lombokRequiredArgsConstructor
 ---
 
 # .findById()
 
 ## Connections
-- [[dot-updateClinicalEntry()_1]] - `calls` [INFERRED]
-- [[dot-uploadClinicalImage()]] - `calls` [INFERRED]
-- [[ClinicalEntry]] - `references` [EXTRACTED]
-- [[ClinicalEntryRepository]] - `method` [EXTRACTED]
+- [[PaymentTransaction]] - `references` [EXTRACTED]
+- [[PaymentTransactionRepository]] - `method` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/ClinicalEntryAudit
+#graphify/code #graphify/EXTRACTED #community/lombokRequiredArgsConstructor

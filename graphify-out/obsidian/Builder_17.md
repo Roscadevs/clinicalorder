@@ -11,6 +11,6 @@ tags:
 # Builder
 
 ## Connections
-- [[ServiceRequestDTO]] - `references` [EXTRACTED]
+- [[ServiceResponseDTO]] - `references` [EXTRACTED]
 
 #graphify/code #graphify/EXTRACTED #community/ServiceResponseDTO

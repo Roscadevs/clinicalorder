@@ -1,12 +1,12 @@
 ---
 source_file: "backend/src/main/java/com/clinicadermatologica/app/infrastructure/persistence/jpa/JpaAlergiaRepository.java"
 type: "code"
-community: "Alergia"
+community: "AlergiaId"
 location: "L14"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/Alergia
+  - community/AlergiaId
 ---
 
 # JpaAlergiaRepository
@@ -21,4 +21,4 @@ tags:
 - [[org.springframework.data.jpa.repository.JpaRepository]] - `inherits` [EXTRACTED]
 - [[org.springframework.stereotype.Repository]] - `references` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/Alergia
+#graphify/code #graphify/EXTRACTED #community/AlergiaId

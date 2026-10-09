@@ -15,6 +15,6 @@ tags:
 - [[dot-findByName()_2]] - `calls` [INFERRED]
 - [[DermatologicService]] - `references` [EXTRACTED]
 - [[DermatologicServiceRepositoryAdapter]] - `method` [EXTRACTED]
-- [[Override_16]] - `references` [EXTRACTED]
+- [[Override_14]] - `references` [EXTRACTED]
 
 #graphify/code #graphify/EXTRACTED #community/DermatologicService

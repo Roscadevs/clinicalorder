@@ -1,12 +1,12 @@
 ---
 source_file: "frontend/src/config/contact.ts"
 type: "code"
-community: "react"
+community: "ServicesCatalogView.tsx"
 location: "L1"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/react
+  - community/ServicesCatalogViewtsx
 ---
 
 # contact.ts
@@ -22,4 +22,4 @@ tags:
 - [[serviceInquiryMessage()]] - `contains` [EXTRACTED]
 - [[whatsappLink()]] - `contains` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/react
+#graphify/code #graphify/EXTRACTED #community/ServicesCatalogViewtsx

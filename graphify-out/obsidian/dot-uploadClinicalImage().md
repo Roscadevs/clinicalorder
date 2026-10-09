@@ -1,20 +1,20 @@
 ---
 source_file: "backend/src/main/java/com/clinicadermatologica/app/application/service/ClinicalImageService.java"
 type: "code"
-community: "ClinicalImageResponseDTO"
+community: "ClinicalImageService"
 location: "L46"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/ClinicalImageResponseDTO
+  - community/ClinicalImageService
 ---
 
 # .uploadClinicalImage()
 
 ## Connections
-- [[dot-findById()_23]] - `calls` [INFERRED]
+- [[dot-findById()_19]] - `calls` [INFERRED]
 - [[dot-mapToDTO()_3]] - `calls` [EXTRACTED]
-- [[dot-save()_16]] - `calls` [INFERRED]
+- [[dot-save()_15]] - `calls` [INFERRED]
 - [[dot-uploadClinicalPhoto()]] - `calls` [INFERRED]
 - [[dot-uploadFile()]] - `calls` [INFERRED]
 - [[ClinicalImageResponseDTO]] - `references` [EXTRACTED]
@@ -23,4 +23,4 @@ tags:
 - [[org.springframework.transaction.annotation.Transactional]] - `references` [EXTRACTED]
 - [[org.springframework.web.multipart.MultipartFile]] - `references` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/ClinicalImageResponseDTO
+#graphify/code #graphify/EXTRACTED #community/ClinicalImageService

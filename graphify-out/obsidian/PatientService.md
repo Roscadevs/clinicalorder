@@ -12,13 +12,13 @@ tags:
 # PatientService
 
 ## Connections
-- [[dot-createPatient()_1]] - `method` [EXTRACTED]
-- [[dot-deactivatePatient()_1]] - `method` [EXTRACTED]
+- [[dot-createPatient()]] - `method` [EXTRACTED]
+- [[dot-deactivatePatient()]] - `method` [EXTRACTED]
 - [[dot-getAllActivePatients()]] - `method` [EXTRACTED]
 - [[dot-getPatientById()]] - `method` [EXTRACTED]
 - [[dot-mapToDTO()_4]] - `method` [EXTRACTED]
 - [[dot-searchPatients()]] - `method` [EXTRACTED]
-- [[dot-updatePatient()_1]] - `method` [EXTRACTED]
+- [[dot-updatePatient()]] - `method` [EXTRACTED]
 - [[PatientController]] - `references` [EXTRACTED]
 - [[PatientController.java]] - `imports` [EXTRACTED]
 - [[PatientRepository]] - `references` [EXTRACTED]

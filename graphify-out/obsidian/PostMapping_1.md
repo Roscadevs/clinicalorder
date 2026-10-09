@@ -1,16 +1,16 @@
 ---
 source_file: ""
 type: "code"
-community: "PatientRequestDTO"
+community: "CalendarBlockResponseDTO"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/PatientRequestDTO
+  - community/CalendarBlockResponseDTO
 ---
 
 # PostMapping
 
 ## Connections
-- [[dot-createPatient()]] - `references` [EXTRACTED]
+- [[dot-createBlock()_1]] - `references` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/PatientRequestDTO
+#graphify/code #graphify/EXTRACTED #community/CalendarBlockResponseDTO

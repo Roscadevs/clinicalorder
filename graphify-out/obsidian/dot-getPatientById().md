@@ -12,7 +12,7 @@ tags:
 # .getPatientById()
 
 ## Connections
-- [[dot-findById()_12]] - `calls` [INFERRED]
+- [[dot-findById()_7]] - `calls` [INFERRED]
 - [[dot-getPatientById()_1]] - `calls` [INFERRED]
 - [[PatientResponseDTO]] - `references` [EXTRACTED]
 - [[PatientService]] - `method` [EXTRACTED]

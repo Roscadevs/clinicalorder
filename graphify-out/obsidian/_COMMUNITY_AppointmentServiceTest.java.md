@@ -8,26 +8,26 @@ members: 22
 **Members:** 22 nodes
 
 ## Members
+- [[AllArgsConstructor_29]] - code
+- [[AllArgsConstructor_30]] - code
 - [[AllArgsConstructor_31]] - code
-- [[AllArgsConstructor_32]] - code
-- [[AllArgsConstructor_33]] - code
 - [[AppointmentServiceTest.java]] - code - backend/src/test/java/com/clinicadermatologica/app/application/AppointmentServiceTest.java
 - [[BookAppointmentRequestDTO]] - code - backend/src/main/java/com/clinicadermatologica/app/presentation/dto/BookAppointmentRequestDTO.java
 - [[BookAppointmentRequestDTO.java]] - code - backend/src/main/java/com/clinicadermatologica/app/presentation/dto/BookAppointmentRequestDTO.java
+- [[Builder_27]] - code
 - [[Builder_28]] - code
 - [[Builder_29]] - code
-- [[Builder_30]] - code
+- [[Getter_29]] - code
+- [[Getter_30]] - code
 - [[Getter_31]] - code
-- [[Getter_32]] - code
-- [[Getter_33]] - code
+- [[NoArgsConstructor_29]] - code
+- [[NoArgsConstructor_30]] - code
 - [[NoArgsConstructor_31]] - code
-- [[NoArgsConstructor_32]] - code
-- [[NoArgsConstructor_33]] - code
 - [[PaymentPreferenceResponseDTO]] - code - backend/src/main/java/com/clinicadermatologica/app/presentation/dto/PaymentPreferenceResponseDTO.java
 - [[PaymentPreferenceResponseDTO.java]] - code - backend/src/main/java/com/clinicadermatologica/app/presentation/dto/PaymentPreferenceResponseDTO.java
+- [[Setter_29]] - code
+- [[Setter_30]] - code
 - [[Setter_31]] - code
-- [[Setter_32]] - code
-- [[Setter_33]] - code
 - [[TimeSlotDTO]] - code - backend/src/main/java/com/clinicadermatologica/app/presentation/dto/TimeSlotDTO.java
 - [[TimeSlotDTO.java]] - code - backend/src/main/java/com/clinicadermatologica/app/presentation/dto/TimeSlotDTO.java
 
@@ -39,12 +39,13 @@ SORT file.name ASC
 ```
 
 ## Connections to other communities
-- 5 edges to [[_COMMUNITY_AppointmentService]]
-- 3 edges to [[_COMMUNITY_lombok.RequiredArgsConstructor]]
+- 3 edges to [[_COMMUNITY_AppointmentService]]
+- 3 edges to [[_COMMUNITY_org.springframework.http.ResponseEntity]]
+- 2 edges to [[_COMMUNITY_dot-bookTemporaryHold]]
 - 2 edges to [[_COMMUNITY_org.junit.jupiter.api.DisplayName]]
 - 2 edges to [[_COMMUNITY_MedicalRecordService]]
+- 1 edge to [[_COMMUNITY_PaymentService]]
 - 1 edge to [[_COMMUNITY_GlobalExceptionHandler]]
-- 1 edge to [[_COMMUNITY_MercadoPagoPaymentAdapter]]
 - 1 edge to [[_COMMUNITY_AesEncryptionService]]
 
 ## Top bridge nodes

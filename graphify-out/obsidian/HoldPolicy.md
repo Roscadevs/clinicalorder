@@ -1,12 +1,12 @@
 ---
 source_file: "backend/src/main/java/com/clinicadermatologica/app/domain/model/HoldPolicy.java"
 type: "code"
-community: ".isExpired"
+community: ".bookTemporaryHold"
 location: "L14"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/isExpired
+  - community/bookTemporaryHold
 ---
 
 # HoldPolicy
@@ -17,4 +17,4 @@ tags:
 - [[dot-isExpired()]] - `method` [EXTRACTED]
 - [[HoldPolicy.java]] - `contains` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/isExpired
+#graphify/code #graphify/EXTRACTED #community/bookTemporaryHold

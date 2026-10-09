@@ -1,23 +1,23 @@
-# Graph Report - TP  (2026-10-05)
+# Graph Report - TP  (2026-10-09)
 
 ## Corpus Check
-- 307 files · ~155,633 words
+- 309 files · ~157,494 words
 - Verdict: corpus is large enough that graph structure adds value.
-- Unclassified: 19 file(s) not represented in the graph (top: .css 6, (none) 3, .drawio 3)
+- Unclassified: 18 file(s) not represented in the graph (top: .css 6, (none) 3, .drawio 3)
 
 ## Summary
-- 2321 nodes · 4333 edges · 179 communities (140 shown, 35 thin omitted)
-- Extraction: 93% EXTRACTED · 7% INFERRED · 0% AMBIGUOUS · INFERRED: 313 edges (avg confidence: 0.8)
+- 2341 nodes · 4410 edges · 167 communities (132 shown, 31 thin omitted)
+- Extraction: 92% EXTRACTED · 8% INFERRED · 0% AMBIGUOUS · INFERRED: 336 edges (avg confidence: 0.8)
 - Token cost: 0 input · 0 output
 
 ## Graph Freshness
-- Built from commit: `7e0d6700`
+- Built from commit: `76f59a81`
 - Run `git rev-parse HEAD` and compare to check if the graph is stale.
 - Run `graphify update .` after code changes (no API cost).
 
 ## Community Hubs (Navigation)
 - PaymentTransaction
-- Appointment
+- CalendarBlock
 - AntecedentePatologico
 - Patient
 - ClinicalEntry
@@ -28,11 +28,11 @@
 - lombok.extern.slf4j.Slf4j
 - MedicalRecordController
 - Habito
-- PatientRequestDTO
+- Appointment
 - V4__schema_redesign.sql
 - 📘 Manual Maestro de Ingeniería de Software, Metodología de Especificación y Desarrollo Ágil con Agentes de IA
 - PaymentServiceTest.java
-- org.junit.jupiter.api.DisplayName
+- PaymentService
 - MedicalRecordView.tsx
 - MedicalRecord
 - Especificación del Modelo Relacional (MR) en Supabase PostgreSQL
@@ -43,42 +43,40 @@
 - ServiceResponseDTO
 - package.json
 - CalendarBlockResponseDTO
-- MedicalRecordService
-- AlergiaId
+- MedicalRecordDTO
+- 3. 📋 Especificación Formal de Casos de Uso Detallados (CU-01 a CU-08)
 - 2. Detailed Component Inspections & Mocking Strategies
 - ClinicalImage
 - User
 - DermatologicService
 - AppointmentServiceTest.java
 - AgendaView.tsx
-- lombok.RequiredArgsConstructor
+- org.springframework.http.ResponseEntity
 - AuthController
 - 2. Catálogo de Métodos y Funciones de Negocio (Backend)
 - DashboardLayout.tsx
 - compilerOptions
-- MercadoPagoPaymentAdapter
-- ClinicalImageResponseDTO
-- Alergia
-- 3. 📋 Especificación Formal de Casos de Uso Detallados (CU-01 a CU-08)
+- MedicalRecordService
+- ClinicalImageService
+- AlergiaId
+- 2. 🔄 Modelado de Procesos de Negocio en BPMN 2.0
 - Backend Codebase Analysis Report — Milestone 1
 - Frontend Test Suite & Mutation Testing Investigation — Analysis & Setup Plan (M2)
 - UserRole
 - AesEncryptionService
 - StrykerJS Mutation Testing Strategy & Setup Analysis (Frontend / Vitest)
-- UserRepository
+- TreatmentPhotos.tsx
 - V1__initial_schema.sql
 - 🧠 3. Banco de Preguntas "Trampa" de la Cátedra & Respuestas Técnicas
 - Detailed Testing & Mutation Testing Infrastructure Analysis
-- .addHabito
-- AlergiaResponseDTO
+- SecurityConfig.java
+- .addAlergia
 - dependencies
-- AdminServicesView.tsx
-- BookingWizard.tsx
+- PaymentWebhookController
 - AppointmentReceiptModal.tsx
-- reactbits/index.ts
-- org.springframework.stereotype.Component
+- ServicesCatalogView.tsx
+- lombok.RequiredArgsConstructor
 - PasswordResetToken
-- ClinicalEntryAudit
 - Analysis Report — Backend Codebase Survey
 - Frontend Codebase Analysis Report — Dermatology Management System
 - BRIEFING — 2026-08-10T19:40:42-03:00
@@ -86,8 +84,7 @@
 - BRIEFING — 2026-08-10T19:41:00Z
 - BRIEFING — 2026-08-10T22:50:12Z
 - BRIEFING — 2026-08-10T22:42:30Z
-- .login
-- .forgotPassword
+- MedicalRecordAudit
 - org.springframework.data.jpa.repository.JpaRepository
 - V2__audit_triggers_and_tables.sql
 - 📜 Historial de Revisiones
@@ -112,7 +109,6 @@
 - BRIEFING — 2026-08-10T22:40:30Z
 - 1. Módulos Implementados en Fase 2
 - Documento de Integración Continua y Calidad Automatizada (Fase 5)
-- AnamnesisForm.tsx
 - 📄 Product Requirements Document (PRD) - v11.0
 - compilerOptions
 - Handoff Report — explorer_m1_r1_1
@@ -125,9 +121,8 @@
 - Handoff Report — Frontend Codebase Survey
 - Handoff Report — Testing & Mutation Testing Setup Survey
 - Handoff Report — Sentinel Setup
-- ClinicalEntryRequestDTO
-- .save
-- AppointmentResponseDTO
+- AlergiaRequestDTO
+- .register
 - Cambios Implementados
 - Documento de Especificación de Comprobantes Médicos y Consentimientos Informados en PDF (Fase 6)
 - PRD v3.0 (Master): Sistema Integral Dermatológico, Estética y Asistente IA
@@ -141,15 +136,13 @@
 - Scope: Milestone 1 — Backend Test Suite & Mutation Testing
 - Dispatch: Sub-Orchestrator Milestone 2 (Frontend)
 - Scope: Milestone 2 — Frontend Test Suite & Mutation Testing
-- .findById
-- Documento de Métricas, KPIs y Dashboard de Gestión (Fase 7)
+- org.junit.jupiter.api.DisplayName
 - Documento de Sistema de Recordatorios y Sincronización con Calendarios (Fase 8)
-- BlurText.tsx
 - Progress
 - Progress — Milestone 2 (Frontend Test Suite & Mutation Testing)
 - Getting Started
 - ClinicaDermatologicaApplication
-- .isExpired
+- .bookTemporaryHold
 - Documento de Arquitectura de Diseño Mobile-First, UI/UX Responsive y Accesibilidad Táctil (Fase 10)
 - Inventario de Contenido y Funcionalidad — Clínica Dra. Valeria Gómez
 - Progress Log — explorer_m1_r1_1
@@ -185,11 +178,6 @@
 - historia_clinica
 - com.clinicadermatologica:clinica-dermatologica-backend
 - transaccion_pago
-- AlergiaRequestDTO
-- PaymentStatus
-- .register
-- .register
-- HoldExpirationScheduler.java
 - .register
 
 ## God Nodes (most connected - your core abstractions)
@@ -198,19 +186,19 @@
 3. `cn()` - 45 edges
 4. `MedicalRecordService` - 37 edges
 5. `Appointment` - 36 edges
-6. `PaymentTransaction` - 35 edges
+6. `PaymentTransaction` - 36 edges
 7. `Patient` - 33 edges
-8. `lucide-react` - 29 edges
-9. `ClinicalEntry` - 28 edges
-10. `DermatologicService` - 28 edges
+8. `PaymentServiceTest` - 30 edges
+9. `AppointmentService` - 29 edges
+10. `lucide-react` - 29 edges
 
 ## Surprising Connections (you probably didn't know these)
 - `Metric()` --calls--> `cn()`  [EXTRACTED]
   frontend/src/features/agenda/AgendaView.tsx → frontend/src/utils/cn.ts
-- `CollectBalanceModalProps` --references--> `Appointment`  [EXTRACTED]
-  frontend/src/features/agenda/CollectBalanceModal.tsx → frontend/src/types/index.ts
 - `ReadRow()` --calls--> `cn()`  [EXTRACTED]
   frontend/src/features/clinical/AnamnesisForm.tsx → frontend/src/utils/cn.ts
+- `AppointmentService` --references--> `PaymentService`  [EXTRACTED]
+  backend/src/main/java/com/clinicadermatologica/app/application/service/AppointmentService.java → backend/src/main/java/com/clinicadermatologica/app/application/service/PaymentService.java
 - `AppointmentService` --references--> `CalendarBlockRepository`  [EXTRACTED]
   backend/src/main/java/com/clinicadermatologica/app/application/service/AppointmentService.java → backend/src/main/java/com/clinicadermatologica/app/domain/repository/CalendarBlockRepository.java
 - `AppointmentService` --references--> `DermatologicServiceRepository`  [EXTRACTED]
@@ -219,59 +207,59 @@
 ## Import Cycles
 - None detected.
 
-## Communities (179 total, 35 thin omitted)
+## Communities (167 total, 31 thin omitted)
 
 ### Community 0 - "PaymentTransaction"
-Cohesion: 0.17
-Nodes (11): AllArgsConstructor, Builder, Entity, Getter, NoArgsConstructor, Setter, Table, PaymentTransaction (+3 more)
+Cohesion: 0.11
+Nodes (18): Appointment, PaymentConcept, PaymentStatus, APPROVED, PENDING, REFUNDED, REJECTED, AllArgsConstructor (+10 more)
 
-### Community 1 - "Appointment"
-Cohesion: 0.06
-Nodes (32): Appointment, AllArgsConstructor, Builder, Entity, Getter, NoArgsConstructor, Setter, Table (+24 more)
+### Community 1 - "CalendarBlock"
+Cohesion: 0.14
+Nodes (12): CalendarBlock, AllArgsConstructor, Builder, Entity, Getter, NoArgsConstructor, Setter, Table (+4 more)
 
 ### Community 2 - "AntecedentePatologico"
 Cohesion: 0.06
 Nodes (30): AntecedentePatologico, AllArgsConstructor, Builder, Entity, Getter, NoArgsConstructor, Setter, Table (+22 more)
 
 ### Community 3 - "Patient"
-Cohesion: 0.10
-Nodes (12): AllArgsConstructor, Builder, Entity, Getter, NoArgsConstructor, Setter, Table, Patient (+4 more)
+Cohesion: 0.12
+Nodes (11): AllArgsConstructor, Builder, Entity, Getter, NoArgsConstructor, Setter, Table, Patient (+3 more)
 
 ### Community 4 - "ClinicalEntry"
-Cohesion: 0.15
-Nodes (10): ClinicalEntry, AllArgsConstructor, Builder, Entity, Getter, NoArgsConstructor, Setter, Table (+2 more)
+Cohesion: 0.09
+Nodes (18): ClinicalEntry, AllArgsConstructor, Builder, Entity, Getter, NoArgsConstructor, Setter, Table (+10 more)
 
 ### Community 5 - "react"
-Cohesion: 0.11
-Nodes (23): App(), ErrorBoundary, Props, State, PageTransition(), PageTransitionProps, BOOKING_MESSAGE, CLINIC (+15 more)
+Cohesion: 0.15
+Nodes (15): App(), ErrorBoundary, Props, State, PageTransition(), PageTransitionProps, AnalyticsDashboardView(), BookingFailureView() (+7 more)
 
 ### Community 6 - "api.ts"
-Cohesion: 0.09
-Nodes (24): GeminiChatbotWidget(), ROLES, UserFormModal(), UserFormModalProps, ClinicalNoteModalProps, photoStore, TreatmentPhotos(), TreatmentPhotosProps (+16 more)
+Cohesion: 0.07
+Nodes (41): GeminiChatbotWidget(), ars(), CollectBalanceModal(), CollectBalanceModalProps, METHODS, ars(), BookingWizard(), formatCountdown() (+33 more)
 
 ### Community 7 - "org.springframework.transaction.annotation.Transactional"
-Cohesion: 0.14
-Nodes (11): PatientService, BusinessRuleException, ResourceNotFoundException, GetMapping, AllArgsConstructor, Builder, Getter, NoArgsConstructor (+3 more)
+Cohesion: 0.07
+Nodes (24): PatientService, BusinessRuleException, ResourceNotFoundException, PatientRepository, DeleteMapping, GetMapping, PostMapping, PutMapping (+16 more)
 
 ### Community 8 - "cn"
-Cohesion: 0.12
-Nodes (25): BadgeProps, BadgeVariant, variantStyles, Card, CardHeader(), CardProps, CardTitle(), Input (+17 more)
+Cohesion: 0.08
+Nodes (40): ICONS, Navbar(), Badge(), BadgeProps, BadgeVariant, variantStyles, Button, ButtonProps (+32 more)
 
 ### Community 9 - "lombok.extern.slf4j.Slf4j"
-Cohesion: 0.19
-Nodes (11): AuthService, ClinicalImageService, PasswordResetTokenRepository, EmailNotificationService, JwtTokenProvider, AuthServiceTest, javax.crypto.SecretKey, lombok.extern.slf4j.Slf4j (+3 more)
+Cohesion: 0.11
+Nodes (13): AuthService, PasswordResetTokenRepository, UserRepository, EmailNotificationService, CustomUserDetailsService, Override, JwtTokenProvider, AuthServiceTest (+5 more)
 
 ### Community 10 - "MedicalRecordController"
-Cohesion: 0.11
-Nodes (12): DeleteMapping, PostMapping, PutMapping, RequestMapping, RestController, MedicalRecordController, ClinicalEntryResponseDTO, AllArgsConstructor (+4 more)
+Cohesion: 0.12
+Nodes (12): DeleteMapping, GetMapping, PutMapping, RequestMapping, RestController, MedicalRecordController, ClinicalEntryResponseDTO, AllArgsConstructor (+4 more)
 
 ### Community 11 - "Habito"
-Cohesion: 0.09
-Nodes (19): Habito, AllArgsConstructor, Builder, Entity, Getter, NoArgsConstructor, Setter, Table (+11 more)
+Cohesion: 0.06
+Nodes (29): Habito, AllArgsConstructor, Builder, Entity, Getter, NoArgsConstructor, Setter, Table (+21 more)
 
-### Community 12 - "PatientRequestDTO"
-Cohesion: 0.13
-Nodes (12): DeleteMapping, PostMapping, PutMapping, RequestMapping, RestController, PatientController, AllArgsConstructor, Builder (+4 more)
+### Community 12 - "Appointment"
+Cohesion: 0.09
+Nodes (20): Appointment, AllArgsConstructor, Builder, Entity, Getter, NoArgsConstructor, Setter, Table (+12 more)
 
 ### Community 13 - "V4__schema_redesign.sql"
 Cohesion: 0.13
@@ -285,32 +273,32 @@ Nodes (32): 🏁 10. Resumen Ejecutivo y Checklist de Calidad para Nuevos Proyec
 Cohesion: 0.08
 Nodes (27): PaymentConcept, BALANCE, DEPOSIT, FULL, PaymentType, BANK_TRANSFER, CASH, MERCADOPAGO (+19 more)
 
-### Community 16 - "org.junit.jupiter.api.DisplayName"
-Cohesion: 0.21
-Nodes (6): PaymentService, PaymentStrategyFactory, Appointment, PaymentServiceTest, org.junit.jupiter.api.DisplayName, org.junit.jupiter.api.Test
+### Community 16 - "PaymentService"
+Cohesion: 0.22
+Nodes (5): Appointment, PaymentService, PaymentGatewayException, MercadoPagoPaymentAdapter, com.mercadopago.resources.payment.PaymentRefund
 
 ### Community 17 - "MedicalRecordView.tsx"
-Cohesion: 0.13
-Nodes (23): Badge(), getVisualStatus(), STATUS_STYLES, StatusStyle, PatientSearch(), PatientSearchProps, ClinicalNoteModal(), EMPTY_RECORD (+15 more)
+Cohesion: 0.12
+Nodes (22): ALERGIAS, AnamnesisForm(), AnamnesisFormProps, FITZ, PATOLOGIAS, ReadRow(), ClinicalNoteModal(), ClinicalNoteModalProps (+14 more)
 
 ### Community 18 - "MedicalRecord"
-Cohesion: 0.10
-Nodes (20): AllArgsConstructor, Builder, Entity, Getter, NoArgsConstructor, Setter, Table, MedicalRecord (+12 more)
+Cohesion: 0.17
+Nodes (10): AllArgsConstructor, Builder, Entity, Getter, NoArgsConstructor, Setter, Table, MedicalRecord (+2 more)
 
 ### Community 19 - "Especificación del Modelo Relacional (MR) en Supabase PostgreSQL"
 Cohesion: 0.07
 Nodes (27): 10. Tabla `entrada_hc`, 11. Tabla `entrada_hc_audit`, 12. Tabla `imagen_hc`, 1. Diagrama de Paquetes UML (Arquitectura Limpia en Capas), 1. Tabla `usuario`, 2. Diagrama de Despliegue UML (Topología de Infraestructura), 2. Tabla `password_reset_token`, 3. Modelo Entidad-Relación (MER) y Modelo Relacional (MR) (+19 more)
 
 ### Community 20 - "GlobalExceptionHandler"
-Cohesion: 0.07
-Nodes (27): DuplicateResourceException, SlotUnavailableException, UnauthorizedAccessException, Override, JwtAuthenticationFilter, SecurityConfig, GlobalExceptionHandler, ResponseEntity (+19 more)
+Cohesion: 0.11
+Nodes (17): DuplicateResourceException, SlotUnavailableException, UnauthorizedAccessException, Override, JwtAuthenticationFilter, GlobalExceptionHandler, ResponseEntity, ExceptionHandler (+9 more)
 
 ### Community 21 - "PRD — Sistema Integral de Gestión Dermatológica, Estética y Asistente Virtual con IA"
 Cohesion: 0.07
 Nodes (26): 1. Resumen Ejecutivo (Hoy vs Después), 2. La Historia (El Universo del Discurso y la Experiencia Humana), 3. Objetivos y No-Objetivos de Negocio, 4. Cómo Funciona Hoy vs Cómo va a Funcionar, 5. Plano de Datos: Entidades, Atributos y Reglas de Integridad, 6. Pseudo-código y Acuerdos de Negocio (Lógica Transaccional Paso a Paso), 7. Desglose Modular del Sistema, 8. Análisis de Pros y Contras de las Decisiones Arquitectónicas (+18 more)
 
 ### Community 22 - "AppointmentService"
-Cohesion: 0.19
+Cohesion: 0.14
 Nodes (6): AppointmentService, Appointment, AppointmentRepository, AppointmentServiceTest, DermatologicService, Patient
 
 ### Community 23 - "Analysis Report: Backend Test Implementation & Mutation Testing Strategy (Milestone 1)"
@@ -318,36 +306,36 @@ Cohesion: 0.08
 Nodes (24): 1. Executive Summary & Objective Overview, 2.1 `JwtService` (`backend/src/main/java/com/dermacare/backend/security/JwtService.java`), 2.2 `JwtAuthenticationFilter` (`backend/src/main/java/com/dermacare/backend/security/JwtAuthenticationFilter.java`), 2.3 `AuthController` (`backend/src/main/java/com/dermacare/backend/controllers/AuthController.java`), 2.4 `PatientController` (`backend/src/main/java/com/dermacare/backend/controllers/PatientController.java`), 2.5 `AppointmentController` (`backend/src/main/java/com/dermacare/backend/controllers/AppointmentController.java`), 2. Target Class Codebase Audit, 3.1 `JwtServiceTest` Design (+16 more)
 
 ### Community 24 - "ServiceResponseDTO"
-Cohesion: 0.10
-Nodes (19): DermatologicServiceService, GetMapping, PostMapping, PutMapping, RequestMapping, RestController, ServiceCatalogController, AllArgsConstructor (+11 more)
+Cohesion: 0.11
+Nodes (17): DermatologicServiceService, GetMapping, RequestMapping, RestController, ServiceCatalogController, AllArgsConstructor, Builder, Getter (+9 more)
 
 ### Community 25 - "package.json"
 Cohesion: 0.08
 Nodes (23): name, private, type, version, autoprefixer, axios, clsx, @hookform/resolvers (+15 more)
 
 ### Community 26 - "CalendarBlockResponseDTO"
-Cohesion: 0.09
+Cohesion: 0.10
 Nodes (19): CalendarBlockService, CalendarBlockController, DeleteMapping, GetMapping, PostMapping, RequestMapping, RestController, CalendarBlockRequestDTO (+11 more)
 
-### Community 27 - "MedicalRecordService"
-Cohesion: 0.11
-Nodes (16): MedicalRecord, MedicalRecordService, MedicalRecordRepository, GetMapping, AllArgsConstructor, Builder, Getter, NoArgsConstructor (+8 more)
-
-### Community 28 - "AlergiaId"
+### Community 27 - "MedicalRecordDTO"
 Cohesion: 0.19
-Nodes (7): AlergiaId, AllArgsConstructor, Getter, NoArgsConstructor, Override, Setter, AlergiaRepository
+Nodes (6): AllArgsConstructor, Builder, Getter, NoArgsConstructor, Setter, MedicalRecordDTO
+
+### Community 28 - "3. 📋 Especificación Formal de Casos de Uso Detallados (CU-01 a CU-08)"
+Cohesion: 0.22
+Nodes (9): 3. 📋 Especificación Formal de Casos de Uso Detallados (CU-01 a CU-08), Caso de Uso CU-01: Consultar Asistente IA sobre Tratamientos y Precios, Caso de Uso CU-02: Consultar Disponibilidad de Turnos en Tiempo Real, Caso de Uso CU-03: Reservar Turno con Bloqueo Temporal (10 min) y Pagar Seña, Caso de Uso CU-04: Procesar Webhook y Confirmar Reserva, Caso de Uso CU-05: Registrar Liquidación de Saldo en Mostrador y Asistencia, Caso de Uso CU-06: Gestionar Historia Clínica Digital y Ficha Anamnésica, Caso de Uso CU-07: Subir y Comparar Fotografías Médicas (Antes / Después) (+1 more)
 
 ### Community 29 - "2. Detailed Component Inspections & Mocking Strategies"
 Cohesion: 0.09
 Nodes (22): 1. Component Technical Inventory, 2.1 `App.jsx`, 2.2 `Layout.jsx`, 2.3 `InicioSesion.jsx`, 2.4 `RegistroPaciente.jsx`, 2.5 `PerfilPaciente.jsx`, 2.6 `DirectorioPacientes.jsx`, 2.7 `MatrizVisualAgenda.jsx` (+14 more)
 
 ### Community 30 - "ClinicalImage"
-Cohesion: 0.14
+Cohesion: 0.13
 Nodes (11): ClinicalImage, AllArgsConstructor, Builder, Entity, Getter, NoArgsConstructor, Setter, Table (+3 more)
 
 ### Community 31 - "User"
-Cohesion: 0.16
-Nodes (11): AllArgsConstructor, Builder, Entity, Getter, NoArgsConstructor, Setter, Table, User (+3 more)
+Cohesion: 0.14
+Nodes (12): AllArgsConstructor, Builder, Entity, Getter, NoArgsConstructor, Setter, Table, User (+4 more)
 
 ### Community 32 - "DermatologicService"
 Cohesion: 0.06
@@ -358,40 +346,44 @@ Cohesion: 0.10
 Nodes (18): BookAppointmentRequestDTO, AllArgsConstructor, Builder, Getter, NoArgsConstructor, Setter, AllArgsConstructor, Builder (+10 more)
 
 ### Community 34 - "AgendaView.tsx"
-Cohesion: 0.22
-Nodes (21): addDays(), AgendaView(), AppointmentDetail(), ApptChip(), ars(), computeRange(), dayKey(), fmtTime() (+13 more)
+Cohesion: 0.18
+Nodes (25): addDays(), AgendaView(), AppointmentDetail(), ApptChip(), ars(), computeRange(), dayKey(), fmtTime() (+17 more)
 
-### Community 35 - "lombok.RequiredArgsConstructor"
-Cohesion: 0.17
-Nodes (13): AppointmentController, GetMapping, PostMapping, RequestMapping, RestController, PostMapping, RequestMapping, RestController (+5 more)
+### Community 35 - "org.springframework.http.ResponseEntity"
+Cohesion: 0.12
+Nodes (16): AppointmentController, GetMapping, PostMapping, RequestMapping, RestController, PostMapping, PutMapping, AppointmentResponseDTO (+8 more)
 
 ### Community 36 - "AuthController"
-Cohesion: 0.16
-Nodes (10): AuthController, PostMapping, RequestMapping, RestController, AllArgsConstructor, Builder, Getter, NoArgsConstructor (+2 more)
+Cohesion: 0.08
+Nodes (22): AuthController, PostMapping, RequestMapping, RestController, AuthRequestDTO, AllArgsConstructor, Builder, Getter (+14 more)
 
 ### Community 37 - "2. Catálogo de Métodos y Funciones de Negocio (Backend)"
 Cohesion: 0.10
 Nodes (20): 10. `AuthService.resetPassword(ResetPasswordRequestDTO request)`, 11. `GeminiChatbotService.processUserMessage(GeminiChatRequestDTO request)`, 1. Anotaciones de Java y Spring Boot (Backend), 1. `AppointmentService.getAvailableSlots(LocalDate date, Long serviceId)`, 2. `AppointmentService.bookTemporaryHold(BookAppointmentRequestDTO request, Long createdByUserId)`, 2. Catálogo de Métodos y Funciones de Negocio (Backend), 3. `AppointmentService.releaseExpiredHoldsScheduler()`, 3. Glosario de Hooks, Utilidades y Componentes (Frontend React) (+12 more)
 
 ### Community 38 - "DashboardLayout.tsx"
-Cohesion: 0.19
-Nodes (15): BottomNav(), BottomNavProps, ICONS, DashboardLayout(), pathToTab(), roleLanding, tabToPath(), ICONS (+7 more)
+Cohesion: 0.23
+Nodes (13): BottomNav(), BottomNavProps, ICONS, DashboardLayout(), pathToTab(), roleLanding, tabToPath(), NavbarProps (+5 more)
 
 ### Community 39 - "compilerOptions"
 Cohesion: 0.10
 Nodes (20): compilerOptions, baseUrl, isolatedModules, jsx, lib, module, moduleResolution, noEmit (+12 more)
 
-### Community 41 - "ClinicalImageResponseDTO"
-Cohesion: 0.14
-Nodes (9): SupabaseStorageAdapter, ClinicalImageResponseDTO, AllArgsConstructor, Builder, Getter, NoArgsConstructor, Setter, org.springframework.web.multipart.MultipartFile (+1 more)
+### Community 40 - "MedicalRecordService"
+Cohesion: 0.17
+Nodes (10): ClinicalEntry, MedicalRecord, MedicalRecordService, ClinicalEntryRepository, MedicalRecord, Patient, MedicalRecordServiceTest, com.fasterxml.jackson.databind.ObjectMapper (+2 more)
 
-### Community 42 - "Alergia"
+### Community 41 - "ClinicalImageService"
 Cohesion: 0.16
-Nodes (11): Alergia, AllArgsConstructor, Builder, Entity, Getter, NoArgsConstructor, Setter, Table (+3 more)
+Nodes (10): ClinicalImageService, SupabaseStorageAdapter, ClinicalImageResponseDTO, AllArgsConstructor, Builder, Getter, NoArgsConstructor, Setter (+2 more)
 
-### Community 43 - "3. 📋 Especificación Formal de Casos de Uso Detallados (CU-01 a CU-08)"
-Cohesion: 0.10
-Nodes (19): 1. 🏛️ Diagrama General de Casos de Uso del Sistema (UML), 2. 🔄 Modelado de Procesos de Negocio en BPMN 2.0, 3. 📋 Especificación Formal de Casos de Uso Detallados (CU-01 a CU-08), 4. 🔗 Matriz de Trazabilidad (Objetivos vs Casos de Uso vs Entidades), Caso de Uso CU-01: Consultar Asistente IA sobre Tratamientos y Precios, Caso de Uso CU-02: Consultar Disponibilidad de Turnos en Tiempo Real, Caso de Uso CU-03: Reservar Turno con Bloqueo Temporal (10 min) y Pagar Seña, Caso de Uso CU-04: Procesar Webhook y Confirmar Reserva (+11 more)
+### Community 42 - "AlergiaId"
+Cohesion: 0.11
+Nodes (18): Alergia, AllArgsConstructor, Builder, Entity, Getter, NoArgsConstructor, Setter, Table (+10 more)
+
+### Community 43 - "2. 🔄 Modelado de Procesos de Negocio en BPMN 2.0"
+Cohesion: 0.18
+Nodes (10): 1. 🏛️ Diagrama General de Casos de Uso del Sistema (UML), 2. 🔄 Modelado de Procesos de Negocio en BPMN 2.0, 4. 🔗 Matriz de Trazabilidad (Objetivos vs Casos de Uso vs Entidades), Documento de Modelado de Procesos BPMN 2.0 y Especificación Formal de Casos de Uso (Fase 4), Proceso PR-01: Reserva de Turno Online, Bloqueo Temporal (10 min) y Cobro de Seña, Proceso PR-02: Consulta Médica, Registro Fotográfico y Auditoría Legal, Proceso PR-03: Recepción, Liquidación de Saldo (50%) en Mostrador y Cierre, Proceso PR-04: Asesoramiento Inteligente con Google Gemini AI (+2 more)
 
 ### Community 44 - "Backend Codebase Analysis Report — Milestone 1"
 Cohesion: 0.11
@@ -406,16 +398,16 @@ Cohesion: 0.12
 Nodes (16): UserRole, ADMIN, DOCTORA, SECRETARIA, AuthResponseDTO, AllArgsConstructor, Builder, Getter (+8 more)
 
 ### Community 47 - "AesEncryptionService"
-Cohesion: 0.21
-Nodes (3): AesEncryptionService, AesEncryptionServiceTest, org.junit.jupiter.api.BeforeEach
+Cohesion: 0.19
+Nodes (4): AesEncryptionService, AesEncryptionServiceTest, org.junit.jupiter.api.BeforeEach, org.springframework.context.annotation.Scope
 
 ### Community 48 - "StrykerJS Mutation Testing Strategy & Setup Analysis (Frontend / Vitest)"
 Cohesion: 0.11
 Nodes (17): 1. Executive Summary, 2. StrykerJS Configuration for Vitest (`frontend/stryker.config.json`), 3. Mutate Target Strategy & Exclusions, 4. Component-by-Component Mutant Survival Risk Analysis, 5. Recommended Testing Patterns for >= 70% Mutation Score, 6. Execution & Verification Commands, 7. Conclusion & Recommendations, Command Execution Workflow (+9 more)
 
-### Community 49 - "UserRepository"
-Cohesion: 0.21
-Nodes (5): UserRepository, CustomUserDetailsService, Override, UserDetails, UserDetailsService
+### Community 49 - "TreatmentPhotos.tsx"
+Cohesion: 0.28
+Nodes (4): photoStore, TreatmentPhotos(), TreatmentPhotosProps, ClinicalPhoto
 
 ### Community 50 - "V1__initial_schema.sql"
 Cohesion: 0.25
@@ -429,45 +421,37 @@ Nodes (17): 🎯 1. Pitch Inicial de Alto Impacto (60 Segundos), ⏱️ 2. Guió
 Cohesion: 0.12
 Nodes (16): 1. Executive Summary, 2. Workspace & Root Level Survey, 3.1 Architecture & Code Inventory, 3.2 Current Testing Setup, 3.3 Mutation Testing Setup (PITest), 3.4 Execution Commands for Backend, 3. Backend Survey (Java 17 / Spring Boot / Maven), 4.1 Architecture & Code Inventory (+8 more)
 
-### Community 53 - ".addHabito"
-Cohesion: 0.12
-Nodes (12): HabitoRequestDTO, AllArgsConstructor, Builder, Getter, NoArgsConstructor, Setter, HabitoResponseDTO, AllArgsConstructor (+4 more)
+### Community 53 - "SecurityConfig.java"
+Cohesion: 0.19
+Nodes (12): MercadoPagoConfigBean, SecurityConfig, CorsConfigurationSource, jakarta.annotation.PostConstruct, org.springframework.context.annotation.Bean, org.springframework.context.annotation.Configuration, org.springframework.security.authentication.AuthenticationManager, org.springframework.security.config.annotation.authentication.configuration.AuthenticationConfiguration (+4 more)
 
-### Community 54 - "AlergiaResponseDTO"
-Cohesion: 0.25
+### Community 54 - ".addAlergia"
+Cohesion: 0.21
 Nodes (6): AlergiaResponseDTO, AllArgsConstructor, Builder, Getter, NoArgsConstructor, Setter
 
 ### Community 55 - "dependencies"
 Cohesion: 0.12
 Nodes (17): dependencies, axios, clsx, @hookform/resolvers, lucide-react, motion, ogl, qrcode.react (+9 more)
 
-### Community 56 - "AdminServicesView.tsx"
-Cohesion: 0.17
-Nodes (14): Button, ButtonProps, ButtonSize, ButtonVariant, sizeStyles, variantStyles, AdminServicesView(), AdminTab (+6 more)
-
-### Community 57 - "BookingWizard.tsx"
-Cohesion: 0.18
-Nodes (15): ars(), BookingWizard(), formatCountdown(), formatDateTime(), Hold, Outcome, STEP, STEP_LABELS (+7 more)
+### Community 56 - "PaymentWebhookController"
+Cohesion: 0.33
+Nodes (4): PostMapping, RequestMapping, RestController, PaymentWebhookController
 
 ### Community 58 - "AppointmentReceiptModal.tsx"
 Cohesion: 0.22
 Nodes (14): AppointmentReceiptModal(), AppointmentReceiptModalProps, ars(), fmt(), ReceiptPayment, ReminderNotificationModal(), ReminderNotificationModalProps, PAYMENT_CONCEPT_LABELS (+6 more)
 
-### Community 59 - "reactbits/index.ts"
-Cohesion: 0.13
-Nodes (11): Aurora(), AuroraProps, GlideOption, ButtonSize, SpecularButton(), SpecularButtonProps, SpecularPropsSnapshot, SpotlightCard() (+3 more)
+### Community 59 - "ServicesCatalogView.tsx"
+Cohesion: 0.09
+Nodes (24): Aurora(), AuroraProps, AnimateBy, BlurText(), BlurTextProps, buildKeyframes(), Direction, GlideOption (+16 more)
 
-### Community 60 - "org.springframework.stereotype.Component"
-Cohesion: 0.23
-Nodes (7): PaymentType, PaymentRegistrationStrategy, PaymentTransactionRepository, BankTransferPaymentStrategy, CashPaymentStrategy, MercadoPagoPaymentStrategy, org.springframework.stereotype.Component
+### Community 60 - "lombok.RequiredArgsConstructor"
+Cohesion: 0.12
+Nodes (15): PaymentType, PaymentRegistrationStrategy, PaymentTransactionRepository, BankTransferPaymentStrategy, CashPaymentStrategy, Appointment, Override, PaymentConcept (+7 more)
 
 ### Community 61 - "PasswordResetToken"
 Cohesion: 0.16
-Nodes (11): AllArgsConstructor, Builder, Entity, Getter, NoArgsConstructor, Setter, Table, PasswordResetToken (+3 more)
-
-### Community 62 - "ClinicalEntryAudit"
-Cohesion: 0.15
-Nodes (9): ClinicalEntryAudit, AllArgsConstructor, Builder, Entity, Getter, NoArgsConstructor, Setter, Table (+1 more)
+Nodes (9): AllArgsConstructor, Builder, Entity, Getter, NoArgsConstructor, Setter, Table, PasswordResetToken (+1 more)
 
 ### Community 63 - "Analysis Report — Backend Codebase Survey"
 Cohesion: 0.17
@@ -497,17 +481,13 @@ Nodes (11): Artifact Index, BRIEFING — 2026-08-10T22:50:12Z, Change Tracker, C
 Cohesion: 0.17
 Nodes (11): Artifact Index, BRIEFING — 2026-08-10T22:42:30Z, Change Tracker, Current Parent, 🔒 Key Constraints, Key Decisions Made, Loaded Skills, Mission (+3 more)
 
-### Community 70 - ".login"
-Cohesion: 0.21
-Nodes (6): AuthRequestDTO, AllArgsConstructor, Builder, Getter, NoArgsConstructor, Setter
-
-### Community 71 - ".forgotPassword"
-Cohesion: 0.18
-Nodes (6): ForgotPasswordRequestDTO, AllArgsConstructor, Builder, Getter, NoArgsConstructor, Setter
+### Community 71 - "MedicalRecordAudit"
+Cohesion: 0.16
+Nodes (9): AllArgsConstructor, Builder, Entity, Getter, NoArgsConstructor, Setter, Table, MedicalRecordAudit (+1 more)
 
 ### Community 72 - "org.springframework.data.jpa.repository.JpaRepository"
-Cohesion: 0.40
-Nodes (5): JpaClinicalEntryAuditRepository, JpaClinicalEntryRepository, JpaClinicalImageRepository, org.springframework.data.jpa.repository.JpaRepository, org.springframework.stereotype.Repository
+Cohesion: 0.17
+Nodes (10): JpaAntecedentePatologicoRepository, JpaClinicalEntryAuditRepository, JpaClinicalEntryRepository, JpaClinicalImageRepository, JpaHabitoRepository, JpaMedicalRecordAuditRepository, JpaMedicalRecordRepository, JpaPasswordResetTokenRepository (+2 more)
 
 ### Community 73 - "V2__audit_triggers_and_tables.sql"
 Cohesion: 0.27
@@ -534,8 +514,8 @@ Cohesion: 0.18
 Nodes (10): Acceptance Criteria, Ejecución de Pruebas, Ejecución de Pruebas de Mutación, Initial Request — 2026-08-10T22:35:34Z, Original User Request, R1. Pruebas Unitarias y de Integración, R2. Pruebas de Mutación, R3. Casos de Uso Representativos (+2 more)
 
 ### Community 79 - "README.md"
-Cohesion: 0.18
-Nodes (7): 🗂️ Estructura Completa de Subcarpetas en `documentacion/`, 🧭 Guía de Lectura y Referencias Rápidas, Índice Maestro y Estructura de Documentación del Proyecto, 0. Encabezado & Novedades de la Versión 10.0 (Master Final), 1. El Resumen: Hoy vs Después, 2. Historias de Usuario Principales, PRD v10.0 (Master Final Consolidado): Sistema Integral Dermatológico, Estética y Asistente IA — Especificación de Arquitectura Mobile-First & Responsive UX
+Cohesion: 0.12
+Nodes (12): 🗂️ Estructura Completa de Subcarpetas en `documentacion/`, 🧭 Guía de Lectura y Referencias Rápidas, Índice Maestro y Estructura de Documentación del Proyecto, 📑 1. Objetivos del Módulo Analítico, 📊 2. Indicadores Clave de Rendimiento (KPIs), 💰 3. Desglose de Canales de Recaudación, 🏆 4. Ranking de Tratamientos con Mayor Demanda, Documento de Métricas, KPIs y Dashboard de Gestión (Fase 7) (+4 more)
 
 ### Community 80 - "devDependencies"
 Cohesion: 0.18
@@ -601,10 +581,6 @@ Nodes (8): 1.1. Cálculo Dinámico de Disponibilidad (`/citas/disponibilidad`), 
 Cohesion: 0.22
 Nodes (8): 📑 1. Propósito y Estrategia de CI/CD, ⚙️ 2. Arquitectura de los Workflows de GitHub Actions, 3.1. Pipeline de Backend (`.github/workflows/backend-ci.yml`), 3.2. Pipeline de Frontend (`.github/workflows/frontend-ci.yml`), 🛠️ 3. Detalle de los Pipelines, 📊 4. Matriz de Control de Calidad en el Repositorio, 🛡️ Beneficios de la Automatización:, Documento de Integración Continua y Calidad Automatizada (Fase 5)
 
-### Community 96 - "AnamnesisForm.tsx"
-Cohesion: 0.28
-Nodes (8): ALERGIAS, AnamnesisForm(), AnamnesisFormProps, FITZ, PATOLOGIAS, ReadRow(), MedicalRecord, currentUserId()
-
 ### Community 97 - "📄 Product Requirements Document (PRD) - v11.0"
 Cohesion: 0.25
 Nodes (7): 1. Visión General, 2. Objetivos de Negocio (Business Goals), 3. Requisitos Funcionales, 4. Requisitos No Funcionales (Ergonomía y UI), 5. Diseño Arquitectónico (Cambios), 6. Criterios de Aceptación, 📄 Product Requirements Document (PRD) - v11.0
@@ -653,17 +629,13 @@ Nodes (6): 1. Observation, 2. Logic Chain, 3. Caveats, 4. Conclusion, 5. Verific
 Cohesion: 0.29
 Nodes (6): Caveats, Conclusion, Handoff Report — Sentinel Setup, Logic Chain, Observation, Verification Method
 
-### Community 109 - "ClinicalEntryRequestDTO"
-Cohesion: 0.29
-Nodes (6): ClinicalEntryRequestDTO, AllArgsConstructor, Builder, Getter, NoArgsConstructor, Setter
+### Community 109 - "AlergiaRequestDTO"
+Cohesion: 0.12
+Nodes (13): PostMapping, AlergiaRequestDTO, AllArgsConstructor, Builder, Getter, NoArgsConstructor, Setter, ClinicalEntryRequestDTO (+5 more)
 
-### Community 110 - ".save"
-Cohesion: 0.20
-Nodes (5): Appointment, Appointment, Override, PaymentConcept, PaymentType
-
-### Community 111 - "AppointmentResponseDTO"
-Cohesion: 0.22
-Nodes (6): AppointmentResponseDTO, AllArgsConstructor, Builder, Getter, NoArgsConstructor, Setter
+### Community 110 - ".register"
+Cohesion: 0.33
+Nodes (4): Appointment, Override, PaymentConcept, PaymentType
 
 ### Community 112 - "Cambios Implementados"
 Cohesion: 0.29
@@ -717,17 +689,13 @@ Nodes (5): Dispatch: Sub-Orchestrator Milestone 2 (Frontend), Key Requirements &
 Cohesion: 0.33
 Nodes (5): Architecture, Code Layout Ownership (M2), Feature Inventory Scope (M2), Interface Contracts, Scope: Milestone 2 — Frontend Test Suite & Mutation Testing
 
-### Community 126 - "Documento de Métricas, KPIs y Dashboard de Gestión (Fase 7)"
-Cohesion: 0.33
-Nodes (5): 📑 1. Objetivos del Módulo Analítico, 📊 2. Indicadores Clave de Rendimiento (KPIs), 💰 3. Desglose de Canales de Recaudación, 🏆 4. Ranking de Tratamientos con Mayor Demanda, Documento de Métricas, KPIs y Dashboard de Gestión (Fase 7)
+### Community 125 - "org.junit.jupiter.api.DisplayName"
+Cohesion: 0.21
+Nodes (5): PaymentStrategyFactory, Appointment, PaymentServiceTest, org.junit.jupiter.api.DisplayName, org.junit.jupiter.api.Test
 
 ### Community 127 - "Documento de Sistema de Recordatorios y Sincronización con Calendarios (Fase 8)"
 Cohesion: 0.33
 Nodes (5): 📑 1. Propósito y Estrategia Anti-Absentismo, 2.1. Estructura del Archivo iCalendar RFC 5545 (`.ics`), 🏛️ 2. Especificación Técnica de los Protocolos, 🔄 3. Flujo Operativo Integrado, Documento de Sistema de Recordatorios y Sincronización con Calendarios (Fase 8)
-
-### Community 128 - "BlurText.tsx"
-Cohesion: 0.40
-Nodes (5): AnimateBy, BlurText(), BlurTextProps, buildKeyframes(), Direction
 
 ### Community 129 - "Progress"
 Cohesion: 0.40
@@ -765,41 +733,29 @@ Nodes (3): Current Status, Iteration Status, Progress — Sub-Orchestrator Miles
 Cohesion: 0.50
 Nodes (4): scripts, build, dev, preview
 
-### Community 173 - "AlergiaRequestDTO"
-Cohesion: 0.29
-Nodes (6): AlergiaRequestDTO, AllArgsConstructor, Builder, Getter, NoArgsConstructor, Setter
-
-### Community 174 - "PaymentStatus"
-Cohesion: 0.33
-Nodes (5): PaymentStatus, APPROVED, PENDING, REFUNDED, REJECTED
-
-### Community 175 - ".register"
-Cohesion: 0.33
-Nodes (4): Appointment, Override, PaymentConcept, PaymentType
-
 ### Community 176 - ".register"
 Cohesion: 0.33
 Nodes (4): Appointment, Override, PaymentConcept, PaymentType
 
 ## Knowledge Gaps
 - **719 isolated node(s):** `com.clinicadermatologica:clinica-dermatologica-backend`, `PENDING_PAYMENT`, `CONFIRMED`, `ATTENDED`, `CANCELED` (+714 more)
-  These have ≤1 connection - possible missing edges or undocumented components. (Counts symbols only; 1190 node(s) total have ≤1 connection when file, concept and rationale nodes are included.)
-- **35 thin communities (<3 nodes) omitted from report** — run `graphify query` to explore isolated nodes.
+  These have ≤1 connection - possible missing edges or undocumented components. (Counts symbols only; 1192 node(s) total have ≤1 connection when file, concept and rationale nodes are included.)
+- **31 thin communities (<3 nodes) omitted from report** — run `graphify query` to explore isolated nodes.
 
 ## Suggested Questions
 _Questions this graph is uniquely positioned to answer:_
 
-- **Why does `User` connect `User` to `PaymentTransaction`, `Appointment`, `ClinicalEntry`, `org.springframework.transaction.annotation.Transactional`, `lombok.extern.slf4j.Slf4j`, `org.junit.jupiter.api.DisplayName`, `MedicalRecord`, `AppointmentService`, `MedicalRecordService`, `lombok.RequiredArgsConstructor`, `AuthController`, `UserRole`, `.register`, `.register`, `UserRepository`, `.register`, `PasswordResetToken`, `ClinicalEntryAudit`, `.login`, `.forgotPassword`, `.save`, `.findById`?**
-  _High betweenness centrality (0.030) - this node is a cross-community bridge._
-- **Why does `MedicalRecordService` connect `MedicalRecordService` to `AntecedentePatologico`, `Patient`, `lombok.RequiredArgsConstructor`, `lombok.extern.slf4j.Slf4j`, `MedicalRecordController`, `Habito`, `AesEncryptionService`, `UserRepository`, `.addHabito`, `AlergiaResponseDTO`, `AppointmentService`, `AlergiaId`, `.findById`, `ClinicalEntryAudit`?**
-  _High betweenness centrality (0.017) - this node is a cross-community bridge._
-- **Why does `MedicalRecordDTO` connect `MedicalRecordService` to `MedicalRecordController`, `AntecedentePatologico`, `.addHabito`, `AlergiaResponseDTO`?**
-  _High betweenness centrality (0.015) - this node is a cross-community bridge._
+- **Why does `User` connect `User` to `PaymentTransaction`, `CalendarBlock`, `ClinicalEntry`, `.bookTemporaryHold`, `org.springframework.transaction.annotation.Transactional`, `lombok.extern.slf4j.Slf4j`, `Appointment`, `MedicalRecord`, `AppointmentService`, `org.springframework.http.ResponseEntity`, `MedicalRecordService`, `UserRole`, `.register`, `lombok.RequiredArgsConstructor`, `PasswordResetToken`, `MedicalRecordAudit`, `org.springframework.data.jpa.repository.JpaRepository`, `.register`, `org.junit.jupiter.api.DisplayName`?**
+  _High betweenness centrality (0.037) - this node is a cross-community bridge._
+- **Why does `PaymentTransaction` connect `PaymentTransaction` to `org.springframework.data.jpa.repository.JpaRepository`, `Appointment`, `.register`, `PaymentServiceTest.java`, `PaymentService`, `.register`, `AppointmentService`, `lombok.RequiredArgsConstructor`, `org.junit.jupiter.api.DisplayName`, `User`?**
+  _High betweenness centrality (0.019) - this node is a cross-community bridge._
+- **Why does `MedicalRecordService` connect `MedicalRecordService` to `AntecedentePatologico`, `org.springframework.http.ResponseEntity`, `MedicalRecordAudit`, `org.springframework.transaction.annotation.Transactional`, `lombok.extern.slf4j.Slf4j`, `MedicalRecordController`, `Habito`, `AlergiaId`, `AesEncryptionService`, `.addAlergia`, `AppointmentService`, `MedicalRecordDTO`, `lombok.RequiredArgsConstructor`?**
+  _High betweenness centrality (0.018) - this node is a cross-community bridge._
 - **What connects `com.clinicadermatologica:clinica-dermatologica-backend`, `PENDING_PAYMENT`, `CONFIRMED` to the rest of the system?**
   _719 weakly-connected nodes found - possible documentation gaps or missing edges._
-- **Should `Appointment` be split into smaller, more focused modules?**
-  _Cohesion score 0.05901639344262295 - nodes in this community are weakly interconnected._
+- **Should `PaymentTransaction` be split into smaller, more focused modules?**
+  _Cohesion score 0.10591133004926108 - nodes in this community are weakly interconnected._
+- **Should `CalendarBlock` be split into smaller, more focused modules?**
+  _Cohesion score 0.14 - nodes in this community are weakly interconnected._
 - **Should `AntecedentePatologico` be split into smaller, more focused modules?**
-  _Cohesion score 0.06485671191553545 - nodes in this community are weakly interconnected._
-- **Should `Patient` be split into smaller, more focused modules?**
-  _Cohesion score 0.0951219512195122 - nodes in this community are weakly interconnected._
+  _Cohesion score 0.05660377358490566 - nodes in this community are weakly interconnected._

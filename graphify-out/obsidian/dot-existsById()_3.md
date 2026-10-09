@@ -14,6 +14,6 @@ tags:
 ## Connections
 - [[AntecedentePatologicoId]] - `references` [EXTRACTED]
 - [[AntecedentePatologicoRepositoryAdapter]] - `method` [EXTRACTED]
-- [[Override_10]] - `references` [EXTRACTED]
+- [[Override_9]] - `references` [EXTRACTED]
 
 #graphify/code #graphify/EXTRACTED #community/AntecedentePatologico

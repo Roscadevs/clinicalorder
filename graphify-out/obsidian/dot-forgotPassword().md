@@ -15,7 +15,7 @@ tags:
 - [[dot-forgotPassword()_1]] - `calls` [INFERRED]
 - [[AuthController]] - `method` [EXTRACTED]
 - [[ForgotPasswordRequestDTO]] - `references` [EXTRACTED]
-- [[PostMapping_7]] - `references` [EXTRACTED]
+- [[PostMapping_5]] - `references` [EXTRACTED]
 - [[org.springframework.http.ResponseEntity]] - `references` [EXTRACTED]
 
 #graphify/code #graphify/EXTRACTED #community/AuthController

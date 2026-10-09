@@ -1,16 +1,16 @@
 ---
 source_file: ""
 type: "code"
-community: ".addHabito"
+community: "UserRole"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/addHabito
+  - community/UserRole
 ---
 
 # NoArgsConstructor
 
 ## Connections
-- [[HabitoResponseDTO]] - `references` [EXTRACTED]
+- [[AuthResponseDTO]] - `references` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/addHabito
+#graphify/code #graphify/EXTRACTED #community/UserRole

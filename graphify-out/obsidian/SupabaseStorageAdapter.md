@@ -1,12 +1,12 @@
 ---
 source_file: "backend/src/main/java/com/clinicadermatologica/app/infrastructure/storage/SupabaseStorageAdapter.java"
 type: "code"
-community: "ClinicalImageResponseDTO"
+community: "ClinicalImageService"
 location: "L15"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/ClinicalImageResponseDTO
+  - community/ClinicalImageService
 ---
 
 # SupabaseStorageAdapter
@@ -22,4 +22,4 @@ tags:
 - [[org.springframework.stereotype.Component]] - `references` [EXTRACTED]
 - [[org.springframework.web.reactive.function.client.WebClient]] - `references` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/ClinicalImageResponseDTO
+#graphify/code #graphify/EXTRACTED #community/ClinicalImageService

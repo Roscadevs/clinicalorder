@@ -1,16 +1,16 @@
 ---
 source_file: ""
 type: "code"
-community: "ClinicalEntry"
+community: "AuthController"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/ClinicalEntry
+  - community/AuthController
 ---
 
 # Builder
 
 ## Connections
-- [[ClinicalEntry]] - `references` [EXTRACTED]
+- [[ForgotPasswordRequestDTO]] - `references` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/ClinicalEntry
+#graphify/code #graphify/EXTRACTED #community/AuthController

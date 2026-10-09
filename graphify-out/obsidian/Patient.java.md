@@ -12,6 +12,6 @@ tags:
 # Patient.java
 
 ## Connections
-- [[Patient_1]] - `contains` [EXTRACTED]
+- [[Patient]] - `contains` [EXTRACTED]
 
 #graphify/code #graphify/EXTRACTED #community/Patient

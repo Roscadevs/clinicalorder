@@ -1,12 +1,12 @@
 ---
 source_file: "frontend/src/features/appointments/BookingWizard.tsx"
 type: "code"
-community: "BookingWizard.tsx"
+community: "api.ts"
 location: "L1"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/BookingWizardtsx
+  - community/apits
 ---
 
 # BookingWizard.tsx
@@ -25,7 +25,7 @@ tags:
 - [[Outcome]] - `contains` [EXTRACTED]
 - [[PAYMENT_CONCEPT_LABELS]] - `imports` [EXTRACTED]
 - [[PAYMENT_TYPE_LABELS]] - `imports` [EXTRACTED]
-- [[Patient]] - `imports` [EXTRACTED]
+- [[Patient_1]] - `imports` [EXTRACTED]
 - [[PatientSearch()]] - `imports` [EXTRACTED]
 - [[PatientSearch.tsx]] - `imports_from` [EXTRACTED]
 - [[PaymentPreferenceResponse]] - `imports` [EXTRACTED]
@@ -54,4 +54,4 @@ tags:
 - [[typesindex.ts]] - `imports_from` [EXTRACTED]
 - [[uiindex.ts]] - `imports_from` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/BookingWizardtsx
+#graphify/code #graphify/EXTRACTED #community/apits

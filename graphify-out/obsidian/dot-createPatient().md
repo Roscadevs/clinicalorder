@@ -1,22 +1,26 @@
 ---
-source_file: "backend/src/main/java/com/clinicadermatologica/app/presentation/controller/PatientController.java"
+source_file: "backend/src/main/java/com/clinicadermatologica/app/application/service/PatientService.java"
 type: "code"
-community: "PatientRequestDTO"
-location: "L27"
+community: "org.springframework.transaction.annotation.Transactional"
+location: "L28"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/PatientRequestDTO
+  - community/orgspringframeworktransactionannotationTransactional
 ---
 
 # .createPatient()
 
 ## Connections
 - [[dot-createPatient()_1]] - `calls` [INFERRED]
-- [[PatientController]] - `method` [EXTRACTED]
+- [[dot-existsByDni()_2]] - `calls` [INFERRED]
+- [[dot-existsByEmail()_4]] - `calls` [INFERRED]
+- [[dot-existsByPhone()_2]] - `calls` [INFERRED]
+- [[dot-mapToDTO()_4]] - `calls` [EXTRACTED]
+- [[dot-save()_23]] - `calls` [INFERRED]
 - [[PatientRequestDTO]] - `references` [EXTRACTED]
 - [[PatientResponseDTO]] - `references` [EXTRACTED]
-- [[PostMapping_1]] - `references` [EXTRACTED]
-- [[org.springframework.http.ResponseEntity]] - `references` [EXTRACTED]
+- [[PatientService]] - `method` [EXTRACTED]
+- [[org.springframework.transaction.annotation.Transactional]] - `references` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/PatientRequestDTO
+#graphify/code #graphify/EXTRACTED #community/orgspringframeworktransactionannotationTransactional

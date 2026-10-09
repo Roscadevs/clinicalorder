@@ -1,16 +1,16 @@
 ---
 source_file: ""
 type: "code"
-community: "MedicalRecordService"
+community: "Patient"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/MedicalRecordService
+  - community/Patient
 ---
 
 # Getter
 
 ## Connections
-- [[MedicalRecordDTO]] - `references` [EXTRACTED]
+- [[Patient]] - `references` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/MedicalRecordService
+#graphify/code #graphify/EXTRACTED #community/Patient

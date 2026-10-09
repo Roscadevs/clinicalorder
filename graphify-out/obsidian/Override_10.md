@@ -1,20 +1,16 @@
 ---
 source_file: ""
 type: "code"
-community: "AntecedentePatologico"
+community: "GlobalExceptionHandler"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/AntecedentePatologico
+  - community/GlobalExceptionHandler
 ---
 
 # Override
 
 ## Connections
-- [[dot-delete()_3]] - `references` [EXTRACTED]
-- [[dot-existsById()_3]] - `references` [EXTRACTED]
-- [[dot-findById()_10]] - `references` [EXTRACTED]
-- [[dot-findByMedicalRecordId()_1]] - `references` [EXTRACTED]
-- [[dot-save()_9]] - `references` [EXTRACTED]
+- [[dot-doFilterInternal()]] - `references` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/AntecedentePatologico
+#graphify/code #graphify/EXTRACTED #community/GlobalExceptionHandler

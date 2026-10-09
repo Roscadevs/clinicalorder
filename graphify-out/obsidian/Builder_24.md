@@ -1,16 +1,16 @@
 ---
 source_file: ""
 type: "code"
-community: "User"
+community: "DermatologicService"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/User
+  - community/DermatologicService
 ---
 
 # Builder
 
 ## Connections
-- [[User]] - `references` [EXTRACTED]
+- [[DermatologicService]] - `references` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/User
+#graphify/code #graphify/EXTRACTED #community/DermatologicService

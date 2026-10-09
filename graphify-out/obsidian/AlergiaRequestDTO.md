@@ -15,10 +15,10 @@ tags:
 - [[dot-addAlergia()_1]] - `references` [EXTRACTED]
 - [[dot-addAlergia()]] - `references` [EXTRACTED]
 - [[AlergiaRequestDTO.java]] - `contains` [EXTRACTED]
-- [[AllArgsConstructor_12]] - `references` [EXTRACTED]
-- [[Builder_11]] - `references` [EXTRACTED]
-- [[Getter_12]] - `references` [EXTRACTED]
-- [[NoArgsConstructor_12]] - `references` [EXTRACTED]
-- [[Setter_12]] - `references` [EXTRACTED]
+- [[AllArgsConstructor_3]] - `references` [EXTRACTED]
+- [[Builder_3]] - `references` [EXTRACTED]
+- [[Getter_3]] - `references` [EXTRACTED]
+- [[NoArgsConstructor_3]] - `references` [EXTRACTED]
+- [[Setter_3]] - `references` [EXTRACTED]
 
 #graphify/code #graphify/EXTRACTED #community/AlergiaRequestDTO

@@ -1,16 +1,16 @@
 ---
 source_file: ""
 type: "code"
-community: "AppointmentServiceTest.java"
+community: "org.springframework.http.ResponseEntity"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/AppointmentServiceTestjava
+  - community/orgspringframeworkhttpResponseEntity
 ---
 
 # NoArgsConstructor
 
 ## Connections
-- [[PaymentPreferenceResponseDTO]] - `references` [EXTRACTED]
+- [[AppointmentResponseDTO]] - `references` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/AppointmentServiceTestjava
+#graphify/code #graphify/EXTRACTED #community/orgspringframeworkhttpResponseEntity

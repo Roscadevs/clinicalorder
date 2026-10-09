@@ -1,16 +1,16 @@
 ---
 source_file: ""
 type: "code"
-community: "Appointment"
+community: "CalendarBlock"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/Appointment
+  - community/CalendarBlock
 ---
 
 # Setter
 
 ## Connections
-- [[Appointment]] - `references` [EXTRACTED]
+- [[CalendarBlock]] - `references` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/Appointment
+#graphify/code #graphify/EXTRACTED #community/CalendarBlock

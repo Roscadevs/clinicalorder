@@ -1,0 +1,22 @@
+services:
+  - type: web
+    name: clinica-dermatologica-backend
+    runtime: docker
+    dockerfilePath: Dockerfile
+    plan: free
+    region: oregon
+    healthCheckPath: /api/v1/health
+    envVars:
+      - key: PORT
+        value: 8080
+      - key: SPRING_PROFILES_ACTIVE
+        value: prod
+      # Variables de conexión a Base de Datos (ej. Supabase o Render PostgreSQL)
+      # Configurar en el Dashboard de Render o mediante Environment Groups:
+      # - SPRING_DATASOURCE_URL
+      # - SPRING_DATASOURCE_USERNAME
+      # - SPRING_DATASOURCE_PASSWORD
+      # - MERCADOPAGO_ACCESS_TOKEN
+      # - GEMINI_API_KEY
+      # - SUPABASE_URL
+      # - SUPABASE_SERVICE_ROLE_KEY

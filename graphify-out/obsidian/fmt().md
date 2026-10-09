@@ -1,18 +1,18 @@
 ---
-source_file: "frontend/src/features/clinical/PatientDirectoryView.tsx"
+source_file: "frontend/src/features/documents/AppointmentReceiptModal.tsx"
 type: "code"
-community: "MedicalRecordView.tsx"
-location: "L10"
+community: "AppointmentReceiptModal.tsx"
+location: "L43"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/MedicalRecordViewtsx
+  - community/AppointmentReceiptModaltsx
 ---
 
 # fmt()
 
 ## Connections
-- [[PatientDirectoryView()]] - `calls` [EXTRACTED]
-- [[PatientDirectoryView.tsx]] - `contains` [EXTRACTED]
+- [[AppointmentReceiptModal()]] - `calls` [EXTRACTED]
+- [[AppointmentReceiptModal.tsx]] - `contains` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/MedicalRecordViewtsx
+#graphify/code #graphify/EXTRACTED #community/AppointmentReceiptModaltsx

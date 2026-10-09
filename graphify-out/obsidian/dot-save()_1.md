@@ -1,12 +1,12 @@
 ---
 source_file: "backend/src/main/java/com/clinicadermatologica/app/domain/repository/CalendarBlockRepository.java"
 type: "code"
-community: "Appointment"
+community: "CalendarBlock"
 location: "L16"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/Appointment
+  - community/CalendarBlock
 ---
 
 # .save()
@@ -16,4 +16,4 @@ tags:
 - [[CalendarBlock]] - `references` [EXTRACTED]
 - [[CalendarBlockRepository]] - `method` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/Appointment
+#graphify/code #graphify/EXTRACTED #community/CalendarBlock

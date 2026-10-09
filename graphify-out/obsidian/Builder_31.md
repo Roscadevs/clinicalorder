@@ -11,6 +11,6 @@ tags:
 # Builder
 
 ## Connections
-- [[ResetPasswordRequestDTO]] - `references` [EXTRACTED]
+- [[AuthRequestDTO]] - `references` [EXTRACTED]
 
 #graphify/code #graphify/EXTRACTED #community/AuthController

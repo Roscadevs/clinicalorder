@@ -13,7 +13,7 @@ tags:
 
 ## Connections
 - [[dot-delete()_4]] - `calls` [INFERRED]
-- [[dot-existsById()_4]] - `calls` [INFERRED]
+- [[dot-existsById()_5]] - `calls` [INFERRED]
 - [[dot-removeAlergia()]] - `calls` [INFERRED]
 - [[dot-testRemoveAlergia_NotFound_Throws()]] - `calls` [INFERRED]
 - [[AlergiaId]] - `calls` [INFERRED]

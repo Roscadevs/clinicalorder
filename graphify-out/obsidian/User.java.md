@@ -1,12 +1,12 @@
 ---
 source_file: "backend/src/main/java/com/clinicadermatologica/app/domain/model/User.java"
 type: "code"
-community: "UserRepository"
+community: "lombok.extern.slf4j.Slf4j"
 location: "L1"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/UserRepository
+  - community/lombokexternslf4jSlf4j
 ---
 
 # User.java
@@ -16,4 +16,4 @@ tags:
 - [[CustomUserDetailsService.java]] - `imports` [EXTRACTED]
 - [[User]] - `contains` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/UserRepository
+#graphify/code #graphify/EXTRACTED #community/lombokexternslf4jSlf4j

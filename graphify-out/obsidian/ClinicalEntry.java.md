@@ -12,7 +12,7 @@ tags:
 # ClinicalEntry.java
 
 ## Connections
-- [[ClinicalEntry]] - `contains` [EXTRACTED]
+- [[ClinicalEntry_1]] - `contains` [EXTRACTED]
 - [[ClinicalImageService.java]] - `imports` [EXTRACTED]
 
 #graphify/code #graphify/EXTRACTED #community/ClinicalEntry

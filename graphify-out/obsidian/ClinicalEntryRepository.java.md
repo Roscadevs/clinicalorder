@@ -1,19 +1,19 @@
 ---
 source_file: "backend/src/main/java/com/clinicadermatologica/app/domain/repository/ClinicalEntryRepository.java"
 type: "code"
-community: "ClinicalEntryAudit"
+community: "ClinicalEntry"
 location: "L1"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/ClinicalEntryAudit
+  - community/ClinicalEntry
 ---
 
 # ClinicalEntryRepository.java
 
 ## Connections
-- [[ClinicalEntry]] - `imports` [EXTRACTED]
+- [[ClinicalEntry_1]] - `imports` [EXTRACTED]
 - [[ClinicalEntryAudit]] - `imports` [EXTRACTED]
 - [[ClinicalEntryRepository]] - `contains` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/ClinicalEntryAudit
+#graphify/code #graphify/EXTRACTED #community/ClinicalEntry

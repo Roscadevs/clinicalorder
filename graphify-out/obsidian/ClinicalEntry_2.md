@@ -1,11 +1,11 @@
 ---
 source_file: ""
 type: "code"
-community: ".findById"
+community: "MedicalRecordService"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/findById
+  - community/MedicalRecordService
 ---
 
 # ClinicalEntry
@@ -13,4 +13,4 @@ tags:
 ## Connections
 - [[dot-mapEntryToDTO()]] - `references` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/findById
+#graphify/code #graphify/EXTRACTED #community/MedicalRecordService

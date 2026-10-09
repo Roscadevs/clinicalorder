@@ -1,26 +1,26 @@
 ---
 source_file: "backend/src/main/java/com/clinicadermatologica/app/infrastructure/persistence/adapter/CalendarBlockRepositoryAdapter.java"
 type: "code"
-community: "Appointment"
+community: "CalendarBlock"
 location: "L16"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/Appointment
+  - community/CalendarBlock
 ---
 
 # CalendarBlockRepositoryAdapter
 
 ## Connections
-- [[dot-deleteById()]] - `method` [EXTRACTED]
-- [[dot-findByDateRange()_1]] - `method` [EXTRACTED]
-- [[dot-findById()_3]] - `method` [EXTRACTED]
+- [[dot-deleteById()_1]] - `method` [EXTRACTED]
+- [[dot-findByDateRange()]] - `method` [EXTRACTED]
+- [[dot-findById()_2]] - `method` [EXTRACTED]
 - [[dot-findOverlappingBlocks()]] - `method` [EXTRACTED]
-- [[dot-save()_3]] - `method` [EXTRACTED]
+- [[dot-save()_2]] - `method` [EXTRACTED]
 - [[CalendarBlockRepository]] - `implements` [EXTRACTED]
 - [[CalendarBlockRepositoryAdapter.java]] - `contains` [EXTRACTED]
 - [[JpaCalendarBlockRepository]] - `references` [EXTRACTED]
 - [[lombok.RequiredArgsConstructor]] - `references` [EXTRACTED]
 - [[org.springframework.stereotype.Component]] - `references` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/Appointment
+#graphify/code #graphify/EXTRACTED #community/CalendarBlock

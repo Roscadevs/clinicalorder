@@ -8,7 +8,7 @@
       }
     },
     {
-      "query": "tag:#community/Appointment",
+      "query": "tag:#community/CalendarBlock",
       "color": {
         "a": 1,
         "rgb": 15896107
@@ -85,7 +85,7 @@
       }
     },
     {
-      "query": "tag:#community/PatientRequestDTO",
+      "query": "tag:#community/Appointment",
       "color": {
         "a": 1,
         "rgb": 14767961
@@ -113,7 +113,7 @@
       }
     },
     {
-      "query": "tag:#community/orgjunitjupiterapiDisplayName",
+      "query": "tag:#community/PaymentService",
       "color": {
         "a": 1,
         "rgb": 11565729
@@ -190,14 +190,14 @@
       }
     },
     {
-      "query": "tag:#community/MedicalRecordService",
+      "query": "tag:#community/MedicalRecordDTO",
       "color": {
         "a": 1,
         "rgb": 16752039
       }
     },
     {
-      "query": "tag:#community/AlergiaId",
+      "query": "tag:#community/3__Especificaci\u00f3n_Formal_de_Casos_de_Uso_Detallados_CU-01_a_CU-08",
       "color": {
         "a": 1,
         "rgb": 10253663
@@ -246,7 +246,7 @@
       }
     },
     {
-      "query": "tag:#community/lombokRequiredArgsConstructor",
+      "query": "tag:#community/orgspringframeworkhttpResponseEntity",
       "color": {
         "a": 1,
         "rgb": 15583560
@@ -281,28 +281,28 @@
       }
     },
     {
-      "query": "tag:#community/MercadoPagoPaymentAdapter",
+      "query": "tag:#community/MedicalRecordService",
       "color": {
         "a": 1,
         "rgb": 5142951
       }
     },
     {
-      "query": "tag:#community/ClinicalImageResponseDTO",
+      "query": "tag:#community/ClinicalImageService",
       "color": {
         "a": 1,
         "rgb": 15896107
       }
     },
     {
-      "query": "tag:#community/Alergia",
+      "query": "tag:#community/AlergiaId",
       "color": {
         "a": 1,
         "rgb": 14767961
       }
     },
     {
-      "query": "tag:#community/3__Especificaci\u00f3n_Formal_de_Casos_de_Uso_Detallados_CU-01_a_CU-08",
+      "query": "tag:#community/2__Modelado_de_Procesos_de_Negocio_en_BPMN_20",
       "color": {
         "a": 1,
         "rgb": 7780274
@@ -344,7 +344,7 @@
       }
     },
     {
-      "query": "tag:#community/UserRepository",
+      "query": "tag:#community/TreatmentPhotostsx",
       "color": {
         "a": 1,
         "rgb": 12234924
@@ -372,14 +372,14 @@
       }
     },
     {
-      "query": "tag:#community/addHabito",
+      "query": "tag:#community/SecurityConfigjava",
       "color": {
         "a": 1,
         "rgb": 7780274
       }
     },
     {
-      "query": "tag:#community/AlergiaResponseDTO",
+      "query": "tag:#community/addAlergia",
       "color": {
         "a": 1,
         "rgb": 5873999
@@ -393,17 +393,10 @@
       }
     },
     {
-      "query": "tag:#community/AdminServicesViewtsx",
+      "query": "tag:#community/PaymentWebhookController",
       "color": {
         "a": 1,
         "rgb": 11565729
-      }
-    },
-    {
-      "query": "tag:#community/BookingWizardtsx",
-      "color": {
-        "a": 1,
-        "rgb": 16752039
       }
     },
     {
@@ -414,14 +407,14 @@
       }
     },
     {
-      "query": "tag:#community/reactbits/indexts",
+      "query": "tag:#community/ServicesCatalogViewtsx",
       "color": {
         "a": 1,
         "rgb": 12234924
       }
     },
     {
-      "query": "tag:#community/orgspringframeworkstereotypeComponent",
+      "query": "tag:#community/lombokRequiredArgsConstructor",
       "color": {
         "a": 1,
         "rgb": 5142951
@@ -432,13 +425,6 @@
       "color": {
         "a": 1,
         "rgb": 15896107
-      }
-    },
-    {
-      "query": "tag:#community/ClinicalEntryAudit",
-      "color": {
-        "a": 1,
-        "rgb": 14767961
       }
     },
     {
@@ -491,14 +477,7 @@
       }
     },
     {
-      "query": "tag:#community/login",
-      "color": {
-        "a": 1,
-        "rgb": 5142951
-      }
-    },
-    {
-      "query": "tag:#community/forgotPassword",
+      "query": "tag:#community/MedicalRecordAudit",
       "color": {
         "a": 1,
         "rgb": 15896107
@@ -673,13 +652,6 @@
       }
     },
     {
-      "query": "tag:#community/AnamnesisFormtsx",
-      "color": {
-        "a": 1,
-        "rgb": 11565729
-      }
-    },
-    {
       "query": "tag:#community/_Product_Requirements_Document_PRD_-_v110",
       "color": {
         "a": 1,
@@ -764,24 +736,17 @@
       }
     },
     {
-      "query": "tag:#community/ClinicalEntryRequestDTO",
+      "query": "tag:#community/AlergiaRequestDTO",
       "color": {
         "a": 1,
         "rgb": 12234924
       }
     },
     {
-      "query": "tag:#community/save",
+      "query": "tag:#community/register",
       "color": {
         "a": 1,
         "rgb": 5142951
-      }
-    },
-    {
-      "query": "tag:#community/AppointmentResponseDTO",
-      "color": {
-        "a": 1,
-        "rgb": 15896107
       }
     },
     {
@@ -876,17 +841,10 @@
       }
     },
     {
-      "query": "tag:#community/findById",
+      "query": "tag:#community/orgjunitjupiterapiDisplayName",
       "color": {
         "a": 1,
         "rgb": 15583560
-      }
-    },
-    {
-      "query": "tag:#community/Documento_de_M\u00e9tricas_KPIs_y_Dashboard_de_Gesti\u00f3n_Fase_7",
-      "color": {
-        "a": 1,
-        "rgb": 11565729
       }
     },
     {
@@ -894,13 +852,6 @@
       "color": {
         "a": 1,
         "rgb": 16752039
-      }
-    },
-    {
-      "query": "tag:#community/BlurTexttsx",
-      "color": {
-        "a": 1,
-        "rgb": 10253663
       }
     },
     {
@@ -932,7 +883,7 @@
       }
     },
     {
-      "query": "tag:#community/isExpired",
+      "query": "tag:#community/bookTemporaryHold",
       "color": {
         "a": 1,
         "rgb": 7780274
@@ -1212,45 +1163,10 @@
       }
     },
     {
-      "query": "tag:#community/AlergiaRequestDTO",
-      "color": {
-        "a": 1,
-        "rgb": 7780274
-      }
-    },
-    {
-      "query": "tag:#community/PaymentStatus",
-      "color": {
-        "a": 1,
-        "rgb": 5873999
-      }
-    },
-    {
-      "query": "tag:#community/register",
-      "color": {
-        "a": 1,
-        "rgb": 15583560
-      }
-    },
-    {
       "query": "tag:#community/register",
       "color": {
         "a": 1,
         "rgb": 11565729
-      }
-    },
-    {
-      "query": "tag:#community/HoldExpirationSchedulerjava",
-      "color": {
-        "a": 1,
-        "rgb": 16752039
-      }
-    },
-    {
-      "query": "tag:#community/register",
-      "color": {
-        "a": 1,
-        "rgb": 10253663
       }
     }
   ]

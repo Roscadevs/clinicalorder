@@ -1,12 +1,12 @@
 ---
 source_file: "backend/src/main/java/com/clinicadermatologica/app/infrastructure/persistence/jpa/JpaAlergiaRepository.java"
 type: "code"
-community: "Alergia"
+community: "AlergiaId"
 location: "L18"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/Alergia
+  - community/AlergiaId
 ---
 
 # .findByIdMedicalRecordId()
@@ -16,4 +16,4 @@ tags:
 - [[Alergia]] - `references` [EXTRACTED]
 - [[JpaAlergiaRepository]] - `method` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/Alergia
+#graphify/code #graphify/EXTRACTED #community/AlergiaId

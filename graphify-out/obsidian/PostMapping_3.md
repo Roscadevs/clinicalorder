@@ -1,16 +1,20 @@
 ---
 source_file: ""
 type: "code"
-community: "CalendarBlockResponseDTO"
+community: "org.springframework.http.ResponseEntity"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/CalendarBlockResponseDTO
+  - community/orgspringframeworkhttpResponseEntity
 ---
 
 # PostMapping
 
 ## Connections
-- [[dot-createBlock()_1]] - `references` [EXTRACTED]
+- [[dot-bookTemporaryHold()_1]] - `references` [EXTRACTED]
+- [[dot-cancelAppointment()_1]] - `references` [EXTRACTED]
+- [[dot-finalizePayment()]] - `references` [EXTRACTED]
+- [[dot-markAsAttended()_1]] - `references` [EXTRACTED]
+- [[dot-registerDepositPayment()_1]] - `references` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/CalendarBlockResponseDTO
+#graphify/code #graphify/EXTRACTED #community/orgspringframeworkhttpResponseEntity

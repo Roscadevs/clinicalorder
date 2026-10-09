@@ -12,10 +12,10 @@ tags:
 # .register()
 
 ## Connections
-- [[dot-save()_5]] - `calls` [INFERRED]
+- [[dot-save()_7]] - `calls` [INFERRED]
 - [[Appointment_6]] - `references` [EXTRACTED]
 - [[MercadoPagoPaymentStrategy]] - `method` [EXTRACTED]
-- [[Override_7]] - `references` [EXTRACTED]
+- [[Override_6]] - `references` [EXTRACTED]
 - [[PaymentConcept_4]] - `references` [EXTRACTED]
 - [[PaymentTransaction]] - `references` [EXTRACTED]
 - [[User]] - `references` [EXTRACTED]

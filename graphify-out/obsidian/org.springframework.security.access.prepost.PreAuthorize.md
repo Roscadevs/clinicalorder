@@ -1,11 +1,11 @@
 ---
 source_file: ""
 type: "code"
-community: "lombok.RequiredArgsConstructor"
+community: "org.springframework.http.ResponseEntity"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/lombokRequiredArgsConstructor
+  - community/orgspringframeworkhttpResponseEntity
 ---
 
 # org.springframework.security.access.prepost.PreAuthorize
@@ -18,7 +18,7 @@ tags:
 - [[dot-getAllServicesForAdmin()_1]] - `references` [EXTRACTED]
 - [[dot-getAppointmentById()_1]] - `references` [EXTRACTED]
 - [[dot-markAsAttended()_1]] - `references` [EXTRACTED]
-- [[dot-register()_4]] - `references` [EXTRACTED]
+- [[dot-register()_3]] - `references` [EXTRACTED]
 - [[dot-registerDepositPayment()_1]] - `references` [EXTRACTED]
 - [[dot-updateService()_1]] - `references` [EXTRACTED]
 - [[AppointmentController.java]] - `imports` [EXTRACTED]
@@ -31,4 +31,4 @@ tags:
 - [[PatientController.java]] - `imports` [EXTRACTED]
 - [[ServiceCatalogController.java]] - `imports` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/lombokRequiredArgsConstructor
+#graphify/code #graphify/EXTRACTED #community/orgspringframeworkhttpResponseEntity

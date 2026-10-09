@@ -2,7 +2,7 @@
 source_file: "backend/src/test/java/com/clinicadermatologica/app/application/AppointmentServiceTest.java"
 type: "code"
 community: "AppointmentService"
-location: "L211"
+location: "L223"
 tags:
   - graphify/code
   - graphify/INFERRED
@@ -14,7 +14,7 @@ tags:
 ## Connections
 - [[dot-findByDateRange()_4]] - `calls` [INFERRED]
 - [[dot-findByDateRange()_5]] - `calls` [INFERRED]
-- [[dot-findById()_11]] - `calls` [INFERRED]
+- [[dot-findById()_6]] - `calls` [INFERRED]
 - [[dot-getAvailableSlots()]] - `calls` [INFERRED]
 - [[AppointmentServiceTest]] - `method` [EXTRACTED]
 - [[org.junit.jupiter.api.DisplayName]] - `references` [EXTRACTED]

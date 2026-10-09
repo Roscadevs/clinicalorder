@@ -14,7 +14,7 @@ tags:
 ## Connections
 - [[BusinessRuleException]] - `imports` [EXTRACTED]
 - [[BusinessRuleException.java]] - `imports` [EXTRACTED]
-- [[ClinicalEntry]] - `imports` [EXTRACTED]
+- [[ClinicalEntry_1]] - `imports` [EXTRACTED]
 - [[ClinicalEntry.java]] - `imports` [EXTRACTED]
 - [[ClinicalEntryRepository]] - `imports` [EXTRACTED]
 - [[ClinicalImage]] - `imports` [EXTRACTED]

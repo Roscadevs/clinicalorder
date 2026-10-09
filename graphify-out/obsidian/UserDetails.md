@@ -1,11 +1,11 @@
 ---
 source_file: ""
 type: "code"
-community: "UserRepository"
+community: "lombok.extern.slf4j.Slf4j"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/UserRepository
+  - community/lombokexternslf4jSlf4j
 ---
 
 # UserDetails
@@ -14,4 +14,4 @@ tags:
 - [[dot-loadUserByUsername()]] - `references` [EXTRACTED]
 - [[CustomUserDetailsService.java]] - `imports` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/UserRepository
+#graphify/code #graphify/EXTRACTED #community/lombokexternslf4jSlf4j

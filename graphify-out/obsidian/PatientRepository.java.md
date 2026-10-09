@@ -12,7 +12,7 @@ tags:
 # PatientRepository.java
 
 ## Connections
-- [[Patient_1]] - `imports` [EXTRACTED]
+- [[Patient]] - `imports` [EXTRACTED]
 - [[PatientRepository]] - `contains` [EXTRACTED]
 
 #graphify/code #graphify/EXTRACTED #community/Patient

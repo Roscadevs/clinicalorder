@@ -1,12 +1,12 @@
 ---
 source_file: "backend/src/main/java/com/clinicadermatologica/app/presentation/dto/AppointmentResponseDTO.java"
 type: "code"
-community: "AppointmentResponseDTO"
+community: "org.springframework.http.ResponseEntity"
 location: "L12"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/AppointmentResponseDTO
+  - community/orgspringframeworkhttpResponseEntity
 ---
 
 # AppointmentResponseDTO
@@ -17,12 +17,12 @@ tags:
 - [[dot-getAppointmentById()]] - `references` [EXTRACTED]
 - [[dot-getAppointmentsByRange()]] - `references` [EXTRACTED]
 - [[dot-mapToDTO()]] - `references` [EXTRACTED]
-- [[AllArgsConstructor_7]] - `references` [EXTRACTED]
+- [[AllArgsConstructor_32]] - `references` [EXTRACTED]
 - [[AppointmentResponseDTO.java]] - `contains` [EXTRACTED]
 - [[AppointmentStatus]] - `references` [EXTRACTED]
-- [[Builder_6]] - `references` [EXTRACTED]
-- [[Getter_7]] - `references` [EXTRACTED]
-- [[NoArgsConstructor_7]] - `references` [EXTRACTED]
-- [[Setter_7]] - `references` [EXTRACTED]
+- [[Builder_30]] - `references` [EXTRACTED]
+- [[Getter_32]] - `references` [EXTRACTED]
+- [[NoArgsConstructor_32]] - `references` [EXTRACTED]
+- [[Setter_32]] - `references` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/AppointmentResponseDTO
+#graphify/code #graphify/EXTRACTED #community/orgspringframeworkhttpResponseEntity

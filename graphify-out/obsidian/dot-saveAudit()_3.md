@@ -1,19 +1,19 @@
 ---
-source_file: "backend/src/main/java/com/clinicadermatologica/app/domain/repository/ClinicalEntryRepository.java"
+source_file: "backend/src/main/java/com/clinicadermatologica/app/domain/repository/MedicalRecordRepository.java"
 type: "code"
-community: "ClinicalEntryAudit"
-location: "L21"
+community: "MedicalRecordAudit"
+location: "L16"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/ClinicalEntryAudit
+  - community/MedicalRecordAudit
 ---
 
 # .saveAudit()
 
 ## Connections
-- [[dot-updateClinicalEntry()_1]] - `calls` [INFERRED]
-- [[ClinicalEntryAudit]] - `references` [EXTRACTED]
-- [[ClinicalEntryRepository]] - `method` [EXTRACTED]
+- [[dot-saveOrUpdateMedicalRecord()]] - `calls` [INFERRED]
+- [[MedicalRecordAudit]] - `references` [EXTRACTED]
+- [[MedicalRecordRepository]] - `method` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/ClinicalEntryAudit
+#graphify/code #graphify/EXTRACTED #community/MedicalRecordAudit

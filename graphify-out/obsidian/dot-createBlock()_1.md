@@ -16,7 +16,7 @@ tags:
 - [[CalendarBlockController]] - `method` [EXTRACTED]
 - [[CalendarBlockRequestDTO]] - `references` [EXTRACTED]
 - [[CalendarBlockResponseDTO]] - `references` [EXTRACTED]
-- [[PostMapping_3]] - `references` [EXTRACTED]
+- [[PostMapping_1]] - `references` [EXTRACTED]
 - [[org.springframework.http.ResponseEntity]] - `references` [EXTRACTED]
 
 #graphify/code #graphify/EXTRACTED #community/CalendarBlockResponseDTO

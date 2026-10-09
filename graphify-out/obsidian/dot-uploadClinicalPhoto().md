@@ -1,12 +1,12 @@
 ---
 source_file: "backend/src/main/java/com/clinicadermatologica/app/presentation/controller/MedicalRecordController.java"
 type: "code"
-community: "ClinicalImageResponseDTO"
+community: "ClinicalImageService"
 location: "L88"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/ClinicalImageResponseDTO
+  - community/ClinicalImageService
 ---
 
 # .uploadClinicalPhoto()
@@ -19,4 +19,4 @@ tags:
 - [[org.springframework.http.ResponseEntity]] - `references` [EXTRACTED]
 - [[org.springframework.web.multipart.MultipartFile]] - `references` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/ClinicalImageResponseDTO
+#graphify/code #graphify/EXTRACTED #community/ClinicalImageService

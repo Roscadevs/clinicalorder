@@ -14,7 +14,7 @@ tags:
 ## Connections
 - [[dot-deleteBlock()]] - `calls` [INFERRED]
 - [[CalendarBlockController]] - `method` [EXTRACTED]
-- [[DeleteMapping_2]] - `references` [EXTRACTED]
+- [[DeleteMapping_1]] - `references` [EXTRACTED]
 - [[org.springframework.http.ResponseEntity]] - `references` [EXTRACTED]
 
 #graphify/code #graphify/EXTRACTED #community/CalendarBlockResponseDTO

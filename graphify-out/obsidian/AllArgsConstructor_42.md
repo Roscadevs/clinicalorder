@@ -1,16 +1,16 @@
 ---
 source_file: ""
 type: "code"
-community: "AlergiaResponseDTO"
+community: "UserRole"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/AlergiaResponseDTO
+  - community/UserRole
 ---
 
 # AllArgsConstructor
 
 ## Connections
-- [[AlergiaResponseDTO]] - `references` [EXTRACTED]
+- [[RegisterUserRequestDTO]] - `references` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/AlergiaResponseDTO
+#graphify/code #graphify/EXTRACTED #community/UserRole

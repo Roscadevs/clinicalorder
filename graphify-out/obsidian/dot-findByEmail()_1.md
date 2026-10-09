@@ -1,8 +1,8 @@
 ---
-source_file: "backend/src/main/java/com/clinicadermatologica/app/infrastructure/persistence/adapter/PatientRepositoryAdapter.java"
+source_file: "backend/src/main/java/com/clinicadermatologica/app/infrastructure/persistence/jpa/JpaPatientRepository.java"
 type: "code"
 community: "Patient"
-location: "L31"
+location: "L19"
 tags:
   - graphify/code
   - graphify/EXTRACTED
@@ -12,9 +12,8 @@ tags:
 # .findByEmail()
 
 ## Connections
-- [[dot-findByEmail()_2]] - `calls` [INFERRED]
-- [[Override_13]] - `references` [EXTRACTED]
-- [[Patient_1]] - `references` [EXTRACTED]
-- [[PatientRepositoryAdapter]] - `method` [EXTRACTED]
+- [[dot-findByEmail()]] - `calls` [INFERRED]
+- [[JpaPatientRepository]] - `method` [EXTRACTED]
+- [[Patient]] - `references` [EXTRACTED]
 
 #graphify/code #graphify/EXTRACTED #community/Patient

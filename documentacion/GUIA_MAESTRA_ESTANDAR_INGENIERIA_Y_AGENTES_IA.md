@@ -15,7 +15,7 @@ Este marco unifica:
 1. **Rigor en la Ingeniería de Requisitos:** Adopción de la metodología formal *How I Spec* (Rivera), modelado de procesos en **BPMN 2.0**, análisis formal de **Casos de Uso**, y diseño de bases de datos normalizadas en **3FN / BCNF** con garantías transaccionales **ACID**.
 2. **Excelencia Arquitectónica:** Separación estricta de responsabilidades mediante **Clean Layered Architecture (Monolito Modular)** en Backend, patrones **Mobile-First & Responsive UX (WCAG 2.1 AA)** en Frontend, y desacoplamiento de servicios cloud auxiliares.
 3. **Ingeniería de Contexto para Agentes de IA (Agentic AI Workflow):** Protocolos reproducibles para solicitar tareas a modelos de lenguaje y agentes autónomos (como Antigravity, Claude, GPT), eliminando ambigüedades, maximizando la precisión de código y garantizando ciclos de feedback automatizados.
-4. **DevOps & Calidad Continua:** Contenedores **Docker Multi-Stage**, orquestación local reproducible con **Docker Compose**, pipelines de **Integración Continua (CI/CD)** en GitHub Actions, y despliegue desacoplado en infraestructuras cloud modernas (PostgreSQL/Supabase, Railway/Render, Vercel).
+4. **DevOps & Calidad Continua:** Contenedores **Docker Multi-Stage**, orquestación local reproducible con **Docker Compose**, pipelines de **Integración Continua (CI/CD)** en GitHub Actions, y despliegue desacoplado en infraestructuras cloud modernas (PostgreSQL/Supabase, Render, Vercel).
 
 ---
 
@@ -531,9 +531,9 @@ A continuación se detalla la estructura canónica recomendada para cualquier pr
 📦 PROYECTO-RAIZ/
 │
 ├── 📄 README.md                          # Presentación visual con badges, arquitectura, módulos y quickstart
-├── 📄 Dockerfile                         # Dockerfile raíz multi-stage para despliegues cloud (Railway/Render)
+├── 📄 Dockerfile                         # Dockerfile raíz multi-stage para despliegues cloud (Render)
 ├── 📄 docker-compose.yml                 # Orquestación local (PostgreSQL + Backend + Frontend)
-├── 📄 railway.toml                       # Configuración declarativa de build y reinicio en Railway
+├── 📄 render.yaml                        # Configuración declarativa de Blueprint y despliegue en Render
 ├── 📄 vercel.json                        # Configuración de SPA routing y cabeceras de seguridad en Vercel
 ├── 🔒 .env.example                       # Plantilla de variables de entorno sin credenciales reales
 ├── 🚫 .gitignore                         # Exclusiones de Git (.DS_Store, target/, dist/, node_modules/, .env)

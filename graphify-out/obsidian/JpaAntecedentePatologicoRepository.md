@@ -1,12 +1,12 @@
 ---
 source_file: "backend/src/main/java/com/clinicadermatologica/app/infrastructure/persistence/jpa/JpaAntecedentePatologicoRepository.java"
 type: "code"
-community: "AntecedentePatologico"
+community: "org.springframework.data.jpa.repository.JpaRepository"
 location: "L14"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/AntecedentePatologico
+  - community/orgspringframeworkdatajparepositoryJpaRepository
 ---
 
 # JpaAntecedentePatologicoRepository
@@ -21,4 +21,4 @@ tags:
 - [[org.springframework.data.jpa.repository.JpaRepository]] - `inherits` [EXTRACTED]
 - [[org.springframework.stereotype.Repository]] - `references` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/AntecedentePatologico
+#graphify/code #graphify/EXTRACTED #community/orgspringframeworkdatajparepositoryJpaRepository

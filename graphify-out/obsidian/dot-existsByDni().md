@@ -1,8 +1,8 @@
 ---
-source_file: "backend/src/main/java/com/clinicadermatologica/app/domain/repository/PatientRepository.java"
+source_file: "backend/src/main/java/com/clinicadermatologica/app/infrastructure/persistence/adapter/PatientRepositoryAdapter.java"
 type: "code"
 community: "Patient"
-location: "L18"
+location: "L51"
 tags:
   - graphify/code
   - graphify/EXTRACTED
@@ -12,7 +12,8 @@ tags:
 # .existsByDni()
 
 ## Connections
-- [[dot-createPatient()_1]] - `calls` [INFERRED]
-- [[PatientRepository]] - `method` [EXTRACTED]
+- [[dot-existsByDni()_1]] - `calls` [INFERRED]
+- [[Override_11]] - `references` [EXTRACTED]
+- [[PatientRepositoryAdapter]] - `method` [EXTRACTED]
 
 #graphify/code #graphify/EXTRACTED #community/Patient

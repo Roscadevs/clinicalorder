@@ -1,21 +1,19 @@
 ---
-source_file: "backend/src/main/java/com/clinicadermatologica/app/application/service/AppointmentService.java"
+source_file: "backend/src/main/java/com/clinicadermatologica/app/infrastructure/scheduling/HoldExpirationScheduler.java"
 type: "code"
-community: "AppointmentService"
-location: "L260"
+community: "lombok.RequiredArgsConstructor"
+location: "L23"
 tags:
   - graphify/code
-  - graphify/INFERRED
-  - community/AppointmentService
+  - graphify/EXTRACTED
+  - community/lombokRequiredArgsConstructor
 ---
 
 # .releaseExpiredHolds()
 
 ## Connections
-- [[dot-findExpiredHolds()_1]] - `calls` [INFERRED]
 - [[dot-releaseExpiredHolds()]] - `calls` [INFERRED]
-- [[dot-testReleaseExpiredHolds_CancelsAndRejectsPendingPayment()]] - `calls` [INFERRED]
-- [[AppointmentService]] - `method` [EXTRACTED]
-- [[org.springframework.transaction.annotation.Transactional]] - `references` [EXTRACTED]
+- [[HoldExpirationScheduler]] - `method` [EXTRACTED]
+- [[org.springframework.scheduling.annotation.Scheduled]] - `references` [EXTRACTED]
 
-#graphify/code #graphify/INFERRED #community/AppointmentService
+#graphify/code #graphify/EXTRACTED #community/lombokRequiredArgsConstructor

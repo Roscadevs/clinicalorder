@@ -12,7 +12,7 @@ tags:
 # .findByActiveTrue()
 
 ## Connections
-- [[dot-findAllActive()_3]] - `calls` [INFERRED]
+- [[dot-findAllActive()_2]] - `calls` [INFERRED]
 - [[DermatologicService]] - `references` [EXTRACTED]
 - [[JpaDermatologicServiceRepository]] - `method` [EXTRACTED]
 

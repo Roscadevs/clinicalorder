@@ -1,12 +1,12 @@
 ---
 source_file: "frontend/src/features/appointments/RegisterPaymentStep.tsx"
 type: "code"
-community: "BookingWizard.tsx"
+community: "api.ts"
 location: "L11"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/BookingWizardtsx
+  - community/apits
 ---
 
 # RegisterPaymentStepProps
@@ -15,4 +15,4 @@ tags:
 - [[PaymentReceipt]] - `references` [EXTRACTED]
 - [[RegisterPaymentStep.tsx]] - `contains` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/BookingWizardtsx
+#graphify/code #graphify/EXTRACTED #community/apits

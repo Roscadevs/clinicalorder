@@ -12,11 +12,11 @@ tags:
 # ChatMessageItemDTO
 
 ## Connections
-- [[AllArgsConstructor_29]] - `references` [EXTRACTED]
-- [[Builder_26]] - `references` [EXTRACTED]
+- [[AllArgsConstructor_27]] - `references` [EXTRACTED]
+- [[Builder_25]] - `references` [EXTRACTED]
 - [[GeminiChatRequestDTO]] - `contains` [EXTRACTED]
-- [[Getter_29]] - `references` [EXTRACTED]
-- [[NoArgsConstructor_29]] - `references` [EXTRACTED]
-- [[Setter_29]] - `references` [EXTRACTED]
+- [[Getter_27]] - `references` [EXTRACTED]
+- [[NoArgsConstructor_27]] - `references` [EXTRACTED]
+- [[Setter_27]] - `references` [EXTRACTED]
 
 #graphify/code #graphify/EXTRACTED #community/DermatologicService

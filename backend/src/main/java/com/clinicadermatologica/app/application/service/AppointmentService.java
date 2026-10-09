@@ -34,6 +34,7 @@ public class AppointmentService {
     private final PaymentTransactionRepository paymentTransactionRepository;
     private final CalendarBlockRepository calendarBlockRepository;
     private final MercadoPagoPaymentAdapter mercadoPagoAdapter;
+    private final PaymentService paymentService;
 
     /**
      * Calcula dinámicamente las franjas horarias disponibles para una fecha y servicio.
@@ -182,16 +183,9 @@ public class AppointmentService {
                 patient.getPhone()
         );
 
-        String preferenceId = preference != null ? preference.getId() : "MOCK-PREF-" + UUID.randomUUID();
-        // Prioriza el punto de inicio de sandbox cuando la credencial es de prueba
-        String initPointUrl;
-        if (preference != null) {
-            initPointUrl = (preference.getSandboxInitPoint() != null && !preference.getSandboxInitPoint().isBlank())
-                    ? preference.getSandboxInitPoint()
-                    : preference.getInitPoint();
-        } else {
-            initPointUrl = "https://sandbox.mercadopago.com.ar/checkout/v1/redirect?pref_id=" + preferenceId;
-        }
+        String preferenceId = preference.getId();
+        // Determina la URL de pago adecuada (producción: init_point, prueba: sandbox_init_point)
+        String initPointUrl = mercadoPagoAdapter.resolveInitPoint(preference);
 
         // Crea transacción PENDING con concepto DEPOSIT; el webhook la buscará por mpPreferenceId
         PaymentTransaction transaction = PaymentTransaction.builder()
@@ -222,6 +216,12 @@ public class AppointmentService {
         if (appointment.getStatus() == AppointmentStatus.COMPLETED) {
             throw new BusinessRuleException("No se puede cancelar un turno que ya ha sido completado");
         }
+
+        // Si existe una seña o pago aprobado vía Mercado Pago, emitir reembolso automático
+        List<PaymentTransaction> transactions = paymentTransactionRepository.findByAppointmentId(appointmentId);
+        transactions.stream()
+                .filter(t -> t.getPaymentType() == PaymentType.MERCADOPAGO && t.getStatus() == PaymentStatus.APPROVED)
+                .forEach(paymentService::refundPayment);
 
         appointment.setStatus(AppointmentStatus.CANCELED);
         appointmentRepository.save(appointment);
@@ -297,6 +297,18 @@ public class AppointmentService {
         return appointmentRepository.findById(id)
                 .map(this::mapToDTO)
                 .orElseThrow(() -> new ResourceNotFoundException("Turno no encontrado"));
+    }
+
+    @Transactional(readOnly = true)
+    public Map<String, Object> getAppointmentPublicStatus(Long id) {
+        Appointment appointment = appointmentRepository.findById(id)
+                .orElseThrow(() -> new ResourceNotFoundException("Turno no encontrado con ID " + id));
+        Map<String, Object> statusMap = new HashMap<>();
+        statusMap.put("appointmentId", appointment.getId());
+        statusMap.put("status", appointment.getStatus().name());
+        statusMap.put("serviceName", appointment.getService() != null ? appointment.getService().getName() : "");
+        statusMap.put("startTime", appointment.getStartTime() != null ? appointment.getStartTime().toString() : "");
+        return statusMap;
     }
 
     public AppointmentResponseDTO mapToDTO(Appointment a) {

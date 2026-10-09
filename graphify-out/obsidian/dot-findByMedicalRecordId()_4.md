@@ -1,12 +1,12 @@
 ---
-source_file: "backend/src/main/java/com/clinicadermatologica/app/domain/repository/HabitoRepository.java"
+source_file: "backend/src/main/java/com/clinicadermatologica/app/domain/repository/AlergiaRepository.java"
 type: "code"
-community: "MedicalRecordService"
-location: "L18"
+community: "MedicalRecordDTO"
+location: "L19"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/MedicalRecordService
+  - community/MedicalRecordDTO
 ---
 
 # .findByMedicalRecordId()
@@ -14,7 +14,7 @@ tags:
 ## Connections
 - [[dot-mapRecordToDTO()]] - `calls` [INFERRED]
 - [[dot-testSaveInitialMedicalRecord_Success()]] - `calls` [INFERRED]
-- [[Habito]] - `references` [EXTRACTED]
-- [[HabitoRepository]] - `method` [EXTRACTED]
+- [[Alergia]] - `references` [EXTRACTED]
+- [[AlergiaRepository]] - `method` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/MedicalRecordService
+#graphify/code #graphify/EXTRACTED #community/MedicalRecordDTO

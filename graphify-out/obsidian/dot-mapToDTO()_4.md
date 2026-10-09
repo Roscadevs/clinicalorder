@@ -12,9 +12,9 @@ tags:
 # .mapToDTO()
 
 ## Connections
-- [[dot-createPatient()_1]] - `calls` [EXTRACTED]
-- [[dot-updatePatient()_1]] - `calls` [EXTRACTED]
-- [[Patient_1]] - `references` [EXTRACTED]
+- [[dot-createPatient()]] - `calls` [EXTRACTED]
+- [[dot-updatePatient()]] - `calls` [EXTRACTED]
+- [[Patient]] - `references` [EXTRACTED]
 - [[PatientResponseDTO]] - `references` [EXTRACTED]
 - [[PatientService]] - `method` [EXTRACTED]
 

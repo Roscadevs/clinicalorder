@@ -1,18 +1,19 @@
 ---
 source_file: ""
 type: "code"
-community: "ServiceResponseDTO"
+community: "MedicalRecordController"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/ServiceResponseDTO
+  - community/MedicalRecordController
 ---
 
 # GetMapping
 
 ## Connections
-- [[dot-getActiveServices()]] - `references` [EXTRACTED]
-- [[dot-getAllServicesForAdmin()_1]] - `references` [EXTRACTED]
-- [[dot-getServiceById()]] - `references` [EXTRACTED]
+- [[dot-getAuditHistory()]] - `references` [EXTRACTED]
+- [[dot-getClinicalEntriesByPatient()_1]] - `references` [EXTRACTED]
+- [[dot-getClinicalPhotos()]] - `references` [EXTRACTED]
+- [[dot-getMedicalRecordByPatient()]] - `references` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/ServiceResponseDTO
+#graphify/code #graphify/EXTRACTED #community/MedicalRecordController

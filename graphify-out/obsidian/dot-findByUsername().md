@@ -13,7 +13,7 @@ tags:
 
 ## Connections
 - [[dot-findByUsername()_1]] - `calls` [INFERRED]
-- [[Override_15]] - `references` [EXTRACTED]
+- [[Override_13]] - `references` [EXTRACTED]
 - [[User]] - `references` [EXTRACTED]
 - [[UserRepositoryAdapter]] - `method` [EXTRACTED]
 

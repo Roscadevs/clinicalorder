@@ -54,6 +54,7 @@ public class SecurityConfig {
                 .requestMatchers(HttpMethod.GET, "/servicios", "/servicios/**").permitAll()
                 .requestMatchers(HttpMethod.POST, "/citas/reservar-temporal").permitAll()
                 .requestMatchers(HttpMethod.GET, "/citas/disponibilidad").permitAll()
+                .requestMatchers(HttpMethod.GET, "/citas/*/estado").permitAll()
                 // Endpoint Público del Asistente Virtual con Gemini API
                 .requestMatchers(HttpMethod.POST, "/chat/gemini").permitAll()
                 // Webhook Público de MercadoPago (recibe notificaciones de pago)

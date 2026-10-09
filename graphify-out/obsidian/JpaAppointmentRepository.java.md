@@ -1,12 +1,12 @@
 ---
 source_file: "backend/src/main/java/com/clinicadermatologica/app/infrastructure/persistence/jpa/JpaAppointmentRepository.java"
 type: "code"
-community: "Appointment"
+community: "org.springframework.data.jpa.repository.JpaRepository"
 location: "L1"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/Appointment
+  - community/orgspringframeworkdatajparepositoryJpaRepository
 ---
 
 # JpaAppointmentRepository.java
@@ -19,4 +19,4 @@ tags:
 - [[org.springframework.data.jpa.repository.Query]] - `imports` [EXTRACTED]
 - [[org.springframework.stereotype.Repository]] - `imports` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/Appointment
+#graphify/code #graphify/EXTRACTED #community/orgspringframeworkdatajparepositoryJpaRepository

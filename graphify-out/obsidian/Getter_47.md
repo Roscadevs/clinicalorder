@@ -1,16 +1,16 @@
 ---
 source_file: ""
 type: "code"
-community: ".forgotPassword"
+community: "MedicalRecordAudit"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/forgotPassword
+  - community/MedicalRecordAudit
 ---
 
 # Getter
 
 ## Connections
-- [[ForgotPasswordRequestDTO]] - `references` [EXTRACTED]
+- [[MedicalRecordAudit]] - `references` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/forgotPassword
+#graphify/code #graphify/EXTRACTED #community/MedicalRecordAudit

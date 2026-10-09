@@ -1,17 +1,19 @@
 ---
-source_file: "frontend/src/services/api.ts"
+source_file: "frontend/src/utils/session.ts"
 type: "code"
-community: "api.ts"
-location: "L45"
+community: "MedicalRecordView.tsx"
+location: "L4"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/apits
+  - community/MedicalRecordViewtsx
 ---
 
 # currentUserId()
 
 ## Connections
-- [[api.ts]] - `contains` [EXTRACTED]
+- [[AnamnesisForm()]] - `calls` [EXTRACTED]
+- [[AnamnesisForm.tsx]] - `imports` [EXTRACTED]
+- [[session.ts]] - `contains` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/apits
+#graphify/code #graphify/EXTRACTED #community/MedicalRecordViewtsx

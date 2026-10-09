@@ -1,11 +1,11 @@
 ---
 type: community
-members: 11
+members: 17
 ---
 
 # README.md
 
-**Members:** 11 nodes
+**Members:** 17 nodes
 
 ## Members
 - [[0. Encabezado & Novedades de la Versión 10.0 (Master Final)]] - document - documentacion/historial_prds/PRD_v10.0_Fase10_Mobile_Responsive_Master.md
@@ -13,10 +13,16 @@ members: 11
 - [[1. El Resumen Hoy vs Después_7]] - document - documentacion/historial_prds/PRD_v10.0_Fase10_Mobile_Responsive_Master.md
 - [[2. Historias de Usuario Principales_7]] - document - documentacion/historial_prds/PRD_v10.0_Fase10_Mobile_Responsive_Master.md
 - [[CHANGELOG_PRDS]] - document - documentacion/historial_prds/CHANGELOG_PRDS.md
+- [[Documento de Métricas, KPIs y Dashboard de Gestión (Fase 7)]] - document - documentacion/fase7_dashboard_metricas_y_kpis/FASE_7_DASHBOARD_METRICAS_Y_KPIS.md
+- [[FASE_7_DASHBOARD_METRICAS_Y_KPIS]] - document - documentacion/fase7_dashboard_metricas_y_kpis/FASE_7_DASHBOARD_METRICAS_Y_KPIS.md
 - [[PRD v10.0 (Master Final Consolidado) Sistema Integral Dermatológico, Estética y Asistente IA — Especificación de Arquitectura Mobile-First & Responsive UX]] - document - documentacion/historial_prds/PRD_v10.0_Fase10_Mobile_Responsive_Master.md
 - [[PRD_v10.0_Fase10_Mobile_Responsive_Master]] - document - documentacion/historial_prds/PRD_v10.0_Fase10_Mobile_Responsive_Master.md
 - [[README]] - document - README.md
 - [[Índice Maestro y Estructura de Documentación del Proyecto]] - document - documentacion/00_INDICE_GENERAL.md
+- [[🏆 4. Ranking de Tratamientos con Mayor Demanda]] - document - documentacion/fase7_dashboard_metricas_y_kpis/FASE_7_DASHBOARD_METRICAS_Y_KPIS.md
+- [[💰 3. Desglose de Canales de Recaudación]] - document - documentacion/fase7_dashboard_metricas_y_kpis/FASE_7_DASHBOARD_METRICAS_Y_KPIS.md
+- [[📊 2. Indicadores Clave de Rendimiento (KPIs)]] - document - documentacion/fase7_dashboard_metricas_y_kpis/FASE_7_DASHBOARD_METRICAS_Y_KPIS.md
+- [[📑 1. Objetivos del Módulo Analítico]] - document - documentacion/fase7_dashboard_metricas_y_kpis/FASE_7_DASHBOARD_METRICAS_Y_KPIS.md
 - [[🗂️ Estructura Completa de Subcarpetas en `documentacion`]] - document - documentacion/00_INDICE_GENERAL.md
 - [[🧭 Guía de Lectura y Referencias Rápidas]] - document - documentacion/00_INDICE_GENERAL.md
 
@@ -37,13 +43,12 @@ SORT file.name ASC
 - 1 edge to [[_COMMUNITY_PRD v7.0 (Master) Sistema Integral Dermatológico, Estética y Asistente IA con Dashboard Analítico & Métricas de Gestión (KPIs)]]
 - 1 edge to [[_COMMUNITY_PRD v8.0 (Master) Sistema Integral Dermatológico, Estética y Asistente IA con Recordatorios Multicanal & Sincronización con Calendarios (Google  Apple  Outlook)]]
 - 1 edge to [[_COMMUNITY_PRD v9.0 (Master Final) Sistema Integral Dermatológico, Estética y Asistente IA — Especificación Maestra Completa & Guía de Defensa]]
-- 1 edge to [[_COMMUNITY_Documento de Métricas, KPIs y Dashboard de Gestión (Fase 7)]]
 - 1 edge to [[_COMMUNITY_Documento de Sistema de Recordatorios y Sincronización con Calendarios (Fase 8)]]
 - 1 edge to [[_COMMUNITY_Documento de Arquitectura de Diseño Mobile-First, UIUX Responsive y Accesibilidad Táctil (Fase 10)]]
 - 1 edge to [[_COMMUNITY_📘 Manual Maestro de Ingeniería de Software, Metodología de Especificación y Desarrollo Ágil con Agentes de IA]]
 - 1 edge to [[_COMMUNITY_Especificación del Modelo Relacional (MR) en Supabase PostgreSQL]]
 - 1 edge to [[_COMMUNITY_PRD — Sistema Integral de Gestión Dermatológica, Estética y Asistente Virtual con IA]]
-- 1 edge to [[_COMMUNITY_3. 📋 Especificación Formal de Casos de Uso Detallados (CU-01 a CU-08)]]
+- 1 edge to [[_COMMUNITY_2. 🔄 Modelado de Procesos de Negocio en BPMN 2.0]]
 - 1 edge to [[_COMMUNITY_🧠 3. Banco de Preguntas Trampa de la Cátedra & Respuestas Técnicas]]
 - 1 edge to [[_COMMUNITY_📜 Historial de Revisiones]]
 - 1 edge to [[_COMMUNITY_PRD v2.0 Sistema Integral de Gestión Dermatológica, Estética y Asistente IA (Fase 2)]]
@@ -54,5 +59,5 @@ SORT file.name ASC
 - 1 edge to [[_COMMUNITY_Documento de Integración Continua y Calidad Automatizada (Fase 5)]]
 
 ## Top bridge nodes
-- [[README]] - degree 26, connects to 23 communities
+- [[README]] - degree 26, connects to 22 communities
 - [[CHANGELOG_PRDS]] - degree 2, connects to 1 community

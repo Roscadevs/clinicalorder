@@ -12,14 +12,14 @@ tags:
 # HabitoId
 
 ## Connections
-- [[dot-addHabito()_1]] - `calls` [INFERRED]
+- [[dot-addHabito()]] - `calls` [INFERRED]
 - [[dot-delete()]] - `references` [EXTRACTED]
 - [[dot-delete()_1]] - `references` [EXTRACTED]
 - [[dot-equals()]] - `method` [EXTRACTED]
 - [[dot-existsById()]] - `references` [EXTRACTED]
 - [[dot-existsById()_1]] - `references` [EXTRACTED]
+- [[dot-findById()_3]] - `references` [EXTRACTED]
 - [[dot-findById()_4]] - `references` [EXTRACTED]
-- [[dot-findById()_5]] - `references` [EXTRACTED]
 - [[dot-hashCode()]] - `method` [EXTRACTED]
 - [[dot-removeHabito()_1]] - `calls` [INFERRED]
 - [[AllArgsConstructor_6]] - `references` [EXTRACTED]

@@ -45,3 +45,6 @@ lerna-debug.log*
 # Temporary files
 tmp/
 temp/
+*.bkp
+.*.bkp
+*.visual-check.*

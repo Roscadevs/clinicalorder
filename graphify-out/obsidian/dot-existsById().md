@@ -12,7 +12,7 @@ tags:
 # .existsById()
 
 ## Connections
-- [[dot-addHabito()_1]] - `calls` [INFERRED]
+- [[dot-addHabito()]] - `calls` [INFERRED]
 - [[dot-removeHabito()_1]] - `calls` [INFERRED]
 - [[HabitoId]] - `references` [EXTRACTED]
 - [[HabitoRepository]] - `method` [EXTRACTED]

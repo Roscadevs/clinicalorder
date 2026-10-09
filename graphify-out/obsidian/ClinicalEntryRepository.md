@@ -1,23 +1,23 @@
 ---
 source_file: "backend/src/main/java/com/clinicadermatologica/app/domain/repository/ClinicalEntryRepository.java"
 type: "code"
-community: "ClinicalEntryAudit"
+community: "MedicalRecordService"
 location: "L16"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/ClinicalEntryAudit
+  - community/MedicalRecordService
 ---
 
 # ClinicalEntryRepository
 
 ## Connections
-- [[dot-findAuditByEntryId()_1]] - `method` [EXTRACTED]
-- [[dot-findByAppointmentId()_4]] - `method` [EXTRACTED]
-- [[dot-findById()_23]] - `method` [EXTRACTED]
-- [[dot-findByPatientId()_2]] - `method` [EXTRACTED]
-- [[dot-save()_6]] - `method` [EXTRACTED]
-- [[dot-saveAudit()_3]] - `method` [EXTRACTED]
+- [[dot-findAuditByEntryId()]] - `method` [EXTRACTED]
+- [[dot-findByAppointmentId()_2]] - `method` [EXTRACTED]
+- [[dot-findById()_19]] - `method` [EXTRACTED]
+- [[dot-findByPatientId()]] - `method` [EXTRACTED]
+- [[dot-save()_11]] - `method` [EXTRACTED]
+- [[dot-saveAudit()_2]] - `method` [EXTRACTED]
 - [[ClinicalEntryRepository.java]] - `contains` [EXTRACTED]
 - [[ClinicalEntryRepositoryAdapter]] - `implements` [EXTRACTED]
 - [[ClinicalEntryRepositoryAdapter.java]] - `imports` [EXTRACTED]
@@ -26,4 +26,4 @@ tags:
 - [[MedicalRecordService]] - `references` [EXTRACTED]
 - [[MedicalRecordServiceTest]] - `references` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/ClinicalEntryAudit
+#graphify/code #graphify/EXTRACTED #community/MedicalRecordService

@@ -1,19 +1,19 @@
 ---
-source_file: "backend/src/main/java/com/clinicadermatologica/app/infrastructure/persistence/adapter/PatientRepositoryAdapter.java"
+source_file: "backend/src/main/java/com/clinicadermatologica/app/domain/repository/ClinicalImageRepository.java"
 type: "code"
-community: "Patient"
-location: "L46"
+community: "ClinicalImage"
+location: "L18"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/Patient
+  - community/ClinicalImage
 ---
 
 # .save()
 
 ## Connections
-- [[Override_13]] - `references` [EXTRACTED]
-- [[Patient_1]] - `references` [EXTRACTED]
-- [[PatientRepositoryAdapter]] - `method` [EXTRACTED]
+- [[dot-uploadClinicalImage()]] - `calls` [INFERRED]
+- [[ClinicalImage]] - `references` [EXTRACTED]
+- [[ClinicalImageRepository]] - `method` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/Patient
+#graphify/code #graphify/EXTRACTED #community/ClinicalImage

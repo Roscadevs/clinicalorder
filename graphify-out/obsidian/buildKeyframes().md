@@ -1,12 +1,12 @@
 ---
 source_file: "frontend/src/components/reactbits/BlurText.tsx"
 type: "code"
-community: "BlurText.tsx"
+community: "ServicesCatalogView.tsx"
 location: "L22"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/BlurTexttsx
+  - community/ServicesCatalogViewtsx
 ---
 
 # buildKeyframes()
@@ -15,4 +15,4 @@ tags:
 - [[BlurText()]] - `calls` [EXTRACTED]
 - [[BlurText.tsx]] - `contains` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/BlurTexttsx
+#graphify/code #graphify/EXTRACTED #community/ServicesCatalogViewtsx

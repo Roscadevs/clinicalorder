@@ -1,19 +1,19 @@
 ---
-source_file: "backend/src/main/java/com/clinicadermatologica/app/infrastructure/payment/strategy/MercadoPagoPaymentStrategy.java"
+source_file: "backend/src/main/java/com/clinicadermatologica/app/application/strategy/PaymentRegistrationStrategy.java"
 type: "code"
-community: ".register"
-location: "L25"
+community: "lombok.RequiredArgsConstructor"
+location: "L29"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/register
+  - community/lombokRequiredArgsConstructor
 ---
 
 # .supportedType()
 
 ## Connections
-- [[MercadoPagoPaymentStrategy]] - `method` [EXTRACTED]
-- [[Override_7]] - `references` [EXTRACTED]
+- [[dot-testStrategyFactory_ReturnsCorrectStrategy()]] - `calls` [INFERRED]
+- [[PaymentRegistrationStrategy]] - `method` [EXTRACTED]
 - [[PaymentType_4]] - `references` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/register
+#graphify/code #graphify/EXTRACTED #community/lombokRequiredArgsConstructor

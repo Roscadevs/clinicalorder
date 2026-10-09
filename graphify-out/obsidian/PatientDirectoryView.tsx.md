@@ -1,12 +1,12 @@
 ---
 source_file: "frontend/src/features/clinical/PatientDirectoryView.tsx"
 type: "code"
-community: "MedicalRecordView.tsx"
+community: "api.ts"
 location: "L1"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/MedicalRecordViewtsx
+  - community/apits
 ---
 
 # PatientDirectoryView.tsx
@@ -16,7 +16,7 @@ tags:
 - [[Badge()]] - `imports` [EXTRACTED]
 - [[Card]] - `imports` [EXTRACTED]
 - [[MedicalRecordView.tsx]] - `imports_from` [EXTRACTED]
-- [[Patient]] - `imports` [EXTRACTED]
+- [[Patient_1]] - `imports` [EXTRACTED]
 - [[PatientDirectoryView()]] - `contains` [EXTRACTED]
 - [[PatientSearch()]] - `imports` [EXTRACTED]
 - [[PatientSearch.tsx]] - `imports_from` [EXTRACTED]
@@ -25,7 +25,7 @@ tags:
 - [[api.ts]] - `imports_from` [EXTRACTED]
 - [[appointmentStatus.ts]] - `imports_from` [EXTRACTED]
 - [[appointmentsApi]] - `imports` [EXTRACTED]
-- [[fmt()]] - `contains` [EXTRACTED]
+- [[fmt()_1]] - `contains` [EXTRACTED]
 - [[getVisualStatus()]] - `imports` [EXTRACTED]
 - [[lucide-react]] - `imports_from` [EXTRACTED]
 - [[patientsApi]] - `imports` [EXTRACTED]
@@ -33,4 +33,4 @@ tags:
 - [[typesindex.ts]] - `imports_from` [EXTRACTED]
 - [[uiindex.ts]] - `imports_from` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/MedicalRecordViewtsx
+#graphify/code #graphify/EXTRACTED #community/apits

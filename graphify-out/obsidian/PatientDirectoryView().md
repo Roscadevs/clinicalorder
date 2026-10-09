@@ -1,12 +1,12 @@
 ---
 source_file: "frontend/src/features/clinical/PatientDirectoryView.tsx"
 type: "code"
-community: "MedicalRecordView.tsx"
+community: "api.ts"
 location: "L18"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/MedicalRecordViewtsx
+  - community/apits
 ---
 
 # PatientDirectoryView()
@@ -14,7 +14,7 @@ tags:
 ## Connections
 - [[MedicalRecordView.tsx]] - `imports` [EXTRACTED]
 - [[PatientDirectoryView.tsx]] - `contains` [EXTRACTED]
-- [[fmt()]] - `calls` [EXTRACTED]
+- [[fmt()_1]] - `calls` [EXTRACTED]
 - [[getVisualStatus()]] - `calls` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/MedicalRecordViewtsx
+#graphify/code #graphify/EXTRACTED #community/apits

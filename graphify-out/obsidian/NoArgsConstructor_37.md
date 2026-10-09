@@ -1,16 +1,16 @@
 ---
 source_file: ""
 type: "code"
-community: "Alergia"
+community: "ClinicalEntry"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/Alergia
+  - community/ClinicalEntry
 ---
 
 # NoArgsConstructor
 
 ## Connections
-- [[Alergia]] - `references` [EXTRACTED]
+- [[ClinicalEntryAudit]] - `references` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/Alergia
+#graphify/code #graphify/EXTRACTED #community/ClinicalEntry

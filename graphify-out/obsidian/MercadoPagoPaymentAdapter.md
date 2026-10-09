@@ -1,12 +1,12 @@
 ---
 source_file: "backend/src/main/java/com/clinicadermatologica/app/infrastructure/payment/MercadoPagoPaymentAdapter.java"
 type: "code"
-community: "MercadoPagoPaymentAdapter"
-location: "L19"
+community: "PaymentService"
+location: "L24"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/MercadoPagoPaymentAdapter
+  - community/PaymentService
 ---
 
 # MercadoPagoPaymentAdapter
@@ -14,6 +14,8 @@ tags:
 ## Connections
 - [[dot-createDepositPreference()]] - `method` [EXTRACTED]
 - [[dot-getPaymentDetails()]] - `method` [EXTRACTED]
+- [[dot-refundPayment()_1]] - `method` [EXTRACTED]
+- [[dot-resolveInitPoint()]] - `method` [EXTRACTED]
 - [[AppointmentService]] - `references` [EXTRACTED]
 - [[AppointmentService.java]] - `imports` [EXTRACTED]
 - [[AppointmentServiceTest]] - `references` [EXTRACTED]
@@ -26,4 +28,4 @@ tags:
 - [[lombok.extern.slf4j.Slf4j]] - `references` [EXTRACTED]
 - [[org.springframework.stereotype.Component]] - `references` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/MercadoPagoPaymentAdapter
+#graphify/code #graphify/EXTRACTED #community/PaymentService

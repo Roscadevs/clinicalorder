@@ -1,20 +1,20 @@
 ---
-source_file: "backend/src/main/java/com/clinicadermatologica/app/infrastructure/persistence/adapter/AppointmentRepositoryAdapter.java"
+source_file: "backend/src/main/java/com/clinicadermatologica/app/infrastructure/persistence/adapter/CalendarBlockRepositoryAdapter.java"
 type: "code"
-community: "Appointment"
-location: "L43"
+community: "CalendarBlock"
+location: "L32"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/Appointment
+  - community/CalendarBlock
 ---
 
 # .findByDateRange()
 
 ## Connections
-- [[dot-findByDateRange()_2]] - `calls` [INFERRED]
-- [[Appointment]] - `references` [EXTRACTED]
-- [[AppointmentRepositoryAdapter]] - `method` [EXTRACTED]
+- [[dot-findByDateRange()_1]] - `calls` [INFERRED]
+- [[CalendarBlock]] - `references` [EXTRACTED]
+- [[CalendarBlockRepositoryAdapter]] - `method` [EXTRACTED]
 - [[Override_1]] - `references` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/Appointment
+#graphify/code #graphify/EXTRACTED #community/CalendarBlock

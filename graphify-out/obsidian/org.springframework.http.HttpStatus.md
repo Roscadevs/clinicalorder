@@ -1,11 +1,11 @@
 ---
 source_file: ""
 type: "code"
-community: "lombok.RequiredArgsConstructor"
+community: "org.springframework.http.ResponseEntity"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/lombokRequiredArgsConstructor
+  - community/orgspringframeworkhttpResponseEntity
 ---
 
 # org.springframework.http.HttpStatus
@@ -18,4 +18,4 @@ tags:
 - [[PatientController.java]] - `imports` [EXTRACTED]
 - [[ServiceCatalogController.java]] - `imports` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/lombokRequiredArgsConstructor
+#graphify/code #graphify/EXTRACTED #community/orgspringframeworkhttpResponseEntity

@@ -1,19 +1,16 @@
 ---
 source_file: ""
 type: "code"
-community: "AuthController"
+community: "org.springframework.transaction.annotation.Transactional"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/AuthController
+  - community/orgspringframeworktransactionannotationTransactional
 ---
 
 # PostMapping
 
 ## Connections
-- [[dot-forgotPassword()]] - `references` [EXTRACTED]
-- [[dot-login()]] - `references` [EXTRACTED]
-- [[dot-register()_4]] - `references` [EXTRACTED]
-- [[dot-resetPassword()]] - `references` [EXTRACTED]
+- [[dot-createPatient()_1]] - `references` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/AuthController
+#graphify/code #graphify/EXTRACTED #community/orgspringframeworktransactionannotationTransactional

@@ -1,11 +1,11 @@
 ---
 source_file: ""
 type: "code"
-community: "ClinicalEntryRequestDTO"
+community: "AlergiaRequestDTO"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/ClinicalEntryRequestDTO
+  - community/AlergiaRequestDTO
 ---
 
 # NoArgsConstructor
@@ -13,4 +13,4 @@ tags:
 ## Connections
 - [[ClinicalEntryRequestDTO]] - `references` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/ClinicalEntryRequestDTO
+#graphify/code #graphify/EXTRACTED #community/AlergiaRequestDTO

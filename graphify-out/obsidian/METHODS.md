@@ -1,12 +1,12 @@
 ---
 source_file: "frontend/src/features/agenda/CollectBalanceModal.tsx"
 type: "code"
-community: "cn"
+community: "api.ts"
 location: "L18"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/cn
+  - community/apits
 ---
 
 # METHODS
@@ -14,4 +14,4 @@ tags:
 ## Connections
 - [[CollectBalanceModal.tsx]] - `contains` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/cn
+#graphify/code #graphify/EXTRACTED #community/apits

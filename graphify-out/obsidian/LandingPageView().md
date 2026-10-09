@@ -1,12 +1,12 @@
 ---
 source_file: "frontend/src/features/public/LandingPageView.tsx"
 type: "code"
-community: "react"
+community: "ServicesCatalogView.tsx"
 location: "L26"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/react
+  - community/ServicesCatalogViewtsx
 ---
 
 # LandingPageView()
@@ -16,4 +16,4 @@ tags:
 - [[LandingPageView.tsx]] - `contains` [EXTRACTED]
 - [[whatsappLink()]] - `calls` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/react
+#graphify/code #graphify/EXTRACTED #community/ServicesCatalogViewtsx

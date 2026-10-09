@@ -11,6 +11,7 @@ tags:
 # Builder
 
 ## Connections
-- [[DermatologicService]] - `references` [EXTRACTED]
+- [[ChatMessageItemDTO]] - `references` [EXTRACTED]
+- [[GeminiChatRequestDTO]] - `references` [EXTRACTED]
 
 #graphify/code #graphify/EXTRACTED #community/DermatologicService

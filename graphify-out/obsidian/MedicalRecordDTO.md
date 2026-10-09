@@ -1,12 +1,12 @@
 ---
 source_file: "backend/src/main/java/com/clinicadermatologica/app/presentation/dto/MedicalRecordDTO.java"
 type: "code"
-community: "MedicalRecordService"
+community: "MedicalRecordDTO"
 location: "L21"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/MedicalRecordService
+  - community/MedicalRecordDTO
 ---
 
 # MedicalRecordDTO
@@ -19,13 +19,13 @@ tags:
 - [[dot-saveMedicalRecord()]] - `references` [EXTRACTED]
 - [[dot-saveOrUpdateMedicalRecord()]] - `references` [EXTRACTED]
 - [[AlergiaResponseDTO]] - `references` [EXTRACTED]
-- [[AllArgsConstructor_23]] - `references` [EXTRACTED]
+- [[AllArgsConstructor_22]] - `references` [EXTRACTED]
 - [[AntecedentePatologicoResponseDTO]] - `references` [EXTRACTED]
-- [[Builder_21]] - `references` [EXTRACTED]
-- [[Getter_23]] - `references` [EXTRACTED]
+- [[Builder_20]] - `references` [EXTRACTED]
+- [[Getter_22]] - `references` [EXTRACTED]
 - [[HabitoResponseDTO]] - `references` [EXTRACTED]
 - [[MedicalRecordDTO.java]] - `contains` [EXTRACTED]
-- [[NoArgsConstructor_23]] - `references` [EXTRACTED]
-- [[Setter_23]] - `references` [EXTRACTED]
+- [[NoArgsConstructor_22]] - `references` [EXTRACTED]
+- [[Setter_22]] - `references` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/MedicalRecordService
+#graphify/code #graphify/EXTRACTED #community/MedicalRecordDTO

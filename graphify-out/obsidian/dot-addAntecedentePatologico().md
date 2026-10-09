@@ -14,9 +14,9 @@ tags:
 ## Connections
 - [[dot-addAntecedentePatologico()_1]] - `calls` [INFERRED]
 - [[dot-existsById()_2]] - `calls` [INFERRED]
-- [[dot-findById()_14]] - `calls` [INFERRED]
+- [[dot-findById()_22]] - `calls` [INFERRED]
 - [[dot-mapAntecedenteToDTO()]] - `calls` [EXTRACTED]
-- [[dot-save()_8]] - `calls` [INFERRED]
+- [[dot-save()_9]] - `calls` [INFERRED]
 - [[AntecedentePatologicoId]] - `calls` [INFERRED]
 - [[AntecedentePatologicoRequestDTO]] - `references` [EXTRACTED]
 - [[AntecedentePatologicoResponseDTO]] - `references` [EXTRACTED]

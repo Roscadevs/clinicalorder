@@ -2,7 +2,7 @@
 source_file: "frontend/src/features/appointments/BookingStatusViews.tsx"
 type: "code"
 community: "react"
-location: "L8"
+location: "L11"
 tags:
   - graphify/code
   - graphify/EXTRACTED

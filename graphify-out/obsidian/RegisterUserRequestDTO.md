@@ -12,14 +12,14 @@ tags:
 # RegisterUserRequestDTO
 
 ## Connections
-- [[dot-register()_4]] - `references` [EXTRACTED]
+- [[dot-register()_3]] - `references` [EXTRACTED]
 - [[dot-registerUser()]] - `references` [EXTRACTED]
-- [[AllArgsConstructor_39]] - `references` [EXTRACTED]
-- [[Builder_36]] - `references` [EXTRACTED]
-- [[Getter_39]] - `references` [EXTRACTED]
-- [[NoArgsConstructor_39]] - `references` [EXTRACTED]
+- [[AllArgsConstructor_42]] - `references` [EXTRACTED]
+- [[Builder_39]] - `references` [EXTRACTED]
+- [[Getter_42]] - `references` [EXTRACTED]
+- [[NoArgsConstructor_42]] - `references` [EXTRACTED]
 - [[RegisterUserRequestDTO.java]] - `contains` [EXTRACTED]
-- [[Setter_39]] - `references` [EXTRACTED]
+- [[Setter_42]] - `references` [EXTRACTED]
 - [[UserRole]] - `references` [EXTRACTED]
 
 #graphify/code #graphify/EXTRACTED #community/UserRole

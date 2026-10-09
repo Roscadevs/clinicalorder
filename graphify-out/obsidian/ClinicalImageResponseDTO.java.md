@@ -1,12 +1,12 @@
 ---
 source_file: "backend/src/main/java/com/clinicadermatologica/app/presentation/dto/ClinicalImageResponseDTO.java"
 type: "code"
-community: "ClinicalImageResponseDTO"
+community: "ClinicalImageService"
 location: "L1"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/ClinicalImageResponseDTO
+  - community/ClinicalImageService
 ---
 
 # ClinicalImageResponseDTO.java
@@ -14,4 +14,4 @@ tags:
 ## Connections
 - [[ClinicalImageResponseDTO]] - `contains` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/ClinicalImageResponseDTO
+#graphify/code #graphify/EXTRACTED #community/ClinicalImageService

@@ -1,16 +1,16 @@
 ---
 source_file: ""
 type: "code"
-community: "ClinicalImage"
+community: "DermatologicService"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/ClinicalImage
+  - community/DermatologicService
 ---
 
 # NoArgsConstructor
 
 ## Connections
-- [[ClinicalImage]] - `references` [EXTRACTED]
+- [[DermatologicService]] - `references` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/ClinicalImage
+#graphify/code #graphify/EXTRACTED #community/DermatologicService

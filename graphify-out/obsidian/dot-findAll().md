@@ -1,12 +1,12 @@
 ---
 source_file: "backend/src/main/java/com/clinicadermatologica/app/domain/repository/DermatologicServiceRepository.java"
 type: "code"
-community: "ServiceResponseDTO"
+community: "DermatologicService"
 location: "L15"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/ServiceResponseDTO
+  - community/DermatologicService
 ---
 
 # .findAll()
@@ -16,4 +16,4 @@ tags:
 - [[DermatologicService]] - `references` [EXTRACTED]
 - [[DermatologicServiceRepository]] - `method` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/ServiceResponseDTO
+#graphify/code #graphify/EXTRACTED #community/DermatologicService

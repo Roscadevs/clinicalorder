@@ -13,6 +13,6 @@ tags:
 
 ## Connections
 - [[ClinicalImageRepositoryAdapter]] - `method` [EXTRACTED]
-- [[Override_14]] - `references` [EXTRACTED]
+- [[Override_12]] - `references` [EXTRACTED]
 
 #graphify/code #graphify/EXTRACTED #community/ClinicalImage

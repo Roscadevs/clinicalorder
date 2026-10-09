@@ -1,17 +1,17 @@
 ---
 source_file: ""
 type: "code"
-community: "HoldExpirationScheduler.java"
+community: "lombok.RequiredArgsConstructor"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/HoldExpirationSchedulerjava
+  - community/lombokRequiredArgsConstructor
 ---
 
 # org.springframework.scheduling.annotation.Scheduled
 
 ## Connections
-- [[dot-releaseExpiredHolds()]] - `references` [EXTRACTED]
+- [[dot-releaseExpiredHolds()_1]] - `references` [EXTRACTED]
 - [[HoldExpirationScheduler.java]] - `imports` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/HoldExpirationSchedulerjava
+#graphify/code #graphify/EXTRACTED #community/lombokRequiredArgsConstructor

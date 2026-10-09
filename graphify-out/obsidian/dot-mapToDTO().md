@@ -2,7 +2,7 @@
 source_file: "backend/src/main/java/com/clinicadermatologica/app/application/service/AppointmentService.java"
 type: "code"
 community: "AppointmentService"
-location: "L302"
+location: "L314"
 tags:
   - graphify/code
   - graphify/EXTRACTED
@@ -12,7 +12,7 @@ tags:
 # .mapToDTO()
 
 ## Connections
-- [[Appointment_8]] - `references` [EXTRACTED]
+- [[Appointment_7]] - `references` [EXTRACTED]
 - [[AppointmentResponseDTO]] - `references` [EXTRACTED]
 - [[AppointmentService]] - `method` [EXTRACTED]
 

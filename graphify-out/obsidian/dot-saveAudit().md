@@ -14,6 +14,6 @@ tags:
 ## Connections
 - [[MedicalRecordAudit]] - `references` [EXTRACTED]
 - [[MedicalRecordRepositoryAdapter]] - `method` [EXTRACTED]
-- [[Override_8]] - `references` [EXTRACTED]
+- [[Override_7]] - `references` [EXTRACTED]
 
 #graphify/code #graphify/EXTRACTED #community/MedicalRecord

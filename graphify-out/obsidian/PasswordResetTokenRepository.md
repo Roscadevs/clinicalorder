@@ -13,7 +13,7 @@ tags:
 
 ## Connections
 - [[dot-findByToken()_2]] - `method` [EXTRACTED]
-- [[dot-save()_25]] - `method` [EXTRACTED]
+- [[dot-save()_24]] - `method` [EXTRACTED]
 - [[AuthService]] - `references` [EXTRACTED]
 - [[AuthService.java]] - `imports` [EXTRACTED]
 - [[AuthServiceTest]] - `references` [EXTRACTED]

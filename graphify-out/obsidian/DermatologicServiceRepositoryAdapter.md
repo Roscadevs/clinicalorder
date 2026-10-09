@@ -14,10 +14,10 @@ tags:
 ## Connections
 - [[dot-existsByName()_1]] - `method` [EXTRACTED]
 - [[dot-findAll()_1]] - `method` [EXTRACTED]
-- [[dot-findAllActive()_3]] - `method` [EXTRACTED]
-- [[dot-findById()_19]] - `method` [EXTRACTED]
+- [[dot-findAllActive()_2]] - `method` [EXTRACTED]
+- [[dot-findById()_17]] - `method` [EXTRACTED]
 - [[dot-findByName()_1]] - `method` [EXTRACTED]
-- [[dot-save()_19]] - `method` [EXTRACTED]
+- [[dot-save()_18]] - `method` [EXTRACTED]
 - [[DermatologicServiceRepository]] - `implements` [EXTRACTED]
 - [[DermatologicServiceRepositoryAdapter.java]] - `contains` [EXTRACTED]
 - [[JpaDermatologicServiceRepository]] - `references` [EXTRACTED]

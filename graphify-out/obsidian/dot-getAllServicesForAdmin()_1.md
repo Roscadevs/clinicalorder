@@ -13,7 +13,7 @@ tags:
 
 ## Connections
 - [[dot-getAllServicesForAdmin()]] - `calls` [INFERRED]
-- [[GetMapping]] - `references` [EXTRACTED]
+- [[GetMapping_1]] - `references` [EXTRACTED]
 - [[ServiceCatalogController]] - `method` [EXTRACTED]
 - [[ServiceResponseDTO]] - `references` [EXTRACTED]
 - [[org.springframework.http.ResponseEntity]] - `references` [EXTRACTED]

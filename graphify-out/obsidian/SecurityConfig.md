@@ -1,12 +1,12 @@
 ---
 source_file: "backend/src/main/java/com/clinicadermatologica/app/infrastructure/security/SecurityConfig.java"
 type: "code"
-community: "GlobalExceptionHandler"
+community: "SecurityConfig.java"
 location: "L26"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/GlobalExceptionHandler
+  - community/SecurityConfigjava
 ---
 
 # SecurityConfig
@@ -23,4 +23,4 @@ tags:
 - [[org.springframework.security.config.annotation.method.configuration.EnableMethodSecurity]] - `references` [EXTRACTED]
 - [[org.springframework.security.config.annotation.web.configuration.EnableWebSecurity]] - `references` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/GlobalExceptionHandler
+#graphify/code #graphify/EXTRACTED #community/SecurityConfigjava

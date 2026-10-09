@@ -1,23 +1,23 @@
 ---
-source_file: "backend/src/main/java/com/clinicadermatologica/app/infrastructure/payment/strategy/BankTransferPaymentStrategy.java"
+source_file: "backend/src/main/java/com/clinicadermatologica/app/application/strategy/PaymentRegistrationStrategy.java"
 type: "code"
-community: ".save"
-location: "L30"
+community: "PaymentTransaction"
+location: "L41"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/save
+  - community/PaymentTransaction
 ---
 
 # .register()
 
 ## Connections
-- [[dot-save()_5]] - `calls` [INFERRED]
-- [[Appointment_3]] - `references` [EXTRACTED]
-- [[BankTransferPaymentStrategy]] - `method` [EXTRACTED]
-- [[Override_5]] - `references` [EXTRACTED]
+- [[dot-testRegisterDeposit_Cash_ConfirmsAppointment()]] - `calls` [INFERRED]
+- [[dot-testRegisterFinalPayment_DelegatesToStrategy_CompletesAppointment()]] - `calls` [INFERRED]
+- [[Appointment_2]] - `references` [EXTRACTED]
 - [[PaymentConcept_2]] - `references` [EXTRACTED]
+- [[PaymentRegistrationStrategy]] - `method` [EXTRACTED]
 - [[PaymentTransaction]] - `references` [EXTRACTED]
 - [[User]] - `references` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/save
+#graphify/code #graphify/EXTRACTED #community/PaymentTransaction

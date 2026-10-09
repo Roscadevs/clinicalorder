@@ -1,12 +1,12 @@
 ---
 source_file: "frontend/src/features/appointments/BookingWizard.tsx"
 type: "code"
-community: "BookingWizard.tsx"
+community: "api.ts"
 location: "L24"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/BookingWizardtsx
+  - community/apits
 ---
 
 # STEP_LABELS
@@ -14,4 +14,4 @@ tags:
 ## Connections
 - [[BookingWizard.tsx]] - `contains` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/BookingWizardtsx
+#graphify/code #graphify/EXTRACTED #community/apits

@@ -1,12 +1,12 @@
 ---
 source_file: "backend/src/main/java/com/clinicadermatologica/app/application/strategy/PaymentRegistrationStrategy.java"
 type: "code"
-community: "org.springframework.stereotype.Component"
+community: "lombok.RequiredArgsConstructor"
 location: "L23"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/orgspringframeworkstereotypeComponent
+  - community/lombokRequiredArgsConstructor
 ---
 
 # PaymentRegistrationStrategy
@@ -14,8 +14,8 @@ tags:
 ## Connections
 - [[dot-PaymentStrategyFactory()]] - `references` [EXTRACTED]
 - [[dot-getStrategy()]] - `references` [EXTRACTED]
-- [[dot-register()_3]] - `method` [EXTRACTED]
-- [[dot-supportedType()_3]] - `method` [EXTRACTED]
+- [[dot-register()]] - `method` [EXTRACTED]
+- [[dot-supportedType()_2]] - `method` [EXTRACTED]
 - [[BankTransferPaymentStrategy]] - `implements` [EXTRACTED]
 - [[BankTransferPaymentStrategy.java]] - `imports` [EXTRACTED]
 - [[CashPaymentStrategy]] - `implements` [EXTRACTED]
@@ -26,4 +26,4 @@ tags:
 - [[PaymentServiceTest.java]] - `imports` [EXTRACTED]
 - [[PaymentStrategyFactory]] - `references` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/orgspringframeworkstereotypeComponent
+#graphify/code #graphify/EXTRACTED #community/lombokRequiredArgsConstructor

@@ -1,17 +1,20 @@
 ---
 source_file: ""
 type: "code"
-community: ".register"
+community: "MedicalRecord"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/register
+  - community/MedicalRecord
 ---
 
 # Override
 
 ## Connections
-- [[dot-register()_2]] - `references` [EXTRACTED]
-- [[dot-supportedType()_2]] - `references` [EXTRACTED]
+- [[dot-findAuditHistory()]] - `references` [EXTRACTED]
+- [[dot-findById()_9]] - `references` [EXTRACTED]
+- [[dot-findByPatientId()_3]] - `references` [EXTRACTED]
+- [[dot-save()_8]] - `references` [EXTRACTED]
+- [[dot-saveAudit()]] - `references` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/register
+#graphify/code #graphify/EXTRACTED #community/MedicalRecord

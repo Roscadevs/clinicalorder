@@ -18,6 +18,7 @@ tags:
 - [[dot-handleDuplicate()]] - `method` [EXTRACTED]
 - [[dot-handleGeneralException()]] - `method` [EXTRACTED]
 - [[dot-handleNotFound()]] - `method` [EXTRACTED]
+- [[dot-handlePaymentGateway()]] - `method` [EXTRACTED]
 - [[dot-handleSlotUnavailable()]] - `method` [EXTRACTED]
 - [[dot-handleUnauthorized()]] - `method` [EXTRACTED]
 - [[dot-handleValidationErrors()]] - `method` [EXTRACTED]

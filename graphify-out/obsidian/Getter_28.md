@@ -11,6 +11,6 @@ tags:
 # Getter
 
 ## Connections
-- [[DermatologicService]] - `references` [EXTRACTED]
+- [[GeminiChatResponseDTO]] - `references` [EXTRACTED]
 
 #graphify/code #graphify/EXTRACTED #community/DermatologicService

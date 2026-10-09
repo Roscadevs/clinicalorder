@@ -12,7 +12,7 @@ tags:
 # .processUserMessage()
 
 ## Connections
-- [[dot-findAllActive()]] - `calls` [INFERRED]
+- [[dot-findAllActive()_1]] - `calls` [INFERRED]
 - [[dot-generateResponse()]] - `calls` [INFERRED]
 - [[dot-sendMessage()]] - `calls` [INFERRED]
 - [[GeminiChatRequestDTO]] - `references` [EXTRACTED]

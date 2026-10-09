@@ -1,20 +1,20 @@
 ---
 source_file: "backend/src/main/java/com/clinicadermatologica/app/application/service/MedicalRecordService.java"
 type: "code"
-community: ".addHabito"
+community: "Habito"
 location: "L352"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/addHabito
+  - community/Habito
 ---
 
 # .mapHabitoToDTO()
 
 ## Connections
-- [[dot-addHabito()_1]] - `calls` [EXTRACTED]
+- [[dot-addHabito()]] - `calls` [EXTRACTED]
 - [[Habito]] - `references` [EXTRACTED]
 - [[HabitoResponseDTO]] - `references` [EXTRACTED]
 - [[MedicalRecordService]] - `method` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/addHabito
+#graphify/code #graphify/EXTRACTED #community/Habito

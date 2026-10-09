@@ -198,6 +198,124 @@ public class PaymentServiceTest {
         assertEquals("987654321", pendingTx.getMpPaymentId());
     }
 
+    @Test
+    @DisplayName("Webhook debe ser idempotente si la transacción ya fue APPROVED previamente")
+    void testWebhook_AlreadyApproved_IsIdempotent() {
+        PaymentTransaction approvedTx = PaymentTransaction.builder()
+                .id(5L)
+                .appointment(mockAppointment)
+                .paymentType(PaymentType.MERCADOPAGO)
+                .paymentConcept(PaymentConcept.DEPOSIT)
+                .amount(new BigDecimal("21000.00"))
+                .status(PaymentStatus.APPROVED)
+                .mpPreferenceId("PREF-ALREADY-APPROVED")
+                .build();
+
+        Payment mpPayment = mock(Payment.class);
+        when(mpPayment.getExternalReference()).thenReturn("PREF-ALREADY-APPROVED");
+
+        Map<String, Object> payload = Map.of(
+                "type", "payment",
+                "data", Map.of("id", "66")
+        );
+
+        when(mercadoPagoAdapter.getPaymentDetails(66L)).thenReturn(mpPayment);
+        when(paymentTransactionRepository.findByMpPreferenceId("PREF-ALREADY-APPROVED"))
+                .thenReturn(Optional.of(approvedTx));
+
+        boolean processed = paymentService.processMercadoPagoWebhook(payload);
+
+        assertTrue(processed);
+        // No se debe llamar a save si ya estaba aprobada
+        verify(paymentTransactionRepository, never()).save(approvedTx);
+    }
+
+    @Test
+    @DisplayName("Webhook in_process debe mantener la cita en reserva activa")
+    void testWebhook_InProcess_MaintainsPendingAppointment() {
+        PaymentTransaction pendingTx = PaymentTransaction.builder()
+                .id(6L)
+                .appointment(mockAppointment)
+                .paymentType(PaymentType.MERCADOPAGO)
+                .paymentConcept(PaymentConcept.DEPOSIT)
+                .amount(new BigDecimal("21000.00"))
+                .status(PaymentStatus.PENDING)
+                .mpPreferenceId("PREF-IN-PROCESS")
+                .build();
+
+        Payment mpPayment = mock(Payment.class);
+        when(mpPayment.getStatus()).thenReturn("in_process");
+        when(mpPayment.getExternalReference()).thenReturn("PREF-IN-PROCESS");
+
+        Map<String, Object> payload = Map.of(
+                "type", "payment",
+                "data", Map.of("id", "55")
+        );
+
+        when(mercadoPagoAdapter.getPaymentDetails(55L)).thenReturn(mpPayment);
+        when(paymentTransactionRepository.findByMpPreferenceId("PREF-IN-PROCESS"))
+                .thenReturn(Optional.of(pendingTx));
+
+        boolean processed = paymentService.processMercadoPagoWebhook(payload);
+
+        assertTrue(processed);
+        assertEquals(AppointmentStatus.PENDING_PAYMENT, mockAppointment.getStatus());
+        assertEquals("55", pendingTx.getMpPaymentId());
+        verify(paymentTransactionRepository).save(pendingTx);
+    }
+
+    @Test
+    @DisplayName("isValidSignature valida correctamente la firma HMAC SHA-256")
+    void testIsValidSignature_SuccessAndFailure() throws Exception {
+        String secret = "mi_secreto_super_seguro_mp";
+        org.springframework.test.util.ReflectionTestUtils.setField(paymentService, "webhookSecret", secret);
+
+        String dataId = "123456";
+        String requestId = "req-abc-789";
+        String ts = "1742505638000";
+
+        // manifest: id:123456;request-id:req-abc-789;ts:1742505638000;
+        String manifest = "id:" + dataId + ";request-id:" + requestId + ";ts:" + ts + ";";
+        javax.crypto.Mac mac = javax.crypto.Mac.getInstance("HmacSHA256");
+        mac.init(new javax.crypto.spec.SecretKeySpec(secret.getBytes(), "HmacSHA256"));
+        byte[] hash = mac.doFinal(manifest.getBytes());
+        StringBuilder hexString = new StringBuilder();
+        for (byte b : hash) {
+            String hex = Integer.toHexString(0xff & b);
+            if (hex.length() == 1) hexString.append('0');
+            hexString.append(hex);
+        }
+        String validV1 = hexString.toString();
+        String validXSignature = "ts=" + ts + ",v1=" + validV1;
+
+        // Firma válida
+        assertTrue(paymentService.isValidSignature(validXSignature, requestId, dataId));
+
+        // Firma alterada
+        String invalidXSignature = "ts=" + ts + ",v1=invalidhash123456789";
+        assertFalse(paymentService.isValidSignature(invalidXSignature, requestId, dataId));
+
+        // Sin firma
+        assertFalse(paymentService.isValidSignature(null, requestId, dataId));
+    }
+
+    @Test
+    @DisplayName("refundPayment emite reembolso a través del adaptador y marca la transacción como REFUNDED")
+    void testRefundPayment_Success() {
+        PaymentTransaction tx = PaymentTransaction.builder()
+                .id(7L)
+                .paymentType(PaymentType.MERCADOPAGO)
+                .mpPaymentId("99887766")
+                .status(PaymentStatus.APPROVED)
+                .build();
+
+        paymentService.refundPayment(tx);
+
+        assertEquals(PaymentStatus.REFUNDED, tx.getStatus());
+        verify(mercadoPagoAdapter).refundPayment(99887766L);
+        verify(paymentTransactionRepository).save(tx);
+    }
+
     // ─── FINAL PAYMENT TESTS ─────────────────────────────────────────────────────
 
     @Test

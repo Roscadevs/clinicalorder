@@ -12,7 +12,7 @@ tags:
 # .findExpiredHolds()
 
 ## Connections
-- [[dot-releaseExpiredHolds()_1]] - `calls` [INFERRED]
+- [[dot-releaseExpiredHolds()]] - `calls` [INFERRED]
 - [[dot-testReleaseExpiredHolds_CancelsAndRejectsPendingPayment()]] - `calls` [INFERRED]
 - [[Appointment]] - `references` [EXTRACTED]
 - [[AppointmentRepository]] - `method` [EXTRACTED]

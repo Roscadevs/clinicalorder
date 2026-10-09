@@ -1,20 +1,19 @@
 ---
 source_file: ""
 type: "code"
-community: "lombok.RequiredArgsConstructor"
+community: "AuthController"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/lombokRequiredArgsConstructor
+  - community/AuthController
 ---
 
 # PostMapping
 
 ## Connections
-- [[dot-bookTemporaryHold()_1]] - `references` [EXTRACTED]
-- [[dot-cancelAppointment()_1]] - `references` [EXTRACTED]
-- [[dot-finalizePayment()]] - `references` [EXTRACTED]
-- [[dot-markAsAttended()_1]] - `references` [EXTRACTED]
-- [[dot-registerDepositPayment()_1]] - `references` [EXTRACTED]
+- [[dot-forgotPassword()]] - `references` [EXTRACTED]
+- [[dot-login()]] - `references` [EXTRACTED]
+- [[dot-register()_3]] - `references` [EXTRACTED]
+- [[dot-resetPassword()]] - `references` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/lombokRequiredArgsConstructor
+#graphify/code #graphify/EXTRACTED #community/AuthController

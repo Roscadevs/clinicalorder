@@ -2,10 +2,10 @@
 source_file: "backend/src/main/java/com/clinicadermatologica/app/application/service/AppointmentService.java"
 type: "code"
 community: "AppointmentService"
-location: "L217"
+location: "L211"
 tags:
   - graphify/code
-  - graphify/EXTRACTED
+  - graphify/INFERRED
   - community/AppointmentService
 ---
 
@@ -13,10 +13,12 @@ tags:
 
 ## Connections
 - [[dot-cancelAppointment()_1]] - `calls` [INFERRED]
-- [[dot-findById()_7]] - `calls` [INFERRED]
+- [[dot-findByAppointmentId()_1]] - `calls` [INFERRED]
+- [[dot-findById()_12]] - `calls` [INFERRED]
 - [[dot-rejectPendingTransactions()_1]] - `calls` [EXTRACTED]
-- [[dot-save()_10]] - `calls` [INFERRED]
+- [[dot-save()_6]] - `calls` [INFERRED]
+- [[dot-testCancelAppointment_WithApprovedMercadoPagoPayment_TriggersRefund()]] - `calls` [INFERRED]
 - [[AppointmentService]] - `method` [EXTRACTED]
 - [[org.springframework.transaction.annotation.Transactional]] - `references` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/AppointmentService
+#graphify/code #graphify/INFERRED #community/AppointmentService

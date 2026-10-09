@@ -1,21 +1,21 @@
 ---
 source_file: "backend/src/main/java/com/clinicadermatologica/app/presentation/controller/MedicalRecordController.java"
 type: "code"
-community: "MedicalRecordService"
+community: "MedicalRecordAudit"
 location: "L107"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/MedicalRecordService
+  - community/MedicalRecordAudit
 ---
 
 # .getAuditHistory()
 
 ## Connections
 - [[dot-findAuditHistory()_1]] - `calls` [INFERRED]
-- [[GetMapping_2]] - `references` [EXTRACTED]
+- [[GetMapping]] - `references` [EXTRACTED]
 - [[MedicalRecordAudit]] - `references` [EXTRACTED]
 - [[MedicalRecordController]] - `method` [EXTRACTED]
 - [[org.springframework.http.ResponseEntity]] - `references` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/MedicalRecordService
+#graphify/code #graphify/EXTRACTED #community/MedicalRecordAudit

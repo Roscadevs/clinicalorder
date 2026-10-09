@@ -1,19 +1,16 @@
 ---
 source_file: ""
 type: "code"
-community: "MedicalRecordService"
+community: "CalendarBlockResponseDTO"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/MedicalRecordService
+  - community/CalendarBlockResponseDTO
 ---
 
 # GetMapping
 
 ## Connections
-- [[dot-getAuditHistory()]] - `references` [EXTRACTED]
-- [[dot-getClinicalEntriesByPatient()_1]] - `references` [EXTRACTED]
-- [[dot-getClinicalPhotos()]] - `references` [EXTRACTED]
-- [[dot-getMedicalRecordByPatient()]] - `references` [EXTRACTED]
+- [[dot-getBlocks()]] - `references` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/MedicalRecordService
+#graphify/code #graphify/EXTRACTED #community/CalendarBlockResponseDTO

@@ -1,12 +1,12 @@
 ---
 source_file: "frontend/src/features/appointments/BookingWizard.tsx"
 type: "code"
-community: "BookingWizard.tsx"
+community: "api.ts"
 location: "L31"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/BookingWizardtsx
+  - community/apits
 ---
 
 # Hold
@@ -15,4 +15,4 @@ tags:
 - [[BookingWizard.tsx]] - `contains` [EXTRACTED]
 - [[PaymentPreferenceResponse]] - `references` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/BookingWizardtsx
+#graphify/code #graphify/EXTRACTED #community/apits

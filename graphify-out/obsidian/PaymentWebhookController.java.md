@@ -1,12 +1,12 @@
 ---
 source_file: "backend/src/main/java/com/clinicadermatologica/app/presentation/controller/PaymentWebhookController.java"
 type: "code"
-community: "lombok.RequiredArgsConstructor"
+community: "PaymentWebhookController"
 location: "L1"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/lombokRequiredArgsConstructor
+  - community/PaymentWebhookController
 ---
 
 # PaymentWebhookController.java
@@ -18,4 +18,4 @@ tags:
 - [[lombok.extern.slf4j.Slf4j]] - `imports` [EXTRACTED]
 - [[org.springframework.http.ResponseEntity]] - `imports` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/lombokRequiredArgsConstructor
+#graphify/code #graphify/EXTRACTED #community/PaymentWebhookController

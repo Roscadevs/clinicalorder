@@ -1,12 +1,12 @@
 ---
 source_file: "backend/src/main/java/com/clinicadermatologica/app/domain/model/MedicalRecordAudit.java"
 type: "code"
-community: "MedicalRecord"
+community: "MedicalRecordAudit"
 location: "L1"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/MedicalRecord
+  - community/MedicalRecordAudit
 ---
 
 # MedicalRecordAudit.java
@@ -14,4 +14,4 @@ tags:
 ## Connections
 - [[MedicalRecordAudit]] - `contains` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/MedicalRecord
+#graphify/code #graphify/EXTRACTED #community/MedicalRecordAudit

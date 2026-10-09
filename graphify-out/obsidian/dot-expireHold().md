@@ -14,8 +14,8 @@ tags:
 ## Connections
 - [[dot-bookTemporaryHold()]] - `calls` [EXTRACTED]
 - [[dot-rejectPendingTransactions()_1]] - `calls` [EXTRACTED]
-- [[dot-save()_10]] - `calls` [INFERRED]
-- [[Appointment_8]] - `references` [EXTRACTED]
+- [[dot-save()_6]] - `calls` [INFERRED]
+- [[Appointment_7]] - `references` [EXTRACTED]
 - [[AppointmentService]] - `method` [EXTRACTED]
 
 #graphify/code #graphify/EXTRACTED #community/AppointmentService

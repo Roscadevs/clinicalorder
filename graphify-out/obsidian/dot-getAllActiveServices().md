@@ -12,7 +12,7 @@ tags:
 # .getAllActiveServices()
 
 ## Connections
-- [[dot-findAllActive()]] - `calls` [INFERRED]
+- [[dot-findAllActive()_1]] - `calls` [INFERRED]
 - [[dot-getActiveServices()]] - `calls` [INFERRED]
 - [[DermatologicServiceService]] - `method` [EXTRACTED]
 - [[ServiceResponseDTO]] - `references` [EXTRACTED]

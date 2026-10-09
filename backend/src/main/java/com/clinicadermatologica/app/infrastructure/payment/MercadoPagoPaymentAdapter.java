@@ -1,9 +1,13 @@
 package com.clinicadermatologica.app.infrastructure.payment;
 
+import com.clinicadermatologica.app.domain.exception.PaymentGatewayException;
 import com.mercadopago.MercadoPagoConfig; // Configuración global del SDK de MercadoPago
 import com.mercadopago.client.payment.PaymentClient; // Cliente para consultar pagos
+import com.mercadopago.client.payment.PaymentRefundClient; // Cliente para emitir reembolsos
 import com.mercadopago.client.preference.*; // Clientes y DTOs para crear preferencias de Checkout Pro
+import com.mercadopago.core.MPRequestOptions; // Opciones de request con cabeceras de idempotencia
 import com.mercadopago.resources.payment.Payment; // Recurso de pago devuelto por la API
+import com.mercadopago.resources.payment.PaymentRefund; // Recurso de reembolso
 import com.mercadopago.resources.preference.Preference; // Recurso de preferencia devuelto por la API
 import lombok.extern.slf4j.Slf4j; // Logger de Lombok
 import org.springframework.beans.factory.annotation.Value; // Inyección de properties
@@ -12,6 +16,7 @@ import org.springframework.stereotype.Component; // Componente Spring
 import java.math.BigDecimal; // Precisión decimal
 import java.time.OffsetDateTime; // Marcas de tiempo con offset horario
 import java.util.Collections; // Listas inmutables
+import java.util.Map;
 
 /**
  * Adaptador de infraestructura para la integración con el SDK oficial de MercadoPago (Checkout Pro).
@@ -50,7 +55,9 @@ public class MercadoPagoPaymentAdapter {
                                              String patientEmail, String patientName, String patientDni, String patientPhone) {
         try {
             // Inicializa las credenciales de MercadoPago
-            MercadoPagoConfig.setAccessToken(accessToken);
+            if (accessToken != null && !accessToken.isBlank()) {
+                MercadoPagoConfig.setAccessToken(accessToken);
+            }
 
             // Crea el ítem representativo del 50% de la seña con categoría y trazabilidad completa
             PreferenceItemRequest itemRequest = PreferenceItemRequest.builder()
@@ -93,6 +100,13 @@ public class MercadoPagoPaymentAdapter {
 
             PreferencePayerRequest payerRequest = payerBuilder.build();
 
+            // Excluye medios de pago offline (tickets como Rapipago/Pago Fácil) para turnos médicos
+            PreferencePaymentMethodsRequest paymentMethods = PreferencePaymentMethodsRequest.builder()
+                    .excludedPaymentTypes(Collections.singletonList(
+                            PreferencePaymentTypeRequest.builder().id("ticket").build()
+                    ))
+                    .build();
+
             // Define expiración de 10 minutos para coordinar con el TTL del backend
             OffsetDateTime expirationDate = OffsetDateTime.now().plusMinutes(10);
 
@@ -101,7 +115,8 @@ public class MercadoPagoPaymentAdapter {
                     .items(Collections.singletonList(itemRequest))
                     .backUrls(backUrls)
                     .payer(payerRequest)
-                    .statementDescriptor("CLINICA DERMA") // Texto visible en el resumen de tarjeta
+                    .paymentMethods(paymentMethods)
+                    .statementDescriptor("CLINICA DERMA") // Texto visible en el resumen de tarjeta (13 chars max)
                     .autoReturn("approved") // Redirección automática si el pago se aprueba
                     .expires(true) // Activa expiración
                     .dateOfExpiration(expirationDate) // Fecha de expiración (10 min)
@@ -113,18 +128,42 @@ public class MercadoPagoPaymentAdapter {
 
             PreferenceRequest preferenceRequest = preferenceRequestBuilder.build();
 
+            // Clave de idempotencia para prevenir preferencias duplicadas por problemas de red
+            MPRequestOptions requestOptions = MPRequestOptions.builder()
+                    .customHeaders(Collections.singletonMap("X-Idempotency-Key", "PREF-" + appointmentId + "-" + System.currentTimeMillis()))
+                    .build();
+
             // Ejecuta la llamada a MercadoPago y retorna la preferencia con el init_point
             PreferenceClient client = new PreferenceClient();
-            return client.create(preferenceRequest);
+            return client.create(preferenceRequest, requestOptions);
 
         } catch (com.mercadopago.exceptions.MPApiException e) {
-            log.error("Error al crear preferencia en MercadoPago para cita {}: HTTP Status {}, Respuesta: {}",
-                    appointmentId, e.getStatusCode(), e.getApiResponse() != null ? e.getApiResponse().getContent() : e.getMessage());
-            return null;
+            String errorDetail = e.getApiResponse() != null ? e.getApiResponse().getContent() : e.getMessage();
+            log.error("Error de API MercadoPago al crear preferencia para cita {}: HTTP Status {}, Respuesta: {}",
+                    appointmentId, e.getStatusCode(), errorDetail);
+            throw new PaymentGatewayException("MercadoPago rechazó la creación de la preferencia (" + e.getStatusCode() + "): " + errorDetail, e);
         } catch (Exception e) {
-            log.error("Error al crear preferencia en MercadoPago para cita {}: {}", appointmentId, e.getMessage(), e);
+            log.error("Error general al crear preferencia en MercadoPago para cita {}: {}", appointmentId, e.getMessage(), e);
+            throw new PaymentGatewayException("Error de comunicación con la pasarela de pagos: " + e.getMessage(), e);
+        }
+    }
+
+    /**
+     * Determina la URL de redirección adecuada (producción vs sandbox) para el pagador.
+     * En producción (credencial APP_USR-), utiliza siempre init_point.
+     * En modo de prueba (credencial TEST-), prioriza sandbox_init_point.
+     */
+    public String resolveInitPoint(Preference preference) {
+        if (preference == null) {
             return null;
         }
+        boolean isProduction = accessToken != null && accessToken.trim().startsWith("APP_USR-");
+        if (isProduction) {
+            return preference.getInitPoint();
+        }
+        return (preference.getSandboxInitPoint() != null && !preference.getSandboxInitPoint().isBlank())
+                ? preference.getSandboxInitPoint()
+                : preference.getInitPoint();
     }
 
     /**
@@ -132,12 +171,38 @@ public class MercadoPagoPaymentAdapter {
      */
     public Payment getPaymentDetails(Long paymentId) {
         try {
-            MercadoPagoConfig.setAccessToken(accessToken);
+            if (accessToken != null && !accessToken.isBlank()) {
+                MercadoPagoConfig.setAccessToken(accessToken);
+            }
             PaymentClient client = new PaymentClient();
             return client.get(paymentId); // Consulta el estado verificado del pago
         } catch (Exception e) {
             log.error("Error al consultar pago {} en MercadoPago: {}", paymentId, e.getMessage());
             return null;
+        }
+    }
+
+    /**
+     * Emite un reembolso total de un pago procesado a través de MercadoPago.
+     */
+    public PaymentRefund refundPayment(Long paymentId) {
+        try {
+            if (accessToken != null && !accessToken.isBlank()) {
+                MercadoPagoConfig.setAccessToken(accessToken);
+            }
+            PaymentRefundClient refundClient = new PaymentRefundClient();
+            MPRequestOptions requestOptions = MPRequestOptions.builder()
+                    .customHeaders(Collections.singletonMap("X-Idempotency-Key", "REFUND-" + paymentId + "-" + System.currentTimeMillis()))
+                    .build();
+            return refundClient.refund(paymentId, requestOptions);
+        } catch (com.mercadopago.exceptions.MPApiException e) {
+            String errorDetail = e.getApiResponse() != null ? e.getApiResponse().getContent() : e.getMessage();
+            log.error("Error de API MercadoPago al reembolsar pago {}: HTTP Status {}, Respuesta: {}",
+                    paymentId, e.getStatusCode(), errorDetail);
+            throw new PaymentGatewayException("MercadoPago no pudo procesar el reembolso (" + e.getStatusCode() + "): " + errorDetail, e);
+        } catch (Exception e) {
+            log.error("Error al procesar reembolso para pago {}: {}", paymentId, e.getMessage(), e);
+            throw new PaymentGatewayException("Error de comunicación al procesar el reembolso en MercadoPago: " + e.getMessage(), e);
         }
     }
 }

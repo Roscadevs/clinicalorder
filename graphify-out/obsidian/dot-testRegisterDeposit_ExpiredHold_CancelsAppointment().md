@@ -2,7 +2,7 @@
 source_file: "backend/src/test/java/com/clinicadermatologica/app/application/PaymentServiceTest.java"
 type: "code"
 community: "org.junit.jupiter.api.DisplayName"
-location: "L300"
+location: "L418"
 tags:
   - graphify/code
   - graphify/EXTRACTED

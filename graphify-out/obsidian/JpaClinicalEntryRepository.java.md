@@ -12,7 +12,7 @@ tags:
 # JpaClinicalEntryRepository.java
 
 ## Connections
-- [[ClinicalEntry]] - `imports` [EXTRACTED]
+- [[ClinicalEntry_1]] - `imports` [EXTRACTED]
 - [[JpaClinicalEntryRepository]] - `contains` [EXTRACTED]
 - [[org.springframework.data.jpa.repository.JpaRepository]] - `imports` [EXTRACTED]
 - [[org.springframework.stereotype.Repository]] - `imports` [EXTRACTED]

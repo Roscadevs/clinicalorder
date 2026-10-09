@@ -13,9 +13,9 @@ tags:
 
 ## Connections
 - [[dot-findAuditHistory()]] - `method` [EXTRACTED]
-- [[dot-findById()_8]] - `method` [EXTRACTED]
+- [[dot-findById()_9]] - `method` [EXTRACTED]
 - [[dot-findByPatientId()_3]] - `method` [EXTRACTED]
-- [[dot-save()_7]] - `method` [EXTRACTED]
+- [[dot-save()_8]] - `method` [EXTRACTED]
 - [[dot-saveAudit()]] - `method` [EXTRACTED]
 - [[JpaMedicalRecordAuditRepository]] - `references` [EXTRACTED]
 - [[JpaMedicalRecordRepository]] - `references` [EXTRACTED]

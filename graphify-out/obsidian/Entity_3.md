@@ -1,16 +1,16 @@
 ---
 source_file: ""
 type: "code"
-community: "Habito"
+community: "Appointment"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/Habito
+  - community/Appointment
 ---
 
 # Entity
 
 ## Connections
-- [[Habito]] - `references` [EXTRACTED]
+- [[Appointment]] - `references` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/Habito
+#graphify/code #graphify/EXTRACTED #community/Appointment

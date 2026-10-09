@@ -1,16 +1,16 @@
 ---
 source_file: ""
 type: "code"
-community: "Appointment"
+community: "Habito"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/Appointment
+  - community/Habito
 ---
 
 # Entity
 
 ## Connections
-- [[CalendarBlock]] - `references` [EXTRACTED]
+- [[Habito]] - `references` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/Appointment
+#graphify/code #graphify/EXTRACTED #community/Habito

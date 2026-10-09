@@ -1,19 +1,19 @@
 ---
 source_file: "backend/src/main/java/com/clinicadermatologica/app/infrastructure/persistence/jpa/JpaClinicalImageRepository.java"
 type: "code"
-community: "org.springframework.data.jpa.repository.JpaRepository"
+community: "ClinicalImage"
 location: "L17"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/orgspringframeworkdatajparepositoryJpaRepository
+  - community/ClinicalImage
 ---
 
 # .findByClinicalEntryIdOrderByUploadedAtDesc()
 
 ## Connections
-- [[dot-findByClinicalEntryId()]] - `calls` [INFERRED]
+- [[dot-findByClinicalEntryId()_1]] - `calls` [INFERRED]
 - [[ClinicalImage]] - `references` [EXTRACTED]
 - [[JpaClinicalImageRepository]] - `method` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/orgspringframeworkdatajparepositoryJpaRepository
+#graphify/code #graphify/EXTRACTED #community/ClinicalImage

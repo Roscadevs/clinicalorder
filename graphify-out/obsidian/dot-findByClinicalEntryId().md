@@ -1,8 +1,8 @@
 ---
-source_file: "backend/src/main/java/com/clinicadermatologica/app/infrastructure/persistence/adapter/ClinicalImageRepositoryAdapter.java"
+source_file: "backend/src/main/java/com/clinicadermatologica/app/domain/repository/ClinicalImageRepository.java"
 type: "code"
 community: "ClinicalImage"
-location: "L30"
+location: "L17"
 tags:
   - graphify/code
   - graphify/EXTRACTED
@@ -12,9 +12,8 @@ tags:
 # .findByClinicalEntryId()
 
 ## Connections
-- [[dot-findByClinicalEntryIdOrderByUploadedAtDesc()]] - `calls` [INFERRED]
+- [[dot-getImagesByClinicalEntry()]] - `calls` [INFERRED]
 - [[ClinicalImage]] - `references` [EXTRACTED]
-- [[ClinicalImageRepositoryAdapter]] - `method` [EXTRACTED]
-- [[Override_14]] - `references` [EXTRACTED]
+- [[ClinicalImageRepository]] - `method` [EXTRACTED]
 
 #graphify/code #graphify/EXTRACTED #community/ClinicalImage

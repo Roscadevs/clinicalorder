@@ -68,6 +68,14 @@ public class AppointmentController {
     }
 
     /**
+     * Endpoint público para verificar el estado de acreditación de un turno tras pagar en Mercado Pago.
+     */
+    @GetMapping("/{id}/estado") // Mapea HTTP GET /api/v1/citas/{id}/estado
+    public ResponseEntity<java.util.Map<String, Object>> getAppointmentStatus(@PathVariable Long id) {
+        return ResponseEntity.ok(appointmentService.getAppointmentPublicStatus(id));
+    }
+
+    /**
      * Cancela un turno previamente agendado.
      */
     @PostMapping("/{id}/cancelar") // Mapea HTTP POST /api/v1/citas/{id}/cancelar

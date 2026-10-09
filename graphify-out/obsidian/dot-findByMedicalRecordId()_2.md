@@ -1,12 +1,12 @@
 ---
-source_file: "backend/src/main/java/com/clinicadermatologica/app/domain/repository/AlergiaRepository.java"
+source_file: "backend/src/main/java/com/clinicadermatologica/app/domain/repository/AntecedentePatologicoRepository.java"
 type: "code"
-community: "MedicalRecordService"
-location: "L19"
+community: "AntecedentePatologico"
+location: "L18"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/MedicalRecordService
+  - community/AntecedentePatologico
 ---
 
 # .findByMedicalRecordId()
@@ -14,7 +14,7 @@ tags:
 ## Connections
 - [[dot-mapRecordToDTO()]] - `calls` [INFERRED]
 - [[dot-testSaveInitialMedicalRecord_Success()]] - `calls` [INFERRED]
-- [[Alergia]] - `references` [EXTRACTED]
-- [[AlergiaRepository]] - `method` [EXTRACTED]
+- [[AntecedentePatologico]] - `references` [EXTRACTED]
+- [[AntecedentePatologicoRepository]] - `method` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/MedicalRecordService
+#graphify/code #graphify/EXTRACTED #community/AntecedentePatologico

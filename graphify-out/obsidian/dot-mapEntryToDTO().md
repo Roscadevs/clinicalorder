@@ -1,12 +1,12 @@
 ---
 source_file: "backend/src/main/java/com/clinicadermatologica/app/application/service/MedicalRecordService.java"
 type: "code"
-community: ".findById"
+community: "MedicalRecordService"
 location: "L318"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/findById
+  - community/MedicalRecordService
 ---
 
 # .mapEntryToDTO()
@@ -19,4 +19,4 @@ tags:
 - [[ClinicalEntryResponseDTO]] - `references` [EXTRACTED]
 - [[MedicalRecordService]] - `method` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/findById
+#graphify/code #graphify/EXTRACTED #community/MedicalRecordService

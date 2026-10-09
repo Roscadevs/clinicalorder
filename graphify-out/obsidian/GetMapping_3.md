@@ -1,11 +1,11 @@
 ---
 source_file: ""
 type: "code"
-community: "lombok.RequiredArgsConstructor"
+community: "org.springframework.http.ResponseEntity"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/lombokRequiredArgsConstructor
+  - community/orgspringframeworkhttpResponseEntity
 ---
 
 # GetMapping
@@ -13,6 +13,7 @@ tags:
 ## Connections
 - [[dot-getAgenda()]] - `references` [EXTRACTED]
 - [[dot-getAppointmentById()_1]] - `references` [EXTRACTED]
+- [[dot-getAppointmentStatus()]] - `references` [EXTRACTED]
 - [[dot-getAvailableSlots()_1]] - `references` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/lombokRequiredArgsConstructor
+#graphify/code #graphify/EXTRACTED #community/orgspringframeworkhttpResponseEntity

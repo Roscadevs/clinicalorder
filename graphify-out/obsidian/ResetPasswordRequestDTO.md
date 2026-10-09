@@ -14,11 +14,11 @@ tags:
 ## Connections
 - [[dot-resetPassword()_1]] - `references` [EXTRACTED]
 - [[dot-resetPassword()]] - `references` [EXTRACTED]
-- [[AllArgsConstructor_34]] - `references` [EXTRACTED]
-- [[Builder_31]] - `references` [EXTRACTED]
-- [[Getter_34]] - `references` [EXTRACTED]
-- [[NoArgsConstructor_34]] - `references` [EXTRACTED]
+- [[AllArgsConstructor_35]] - `references` [EXTRACTED]
+- [[Builder_33]] - `references` [EXTRACTED]
+- [[Getter_35]] - `references` [EXTRACTED]
+- [[NoArgsConstructor_35]] - `references` [EXTRACTED]
 - [[ResetPasswordRequestDTO.java]] - `contains` [EXTRACTED]
-- [[Setter_34]] - `references` [EXTRACTED]
+- [[Setter_35]] - `references` [EXTRACTED]
 
 #graphify/code #graphify/EXTRACTED #community/AuthController

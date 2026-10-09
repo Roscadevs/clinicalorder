@@ -1,11 +1,11 @@
 ---
 source_file: ""
 type: "code"
-community: "lombok.RequiredArgsConstructor"
+community: "org.springframework.http.ResponseEntity"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/lombokRequiredArgsConstructor
+  - community/orgspringframeworkhttpResponseEntity
 ---
 
 # org.springframework.http.ResponseEntity
@@ -14,13 +14,13 @@ tags:
 - [[dot-addAlergia()]] - `references` [EXTRACTED]
 - [[dot-addAntecedentePatologico()_1]] - `references` [EXTRACTED]
 - [[dot-addClinicalEntry()]] - `references` [EXTRACTED]
-- [[dot-addHabito()]] - `references` [EXTRACTED]
+- [[dot-addHabito()_1]] - `references` [EXTRACTED]
 - [[dot-bookTemporaryHold()_1]] - `references` [EXTRACTED]
 - [[dot-cancelAppointment()_1]] - `references` [EXTRACTED]
 - [[dot-createBlock()_1]] - `references` [EXTRACTED]
-- [[dot-createPatient()]] - `references` [EXTRACTED]
+- [[dot-createPatient()_1]] - `references` [EXTRACTED]
 - [[dot-createService()_1]] - `references` [EXTRACTED]
-- [[dot-deactivatePatient()]] - `references` [EXTRACTED]
+- [[dot-deactivatePatient()_1]] - `references` [EXTRACTED]
 - [[dot-deleteBlock()_1]] - `references` [EXTRACTED]
 - [[dot-finalizePayment()]] - `references` [EXTRACTED]
 - [[dot-forgotPassword()]] - `references` [EXTRACTED]
@@ -28,6 +28,7 @@ tags:
 - [[dot-getAgenda()]] - `references` [EXTRACTED]
 - [[dot-getAllServicesForAdmin()_1]] - `references` [EXTRACTED]
 - [[dot-getAppointmentById()_1]] - `references` [EXTRACTED]
+- [[dot-getAppointmentStatus()]] - `references` [EXTRACTED]
 - [[dot-getAuditHistory()]] - `references` [EXTRACTED]
 - [[dot-getAvailableSlots()_1]] - `references` [EXTRACTED]
 - [[dot-getBlocks()]] - `references` [EXTRACTED]
@@ -40,7 +41,7 @@ tags:
 - [[dot-handleMercadoPagoWebhook()]] - `references` [EXTRACTED]
 - [[dot-login()]] - `references` [EXTRACTED]
 - [[dot-markAsAttended()_1]] - `references` [EXTRACTED]
-- [[dot-register()_4]] - `references` [EXTRACTED]
+- [[dot-register()_3]] - `references` [EXTRACTED]
 - [[dot-registerDepositPayment()_1]] - `references` [EXTRACTED]
 - [[dot-removeAlergia()]] - `references` [EXTRACTED]
 - [[dot-removeAntecedentePatologico()]] - `references` [EXTRACTED]
@@ -49,7 +50,7 @@ tags:
 - [[dot-saveMedicalRecord()]] - `references` [EXTRACTED]
 - [[dot-sendMessage()]] - `references` [EXTRACTED]
 - [[dot-updateClinicalEntry()]] - `references` [EXTRACTED]
-- [[dot-updatePatient()]] - `references` [EXTRACTED]
+- [[dot-updatePatient()_1]] - `references` [EXTRACTED]
 - [[dot-updateService()_1]] - `references` [EXTRACTED]
 - [[dot-uploadClinicalPhoto()]] - `references` [EXTRACTED]
 - [[AppointmentController.java]] - `imports` [EXTRACTED]
@@ -61,4 +62,4 @@ tags:
 - [[PaymentWebhookController.java]] - `imports` [EXTRACTED]
 - [[ServiceCatalogController.java]] - `imports` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/lombokRequiredArgsConstructor
+#graphify/code #graphify/EXTRACTED #community/orgspringframeworkhttpResponseEntity

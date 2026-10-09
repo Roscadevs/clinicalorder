@@ -13,7 +13,7 @@ tags:
 
 ## Connections
 - [[dot-deleteBlock()_1]] - `calls` [INFERRED]
-- [[dot-deleteById()_1]] - `calls` [INFERRED]
+- [[dot-deleteById()]] - `calls` [INFERRED]
 - [[CalendarBlockService]] - `method` [EXTRACTED]
 - [[org.springframework.transaction.annotation.Transactional]] - `references` [EXTRACTED]
 

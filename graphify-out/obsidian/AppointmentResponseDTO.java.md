@@ -1,12 +1,12 @@
 ---
 source_file: "backend/src/main/java/com/clinicadermatologica/app/presentation/dto/AppointmentResponseDTO.java"
 type: "code"
-community: "AppointmentResponseDTO"
+community: "Appointment"
 location: "L1"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/AppointmentResponseDTO
+  - community/Appointment
 ---
 
 # AppointmentResponseDTO.java
@@ -15,4 +15,4 @@ tags:
 - [[AppointmentResponseDTO]] - `contains` [EXTRACTED]
 - [[AppointmentStatus]] - `imports` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/AppointmentResponseDTO
+#graphify/code #graphify/EXTRACTED #community/Appointment

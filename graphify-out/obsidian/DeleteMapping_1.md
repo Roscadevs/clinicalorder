@@ -1,16 +1,16 @@
 ---
 source_file: ""
 type: "code"
-community: "PatientRequestDTO"
+community: "CalendarBlockResponseDTO"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/PatientRequestDTO
+  - community/CalendarBlockResponseDTO
 ---
 
 # DeleteMapping
 
 ## Connections
-- [[dot-deactivatePatient()]] - `references` [EXTRACTED]
+- [[dot-deleteBlock()_1]] - `references` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/PatientRequestDTO
+#graphify/code #graphify/EXTRACTED #community/CalendarBlockResponseDTO

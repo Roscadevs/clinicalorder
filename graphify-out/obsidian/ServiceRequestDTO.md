@@ -16,13 +16,13 @@ tags:
 - [[dot-createService()_1]] - `references` [EXTRACTED]
 - [[dot-updateService()]] - `references` [EXTRACTED]
 - [[dot-updateService()_1]] - `references` [EXTRACTED]
-- [[AllArgsConstructor_19]] - `references` [EXTRACTED]
-- [[Builder_17]] - `references` [EXTRACTED]
+- [[AllArgsConstructor_18]] - `references` [EXTRACTED]
+- [[Builder_16]] - `references` [EXTRACTED]
 - [[DermatologicServiceService.java]] - `imports` [EXTRACTED]
-- [[Getter_19]] - `references` [EXTRACTED]
-- [[NoArgsConstructor_19]] - `references` [EXTRACTED]
+- [[Getter_18]] - `references` [EXTRACTED]
+- [[NoArgsConstructor_18]] - `references` [EXTRACTED]
 - [[ServiceCatalogController.java]] - `imports` [EXTRACTED]
 - [[ServiceRequestDTO.java]] - `contains` [EXTRACTED]
-- [[Setter_19]] - `references` [EXTRACTED]
+- [[Setter_18]] - `references` [EXTRACTED]
 
 #graphify/code #graphify/EXTRACTED #community/ServiceResponseDTO

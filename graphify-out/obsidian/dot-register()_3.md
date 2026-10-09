@@ -1,23 +1,23 @@
 ---
-source_file: "backend/src/main/java/com/clinicadermatologica/app/application/strategy/PaymentRegistrationStrategy.java"
+source_file: "backend/src/main/java/com/clinicadermatologica/app/presentation/controller/AuthController.java"
 type: "code"
-community: ".register"
-location: "L41"
+community: "org.springframework.http.ResponseEntity"
+location: "L52"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/register
+  - community/orgspringframeworkhttpResponseEntity
 ---
 
 # .register()
 
 ## Connections
-- [[dot-testRegisterDeposit_Cash_ConfirmsAppointment()]] - `calls` [INFERRED]
-- [[dot-testRegisterFinalPayment_DelegatesToStrategy_CompletesAppointment()]] - `calls` [INFERRED]
-- [[Appointment_7]] - `references` [EXTRACTED]
-- [[PaymentConcept_5]] - `references` [EXTRACTED]
-- [[PaymentRegistrationStrategy]] - `method` [EXTRACTED]
-- [[PaymentTransaction]] - `references` [EXTRACTED]
+- [[dot-registerUser()]] - `calls` [INFERRED]
+- [[AuthController]] - `method` [EXTRACTED]
+- [[PostMapping_5]] - `references` [EXTRACTED]
+- [[RegisterUserRequestDTO]] - `references` [EXTRACTED]
 - [[User]] - `references` [EXTRACTED]
+- [[org.springframework.http.ResponseEntity]] - `references` [EXTRACTED]
+- [[org.springframework.security.access.prepost.PreAuthorize]] - `references` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/register
+#graphify/code #graphify/EXTRACTED #community/orgspringframeworkhttpResponseEntity

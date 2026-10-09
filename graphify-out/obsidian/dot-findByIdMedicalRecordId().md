@@ -12,7 +12,7 @@ tags:
 # .findByIdMedicalRecordId()
 
 ## Connections
-- [[dot-findByMedicalRecordId()]] - `calls` [INFERRED]
+- [[dot-findByMedicalRecordId()_1]] - `calls` [INFERRED]
 - [[Habito]] - `references` [EXTRACTED]
 - [[JpaHabitoRepository]] - `method` [EXTRACTED]
 

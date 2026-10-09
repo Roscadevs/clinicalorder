@@ -1,12 +1,12 @@
 ---
 source_file: "frontend/src/features/appointments/PatientSearch.tsx"
 type: "code"
-community: "MedicalRecordView.tsx"
+community: "api.ts"
 location: "L36"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/MedicalRecordViewtsx
+  - community/apits
 ---
 
 # PatientSearch()
@@ -18,4 +18,4 @@ tags:
 - [[PatientSearch.tsx]] - `contains` [EXTRACTED]
 - [[cn()]] - `calls` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/MedicalRecordViewtsx
+#graphify/code #graphify/EXTRACTED #community/apits

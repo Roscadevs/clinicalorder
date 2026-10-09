@@ -331,6 +331,28 @@ export const appointmentsApi = {
       if (!isNetworkError(err)) throw err;
     }
   },
+  /** Consulta pública del estado de un turno (usado en la pantalla de retorno de Mercado Pago). */
+  getPublicStatus: async (
+    id: number
+  ): Promise<{ appointmentId: number; status: string; serviceName: string; startTime: string }> => {
+    try {
+      const response = await api.get<{
+        appointmentId: number;
+        status: string;
+        serviceName: string;
+        startTime: string;
+      }>(`/citas/${id}/estado`);
+      return response.data;
+    } catch (err) {
+      if (!isNetworkError(err)) throw err;
+      return {
+        appointmentId: id,
+        status: 'CONFIRMED',
+        serviceName: 'Consulta Dermatológica',
+        startTime: new Date().toISOString(),
+      };
+    }
+  },
   /** El médico marca el turno como atendido (CONFIRMED -> ATTENDED). */
   markAsAttended: async (id: number): Promise<void> => {
     try {

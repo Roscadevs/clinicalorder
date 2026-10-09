@@ -1,20 +1,17 @@
 ---
 source_file: ""
 type: "code"
-community: "Alergia"
+community: "lombok.RequiredArgsConstructor"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/Alergia
+  - community/lombokRequiredArgsConstructor
 ---
 
 # Override
 
 ## Connections
-- [[dot-delete()_5]] - `references` [EXTRACTED]
-- [[dot-existsById()_5]] - `references` [EXTRACTED]
-- [[dot-findById()_21]] - `references` [EXTRACTED]
-- [[dot-findByMedicalRecordId()_5]] - `references` [EXTRACTED]
-- [[dot-save()_21]] - `references` [EXTRACTED]
+- [[dot-register()_4]] - `references` [EXTRACTED]
+- [[dot-supportedType()_3]] - `references` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/Alergia
+#graphify/code #graphify/EXTRACTED #community/lombokRequiredArgsConstructor

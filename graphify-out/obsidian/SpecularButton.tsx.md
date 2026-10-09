@@ -1,18 +1,18 @@
 ---
 source_file: "frontend/src/components/reactbits/SpecularButton.tsx"
 type: "code"
-community: "reactbits/index.ts"
+community: "ServicesCatalogView.tsx"
 location: "L1"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/reactbits/indexts
+  - community/ServicesCatalogViewtsx
 ---
 
 # SpecularButton.tsx
 
 ## Connections
-- [[ButtonSize_1]] - `contains` [EXTRACTED]
+- [[ButtonSize]] - `contains` [EXTRACTED]
 - [[SpecularButton()]] - `contains` [EXTRACTED]
 - [[SpecularButtonProps]] - `contains` [EXTRACTED]
 - [[SpecularPropsSnapshot]] - `contains` [EXTRACTED]
@@ -20,4 +20,4 @@ tags:
 - [[react]] - `imports_from` [EXTRACTED]
 - [[reactbitsindex.ts]] - `re_exports` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/reactbits/indexts
+#graphify/code #graphify/EXTRACTED #community/ServicesCatalogViewtsx

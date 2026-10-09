@@ -1,11 +1,11 @@
 ---
 source_file: ""
 type: "code"
-community: "ClinicalImageResponseDTO"
+community: "ClinicalImageService"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/ClinicalImageResponseDTO
+  - community/ClinicalImageService
 ---
 
 # org.springframework.web.reactive.function.client.WebClient
@@ -16,4 +16,4 @@ tags:
 - [[SupabaseStorageAdapter]] - `references` [EXTRACTED]
 - [[SupabaseStorageAdapter.java]] - `imports` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/ClinicalImageResponseDTO
+#graphify/code #graphify/EXTRACTED #community/ClinicalImageService

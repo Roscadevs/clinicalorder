@@ -13,8 +13,8 @@ tags:
 
 ## Connections
 - [[dot-findByPatientIdOrderByCreatedAtDesc()]] - `calls` [INFERRED]
-- [[ClinicalEntry]] - `references` [EXTRACTED]
+- [[ClinicalEntry_1]] - `references` [EXTRACTED]
 - [[ClinicalEntryRepositoryAdapter]] - `method` [EXTRACTED]
-- [[Override_17]] - `references` [EXTRACTED]
+- [[Override_15]] - `references` [EXTRACTED]
 
 #graphify/code #graphify/EXTRACTED #community/ClinicalEntry

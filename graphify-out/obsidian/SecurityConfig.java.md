@@ -1,12 +1,12 @@
 ---
 source_file: "backend/src/main/java/com/clinicadermatologica/app/infrastructure/security/SecurityConfig.java"
 type: "code"
-community: "GlobalExceptionHandler"
+community: "SecurityConfig.java"
 location: "L1"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/GlobalExceptionHandler
+  - community/SecurityConfigjava
 ---
 
 # SecurityConfig.java
@@ -24,4 +24,4 @@ tags:
 - [[org.springframework.security.crypto.password.PasswordEncoder]] - `imports` [EXTRACTED]
 - [[org.springframework.security.web.SecurityFilterChain]] - `imports` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/GlobalExceptionHandler
+#graphify/code #graphify/EXTRACTED #community/SecurityConfigjava

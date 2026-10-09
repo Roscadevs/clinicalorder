@@ -1,42 +1,45 @@
 ---
 type: community
-members: 29
+members: 32
 ---
 
 # lombok.RequiredArgsConstructor
 
-**Members:** 29 nodes
+**Members:** 32 nodes
 
 ## Members
-- [[dot-bookTemporaryHold()_1]] - code - backend/src/main/java/com/clinicadermatologica/app/presentation/controller/AppointmentController.java
-- [[dot-cancelAppointment()_1]] - code - backend/src/main/java/com/clinicadermatologica/app/presentation/controller/AppointmentController.java
-- [[dot-finalizePayment()]] - code - backend/src/main/java/com/clinicadermatologica/app/presentation/controller/AppointmentController.java
-- [[dot-getAgenda()]] - code - backend/src/main/java/com/clinicadermatologica/app/presentation/controller/AppointmentController.java
-- [[dot-getAppointmentById()_1]] - code - backend/src/main/java/com/clinicadermatologica/app/presentation/controller/AppointmentController.java
-- [[dot-getAvailableSlots()_1]] - code - backend/src/main/java/com/clinicadermatologica/app/presentation/controller/AppointmentController.java
-- [[dot-handleMercadoPagoWebhook()]] - code - backend/src/main/java/com/clinicadermatologica/app/presentation/controller/PaymentWebhookController.java
-- [[dot-markAsAttended()_1]] - code - backend/src/main/java/com/clinicadermatologica/app/presentation/controller/AppointmentController.java
-- [[dot-registerDepositPayment()_1]] - code - backend/src/main/java/com/clinicadermatologica/app/presentation/controller/AppointmentController.java
-- [[AppointmentController]] - code - backend/src/main/java/com/clinicadermatologica/app/presentation/controller/AppointmentController.java
-- [[AppointmentController.java]] - code - backend/src/main/java/com/clinicadermatologica/app/presentation/controller/AppointmentController.java
-- [[AuthController.java]] - code - backend/src/main/java/com/clinicadermatologica/app/presentation/controller/AuthController.java
-- [[CalendarBlockController.java]] - code - backend/src/main/java/com/clinicadermatologica/app/presentation/controller/CalendarBlockController.java
-- [[GetMapping_3]] - code
-- [[MedicalRecordController.java]] - code - backend/src/main/java/com/clinicadermatologica/app/presentation/controller/MedicalRecordController.java
-- [[PatientController.java]] - code - backend/src/main/java/com/clinicadermatologica/app/presentation/controller/PatientController.java
-- [[PaymentWebhookController]] - code - backend/src/main/java/com/clinicadermatologica/app/presentation/controller/PaymentWebhookController.java
-- [[PaymentWebhookController.java]] - code - backend/src/main/java/com/clinicadermatologica/app/presentation/controller/PaymentWebhookController.java
-- [[PostMapping_5]] - code
-- [[PostMapping_6]] - code
-- [[RequestMapping_5]] - code
-- [[RequestMapping_6]] - code
-- [[RestController_5]] - code
-- [[RestController_6]] - code
-- [[ServiceCatalogController.java]] - code - backend/src/main/java/com/clinicadermatologica/app/presentation/controller/ServiceCatalogController.java
+- [[dot-PaymentStrategyFactory()]] - code - backend/src/main/java/com/clinicadermatologica/app/application/strategy/PaymentStrategyFactory.java
+- [[dot-findById()_23]] - code - backend/src/main/java/com/clinicadermatologica/app/domain/repository/PaymentTransactionRepository.java
+- [[dot-findByMpPaymentId()_2]] - code - backend/src/main/java/com/clinicadermatologica/app/domain/repository/PaymentTransactionRepository.java
+- [[dot-register()_4]] - code - backend/src/main/java/com/clinicadermatologica/app/infrastructure/payment/strategy/CashPaymentStrategy.java
+- [[dot-releaseExpiredHolds()_1]] - code - backend/src/main/java/com/clinicadermatologica/app/infrastructure/scheduling/HoldExpirationScheduler.java
+- [[dot-supportedType()_2]] - code - backend/src/main/java/com/clinicadermatologica/app/application/strategy/PaymentRegistrationStrategy.java
+- [[dot-supportedType()_3]] - code - backend/src/main/java/com/clinicadermatologica/app/infrastructure/payment/strategy/CashPaymentStrategy.java
+- [[AntecedentePatologicoRepositoryAdapter.java]] - code - backend/src/main/java/com/clinicadermatologica/app/infrastructure/persistence/adapter/AntecedentePatologicoRepositoryAdapter.java
+- [[Appointment_8]] - code
+- [[BankTransferPaymentStrategy]] - code - backend/src/main/java/com/clinicadermatologica/app/infrastructure/payment/strategy/BankTransferPaymentStrategy.java
+- [[BankTransferPaymentStrategy.java]] - code - backend/src/main/java/com/clinicadermatologica/app/infrastructure/payment/strategy/BankTransferPaymentStrategy.java
+- [[CashPaymentStrategy]] - code - backend/src/main/java/com/clinicadermatologica/app/infrastructure/payment/strategy/CashPaymentStrategy.java
+- [[CashPaymentStrategy.java]] - code - backend/src/main/java/com/clinicadermatologica/app/infrastructure/payment/strategy/CashPaymentStrategy.java
+- [[HabitoRepositoryAdapter.java]] - code - backend/src/main/java/com/clinicadermatologica/app/infrastructure/persistence/adapter/HabitoRepositoryAdapter.java
+- [[HoldExpirationScheduler]] - code - backend/src/main/java/com/clinicadermatologica/app/infrastructure/scheduling/HoldExpirationScheduler.java
+- [[HoldExpirationScheduler.java]] - code - backend/src/main/java/com/clinicadermatologica/app/infrastructure/scheduling/HoldExpirationScheduler.java
+- [[MercadoPagoPaymentStrategy]] - code - backend/src/main/java/com/clinicadermatologica/app/infrastructure/payment/strategy/MercadoPagoPaymentStrategy.java
+- [[MercadoPagoPaymentStrategy.java]] - code - backend/src/main/java/com/clinicadermatologica/app/infrastructure/payment/strategy/MercadoPagoPaymentStrategy.java
+- [[Override_18]] - code
+- [[PasswordResetTokenRepositoryAdapter]] - code - backend/src/main/java/com/clinicadermatologica/app/infrastructure/persistence/adapter/PasswordResetTokenRepositoryAdapter.java
+- [[PasswordResetTokenRepositoryAdapter.java]] - code - backend/src/main/java/com/clinicadermatologica/app/infrastructure/persistence/adapter/PasswordResetTokenRepositoryAdapter.java
+- [[PaymentConcept_5]] - code
+- [[PaymentRegistrationStrategy]] - code - backend/src/main/java/com/clinicadermatologica/app/application/strategy/PaymentRegistrationStrategy.java
+- [[PaymentRegistrationStrategy.java]] - code - backend/src/main/java/com/clinicadermatologica/app/application/strategy/PaymentRegistrationStrategy.java
+- [[PaymentTransactionRepository]] - code - backend/src/main/java/com/clinicadermatologica/app/domain/repository/PaymentTransactionRepository.java
+- [[PaymentTransactionRepository.java]] - code - backend/src/main/java/com/clinicadermatologica/app/domain/repository/PaymentTransactionRepository.java
+- [[PaymentTransactionRepositoryAdapter.java]] - code - backend/src/main/java/com/clinicadermatologica/app/infrastructure/persistence/adapter/PaymentTransactionRepositoryAdapter.java
+- [[PaymentType_4]] - code
+- [[PaymentType_5]] - code
 - [[lombok.RequiredArgsConstructor]] - code
-- [[org.springframework.http.HttpStatus]] - code
-- [[org.springframework.http.ResponseEntity]] - code
-- [[org.springframework.security.access.prepost.PreAuthorize]] - code
+- [[org.springframework.scheduling.annotation.Scheduled]] - code
+- [[org.springframework.stereotype.Component]] - code
 
 ## Live Query (requires Dataview plugin)
 
@@ -46,42 +49,42 @@ SORT file.name ASC
 ```
 
 ## Connections to other communities
-- 14 edges to [[_COMMUNITY_ServiceResponseDTO]]
-- 12 edges to [[_COMMUNITY_MedicalRecordController]]
-- 10 edges to [[_COMMUNITY_CalendarBlockResponseDTO]]
-- 9 edges to [[_COMMUNITY_org.junit.jupiter.api.DisplayName]]
-- 9 edges to [[_COMMUNITY_org.springframework.transaction.annotation.Transactional]]
-- 8 edges to [[_COMMUNITY_DermatologicService]]
-- 8 edges to [[_COMMUNITY_lombok.extern.slf4j.Slf4j]]
-- 7 edges to [[_COMMUNITY_PatientRequestDTO]]
-- 7 edges to [[_COMMUNITY_AuthController]]
-- 6 edges to [[_COMMUNITY_AppointmentService]]
-- 6 edges to [[_COMMUNITY_org.springframework.stereotype.Component]]
-- 5 edges to [[_COMMUNITY_MedicalRecordService]]
+- 11 edges to [[_COMMUNITY_PaymentTransaction]]
+- 10 edges to [[_COMMUNITY_DermatologicService]]
+- 10 edges to [[_COMMUNITY_lombok.extern.slf4j.Slf4j]]
+- 8 edges to [[_COMMUNITY_org.springframework.data.jpa.repository.JpaRepository]]
+- 7 edges to [[_COMMUNITY_org.junit.jupiter.api.DisplayName]]
+- 7 edges to [[_COMMUNITY_AppointmentService]]
+- 7 edges to [[_COMMUNITY_org.springframework.http.ResponseEntity]]
+- 7 edges to [[_COMMUNITY_org.springframework.transaction.annotation.Transactional]]
+- 6 edges to [[_COMMUNITY_Habito]]
+- 6 edges to [[_COMMUNITY_PaymentService]]
+- 6 edges to [[_COMMUNITY_AntecedentePatologico]]
+- 6 edges to [[_COMMUNITY_User]]
+- 4 edges to [[_COMMUNITY_CalendarBlock]]
 - 4 edges to [[_COMMUNITY_Appointment]]
-- 4 edges to [[_COMMUNITY_AppointmentResponseDTO]]
-- 4 edges to [[_COMMUNITY_PaymentServiceTest.java]]
 - 4 edges to [[_COMMUNITY_GlobalExceptionHandler]]
-- 3 edges to [[_COMMUNITY_MedicalRecord]]
-- 3 edges to [[_COMMUNITY_AntecedentePatologico]]
-- 3 edges to [[_COMMUNITY_User]]
-- 3 edges to [[_COMMUNITY_AppointmentServiceTest.java]]
-- 3 edges to [[_COMMUNITY_ClinicalImageResponseDTO]]
-- 2 edges to [[_COMMUNITY_PaymentTransaction]]
-- 2 edges to [[_COMMUNITY_Habito]]
-- 2 edges to [[_COMMUNITY_HoldExpirationScheduler.java]]
-- 2 edges to [[_COMMUNITY_Patient]]
-- 2 edges to [[_COMMUNITY_ClinicalImage]]
-- 2 edges to [[_COMMUNITY_Alergia]]
-- 2 edges to [[_COMMUNITY_UserRepository]]
-- 2 edges to [[_COMMUNITY_PasswordResetToken]]
-- 1 edge to [[_COMMUNITY_ClinicalEntry]]
-- 1 edge to [[_COMMUNITY_MercadoPagoPaymentAdapter]]
-- 1 edge to [[_COMMUNITY_org.springframework.data.jpa.repository.JpaRepository]]
+- 4 edges to [[_COMMUNITY_Patient]]
+- 4 edges to [[_COMMUNITY_ClinicalImage]]
+- 4 edges to [[_COMMUNITY_AlergiaId]]
+- 3 edges to [[_COMMUNITY_ClinicalImageService]]
+- 3 edges to [[_COMMUNITY_PasswordResetToken]]
+- 2 edges to [[_COMMUNITY_MedicalRecord]]
+- 2 edges to [[_COMMUNITY_ServiceResponseDTO]]
+- 2 edges to [[_COMMUNITY_CalendarBlockResponseDTO]]
+- 2 edges to [[_COMMUNITY_ClinicalEntry]]
+- 2 edges to [[_COMMUNITY_MedicalRecordService]]
+- 2 edges to [[_COMMUNITY_SecurityConfig.java]]
+- 2 edges to [[_COMMUNITY_PaymentWebhookController]]
+- 2 edges to [[_COMMUNITY_PaymentServiceTest.java]]
+- 2 edges to [[_COMMUNITY_dot-register]]
+- 2 edges to [[_COMMUNITY_dot-register_1]]
+- 1 edge to [[_COMMUNITY_MedicalRecordController]]
+- 1 edge to [[_COMMUNITY_AuthController]]
 
 ## Top bridge nodes
-- [[lombok.RequiredArgsConstructor]] - degree 74, connects to 29 communities
-- [[org.springframework.http.ResponseEntity]] - degree 49, connects to 10 communities
-- [[org.springframework.security.access.prepost.PreAuthorize]] - degree 19, connects to 5 communities
-- [[MedicalRecordController.java]] - degree 10, connects to 5 communities
-- [[AuthController.java]] - degree 7, connects to 3 communities
+- [[lombok.RequiredArgsConstructor]] - degree 74, connects to 28 communities
+- [[org.springframework.stereotype.Component]] - degree 46, connects to 19 communities
+- [[PaymentTransactionRepository]] - degree 18, connects to 4 communities
+- [[PaymentRegistrationStrategy]] - degree 13, connects to 3 communities
+- [[PasswordResetTokenRepositoryAdapter]] - degree 7, connects to 3 communities

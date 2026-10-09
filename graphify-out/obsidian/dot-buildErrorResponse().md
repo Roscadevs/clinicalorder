@@ -2,7 +2,7 @@
 source_file: "backend/src/main/java/com/clinicadermatologica/app/presentation/advice/GlobalExceptionHandler.java"
 type: "code"
 community: "GlobalExceptionHandler"
-location: "L75"
+location: "L81"
 tags:
   - graphify/code
   - graphify/EXTRACTED
@@ -17,6 +17,7 @@ tags:
 - [[dot-handleDuplicate()]] - `calls` [EXTRACTED]
 - [[dot-handleGeneralException()]] - `calls` [EXTRACTED]
 - [[dot-handleNotFound()]] - `calls` [EXTRACTED]
+- [[dot-handlePaymentGateway()]] - `calls` [EXTRACTED]
 - [[dot-handleSlotUnavailable()]] - `calls` [EXTRACTED]
 - [[dot-handleUnauthorized()]] - `calls` [EXTRACTED]
 - [[GlobalExceptionHandler]] - `method` [EXTRACTED]

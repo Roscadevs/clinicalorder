@@ -1,12 +1,12 @@
 ---
 source_file: "frontend/src/components/Navbar.tsx"
 type: "code"
-community: "DashboardLayout.tsx"
+community: "cn"
 location: "L7"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/DashboardLayouttsx
+  - community/cn
 ---
 
 # ICONS
@@ -14,4 +14,4 @@ tags:
 ## Connections
 - [[Navbar.tsx]] - `contains` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/DashboardLayouttsx
+#graphify/code #graphify/EXTRACTED #community/cn

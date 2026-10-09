@@ -1,16 +1,16 @@
 ---
 source_file: ""
 type: "code"
-community: "UserRole"
+community: "ClinicalImageService"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/UserRole
+  - community/ClinicalImageService
 ---
 
 # Getter
 
 ## Connections
-- [[AuthResponseDTO]] - `references` [EXTRACTED]
+- [[ClinicalImageResponseDTO]] - `references` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/UserRole
+#graphify/code #graphify/EXTRACTED #community/ClinicalImageService

@@ -1,12 +1,12 @@
 ---
 source_file: "frontend/src/components/reactbits/SpecularButton.tsx"
 type: "code"
-community: "reactbits/index.ts"
+community: "ServicesCatalogView.tsx"
 location: "L111"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/reactbits/indexts
+  - community/ServicesCatalogViewtsx
 ---
 
 # SpecularButton()
@@ -15,4 +15,4 @@ tags:
 - [[LandingPageView.tsx]] - `imports` [EXTRACTED]
 - [[SpecularButton.tsx]] - `contains` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/reactbits/indexts
+#graphify/code #graphify/EXTRACTED #community/ServicesCatalogViewtsx

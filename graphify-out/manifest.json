@@ -18,9 +18,9 @@
     "semantic_hash": ""
   },
   "backend/src/main/java/com/clinicadermatologica/app/application/service/AppointmentService.java": {
-    "mtime": 1791242552.2499142,
-    "seen": 1791242948.7476218,
-    "ast_hash": "b68cfafdac86ac6c543dcb868f2a9150",
+    "mtime": 1791559192.3957286,
+    "seen": 1791559257.79852,
+    "ast_hash": "387f44ee79ce12902088b77e4eb336cb",
     "semantic_hash": ""
   },
   "backend/src/main/java/com/clinicadermatologica/app/application/service/AuthService.java": {
@@ -66,9 +66,9 @@
     "semantic_hash": ""
   },
   "backend/src/main/java/com/clinicadermatologica/app/application/service/PaymentService.java": {
-    "mtime": 1791242914.5173712,
-    "seen": 1791242948.747628,
-    "ast_hash": "54b6c571bf72fd2396f9e80c51d37b69",
+    "mtime": 1791558746.8644104,
+    "seen": 1791558851.423263,
+    "ast_hash": "45a1f9aabc03d9137b6de24565d4961e",
     "semantic_hash": ""
   },
   "backend/src/main/java/com/clinicadermatologica/app/application/strategy/PaymentRegistrationStrategy.java": {
@@ -348,9 +348,9 @@
     "semantic_hash": ""
   },
   "backend/src/main/java/com/clinicadermatologica/app/infrastructure/payment/MercadoPagoPaymentAdapter.java": {
-    "mtime": 1791243848.188754,
-    "seen": 1791243874.543343,
-    "ast_hash": "53f30eb80a6d7e3c6368476cf16d074d",
+    "mtime": 1791559176.5526302,
+    "seen": 1791559257.798562,
+    "ast_hash": "0784cf69b30b2e7e2ec8a8acdd79c898",
     "semantic_hash": ""
   },
   "backend/src/main/java/com/clinicadermatologica/app/infrastructure/payment/strategy/BankTransferPaymentStrategy.java": {
@@ -570,9 +570,9 @@
     "semantic_hash": ""
   },
   "backend/src/main/java/com/clinicadermatologica/app/infrastructure/security/SecurityConfig.java": {
-    "mtime": 1791242552.2603264,
-    "seen": 1791242948.74768,
-    "ast_hash": "55abfc2ea4368fc5889d8ec51f2917b6",
+    "mtime": 1791558463.6762075,
+    "seen": 1791558851.423319,
+    "ast_hash": "c16f8b77840883a85911360232583a5e",
     "semantic_hash": ""
   },
   "backend/src/main/java/com/clinicadermatologica/app/infrastructure/storage/SupabaseStorageAdapter.java": {
@@ -582,15 +582,15 @@
     "semantic_hash": ""
   },
   "backend/src/main/java/com/clinicadermatologica/app/presentation/advice/GlobalExceptionHandler.java": {
-    "mtime": 1791242552.2607386,
-    "seen": 1791242948.747682,
-    "ast_hash": "4aafece55b638ee4dce9d58e6c389f1b",
+    "mtime": 1791558128.9712276,
+    "seen": 1791558851.42332,
+    "ast_hash": "3e070e89d0ea8340a977615760abea4f",
     "semantic_hash": ""
   },
   "backend/src/main/java/com/clinicadermatologica/app/presentation/controller/AppointmentController.java": {
-    "mtime": 1791242552.2609284,
-    "seen": 1791242948.747682,
-    "ast_hash": "b4475241fe62b51f68a64071024839f2",
+    "mtime": 1791558444.445019,
+    "seen": 1791558851.423321,
+    "ast_hash": "28b0f9b06e76824433c582a5acaec35a",
     "semantic_hash": ""
   },
   "backend/src/main/java/com/clinicadermatologica/app/presentation/controller/AuthController.java": {
@@ -624,9 +624,9 @@
     "semantic_hash": ""
   },
   "backend/src/main/java/com/clinicadermatologica/app/presentation/controller/PaymentWebhookController.java": {
-    "mtime": 1791242552.2615292,
-    "seen": 1791242948.7476852,
-    "ast_hash": "23cc2cecf2b0213280d9f493104e4c31",
+    "mtime": 1791558328.1679525,
+    "seen": 1791558851.4233248,
+    "ast_hash": "b8471c6be6a49c27ce500503f7b8576a",
     "semantic_hash": ""
   },
   "backend/src/main/java/com/clinicadermatologica/app/presentation/controller/ServiceCatalogController.java": {
@@ -852,9 +852,9 @@
     "semantic_hash": ""
   },
   "backend/src/test/java/com/clinicadermatologica/app/application/AppointmentServiceTest.java": {
-    "mtime": 1791242552.2670217,
-    "seen": 1791242948.7477078,
-    "ast_hash": "9069ef98e91fa5f507ba393f2a5cf8c1",
+    "mtime": 1791559232.938221,
+    "seen": 1791559257.7986162,
+    "ast_hash": "e9bff632c2dfd4054fb651a64c59d8f4",
     "semantic_hash": ""
   },
   "backend/src/test/java/com/clinicadermatologica/app/application/AuthServiceTest.java": {
@@ -870,21 +870,15 @@
     "semantic_hash": ""
   },
   "backend/src/test/java/com/clinicadermatologica/app/application/PaymentServiceTest.java": {
-    "mtime": 1791242890.0557463,
-    "seen": 1791242948.74771,
-    "ast_hash": "7d1b6226c0fe48c64e36935b2ae840d9",
+    "mtime": 1791558815.7573783,
+    "seen": 1791558851.423352,
+    "ast_hash": "cfa2de8c0ad77952a00607d463c6c730",
     "semantic_hash": ""
   },
   "backend/src/test/java/com/clinicadermatologica/app/infrastructure/AesEncryptionServiceTest.java": {
     "mtime": 1791242552.2675893,
     "seen": 1791242948.74771,
     "ast_hash": "24f8cfb6c7b0f1eaae2264d91f1f4395",
-    "semantic_hash": ""
-  },
-  "flujo_pago_mercadopago.visual-check.json": {
-    "mtime": 1790092489.482411,
-    "seen": 1791242532.060392,
-    "ast_hash": "035f21b5de02d4d9a17e3cc41875ee87",
     "semantic_hash": ""
   },
   "frontend/package.json": {
@@ -1092,9 +1086,9 @@
     "semantic_hash": ""
   },
   "frontend/src/features/appointments/BookingStatusViews.tsx": {
-    "mtime": 1790719771.374047,
-    "seen": 1791242532.060409,
-    "ast_hash": "6e094d9ed75d46d404a983516cd1204d",
+    "mtime": 1791558522.7882762,
+    "seen": 1791558851.4233758,
+    "ast_hash": "654f0556fcf5c10b0a4521bf9cae6a24",
     "semantic_hash": ""
   },
   "frontend/src/features/appointments/BookingWizard.tsx": {
@@ -1200,9 +1194,9 @@
     "semantic_hash": ""
   },
   "frontend/src/services/api.ts": {
-    "mtime": 1790719771.3776112,
-    "seen": 1791242532.0604181,
-    "ast_hash": "b8492dd0bda62395ad1cfc19c97aa851",
+    "mtime": 1791558483.3193672,
+    "seen": 1791558851.423388,
+    "ast_hash": "389d88d0fca1bf2c8424c60130abe15f",
     "semantic_hash": ""
   },
   "frontend/src/services/supabaseClient.ts": {
@@ -1698,9 +1692,9 @@
     "semantic_hash": ""
   },
   "backend/src/main/resources/application.yml": {
-    "mtime": 1791244397.9208736,
-    "seen": 1791244419.148569,
-    "ast_hash": "6ad3597adc7fd059d4efba0dbc438e09",
+    "mtime": 1791558077.4347303,
+    "seen": 1791558851.423441,
+    "ast_hash": "ba68c718be31c20afdedb8190edb2e13",
     "semantic_hash": ""
   },
   "docker-compose.yml": {
@@ -1716,9 +1710,9 @@
     "semantic_hash": ""
   },
   "documentacion/GUIA_MAESTRA_ESTANDAR_INGENIERIA_Y_AGENTES_IA.md": {
-    "mtime": 1791242552.2682922,
-    "seen": 1791242948.747807,
-    "ast_hash": "e9a59b29576239f201ec931389d30d82",
+    "mtime": 1791555984.3311455,
+    "seen": 1791556000.552709,
+    "ast_hash": "e88c889c2aa1c6b2ae0b43de17857d4e",
     "semantic_hash": ""
   },
   "documentacion/fase10_diseno_mobile_y_responsive/FASE_10_DISENO_MOBILE_Y_RESPONSIVE.md": {
@@ -1734,9 +1728,9 @@
     "semantic_hash": ""
   },
   "documentacion/fase1_especificacion_y_diseno/ARQUITECTURA_Y_DISENO_TECNICO.md": {
-    "mtime": 1791242552.2688115,
-    "seen": 1791242948.747809,
-    "ast_hash": "b0d345c13e820a3858f9e074d7fdd87a",
+    "mtime": 1791555989.2375333,
+    "seen": 1791556000.552711,
+    "ast_hash": "69e589cec6fbb7b329d40ca3852642a9",
     "semantic_hash": ""
   },
   "documentacion/fase1_especificacion_y_diseno/GLOSARIO_TECNICO_Y_METODOS.md": {
@@ -1865,12 +1859,6 @@
     "ast_hash": "7fb03717665f5bc92dec931794677a1d",
     "semantic_hash": ""
   },
-  "flujo_pago_mercadopago.visual-check.html": {
-    "mtime": 1790092489.4819565,
-    "seen": 1791242532.060472,
-    "ast_hash": "ce06e2c78f5aa41880d3e66f03fa040d",
-    "semantic_hash": ""
-  },
   "frontend/index.html": {
     "mtime": 1790719771.3649766,
     "seen": 1791242532.0604732,
@@ -1895,30 +1883,6 @@
     "ast_hash": "779eb584331f4b8de042972d3c5456e3",
     "semantic_hash": ""
   },
-  "flujo_pago_mercadopago.visual-check.1440x900.dark.png": {
-    "mtime": 1790092489.0688655,
-    "seen": 1791242532.0604749,
-    "ast_hash": "d2f0b6fd69dec5b0f43f3295dc8e2acc",
-    "semantic_hash": ""
-  },
-  "flujo_pago_mercadopago.visual-check.1440x900.light.png": {
-    "mtime": 1790092487.6093442,
-    "seen": 1791242532.0604758,
-    "ast_hash": "bd51826e93b1856fe35710f9a36a2f4c",
-    "semantic_hash": ""
-  },
-  "flujo_pago_mercadopago.visual-check.2048x1320.dark.png": {
-    "mtime": 1790092489.4801075,
-    "seen": 1791242532.0604758,
-    "ast_hash": "706973f1e1acb65cc24c37bbeb06547a",
-    "semantic_hash": ""
-  },
-  "flujo_pago_mercadopago.visual-check.2048x1320.light.png": {
-    "mtime": 1790092488.6849933,
-    "seen": 1791242532.060477,
-    "ast_hash": "3b8b4c08b771caf8f0b7089ab218f659",
-    "semantic_hash": ""
-  },
   "frontend/public/favicon.svg": {
     "mtime": 1790719771.3664827,
     "seen": 1791242532.060477,
@@ -1935,6 +1899,24 @@
     "mtime": 1790719771.368663,
     "seen": 1791242532.060478,
     "ast_hash": "e8f2fc4392a68a772e8561ef7ac9d0f5",
+    "semantic_hash": ""
+  },
+  "render.yaml": {
+    "mtime": 1791555959.1096358,
+    "seen": 1791556000.5527291,
+    "ast_hash": "41a2ee91d248d4534d45062a3046d327",
+    "semantic_hash": ""
+  },
+  "backend/src/main/java/com/clinicadermatologica/app/domain/exception/PaymentGatewayException.java": {
+    "mtime": 1791558096.8422163,
+    "seen": 1791558851.423266,
+    "ast_hash": "787f1a1126da2bb4c9b7bf2b30862b26",
+    "semantic_hash": ""
+  },
+  "backend/src/main/java/com/clinicadermatologica/app/infrastructure/payment/MercadoPagoConfigBean.java": {
+    "mtime": 1791558138.2255137,
+    "seen": 1791558851.423295,
+    "ast_hash": "dcf185da6df4df63b3c56c8c0d55725a",
     "semantic_hash": ""
   }
 }

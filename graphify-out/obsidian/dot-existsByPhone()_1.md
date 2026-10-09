@@ -1,8 +1,8 @@
 ---
-source_file: "backend/src/main/java/com/clinicadermatologica/app/infrastructure/persistence/adapter/PatientRepositoryAdapter.java"
+source_file: "backend/src/main/java/com/clinicadermatologica/app/infrastructure/persistence/jpa/JpaPatientRepository.java"
 type: "code"
 community: "Patient"
-location: "L56"
+location: "L26"
 tags:
   - graphify/code
   - graphify/EXTRACTED
@@ -12,8 +12,7 @@ tags:
 # .existsByPhone()
 
 ## Connections
-- [[dot-existsByPhone()_2]] - `calls` [INFERRED]
-- [[Override_13]] - `references` [EXTRACTED]
-- [[PatientRepositoryAdapter]] - `method` [EXTRACTED]
+- [[dot-existsByPhone()]] - `calls` [INFERRED]
+- [[JpaPatientRepository]] - `method` [EXTRACTED]
 
 #graphify/code #graphify/EXTRACTED #community/Patient

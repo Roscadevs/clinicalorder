@@ -11,6 +11,6 @@ tags:
 # Getter
 
 ## Connections
-- [[BookAppointmentRequestDTO]] - `references` [EXTRACTED]
+- [[TimeSlotDTO]] - `references` [EXTRACTED]
 
 #graphify/code #graphify/EXTRACTED #community/AppointmentServiceTestjava

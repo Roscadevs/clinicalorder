@@ -1,17 +1,17 @@
 ---
-source_file: "frontend/src/components/ui/Button.tsx"
+source_file: "frontend/src/components/reactbits/SpecularButton.tsx"
 type: "code"
-community: "AdminServicesView.tsx"
-location: "L6"
+community: "ServicesCatalogView.tsx"
+location: "L67"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/AdminServicesViewtsx
+  - community/ServicesCatalogViewtsx
 ---
 
 # ButtonSize
 
 ## Connections
-- [[Button.tsx]] - `contains` [EXTRACTED]
+- [[SpecularButton.tsx]] - `contains` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/AdminServicesViewtsx
+#graphify/code #graphify/EXTRACTED #community/ServicesCatalogViewtsx

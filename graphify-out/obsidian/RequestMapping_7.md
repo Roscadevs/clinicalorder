@@ -1,16 +1,16 @@
 ---
 source_file: ""
 type: "code"
-community: "AuthController"
+community: "org.springframework.transaction.annotation.Transactional"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/AuthController
+  - community/orgspringframeworktransactionannotationTransactional
 ---
 
 # RequestMapping
 
 ## Connections
-- [[AuthController]] - `references` [EXTRACTED]
+- [[PatientController]] - `references` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/AuthController
+#graphify/code #graphify/EXTRACTED #community/orgspringframeworktransactionannotationTransactional

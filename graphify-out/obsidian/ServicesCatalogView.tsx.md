@@ -1,12 +1,12 @@
 ---
 source_file: "frontend/src/features/public/ServicesCatalogView.tsx"
 type: "code"
-community: "react"
+community: "ServicesCatalogView.tsx"
 location: "L1"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/react
+  - community/ServicesCatalogViewtsx
 ---
 
 # ServicesCatalogView.tsx
@@ -31,4 +31,4 @@ tags:
 - [[uiindex.ts]] - `imports_from` [EXTRACTED]
 - [[whatsappLink()]] - `imports` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/react
+#graphify/code #graphify/EXTRACTED #community/ServicesCatalogViewtsx

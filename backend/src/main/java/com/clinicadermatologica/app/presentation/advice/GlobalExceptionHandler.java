@@ -66,6 +66,12 @@ public class GlobalExceptionHandler {
         return ResponseEntity.badRequest().body(body);
     }
 
+    @ExceptionHandler(PaymentGatewayException.class)
+    public ResponseEntity<Map<String, Object>> handlePaymentGateway(PaymentGatewayException ex, HttpServletRequest request) {
+        log.error("Falla en pasarela de pagos al procesar {}: {}", request.getRequestURI(), ex.getMessage());
+        return buildErrorResponse(HttpStatus.BAD_GATEWAY, ex.getMessage(), request.getRequestURI());
+    }
+
     @ExceptionHandler(Exception.class) // Captura genérica de excepciones inesperadas
     public ResponseEntity<Map<String, Object>> handleGeneralException(Exception ex, HttpServletRequest request) {
         log.error("Error no controlado en {}: {}", request.getRequestURI(), ex.getMessage(), ex);

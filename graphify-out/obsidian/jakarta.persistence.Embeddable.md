@@ -1,11 +1,11 @@
 ---
 source_file: ""
 type: "code"
-community: "Habito"
+community: "AntecedentePatologico"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/Habito
+  - community/AntecedentePatologico
 ---
 
 # jakarta.persistence.Embeddable
@@ -18,4 +18,4 @@ tags:
 - [[HabitoId]] - `references` [EXTRACTED]
 - [[HabitoId.java]] - `imports` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/Habito
+#graphify/code #graphify/EXTRACTED #community/AntecedentePatologico

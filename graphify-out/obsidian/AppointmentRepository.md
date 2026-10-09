@@ -13,11 +13,11 @@ tags:
 
 ## Connections
 - [[dot-findByDateRange()_4]] - `method` [EXTRACTED]
-- [[dot-findById()_7]] - `method` [EXTRACTED]
-- [[dot-findByPatientId()]] - `method` [EXTRACTED]
+- [[dot-findById()_12]] - `method` [EXTRACTED]
+- [[dot-findByPatientId()_1]] - `method` [EXTRACTED]
 - [[dot-findExpiredHolds()_1]] - `method` [EXTRACTED]
 - [[dot-findOverlappingAppointments()_1]] - `method` [EXTRACTED]
-- [[dot-save()_10]] - `method` [EXTRACTED]
+- [[dot-save()_6]] - `method` [EXTRACTED]
 - [[AppointmentRepository.java]] - `contains` [EXTRACTED]
 - [[AppointmentRepositoryAdapter]] - `implements` [EXTRACTED]
 - [[AppointmentRepositoryAdapter.java]] - `imports` [EXTRACTED]

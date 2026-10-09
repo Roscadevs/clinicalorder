@@ -1,11 +1,11 @@
 ---
 source_file: ""
 type: "code"
-community: "lombok.extern.slf4j.Slf4j"
+community: "User"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/lombokexternslf4jSlf4j
+  - community/User
 ---
 
 # javax.crypto.SecretKey
@@ -16,4 +16,4 @@ tags:
 - [[JwtTokenProvider]] - `references` [EXTRACTED]
 - [[JwtTokenProvider.java]] - `imports` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/lombokexternslf4jSlf4j
+#graphify/code #graphify/EXTRACTED #community/User

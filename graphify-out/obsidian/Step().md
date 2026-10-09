@@ -1,12 +1,12 @@
 ---
 source_file: "frontend/src/components/reactbits/Stepper.tsx"
 type: "code"
-community: "reactbits/index.ts"
+community: "ServicesCatalogView.tsx"
 location: "L66"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/reactbits/indexts
+  - community/ServicesCatalogViewtsx
 ---
 
 # Step()
@@ -16,4 +16,4 @@ tags:
 - [[Stepper.tsx]] - `contains` [EXTRACTED]
 - [[reactbitsindex.ts]] - `re_exports` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/reactbits/indexts
+#graphify/code #graphify/EXTRACTED #community/ServicesCatalogViewtsx

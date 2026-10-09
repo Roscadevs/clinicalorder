@@ -1,12 +1,12 @@
 ---
 source_file: "backend/src/main/java/com/clinicadermatologica/app/application/service/AuthService.java"
 type: "code"
-community: ".login"
+community: "lombok.extern.slf4j.Slf4j"
 location: "L44"
 tags:
   - graphify/code
   - graphify/INFERRED
-  - community/login
+  - community/lombokexternslf4jSlf4j
 ---
 
 # .login()
@@ -23,4 +23,4 @@ tags:
 - [[AuthService]] - `method` [EXTRACTED]
 - [[org.springframework.transaction.annotation.Transactional]] - `references` [EXTRACTED]
 
-#graphify/code #graphify/INFERRED #community/login
+#graphify/code #graphify/INFERRED #community/lombokexternslf4jSlf4j

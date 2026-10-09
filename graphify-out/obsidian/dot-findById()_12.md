@@ -1,8 +1,8 @@
 ---
-source_file: "backend/src/main/java/com/clinicadermatologica/app/domain/repository/PatientRepository.java"
+source_file: "backend/src/main/java/com/clinicadermatologica/app/domain/repository/AppointmentRepository.java"
 type: "code"
 community: "AppointmentService"
-location: "L12"
+location: "L17"
 tags:
   - graphify/code
   - graphify/INFERRED
@@ -12,16 +12,22 @@ tags:
 # .findById()
 
 ## Connections
-- [[dot-bookTemporaryHold()]] - `calls` [INFERRED]
-- [[dot-deactivatePatient()_1]] - `calls` [INFERRED]
-- [[dot-getPatientById()]] - `calls` [INFERRED]
-- [[dot-saveOrUpdateMedicalRecord()]] - `calls` [INFERRED]
-- [[dot-testBookTemporaryHold_ExpiredOverlappingHold_IsReleased()]] - `calls` [INFERRED]
-- [[dot-testBookTemporaryHold_SlotUnavailable_ThrowsException()]] - `calls` [INFERRED]
-- [[dot-testBookTemporaryHold_Success()]] - `calls` [INFERRED]
-- [[dot-testSaveInitialMedicalRecord_Success()]] - `calls` [INFERRED]
-- [[dot-updatePatient()_1]] - `calls` [INFERRED]
-- [[Patient_1]] - `references` [EXTRACTED]
-- [[PatientRepository]] - `method` [EXTRACTED]
+- [[dot-addClinicalEntry()_1]] - `calls` [INFERRED]
+- [[dot-cancelAppointment()]] - `calls` [INFERRED]
+- [[dot-getAppointmentById()]] - `calls` [INFERRED]
+- [[dot-getAppointmentPublicStatus()]] - `calls` [INFERRED]
+- [[dot-markAsAttended()]] - `calls` [INFERRED]
+- [[dot-prepareHold()]] - `calls` [INFERRED]
+- [[dot-registerDepositPayment()]] - `calls` [INFERRED]
+- [[dot-registerFinalPayment()]] - `calls` [INFERRED]
+- [[dot-testAddClinicalEntry_EncryptsContent()]] - `calls` [INFERRED]
+- [[dot-testCancelAppointment_WithApprovedMercadoPagoPayment_TriggersRefund()]] - `calls` [INFERRED]
+- [[dot-testGetAppointmentPublicStatus()]] - `calls` [INFERRED]
+- [[dot-testMarkAsAttended_ConfirmedToAttended()]] - `calls` [INFERRED]
+- [[dot-testMarkAsAttended_NotConfirmed_Throws()]] - `calls` [INFERRED]
+- [[dot-testRegisterFinalPayment_DelegatesToStrategy_CompletesAppointment()]] - `calls` [INFERRED]
+- [[dot-testRegisterFinalPayment_NotAttended_ThrowsException()]] - `calls` [INFERRED]
+- [[Appointment]] - `references` [EXTRACTED]
+- [[AppointmentRepository]] - `method` [EXTRACTED]
 
 #graphify/code #graphify/INFERRED #community/AppointmentService

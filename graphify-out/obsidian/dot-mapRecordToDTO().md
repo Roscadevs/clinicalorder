@@ -13,9 +13,9 @@ tags:
 
 ## Connections
 - [[dot-decrypt()]] - `calls` [EXTRACTED]
-- [[dot-findByMedicalRecordId()_2]] - `calls` [INFERRED]
-- [[dot-findByMedicalRecordId()_3]] - `calls` [INFERRED]
 - [[dot-findByMedicalRecordId()_4]] - `calls` [INFERRED]
+- [[dot-findByMedicalRecordId()_2]] - `calls` [INFERRED]
+- [[dot-findByMedicalRecordId()]] - `calls` [INFERRED]
 - [[dot-saveOrUpdateMedicalRecord()]] - `calls` [EXTRACTED]
 - [[MedicalRecord_2]] - `references` [EXTRACTED]
 - [[MedicalRecordDTO]] - `references` [EXTRACTED]

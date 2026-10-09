@@ -1,20 +1,20 @@
 ---
-source_file: "backend/src/main/java/com/clinicadermatologica/app/domain/repository/PasswordResetTokenRepository.java"
+source_file: "backend/src/main/java/com/clinicadermatologica/app/domain/repository/UserRepository.java"
 type: "code"
-community: ".forgotPassword"
-location: "L12"
+community: "lombok.extern.slf4j.Slf4j"
+location: "L14"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/forgotPassword
+  - community/lombokexternslf4jSlf4j
 ---
 
 # .save()
 
 ## Connections
-- [[dot-forgotPassword()_1]] - `calls` [INFERRED]
+- [[dot-registerUser()]] - `calls` [INFERRED]
 - [[dot-resetPassword()_1]] - `calls` [INFERRED]
-- [[PasswordResetToken]] - `references` [EXTRACTED]
-- [[PasswordResetTokenRepository]] - `method` [EXTRACTED]
+- [[User]] - `references` [EXTRACTED]
+- [[UserRepository]] - `method` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/forgotPassword
+#graphify/code #graphify/EXTRACTED #community/lombokexternslf4jSlf4j

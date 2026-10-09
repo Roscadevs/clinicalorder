@@ -2,7 +2,7 @@
 source_file: "backend/src/test/java/com/clinicadermatologica/app/application/PaymentServiceTest.java"
 type: "code"
 community: "org.junit.jupiter.api.DisplayName"
-location: "L335"
+location: "L453"
 tags:
   - graphify/code
   - graphify/EXTRACTED
@@ -13,7 +13,7 @@ tags:
 
 ## Connections
 - [[dot-getStrategy()]] - `calls` [INFERRED]
-- [[dot-supportedType()_3]] - `calls` [INFERRED]
+- [[dot-supportedType()_2]] - `calls` [INFERRED]
 - [[PaymentServiceTest]] - `method` [EXTRACTED]
 - [[PaymentStrategyFactory]] - `calls` [EXTRACTED]
 - [[org.junit.jupiter.api.DisplayName]] - `references` [EXTRACTED]

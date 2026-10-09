@@ -1,18 +1,18 @@
 ---
-source_file: "backend/src/main/java/com/clinicadermatologica/app/infrastructure/persistence/jpa/JpaUserRepository.java"
+source_file: "backend/src/main/java/com/clinicadermatologica/app/domain/repository/PatientRepository.java"
 type: "code"
-community: "User"
-location: "L17"
+community: "org.springframework.transaction.annotation.Transactional"
+location: "L20"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/User
+  - community/orgspringframeworktransactionannotationTransactional
 ---
 
 # .existsByEmail()
 
 ## Connections
-- [[dot-existsByEmail()_3]] - `calls` [INFERRED]
-- [[JpaUserRepository]] - `method` [EXTRACTED]
+- [[dot-createPatient()]] - `calls` [INFERRED]
+- [[PatientRepository]] - `method` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/User
+#graphify/code #graphify/EXTRACTED #community/orgspringframeworktransactionannotationTransactional
