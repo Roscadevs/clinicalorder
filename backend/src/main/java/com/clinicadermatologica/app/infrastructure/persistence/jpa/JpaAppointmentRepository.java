@@ -30,4 +30,16 @@ public interface JpaAppointmentRepository extends JpaRepository<Appointment, Lon
 
     @Query("SELECT a FROM Appointment a WHERE a.startTime >= :start AND a.endTime <= :end ORDER BY a.startTime ASC")
     List<Appointment> findByDateRange(@Param("start") Instant start, @Param("end") Instant end);
+
+    @Query(value = "SELECT sp_alta_cita(:pacienteId, :servicioId, :createdById, :startTime, :endTime, :agreedPrice, :doctorId, :followUpToId)", nativeQuery = true)
+    Long executeSpAltaCita(
+            @Param("pacienteId") Long pacienteId,
+            @Param("servicioId") Long servicioId,
+            @Param("createdById") Long createdById,
+            @Param("startTime") Instant startTime,
+            @Param("endTime") Instant endTime,
+            @Param("agreedPrice") java.math.BigDecimal agreedPrice,
+            @Param("doctorId") Long doctorId,
+            @Param("followUpToId") Long followUpToId
+    );
 }
