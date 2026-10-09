@@ -12,6 +12,7 @@ import {
   GeminiChatResponse,
   TimeSlot,
   PaymentType,
+  PaymentConcept,
   PaymentReceipt,
   UserRole
 } from '../types'; // Importación de contratos de tipos
@@ -291,12 +292,12 @@ export const appointmentsApi = {
    */
   registerDepositPayment: async (
     id: number,
-    payload: { paymentType: Exclude<PaymentType, 'MERCADOPAGO'>; amount: number; agreedPrice: number }
+    payload: { paymentType: Exclude<PaymentType, 'MERCADOPAGO'>; paymentConcept: PaymentConcept; amount: number; agreedPrice: number }
   ): Promise<PaymentReceipt> => {
     try {
       const response = await api.post<PaymentReceipt>(
         `/citas/${id}/registrar-pago`,
-        { paymentType: payload.paymentType, amount: payload.amount },
+        { paymentType: payload.paymentType, paymentConcept: payload.paymentConcept, amount: payload.amount },
         { params: { userId: currentUserId() } }
       );
       return response.data;

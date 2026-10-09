@@ -1,12 +1,13 @@
 import React, { useState } from 'react';
-import { Banknote, Smartphone, AlertCircle, Copy, Check, MessageCircle, ArrowLeft, QrCode } from 'lucide-react';
+import { Banknote, Smartphone, AlertCircle, Copy, Check, MessageCircle, ArrowLeft, QrCode, CheckCircle, Info } from 'lucide-react';
 import { QRCodeSVG } from 'qrcode.react';
 import { appointmentsApi } from '../../services/api';
-import { PaymentReceipt } from '../../types';
+import { PaymentConcept, PaymentReceipt } from '../../types';
 import { Button, Input } from '../../components/ui';
 import { cn } from '../../utils/cn';
 
 type Method = 'CASH' | 'VIRTUAL';
+type CashOption = 'DEPOSIT' | 'FULL';
 
 interface RegisterPaymentStepProps {
   appointmentId: number;
@@ -18,6 +19,7 @@ interface RegisterPaymentStepProps {
   patientPhone?: string;
   initPointUrl?: string;
   holdExpired: boolean;
+  isToday: boolean;
   onBack: () => void;
   /** Pago en efectivo validado y registrado: turno CONFIRMED. */
   onPaid: (info: { receipt: PaymentReceipt; received: number; change: number }) => void;
@@ -41,26 +43,30 @@ export const RegisterPaymentStep: React.FC<RegisterPaymentStepProps> = ({
   patientPhone,
   initPointUrl,
   holdExpired,
+  isToday,
   onBack,
   onPaid,
   onVirtualSent,
 }) => {
   const [method, setMethod] = useState<Method>('CASH');
-  const [received, setReceived] = useState<string>(String(depositAmount));
+  const [cashOption, setCashOption] = useState<CashOption>(isToday ? 'FULL' : 'DEPOSIT');
+  const [received, setReceived] = useState<string>(isToday ? String(agreedPrice) : String(depositAmount));
   const [fieldError, setFieldError] = useState<string | null>(null);
   const [submitError, setSubmitError] = useState<string | null>(null);
   const [isSaving, setIsSaving] = useState(false);
   const [copied, setCopied] = useState(false);
 
+  const amountToCharge: number = cashOption === 'FULL' ? agreedPrice : depositAmount;
+
   const receivedNum = Number(received.replace(',', '.'));
-  const change = Number.isFinite(receivedNum) ? Math.max(0, receivedNum - depositAmount) : 0;
+  const change = Number.isFinite(receivedNum) ? Math.max(0, receivedNum - amountToCharge) : 0;
 
   // E-2: validación de los datos ingresados antes de registrar.
   const validate = (): string | null => {
     if (!received.trim() || !Number.isFinite(receivedNum)) return 'Ingresá el monto recibido.';
     if (receivedNum <= 0) return 'El monto debe ser mayor a cero.';
-    if (receivedNum < depositAmount) {
-      return `El monto recibido es menor a la seña requerida (${ars(depositAmount)}).`;
+    if (receivedNum < amountToCharge) {
+      return `El monto recibido es menor al importe requerido (${ars(amountToCharge)}).`;
     }
     return null;
   };
@@ -76,7 +82,8 @@ export const RegisterPaymentStep: React.FC<RegisterPaymentStepProps> = ({
     try {
       const receipt = await appointmentsApi.registerDepositPayment(appointmentId, {
         paymentType: 'CASH',
-        amount: depositAmount,
+        paymentConcept: cashOption as PaymentConcept,
+        amount: amountToCharge,
         agreedPrice,
       });
       onPaid({ receipt, received: receivedNum, change });
@@ -123,11 +130,13 @@ export const RegisterPaymentStep: React.FC<RegisterPaymentStepProps> = ({
         </div>
         <div>
           <span className="block text-xs text-sand-500">Concepto</span>
-          <span className="font-semibold text-sand-800">Seña ({depositPercentage}%)</span>
+          <span className="font-semibold text-sand-800">
+            {cashOption === 'DEPOSIT' ? `Seña (${depositPercentage}%)` : 'Pago total (100%)'}
+          </span>
         </div>
         <div className="col-span-2 pt-2 border-t border-sand-200 flex items-baseline justify-between">
           <span className="text-sand-600">Importe a cobrar</span>
-          <span className="font-display text-xl font-bold text-primary-600">{ars(depositAmount)}</span>
+          <span className="font-display text-xl font-bold text-primary-600">{ars(amountToCharge)}</span>
         </div>
       </div>
 
@@ -182,6 +191,91 @@ export const RegisterPaymentStep: React.FC<RegisterPaymentStepProps> = ({
 
       {method === 'CASH' ? (
         <form onSubmit={handleConfirmCash} className="space-y-4" noValidate>
+          {/* Opción de pago: seña vs total */}
+          {isToday ? (
+            <div className="space-y-3">
+              {/* Turno para hoy: solo pago total, no interactivo */}
+              <div className="flex items-center gap-3 p-3 rounded-xl border border-primary-500 bg-primary-50/60 ring-2 ring-primary-500/20">
+                <span className="w-9 h-9 rounded-lg flex items-center justify-center bg-primary-500 text-white">
+                  <CheckCircle className="w-5 h-5" />
+                </span>
+                <span>
+                  <span className="block text-sm font-semibold text-sand-900">Pagar total (100%)</span>
+                  <span className="block text-xs text-sand-500">{ars(agreedPrice)}</span>
+                </span>
+              </div>
+              <div className="bg-amber-50 border border-amber-200 rounded-xl px-4 py-3 text-sm text-amber-800 flex items-center gap-2">
+                <Info className="w-4 h-4 flex-shrink-0" />
+                <span>Los turnos del día requieren el pago completo al momento de la reserva.</span>
+              </div>
+            </div>
+          ) : (
+            /* Turno futuro: elegir entre seña y total */
+            <fieldset>
+              <legend className="block text-xs font-bold text-sand-700 uppercase tracking-wider mb-2">
+                Opción de pago
+              </legend>
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
+                {([
+                  {
+                    id: 'DEPOSIT' as CashOption,
+                    label: `Pagar seña (${depositPercentage}%)`,
+                    hint: ars(depositAmount),
+                    description: 'El saldo se abona el día del turno.',
+                    icon: Banknote,
+                  },
+                  {
+                    id: 'FULL' as CashOption,
+                    label: 'Pagar total (100%)',
+                    hint: ars(agreedPrice),
+                    description: 'Pago completo del servicio.',
+                    icon: CheckCircle,
+                  },
+                ]).map((opt) => {
+                  const Icon = opt.icon;
+                  const selected = cashOption === opt.id;
+                  return (
+                    <label
+                      key={opt.id}
+                      className={cn(
+                        'flex items-start gap-3 p-3 rounded-xl border cursor-pointer transition-colors',
+                        selected
+                          ? 'border-primary-500 bg-primary-50/60 ring-2 ring-primary-500/20'
+                          : 'border-sand-200 hover:border-primary-300'
+                      )}
+                    >
+                      <input
+                        type="radio"
+                        name="cash-option"
+                        value={opt.id}
+                        checked={selected}
+                        onChange={() => {
+                          setCashOption(opt.id);
+                          setReceived(opt.id === 'DEPOSIT' ? String(depositAmount) : String(agreedPrice));
+                          setFieldError(null);
+                        }}
+                        className="sr-only"
+                      />
+                      <span
+                        className={cn(
+                          'mt-0.5 w-9 h-9 rounded-lg flex items-center justify-center flex-shrink-0',
+                          selected ? 'bg-primary-500 text-white' : 'bg-sand-100 text-sand-600'
+                        )}
+                      >
+                        <Icon className="w-5 h-5" />
+                      </span>
+                      <span>
+                        <span className="block text-sm font-semibold text-sand-900">{opt.label}</span>
+                        <span className="block font-display text-base font-bold text-primary-600">{opt.hint}</span>
+                        <span className="block text-xs text-sand-500 mt-0.5">{opt.description}</span>
+                      </span>
+                    </label>
+                  );
+                })}
+              </div>
+            </fieldset>
+          )}
+
           <div className="max-w-xs">
             <Input
               label="Monto recibido (ARS) *"
