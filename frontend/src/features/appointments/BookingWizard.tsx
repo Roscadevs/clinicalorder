@@ -32,6 +32,7 @@ interface Hold {
   data: PaymentPreferenceResponse;
   key: string; // paciente|servicio|horario del bloqueo
   deadline: number; // ms epoch
+  isToday: boolean; // capturado al momento del bloqueo para evitar race de medianoche
 }
 
 const todayInAR = () =>
@@ -237,7 +238,7 @@ export const BookingWizard: React.FC = () => {
         startTime: slotStart,
       });
       const deadline = data.holdExpiresAt ? new Date(data.holdExpiresAt).getTime() : Date.now() + HOLD_MS;
-      setHold({ data, key: currentKey, deadline });
+      setHold({ data, key: currentKey, deadline, isToday: date === todayInAR() });
       setNow(Date.now());
       goTo(STEP.REVIEW);
     } catch (err: any) {
@@ -628,7 +629,7 @@ export const BookingWizard: React.FC = () => {
                     patientPhone={patient.phone}
                     initPointUrl={hold.data.initPointUrl}
                     holdExpired={holdExpired}
-                    isToday={date === todayInAR()}
+                    isToday={hold.isToday}
                     onBack={() => goTo(STEP.REVIEW)}
                     onPaid={({ receipt, change }) => setOutcome({ kind: 'CONFIRMED', receipt, change })}
                     onVirtualSent={() => setOutcome({ kind: 'PENDING_VIRTUAL' })}

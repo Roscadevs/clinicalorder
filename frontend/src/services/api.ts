@@ -297,7 +297,7 @@ export const appointmentsApi = {
     try {
       const response = await api.post<PaymentReceipt>(
         `/citas/${id}/registrar-pago`,
-        { paymentType: payload.paymentType, paymentConcept: payload.paymentConcept, amount: payload.amount },
+        { paymentType: payload.paymentType, paymentConcept: payload.paymentConcept, amount: payload.amount, agreedPrice: payload.agreedPrice },
         { params: { userId: currentUserId() } }
       );
       return response.data;
