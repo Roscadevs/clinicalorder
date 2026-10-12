@@ -71,7 +71,7 @@ gemini:
 
 # Configuración de Almacenamiento de Fotos Médicas en Supabase Storage
 supabase:
-  storage:
+  storage:n
     url: ${SUPABASE_STORAGE_URL:https://jcsgixxatmqzpdcflevw.supabase.co/storage/v1}
     anon-key: ${SUPABASE_ANON_KEY:sb_publishable_vCQ09c8ZXEKvQeNipnC5gA_d8VQnASl}
     bucket-name: photos
