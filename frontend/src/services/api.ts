@@ -810,12 +810,13 @@ export const chatApi = {
 };
 
 export const chatbotApi = {
-  sendMessage: async (message: string): Promise<string> => {
+  sendMessage: async (message: string, history?: { role: string; text: string }[]): Promise<string> => {
     try {
-      const res = await chatApi.sendMessageToGemini(message);
+      const res = await chatApi.sendMessageToGemini(message, history);
       return res.reply;
-    } catch {
-      return '¡Hola! 🌿 Los tratamientos más solicitados son el Peeling Mandélico ($42.000 ARS con seña de $21.000 ARS) y la Toxina Botulínica ($65.000 ARS con seña de $32.500 ARS). Para reservar, escribinos por WhatsApp y coordinamos tu turno.';
+    } catch (error) {
+      console.warn('Intermitencia al conectar con el asistente de IA:', error);
+      return '¡Hola! 🌿 En este momento estamos experimentando una breve intermitencia con el servidor. Puedes consultar nuestros tratamientos disponibles en la sección Servicios o reservar directamente seleccionando tu fecha y hora.';
     }
   },
 };

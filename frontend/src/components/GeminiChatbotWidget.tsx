@@ -44,7 +44,11 @@ export const GeminiChatbotWidget: React.FC = () => {
     setIsLoading(true);
 
     try {
-      const responseText = await chatbotApi.sendMessage(userMsg.content);
+      const historyPayload = messages.map((m) => ({
+        role: m.role === 'assistant' ? 'model' : 'user',
+        text: m.content,
+      }));
+      const responseText = await chatbotApi.sendMessage(userMsg.content, historyPayload);
       const assistantMsg: ChatMessage = {
         id: (Date.now() + 1).toString(),
         role: 'assistant',
