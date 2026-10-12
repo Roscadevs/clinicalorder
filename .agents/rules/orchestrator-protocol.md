@@ -68,3 +68,20 @@ No asumas aprobaciones tácitas ni generes código final antes de superar la Fas
    - Que no se haya eliminado la anotación `@Version` en entidades tocadas.
    - Que las respuestas de error sigan el estándar RFC 7807 sin exponer stack traces.
 2. Presenta un resumen final con la lista de archivos creados/modificados y el estado en verde de los tests.
+
+---
+
+## PROTOCOLO PARA AGENTES ASÍNCRONOS / HEADLESS (GOOGLE JULES)
+Cuando este repositorio sea operado por Google Jules o flujos desatendidos de CI/CD:
+
+1. **Régimen de Barreras de Parada**:
+   - Ejecuta las 5 fases de forma atómica y secuencial sin detenerte a solicitar confirmación en el terminal.
+   - **Fase 1**: Mapeo de impacto consultando `graphify-out/GRAPH_REPORT.md` y estructura del código.
+   - **Fase 2**: Redacta el PRD formal en `documentacion/historial_prds/PRD_Fase_[X]_[NOMBRE].md`.
+   - **Fase 3**: Redacta el Plan Técnico en `documentacion/implementation_plan.md`.
+   - **Fase 4**: Implementa el código y pruebas unitarias. Ejecuta obligatoriamente en sus respectivos directorios:
+     * Backend: `cd backend && mvn clean test -B`
+     * Frontend: `cd frontend && npm run build && npx tsc --noEmit`
+   - **Fase 5**: Audita invariantes (auditoría en `clinical_entries_audit`, persistencia de `@Version`, RFC 7807 y prohibición de migraciones Flyway destructivas).
+   - **Transferencia de Aprobación**: La barrera de parada se traslada a la revisión humana formal de la Pull Request de GitHub previa al merge a `main`.
+
