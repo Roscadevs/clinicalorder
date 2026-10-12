@@ -122,6 +122,14 @@ api.interceptors.response.use(
             isRedirectingToLogin = false;
           }, 2000);
         }
+      } else if (status === 403) {
+        // 403: Acceso no autorizado para el rol
+        const data = error.response.data as any;
+        const msg = data?.detail || data?.message || 'No disponés de los privilegios necesarios para esta acción.';
+        toast.friendlyError('Acceso denegado', {
+          description: msg,
+          duration: 3500,
+        });
       } else if (status >= 500 && !isNetworkError(error)) {
         // 500+ Error interno no simulado
         toast.friendlyError('Inconveniente temporal en el servidor', {

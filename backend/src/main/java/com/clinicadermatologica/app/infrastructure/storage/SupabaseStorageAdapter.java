@@ -40,11 +40,15 @@ public class SupabaseStorageAdapter {
      */
     public String uploadFile(Long patientId, MultipartFile file) {
         try {
-            // Genera una ruta única para el archivo: photos/{patientId}/{uuid}.{ext}
-            String originalExt = "";
+            // Genera una ruta única y sanitizada para el archivo: photos/{patientId}/{uuid}.{ext}
+            String originalExt = ".jpg";
             String originalFilename = file.getOriginalFilename();
             if (originalFilename != null && originalFilename.contains(".")) {
-                originalExt = originalFilename.substring(originalFilename.lastIndexOf("."));
+                String ext = originalFilename.substring(originalFilename.lastIndexOf(".")).toLowerCase();
+                // Lista blanca de extensiones de imagen válidas (inmune a secuencias de path traversal "../")
+                if (ext.matches("^\\.(jpe?g|png)$")) {
+                    originalExt = ext;
+                }
             }
             String uniqueFilename = UUID.randomUUID().toString() + originalExt;
             String objectPath = patientId + "/" + uniqueFilename;
