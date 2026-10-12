@@ -11,7 +11,7 @@ export const GeminiChatbotWidget: React.FC = () => {
     {
       id: 'welcome',
       role: 'assistant',
-      content: '¡Hola! 🌿 Soy el asistente virtual de la Dra. Valeria Gómez. ¿En qué tratamiento o consulta dermatológica puedo asesorarte hoy?',
+      content: '¡Hola! 🌿 Soy la Asistente Virtual de la Clínica Dermatológica y Estética de la Dra. Paula Villa Fuhrmann. ¿En qué tratamiento o consulta médica puedo asesorarte hoy?',
       timestamp: new Date(),
     },
   ]);
@@ -136,7 +136,7 @@ export const GeminiChatbotWidget: React.FC = () => {
                           : 'bg-white text-sand-800 border border-sand-200 rounded-bl-none shadow-sm'
                       }`}
                     >
-                      <p className="leading-relaxed whitespace-pre-line">{msg.content}</p>
+                      <p className="leading-relaxed whitespace-pre-wrap break-words">{msg.content}</p>
                       <span
                         className={`text-[9px] block mt-1 text-right ${
                           msg.role === 'user' ? 'text-primary-200' : 'text-sand-400'

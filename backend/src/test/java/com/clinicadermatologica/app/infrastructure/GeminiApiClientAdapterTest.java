@@ -78,4 +78,25 @@ class GeminiApiClientAdapterTest {
         assertThat(response.getBookingActionUrl()).isEqualTo("/turnos/reservar");
         assertThat(response.getSuggestedServices()).isNotEmpty();
     }
+
+    @Test
+    @DisplayName("Debe construir el System Instruction con blindaje de dominio, modismos de pago y jerarquía de catálogo")
+    void shouldBuildSystemInstructionWithDomainGuardrailsAndFinancialRules() {
+        GeminiApiClientAdapter adapter = new GeminiApiClientAdapter("dummy-key", "https://dummy.base.url", "gemini-3.5-flash-lite", null);
+        String catalog = "- Tratamiento: Peeling Químico\n  Precio Base: $42000.00 ARS\n";
+
+        String instruction = adapter.buildSystemInstruction(catalog);
+
+        assertThat(instruction).contains("Dra. Paula Villa Fuhrmann");
+        assertThat(instruction).contains("ANTI-JAILBREAK");
+        assertThat(instruction).contains("código de programación");
+        assertThat(instruction).contains("problemas matemáticos");
+        assertThat(instruction).contains("MercadoPago");
+        assertThat(instruction).contains("seña del 50%");
+        assertThat(instruction).contains("plata");
+        assertThat(instruction).contains("Consultas Médicas y Diagnóstico");
+        assertThat(instruction).contains("Cuidado Facial y Renovación");
+        assertThat(instruction).contains("Armonización y Rejuvenecimiento");
+        assertThat(instruction).contains("Peeling Químico");
+    }
 }

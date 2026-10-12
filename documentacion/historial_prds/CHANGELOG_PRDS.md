@@ -7,6 +7,18 @@
 
 ## 📜 Historial de Revisiones
 
+### 🔹 [Versión 17.0 (Fase 17 - Blindaje de Dominio, Jerarquía Visual y Ergonomía del Chatbot Gemini)](PRD_Fase_17_Blindaje_Dominio_Ergonomia_Chatbot_Gemini.md)
+- **Fecha:** 2026-10-12
+- **Estado:** VIGENTE / IMPLEMENTADO
+- **Autor:** Equipo de Producto, Seguridad de IA y Experiencia de Usuario
+- **Cambios Principales:**
+  - Blindaje estricto de dominio (*domain guardrails*) anti-jailbreak para declinar cortésmente solicitudes de código fuente, matemáticas y temas ajenos a la clínica.
+  - Comprensión semántica de modismos financieros argentinos ("plata", "efectivo", "seña", "transferencia"), detallando el 50% de seña por MercadoPago y saldo en consultorio.
+  - Protocolo de jerarquía visual y ergonomía en respuestas de precios divididas en 3 categorías (Consultas Médicas, Cuidado Facial, Armonización/Inyectables) evitando volcados masivos.
+  - Corrección de identidad institucional en el mensaje de bienvenida y estado inicial del widget fijando a la Dra. Paula Villa Fuhrmann.
+
+---
+
 ### 🔹 [Versión 16.0 (Fase 16 - Proxy Inverso en Vercel y Política de CORS en Producción)](PRD_Fase_16_Proxy_CORS_Chatbot_Vercel_Render.md)
 - **Fecha:** 2026-10-12
 - **Estado:** VIGENTE / IMPLEMENTADO
