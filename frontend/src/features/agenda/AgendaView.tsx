@@ -1,11 +1,12 @@
 import React, { useCallback, useEffect, useMemo, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { appointmentsApi } from '../../services/api';
 import { Appointment } from '../../types';
 import {
   Calendar as CalendarIcon, Clock, Printer, Bell, DollarSign, XCircle, ChevronLeft, ChevronRight,
-  ChevronDown, Eye, EyeOff, RefreshCw,
+  BarChart3, CheckCircle, Pencil, RefreshCw,
 } from 'lucide-react';
-import { Card, Button, Badge, Spinner } from '../../components/ui';
+import { Card, Button, Badge, Spinner, Modal } from '../../components/ui';
 import { AppointmentReceiptModal } from '../documents/AppointmentReceiptModal';
 import { ReminderNotificationModal } from '../reminders/ReminderNotificationModal';
 import { CollectBalanceModal } from './CollectBalanceModal';
@@ -14,6 +15,14 @@ import { cn } from '../../utils/cn';
 
 const TZ = 'America/Argentina/Buenos_Aires';
 type RangeMode = 'day' | 'week' | 'month';
+
+interface ConfirmState {
+  title: string;
+  message: string;
+  confirmLabel: string;
+  variant: 'primary' | 'danger';
+  onConfirm: () => Promise<void> | void;
+}
 
 const ars = (n: number) => `$${n.toLocaleString('es-AR', { maximumFractionDigits: 0 })}`;
 const fmtTime = (iso: string) =>
@@ -55,7 +64,14 @@ export const AgendaView: React.FC = () => {
   const [appointments, setAppointments] = useState<Appointment[]>([]);
   const [loading, setLoading] = useState(true);
   const [now, setNow] = useState(Date.now());
-  const [showMetrics, setShowMetrics] = useState(false);
+  const navigate = useNavigate();
+
+  // Día cuyos turnos muestra el panel lateral. null = hoy.
+  const [panelDay, setPanelDay] = useState<Date | null>(null);
+
+  // Diálogo de confirmación propio (reemplaza window.confirm).
+  const [confirm, setConfirm] = useState<ConfirmState | null>(null);
+  const [confirmBusy, setConfirmBusy] = useState(false);
 
   const [active, setActive] = useState<Appointment | null>(null); // detalle seleccionado
   const [collectFor, setCollectFor] = useState<Appointment | null>(null);
@@ -80,23 +96,46 @@ export const AgendaView: React.FC = () => {
     setAnchor((a) => (mode === 'day' ? addDays(a, dir) : mode === 'week' ? addDays(a, dir * 7) : (() => { const x = new Date(a); x.setMonth(x.getMonth() + dir); return x; })()));
   };
 
-  // ── Métricas del día de HOY (info sensible, oculta por defecto) ───────────────
-  const todayMetrics = useMemo(() => {
-    const today = appointments.filter((a) => sameDay(new Date(a.startTime), new Date()) && a.status !== 'CANCELED' && a.status !== 'PAYMENT_FAILED');
-    const confirmed = today.filter((a) => a.status === 'CONFIRMED');
-    const completed = today.filter((a) => a.status === 'COMPLETED');
-    // Saldo por cobrar: turnos ya atendidos pendientes de cobro
-    const toCollect = today.filter((a) => a.status === 'ATTENDED');
-    const depositsCollected = today.reduce((s, a) => s + a.agreedPrice * 0.5, 0); // seña 50%
-    const balancePending = toCollect.reduce((s, a) => s + a.agreedPrice * 0.5, 0); // saldo por cobrar
-    return { total: today.length, confirmed: confirmed.length, completed: completed.length, depositsCollected, balancePending };
-  }, [appointments]);
+  // Día efectivo del panel (el seleccionado o, por defecto, hoy).
+  const effectivePanelDay = panelDay ?? startOfDay(new Date());
+  const panelIsToday = sameDay(effectivePanelDay, new Date());
 
-  const cancel = async (appt: Appointment) => {
-    if (!confirm(`¿Cancelar el turno de ${appt.patientName}? La franja quedará libre.`)) return;
-    await appointmentsApi.cancelAppointment(appt.id);
-    setActive(null);
-    fetchAgenda();
+  // Turnos del día del panel, ordenados por hora.
+  const panelAppts = useMemo(
+    () =>
+      appointments
+        .filter((a) => sameDay(new Date(a.startTime), effectivePanelDay) && a.status !== 'CANCELED' && a.status !== 'PAYMENT_FAILED')
+        .sort((a, b) => a.startTime.localeCompare(b.startTime)),
+    [appointments, effectivePanelDay]
+  );
+
+  const cancel = (appt: Appointment) => {
+    setConfirm({
+      title: 'Cancelar turno',
+      message: `¿Querés cancelar el turno de ${appt.patientName}? La franja quedará libre y la acción no se puede deshacer.`,
+      confirmLabel: 'Cancelar turno',
+      variant: 'danger',
+      onConfirm: async () => {
+        await appointmentsApi.cancelAppointment(appt.id);
+        setActive(null);
+        fetchAgenda();
+      },
+    });
+  };
+
+  // CONFIRMED -> ATTENDED: habilita luego el cobro del saldo en mostrador.
+  const attend = (appt: Appointment) => {
+    setConfirm({
+      title: 'Marcar como atendido',
+      message: `¿Confirmás que ${appt.patientName} fue atendido? Luego vas a poder cobrar el saldo en mostrador.`,
+      confirmLabel: 'Marcar como atendido',
+      variant: 'primary',
+      onConfirm: async () => {
+        await appointmentsApi.markAsAttended(appt.id);
+        setActive(null);
+        fetchAgenda();
+      },
+    });
   };
 
   // Turnos agrupados por día (para día y semana)
@@ -127,26 +166,35 @@ export const AgendaView: React.FC = () => {
             <div className="w-10 h-10 sm:w-11 sm:h-11 rounded-2xl bg-primary-500 text-white flex items-center justify-center shadow-soft flex-shrink-0">
               <CalendarIcon className="w-5 h-5 sm:w-6 sm:h-6" />
             </div>
-            <div>
-              <h2 className="font-display text-base sm:text-lg font-bold text-sand-900">Agenda de turnos</h2>
-              <p className="text-[11px] sm:text-xs text-sand-500">Calendario de la clínica y gestión de turnos</p>
-            </div>
+            <h2 className="font-display text-xl sm:text-2xl font-bold text-sand-900">Agenda</h2>
           </div>
 
-          {/* Selector Día / Semana / Mes */}
-          <div className="bg-sand-100 p-1 rounded-xl flex items-center gap-1 border border-sand-200 self-start">
-            {([['day', 'Día'], ['week', 'Semana'], ['month', 'Mes']] as const).map(([m, label]) => (
-              <button
-                key={m}
-                onClick={() => setMode(m)}
-                className={cn(
-                  'px-3 py-1.5 rounded-lg text-xs font-bold transition-colors',
-                  mode === m ? 'bg-white text-primary-700 shadow-sm' : 'text-sand-600 hover:text-sand-900'
-                )}
-              >
-                {label}
-              </button>
-            ))}
+          <div className="flex items-center gap-2 self-start">
+            {/* Selector Día / Semana / Mes */}
+            <div className="bg-sand-100 p-1 rounded-xl flex items-center gap-1 border border-sand-200">
+              {([['day', 'Día'], ['week', 'Semana'], ['month', 'Mes']] as const).map(([m, label]) => (
+                <button
+                  key={m}
+                  onClick={() => setMode(m)}
+                  className={cn(
+                    'px-3 py-1.5 rounded-lg text-xs font-bold transition-colors',
+                    mode === m ? 'bg-white text-primary-700 shadow-sm' : 'text-sand-600 hover:text-sand-900'
+                  )}
+                >
+                  {label}
+                </button>
+              ))}
+            </div>
+
+            {/* Acceso a las métricas del día (vista dedicada, información sensible) */}
+            <button
+              onClick={() => navigate('/app/analytics')}
+              className="flex items-center gap-1.5 px-3 py-1.5 rounded-xl border border-sand-200 bg-white hover:bg-sand-50 text-xs font-bold text-sand-700 transition-colors"
+            >
+              <BarChart3 className="w-4 h-4 text-primary-500" />
+              <span className="hidden sm:inline">Métricas de hoy</span>
+              <span className="sm:hidden">Métricas</span>
+            </button>
           </div>
         </div>
 
@@ -180,40 +228,27 @@ export const AgendaView: React.FC = () => {
         </div>
       </Card>
 
-      {/* Métricas del día (colapsable, sensible) */}
-      <Card padded={false} className="overflow-hidden">
-        <button
-          onClick={() => setShowMetrics((v) => !v)}
-          aria-expanded={showMetrics}
-          className="w-full flex items-center justify-between gap-3 p-4 text-left hover:bg-sand-50 transition-colors"
-        >
-          <span className="flex items-center gap-2 font-display font-bold text-sand-900">
-            {showMetrics ? <Eye className="w-4 h-4 text-primary-500" /> : <EyeOff className="w-4 h-4 text-sand-400" />}
-            Métricas de hoy
-            <span className="text-[10px] font-bold uppercase tracking-wide text-primary-600 bg-primary-50 px-2 py-0.5 rounded-full">
-              Información sensible
-            </span>
-          </span>
-          <ChevronDown className={cn('w-4 h-4 text-sand-400 transition-transform', showMetrics && 'rotate-180')} />
-        </button>
-
-        {showMetrics && (
-          <div className="px-4 pb-4 grid grid-cols-2 lg:grid-cols-4 gap-2.5 sm:gap-4">
-            <Metric label="Turnos de hoy" value={`${todayMetrics.total}`} sub={`${todayMetrics.completed} atendidos`} icon={<CalendarIcon className="w-4 h-4" />} tone="neutral" />
-            <Metric label="Confirmados" value={`${todayMetrics.confirmed}`} sub="pendientes de atención" icon={<Clock className="w-4 h-4" />} tone="warning" />
-            <Metric label="Señas cobradas" value={`${ars(todayMetrics.depositsCollected)}`} sub="ARS" icon={<DollarSign className="w-4 h-4" />} tone="success" />
-            <Metric label="Saldo a cobrar" value={`${ars(todayMetrics.balancePending)}`} sub="ARS en mostrador" icon={<DollarSign className="w-4 h-4" />} tone="primary" />
-          </div>
-        )}
-      </Card>
-
-      {/* Contenido del calendario */}
+      {/* Contenido: panel "Turnos de hoy" a la izquierda + calendario a la derecha */}
       {loading && appointments.length === 0 ? (
         <div className="py-16 flex justify-center"><Spinner label="Cargando agenda" /></div>
-      ) : mode === 'month' ? (
-        <MonthGrid anchor={anchor} apptsByDay={apptsByDay} now={now} onSelectDay={(d) => { setAnchor(d); setMode('day'); }} onSelectAppt={setActive} />
       ) : (
-        <TimeGrid days={days} apptsByDay={apptsByDay} now={now} onSelectAppt={setActive} />
+        <div className="grid grid-cols-1 lg:grid-cols-[300px_1fr] gap-5 items-start">
+          <TodayPanel
+            appts={panelAppts}
+            day={effectivePanelDay}
+            isToday={panelIsToday}
+            now={now}
+            onBackToToday={() => setPanelDay(null)}
+            onSelectAppt={setActive}
+          />
+          <div className="min-w-0">
+            {mode === 'month' ? (
+              <MonthGrid anchor={anchor} apptsByDay={apptsByDay} now={now} onSelectDay={(d) => setPanelDay(startOfDay(d))} onSelectAppt={setActive} />
+            ) : (
+              <TimeGrid days={days} apptsByDay={apptsByDay} now={now} onSelectDay={(d) => setPanelDay(startOfDay(d))} onSelectAppt={setActive} />
+            )}
+          </div>
+        </div>
       )}
 
       {/* Detalle del turno */}
@@ -226,8 +261,43 @@ export const AgendaView: React.FC = () => {
           onReceipt={() => setReceiptFor(active)}
           onReminder={() => setReminderFor(active)}
           onCancel={() => cancel(active)}
+          onAttended={() => attend(active)}
+          onEdit={() => navigate(`/app/agenda/${active.id}/editar`, { state: { appointment: active } })}
         />
       )}
+
+      {/* Confirmación propia del sistema (reemplaza window.confirm) */}
+      <Modal
+        isOpen={!!confirm}
+        onClose={() => { if (!confirmBusy) setConfirm(null); }}
+        title={confirm?.title}
+        size="sm"
+        footer={
+          <>
+            <Button variant="ghost" onClick={() => setConfirm(null)} disabled={confirmBusy}>
+              Volver
+            </Button>
+            <Button
+              variant={confirm?.variant === 'danger' ? 'danger' : 'primary'}
+              isLoading={confirmBusy}
+              onClick={async () => {
+                if (!confirm) return;
+                setConfirmBusy(true);
+                try {
+                  await confirm.onConfirm();
+                  setConfirm(null);
+                } finally {
+                  setConfirmBusy(false);
+                }
+              }}
+            >
+              {confirm?.confirmLabel}
+            </Button>
+          </>
+        }
+      >
+        <p className="text-sm text-sand-600">{confirm?.message}</p>
+      </Modal>
 
       <CollectBalanceModal
         isOpen={!!collectFor}
@@ -275,32 +345,64 @@ export const AgendaView: React.FC = () => {
   );
 };
 
-// ── Tarjeta de métrica ───────────────────────────────────────────────────────
-const TONES = {
-  neutral: 'bg-sand-100 text-sand-700',
-  warning: 'bg-warning-100 text-warning-700',
-  success: 'bg-success-100 text-success-700',
-  primary: 'bg-primary-50 text-primary-700',
-} as const;
+// ── Panel de turnos del día (columna izquierda) ───────────────────────────────
+const TodayPanel: React.FC<{
+  appts: Appointment[];
+  day: Date;
+  isToday: boolean;
+  now: number;
+  onBackToToday: () => void;
+  onSelectAppt: (a: Appointment) => void;
+}> = ({ appts, day, isToday, now, onBackToToday, onSelectAppt }) => {
+  const dayLabel = new Intl.DateTimeFormat('es-AR', { timeZone: TZ, weekday: 'long', day: 'numeric', month: 'long' }).format(day);
+  return (
+    <Card padded className="flex flex-col gap-3 lg:sticky lg:top-4">
+      <div className="flex items-center gap-2">
+        <span className="w-8 h-8 rounded-xl bg-primary-50 text-primary-600 flex items-center justify-center flex-shrink-0">
+          <CalendarIcon className="w-4 h-4" />
+        </span>
+        <div className="min-w-0">
+          <h3 className="font-display text-base font-bold text-sand-900 leading-tight">
+            {isToday ? 'Turnos de hoy' : 'Turnos del día'}
+          </h3>
+          <p className="text-[11px] text-sand-500 capitalize truncate">{dayLabel}</p>
+        </div>
+        <span className="ml-auto text-xs font-bold text-sand-700 bg-sand-100 px-2 py-0.5 rounded-full flex-shrink-0">{appts.length}</span>
+      </div>
 
-const Metric: React.FC<{ label: string; value: string; sub: string; icon: React.ReactNode; tone: keyof typeof TONES }> = ({ label, value, sub, icon, tone }) => (
-  <div className="bg-white p-3.5 rounded-xl border border-sand-200 flex items-center justify-between gap-2">
-    <div className="min-w-0">
-      <span className="text-[11px] font-semibold text-sand-500 block truncate">{label}</span>
-      <span className="font-display text-lg font-extrabold text-sand-900 block">{value}</span>
-      <span className="text-[10px] text-sand-400">{sub}</span>
-    </div>
-    <span className={cn('w-9 h-9 rounded-xl flex items-center justify-center flex-shrink-0', TONES[tone])}>{icon}</span>
-  </div>
-);
+      {!isToday && (
+        <button
+          onClick={onBackToToday}
+          className="flex items-center justify-center gap-1.5 w-full px-3 py-1.5 rounded-lg border border-primary-200 bg-primary-50/60 hover:bg-primary-100 text-xs font-bold text-primary-700 transition-colors"
+        >
+          <CalendarIcon className="w-3.5 h-3.5" />
+          Volver a hoy
+        </button>
+      )}
+
+      {appts.length === 0 ? (
+        <p className="text-sm text-sand-500 py-6 text-center">
+          {isToday ? 'No hay turnos para hoy.' : 'No hay turnos para este día.'}
+        </p>
+      ) : (
+        <div className="space-y-1.5 lg:max-h-[560px] lg:overflow-y-auto lg:pr-1">
+          {appts.map((a) => (
+            <ApptChip key={a.id} appt={a} now={now} compact={false} onClick={() => onSelectAppt(a)} />
+          ))}
+        </div>
+      )}
+    </Card>
+  );
+};
 
 // ── Grilla horaria (Día / Semana) ─────────────────────────────────────────────
 const TimeGrid: React.FC<{
   days: Date[];
   apptsByDay: Map<string, Appointment[]>;
   now: number;
+  onSelectDay: (d: Date) => void;
   onSelectAppt: (a: Appointment) => void;
-}> = ({ days, apptsByDay, now, onSelectAppt }) => {
+}> = ({ days, apptsByDay, now, onSelectDay, onSelectAppt }) => {
   const isWeek = days.length > 1;
   return (
     <Card padded={false} className="overflow-hidden">
@@ -312,10 +414,16 @@ const TimeGrid: React.FC<{
             {days.map((d) => {
               const today = sameDay(d, new Date());
               return (
-                <div key={d.toISOString()} className={cn('p-2.5 text-center border-b border-r border-sand-200 last:border-r-0', today && 'bg-primary-50/70')}>
+                <button
+                  key={d.toISOString()}
+                  type="button"
+                  onClick={() => onSelectDay(d)}
+                  title="Ver turnos de este día en el panel"
+                  className={cn('p-2.5 text-center border-b border-r border-sand-200 last:border-r-0 hover:bg-primary-50 transition-colors cursor-pointer', today && 'bg-primary-50/70')}
+                >
                   <div className="text-[11px] font-semibold text-sand-500 uppercase">{new Intl.DateTimeFormat('es-AR', { weekday: 'short' }).format(d)}</div>
                   <div className={cn('font-display text-base font-bold', today ? 'text-primary-700' : 'text-sand-900')}>{d.getDate()}</div>
-                </div>
+                </button>
               );
             })}
           </div>
@@ -430,45 +538,64 @@ const AppointmentDetail: React.FC<{
   onReceipt: () => void;
   onReminder: () => void;
   onCancel: () => void;
-}> = ({ appt, now, onClose, onCollect, onReceipt, onReminder, onCancel }) => {
+  onAttended: () => void;
+  onEdit: () => void;
+}> = ({ appt, now, onClose, onCollect, onReceipt, onReminder, onCancel, onAttended, onEdit }) => {
   const vs = getVisualStatus(appt, now);
   const badgeVariant: Record<VisualStatus, React.ComponentProps<typeof Badge>['variant']> = {
     CONFIRMED: 'warning', ATTENDED: 'info', COMPLETED: 'success', OVERDUE: 'danger', PENDING: 'primary', CANCELED: 'neutral',
   };
   const dt = new Intl.DateTimeFormat('es-AR', { timeZone: TZ, weekday: 'long', day: 'numeric', month: 'long', hour: '2-digit', minute: '2-digit' }).format(new Date(appt.startTime));
   return (
-    <Card className="border-primary-200">
-      <div className="flex items-start justify-between gap-3">
-        <div>
-          <div className="flex items-center gap-2 mb-1">
-            <h3 className="font-display text-lg font-bold text-sand-900">{appt.patientName}</h3>
-            <Badge variant={badgeVariant[vs]}>{vs === 'COMPLETED' ? 'Pago completo' : STATUS_STYLES[vs].label}</Badge>
-          </div>
-          <p className="text-sm text-sand-600">DNI {appt.patientDni} · {appt.patientPhone}</p>
-          <p className="text-sm text-sand-800 font-medium mt-1">{appt.serviceName}</p>
-          <p className="text-sm text-sand-600 capitalize flex items-center gap-1.5 mt-0.5"><Clock className="w-3.5 h-3.5" /> {dt} hs</p>
-          <p className="text-sm text-sand-800 mt-1">Precio: <span className="font-bold">{ars(appt.agreedPrice)} ARS</span></p>
-        </div>
-        <button onClick={onClose} className="p-1.5 rounded-lg text-sand-400 hover:bg-sand-100 hover:text-sand-700" aria-label="Cerrar detalle">
-          <XCircle className="w-5 h-5" />
-        </button>
-      </div>
+    <Modal
+      isOpen
+      onClose={onClose}
+      title={
+        <span className="flex items-center gap-2">
+          {appt.patientName}
+          <Badge variant={badgeVariant[vs]}>{vs === 'COMPLETED' ? 'Pago completo' : STATUS_STYLES[vs].label}</Badge>
+        </span>
+      }
+      footer={
+        <div className="w-full space-y-3">
+          {/* Acción primaria según el estado del turno (destacada, ocupa el ancho) */}
+          {appt.status === 'ATTENDED' && (
+            <Button variant="success" fullWidth onClick={onCollect} leftIcon={<DollarSign className="w-4 h-4" />}>
+              Cobrar saldo
+            </Button>
+          )}
+          {appt.status === 'CONFIRMED' && (
+            <Button variant="primary" fullWidth onClick={onAttended} leftIcon={<CheckCircle className="w-4 h-4" />}>
+              Marcar como atendido
+            </Button>
+          )}
 
-      <div className="flex flex-wrap gap-2 mt-4 pt-4 border-t border-sand-100">
-        {appt.status === 'ATTENDED' && (
-          <Button size="sm" variant="success" onClick={onCollect} leftIcon={<DollarSign className="w-4 h-4" />}>
-            Cobrar saldo
-          </Button>
-        )}
-        {appt.status === 'CONFIRMED' && (
-          <span className="text-xs text-sand-500 self-center">El saldo se cobra cuando el médico marca el turno como atendido.</span>
-        )}
-        <Button size="sm" variant="secondary" onClick={onReminder} leftIcon={<Bell className="w-4 h-4" />}>Recordatorio</Button>
-        <Button size="sm" variant="secondary" onClick={onReceipt} leftIcon={<Printer className="w-4 h-4" />}>Comprobante</Button>
-        {isActionable(appt.status) && (
-          <Button size="sm" variant="danger" onClick={onCancel} leftIcon={<XCircle className="w-4 h-4" />}>Cancelar turno</Button>
-        )}
+          {/* Acciones secundarias */}
+          <div className="grid grid-cols-3 gap-2">
+            {isActionable(appt.status) && (
+              <Button size="sm" variant="outline" onClick={onEdit} leftIcon={<Pencil className="w-4 h-4" />}>Modificar</Button>
+            )}
+            <Button size="sm" variant="secondary" onClick={onReminder} leftIcon={<Bell className="w-4 h-4" />}>Recordatorio</Button>
+            <Button size="sm" variant="secondary" onClick={onReceipt} leftIcon={<Printer className="w-4 h-4" />}>Comprobante</Button>
+          </div>
+
+          {/* Acción destructiva, separada para evitar clics accidentales */}
+          {isActionable(appt.status) && (
+            <div className="pt-2 border-t border-sand-100 flex justify-end">
+              <Button size="sm" variant="ghost" onClick={onCancel} leftIcon={<XCircle className="w-4 h-4" />} className="text-danger-600 hover:bg-danger-50">
+                Cancelar turno
+              </Button>
+            </div>
+          )}
+        </div>
+      }
+    >
+      <div className="space-y-1">
+        <p className="text-sm text-sand-600">DNI {appt.patientDni} · {appt.patientPhone}</p>
+        <p className="text-sm text-sand-800 font-medium mt-1">{appt.serviceName}</p>
+        <p className="text-sm text-sand-600 capitalize flex items-center gap-1.5 mt-0.5"><Clock className="w-3.5 h-3.5" /> {dt} hs</p>
+        <p className="text-sm text-sand-800 mt-1">Precio: <span className="font-bold">{ars(appt.agreedPrice)} ARS</span></p>
       </div>
-    </Card>
+    </Modal>
   );
 };

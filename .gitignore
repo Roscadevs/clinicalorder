@@ -45,3 +45,9 @@ lerna-debug.log*
 # Temporary files
 tmp/
 temp/
+*.bkp
+.*.bkp
+*.visual-check.*
+
+# Graphify generated output
+graphify-out/

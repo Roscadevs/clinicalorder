@@ -39,6 +39,7 @@ public class AppointmentServiceTest {
     @Mock private PaymentTransactionRepository paymentTransactionRepository;
     @Mock private CalendarBlockRepository calendarBlockRepository;
     @Mock private MercadoPagoPaymentAdapter mercadoPagoAdapter;
+    @Mock private com.clinicadermatologica.app.application.service.PaymentService paymentService;
 
     @InjectMocks
     private AppointmentService appointmentService;
@@ -90,6 +91,11 @@ public class AppointmentServiceTest {
         when(userRepository.findById(1L)).thenReturn(Optional.of(mockUser));
         when(calendarBlockRepository.findOverlappingBlocks(any(), any())).thenReturn(Collections.emptyList());
         when(appointmentRepository.findOverlappingAppointments(any(), any())).thenReturn(Collections.emptyList());
+
+        com.mercadopago.resources.preference.Preference mockPref = mock(com.mercadopago.resources.preference.Preference.class);
+        when(mockPref.getId()).thenReturn("PREF-100");
+        when(mercadoPagoAdapter.createDepositPreference(any(), any(), any(), any(), any(), any(), any())).thenReturn(mockPref);
+        when(mercadoPagoAdapter.resolveInitPoint(mockPref)).thenReturn("https://www.mercadopago.com.ar/checkout/v1/redirect?pref_id=PREF-100");
 
         when(appointmentRepository.save(any(Appointment.class))).thenAnswer(inv -> {
             Appointment appt = inv.getArgument(0);
@@ -151,6 +157,12 @@ public class AppointmentServiceTest {
         when(userRepository.findById(1L)).thenReturn(Optional.of(mockUser));
         when(calendarBlockRepository.findOverlappingBlocks(any(), any())).thenReturn(Collections.emptyList());
         when(appointmentRepository.findOverlappingAppointments(any(), any())).thenReturn(List.of(staleHold));
+
+        com.mercadopago.resources.preference.Preference mockPref = mock(com.mercadopago.resources.preference.Preference.class);
+        when(mockPref.getId()).thenReturn("PREF-101");
+        when(mercadoPagoAdapter.createDepositPreference(any(), any(), any(), any(), any(), any(), any())).thenReturn(mockPref);
+        when(mercadoPagoAdapter.resolveInitPoint(mockPref)).thenReturn("https://www.mercadopago.com.ar/checkout/v1/redirect?pref_id=PREF-101");
+
         when(appointmentRepository.save(any(Appointment.class))).thenAnswer(inv -> {
             Appointment appt = inv.getArgument(0);
             if (appt.getId() == null) appt.setId(101L);
@@ -221,5 +233,48 @@ public class AppointmentServiceTest {
         assertNotNull(slots);
         assertFalse(slots.isEmpty());
         assertTrue(slots.stream().anyMatch(TimeSlotDTO::getAvailable));
+    }
+
+    @Test
+    @DisplayName("cancelAppointment debe emitir reembolso si existe pago aprobado en MercadoPago")
+    void testCancelAppointment_WithApprovedMercadoPagoPayment_TriggersRefund() {
+        Appointment appt = Appointment.builder().id(200L).status(AppointmentStatus.CONFIRMED).build();
+        when(appointmentRepository.findById(200L)).thenReturn(Optional.of(appt));
+
+        PaymentTransaction approvedTx = PaymentTransaction.builder()
+                .id(500L)
+                .appointment(appt)
+                .paymentType(PaymentType.MERCADOPAGO)
+                .status(PaymentStatus.APPROVED)
+                .mpPaymentId("123456789")
+                .build();
+
+        when(paymentTransactionRepository.findByAppointmentId(200L)).thenReturn(List.of(approvedTx));
+
+        appointmentService.cancelAppointment(200L);
+
+        assertEquals(AppointmentStatus.CANCELED, appt.getStatus());
+        verify(paymentService, times(1)).refundPayment(approvedTx);
+        verify(appointmentRepository).save(appt);
+    }
+
+    @Test
+    @DisplayName("getAppointmentPublicStatus retorna información resumida del turno")
+    void testGetAppointmentPublicStatus() {
+        Appointment appt = Appointment.builder()
+                .id(300L)
+                .status(AppointmentStatus.CONFIRMED)
+                .service(mockService)
+                .startTime(Instant.now())
+                .build();
+
+        when(appointmentRepository.findById(300L)).thenReturn(Optional.of(appt));
+
+        Map<String, Object> status = appointmentService.getAppointmentPublicStatus(300L);
+
+        assertNotNull(status);
+        assertEquals(300L, status.get("appointmentId"));
+        assertEquals("CONFIRMED", status.get("status"));
+        assertEquals("Peeling Químico Médico", status.get("serviceName"));
     }
 }

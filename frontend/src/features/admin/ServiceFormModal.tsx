@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { servicesApi } from '../../services/api';
 import { DermatologicService } from '../../types';
-import { Modal, Button, Input } from '../../components/ui';
+import { Modal, Button, Input, Callout } from '../../components/ui';
 
 interface ServiceFormModalProps {
   isOpen: boolean;
@@ -106,7 +106,11 @@ export const ServiceFormModal: React.FC<ServiceFormModalProps> = ({ isOpen, onCl
           <span>Saldo en consultorio: <strong>{ars(Math.max(0, price - depositAmount))}</strong></span>
         </div>
 
-        {error && <p role="alert" className="text-sm text-danger-600 font-medium">{error}</p>}
+        {error && (
+          <Callout intent="error" title="No se pudo guardar el servicio" onClose={() => setError(null)}>
+            {error}
+          </Callout>
+        )}
       </form>
     </Modal>
   );

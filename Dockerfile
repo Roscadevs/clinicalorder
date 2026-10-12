@@ -1,5 +1,5 @@
 # ===================================================================
-# DOCKERFILE RAÍZ PARA DESPLIEGUE CONTINUO EN CLOUD (RAILWAY / RENDER)
+# DOCKERFILE RAÍZ PARA DESPLIEGUE CONTINUO EN CLOUD (RENDER)
 # Monorepo: Compilación y ejecución del Backend Spring Boot (Java 17)
 # ===================================================================
 

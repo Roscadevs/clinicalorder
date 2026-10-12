@@ -1,0 +1,1060 @@
+<!DOCTYPE html>
+<html lang="es" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>UI Kit & Design System — Clínica Dra. Valeria</title>
+  <link rel="icon" type="image/svg+xml" href="favicon.svg">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Playfair+Display:ital,wght@0,600;0,700;1,600&family=Fira+Code:wght@400;500&display=swap" rel="stylesheet">
+
+  <!-- Tailwind Play CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <!-- Lucide Icons -->
+  <script src="https://unpkg.com/lucide@latest"></script>
+
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['"Plus Jakarta Sans"', 'ui-sans-serif', 'system-ui', 'sans-serif'],
+            display: ['"Playfair Display"', 'Georgia', 'serif'],
+            mono: ['"Fira Code"', 'monospace'],
+          },
+          colors: {
+            primary: {
+              50: 'hsl(28, 23%, 95%)',
+              100: 'hsl(28, 23%, 89%)',
+              200: 'hsl(26, 33%, 82%)',
+              300: 'hsl(26, 33%, 68%)',
+              400: 'hsl(30, 22%, 62%)',
+              500: 'hsl(19, 30%, 44%)', // Base: Toffee-brown (#93654F)
+              600: 'hsl(19, 28%, 39%)',
+              700: 'hsl(19, 26%, 34%)', // Coffee-bean (#6C4E40)
+              800: 'hsl(19, 26%, 27%)',
+              900: 'hsl(19, 27%, 20%)',
+              DEFAULT: 'hsl(19, 30%, 44%)',
+            },
+            sand: {
+              50: '#FBF9F7',
+              100: '#F4EFEA',
+              200: '#E9E2DC',
+              300: '#D8CCC1',
+              400: '#B39D87',
+              500: '#9A8571',
+              600: '#7C6A59',
+              700: '#5F5145',
+              800: '#443A31',
+              900: '#2C251F',
+            },
+            success: {
+              50: '#F1F4EC',
+              100: '#DFE7D2',
+              500: '#6B7F4F',
+              600: '#5A6B42',
+              700: '#495636',
+              DEFAULT: '#5A6B42',
+            },
+            warning: {
+              50: '#FBF3E6',
+              100: '#F5E2C4',
+              500: '#C08A3E',
+              600: '#A5722E',
+              700: '#845A24',
+              DEFAULT: '#C08A3E',
+            },
+            danger: {
+              50: '#F9ECEA',
+              100: '#F1D4CF',
+              500: '#B15442',
+              600: '#984435',
+              700: '#7A362A',
+              DEFAULT: '#B15442',
+            },
+            info: {
+              50: '#EAF0F2',
+              100: '#CEDDE2',
+              500: '#5B7C8A',
+              600: '#496673',
+              700: '#3A525C',
+              DEFAULT: '#5B7C8A',
+            },
+          },
+          borderRadius: {
+            xl: '0.875rem',
+            '2xl': '1.25rem',
+            '3xl': '1.75rem',
+          },
+          boxShadow: {
+            soft: '0 1px 2px 0 rgba(68, 58, 49, 0.04), 0 2px 8px -2px rgba(68, 58, 49, 0.08)',
+            card: '0 2px 4px -1px rgba(68, 58, 49, 0.06), 0 6px 16px -4px rgba(68, 58, 49, 0.10)',
+            lift: '0 8px 24px -6px rgba(68, 58, 49, 0.18)',
+          },
+        },
+      },
+    }
+  </script>
+
+  <style>
+    /* Estilos personalizados para la visualización */
+    pre code {
+      font-family: 'Fira Code', monospace;
+    }
+    .custom-scrollbar::-webkit-scrollbar {
+      width: 6px;
+      height: 6px;
+    }
+    .custom-scrollbar::-webkit-scrollbar-thumb {
+      background-color: #D8CCC1;
+      border-radius: 9999px;
+    }
+    .custom-scrollbar::-webkit-scrollbar-track {
+      background-color: #F4EFEA;
+    }
+  </style>
+</head>
+<body class="bg-sand-50 text-sand-900 font-sans antialiased min-h-screen selection:bg-primary-200 selection:text-primary-900">
+
+  <!-- ================= TOP NAV HEADER ================= -->
+  <header class="sticky top-0 z-40 bg-white/85 backdrop-blur-md border-b border-sand-200">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
+      <div class="flex items-center gap-3">
+        <div class="w-10 h-10 rounded-xl bg-primary-500 text-white flex items-center justify-center font-display font-bold text-xl shadow-soft">
+          V
+        </div>
+        <div>
+          <div class="flex items-center gap-2">
+            <span class="font-display font-bold text-lg text-sand-900 leading-tight">Clínica Dra. Valeria</span>
+            <span class="text-[11px] font-bold px-2 py-0.5 rounded-full bg-primary-100 text-primary-800">UI Kit v1.2</span>
+          </div>
+          <p class="text-xs text-sand-500">Atomic Design System & Barrel Exports Spec</p>
+        </div>
+      </div>
+
+      <div class="flex items-center gap-3">
+        <a href="/" class="hidden sm:inline-flex items-center gap-1.5 text-xs font-semibold px-3 py-2 rounded-lg text-sand-700 hover:bg-sand-100 transition-colors">
+          <i data-lucide="arrow-left" class="w-4 h-4"></i>
+          Volver a la App
+        </a>
+        <button id="toggle-loading-all" class="inline-flex items-center gap-1.5 text-xs font-bold px-3.5 py-2 rounded-xl bg-sand-100 hover:bg-sand-200 text-sand-800 transition-all border border-sand-300 active:scale-95">
+          <i data-lucide="loader-2" class="w-4 h-4 text-primary-600"></i>
+          <span id="loading-btn-label">Simular Estado Loading</span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- ================= MAIN LAYOUT WITH SIDEBAR ================= -->
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+    <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+
+      <!-- ===== SIDEBAR NAVIGATION ===== -->
+      <aside class="hidden lg:block lg:col-span-3 sticky top-24 space-y-6">
+        <nav class="bg-white rounded-2xl border border-sand-200 p-4 shadow-card space-y-1">
+          <div class="text-[11px] font-bold tracking-wider text-sand-400 uppercase px-3 py-1">Directorio de Primitivas</div>
+          <a href="#tokens" class="flex items-center gap-2.5 px-3 py-2 rounded-xl text-xs font-semibold text-sand-700 hover:bg-sand-100 hover:text-sand-900 transition-colors">
+            <i data-lucide="palette" class="w-4 h-4 text-primary-600"></i>
+            1. Tokens & Paleta Médica
+          </a>
+          <a href="#buttons" class="flex items-center gap-2.5 px-3 py-2 rounded-xl text-xs font-semibold text-sand-700 hover:bg-sand-100 hover:text-sand-900 transition-colors">
+            <i data-lucide="mouse-pointer-click" class="w-4 h-4 text-primary-600"></i>
+            2. Botones (<code class="text-[10px]">Button</code>)
+          </a>
+          <a href="#inputs" class="flex items-center gap-2.5 px-3 py-2 rounded-xl text-xs font-semibold text-sand-700 hover:bg-sand-100 hover:text-sand-900 transition-colors">
+            <i data-lucide="text-cursor-input" class="w-4 h-4 text-primary-600"></i>
+            3. Inputs & Formularios
+          </a>
+          <a href="#selects" class="flex items-center gap-2.5 px-3 py-2 rounded-xl text-xs font-semibold text-sand-700 hover:bg-sand-100 hover:text-sand-900 transition-colors">
+            <i data-lucide="chevron-down" class="w-4 h-4 text-primary-600"></i>
+            4. Menús (<code class="text-[10px]">Select</code>)
+          </a>
+          <a href="#badges" class="flex items-center gap-2.5 px-3 py-2 rounded-xl text-xs font-semibold text-sand-700 hover:bg-sand-100 hover:text-sand-900 transition-colors">
+            <i data-lucide="tag" class="w-4 h-4 text-primary-600"></i>
+            5. Píldoras de Estado (<code class="text-[10px]">Badge</code>)
+          </a>
+          <a href="#cards" class="flex items-center gap-2.5 px-3 py-2 rounded-xl text-xs font-semibold text-sand-700 hover:bg-sand-100 hover:text-sand-900 transition-colors">
+            <i data-lucide="layout-grid" class="w-4 h-4 text-primary-600"></i>
+            6. Superficies (<code class="text-[10px]">Card</code>)
+          </a>
+          <a href="#modals" class="flex items-center gap-2.5 px-3 py-2 rounded-xl text-xs font-semibold text-sand-700 hover:bg-sand-100 hover:text-sand-900 transition-colors">
+            <i data-lucide="maximize-2" class="w-4 h-4 text-primary-600"></i>
+            7. Diálogos (<code class="text-[10px]">Modal</code>)
+          </a>
+          <a href="#alerts" class="flex items-center gap-2.5 px-3 py-2 rounded-xl text-xs font-semibold text-sand-700 hover:bg-sand-100 hover:text-sand-900 transition-colors">
+            <i data-lucide="bell" class="w-4 h-4 text-primary-600"></i>
+            8. Alertas & Toast
+          </a>
+          <a href="#clinical-forms" class="flex items-center gap-2.5 px-3 py-2 rounded-xl text-xs font-semibold text-sand-700 hover:bg-sand-100 hover:text-sand-900 transition-colors">
+            <i data-lucide="clipboard-check" class="w-4 h-4 text-primary-600"></i>
+            9. Formularios Clínicos
+          </a>
+          <a href="#barrel" class="flex items-center gap-2.5 px-3 py-2 rounded-xl text-xs font-semibold text-sand-700 hover:bg-sand-100 hover:text-sand-900 transition-colors">
+            <i data-lucide="package" class="w-4 h-4 text-primary-600"></i>
+            10. Barrel File (<code class="text-[10px]">index.ts</code>)
+          </a>
+        </nav>
+
+        <!-- Quick Import Banner -->
+        <div class="bg-sand-100/80 rounded-2xl p-4 border border-sand-200">
+          <div class="flex items-center gap-2 mb-2">
+            <i data-lucide="sparkles" class="w-4 h-4 text-primary-600"></i>
+            <span class="text-xs font-bold text-sand-900">Zero-Config Import</span>
+          </div>
+          <div class="bg-sand-900 text-sand-100 p-2.5 rounded-xl text-[11px] font-mono leading-relaxed select-all">
+            import { Button, Card, Badge, Input, Select, Modal } from '@/components/ui';
+          </div>
+        </div>
+      </aside>
+
+      <!-- ===== MAIN CONTENT SECTIONS ===== -->
+      <main class="col-span-1 lg:col-span-9 space-y-12">
+
+        <!-- HERO SECTION -->
+        <section class="bg-white rounded-3xl p-6 sm:p-8 border border-sand-200 shadow-card relative overflow-hidden">
+          <div class="max-w-2xl relative z-10">
+            <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-primary-50 border border-primary-200 text-primary-700 text-xs font-bold mb-4">
+              <span class="w-2 h-2 rounded-full bg-primary-500 animate-pulse"></span>
+              Sistema de Diseño de Producción Activo
+            </div>
+            <h1 class="font-display text-3xl sm:text-4xl font-bold text-sand-900 tracking-tight leading-tight mb-3">
+              UI Kit Centralizado & Guía Visual
+            </h1>
+            <p class="text-sand-600 text-sm sm:text-base leading-relaxed mb-6">
+              Todos los componentes fundamentales de la <strong>Clínica Dermatológica y Estética Dra. Valeria</strong>, centralizados con el patrón de <em>Atomic Design</em> y exportados mediante un único <em>Barrel File</em>. Construidos con Tailwind CSS y tipados estrictamente en TypeScript.
+            </p>
+            <div class="flex flex-wrap items-center gap-3">
+              <button onclick="scrollToSection('buttons')" class="inline-flex items-center gap-2 px-4 py-2.5 rounded-xl bg-primary-500 hover:bg-primary-600 text-white font-semibold text-sm shadow-soft transition-all active:scale-95">
+                <i data-lucide="play" class="w-4 h-4"></i>
+                Explorar Primitivas
+              </button>
+              <button onclick="scrollToSection('clinical-forms')" class="inline-flex items-center gap-2 px-4 py-2.5 rounded-xl bg-sand-100 hover:bg-sand-200 text-sand-800 font-semibold text-sm border border-sand-300 transition-all active:scale-95">
+                <i data-lucide="file-text" class="w-4 h-4"></i>
+                Ver Formularios Integrados
+              </button>
+            </div>
+          </div>
+          <div class="absolute -right-8 -bottom-10 opacity-5 pointer-events-none hidden sm:block">
+            <div class="w-72 h-72 rounded-full bg-primary-500"></div>
+          </div>
+        </section>
+
+        <!-- ================= 1. TOKENS & PALETA ================= -->
+        <section id="tokens" class="space-y-4">
+          <div class="flex items-center justify-between">
+            <div>
+              <h2 class="font-display text-2xl font-bold text-sand-900">1. Tokens & Paleta Médica</h2>
+              <p class="text-xs text-sand-500">Variables de color y roles semánticos definidos en tailwind.config.js</p>
+            </div>
+          </div>
+
+          <!-- Color Swatches Grid -->
+          <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
+            <!-- Primary Palette -->
+            <div class="bg-white p-4 rounded-2xl border border-sand-200 shadow-card space-y-3">
+              <div class="flex items-center justify-between">
+                <span class="text-xs font-bold text-sand-900 uppercase">Marca Principal (Toffee)</span>
+                <span class="text-[10px] font-mono text-sand-400">primary-500</span>
+              </div>
+              <div class="grid grid-cols-5 gap-1.5">
+                <div class="h-10 rounded-lg bg-primary-100 flex items-end p-1 text-[9px] font-bold text-primary-900">100</div>
+                <div class="h-10 rounded-lg bg-primary-300 flex items-end p-1 text-[9px] font-bold text-primary-900">300</div>
+                <div class="h-10 rounded-lg bg-primary-500 flex items-end p-1 text-[9px] font-bold text-white ring-2 ring-primary-700/20">500</div>
+                <div class="h-10 rounded-lg bg-primary-700 flex items-end p-1 text-[9px] font-bold text-white">700</div>
+                <div class="h-10 rounded-lg bg-primary-900 flex items-end p-1 text-[9px] font-bold text-white">900</div>
+              </div>
+              <p class="text-[11px] text-sand-500">Botones de acción principal, acentos y links de alta jerarquía.</p>
+            </div>
+
+            <!-- Sand Neutrals -->
+            <div class="bg-white p-4 rounded-2xl border border-sand-200 shadow-card space-y-3">
+              <div class="flex items-center justify-between">
+                <span class="text-xs font-bold text-sand-900 uppercase">Neutros Cálidos (Sand)</span>
+                <span class="text-[10px] font-mono text-sand-400">sand-50 → 900</span>
+              </div>
+              <div class="grid grid-cols-5 gap-1.5">
+                <div class="h-10 rounded-lg bg-sand-50 border border-sand-200 flex items-end p-1 text-[9px] font-bold text-sand-800">50</div>
+                <div class="h-10 rounded-lg bg-sand-200 flex items-end p-1 text-[9px] font-bold text-sand-800">200</div>
+                <div class="h-10 rounded-lg bg-sand-400 flex items-end p-1 text-[9px] font-bold text-sand-900">400</div>
+                <div class="h-10 rounded-lg bg-sand-600 flex items-end p-1 text-[9px] font-bold text-white">600</div>
+                <div class="h-10 rounded-lg bg-sand-900 flex items-end p-1 text-[9px] font-bold text-white">900</div>
+              </div>
+              <p class="text-[11px] text-sand-500">Reemplaza al gris frío de slate. Fondos suaves, bordes y textos.</p>
+            </div>
+
+            <!-- Semantics -->
+            <div class="bg-white p-4 rounded-2xl border border-sand-200 shadow-card space-y-3">
+              <div class="flex items-center justify-between">
+                <span class="text-xs font-bold text-sand-900 uppercase">Estados Clínicos</span>
+                <span class="text-[10px] font-mono text-sand-400">Semánticos</span>
+              </div>
+              <div class="grid grid-cols-4 gap-1.5">
+                <div class="h-10 rounded-lg bg-success-500 flex items-end p-1 text-[8px] font-bold text-white" title="Éxito / Confirmado">Éxito</div>
+                <div class="h-10 rounded-lg bg-warning-500 flex items-end p-1 text-[8px] font-bold text-white" title="Pendiente / Retención">Aviso</div>
+                <div class="h-10 rounded-lg bg-danger-500 flex items-end p-1 text-[8px] font-bold text-white" title="Cancelado / Error">Error</div>
+                <div class="h-10 rounded-lg bg-info-500 flex items-end p-1 text-[8px] font-bold text-white" title="Atendido / Info">Info</div>
+              </div>
+              <p class="text-[11px] text-sand-500">Armonizados con tonos olivas, ámbar y terracota médicos.</p>
+            </div>
+          </div>
+        </section>
+
+        <!-- ================= 2. BUTTONS ================= -->
+        <section id="buttons" class="space-y-4">
+          <div class="flex items-center justify-between">
+            <div>
+              <h2 class="font-display text-2xl font-bold text-sand-900">2. Botones (<code class="text-base text-primary-600">Button</code>)</h2>
+              <p class="text-xs text-sand-500">Variantes semánticas, tamaños, estados interactivos y slots de iconos</p>
+            </div>
+            <button onclick="copySnippet('code-button')" class="inline-flex items-center gap-1 text-xs font-semibold px-2.5 py-1 rounded-lg bg-sand-100 hover:bg-sand-200 text-sand-700 transition-colors">
+              <i data-lucide="copy" class="w-3.5 h-3.5"></i> Copiar JSX
+            </button>
+          </div>
+
+          <div class="bg-white rounded-2xl border border-sand-200 p-6 shadow-card space-y-6">
+            <!-- Variantes -->
+            <div>
+              <div class="text-xs font-bold uppercase tracking-wider text-sand-400 mb-3">Variantes de Estilo</div>
+              <div class="flex flex-wrap items-center gap-3">
+                <!-- Primary -->
+                <button class="live-btn inline-flex items-center justify-center font-semibold transition-all px-4 py-2.5 rounded-xl min-h-[42px] text-sm bg-primary-500 text-white hover:bg-primary-600 active:bg-primary-700 shadow-soft active:scale-[0.98]">
+                  <i data-lucide="check" class="w-4 h-4 mr-2"></i> Primary
+                </button>
+                <!-- Secondary -->
+                <button class="live-btn inline-flex items-center justify-center font-semibold transition-all px-4 py-2.5 rounded-xl min-h-[42px] text-sm bg-sand-100 text-sand-800 hover:bg-sand-200 active:bg-sand-300 border border-sand-200 active:scale-[0.98]">
+                  Secondary
+                </button>
+                <!-- Outline -->
+                <button class="live-btn inline-flex items-center justify-center font-semibold transition-all px-4 py-2.5 rounded-xl min-h-[42px] text-sm bg-transparent text-primary-600 border border-primary-300 hover:bg-primary-50 active:bg-primary-100 active:scale-[0.98]">
+                  Outline
+                </button>
+                <!-- Ghost -->
+                <button class="live-btn inline-flex items-center justify-center font-semibold transition-all px-4 py-2.5 rounded-xl min-h-[42px] text-sm bg-transparent text-sand-600 hover:bg-sand-100 hover:text-sand-900 active:scale-[0.98]">
+                  Ghost
+                </button>
+                <!-- Destructive / Danger -->
+                <button class="live-btn inline-flex items-center justify-center font-semibold transition-all px-4 py-2.5 rounded-xl min-h-[42px] text-sm bg-danger-500 text-white hover:bg-danger-600 active:bg-danger-700 shadow-soft active:scale-[0.98]">
+                  <i data-lucide="trash-2" class="w-4 h-4 mr-2"></i> Destructive
+                </button>
+                <!-- Success -->
+                <button class="live-btn inline-flex items-center justify-center font-semibold transition-all px-4 py-2.5 rounded-xl min-h-[42px] text-sm bg-success-500 text-white hover:bg-success-600 active:bg-success-700 shadow-soft active:scale-[0.98]">
+                  <i data-lucide="shield-check" class="w-4 h-4 mr-2"></i> Confirmar
+                </button>
+                <!-- Disabled -->
+                <button disabled class="inline-flex items-center justify-center font-semibold px-4 py-2.5 rounded-xl min-h-[42px] text-sm bg-sand-200 text-sand-400 cursor-not-allowed opacity-60">
+                  Deshabilitado
+                </button>
+              </div>
+            </div>
+
+            <!-- Tamaños -->
+            <div class="pt-4 border-t border-sand-100">
+              <div class="text-xs font-bold uppercase tracking-wider text-sand-400 mb-3">Escala de Tamaños</div>
+              <div class="flex flex-wrap items-center gap-3">
+                <button class="inline-flex items-center justify-center font-semibold text-xs px-3 py-1.5 rounded-lg min-h-[36px] bg-primary-500 text-white">
+                  Small (sm)
+                </button>
+                <button class="inline-flex items-center justify-center font-semibold text-sm px-4 py-2.5 rounded-xl min-h-[42px] bg-primary-500 text-white">
+                  Medium (md - base)
+                </button>
+                <button class="inline-flex items-center justify-center font-semibold text-base px-6 py-3.5 rounded-xl min-h-[48px] bg-primary-500 text-white">
+                  Large (lg - táctil 48px)
+                </button>
+                <button class="inline-flex items-center justify-center p-2.5 rounded-xl min-h-[40px] min-w-[40px] bg-sand-100 hover:bg-sand-200 text-sand-700 border border-sand-300" title="Botón icono">
+                  <i data-lucide="calendar" class="w-4 h-4"></i>
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <!-- Code Snippet Box -->
+          <div class="bg-sand-900 rounded-xl p-4 text-sand-100 font-mono text-xs overflow-x-auto relative">
+            <span class="text-sand-400 select-none text-[10px] block mb-1.5">// Código de uso en React:</span>
+            <code id="code-button">&lt;Button variant="primary" size="md" leftIcon={&lt;Check className="w-4 h-4" /&gt;}&gt;
+  Confirmar Turno
+&lt;/Button&gt;
+&lt;Button variant="destructive" isLoading={isDeleting}&gt;Cancelar Cita&lt;/Button&gt;</code>
+          </div>
+        </section>
+
+        <!-- ================= 3. INPUTS ================= -->
+        <section id="inputs" class="space-y-4">
+          <div class="flex items-center justify-between">
+            <div>
+              <h2 class="font-display text-2xl font-bold text-sand-900">3. Entradas de Texto (<code class="text-base text-primary-600">Input</code>)</h2>
+              <p class="text-xs text-sand-500">Con etiquetas, íconos laterales, mensajes descriptivos y validación nativa</p>
+            </div>
+            <button onclick="copySnippet('code-input')" class="inline-flex items-center gap-1 text-xs font-semibold px-2.5 py-1 rounded-lg bg-sand-100 hover:bg-sand-200 text-sand-700 transition-colors">
+              <i data-lucide="copy" class="w-3.5 h-3.5"></i> Copiar JSX
+            </button>
+          </div>
+
+          <div class="bg-white rounded-2xl border border-sand-200 p-6 shadow-card grid grid-cols-1 md:grid-cols-2 gap-6">
+            <!-- Default with Label and Helper -->
+            <div>
+              <label class="block text-xs font-bold text-sand-700 mb-1.5">Nombre Completo del Paciente</label>
+              <div class="relative flex items-center">
+                <input type="text" placeholder="Ej. Camila Morales" class="w-full bg-sand-50/70 border border-sand-300 rounded-xl px-4 py-2.5 text-sm text-sand-900 placeholder:text-sand-400 focus:bg-white focus:outline-none focus:ring-2 focus:ring-primary-500/40 focus:border-primary-500 transition-colors" />
+              </div>
+              <p class="mt-1.5 text-xs text-sand-500">Como figura en su Documento Nacional de Identidad.</p>
+            </div>
+
+            <!-- With Left Icon -->
+            <div>
+              <label class="block text-xs font-bold text-sand-700 mb-1.5">Correo Electrónico</label>
+              <div class="relative flex items-center">
+                <span class="absolute inset-y-0 left-0 pl-3 flex items-center text-sand-400 pointer-events-none">
+                  <i data-lucide="mail" class="w-4 h-4"></i>
+                </span>
+                <input type="email" placeholder="paciente@ejemplo.com" class="w-full bg-sand-50/70 border border-sand-300 rounded-xl pl-10 pr-4 py-2.5 text-sm text-sand-900 placeholder:text-sand-400 focus:bg-white focus:outline-none focus:ring-2 focus:ring-primary-500/40 focus:border-primary-500 transition-colors" />
+              </div>
+              <p class="mt-1.5 text-xs text-sand-500">Enviaremos el recibo digital y recordatorio aquí.</p>
+            </div>
+
+            <!-- Error State -->
+            <div>
+              <label class="block text-xs font-bold text-sand-700 mb-1.5">Teléfono / WhatsApp</label>
+              <div class="relative flex items-center">
+                <span class="absolute inset-y-0 left-0 pl-3 flex items-center text-danger-400 pointer-events-none">
+                  <i data-lucide="phone" class="w-4 h-4"></i>
+                </span>
+                <input type="tel" value="11-234" class="w-full bg-sand-50/70 border border-danger-500 rounded-xl pl-10 pr-4 py-2.5 text-sm text-danger-900 focus:outline-none focus:ring-2 focus:ring-danger-500/30 focus:border-danger-500 transition-colors" />
+              </div>
+              <p class="mt-1.5 text-xs text-danger-600 font-medium">El número debe contener al menos 10 dígitos válidos.</p>
+            </div>
+
+            <!-- Disabled State -->
+            <div>
+              <label class="block text-xs font-bold text-sand-700 mb-1.5">Código de Ficha Médica (Inmutable)</label>
+              <div class="relative flex items-center">
+                <span class="absolute inset-y-0 left-0 pl-3 flex items-center text-sand-400 pointer-events-none">
+                  <i data-lucide="lock" class="w-4 h-4"></i>
+                </span>
+                <input type="text" value="HC-2026-0842-DERM" disabled class="w-full bg-sand-100 border border-sand-300 rounded-xl pl-10 pr-4 py-2.5 text-sm text-sand-500 cursor-not-allowed select-none" />
+              </div>
+              <p class="mt-1.5 text-xs text-sand-500">Generado automáticamente por el servidor.</p>
+            </div>
+          </div>
+
+          <div class="bg-sand-900 rounded-xl p-4 text-sand-100 font-mono text-xs overflow-x-auto relative">
+            <code id="code-input">&lt;Input 
+  label="Correo Electrónico" 
+  leftIcon={&lt;Mail className="w-4 h-4" /&gt;} 
+  helperText="Enviaremos el comprobante aquí" 
+  error={errors.email?.message} 
+/&gt;</code>
+          </div>
+        </section>
+
+        <!-- ================= 4. SELECTS ================= -->
+        <section id="selects" class="space-y-4">
+          <div class="flex items-center justify-between">
+            <div>
+              <h2 class="font-display text-2xl font-bold text-sand-900">4. Menús Desplegables (<code class="text-base text-primary-600">Select</code>)</h2>
+              <p class="text-xs text-sand-500">Chevron SVG integrado, soporte para array de opciones y estilo consistente</p>
+            </div>
+            <button onclick="copySnippet('code-select')" class="inline-flex items-center gap-1 text-xs font-semibold px-2.5 py-1 rounded-lg bg-sand-100 hover:bg-sand-200 text-sand-700 transition-colors">
+              <i data-lucide="copy" class="w-3.5 h-3.5"></i> Copiar JSX
+            </button>
+          </div>
+
+          <div class="bg-white rounded-2xl border border-sand-200 p-6 shadow-card grid grid-cols-1 md:grid-cols-2 gap-6">
+            <div>
+              <label class="block text-xs font-bold text-sand-700 mb-1.5">Tratamiento Dermatológico</label>
+              <div class="relative flex items-center">
+                <select class="w-full appearance-none bg-sand-50/70 border border-sand-300 rounded-xl pl-4 pr-10 py-2.5 text-sm font-medium text-sand-900 outline-none transition-colors cursor-pointer focus:bg-white focus:ring-2 focus:ring-primary-500/40 focus:border-primary-500">
+                  <option value="1">Consulta Dermatológica General ($18.000)</option>
+                  <option value="2">Limpieza Profunda & Peeling ($24.000)</option>
+                  <option value="3">Biopsia / Dermatoscopía Digital ($32.000)</option>
+                  <option value="4">Toxina Botulínica Zona Facial ($65.000)</option>
+                </select>
+                <span class="absolute inset-y-0 right-0 pr-3.5 flex items-center pointer-events-none text-sand-500">
+                  <i data-lucide="chevron-down" class="w-4 h-4"></i>
+                </span>
+              </div>
+            </div>
+
+            <div>
+              <label class="block text-xs font-bold text-sand-700 mb-1.5">Fototipo de Piel (Fitzpatrick)</label>
+              <div class="relative flex items-center">
+                <select class="w-full appearance-none bg-sand-50/70 border border-sand-300 rounded-xl pl-4 pr-10 py-2.5 text-sm font-medium text-sand-900 outline-none transition-colors cursor-pointer focus:bg-white focus:ring-2 focus:ring-primary-500/40 focus:border-primary-500">
+                  <option value="I">Tipo I — Muy clara, siempre se quema, nunca se broncea</option>
+                  <option value="II">Tipo II — Clara, se quema con facilidad</option>
+                  <option value="III" selected>Tipo III — Media / Clara cálida (Frecuente)</option>
+                  <option value="IV">Tipo IV — Morena clara / Mediterránea</option>
+                  <option value="V">Tipo V — Morena oscura</option>
+                  <option value="VI">Tipo VI — Negra / Muy pigmentada</option>
+                </select>
+                <span class="absolute inset-y-0 right-0 pr-3.5 flex items-center pointer-events-none text-sand-500">
+                  <i data-lucide="chevron-down" class="w-4 h-4"></i>
+                </span>
+              </div>
+            </div>
+          </div>
+
+          <div class="bg-sand-900 rounded-xl p-4 text-sand-100 font-mono text-xs overflow-x-auto relative">
+            <code id="code-select">&lt;Select 
+  label="Tratamiento" 
+  options={[
+    { value: '1', label: 'Consulta General' },
+    { value: '2', label: 'Peeling Químico' }
+  ]} 
+/&gt;</code>
+          </div>
+        </section>
+
+        <!-- ================= 5. BADGES ================= -->
+        <section id="badges" class="space-y-4">
+          <div class="flex items-center justify-between">
+            <div>
+              <h2 class="font-display text-2xl font-bold text-sand-900">5. Píldoras de Estado (<code class="text-base text-primary-600">Badge</code>)</h2>
+              <p class="text-xs text-sand-500">Indicadores visuales de citas médicas, cobros de seña y turnos</p>
+            </div>
+            <button onclick="copySnippet('code-badge')" class="inline-flex items-center gap-1 text-xs font-semibold px-2.5 py-1 rounded-lg bg-sand-100 hover:bg-sand-200 text-sand-700 transition-colors">
+              <i data-lucide="copy" class="w-3.5 h-3.5"></i> Copiar JSX
+            </button>
+          </div>
+
+          <div class="bg-white rounded-2xl border border-sand-200 p-6 shadow-card space-y-6">
+            <div>
+              <div class="text-xs font-bold uppercase tracking-wider text-sand-400 mb-3">Con Punto de Estado (Live Dot)</div>
+              <div class="flex flex-wrap items-center gap-2.5">
+                <!-- Success -->
+                <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-bold bg-success-100 text-success-700 border border-success-200">
+                  <span class="w-1.5 h-1.5 rounded-full bg-success-500"></span> Confirmado (Seña 50% Paga)
+                </span>
+                <!-- Warning -->
+                <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-bold bg-warning-100 text-warning-700 border border-warning-200">
+                  <span class="w-1.5 h-1.5 rounded-full bg-warning-500"></span> Pendiente de Pago (TTL 10m)
+                </span>
+                <!-- Info -->
+                <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-bold bg-info-100 text-info-700 border border-info-200">
+                  <span class="w-1.5 h-1.5 rounded-full bg-info-500"></span> En Sala de Espera
+                </span>
+                <!-- Danger -->
+                <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-bold bg-danger-100 text-danger-700 border border-danger-200">
+                  <span class="w-1.5 h-1.5 rounded-full bg-danger-500"></span> Cancelado / No-Show
+                </span>
+                <!-- Primary -->
+                <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-bold bg-primary-50 text-primary-700 border border-primary-200">
+                  <span class="w-1.5 h-1.5 rounded-full bg-primary-500"></span> Dra. Valeria Gómez
+                </span>
+                <!-- Neutral -->
+                <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-bold bg-sand-100 text-sand-700 border border-sand-200">
+                  <span class="w-1.5 h-1.5 rounded-full bg-sand-400"></span> Archivado
+                </span>
+              </div>
+            </div>
+
+            <div class="pt-4 border-t border-sand-100">
+              <div class="text-xs font-bold uppercase tracking-wider text-sand-400 mb-3">Tamaño Compacto (Small)</div>
+              <div class="flex flex-wrap items-center gap-2">
+                <span class="inline-flex items-center gap-1 px-2 py-0.5 rounded-full text-[11px] font-bold bg-success-100 text-success-700 border border-success-200">
+                  <i data-lucide="check" class="w-3 h-3"></i> Abonado
+                </span>
+                <span class="inline-flex items-center gap-1 px-2 py-0.5 rounded-full text-[11px] font-bold bg-warning-100 text-warning-700 border border-warning-200">
+                  <i data-lucide="clock" class="w-3 h-3"></i> 15:30 hs
+                </span>
+                <span class="inline-flex items-center gap-1 px-2 py-0.5 rounded-full text-[11px] font-bold bg-danger-100 text-danger-700 border border-danger-200">
+                  <i data-lucide="alert-circle" class="w-3 h-3"></i> Alta Urgencia
+                </span>
+              </div>
+            </div>
+          </div>
+
+          <div class="bg-sand-900 rounded-xl p-4 text-sand-100 font-mono text-xs overflow-x-auto relative">
+            <code id="code-badge">&lt;Badge variant="success" dot&gt;Confirmado&lt;/Badge&gt;
+&lt;Badge variant="warning" dot size="sm"&gt;Pendiente de Pago&lt;/Badge&gt;</code>
+          </div>
+        </section>
+
+        <!-- ================= 6. CARDS ================= -->
+        <section id="cards" class="space-y-4">
+          <div class="flex items-center justify-between">
+            <div>
+              <h2 class="font-display text-2xl font-bold text-sand-900">6. Contenedores & Superficies (<code class="text-base text-primary-600">Card</code>)</h2>
+              <p class="text-xs text-sand-500">Primitivas compuestas con sombra suave, elevación interactiva y padding interno</p>
+            </div>
+            <button onclick="copySnippet('code-card')" class="inline-flex items-center gap-1 text-xs font-semibold px-2.5 py-1 rounded-lg bg-sand-100 hover:bg-sand-200 text-sand-700 transition-colors">
+              <i data-lucide="copy" class="w-3.5 h-3.5"></i> Copiar JSX
+            </button>
+          </div>
+
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <!-- Basic Composed Card -->
+            <div class="bg-white rounded-2xl border border-sand-200 shadow-card p-6 flex flex-col justify-between">
+              <div>
+                <div class="flex items-center justify-between gap-3 mb-2">
+                  <h3 class="font-display text-lg font-bold text-sand-900">Resumen de Turno</h3>
+                  <span class="px-2.5 py-0.5 rounded-full text-xs font-bold bg-success-100 text-success-700 border border-success-200">
+                    Seña Verificada
+                  </span>
+                </div>
+                <p class="text-xs text-sand-500 mb-4">Cita médica programada en el consultorio 3A.</p>
+                <div class="bg-sand-50 rounded-xl p-3 border border-sand-200 space-y-1.5 text-xs">
+                  <div class="flex justify-between text-sand-600"><span>Fecha:</span> <strong class="text-sand-900">Jueves 15 de Octubre, 16:00 hs</strong></div>
+                  <div class="flex justify-between text-sand-600"><span>Profesional:</span> <strong class="text-sand-900">Dra. Valeria Gómez</strong></div>
+                  <div class="flex justify-between text-sand-600"><span>Total Tratamiento:</span> <strong class="text-sand-900">$24.000 ARS</strong></div>
+                </div>
+              </div>
+              <div class="flex items-center justify-end gap-2 pt-4 border-t border-sand-100 mt-4">
+                <button class="px-3 py-2 text-xs font-semibold text-sand-600 hover:bg-sand-100 rounded-lg">Reprogramar</button>
+                <button class="px-3.5 py-2 text-xs font-semibold bg-primary-500 hover:bg-primary-600 text-white rounded-xl shadow-soft">Ver Detalle</button>
+              </div>
+            </div>
+
+            <!-- Interactive Clickable Card -->
+            <div class="bg-white rounded-2xl border border-sand-200 shadow-card p-6 hover:shadow-lift hover:border-sand-300 transition-all cursor-pointer flex flex-col justify-between group">
+              <div>
+                <div class="flex items-center justify-between gap-3 mb-2">
+                  <div class="flex items-center gap-3">
+                    <div class="w-10 h-10 rounded-xl bg-primary-100 text-primary-700 flex items-center justify-center group-hover:bg-primary-500 group-hover:text-white transition-colors">
+                      <i data-lucide="sparkles" class="w-5 h-5"></i>
+                    </div>
+                    <div>
+                      <h3 class="font-display text-base font-bold text-sand-900 group-hover:text-primary-600 transition-colors">Peeling Químico & Hidratación</h3>
+                      <p class="text-xs text-sand-500">Duración: 45 minutos</p>
+                    </div>
+                  </div>
+                  <i data-lucide="arrow-right" class="w-4 h-4 text-sand-400 group-hover:translate-x-1 group-hover:text-primary-600 transition-all"></i>
+                </div>
+                <p class="text-xs text-sand-600 mt-3 leading-relaxed">
+                  Tratamiento de exfoliación cutánea y estimulación de colágeno apto para fototipos I a IV. Requiere suspensión de retinoides 72h antes.
+                </p>
+              </div>
+              <div class="flex items-center justify-between pt-4 border-t border-sand-100 mt-4">
+                <span class="text-xs font-bold text-sand-900">$28.000 ARS</span>
+                <span class="text-xs text-primary-600 font-semibold group-hover:underline">Reservar Cita →</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="bg-sand-900 rounded-xl p-4 text-sand-100 font-mono text-xs overflow-x-auto relative">
+            <code id="code-card">&lt;Card padded interactive&gt;
+  &lt;CardHeader&gt;
+    &lt;CardTitle&gt;Consulta Médica&lt;/CardTitle&gt;
+    &lt;Badge variant="success"&gt;Confirmado&lt;/Badge&gt;
+  &lt;/CardHeader&gt;
+  &lt;CardDescription&gt;Información del paciente y horario&lt;/CardDescription&gt;
+  &lt;CardContent&gt;...&lt;/CardContent&gt;
+  &lt;CardFooter&gt;
+    &lt;Button variant="primary" size="sm"&gt;Guardar&lt;/Button&gt;
+  &lt;/CardFooter&gt;
+&lt;/Card&gt;</code>
+          </div>
+        </section>
+
+        <!-- ================= 7. MODALS ================= -->
+        <section id="modals" class="space-y-4">
+          <div class="flex items-center justify-between">
+            <div>
+              <h2 class="font-display text-2xl font-bold text-sand-900">7. Diálogos Modales (<code class="text-base text-primary-600">Modal</code>)</h2>
+              <p class="text-xs text-sand-500">Backdrop desenfocado, control de foco, cierre con tecla Escape y clic externo</p>
+            </div>
+          </div>
+
+          <div class="bg-white rounded-2xl border border-sand-200 p-6 shadow-card flex flex-col sm:flex-row items-center justify-between gap-4">
+            <div>
+              <h4 class="font-display text-base font-bold text-sand-900">Diálogo de Consentimiento & Comprobante</h4>
+              <p class="text-xs text-sand-500">Haz clic en el botón para abrir el modal interactivo con todas las animaciones y estilos.</p>
+            </div>
+            <button onclick="openModal()" class="inline-flex items-center gap-2 px-4 py-2.5 rounded-xl bg-primary-500 hover:bg-primary-600 text-white font-semibold text-sm shadow-soft transition-all active:scale-95 whitespace-nowrap">
+              <i data-lucide="eye" class="w-4 h-4"></i>
+              Abrir Modal de Demostración
+            </button>
+          </div>
+        </section>
+
+        <!-- ================= 8. ALERTS & TOASTS ================= -->
+        <section id="alerts" class="space-y-4">
+          <div class="flex items-center justify-between">
+            <div>
+              <h2 class="font-display text-2xl font-bold text-sand-900">8. Alertas & Toast Notifications (<code class="text-base text-primary-600">Callout & Toast</code>)</h2>
+              <p class="text-xs text-sand-500">Mensajes explicativos y notificaciones flotantes con feedback visual</p>
+            </div>
+          </div>
+
+          <!-- Callouts -->
+          <div class="space-y-3">
+            <div class="bg-warning-50 border border-warning-200 text-warning-900 rounded-2xl p-4 flex items-start gap-3">
+              <i data-lucide="alert-triangle" class="w-5 h-5 text-warning-600 shrink-0 mt-0.5"></i>
+              <div class="text-xs">
+                <strong class="font-bold block mb-0.5 text-warning-900">Reserva con Bloqueo Temporal de 10 Minutos (TTL)</strong>
+                El turno queda reservado provisoriamente mientras el paciente completa el pago de la seña en MercadoPago. Pasado el tiempo, el slot vuelve a liberarse.
+              </div>
+            </div>
+
+            <div class="bg-success-50 border border-success-200 text-success-900 rounded-2xl p-4 flex items-start gap-3">
+              <i data-lucide="check-circle" class="w-5 h-5 text-success-600 shrink-0 mt-0.5"></i>
+              <div class="text-xs">
+                <strong class="font-bold block mb-0.5 text-success-900">Historia Clínica Inmutable y Auditada</strong>
+                Cada modificación de antecedentes médicos genera una transacción inmutable registrada en PostgreSQL conforme a la Ley de Derechos del Paciente 26.529.
+              </div>
+            </div>
+          </div>
+
+          <!-- Toast Trigger Buttons -->
+          <div class="bg-white rounded-2xl border border-sand-200 p-4 shadow-card flex flex-wrap items-center gap-3">
+            <span class="text-xs font-bold text-sand-700">Probar Notificaciones Flotantes:</span>
+            <button onclick="triggerToast('success', '¡Turno confirmado con éxito!')" class="text-xs font-semibold px-3 py-1.5 rounded-lg bg-success-100 hover:bg-success-200 text-success-700 border border-success-200">
+              Toast Éxito
+            </button>
+            <button onclick="triggerToast('warning', 'La reserva expira en 2 minutos')" class="text-xs font-semibold px-3 py-1.5 rounded-lg bg-warning-100 hover:bg-warning-200 text-warning-700 border border-warning-200">
+              Toast Alerta
+            </button>
+            <button onclick="triggerToast('danger', 'Error al procesar el pago')" class="text-xs font-semibold px-3 py-1.5 rounded-lg bg-danger-100 hover:bg-danger-200 text-danger-700 border border-danger-200">
+              Toast Error
+            </button>
+          </div>
+        </section>
+
+        <!-- ================= 9. FORMULARIOS CLÍNICOS COMPLETOS ================= -->
+        <section id="clinical-forms" class="space-y-6 pt-6 border-t border-sand-200">
+          <div>
+            <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-sand-200 text-sand-800 text-xs font-bold mb-2">
+              <i data-lucide="layers" class="w-3.5 h-3.5 text-primary-600"></i>
+              Composición de Primitivas en Casos de Negocio
+            </div>
+            <h2 class="font-display text-2xl sm:text-3xl font-bold text-sand-900">9. Formularios Clínicos Completos</h2>
+            <p class="text-xs sm:text-sm text-sand-500">Ejemplo de integración real utilizando exclusivamente los componentes de <code class="text-primary-600">@/components/ui</code></p>
+          </div>
+
+          <!-- FORM 1: FICHA MÉDICA DE PACIENTE -->
+          <div class="bg-white rounded-3xl border border-sand-200 shadow-card p-6 sm:p-8 space-y-6">
+            <div class="flex items-center justify-between border-b border-sand-200 pb-4">
+              <div class="flex items-center gap-3">
+                <div class="w-10 h-10 rounded-2xl bg-primary-100 text-primary-700 flex items-center justify-center font-bold">
+                  <i data-lucide="file-heart" class="w-5 h-5"></i>
+                </div>
+                <div>
+                  <h3 class="font-display text-lg font-bold text-sand-900">Ficha Médica & Antecedentes Clínicos</h3>
+                  <p class="text-xs text-sand-500">Historia Clínica N° HC-2026-0914 · Paciente: Rocío Benítez</p>
+                </div>
+              </div>
+              <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-bold bg-info-100 text-info-700 border border-info-200">
+                <span class="w-1.5 h-1.5 rounded-full bg-info-500"></span> Consulta de Primera Vez
+              </span>
+            </div>
+
+            <!-- Inputs Grid -->
+            <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-5">
+              <div>
+                <label class="block text-xs font-bold text-sand-700 mb-1.5">Nombre y Apellido</label>
+                <input type="text" value="Rocío Benítez" class="w-full bg-sand-50 border border-sand-300 rounded-xl px-4 py-2.5 text-sm text-sand-900 font-medium focus:bg-white focus:outline-none focus:ring-2 focus:ring-primary-500/40" />
+              </div>
+
+              <div>
+                <label class="block text-xs font-bold text-sand-700 mb-1.5">DNI / Documento</label>
+                <input type="text" value="38.492.109" class="w-full bg-sand-50 border border-sand-300 rounded-xl px-4 py-2.5 text-sm text-sand-900 font-medium focus:bg-white focus:outline-none focus:ring-2 focus:ring-primary-500/40" />
+              </div>
+
+              <div>
+                <label class="block text-xs font-bold text-sand-700 mb-1.5">Fototipo Fitzpatrick</label>
+                <div class="relative">
+                  <select class="w-full appearance-none bg-sand-50 border border-sand-300 rounded-xl pl-4 pr-10 py-2.5 text-sm font-medium text-sand-900 focus:bg-white focus:outline-none focus:ring-2 focus:ring-primary-500/40">
+                    <option>Fototipo II (Piel clara, pecas)</option>
+                    <option selected>Fototipo III (Media, beige)</option>
+                    <option>Fototipo IV (Mediterránea / Oliva)</option>
+                  </select>
+                  <span class="absolute inset-y-0 right-0 pr-3.5 flex items-center pointer-events-none text-sand-500">
+                    <i data-lucide="chevron-down" class="w-4 h-4"></i>
+                  </span>
+                </div>
+              </div>
+
+              <div class="sm:col-span-2">
+                <label class="block text-xs font-bold text-sand-700 mb-1.5">Motivo de Consulta Dermatológica</label>
+                <input type="text" value="Aparición de lesión pigmentada en mejilla izquierda y dermatitis perioral" class="w-full bg-sand-50 border border-sand-300 rounded-xl px-4 py-2.5 text-sm text-sand-900 focus:bg-white focus:outline-none focus:ring-2 focus:ring-primary-500/40" />
+              </div>
+
+              <div>
+                <label class="block text-xs font-bold text-sand-700 mb-1.5">Alergias Conocidas</label>
+                <input type="text" value="Ninguna declarada" class="w-full bg-sand-50 border border-sand-300 rounded-xl px-4 py-2.5 text-sm text-sand-900 focus:bg-white focus:outline-none focus:ring-2 focus:ring-primary-500/40" />
+              </div>
+            </div>
+
+            <!-- Clinical Consent Checkbox -->
+            <div class="bg-sand-50/90 rounded-2xl p-4 border border-sand-200 flex items-start gap-3">
+              <input type="checkbox" checked id="consent-check" class="w-4 h-4 mt-0.5 accent-primary-500 cursor-pointer rounded">
+              <label for="consent-check" class="text-xs text-sand-700 leading-relaxed cursor-pointer select-none">
+                La paciente ha recibido y firmado digitalmente el <strong>Consentimiento Informado para Examen Dermatoscópico</strong> conforme a la Ley de Derechos del Paciente N° 26.529 y custodia de datos médicos.
+              </label>
+            </div>
+
+            <div class="flex items-center justify-end gap-3 pt-4 border-t border-sand-100">
+              <button class="px-4 py-2.5 rounded-xl text-xs font-semibold text-sand-600 hover:bg-sand-100 transition-colors">
+                Cancelar
+              </button>
+              <button class="px-5 py-2.5 rounded-xl bg-primary-500 hover:bg-primary-600 text-white text-xs font-bold shadow-soft transition-all active:scale-95 flex items-center gap-2">
+                <i data-lucide="save" class="w-4 h-4"></i>
+                Guardar Historia Clínica Auditada
+              </button>
+            </div>
+          </div>
+
+          <!-- FORM 2: CHECKOUT DE TURNO MÉDICO CON SEÑA (MERCADOPAGO) -->
+          <div class="bg-white rounded-3xl border border-sand-200 shadow-card p-6 sm:p-8 space-y-6">
+            <div class="flex items-center justify-between border-b border-sand-200 pb-4">
+              <div class="flex items-center gap-3">
+                <div class="w-10 h-10 rounded-2xl bg-success-100 text-success-700 flex items-center justify-center font-bold">
+                  <i data-lucide="credit-card" class="w-5 h-5"></i>
+                </div>
+                <div>
+                  <h3 class="font-display text-lg font-bold text-sand-900">Checkout de Turno & Seña Obligatoria (50%)</h3>
+                  <p class="text-xs text-sand-500">Mecanismo anti-ausentismo (No-Shows) integrado con MercadoPago Checkout Pro</p>
+                </div>
+              </div>
+              <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-bold bg-warning-100 text-warning-700 border border-warning-200">
+                <i data-lucide="timer" class="w-3.5 h-3.5"></i> Bloqueo TTL: 08:42 min
+              </span>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6 items-center">
+              <div class="space-y-4">
+                <div class="bg-sand-50 p-4 rounded-2xl border border-sand-200 space-y-2.5 text-xs">
+                  <div class="flex justify-between text-sand-600">
+                    <span>Tratamiento:</span>
+                    <strong class="text-sand-900">Peeling Químico & Limpieza Facial</strong>
+                  </div>
+                  <div class="flex justify-between text-sand-600">
+                    <span>Fecha y Hora:</span>
+                    <strong class="text-sand-900">Lunes 19 de Octubre · 15:30 hs</strong>
+                  </div>
+                  <div class="flex justify-between text-sand-600">
+                    <span>Monto Total de Consulta:</span>
+                    <span class="font-bold text-sand-800">$24.000 ARS</span>
+                  </div>
+                  <div class="pt-2 border-t border-sand-200 flex justify-between text-sm">
+                    <span class="font-bold text-primary-900">Seña Requerida (50%):</span>
+                    <span class="font-bold text-primary-600 text-base">$12.000 ARS</span>
+                  </div>
+                </div>
+
+                <div class="text-[11px] text-sand-500 leading-relaxed">
+                  * El saldo restante de $12.000 ARS se abonará en el mostrador del consultorio el día de la cita.
+                </div>
+              </div>
+
+              <!-- Payment Button Card -->
+              <div class="bg-sand-100/70 p-6 rounded-2xl border border-sand-200 text-center space-y-4">
+                <div class="w-12 h-12 rounded-full bg-[#009EE3]/10 text-[#009EE3] mx-auto flex items-center justify-center font-bold text-lg">
+                  MP
+                </div>
+                <div>
+                  <h4 class="font-bold text-sm text-sand-900">Pagar Seña con Mercado Pago</h4>
+                  <p class="text-xs text-sand-500 mt-0.5">Tarjetas de Débito/Crédito, Dinero en Cuenta o Transferencia</p>
+                </div>
+                <button class="w-full inline-flex items-center justify-center gap-2 py-3 px-5 rounded-xl bg-[#009EE3] hover:bg-[#0089c7] text-white font-bold text-sm shadow-soft transition-all active:scale-98">
+                  <i data-lucide="lock" class="w-4 h-4"></i>
+                  Pagar $12.000 ARS con MercadoPago
+                </button>
+                <p class="text-[10px] text-sand-400">Transacción segura cifrada SSL de 256 bits</p>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- ================= 10. BARREL FILE SPECS ================= -->
+        <section id="barrel" class="space-y-4">
+          <div class="flex items-center justify-between">
+            <div>
+              <h2 class="font-display text-2xl font-bold text-sand-900">10. Barrel File (<code class="text-base text-primary-600">index.ts</code>)</h2>
+              <p class="text-xs text-sand-500">Punto de exportación unificado ubicado en frontend/src/components/ui/index.ts</p>
+            </div>
+            <button onclick="copySnippet('code-barrel')" class="inline-flex items-center gap-1 text-xs font-semibold px-2.5 py-1 rounded-lg bg-sand-100 hover:bg-sand-200 text-sand-700 transition-colors">
+              <i data-lucide="copy" class="w-3.5 h-3.5"></i> Copiar Código
+            </button>
+          </div>
+
+          <div class="bg-sand-900 rounded-2xl p-6 text-sand-100 font-mono text-xs overflow-x-auto shadow-card leading-relaxed">
+            <span class="text-sand-400 select-none block mb-2">// frontend/src/components/ui/index.ts</span>
+            <code id="code-barrel">export * from './Button';
+export * from './Input';
+export * from './Select';
+export * from './Card';
+export * from './Badge';
+export * from './Modal';
+export * from './Callout';
+export * from './Spinner';
+export * from './Toast';
+export * from './Logo';</code>
+          </div>
+        </section>
+
+      </main>
+    </div>
+  </div>
+
+  <!-- ================= INTERACTIVE MODAL DIALOG ================= -->
+  <div id="demo-modal" class="fixed inset-0 z-50 hidden items-center justify-center p-4 bg-sand-900/40 backdrop-blur-sm transition-opacity" role="dialog" aria-modal="true">
+    <div class="bg-white rounded-3xl shadow-lift w-full max-w-lg overflow-hidden border border-sand-200 transition-all transform scale-95 opacity-0 duration-200" id="modal-box">
+      <!-- Modal Header -->
+      <div class="flex items-center justify-between p-5 border-b border-sand-100">
+        <div class="flex items-center gap-2.5">
+          <div class="w-8 h-8 rounded-xl bg-primary-100 text-primary-700 flex items-center justify-center">
+            <i data-lucide="shield-check" class="w-4 h-4"></i>
+          </div>
+          <h3 class="font-display text-lg font-bold text-sand-900">Comprobante de Consentimiento Médico</h3>
+        </div>
+        <button onclick="closeModal()" class="p-1.5 rounded-lg text-sand-400 hover:bg-sand-100 hover:text-sand-700 transition-colors" aria-label="Cerrar modal">
+          <i data-lucide="x" class="w-5 h-5"></i>
+        </button>
+      </div>
+
+      <!-- Modal Body -->
+      <div class="p-6 space-y-4 text-xs text-sand-600 leading-relaxed">
+        <p>
+          Este diálogo es una muestra interactiva del componente <code class="bg-sand-100 px-1.5 py-0.5 rounded text-primary-700 font-bold">&lt;Modal /&gt;</code>.
+        </p>
+        <div class="bg-sand-50 p-4 rounded-2xl border border-sand-200 space-y-2">
+          <div class="flex justify-between"><span>Paciente:</span> <strong class="text-sand-900">Camila Morales (DNI 40.112.980)</strong></div>
+          <div class="flex justify-between"><span>Tratamiento:</span> <strong class="text-sand-900">Dermatoscopía de Control</strong></div>
+          <div class="flex justify-between"><span>Fecha:</span> <strong class="text-sand-900">12 de Octubre de 2026</strong></div>
+        </div>
+        <p class="text-[11px] text-sand-400">
+          Cumple con cierre accesible al pulsar <strong>Escape</strong> o al hacer clic fuera del recuadro.
+        </p>
+      </div>
+
+      <!-- Modal Footer -->
+      <div class="flex items-center justify-end gap-2.5 p-5 border-t border-sand-100 bg-sand-50/70">
+        <button onclick="closeModal()" class="px-4 py-2.5 rounded-xl text-xs font-semibold text-sand-700 hover:bg-sand-200 transition-colors">
+          Cerrar
+        </button>
+        <button onclick="closeModal(); triggerToast('success', 'Consentimiento guardado con éxito');" class="px-5 py-2.5 rounded-xl bg-primary-500 hover:bg-primary-600 text-white text-xs font-bold shadow-soft transition-all active:scale-95">
+          Aceptar y Confirmar
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ================= FLOATING TOAST CONTAINER ================= -->
+  <div id="toast-container" class="fixed bottom-6 right-6 z-50 flex flex-col gap-2.5 pointer-events-none"></div>
+
+  <!-- ================= JAVASCRIPT CONTROLLERS ================= -->
+  <script>
+    // Inicializar iconos de Lucide
+    lucide.createIcons();
+
+    // Scroll suave a sección
+    function scrollToSection(id) {
+      const el = document.getElementById(id);
+      if (el) {
+        el.scrollIntoView({ behavior: 'smooth' });
+      }
+    }
+
+    // Modal Controller
+    const modalEl = document.getElementById('demo-modal');
+    const modalBox = document.getElementById('modal-box');
+
+    function openModal() {
+      modalEl.classList.remove('hidden');
+      modalEl.classList.add('flex');
+      setTimeout(() => {
+        modalBox.classList.remove('scale-95', 'opacity-0');
+        modalBox.classList.add('scale-100', 'opacity-100');
+      }, 10);
+      document.body.style.overflow = 'hidden';
+    }
+
+    function closeModal() {
+      modalBox.classList.remove('scale-100', 'opacity-100');
+      modalBox.classList.add('scale-95', 'opacity-0');
+      setTimeout(() => {
+        modalEl.classList.remove('flex');
+        modalEl.classList.add('hidden');
+        document.body.style.overflow = '';
+      }, 150);
+    }
+
+    // Cerrar modal al hacer clic en el backdrop
+    modalEl.addEventListener('click', (e) => {
+      if (e.target === modalEl) closeModal();
+    });
+
+    // Cerrar modal al presionar Escape
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && !modalEl.classList.contains('hidden')) {
+        closeModal();
+      }
+    });
+
+    // Toast Notification Controller
+    function triggerToast(type, message) {
+      const container = document.getElementById('toast-container');
+      const toast = document.createElement('div');
+      toast.className = 'pointer-events-auto transform translate-y-4 opacity-0 transition-all duration-300 flex items-center gap-3 px-4 py-3 rounded-2xl shadow-lift border text-xs font-bold text-white';
+
+      if (type === 'success') {
+        toast.className += ' bg-success-600 border-success-700';
+        toast.innerHTML = `<i data-lucide="check-circle" class="w-4 h-4"></i> <span>${message}</span>`;
+      } else if (type === 'warning') {
+        toast.className += ' bg-warning-600 border-warning-700';
+        toast.innerHTML = `<i data-lucide="alert-triangle" class="w-4 h-4"></i> <span>${message}</span>`;
+      } else {
+        toast.className += ' bg-danger-600 border-danger-700';
+        toast.innerHTML = `<i data-lucide="x-circle" class="w-4 h-4"></i> <span>${message}</span>`;
+      }
+
+      container.appendChild(toast);
+      lucide.createIcons({ root: toast });
+
+      setTimeout(() => {
+        toast.classList.remove('translate-y-4', 'opacity-0');
+        toast.classList.add('translate-y-0', 'opacity-100');
+      }, 10);
+
+      setTimeout(() => {
+        toast.classList.remove('translate-y-0', 'opacity-100');
+        toast.classList.add('translate-y-4', 'opacity-0');
+        setTimeout(() => toast.remove(), 300);
+      }, 3500);
+    }
+
+    // Toggle Loading State Simulator
+    let isLoadingActive = false;
+    const toggleLoadingBtn = document.getElementById('toggle-loading-all');
+    const loadingLabel = document.getElementById('loading-btn-label');
+    const liveButtons = document.querySelectorAll('.live-btn');
+
+    toggleLoadingBtn.addEventListener('click', () => {
+      isLoadingActive = !isLoadingActive;
+      if (isLoadingActive) {
+        loadingLabel.textContent = 'Detener Simulación Loading';
+        liveButtons.forEach(btn => {
+          btn.dataset.originalHtml = btn.innerHTML;
+          btn.innerHTML = `<i data-lucide="loader-2" class="w-4 h-4 animate-spin mr-2"></i> Cargando...`;
+          btn.disabled = true;
+          btn.classList.add('opacity-75', 'cursor-not-allowed');
+        });
+      } else {
+        loadingLabel.textContent = 'Simular Estado Loading';
+        liveButtons.forEach(btn => {
+          if (btn.dataset.originalHtml) {
+            btn.innerHTML = btn.dataset.originalHtml;
+          }
+          btn.disabled = false;
+          btn.classList.remove('opacity-75', 'cursor-not-allowed');
+        });
+      }
+      lucide.createIcons();
+    });
+
+    // Copiar Snippet de Código
+    function copySnippet(elementId) {
+      const codeEl = document.getElementById(elementId);
+      if (codeEl) {
+        navigator.clipboard.writeText(codeEl.innerText).then(() => {
+          triggerToast('success', '¡Código JSX copiado al portapapeles!');
+        }).catch(() => {
+          triggerToast('warning', 'No se pudo copiar automáticamente.');
+        });
+      }
+    }
+  </script>
+
+</body>
+</html>

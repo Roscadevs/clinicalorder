@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { User, Lock, Mail } from 'lucide-react';
 import { authApi } from '../../services/api';
 import { UserRole } from '../../types';
-import { Modal, Button, Input, Select } from '../../components/ui';
+import { Modal, Button, Input, Select, Callout } from '../../components/ui';
 
 interface UserFormModalProps {
   isOpen: boolean;
@@ -73,7 +73,11 @@ export const UserFormModal: React.FC<UserFormModalProps> = ({ isOpen, onClose, o
         <Input label="Correo electrónico *" type="email" value={email} onChange={(e) => setEmail(e.target.value)} placeholder="sofia@clinica.com" leftIcon={<Mail className="h-5 w-5" />} />
         <Input label="Contraseña *" type="password" value={password} onChange={(e) => setPassword(e.target.value)} placeholder="Mínimo 8 caracteres" leftIcon={<Lock className="h-5 w-5" />} autoComplete="new-password" />
 
-        {error && <p role="alert" className="text-sm text-danger-600 font-medium">{error}</p>}
+        {error && (
+          <Callout intent="error" title="No se pudo crear el usuario" onClose={() => setError(null)}>
+            {error}
+          </Callout>
+        )}
       </form>
     </Modal>
   );

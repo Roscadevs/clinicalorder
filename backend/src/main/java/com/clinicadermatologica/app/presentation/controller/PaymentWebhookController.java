@@ -34,10 +34,11 @@ public class PaymentWebhookController {
         
         boolean success = paymentService.processMercadoPagoWebhook(payload, queryParams, xSignature, xRequestId);
         if (!success) {
-            log.warn("Firma inválida o fallo de procesamiento en webhook de MercadoPago");
+            log.warn("Firma inválida o fallo de autenticación en webhook de MercadoPago. Rechazando con 401 Unauthorized.");
+            return ResponseEntity.status(org.springframework.http.HttpStatus.UNAUTHORIZED).build();
         }
         
-        // Retorna HTTP 200 OK inmediatamente (requerido por MercadoPago dentro de los 22 segundos)
+        // Retorna HTTP 200 OK si la firma y el procesamiento fueron exitosos
         return ResponseEntity.ok().build();
     }
 }

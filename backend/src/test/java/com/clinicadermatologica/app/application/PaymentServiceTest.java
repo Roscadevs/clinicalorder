@@ -4,6 +4,7 @@ import com.clinicadermatologica.app.application.service.PaymentService;
 import com.clinicadermatologica.app.application.strategy.PaymentRegistrationStrategy;
 import com.clinicadermatologica.app.application.strategy.PaymentStrategyFactory;
 import com.clinicadermatologica.app.domain.exception.BusinessRuleException;
+import com.clinicadermatologica.app.domain.exception.ResourceNotFoundException;
 import com.clinicadermatologica.app.domain.model.*;
 import com.clinicadermatologica.app.domain.repository.*;
 import com.clinicadermatologica.app.infrastructure.payment.MercadoPagoPaymentAdapter;
@@ -198,12 +199,151 @@ public class PaymentServiceTest {
         assertEquals("987654321", pendingTx.getMpPaymentId());
     }
 
-    // ─── FINAL PAYMENT TESTS ─────────────────────────────────────────────────────
+    @Test
+    @DisplayName("Webhook debe ser idempotente si la transacción ya fue APPROVED previamente")
+    void testWebhook_AlreadyApproved_IsIdempotent() {
+        PaymentTransaction approvedTx = PaymentTransaction.builder()
+                .id(5L)
+                .appointment(mockAppointment)
+                .paymentType(PaymentType.MERCADOPAGO)
+                .paymentConcept(PaymentConcept.DEPOSIT)
+                .amount(new BigDecimal("21000.00"))
+                .status(PaymentStatus.APPROVED)
+                .mpPreferenceId("PREF-ALREADY-APPROVED")
+                .build();
+
+        Payment mpPayment = mock(Payment.class);
+        when(mpPayment.getExternalReference()).thenReturn("PREF-ALREADY-APPROVED");
+
+        Map<String, Object> payload = Map.of(
+                "type", "payment",
+                "data", Map.of("id", "66")
+        );
+
+        when(mercadoPagoAdapter.getPaymentDetails(66L)).thenReturn(mpPayment);
+        when(paymentTransactionRepository.findByMpPreferenceId("PREF-ALREADY-APPROVED"))
+                .thenReturn(Optional.of(approvedTx));
+
+        boolean processed = paymentService.processMercadoPagoWebhook(payload);
+
+        assertTrue(processed);
+        // No se debe llamar a save si ya estaba aprobada
+        verify(paymentTransactionRepository, never()).save(approvedTx);
+    }
 
     @Test
-    @DisplayName("registerFinalPayment delega en la estrategia correcta y completa la cita")
-    void testRegisterFinalPayment_DelegatesToStrategy_CompletesAppointment() {
+    @DisplayName("Webhook in_process debe mantener la cita en reserva activa")
+    void testWebhook_InProcess_MaintainsPendingAppointment() {
+        PaymentTransaction pendingTx = PaymentTransaction.builder()
+                .id(6L)
+                .appointment(mockAppointment)
+                .paymentType(PaymentType.MERCADOPAGO)
+                .paymentConcept(PaymentConcept.DEPOSIT)
+                .amount(new BigDecimal("21000.00"))
+                .status(PaymentStatus.PENDING)
+                .mpPreferenceId("PREF-IN-PROCESS")
+                .build();
+
+        Payment mpPayment = mock(Payment.class);
+        when(mpPayment.getStatus()).thenReturn("in_process");
+        when(mpPayment.getExternalReference()).thenReturn("PREF-IN-PROCESS");
+
+        Map<String, Object> payload = Map.of(
+                "type", "payment",
+                "data", Map.of("id", "55")
+        );
+
+        when(mercadoPagoAdapter.getPaymentDetails(55L)).thenReturn(mpPayment);
+        when(paymentTransactionRepository.findByMpPreferenceId("PREF-IN-PROCESS"))
+                .thenReturn(Optional.of(pendingTx));
+
+        boolean processed = paymentService.processMercadoPagoWebhook(payload);
+
+        assertTrue(processed);
+        assertEquals(AppointmentStatus.PENDING_PAYMENT, mockAppointment.getStatus());
+        assertEquals("55", pendingTx.getMpPaymentId());
+        verify(paymentTransactionRepository).save(pendingTx);
+    }
+
+    @Test
+    @DisplayName("isValidSignature valida correctamente la firma HMAC SHA-256")
+    void testIsValidSignature_SuccessAndFailure() throws Exception {
+        String secret = "mi_secreto_super_seguro_mp";
+        org.springframework.test.util.ReflectionTestUtils.setField(paymentService, "webhookSecret", secret);
+
+        String dataId = "123456";
+        String requestId = "req-abc-789";
+        String ts = "1742505638000";
+
+        // manifest: id:123456;request-id:req-abc-789;ts:1742505638000;
+        String manifest = "id:" + dataId + ";request-id:" + requestId + ";ts:" + ts + ";";
+        javax.crypto.Mac mac = javax.crypto.Mac.getInstance("HmacSHA256");
+        mac.init(new javax.crypto.spec.SecretKeySpec(secret.getBytes(), "HmacSHA256"));
+        byte[] hash = mac.doFinal(manifest.getBytes());
+        StringBuilder hexString = new StringBuilder();
+        for (byte b : hash) {
+            String hex = Integer.toHexString(0xff & b);
+            if (hex.length() == 1) hexString.append('0');
+            hexString.append(hex);
+        }
+        String validV1 = hexString.toString();
+        String validXSignature = "ts=" + ts + ",v1=" + validV1;
+
+        // Firma válida
+        assertTrue(paymentService.isValidSignature(validXSignature, requestId, dataId));
+
+        // Firma alterada
+        String invalidXSignature = "ts=" + ts + ",v1=invalidhash123456789";
+        assertFalse(paymentService.isValidSignature(invalidXSignature, requestId, dataId));
+
+        // Sin firma
+        assertFalse(paymentService.isValidSignature(null, requestId, dataId));
+    }
+
+    @Test
+    @DisplayName("refundPayment emite reembolso a través del adaptador y marca la transacción como REFUNDED")
+    void testRefundPayment_Success() {
+        PaymentTransaction tx = PaymentTransaction.builder()
+                .id(7L)
+                .paymentType(PaymentType.MERCADOPAGO)
+                .mpPaymentId("99887766")
+                .status(PaymentStatus.APPROVED)
+                .build();
+
+        paymentService.refundPayment(tx);
+
+        assertEquals(PaymentStatus.REFUNDED, tx.getStatus());
+        verify(mercadoPagoAdapter).refundPayment(99887766L);
+        verify(paymentTransactionRepository).save(tx);
+    }
+
+    // ─── FINAL PAYMENT TESTS (CU-05 GHERKIN SUITE) ───────────────────────────────
+
+    @Test
+    @DisplayName("CU-05 Happy Path: registerFinalPayment liquida exitosamente el saldo, completa la cita y emite PaymentReceiptDTO")
+    void testRegisterFinalPayment_HappyPath_CompletesAppointmentAndEmitsReceipt() {
         mockAppointment.setStatus(AppointmentStatus.ATTENDED);
+        mockAppointment.setAgreedPrice(new BigDecimal("42000.00"));
+
+        PaymentTransaction depositTx = PaymentTransaction.builder()
+                .id(1L)
+                .appointment(mockAppointment)
+                .amount(new BigDecimal("21000.00"))
+                .paymentType(PaymentType.MERCADOPAGO)
+                .paymentConcept(PaymentConcept.DEPOSIT)
+                .status(PaymentStatus.APPROVED)
+                .build();
+
+        PaymentTransaction balanceTx = PaymentTransaction.builder()
+                .id(2L)
+                .appointment(mockAppointment)
+                .amount(new BigDecimal("21000.00"))
+                .paymentType(PaymentType.CASH)
+                .paymentConcept(PaymentConcept.BALANCE)
+                .status(PaymentStatus.APPROVED)
+                .paymentDate(Instant.now())
+                .registeredByUser(mockReceptionist)
+                .build();
 
         FinalizePaymentRequestDTO request = FinalizePaymentRequestDTO.builder()
                 .paymentType(PaymentType.CASH)
@@ -211,16 +351,23 @@ public class PaymentServiceTest {
                 .build();
 
         PaymentRegistrationStrategy mockStrategy = mock(PaymentRegistrationStrategy.class);
-        when(paymentStrategyFactory.getStrategy(PaymentType.CASH)).thenReturn(mockStrategy);
-        when(mockStrategy.register(any(), any(), any(), any(), any()))
-                .thenReturn(mock(PaymentTransaction.class));
         when(appointmentRepository.findById(100L)).thenReturn(Optional.of(mockAppointment));
+        when(paymentTransactionRepository.findByAppointmentId(100L)).thenReturn(List.of(depositTx));
         when(userRepository.findById(3L)).thenReturn(Optional.of(mockReceptionist));
+        when(paymentStrategyFactory.getStrategy(PaymentType.CASH)).thenReturn(mockStrategy);
+        when(mockStrategy.register(any(), any(), any(), any(), any())).thenReturn(balanceTx);
 
-        paymentService.registerFinalPayment(100L, request, 3L);
+        PaymentReceiptDTO receipt = paymentService.registerFinalPayment(100L, request, 3L);
 
+        assertNotNull(receipt, "El comprobante no debe ser nulo");
+        assertEquals(100L, receipt.getAppointmentId());
+        assertEquals(2L, receipt.getTransactionId());
+        assertEquals(new BigDecimal("21000.00"), receipt.getAmount());
+        assertEquals(PaymentType.CASH, receipt.getPaymentType());
+        assertEquals(PaymentConcept.BALANCE, receipt.getConcept());
+        assertEquals(AppointmentStatus.COMPLETED, receipt.getAppointmentStatus());
         assertEquals(AppointmentStatus.COMPLETED, mockAppointment.getStatus());
-        // Verifica que se delegó en la estrategia — no hay if/else en el servicio
+
         verify(paymentStrategyFactory).getStrategy(PaymentType.CASH);
         verify(mockStrategy).register(eq(mockAppointment), eq(new BigDecimal("21000.00")),
                 eq(PaymentConcept.BALANCE), eq(mockReceptionist), isNull());
@@ -228,9 +375,95 @@ public class PaymentServiceTest {
     }
 
     @Test
-    @DisplayName("registerFinalPayment lanza excepción si la cita no está ATTENDED")
+    @DisplayName("CU-05 Sad Path 1: registerFinalPayment lanza excepción si la cita no está ATTENDED")
     void testRegisterFinalPayment_NotAttended_ThrowsException() {
-        // mockAppointment ya está en PENDING_PAYMENT (setUp)
+        mockAppointment.setStatus(AppointmentStatus.CONFIRMED);
+        FinalizePaymentRequestDTO request = FinalizePaymentRequestDTO.builder()
+                .paymentType(PaymentType.CASH)
+                .amount(new BigDecimal("21000.00"))
+                .build();
+
+        when(appointmentRepository.findById(100L)).thenReturn(Optional.of(mockAppointment));
+
+        BusinessRuleException ex = assertThrows(BusinessRuleException.class,
+                () -> paymentService.registerFinalPayment(100L, request, 3L));
+        assertTrue(ex.getMessage().contains("ya atendidos"));
+        verify(paymentStrategyFactory, never()).getStrategy(any());
+        verify(appointmentRepository, never()).save(mockAppointment);
+    }
+
+    @Test
+    @DisplayName("CU-05 Sad Path 2: registerFinalPayment lanza excepción si el monto no coincide con el saldo adeudado")
+    void testRegisterFinalPayment_AmountMismatch_ThrowsException() {
+        mockAppointment.setStatus(AppointmentStatus.ATTENDED);
+        mockAppointment.setAgreedPrice(new BigDecimal("42000.00"));
+
+        PaymentTransaction depositTx = PaymentTransaction.builder()
+                .id(1L)
+                .amount(new BigDecimal("21000.00"))
+                .status(PaymentStatus.APPROVED)
+                .build();
+
+        FinalizePaymentRequestDTO request = FinalizePaymentRequestDTO.builder()
+                .paymentType(PaymentType.CASH)
+                .amount(new BigDecimal("15000.00"))
+                .build();
+
+        when(appointmentRepository.findById(100L)).thenReturn(Optional.of(mockAppointment));
+        when(paymentTransactionRepository.findByAppointmentId(100L)).thenReturn(List.of(depositTx));
+
+        BusinessRuleException ex = assertThrows(BusinessRuleException.class,
+                () -> paymentService.registerFinalPayment(100L, request, 3L));
+        assertTrue(ex.getMessage().contains("no coincide con el saldo adeudado"));
+        verify(paymentStrategyFactory, never()).getStrategy(any());
+        verify(appointmentRepository, never()).save(mockAppointment);
+    }
+
+    @Test
+    @DisplayName("CU-05 Sad Path 2b: registerFinalPayment lanza excepción si la cita no posee saldo pendiente")
+    void testRegisterFinalPayment_NoRemainingBalance_ThrowsException() {
+        mockAppointment.setStatus(AppointmentStatus.ATTENDED);
+        mockAppointment.setAgreedPrice(new BigDecimal("42000.00"));
+
+        PaymentTransaction fullTx = PaymentTransaction.builder()
+                .id(1L)
+                .amount(new BigDecimal("42000.00"))
+                .status(PaymentStatus.APPROVED)
+                .build();
+
+        FinalizePaymentRequestDTO request = FinalizePaymentRequestDTO.builder()
+                .paymentType(PaymentType.CASH)
+                .amount(new BigDecimal("21000.00"))
+                .build();
+
+        when(appointmentRepository.findById(100L)).thenReturn(Optional.of(mockAppointment));
+        when(paymentTransactionRepository.findByAppointmentId(100L)).thenReturn(List.of(fullTx));
+
+        BusinessRuleException ex = assertThrows(BusinessRuleException.class,
+                () -> paymentService.registerFinalPayment(100L, request, 3L));
+        assertTrue(ex.getMessage().contains("no posee saldo pendiente"));
+        verify(paymentStrategyFactory, never()).getStrategy(any());
+        verify(appointmentRepository, never()).save(mockAppointment);
+    }
+
+    @Test
+    @DisplayName("CU-05 Sad Path 3: registerFinalPayment lanza ResourceNotFoundException si la cita no existe")
+    void testRegisterFinalPayment_AppointmentNotFound_ThrowsException() {
+        FinalizePaymentRequestDTO request = FinalizePaymentRequestDTO.builder()
+                .paymentType(PaymentType.CASH)
+                .amount(new BigDecimal("21000.00"))
+                .build();
+
+        when(appointmentRepository.findById(999L)).thenReturn(Optional.empty());
+
+        assertThrows(ResourceNotFoundException.class,
+                () -> paymentService.registerFinalPayment(999L, request, 3L));
+    }
+
+    @Test
+    @DisplayName("CU-05 Sad Path 4: registerFinalPayment lanza excepción si la cita ya fue completada (Idempotencia/Prevención doble cobro)")
+    void testRegisterFinalPayment_AlreadyCompleted_ThrowsException() {
+        mockAppointment.setStatus(AppointmentStatus.COMPLETED);
         FinalizePaymentRequestDTO request = FinalizePaymentRequestDTO.builder()
                 .paymentType(PaymentType.CASH)
                 .amount(new BigDecimal("21000.00"))
@@ -241,6 +474,7 @@ public class PaymentServiceTest {
         assertThrows(BusinessRuleException.class,
                 () -> paymentService.registerFinalPayment(100L, request, 3L));
         verify(paymentStrategyFactory, never()).getStrategy(any());
+        verify(appointmentRepository, never()).save(mockAppointment);
     }
 
     // ─── REGISTRAR PAGO (SEÑA) TESTS ─────────────────────────────────────────────
