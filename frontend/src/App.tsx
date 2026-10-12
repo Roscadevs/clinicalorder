@@ -6,6 +6,8 @@ import { AnimatePresence } from 'motion/react';
 import { LandingPageView } from './features/public/LandingPageView';
 import { LoginView } from './features/auth/LoginView';
 import { PasswordRecoveryView } from './features/auth/PasswordRecoveryView';
+import { AuthCallbackView } from './features/auth/AuthCallbackView';
+import { UpdatePasswordView } from './features/auth/UpdatePasswordView';
 import { ServicesCatalogView } from './features/public/ServicesCatalogView';
 import { BookingSuccessView, BookingFailureView, BookingPendingView } from './features/appointments/BookingStatusViews';
 
@@ -69,6 +71,30 @@ export function App() {
               element={
                 <PageTransition>
                   <PasswordRecoveryView />
+                </PageTransition>
+              }
+            />
+            <Route
+              path="/forgot-password"
+              element={
+                <PageTransition>
+                  <PasswordRecoveryView />
+                </PageTransition>
+              }
+            />
+            <Route
+              path="/auth/callback"
+              element={
+                <PageTransition>
+                  <AuthCallbackView />
+                </PageTransition>
+              }
+            />
+            <Route
+              path="/update-password"
+              element={
+                <PageTransition>
+                  <UpdatePasswordView />
                 </PageTransition>
               }
             />
