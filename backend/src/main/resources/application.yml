@@ -50,6 +50,8 @@ security:
 app:
   encryption:
     key: ${AES_ENCRYPTION_KEY:3V0xvxxcK3EadxYqHBe7moUn0WEJgSkwpXnPXrLN4cM=}
+  cors:
+    allowed-origins: ${APP_CORS_ALLOWED_ORIGINS:http://localhost:5173,http://localhost:3000,http://127.0.0.1:5173,https://clinicalorder.eliasdelcastillo.com,https://clinicalorder.onrender.com}
 
 # Configuración de Pasarela de Pagos MercadoPago
 mercadopago:

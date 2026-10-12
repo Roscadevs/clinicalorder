@@ -19,7 +19,14 @@ import {
 } from '../types'; // Importación de contratos de tipos
 
 /** URL absoluta de la API (para requests fuera de axios, p. ej. fetch keepalive). */
-export const API_BASE_URL: string = import.meta.env.VITE_API_BASE_URL || '/api/v1';
+const resolvedDefaultBaseUrl =
+  typeof window !== 'undefined' &&
+  window.location.hostname !== 'localhost' &&
+  window.location.hostname !== '127.0.0.1'
+    ? 'https://clinicalorder.onrender.com/api/v1'
+    : '/api/v1';
+
+export const API_BASE_URL: string = import.meta.env.VITE_API_BASE_URL || resolvedDefaultBaseUrl;
 
 export const isDemoSession = (): boolean => {
   const token = localStorage.getItem('token');
@@ -75,7 +82,7 @@ const currentUserId = (): number => {
 
 // Instancia configurada de Axios con base URL hacia la API de Spring Boot
 const api = axios.create({
-  baseURL: import.meta.env.VITE_API_BASE_URL || '/api/v1', // URL base configurada o proxy relativo
+  baseURL: API_BASE_URL, // URL base configurada dinámicamente según entorno
   headers: {
     'Content-Type': 'application/json',
   },

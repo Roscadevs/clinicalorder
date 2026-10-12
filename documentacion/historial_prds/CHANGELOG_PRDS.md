@@ -7,6 +7,17 @@
 
 ## 📜 Historial de Revisiones
 
+### 🔹 [Versión 16.0 (Fase 16 - Proxy Inverso en Vercel y Política de CORS en Producción)](PRD_Fase_16_Proxy_CORS_Chatbot_Vercel_Render.md)
+- **Fecha:** 2026-10-12
+- **Estado:** VIGENTE / IMPLEMENTADO
+- **Autor:** Equipo de Arquitectura & Desarrollo
+- **Cambios Principales:**
+  - Configuración de proxy inverso transparente en Vercel (`vercel.json`) para reescribir `/api/(.*)` hacia el backend en Render, eliminando error HTTP 405 Method Not Allowed.
+  - Ampliación de orígenes y comodines CORS en Spring Security (`SecurityConfig.java`) autorizando `https://clinicalorder.eliasdelcastillo.com` y subdominios de preview.
+  - Configuración defensiva de fallback a URL de Render en `api.ts`.
+
+---
+
 ### 🔹 [Versión 15.0 (Fase 15 - Hotfix Constructor GeminiApiClientAdapter en Deploy)](PRD_Fase_15_Hotfix_Constructor_GeminiApiClientAdapter_Deploy.md)
 - **Fecha:** 2026-10-12
 - **Estado:** VIGENTE / IMPLEMENTADO

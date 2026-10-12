@@ -78,4 +78,25 @@ public class SecurityInfrastructureTest {
         MockHttpServletRequest backslashRequest = new MockHttpServletRequest("GET", "/api/v1\\servicios");
         assertThrows(RequestRejectedException.class, () -> firewall.getFirewalledRequest(backslashRequest));
     }
+
+    @Test
+    @DisplayName("corsConfigurationSource autoriza orígenes permitidos de producción y comodines de subdominio")
+    void testCorsConfigurationSource_ValidatesAllowedOrigins() {
+        SecurityConfig config = new SecurityConfig(null, authenticationEntryPoint, accessDeniedHandler);
+        org.springframework.test.util.ReflectionTestUtils.setField(
+                config,
+                "allowedOrigins",
+                "http://localhost:5173,http://localhost:3000,http://127.0.0.1:5173,https://clinicalorder.eliasdelcastillo.com,https://clinicalorder.onrender.com"
+        );
+        org.springframework.web.cors.CorsConfigurationSource source = config.corsConfigurationSource();
+
+        MockHttpServletRequest request = new MockHttpServletRequest();
+        request.setRequestURI("/api/v1/chat/gemini");
+
+        org.springframework.web.cors.CorsConfiguration corsConfig = source.getCorsConfiguration(request);
+        assertNotNull(corsConfig);
+        assertTrue(corsConfig.getAllowedOriginPatterns().contains("https://*.eliasdelcastillo.com"));
+        assertTrue(corsConfig.getAllowedOriginPatterns().contains("https://clinicalorder.eliasdelcastillo.com"));
+        assertTrue(corsConfig.getAllowCredentials());
+    }
 }
