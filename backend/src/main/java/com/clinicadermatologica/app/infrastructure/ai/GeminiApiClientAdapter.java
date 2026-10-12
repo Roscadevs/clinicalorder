@@ -3,6 +3,7 @@ package com.clinicadermatologica.app.infrastructure.ai;
 import com.clinicadermatologica.app.presentation.dto.GeminiChatRequestDTO; // DTO de entrada
 import com.clinicadermatologica.app.presentation.dto.GeminiChatResponseDTO; // DTO de respuesta
 import lombok.extern.slf4j.Slf4j; // Logger Lombok
+import org.springframework.beans.factory.annotation.Autowired; // Inyección explícita de dependencias
 import org.springframework.beans.factory.annotation.Value; // Inyección de properties
 import org.springframework.http.MediaType; // Tipos de contenido HTTP
 import org.springframework.stereotype.Component; // Componente Spring
@@ -21,14 +22,15 @@ public class GeminiApiClientAdapter {
     private final String apiKey; // Clave de acceso a Google AI Studio
     private final List<String> modelsCascade; // Cadena de modelos ordenada para failover de cuota
 
+    @Autowired // Constructor oficial único para el contenedor de Spring Boot
     public GeminiApiClientAdapter(
-            @Value("${gemini.api.key}") String apiKey,
-            @Value("${gemini.api.base-url}") String baseUrl,
+            @Value("${gemini.api.key:}") String apiKey,
+            @Value("${gemini.api.base-url:https://generativelanguage.googleapis.com/v1beta}") String baseUrl,
             @Value("${gemini.api.model:gemini-3.5-flash-lite}") String defaultModel,
             @Value("${gemini.api.models:#{null}}") String modelsConfig) {
-        this.apiKey = apiKey;
+        this.apiKey = apiKey != null ? apiKey : "";
         this.webClient = WebClient.builder()
-                .baseUrl(baseUrl) // Configura la URL base oficial de Gemini API
+                .baseUrl(baseUrl != null && !baseUrl.isBlank() ? baseUrl : "https://generativelanguage.googleapis.com/v1beta")
                 .build();
         if (modelsConfig != null && !modelsConfig.isBlank()) {
             this.modelsCascade = Arrays.stream(modelsConfig.split(","))
@@ -38,12 +40,6 @@ public class GeminiApiClientAdapter {
         } else {
             this.modelsCascade = List.of(defaultModel != null && !defaultModel.isBlank() ? defaultModel : "gemini-3.5-flash-lite");
         }
-    }
-
-    public GeminiApiClientAdapter(WebClient webClient, String apiKey, List<String> modelsCascade) {
-        this.webClient = webClient;
-        this.apiKey = apiKey;
-        this.modelsCascade = modelsCascade != null && !modelsCascade.isEmpty() ? modelsCascade : List.of("gemini-3.5-flash-lite");
     }
 
     public List<String> getModelsCascade() {

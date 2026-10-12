@@ -7,9 +7,29 @@
 
 ## 📜 Historial de Revisiones
 
+### 🔹 [Versión 15.0 (Fase 15 - Hotfix Constructor GeminiApiClientAdapter en Deploy)](PRD_Fase_15_Hotfix_Constructor_GeminiApiClientAdapter_Deploy.md)
+- **Fecha:** 2026-10-12
+- **Estado:** VIGENTE / IMPLEMENTADO
+- **Autor:** Equipo de Arquitectura & Desarrollo
+- **Cambios Principales:**
+  - Resolución definitiva de `BeanCreationException` y ambigüedad de constructores en Spring Boot 3 para despliegue en Render.
+  - Anotación explícita `@Autowired`, eliminación de constructor redundante, fallbacks seguros y adición de test de integración en Spring IoC.
+
+---
+
+### 🔹 [Versión 14.0 (Fase 14 - Chatbot Cascada Multi-Modelo Gemini 50 RPM)](PRD_Fase_14_Chatbot_Cascada_MultiModelo_Gemini.md)
+- **Fecha:** 2026-10-12
+- **Estado:** VIGENTE
+- **Autor:** Equipo de Arquitectura & Desarrollo
+- **Cambios Principales:**
+  - Arquitectura de resiliencia en cascada para 6 modelos Gemini (50 RPM combinadas) con failover automático ante 429/503.
+  - Memoria conversacional en DTOs y frontend.
+
+---
+
 ### 🔹 [Versión 13.0 (Fase 13 - Heurísticas de Usabilidad de Nielsen en README)](PRD_v13.0_Fase13_Heuristicas_Usabilidad_Nielsen_README.md)
 - **Fecha:** 2026-10-12
-- **Estado:** EN REVISIÓN / PROPUESTO
+- **Estado:** VIGENTE
 - **Autor:** Equipo de Arquitectura & Desarrollo
 - **Cambios Principales:**
   - Incorporación de la evaluación heurística de 10 principios de Jakob Nielsen en el `README.md`.

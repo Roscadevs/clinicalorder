@@ -5,7 +5,6 @@ import com.clinicadermatologica.app.presentation.dto.GeminiChatRequestDTO;
 import com.clinicadermatologica.app.presentation.dto.GeminiChatResponseDTO;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
-import org.springframework.web.reactive.function.client.WebClient;
 
 import java.util.List;
 
@@ -50,17 +49,22 @@ class GeminiApiClientAdapterTest {
     }
 
     @Test
+    @DisplayName("Debe instanciarse de forma segura con propiedades nulas o vacías")
+    void shouldInstantiateSafelyWithDefaultPlaceholders() {
+        GeminiApiClientAdapter adapter = new GeminiApiClientAdapter("", "", null, null);
+        assertThat(adapter).isNotNull();
+        assertThat(adapter.getModelsCascade()).containsExactly("gemini-3.5-flash-lite");
+    }
+
+    @Test
     @DisplayName("Debe retornar la respuesta de contingencia institucional cuando todos los modelos fallan")
     void shouldReturnInstitutionalFallbackWhenAllModelsFail() {
-        // WebClient mock o apuntando a URL inaccesible para forzar el fallo de toda la cascada
-        WebClient failingClient = WebClient.builder()
-                .baseUrl("http://127.0.0.1:59999") // Puerto no existente
-                .build();
-
+        // Adaptador apuntando a URL inaccesible para forzar el fallo de toda la cascada
         GeminiApiClientAdapter adapter = new GeminiApiClientAdapter(
-                failingClient,
                 "dummy-key",
-                List.of("gemini-3.5-flash-lite", "gemini-3.1-flash-lite")
+                "http://127.0.0.1:59999", // Puerto no existente
+                "gemini-3.5-flash-lite",
+                "gemini-3.5-flash-lite, gemini-3.1-flash-lite"
         );
 
         GeminiChatRequestDTO request = GeminiChatRequestDTO.builder()
