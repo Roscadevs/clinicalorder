@@ -67,7 +67,7 @@ El sistema resuelve integralmente la problemática operativa, clínica y financi
 
 ---
 
-## 🎨 Evaluación Heurística de Usabilidad (10 Principios de Jakob Nielsen)
+## 🎨 Evaluación Heurística de Usabilidad 
 
 En el marco de **Ingeniería del Software II**, el sistema fue diseñado bajo estrictos principios de **Interacción Humano-Computadora (HCI / Human-Computer Interaction)** y ergonomía digital. Esta evaluación heurística sirve como **checklist formal de control de calidad** antes del lanzamiento para asegurar que los usuarios no experimenten frustración ni sobrecarga cognitiva al operar el sistema.
 
