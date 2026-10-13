@@ -47,4 +47,9 @@ public class DermatologicServiceRepositoryAdapter implements DermatologicService
     public boolean existsByName(String name) {
         return jpaRepository.existsByName(name); // Verifica existencia
     }
+
+    @Override
+    public boolean existsByNameAndIdNot(String name, Long id) {
+        return jpaRepository.existsByNameAndIdNot(name, id); // Verifica existencia excluyendo ID
+    }
 }

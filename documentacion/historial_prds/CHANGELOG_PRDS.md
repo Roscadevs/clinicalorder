@@ -7,6 +7,19 @@
 
 ## 📜 Historial de Revisiones
 
+### 🔹 [Versión 24.0 (Fase 24 - Gestión, Alta y Edición de Tratamientos del Catálogo)](PRD_Fase_24_Gestion_Y_Edicion_Tratamientos_Catalogo.md)
+- **Fecha:** 2026-10-13
+- **Estado:** VIGENTE / IMPLEMENTADO
+- **Autor:** Equipo de Producto, UX & Arquitectura
+- **Cambios Principales:**
+  - Validación defensiva de unicidad de nombre excluyente (`existsByNameAndIdNot`) en backend con excepciones RFC 7807.
+  - Mejora de `ServiceFormModal.tsx` con captura y reporte de errores RFC 7807 en `Callout`.
+  - Ergonomía táctil móvil adaptada a estándares $\ge 44$ px.
+  - Incorporación de plantillas rápidas para protocolos médicos y estéticos comunes.
+  - Diálogo modal de confirmación segura antes de suspender o reactivar servicios en `AdminServicesView.tsx`.
+
+---
+
 ### 🔹 [Versión 23.0 (Fase 23 - Formulario de Bloqueos de Agenda e Indisponibilidad Médica)](PRD_Fase_23_Bloqueos_Agenda_Indisponibilidad.md)
 - **Fecha:** 2026-10-13
 - **Estado:** VIGENTE / IMPLEMENTADO

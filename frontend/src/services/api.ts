@@ -338,7 +338,11 @@ export const servicesApi = {
   },
   /** Activa o desactiva un servicio (baja lógica). Reenvía todos los campos + active. */
   setServiceActive: async (service: DermatologicService, active: boolean): Promise<DermatologicService> => {
-    return servicesApi.updateService(service.id, { ...service, active });
+    return servicesApi.updateService(service.id, {
+      ...service,
+      followUpIntervalDays: service.followUpIntervalDays ?? 0,
+      active,
+    });
   },
 };
 

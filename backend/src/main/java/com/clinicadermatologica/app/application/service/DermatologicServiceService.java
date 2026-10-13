@@ -67,7 +67,7 @@ public class DermatologicServiceService {
                 .durationMinutes(request.getDurationMinutes())
                 .basePrice(request.getBasePrice())
                 .depositPercentage(request.getDepositPercentage())
-                .followUpIntervalDays(request.getFollowUpIntervalDays())
+                .followUpIntervalDays(request.getFollowUpIntervalDays() != null ? request.getFollowUpIntervalDays() : 0)
                 .active(request.getActive() != null ? request.getActive() : true)
                 .build();
 
@@ -82,12 +82,16 @@ public class DermatologicServiceService {
         DermatologicService service = serviceRepository.findById(id)
                 .orElseThrow(() -> new ResourceNotFoundException("Servicio no encontrado con ID " + id));
 
+        if (serviceRepository.existsByNameAndIdNot(request.getName(), id)) {
+            throw new BusinessRuleException("Ya existe otro tratamiento registrado con el nombre " + request.getName());
+        }
+
         service.setName(request.getName());
         service.setDescription(request.getDescription());
         service.setDurationMinutes(request.getDurationMinutes());
         service.setBasePrice(request.getBasePrice());
         service.setDepositPercentage(request.getDepositPercentage());
-        service.setFollowUpIntervalDays(request.getFollowUpIntervalDays());
+        service.setFollowUpIntervalDays(request.getFollowUpIntervalDays() != null ? request.getFollowUpIntervalDays() : 0);
         if (request.getActive() != null) {
             service.setActive(request.getActive());
         }

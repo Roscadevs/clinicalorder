@@ -18,7 +18,7 @@ import {
 } from 'lucide-react';
 import { servicesApi, usersApi } from '../../services/api';
 import { DermatologicService, User, UserRole } from '../../types';
-import { Card, Button, Badge, Spinner, Modal } from '../../components/ui';
+import { Card, Button, Badge, Spinner, Modal, Callout } from '../../components/ui';
 import { ServiceFormModal } from './ServiceFormModal';
 import { UserFormModal } from './UserFormModal';
 import { cn } from '../../utils/cn';
@@ -46,7 +46,10 @@ export const AdminServicesView: React.FC = () => {
   const [query, setQuery] = useState('');
   const [editingService, setEditingService] = useState<DermatologicService | null>(null);
   const [serviceFormOpen, setServiceFormOpen] = useState(false);
-  const [togglingServiceId, setTogglingServiceId] = useState<number | null>(null);
+  const [serviceToToggle, setServiceToToggle] = useState<DermatologicService | null>(null);
+  const [togglingService, setTogglingService] = useState(false);
+  const [serviceFeedback, setServiceFeedback] = useState<string | null>(null);
+  const [serviceToggleError, setServiceToggleError] = useState<string | null>(null);
 
   // Usuarios del Staff
   const [users, setUsers] = useState<User[]>([]);
@@ -57,6 +60,7 @@ export const AdminServicesView: React.FC = () => {
   const [userFeedback, setUserFeedback] = useState<string | null>(null);
   const [userToToggle, setUserToToggle] = useState<User | null>(null);
   const [togglingUser, setTogglingUser] = useState(false);
+  const [userToggleError, setUserToggleError] = useState<string | null>(null);
 
   // Carga de catálogo
   const loadServices = () => {
@@ -113,13 +117,42 @@ export const AdminServicesView: React.FC = () => {
     setEditingService(s);
     setServiceFormOpen(true);
   };
-  const toggleActiveService = async (s: DermatologicService) => {
-    setTogglingServiceId(s.id);
+  const confirmToggleServiceActive = async () => {
+    if (!serviceToToggle) return;
+    setTogglingService(true);
+    setServiceToggleError(null);
     try {
-      await servicesApi.setServiceActive(s, !s.active);
+      await servicesApi.setServiceActive(serviceToToggle, !serviceToToggle.active);
+      setServiceFeedback(
+        `El tratamiento "${serviceToToggle.name}" ha sido ${
+          serviceToToggle.active ? 'suspendido' : 'reactivado'
+        } correctamente.`
+      );
+      setTimeout(() => setServiceFeedback(null), 4500);
       loadServices();
+      setServiceToToggle(null);
+      setServiceToggleError(null);
+    } catch (err: any) {
+      let serverMsg =
+        err?.response?.data?.detail ||
+        err?.response?.data?.message;
+
+      if (!serverMsg && err?.response?.data?.details) {
+        const detailsObj = err.response.data.details;
+        if (typeof detailsObj === 'object') {
+          serverMsg = Object.values(detailsObj).join('. ');
+        } else if (typeof detailsObj === 'string') {
+          serverMsg = detailsObj;
+        }
+      }
+
+      if (!serverMsg && err?.message && !err.message.includes('status code')) {
+        serverMsg = err.message;
+      }
+
+      setServiceToggleError(serverMsg || 'No se pudo modificar el estado del servicio.');
     } finally {
-      setTogglingServiceId(null);
+      setTogglingService(false);
     }
   };
 
@@ -136,6 +169,7 @@ export const AdminServicesView: React.FC = () => {
   const confirmToggleUserActive = async () => {
     if (!userToToggle) return;
     setTogglingUser(true);
+    setUserToggleError(null);
     try {
       await usersApi.toggleUserActive(userToToggle.id, !userToToggle.active);
       setUserFeedback(
@@ -144,8 +178,26 @@ export const AdminServicesView: React.FC = () => {
       setTimeout(() => setUserFeedback(null), 4500);
       loadUsers();
       setUserToToggle(null);
+      setUserToggleError(null);
     } catch (err: any) {
-      alert(err?.response?.data?.detail || err?.response?.data?.message || 'No se pudo modificar el estado del usuario.');
+      let serverMsg =
+        err?.response?.data?.detail ||
+        err?.response?.data?.message;
+
+      if (!serverMsg && err?.response?.data?.details) {
+        const detailsObj = err.response.data.details;
+        if (typeof detailsObj === 'object') {
+          serverMsg = Object.values(detailsObj).join('. ');
+        } else if (typeof detailsObj === 'string') {
+          serverMsg = detailsObj;
+        }
+      }
+
+      if (!serverMsg && err?.message && !err.message.includes('status code')) {
+        serverMsg = err.message;
+      }
+
+      setUserToggleError(serverMsg || 'No se pudo modificar el estado del usuario.');
     } finally {
       setTogglingUser(false);
     }
@@ -198,13 +250,20 @@ export const AdminServicesView: React.FC = () => {
                 onChange={(e) => setQuery(e.target.value)}
                 placeholder="Buscar tratamiento por nombre o descripción…"
                 aria-label="Buscar tratamiento"
-                className="w-full bg-white border border-sand-300 rounded-xl pl-10 pr-4 py-2.5 text-sm outline-none focus:ring-2 focus:ring-primary-500/40 focus:border-primary-500"
+                className="w-full bg-white border border-sand-300 rounded-xl pl-10 pr-4 py-2.5 text-sm outline-none focus:ring-2 focus:ring-primary-500/40 focus:border-primary-500 min-h-[44px]"
               />
             </div>
-            <Button onClick={openNewService} leftIcon={<Plus className="w-4 h-4" />}>
+            <Button onClick={openNewService} leftIcon={<Plus className="w-4 h-4" />} className="min-h-[44px]">
               Agregar tratamiento
             </Button>
           </div>
+
+          {serviceFeedback && (
+            <div className="p-3.5 rounded-xl bg-success-50 border border-success-200 text-success-800 text-sm flex items-center gap-2.5 shadow-sm">
+              <CheckCircle2 className="w-4 h-4 text-success-600 flex-shrink-0" />
+              <span>{serviceFeedback}</span>
+            </div>
+          )}
 
           {loadingServices ? (
             <div className="py-12 flex justify-center">
@@ -230,7 +289,7 @@ export const AdminServicesView: React.FC = () => {
                     </div>
                     <button
                       onClick={() => openEditService(s)}
-                      className="p-1.5 rounded-lg text-primary-600 hover:bg-primary-50"
+                      className="p-2 min-h-[44px] min-w-[44px] rounded-xl text-primary-600 hover:bg-primary-50 flex items-center justify-center transition-colors"
                       title="Editar"
                       aria-label="Editar tratamiento"
                     >
@@ -261,8 +320,8 @@ export const AdminServicesView: React.FC = () => {
                     size="sm"
                     variant={s.active ? 'ghost' : 'success'}
                     fullWidth
-                    isLoading={togglingServiceId === s.id}
-                    onClick={() => toggleActiveService(s)}
+                    className="min-h-[44px]"
+                    onClick={() => setServiceToToggle(s)}
                     leftIcon={s.active ? <Ban className="w-4 h-4" /> : <CheckCircle2 className="w-4 h-4" />}
                   >
                     {s.active ? 'Desactivar' : 'Activar'}
@@ -284,10 +343,10 @@ export const AdminServicesView: React.FC = () => {
                 onChange={(e) => setUserQuery(e.target.value)}
                 placeholder="Buscar por nombre, usuario, correo o rol…"
                 aria-label="Buscar operador"
-                className="w-full bg-white border border-sand-300 rounded-xl pl-10 pr-4 py-2.5 text-sm outline-none focus:ring-2 focus:ring-primary-500/40 focus:border-primary-500"
+                className="w-full bg-white border border-sand-300 rounded-xl pl-10 pr-4 py-2.5 text-sm outline-none focus:ring-2 focus:ring-primary-500/40 focus:border-primary-500 min-h-[44px]"
               />
             </div>
-            <Button onClick={openNewUser} leftIcon={<Plus className="w-4 h-4" />}>
+            <Button onClick={openNewUser} leftIcon={<Plus className="w-4 h-4" />} className="min-h-[44px]">
               Crear usuario
             </Button>
           </div>
@@ -462,21 +521,99 @@ export const AdminServicesView: React.FC = () => {
         }}
       />
 
+      {/* Diálogo de Confirmación para Suspender / Reactivar Tratamiento */}
+      {serviceToToggle && (
+        <Modal
+          isOpen={Boolean(serviceToToggle)}
+          onClose={() => {
+            setServiceToToggle(null);
+            setServiceToggleError(null);
+          }}
+          title={serviceToToggle.active ? 'Suspender tratamiento' : 'Reactivar tratamiento'}
+          footer={
+            <>
+              <Button
+                variant="ghost"
+                onClick={() => {
+                  setServiceToToggle(null);
+                  setServiceToggleError(null);
+                }}
+                disabled={togglingService}
+                className="min-h-[44px]"
+              >
+                Cancelar
+              </Button>
+              <Button
+                variant={serviceToToggle.active ? 'danger' : 'success'}
+                onClick={confirmToggleServiceActive}
+                isLoading={togglingService}
+                className="min-h-[44px]"
+              >
+                {serviceToToggle.active ? 'Confirmar suspensión' : 'Reactivar tratamiento'}
+              </Button>
+            </>
+          }
+        >
+          <div className="space-y-3">
+            <div className="p-3 rounded-xl bg-sand-100 border border-sand-200">
+              <p className="font-bold text-sand-900">{serviceToToggle.name}</p>
+              <p className="text-xs text-sand-500">
+                {ars(serviceToToggle.basePrice)} ARS • {serviceToToggle.durationMinutes} min • Seña {serviceToToggle.depositPercentage}%
+              </p>
+            </div>
+
+            {serviceToToggle.active ? (
+              <div className="p-3 rounded-xl bg-danger-50 border border-danger-200 text-danger-800 text-xs flex items-start gap-2.5">
+                <AlertTriangle className="w-4 h-4 text-danger-600 flex-shrink-0 mt-0.5" />
+                <p>
+                  ¿Deseas suspender este tratamiento? Al suspenderlo, los pacientes <strong>ya no podrán reservarlo en la web ni mediante el chatbot de IA</strong>. Los turnos agendados previamente se conservarán intactos.
+                </p>
+              </div>
+            ) : (
+              <div className="p-3 rounded-xl bg-success-50 border border-success-200 text-success-800 text-xs flex items-start gap-2.5">
+                <CheckCircle2 className="w-4 h-4 text-success-600 flex-shrink-0 mt-0.5" />
+                <p>
+                  ¿Deseas reactivar este tratamiento? El servicio volverá a estar <strong>disponible inmediatamente para reservas públicas y consultas del chatbot</strong>.
+                </p>
+              </div>
+            )}
+
+            {serviceToggleError && (
+              <Callout intent="error" title="Error al modificar estado" onClose={() => setServiceToggleError(null)}>
+                {serviceToggleError}
+              </Callout>
+            )}
+          </div>
+        </Modal>
+      )}
+
       {/* Diálogo de Confirmación para Suspender / Reactivar Cuenta */}
       {userToToggle && (
         <Modal
           isOpen={Boolean(userToToggle)}
-          onClose={() => setUserToToggle(null)}
+          onClose={() => {
+            setUserToToggle(null);
+            setUserToggleError(null);
+          }}
           title={userToToggle.active ? 'Suspender acceso de usuario' : 'Reactivar cuenta de usuario'}
           footer={
             <>
-              <Button variant="ghost" onClick={() => setUserToToggle(null)} disabled={togglingUser}>
+              <Button
+                variant="ghost"
+                onClick={() => {
+                  setUserToToggle(null);
+                  setUserToggleError(null);
+                }}
+                disabled={togglingUser}
+                className="min-h-[44px]"
+              >
                 Cancelar
               </Button>
               <Button
                 variant={userToToggle.active ? 'danger' : 'success'}
                 onClick={confirmToggleUserActive}
                 isLoading={togglingUser}
+                className="min-h-[44px]"
               >
                 {userToToggle.active ? 'Confirmar suspensión' : 'Reactivar acceso'}
               </Button>
@@ -508,6 +645,12 @@ export const AdminServicesView: React.FC = () => {
                   Al reactivar la cuenta, el operador podrá reanudar su inicio de sesión habitual con su nombre de usuario y contraseña actual.
                 </p>
               </div>
+            )}
+
+            {userToggleError && (
+              <Callout intent="error" title="Error al modificar acceso" onClose={() => setUserToggleError(null)}>
+                {userToggleError}
+              </Callout>
             )}
           </div>
         </Modal>
