@@ -1,12 +1,13 @@
 import React, { useCallback, useEffect, useMemo, useState } from 'react';
 import {
   ShieldCheck, FileText, Clock, FileSignature, Calendar, ArrowLeft, CheckCircle,
-  Stethoscope, ChevronRight,
+  Stethoscope, ChevronRight, Pencil,
 } from 'lucide-react';
 import { clinicalApi, patientsApi, appointmentsApi } from '../../services/api';
 import { Patient, MedicalRecord, ClinicalEntry, Appointment } from '../../types';
-import { Card, Button, Badge, Spinner } from '../../components/ui';
+import { Card, Button, Badge, Spinner, Modal } from '../../components/ui';
 import { AnamnesisForm } from './AnamnesisForm';
+import { PacienteForm } from './PacienteForm';
 import { ClinicalNoteModal } from './ClinicalNoteModal';
 import { InformedConsentModal } from '../documents/InformedConsentModal';
 import { PatientDirectoryView } from './PatientDirectoryView';
@@ -161,23 +162,29 @@ const TodaysAppointments: React.FC<{ onOpenPatient: (p: Patient) => void }> = ({
 
 // ── Historia clínica del paciente ────────────────────────────────────────────
 const PatientClinicalRecord: React.FC<{ patient: Patient; onBack: () => void }> = ({ patient, onBack }) => {
+  const [currentPatient, setCurrentPatient] = useState<Patient>(patient);
   const [section, setSection] = useState<Section>('ficha');
   const [record, setRecord] = useState<Partial<MedicalRecord>>(EMPTY_RECORD);
   const [entries, setEntries] = useState<ClinicalEntry[]>([]);
   const [loading, setLoading] = useState(true);
   const [openNote, setOpenNote] = useState<ClinicalEntry | null>(null);
   const [consentOpen, setConsentOpen] = useState(false);
+  const [editPatientOpen, setEditPatientOpen] = useState(false);
+
+  useEffect(() => {
+    setCurrentPatient(patient);
+  }, [patient]);
 
   useEffect(() => {
     setLoading(true);
     Promise.all([
-      clinicalApi.getMedicalRecordByPatient(patient.id).catch(() => null),
-      clinicalApi.getClinicalEntriesByPatient(patient.id).catch(() => []),
+      clinicalApi.getMedicalRecordByPatient(currentPatient.id).catch(() => null),
+      clinicalApi.getClinicalEntriesByPatient(currentPatient.id).catch(() => []),
     ]).then(([rec, list]) => {
-      setRecord(rec ?? { ...EMPTY_RECORD, patientId: patient.id });
+      setRecord(rec ?? { ...EMPTY_RECORD, patientId: currentPatient.id });
       setEntries(list);
     }).finally(() => setLoading(false));
-  }, [patient.id]);
+  }, [currentPatient.id]);
 
   const activeAllergies = useMemo(() => {
     const list: string[] = [];
@@ -203,12 +210,16 @@ const PatientClinicalRecord: React.FC<{ patient: Patient; onBack: () => void }> 
             <button onClick={onBack} className="inline-flex items-center gap-1.5 text-xs font-semibold text-sand-500 hover:text-primary-600 mb-2">
               <ArrowLeft className="w-3.5 h-3.5" /> Volver a turnos
             </button>
-            <h3 className="font-display text-xl font-bold text-sand-900">{patient.name}</h3>
-            <p className="text-sm text-sand-600">DNI {patient.dni} · {patient.phone}</p>
+            <h3 className="font-display text-xl font-bold text-sand-900">{currentPatient.name}</h3>
+            <p className="text-sm text-sand-600">DNI {currentPatient.dni} · {currentPatient.phone}</p>
+            {currentPatient.email && <p className="text-xs text-sand-500 mt-0.5">{currentPatient.email}</p>}
           </div>
           <div className="text-right space-y-1.5">
             <Badge variant="primary">Fototipo {record.fitzpatrickPhototype ?? '—'}</Badge>
-            <div>
+            <div className="flex items-center gap-2 justify-end">
+              <Button size="sm" variant="ghost" onClick={() => setEditPatientOpen(true)} leftIcon={<Pencil className="w-3.5 h-3.5" />}>
+                Editar datos
+              </Button>
               <Button size="sm" variant="secondary" onClick={() => setConsentOpen(true)} leftIcon={<FileSignature className="w-4 h-4" />}>
                 Consentimiento
               </Button>
@@ -275,7 +286,7 @@ const PatientClinicalRecord: React.FC<{ patient: Patient; onBack: () => void }> 
 
       <ClinicalNoteModal
         entry={openNote}
-        patientId={patient.id}
+        patientId={currentPatient.id}
         onClose={() => setOpenNote(null)}
         onSaved={(updated) => {
           setEntries((prev) => prev.map((e) => (e.id === updated.id ? { ...e, ...updated } : e)));
@@ -286,11 +297,30 @@ const PatientClinicalRecord: React.FC<{ patient: Patient; onBack: () => void }> 
       <InformedConsentModal
         isOpen={consentOpen}
         onClose={() => setConsentOpen(false)}
-        patientName={patient.name}
-        patientDni={patient.dni}
+        patientName={currentPatient.name}
+        patientDni={currentPatient.dni}
         treatmentName="Procedimientos estéticos"
         fitzpatrickPhototype={record.fitzpatrickPhototype || 'III'}
       />
+
+      {editPatientOpen && (
+        <Modal
+          isOpen={true}
+          onClose={() => setEditPatientOpen(false)}
+          title={`Editar Paciente: ${currentPatient.name}`}
+          size="lg"
+        >
+          <PacienteForm
+            patient={currentPatient}
+            showHeader={false}
+            onSuccess={(updated) => {
+              setCurrentPatient(updated);
+              setEditPatientOpen(false);
+            }}
+            onCancel={() => setEditPatientOpen(false)}
+          />
+        </Modal>
+      )}
     </>
   );
 };

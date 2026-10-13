@@ -18,4 +18,6 @@ public interface PatientRepository {
     boolean existsByDni(String dni); // Verifica si ya existe el DNI
     boolean existsByPhone(String phone); // Verifica si ya existe el teléfono
     boolean existsByEmail(String email); // Verifica si ya existe el email
+    boolean existsByEmailAndIdNot(String email, Long id); // Verifica colisión de email excluyendo el paciente actual
+    boolean existsByPhoneAndIdNot(String phone, Long id); // Verifica colisión de teléfono excluyendo el paciente actual
 }

@@ -346,6 +346,52 @@ export const patientsApi = {
       return newPatient;
     }
   },
+  updatePatient: async (id: number, patient: Partial<Patient>): Promise<Patient> => {
+    if (isDemoSession()) {
+      const current = getDemoPatients();
+      const updatedList = current.map((p) => (p.id === id ? { ...p, ...patient } : p));
+      localStorage.setItem('demo_patients', JSON.stringify(updatedList));
+      patientSearchCache.clear();
+      const updated = updatedList.find((p) => p.id === id);
+      if (!updated) throw new Error('Paciente no encontrado');
+      return updated;
+    }
+
+    try {
+      const response = await api.put<Patient>(`/pacientes/${id}`, patient);
+      patientSearchCache.clear();
+      return response.data;
+    } catch (err) {
+      if (!isNetworkError(err)) throw err;
+      const current = getDemoPatients();
+      const updatedList = current.map((p) => (p.id === id ? { ...p, ...patient } : p));
+      localStorage.setItem('demo_patients', JSON.stringify(updatedList));
+      patientSearchCache.clear();
+      const updated = updatedList.find((p) => p.id === id);
+      if (!updated) throw new Error('Paciente no encontrado');
+      return updated;
+    }
+  },
+  deactivatePatient: async (id: number): Promise<void> => {
+    if (isDemoSession()) {
+      const current = getDemoPatients();
+      const updatedList = current.map((p) => (p.id === id ? { ...p, active: false } : p));
+      localStorage.setItem('demo_patients', JSON.stringify(updatedList));
+      patientSearchCache.clear();
+      return;
+    }
+
+    try {
+      await api.delete(`/pacientes/${id}`);
+      patientSearchCache.clear();
+    } catch (err) {
+      if (!isNetworkError(err)) throw err;
+      const current = getDemoPatients();
+      const updatedList = current.map((p) => (p.id === id ? { ...p, active: false } : p));
+      localStorage.setItem('demo_patients', JSON.stringify(updatedList));
+      patientSearchCache.clear();
+    }
+  },
 };
 
 // --- SERVICIOS DE CITAS Y RESERVAS ---

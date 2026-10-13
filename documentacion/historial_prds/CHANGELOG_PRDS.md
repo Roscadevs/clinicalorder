@@ -7,6 +7,37 @@
 
 ## 📜 Historial de Revisiones
 
+### 🔹 [Versión 20.0 (Fase 20 - Edición y Gestión Integral de Pacientes)](PRD_Fase_20_Edicion_Y_Gestion_Pacientes.md)
+- **Fecha:** 2026-10-12
+- **Estado:** ESPECIFICADO / EN ESPERA DE APROBACIÓN
+- **Autor:** Equipo de Producto, Arquitectura & UX
+- **Cambios Principales:**
+  - Modo dual en `PacienteForm.tsx`: Alta (inserción con DNI editable) y Edición (precarga reactiva con DNI inmutable).
+  - Acciones de "Editar Datos" y "Desactivar Paciente" integradas en `PatientDirectoryView.tsx` y cabecera de `MedicalRecordView.tsx`.
+  - Integración de `updatePatient` y `deactivatePatient` en `patientsApi` (`api.ts`).
+  - Validación defensiva de unicidad de email y teléfono excluyendo al propio paciente en `PatientService.java`.
+
+---
+
+### 🔹 [Versión 19.0 (Fase 19 - Flujo Nativo de Recuperación de Contraseña Supabase PKCE)](PRD_Fase_19_Recuperacion_Contrasena_Supabase_PKCE.md)
+- **Fecha:** 2026-10-12
+- **Estado:** VIGENTE / IMPLEMENTADO
+- **Autor:** Equipo de Seguridad & Desarrollo Frontend
+- **Cambios Principales:**
+  - Flujo de recuperación de contraseñas con Supabase Auth PKCE en React 18 / Vite.
+  - Intercambio seguro en `/auth/callback` y vista `/update-password`.
+
+---
+
+### 🔹 [Versión 18.0 (Fase 18 - Integración Headless Google Jules Asíncrono)](PRD_Fase_18_Integracion_Google_Jules_Asincrono.md)
+- **Fecha:** 2026-10-12
+- **Estado:** VIGENTE / IMPLEMENTADO
+- **Autor:** Equipo de Arquitectura & DevOps
+- **Cambios Principales:**
+  - Protocolo de ejecución desatendida para CI/CD y Google Jules sin barreras interactivas de parada.
+
+---
+
 ### 🔹 [Versión 17.0 (Fase 17 - Blindaje de Dominio, Jerarquía Visual y Ergonomía del Chatbot Gemini)](PRD_Fase_17_Blindaje_Dominio_Ergonomia_Chatbot_Gemini.md)
 - **Fecha:** 2026-10-12
 - **Estado:** VIGENTE / IMPLEMENTADO

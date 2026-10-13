@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useMemo } from 'react';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { z } from 'zod';
@@ -13,10 +13,13 @@ import {
   UserPlus,
   AlertCircle,
   ShieldCheck,
+  Save,
+  Pencil,
   X,
 } from 'lucide-react';
-import { Card, Button, Input } from '../../components/ui';
+import { Card, Button, Input, Callout, toast } from '../../components/ui';
 import { Patient } from '../../types';
+import { patientsApi } from '../../services/api';
 import { cn } from '../../utils/cn';
 
 /**
@@ -84,7 +87,9 @@ export const pacienteSchema = z.object({
 export type PacienteFormData = z.infer<typeof pacienteSchema>;
 
 export interface PacienteFormProps {
-  /** Callback invocado tras la confirmación exitosa con la entidad creada */
+  /** Paciente existente para modo edición (si está presente, el formulario edita) */
+  patient?: Patient;
+  /** Callback invocado tras la confirmación exitosa con la entidad creada o modificada */
   onSuccess?: (patient: Patient) => void;
   /** Callback opcional de cancelación o cierre */
   onCancel?: () => void;
@@ -108,10 +113,11 @@ const getTodayDateString = () =>
   }).format(new Date());
 
 /**
- * Componente Quirúrgico de Alta de Pacientes (Defensive UI & Zero-Trust).
- * Valida estrictamente todos los campos clínicos antes de permitir la interacción con Supabase.
+ * Componente Quirúrgico de Alta y Edición de Pacientes (Defensive UI & Zero-Trust).
+ * Valida estrictamente todos los campos clínicos antes de persistir en el servidor.
  */
 export const PacienteForm: React.FC<PacienteFormProps> = ({
+  patient,
   onSuccess,
   onCancel,
   initialQuery,
@@ -119,11 +125,30 @@ export const PacienteForm: React.FC<PacienteFormProps> = ({
   className,
 }) => {
   const [status, setStatus] = useState<SubmissionStatus>('idle');
+  const [serverError, setServerError] = useState<string | null>(null);
+
+  const isEditMode = Boolean(patient);
 
   // Detección automática del valor inicial (si son sólo números asumimos DNI, sino Nombre)
-  const isQueryNumeric = initialQuery ? /^[0-9.\s-]+$/.test(initialQuery.trim()) : false;
-  const defaultDni = isQueryNumeric ? initialQuery?.replace(/[\.\s\-]/g, '') : '';
-  const defaultName = !isQueryNumeric && initialQuery ? initialQuery.trim() : '';
+  const defaultValues = useMemo<PacienteFormData>(() => {
+    if (patient) {
+      return {
+        name: patient.name || '',
+        dni: patient.dni || '',
+        phone: patient.phone || '',
+        email: patient.email || '',
+        birthDate: patient.birthDate || '',
+      };
+    }
+    const isQueryNumeric = initialQuery ? /^[0-9.\s-]+$/.test(initialQuery.trim()) : false;
+    return {
+      name: !isQueryNumeric && initialQuery ? initialQuery.trim() : '',
+      dni: isQueryNumeric && initialQuery ? initialQuery.replace(/[\.\s\-]/g, '') : '',
+      phone: '',
+      email: '',
+      birthDate: '',
+    };
+  }, [patient, initialQuery]);
 
   const {
     register,
@@ -133,37 +158,24 @@ export const PacienteForm: React.FC<PacienteFormProps> = ({
   } = useForm<PacienteFormData>({
     resolver: zodResolver(pacienteSchema),
     mode: 'onChange', // Validación reactiva en tiempo real para feedback inmediato
-    defaultValues: {
-      name: defaultName,
-      dni: defaultDni,
-      phone: '',
-      email: '',
-      birthDate: '',
-    },
+    defaultValues,
   });
 
-  // Si cambia el initialQuery externamente, reseteamos con los nuevos datos
+  // Si cambia el paciente o el initialQuery externamente, reseteamos con los nuevos datos
   useEffect(() => {
-    if (initialQuery) {
-      const numeric = /^[0-9.\s-]+$/.test(initialQuery.trim());
-      reset({
-        name: !numeric ? initialQuery.trim() : '',
-        dni: numeric ? initialQuery.replace(/[\.\s\-]/g, '') : '',
-        phone: '',
-        email: '',
-        birthDate: '',
-      });
-    }
-  }, [initialQuery, reset]);
+    reset(defaultValues);
+    setServerError(null);
+  }, [defaultValues, reset]);
 
   /**
    * Envío del formulario:
    * 1. Sanitización defensiva (limpieza de puntos en DNI, trim de cadenas).
-   * 2. Simulación de latencia de red (2 segundos).
-   * 3. Logging estructurado del payload para Supabase y trazabilidad del Diccionario de Datos.
-   * 4. Transición visual a Success (1.5 segundos) y ejecución de callback onSuccess.
+   * 2. Invocación al servicio patientsApi (updatePatient o createPatient).
+   * 3. Manejo de errores RFC 7807 o colisiones de unicidad.
+   * 4. Transición visual y ejecución del callback onSuccess.
    */
   const onSubmit = async (data: PacienteFormData) => {
+    setServerError(null);
     setStatus('submitting');
 
     // Sanitización defensiva
@@ -176,50 +188,36 @@ export const PacienteForm: React.FC<PacienteFormProps> = ({
       birthDate: data.birthDate,
     };
 
-    // Simulación de transacción asíncrona hacia Supabase (2 segundos)
-    await new Promise((resolve) => setTimeout(resolve, 2000));
-
-    // Registro de auditoría y payload de base de datos
-    console.group('🧬 [Defensive UI] Alta Quirúrgica de Paciente Validada');
-    console.info('Diccionario de Datos (Mapeo Entidad PACIENTE):', {
-      'P-nombre': sanitizedData.name,
-      'P-dni': sanitizedData.dni,
-      'P-telefono': sanitizedData.phone,
-      'P-email': sanitizedData.email,
-      'P-fecha_nacimiento': sanitizedData.birthDate,
-    });
-    console.info('Payload para Transacción SQL Supabase (sp_alta_paciente / INSERT):', {
-      name: sanitizedData.name,
-      dni: sanitizedData.dni,
-      phone: sanitizedData.phone,
-      email: sanitizedData.email,
-      birth_date: sanitizedData.birthDate,
-      active: true,
-    });
-    console.groupEnd();
-
-    setStatus('success');
-
-    const createdPatient: Patient = {
-      id: Date.now(),
-      name: sanitizedData.name,
-      dni: sanitizedData.dni,
-      phone: sanitizedData.phone,
-      email: sanitizedData.email,
-      birthDate: sanitizedData.birthDate,
-      active: true,
-      createdAt: new Date().toISOString().split('T')[0],
-    };
-
-    // Pausa visual de 1.5s en estado Success antes de notificar o reiniciar
-    setTimeout(() => {
-      setStatus('idle');
-      if (onSuccess) {
-        onSuccess(createdPatient);
+    try {
+      let savedPatient: Patient;
+      if (isEditMode && patient) {
+        savedPatient = await patientsApi.updatePatient(patient.id, sanitizedData);
+        toast.success('Datos del paciente actualizados exitosamente');
       } else {
-        reset();
+        savedPatient = await patientsApi.createPatient(sanitizedData);
+        toast.success('Paciente registrado exitosamente');
       }
-    }, 1500);
+
+      setStatus('success');
+
+      setTimeout(() => {
+        setStatus('idle');
+        if (onSuccess) {
+          onSuccess(savedPatient);
+        } else if (!isEditMode) {
+          reset();
+        }
+      }, 1000);
+    } catch (err: any) {
+      setStatus('idle');
+      const errorMsg =
+        err?.response?.data?.detail ||
+        err?.response?.data?.message ||
+        err?.message ||
+        'No se pudo guardar la información del paciente. Verifique los datos ingresados.';
+      setServerError(errorMsg);
+      toast.friendlyError('Error al guardar datos del paciente', { description: errorMsg });
+    }
   };
 
   // Botón bloqueado si hay envío activo, o si tras intentar enviar persisten errores
@@ -227,24 +225,26 @@ export const PacienteForm: React.FC<PacienteFormProps> = ({
 
   return (
     <Card className={cn('bg-white border-sand-200 shadow-soft overflow-hidden p-0', className)}>
-      {/* CABECERA CLÍNICA HIGH-TICKET */}
+      {/* CABECERA CLÍNICA */}
       {showHeader && (
         <div className="border-b border-sand-200 bg-sand-50/70 p-5 sm:p-6 flex items-start justify-between gap-4">
           <div className="flex items-center gap-3.5">
             <div className="w-11 h-11 rounded-2xl bg-primary-500/10 border border-primary-500/20 text-primary-600 flex items-center justify-center flex-shrink-0 shadow-sm">
-              <ShieldCheck className="w-6 h-6" />
+              {isEditMode ? <Pencil className="w-6 h-6" /> : <ShieldCheck className="w-6 h-6" />}
             </div>
             <div>
               <div className="flex items-center gap-2">
                 <h2 className="font-display text-lg sm:text-xl font-bold text-sand-900 leading-tight">
-                  Alta de Paciente
+                  {isEditMode ? 'Modificar datos del paciente' : 'Alta de Paciente'}
                 </h2>
                 <span className="inline-flex items-center px-2 py-0.5 rounded-full text-[10px] font-bold bg-primary-100 text-primary-700 tracking-wider uppercase">
-                  Zero-Trust
+                  {isEditMode ? 'Edición' : 'Zero-Trust'}
                 </span>
               </div>
               <p className="text-xs text-sand-500 mt-0.5">
-                Validación estricta pre-transaccional según Diccionario de Datos Clínico.
+                {isEditMode
+                  ? 'Actualizá los datos de contacto y filiación del paciente.'
+                  : 'Validación estricta pre-transaccional según Diccionario de Datos Clínico.'}
               </p>
             </div>
           </div>
@@ -261,8 +261,15 @@ export const PacienteForm: React.FC<PacienteFormProps> = ({
         </div>
       )}
 
-      {/* FORMULARIO QUIRÚRGICO */}
+      {/* FORMULARIO */}
       <form onSubmit={handleSubmit(onSubmit)} className="p-5 sm:p-6 space-y-5" noValidate>
+        {/* ALERTA DEL SERVIDOR SI HUBO ERROR */}
+        {serverError && (
+          <Callout intent="error" title="No se pudo guardar el paciente" onClose={() => setServerError(null)}>
+            {serverError}
+          </Callout>
+        )}
+
         {/* ALERTA PREVENTIVA SI HAY ERRORES SEMÁNTICOS */}
         {isSubmitted && !isValid && (
           <div
@@ -307,7 +314,9 @@ export const PacienteForm: React.FC<PacienteFormProps> = ({
                 <span>DNI</span>
                 <span className="text-danger-500 font-bold">*</span>
               </label>
-              <span className="text-[10px] font-mono text-sand-400">P-dni · 7-8 dígitos</span>
+              <span className="text-[10px] font-mono text-sand-400">
+                {isEditMode ? 'P-dni · inmutable en edición' : 'P-dni · 7-8 dígitos'}
+              </span>
             </div>
             <Input
               id="p-dni"
@@ -315,9 +324,12 @@ export const PacienteForm: React.FC<PacienteFormProps> = ({
               maxLength={10}
               leftIcon={<Fingerprint className="w-4 h-4" />}
               error={errors.dni?.message}
-              disabled={status === 'submitting' || status === 'success'}
+              disabled={isEditMode || status === 'submitting' || status === 'success'}
               {...register('dni')}
             />
+            {isEditMode && (
+              <p className="text-[11px] text-sand-400 mt-1">El DNI no puede modificarse tras el registro inicial.</p>
+            )}
           </div>
 
           {/* 3. CAMPO: P-telefono */}
@@ -404,10 +416,10 @@ export const PacienteForm: React.FC<PacienteFormProps> = ({
               type="submit"
               variant="primary"
               disabled={isSubmitDisabled}
-              leftIcon={<UserPlus className="w-4 h-4" />}
+              leftIcon={isEditMode ? <Save className="w-4 h-4" /> : <UserPlus className="w-4 h-4" />}
               className="w-full sm:w-auto min-w-[210px]"
             >
-              Registrar Paciente
+              {isEditMode ? 'Guardar Cambios' : 'Registrar Paciente'}
             </Button>
           )}
 
@@ -419,7 +431,7 @@ export const PacienteForm: React.FC<PacienteFormProps> = ({
               isLoading
               className="w-full sm:w-auto min-w-[210px] bg-primary-600"
             >
-              Guardando en Supabase...
+              {isEditMode ? 'Guardando cambios...' : 'Guardando en Supabase...'}
             </Button>
           )}
 
@@ -431,7 +443,7 @@ export const PacienteForm: React.FC<PacienteFormProps> = ({
               leftIcon={<CheckCircle2 className="w-4 h-4 text-white" />}
               className="w-full sm:w-auto min-w-[210px] animate-in zoom-in-95 bg-success-600 hover:bg-success-600 text-white"
             >
-              ¡Paciente Registrado!
+              {isEditMode ? '¡Cambios Guardados!' : '¡Paciente Registrado!'}
             </Button>
           )}
         </div>
