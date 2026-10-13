@@ -44,14 +44,14 @@ export const InformedConsentModal: React.FC<InformedConsentModalProps> = ({
           <div className="flex items-center space-x-2">
             <button
               onClick={handlePrint}
-              className="bg-teal-600 hover:bg-teal-700 text-white text-xs font-bold px-3 py-2 rounded-xl flex items-center space-x-1.5 shadow-sm transition-colors min-h-[40px]"
+              className="bg-teal-600 hover:bg-teal-700 text-white text-xs font-bold px-3 py-2 rounded-xl flex items-center space-x-1.5 shadow-sm transition-colors min-h-[44px]"
             >
               <Printer className="w-4 h-4" />
               <span>Imprimir</span>
             </button>
             <button
               onClick={onClose}
-              className="text-slate-400 hover:text-slate-600 p-2 rounded-xl hover:bg-slate-100 min-h-[40px] min-w-[40px] flex items-center justify-center"
+              className="text-slate-400 hover:text-slate-600 p-2 rounded-xl hover:bg-slate-100 min-h-[44px] min-w-[44px] flex items-center justify-center"
             >
               <X className="w-5 h-5" />
             </button>

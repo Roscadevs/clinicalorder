@@ -98,7 +98,9 @@ export const EditAppointmentView: React.FC = () => {
       navigate('/app/agenda', { replace: true });
     } catch (err: any) {
       setErrorMsg(
-        err?.response?.data?.message ||
+        err?.response?.data?.detail ||
+          err?.response?.data?.message ||
+          (err?.message && !err.message.includes('status code') ? err.message : null) ||
           'No se pudo reprogramar el turno. Es posible que el horario ya no esté disponible.'
       );
       loadSlots();
