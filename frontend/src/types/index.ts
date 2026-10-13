@@ -14,6 +14,17 @@ export interface AuthResponse {
   expiresInMs: number; // Milisegundos de vigencia
 }
 
+export interface User {
+  id: number;
+  username: string;
+  email: string;
+  fullName: string;
+  role: UserRole;
+  active: boolean;
+  createdAt?: string;
+  updatedAt?: string;
+}
+
 export interface Patient {
   id: number; // Identificador
   name: string; // Nombre y apellido
@@ -196,3 +207,14 @@ export interface GeminiChatResponse {
   suggestedServices: string[]; // Sugerencias detectadas
   bookingActionUrl: string; // Enlace directo a reserva
 }
+
+export interface CalendarBlock {
+  id: number;
+  createdByUserId?: number;
+  createdByUserFullName?: string;
+  startTime: string; // ISO 8601 UTC
+  endTime: string;   // ISO 8601 UTC
+  reason: string;
+  createdAt?: string;
+}
+

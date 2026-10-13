@@ -31,7 +31,7 @@ public class CalendarBlockService {
      */
     @Transactional // Transacción ACID
     public CalendarBlockResponseDTO createBlock(CalendarBlockRequestDTO request, Long createdByUserId) {
-        if (request.getEndTime().isBefore(request.getStartTime())) {
+        if (request.getStartTime() == null || request.getEndTime() == null || !request.getEndTime().isAfter(request.getStartTime())) {
             throw new BusinessRuleException("La fecha de fin debe ser posterior a la fecha de inicio");
         }
 

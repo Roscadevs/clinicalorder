@@ -1,6 +1,8 @@
 package com.clinicadermatologica.app.presentation.controller;
 
 import com.clinicadermatologica.app.application.service.CalendarBlockService; // Servicio de bloqueos
+import com.clinicadermatologica.app.domain.model.User; // Entidad User
+import com.clinicadermatologica.app.domain.repository.UserRepository; // Repositorio de usuarios
 import com.clinicadermatologica.app.presentation.dto.CalendarBlockRequestDTO; // DTO entrada
 import com.clinicadermatologica.app.presentation.dto.CalendarBlockResponseDTO; // DTO salida
 import jakarta.validation.Valid; // Validador
@@ -9,6 +11,7 @@ import org.springframework.format.annotation.DateTimeFormat; // Formateador de f
 import org.springframework.http.HttpStatus; // Códigos HTTP
 import org.springframework.http.ResponseEntity; // Respuesta HTTP
 import org.springframework.security.access.prepost.PreAuthorize; // Seguridad declarativa
+import org.springframework.security.core.Authentication; // Autenticación de Spring Security
 import org.springframework.web.bind.annotation.*; // Anotaciones REST
 
 import java.time.Instant; // Tiempo UTC
@@ -24,12 +27,20 @@ import java.util.List; // Listas
 public class CalendarBlockController {
 
     private final CalendarBlockService blockService; // Inyección del servicio
+    private final UserRepository userRepository; // Repositorio de usuarios
 
     @PostMapping // Mapea HTTP POST /api/v1/bloqueos
     public ResponseEntity<CalendarBlockResponseDTO> createBlock(
             @Valid @RequestBody CalendarBlockRequestDTO request,
-            @RequestParam Long userId) {
-        return ResponseEntity.status(HttpStatus.CREATED).body(blockService.createBlock(request, userId));
+            @RequestParam(required = false) Long userId,
+            Authentication authentication) {
+        Long resolvedUserId = userId;
+        if (resolvedUserId == null && authentication != null) {
+            resolvedUserId = userRepository.findByUsername(authentication.getName())
+                    .map(User::getId)
+                    .orElse(null);
+        }
+        return ResponseEntity.status(HttpStatus.CREATED).body(blockService.createBlock(request, resolvedUserId));
     }
 
     @GetMapping // Mapea HTTP GET /api/v1/bloqueos?start=...&end=...

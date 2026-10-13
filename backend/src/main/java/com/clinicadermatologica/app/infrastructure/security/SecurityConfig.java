@@ -104,7 +104,7 @@ public class SecurityConfig {
                 .requestMatchers(HttpMethod.POST, "/pagos/webhook").permitAll()
 
                 // 5. Restricción Estricta: Solo ADMINISTRADOR puede gestionar catálogo completo y administración
-                .requestMatchers("/servicios/todos", "/servicios/admin/**", "/admin/**").hasRole("ADMIN")
+                .requestMatchers("/servicios/todos", "/servicios/admin/**", "/admin/**", "/usuarios/**").hasRole("ADMIN")
 
                 // 6. Restricción Estricta: Solo DOCTORA puede acceder a historias clínicas y auditoría médica
                 .requestMatchers("/historias-clinicas/**").hasRole("DOCTORA")

@@ -25,6 +25,8 @@ public interface JpaPatientRepository extends JpaRepository<Patient, Long> {
     boolean existsByDni(String dni); // Verifica duplicidad de DNI
     boolean existsByPhone(String phone); // Verifica duplicidad de teléfono
     boolean existsByEmail(String email); // Verifica duplicidad de email
+    boolean existsByEmailAndIdNot(String email, Long id); // Verifica duplicidad de email en otro paciente
+    boolean existsByPhoneAndIdNot(String phone, Long id); // Verifica duplicidad de teléfono en otro paciente
 
     @Query(value = "SELECT sp_alta_paciente(:name, :dni, :phone, :email, :birthDate, :doctorId, :secretKey, :phototype, :physicalExam)", nativeQuery = true)
     Long executeSpAltaPaciente(

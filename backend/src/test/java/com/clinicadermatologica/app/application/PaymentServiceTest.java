@@ -580,5 +580,73 @@ public class PaymentServiceTest {
         assertSame(cashStrategy, factory.getStrategy(PaymentType.CASH));
         assertSame(mpStrategy, factory.getStrategy(PaymentType.MERCADOPAGO));
     }
+
+    @Test
+    @DisplayName("registerDepositPayment rechaza monto que supera el precio total del turno")
+    void testRegisterDeposit_AmountExceedsAgreedPrice_Throws_KillsMutant() {
+        prepareHold(Instant.now().minus(2, ChronoUnit.MINUTES));
+
+        BusinessRuleException ex = assertThrows(BusinessRuleException.class,
+                () -> paymentService.registerDepositPayment(100L, cash("50000.00"), 3L));
+
+        assertTrue(ex.getMessage().contains("supera el precio total"),
+                "Debe advertir que el monto abonado supera el precio total del turno");
+        assertEquals(AppointmentStatus.PENDING_PAYMENT, mockAppointment.getStatus());
+        verify(paymentStrategyFactory, never()).getStrategy(any());
+    }
+
+    @Test
+    @DisplayName("registerFinalPayment calcula el saldo ignorando transacciones rechazadas o pendientes")
+    void testValidateRemainingBalance_IgnoresRejectedAndPendingPayments_KillsMutant() {
+        mockAppointment.setStatus(AppointmentStatus.ATTENDED);
+        mockAppointment.setAgreedPrice(new BigDecimal("42000.00"));
+
+        PaymentTransaction txApproved = PaymentTransaction.builder()
+                .id(1L).appointment(mockAppointment).amount(new BigDecimal("21000.00"))
+                .status(PaymentStatus.APPROVED).paymentType(PaymentType.MERCADOPAGO).build();
+        PaymentTransaction txRejected = PaymentTransaction.builder()
+                .id(2L).appointment(mockAppointment).amount(new BigDecimal("10000.00"))
+                .status(PaymentStatus.REJECTED).paymentType(PaymentType.CASH).build();
+        PaymentTransaction txPending = PaymentTransaction.builder()
+                .id(3L).appointment(mockAppointment).amount(new BigDecimal("10000.00"))
+                .status(PaymentStatus.PENDING).paymentType(PaymentType.CASH).build();
+
+        when(appointmentRepository.findById(100L)).thenReturn(Optional.of(mockAppointment));
+        when(paymentTransactionRepository.findByAppointmentId(100L)).thenReturn(List.of(txApproved, txRejected, txPending));
+
+        PaymentRegistrationStrategy cashStrategy = mock(PaymentRegistrationStrategy.class);
+        when(paymentStrategyFactory.getStrategy(PaymentType.CASH)).thenReturn(cashStrategy);
+        PaymentTransaction finalTx = PaymentTransaction.builder()
+                .id(4L).amount(new BigDecimal("21000.00")).status(PaymentStatus.APPROVED).build();
+        when(cashStrategy.register(any(), any(), any(), any(), any())).thenReturn(finalTx);
+        when(userRepository.findById(3L)).thenReturn(Optional.of(mockReceptionist));
+
+        FinalizePaymentRequestDTO request = FinalizePaymentRequestDTO.builder()
+                .paymentType(PaymentType.CASH)
+                .amount(new BigDecimal("21000.00"))
+                .build();
+
+        PaymentReceiptDTO receipt = paymentService.registerFinalPayment(100L, request, 3L);
+
+        assertNotNull(receipt);
+        assertEquals(AppointmentStatus.COMPLETED, mockAppointment.getStatus());
+        verify(appointmentRepository).save(mockAppointment);
+    }
+
+    @Test
+    @DisplayName("processMercadoPagoWebhook rechaza invocaciones con firma inválida")
+    void testWebhook_InvalidSignature_Rejected_KillsMutant() {
+        Map<String, Object> payload = Map.of(
+                "type", "payment",
+                "data", Map.of("id", "12345")
+        );
+        Map<String, String> queryParams = Map.of();
+
+        boolean result = paymentService.processMercadoPagoWebhook(payload, queryParams, "ts=1700000000,v1=invalidsignaturehash", "req-test-999");
+
+        assertFalse(result, "El webhook debe ser rechazado con false ante firma no válida");
+        verify(mercadoPagoAdapter, never()).getPaymentDetails(any());
+        verify(appointmentRepository, never()).save(any());
+    }
 }
 

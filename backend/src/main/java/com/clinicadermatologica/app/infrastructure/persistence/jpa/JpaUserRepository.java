@@ -15,4 +15,6 @@ public interface JpaUserRepository extends JpaRepository<User, Long> {
     Optional<User> findByEmail(String email); // Genera automáticamente query por email
     boolean existsByUsername(String username); // Query eficiente de verificación de existencia por username
     boolean existsByEmail(String email); // Query eficiente de verificación de existencia por email
+    boolean existsByUsernameAndIdNot(String username, Long id); // Query de exclusión por username e ID
+    boolean existsByEmailAndIdNot(String email, Long id); // Query de exclusión por email e ID
 }

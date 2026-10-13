@@ -15,4 +15,5 @@ public interface DermatologicServiceRepository {
     List<DermatologicService> findAll(); // Listado completo para el panel de administración
     DermatologicService save(DermatologicService service); // Guarda o actualiza un servicio
     boolean existsByName(String name); // Valida unicidad de nombre de servicio
+    boolean existsByNameAndIdNot(String name, Long id); // Valida unicidad excluyendo el ID actual en actualización
 }

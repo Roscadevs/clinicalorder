@@ -44,7 +44,24 @@ export const CollectBalanceModal: React.FC<CollectBalanceModalProps> = ({ isOpen
       onPaid();
       onClose();
     } catch (err: any) {
-      setError(err?.response?.data?.message || 'No se pudo registrar el cobro. Intentá nuevamente.');
+      let serverMsg =
+        err?.response?.data?.detail ||
+        err?.response?.data?.message;
+
+      if (!serverMsg && err?.response?.data?.details) {
+        const detailsObj = err.response.data.details;
+        if (typeof detailsObj === 'object') {
+          serverMsg = Object.values(detailsObj).join('. ');
+        } else if (typeof detailsObj === 'string') {
+          serverMsg = detailsObj;
+        }
+      }
+
+      if (!serverMsg && err?.message && !err.message.includes('status code')) {
+        serverMsg = err.message;
+      }
+
+      setError(serverMsg || 'No se pudo registrar el cobro. Intentá nuevamente.');
     } finally {
       setIsSaving(false);
     }
@@ -57,8 +74,12 @@ export const CollectBalanceModal: React.FC<CollectBalanceModalProps> = ({ isOpen
       title="Cobrar saldo en mostrador"
       footer={
         <>
-          <Button variant="ghost" onClick={onClose}>Cancelar</Button>
-          <Button onClick={handleConfirm} isLoading={isSaving}>Registrar cobro</Button>
+          <Button variant="ghost" onClick={onClose} className="min-h-[44px]">
+            Cancelar
+          </Button>
+          <Button onClick={handleConfirm} isLoading={isSaving} className="min-h-[44px]">
+            Registrar cobro
+          </Button>
         </>
       }
     >
@@ -81,7 +102,7 @@ export const CollectBalanceModal: React.FC<CollectBalanceModalProps> = ({ isOpen
                 <label
                   key={m.id}
                   className={cn(
-                    'flex flex-col items-center gap-1.5 p-3 rounded-xl border cursor-pointer text-center transition-colors',
+                    'flex flex-col items-center justify-center gap-1.5 p-3 rounded-xl border cursor-pointer text-center transition-colors min-h-[56px] select-none',
                     selected ? 'border-primary-500 bg-primary-50/60 ring-2 ring-primary-500/20' : 'border-sand-200 hover:border-primary-300'
                   )}
                 >

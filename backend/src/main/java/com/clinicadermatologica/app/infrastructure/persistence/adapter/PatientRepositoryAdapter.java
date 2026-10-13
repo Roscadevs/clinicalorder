@@ -62,4 +62,14 @@ public class PatientRepositoryAdapter implements PatientRepository {
     public boolean existsByEmail(String email) {
         return jpaPatientRepository.existsByEmail(email); // Comprobación
     }
+
+    @Override
+    public boolean existsByEmailAndIdNot(String email, Long id) {
+        return jpaPatientRepository.existsByEmailAndIdNot(email, id);
+    }
+
+    @Override
+    public boolean existsByPhoneAndIdNot(String phone, Long id) {
+        return jpaPatientRepository.existsByPhoneAndIdNot(phone, id);
+    }
 }

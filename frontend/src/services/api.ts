@@ -15,7 +15,9 @@ import {
   PaymentType,
   PaymentConcept,
   PaymentReceipt,
-  UserRole
+  UserRole,
+  User,
+  CalendarBlock,
 } from '../types'; // Importación de contratos de tipos
 
 /** URL absoluta de la API (para requests fuera de axios, p. ej. fetch keepalive). */
@@ -86,7 +88,7 @@ const api = axios.create({
   headers: {
     'Content-Type': 'application/json',
   },
-  timeout: 8000, // Previene bloqueos indefinidos ante problemas de red
+  timeout: 15000, // Previene bloqueos indefinidos pero tolera latencias de red en la nube
 });
 
 // Interceptor para inyectar automáticamente el Bearer JWT en cada solicitud saliente
@@ -161,7 +163,8 @@ api.interceptors.response.use(
 // --- SERVICIOS DE AUTENTICACIÓN ---
 export const authApi = {
   login: async (username: string, password: string): Promise<AuthResponse> => {
-    const response = await api.post<AuthResponse>('/auth/login', { username, password });
+    // Para el login permitimos hasta 60s para esperar el arranque en frío del contenedor en Render
+    const response = await api.post<AuthResponse>('/auth/login', { username, password }, { timeout: 60000 });
     return response.data;
   },
   /** Alta de usuario del staff (solo ADMIN). POST /auth/register. */
@@ -176,7 +179,91 @@ export const authApi = {
       await api.post('/auth/register', data);
     } catch (err) {
       if (!isNetworkError(err)) throw err;
-      // Modo demo: se considera creado.
+      // Modo demo: se agrega a inMemoryUsers
+      const newUser: User = {
+        id: Date.now(),
+        username: data.username,
+        email: data.email,
+        fullName: data.fullName,
+        role: data.role,
+        active: true,
+        createdAt: new Date().toISOString(),
+        updatedAt: new Date().toISOString(),
+      };
+      inMemoryUsers = [newUser, ...inMemoryUsers];
+    }
+  },
+};
+
+// Nómina de operadores de demostración (backend apagado)
+const DEMO_USERS: User[] = [
+  { id: 1, username: 'admin', fullName: 'Dra. Paula Villa Fuhrmann', email: 'admin@clinica.com', role: 'ADMIN', active: true, createdAt: '2026-01-01T10:00:00Z', updatedAt: '2026-01-01T10:00:00Z' },
+  { id: 2, username: 'dra.valeria', fullName: 'Dra. Valeria Gómez', email: 'valeria@clinica.com', role: 'DOCTORA', active: true, createdAt: '2026-01-15T10:00:00Z', updatedAt: '2026-01-15T10:00:00Z' },
+  { id: 3, username: 'sofia.recepcion', fullName: 'Sofía Martínez', email: 'sofia@clinica.com', role: 'SECRETARIA', active: true, createdAt: '2026-02-01T10:00:00Z', updatedAt: '2026-02-01T10:00:00Z' },
+];
+
+let inMemoryUsers: User[] = [...DEMO_USERS];
+
+// --- SERVICIOS DE GESTIÓN DE USUARIOS DEL STAFF ---
+export const usersApi = {
+  /** Obtiene todos los usuarios del staff (solo ADMIN). GET /usuarios */
+  getAllUsers: async (): Promise<User[]> => {
+    try {
+      const response = await api.get<User[]>('/usuarios');
+      if (!Array.isArray(response.data)) throw new Error('Expected array');
+      inMemoryUsers = response.data;
+      return response.data;
+    } catch (err) {
+      if (!isNetworkError(err) && !(err instanceof Error && err.message === 'Expected array')) throw err;
+      return inMemoryUsers;
+    }
+  },
+  /** Actualiza un operador del staff (solo ADMIN). PUT /usuarios/{id} */
+  updateUser: async (
+    id: number,
+    data: { username: string; email: string; fullName: string; role: UserRole; password?: string }
+  ): Promise<User> => {
+    try {
+      const response = await api.put<User>(`/usuarios/${id}`, data);
+      const updated = response.data;
+      const idx = inMemoryUsers.findIndex((u) => u.id === id);
+      if (idx !== -1) inMemoryUsers[idx] = updated;
+      return updated;
+    } catch (err) {
+      if (!isNetworkError(err)) throw err;
+      const idx = inMemoryUsers.findIndex((u) => u.id === id);
+      if (idx !== -1) {
+        inMemoryUsers[idx] = {
+          ...inMemoryUsers[idx],
+          username: data.username,
+          email: data.email,
+          fullName: data.fullName,
+          role: data.role,
+          updatedAt: new Date().toISOString(),
+        };
+        return inMemoryUsers[idx];
+      }
+      throw err;
+    }
+  },
+  /** Alterna estado activo/suspendido de un operador (solo ADMIN). PATCH /usuarios/{id}/toggle-active */
+  toggleUserActive: async (id: number, active: boolean): Promise<User> => {
+    try {
+      const response = await api.patch<User>(`/usuarios/${id}/toggle-active`, null, {
+        params: { active },
+      });
+      const updated = response.data;
+      const idx = inMemoryUsers.findIndex((u) => u.id === id);
+      if (idx !== -1) inMemoryUsers[idx] = updated;
+      return updated;
+    } catch (err) {
+      if (!isNetworkError(err)) throw err;
+      const idx = inMemoryUsers.findIndex((u) => u.id === id);
+      if (idx !== -1) {
+        inMemoryUsers[idx] = { ...inMemoryUsers[idx], active, updatedAt: new Date().toISOString() };
+        return inMemoryUsers[idx];
+      }
+      throw err;
     }
   },
 };
@@ -252,7 +339,11 @@ export const servicesApi = {
   },
   /** Activa o desactiva un servicio (baja lógica). Reenvía todos los campos + active. */
   setServiceActive: async (service: DermatologicService, active: boolean): Promise<DermatologicService> => {
-    return servicesApi.updateService(service.id, { ...service, active });
+    return servicesApi.updateService(service.id, {
+      ...service,
+      followUpIntervalDays: service.followUpIntervalDays ?? 0,
+      active,
+    });
   },
 };
 
@@ -325,26 +416,37 @@ export const patientsApi = {
       return newPatient;
     }
 
-    try {
-      const response = await api.post<Patient>('/pacientes', patient);
-      patientSearchCache.clear();
-      return response.data;
-    } catch (err) {
-      if (!isNetworkError(err)) throw err;
+    // Persistencia real en Supabase (si falla, el error se propaga a la UI para informar fielmente al usuario)
+    const response = await api.post<Patient>('/pacientes', patient);
+    patientSearchCache.clear();
+    return response.data;
+  },
+  updatePatient: async (id: number, patient: Partial<Patient>): Promise<Patient> => {
+    if (isDemoSession()) {
       const current = getDemoPatients();
-      const newPatient: Patient = {
-        id: current.length > 0 ? Math.max(...current.map((p) => p.id)) + 1 : 1,
-        name: patient.name || '',
-        dni: patient.dni || '',
-        phone: patient.phone || '',
-        email: patient.email || '',
-        active: true,
-        createdAt: new Date().toISOString(),
-      };
-      localStorage.setItem('demo_patients', JSON.stringify([...current, newPatient]));
+      const updatedList = current.map((p) => (p.id === id ? { ...p, ...patient } : p));
+      localStorage.setItem('demo_patients', JSON.stringify(updatedList));
       patientSearchCache.clear();
-      return newPatient;
+      const updated = updatedList.find((p) => p.id === id);
+      if (!updated) throw new Error('Paciente no encontrado');
+      return updated;
     }
+
+    const response = await api.put<Patient>(`/pacientes/${id}`, patient);
+    patientSearchCache.clear();
+    return response.data;
+  },
+  deactivatePatient: async (id: number): Promise<void> => {
+    if (isDemoSession()) {
+      const current = getDemoPatients();
+      const updatedList = current.map((p) => (p.id === id ? { ...p, active: false } : p));
+      localStorage.setItem('demo_patients', JSON.stringify(updatedList));
+      patientSearchCache.clear();
+      return;
+    }
+
+    await api.delete(`/pacientes/${id}`);
+    patientSearchCache.clear();
   },
 };
 
@@ -635,6 +737,102 @@ function demoAgenda(startIso: string, endIso: string): Appointment[] {
   });
 }
 
+// --- SERVICIOS DE BLOQUEOS DE AGENDA (Indisponibilidad Clínica) ---
+export const INITIAL_DEMO_BLOCKS: CalendarBlock[] = [
+  {
+    id: 901,
+    createdByUserId: 1,
+    createdByUserFullName: 'Administrador del Sistema',
+    startTime: new Date(Date.now() + 86400000 * 2).toISOString().slice(0, 10) + 'T13:00:00Z',
+    endTime: new Date(Date.now() + 86400000 * 2).toISOString().slice(0, 10) + 'T15:00:00Z',
+    reason: 'Mantenimiento de consultorio',
+    createdAt: new Date().toISOString(),
+  },
+  {
+    id: 902,
+    createdByUserId: 2,
+    createdByUserFullName: 'Dra. Paula Villa Fuhrmann',
+    startTime: new Date(Date.now() + 86400000 * 4).toISOString().slice(0, 10) + 'T08:00:00Z',
+    endTime: new Date(Date.now() + 86400000 * 4).toISOString().slice(0, 10) + 'T20:00:00Z',
+    reason: 'Congreso de Dermatología Estética',
+    createdAt: new Date().toISOString(),
+  },
+];
+
+export let DEMO_BLOCKS: CalendarBlock[] = [...INITIAL_DEMO_BLOCKS];
+
+export const calendarBlocksApi = {
+  getBlocks: async (start: string, end: string): Promise<CalendarBlock[]> => {
+    try {
+      const response = await api.get<CalendarBlock[]>('/bloqueos', { params: { start, end } });
+      if (!Array.isArray(response.data)) throw new Error('Expected array');
+      return response.data;
+    } catch (err) {
+      if (!shouldFallbackToDemo(err) && !(err instanceof Error && err.message === 'Expected array')) throw err;
+      const startMs = new Date(start).getTime();
+      const endMs = new Date(end).getTime();
+      return DEMO_BLOCKS.filter((b) => {
+        const bStart = new Date(b.startTime).getTime();
+        const bEnd = new Date(b.endTime).getTime();
+        return bStart < endMs && bEnd > startMs;
+      });
+    }
+  },
+
+  createBlock: async (
+    data: { startTime: string; endTime: string; reason: string },
+    userId?: number
+  ): Promise<CalendarBlock> => {
+    const effectiveUserId = userId || currentUserId();
+    if (isDemoSession()) {
+      const newBlock: CalendarBlock = {
+        id: Date.now(),
+        createdByUserId: effectiveUserId,
+        createdByUserFullName: localStorage.getItem('fullName') || 'Usuario Operador',
+        startTime: data.startTime,
+        endTime: data.endTime,
+        reason: data.reason,
+        createdAt: new Date().toISOString(),
+      };
+      DEMO_BLOCKS = [newBlock, ...DEMO_BLOCKS];
+      return newBlock;
+    }
+    try {
+      const response = await api.post<CalendarBlock>('/bloqueos', data, {
+        params: userId ? { userId } : undefined,
+      });
+      return response.data;
+    } catch (err) {
+      if (!shouldFallbackToDemo(err)) throw err;
+      const newBlock: CalendarBlock = {
+        id: Date.now(),
+        createdByUserId: effectiveUserId,
+        createdByUserFullName: localStorage.getItem('fullName') || 'Usuario Operador',
+        startTime: data.startTime,
+        endTime: data.endTime,
+        reason: data.reason,
+        createdAt: new Date().toISOString(),
+      };
+      DEMO_BLOCKS = [newBlock, ...DEMO_BLOCKS];
+      return newBlock;
+    }
+  },
+
+  deleteBlock: async (id: number): Promise<void> => {
+    if (isDemoSession()) {
+      DEMO_BLOCKS = DEMO_BLOCKS.filter((b) => b.id !== id);
+      return;
+    }
+    try {
+      await api.delete(`/bloqueos/${id}`);
+      DEMO_BLOCKS = DEMO_BLOCKS.filter((b) => b.id !== id);
+    } catch (err) {
+      if (!shouldFallbackToDemo(err)) throw err;
+      DEMO_BLOCKS = DEMO_BLOCKS.filter((b) => b.id !== id);
+    }
+  },
+};
+
 // --- SERVICIOS DE HISTORIA CLÍNICA (Solo Médicas) ---
 export const clinicalApi = {
   getMedicalRecordByPatient: async (patientId: number): Promise<MedicalRecord | null> => {
@@ -746,7 +944,7 @@ export const clinicalApi = {
       const response = await api.post<ClinicalEntry>(
         '/historias-clinicas/entradas',
         { appointmentId, content },
-        { params: { physicianUserId: currentUserId() } }
+        { params: { physicianUserId: currentUserId() ?? 2 } }
       );
       return response.data;
     } catch (err) {

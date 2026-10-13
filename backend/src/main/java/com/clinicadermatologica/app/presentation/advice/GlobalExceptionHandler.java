@@ -51,19 +51,30 @@ public class GlobalExceptionHandler {
 
     @ExceptionHandler(MethodArgumentNotValidException.class) // Captura errores de validación de campos @Valid
     public ResponseEntity<Map<String, Object>> handleValidationErrors(MethodArgumentNotValidException ex, HttpServletRequest request) {
-        Map<String, String> fieldErrors = new HashMap<>();
+        Map<String, String> fieldErrors = new LinkedHashMap<>();
         for (FieldError error : ex.getBindingResult().getFieldErrors()) {
             fieldErrors.put(error.getField(), error.getDefaultMessage());
         }
 
+        String detailMessage = fieldErrors.isEmpty()
+                ? "Error de validación en los campos enviados"
+                : String.join("; ", fieldErrors.values());
+
         Map<String, Object> body = new LinkedHashMap<>();
-        body.put("timestamp", Instant.now());
+        body.put("type", "about:blank");
+        body.put("title", HttpStatus.BAD_REQUEST.getReasonPhrase());
         body.put("status", HttpStatus.BAD_REQUEST.value());
+        body.put("detail", detailMessage);
+        body.put("instance", request.getRequestURI());
+        body.put("timestamp", Instant.now());
         body.put("error", "Error de Validación en los campos enviados");
+        body.put("message", detailMessage);
         body.put("details", fieldErrors);
         body.put("path", request.getRequestURI());
 
-        return ResponseEntity.badRequest().body(body);
+        return ResponseEntity.status(HttpStatus.BAD_REQUEST)
+                .contentType(MediaType.APPLICATION_PROBLEM_JSON)
+                .body(body);
     }
 
     @ExceptionHandler(PaymentGatewayException.class)

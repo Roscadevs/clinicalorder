@@ -7,6 +7,112 @@
 
 ## 📜 Historial de Revisiones
 
+### 🔹 [Versión 26.0 (Fase 26 - Persistencia Real de Pacientes en Supabase, Desbloqueo del Directorio y Resiliencia ante Cold Starts)](PRD_Fase_26_Persistencia_Real_Pacientes_Directorio_Y_Conectividad.md)
+- **Fecha:** 2026-10-13
+- **Estado:** VIGENTE / IMPLEMENTADO
+- **Autor:** Equipo de Producto, UX & Arquitectura
+- **Cambios Principales:**
+  - Persistencia obligatoria en Supabase PostgreSQL sin swallowing ni falsos positivos en `localStorage`.
+  - Eliminación del fallback ciego a modo demo en `LoginView.tsx` y ampliación de timeout para cold starts de Render.
+  - Desbloqueo de `PatientDirectoryView.tsx` habilitando la ruta `/app/patients` y pestaña en barra de navegación para todos los roles de staff.
+  - Habilitación de alta médica contextual en `MedicalRecordView.tsx`.
+
+
+### 🔹 [Versión 25.0 (Fase 25 - Testing de Mutación Ad-Hoc sobre Operaciones Transaccionales)](PRD_Fase_25_Testing_Mutacion_AdHoc_Transaccional.md)
+- **Fecha:** 2026-10-13
+- **Estado:** VIGENTE / IMPLEMENTADO
+- **Autor:** Equipo de Arquitectura, QA & Testing de Mutación
+- **Cambios Principales:**
+  - Arnés automatizado ad-hoc de Testing de Mutación (`scripts/mutation_runner.py`) con respaldo inmutable y rollback atómico garantizado.
+  - Catálogo de 32+ mutantes sintéticos en 4 categorías: Balances y Pagos, Auditoría Legal e Invariantes, Concurrencia Optimista y Seguridad, y Validaciones Temporales y Unicidad.
+  - Blindaje y fortalecimiento de la suite de pruebas unitarias JUnit 5 en 6 servicios transaccionales clave.
+  - Meta de calidad estricta: Mutation Score del 100% (cero mutantes supervivientes) con preservación inmutable de `clinical_entries_audit` y `@Version`.
+
+---
+
+### 🔹 [Versión 24.0 (Fase 24 - Gestión, Alta y Edición de Tratamientos del Catálogo)](PRD_Fase_24_Gestion_Y_Edicion_Tratamientos_Catalogo.md)
+- **Fecha:** 2026-10-13
+- **Estado:** VIGENTE / IMPLEMENTADO
+- **Autor:** Equipo de Producto, UX & Arquitectura
+- **Cambios Principales:**
+  - Validación defensiva de unicidad de nombre excluyente (`existsByNameAndIdNot`) en backend con excepciones RFC 7807.
+  - Mejora de `ServiceFormModal.tsx` con captura y reporte de errores RFC 7807 en `Callout`.
+  - Ergonomía táctil móvil adaptada a estándares $\ge 44$ px.
+  - Incorporación de plantillas rápidas para protocolos médicos y estéticos comunes.
+  - Diálogo modal de confirmación segura antes de suspender o reactivar servicios en `AdminServicesView.tsx`.
+
+---
+
+### 🔹 [Versión 23.0 (Fase 23 - Formulario de Bloqueos de Agenda e Indisponibilidad Médica)](PRD_Fase_23_Bloqueos_Agenda_Indisponibilidad.md)
+- **Fecha:** 2026-10-13
+- **Estado:** VIGENTE / IMPLEMENTADO
+- **Autor:** Equipo de Producto, UX & Arquitectura
+- **Cambios Principales:**
+  - Formulario modal `CalendarBlockModal.tsx` para bloqueo de horarios y días completos por la médica o el staff administrativo.
+  - Botón de acción "Bloquear horario" en `AgendaView.tsx` visible para perfiles autorizados (`DOCTORA` y `ADMIN`).
+  - Visualización integrada de franjas horarias bloqueadas e indisponibilidades junto a citas programadas.
+  - Acción de desbloqueo/liberación de horario con diálogo de confirmación.
+  - Integración en frontend `calendarBlocksApi` (`getBlocks`, `createBlock`, `deleteBlock`) con `/api/v1/bloqueos`.
+
+---
+
+### 🔹 [Versión 22.0 (Fase 22 - Formulario de Nueva Nota de Evolución Clínica)](PRD_Fase_22_Nueva_Nota_Evolucion_Clinica.md)
+- **Fecha:** 2026-10-12
+- **Estado:** VIGENTE / IMPLEMENTADO
+- **Autor:** Equipo Médico, UX & Arquitectura
+- **Cambios Principales:**
+  - Formulario modal `NewClinicalNoteModal.tsx` para redacción ágil de notas de evolución médica.
+  - Botón de acción principal "+ Nueva Nota de Evolución" en pestaña de notas de `MedicalRecordView.tsx`.
+  - Vinculación obligatoria y selectiva del turno del paciente a la evolución clínica.
+  - Conexión del cliente HTTP con `clinicalApi.addClinicalEntry` y actualización reactiva inmediata del expediente.
+  - Blindaje estricto del cifrado AES-256-GCM y preservación inmutable de la tabla `clinical_entries_audit`.
+
+---
+
+### 🔹 [Versión 21.0 (Fase 21 - Gestión, Listado y Edición de Usuarios del Staff)](PRD_Fase_21_Gestion_Y_Edicion_Usuarios_Staff.md)
+- **Fecha:** 2026-10-12
+- **Estado:** VIGENTE / IMPLEMENTADO
+- **Autor:** Equipo de Producto, Seguridad & Arquitectura
+- **Cambios Principales:**
+  - Panel completo de nómina de usuarios del staff en `AdminServicesView.tsx` con badges de rol, estado y acciones.
+  - Modo dual en `UserFormModal.tsx`: Alta (contraseña requerida) y Edición (contraseña opcional, precarga reactiva).
+  - Nuevo `UserResponseDTO` que blinda el sistema impidiendo la exposición del hash BCrypt en respuestas REST.
+  - Endpoints administrativos en backend (`/api/v1/usuarios`) y validación de unicidad cruzada en `UserService`.
+  - Acciones seguras de activación/suspensión de cuentas con regla anti-lockout para administradores.
+
+---
+
+### 🔹 [Versión 20.0 (Fase 20 - Edición y Gestión Integral de Pacientes)](PRD_Fase_20_Edicion_Y_Gestion_Pacientes.md)
+- **Fecha:** 2026-10-12
+- **Estado:** VIGENTE / IMPLEMENTADO
+- **Autor:** Equipo de Producto, Arquitectura & UX
+- **Cambios Principales:**
+  - Modo dual en `PacienteForm.tsx`: Alta (inserción con DNI editable) y Edición (precarga reactiva con DNI inmutable).
+  - Acciones de "Editar Datos" y "Desactivar Paciente" integradas en `PatientDirectoryView.tsx` y cabecera de `MedicalRecordView.tsx`.
+  - Integración de `updatePatient` y `deactivatePatient` en `patientsApi` (`api.ts`).
+  - Validación defensiva de unicidad de email y teléfono excluyendo al propio paciente en `PatientService.java`.
+
+---
+
+### 🔹 [Versión 19.0 (Fase 19 - Flujo Nativo de Recuperación de Contraseña Supabase PKCE)](PRD_Fase_19_Recuperacion_Contrasena_Supabase_PKCE.md)
+- **Fecha:** 2026-10-12
+- **Estado:** VIGENTE / IMPLEMENTADO
+- **Autor:** Equipo de Seguridad & Desarrollo Frontend
+- **Cambios Principales:**
+  - Flujo de recuperación de contraseñas con Supabase Auth PKCE en React 18 / Vite.
+  - Intercambio seguro en `/auth/callback` y vista `/update-password`.
+
+---
+
+### 🔹 [Versión 18.0 (Fase 18 - Integración Headless Google Jules Asíncrono)](PRD_Fase_18_Integracion_Google_Jules_Asincrono.md)
+- **Fecha:** 2026-10-12
+- **Estado:** VIGENTE / IMPLEMENTADO
+- **Autor:** Equipo de Arquitectura & DevOps
+- **Cambios Principales:**
+  - Protocolo de ejecución desatendida para CI/CD y Google Jules sin barreras interactivas de parada.
+
+---
+
 ### 🔹 [Versión 17.0 (Fase 17 - Blindaje de Dominio, Jerarquía Visual y Ergonomía del Chatbot Gemini)](PRD_Fase_17_Blindaje_Dominio_Ergonomia_Chatbot_Gemini.md)
 - **Fecha:** 2026-10-12
 - **Estado:** VIGENTE / IMPLEMENTADO
