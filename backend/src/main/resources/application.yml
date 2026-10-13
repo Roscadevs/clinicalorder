@@ -22,6 +22,7 @@ spring:
       keepalive-time: 60000 # Keepalive activo cada 60s
 
   jpa:
+    open-in-view: false
     hibernate:
       ddl-auto: none # Flyway gestiona el esquema de forma idempotente y versionada
     show-sql: false

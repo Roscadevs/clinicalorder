@@ -7,6 +7,17 @@
 
 ## 📜 Historial de Revisiones
 
+### 🔹 [Versión 26.0 (Fase 26 - Persistencia Real de Pacientes en Supabase, Desbloqueo del Directorio y Resiliencia ante Cold Starts)](PRD_Fase_26_Persistencia_Real_Pacientes_Directorio_Y_Conectividad.md)
+- **Fecha:** 2026-10-13
+- **Estado:** VIGENTE / IMPLEMENTADO
+- **Autor:** Equipo de Producto, UX & Arquitectura
+- **Cambios Principales:**
+  - Persistencia obligatoria en Supabase PostgreSQL sin swallowing ni falsos positivos en `localStorage`.
+  - Eliminación del fallback ciego a modo demo en `LoginView.tsx` y ampliación de timeout para cold starts de Render.
+  - Desbloqueo de `PatientDirectoryView.tsx` habilitando la ruta `/app/patients` y pestaña en barra de navegación para todos los roles de staff.
+  - Habilitación de alta médica contextual en `MedicalRecordView.tsx`.
+
+
 ### 🔹 [Versión 25.0 (Fase 25 - Testing de Mutación Ad-Hoc sobre Operaciones Transaccionales)](PRD_Fase_25_Testing_Mutacion_AdHoc_Transaccional.md)
 - **Fecha:** 2026-10-13
 - **Estado:** VIGENTE / IMPLEMENTADO

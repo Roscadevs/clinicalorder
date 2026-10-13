@@ -78,6 +78,8 @@ const TodaysAppointments: React.FC<{ onOpenPatient: (p: Patient) => void }> = ({
   const [loading, setLoading] = useState(true);
   const [now, setNow] = useState(Date.now());
 
+  const [isCreatingPatient, setIsCreatingPatient] = useState<string | null>(null);
+
   const load = useCallback(() => {
     setLoading(true);
     const base = new Date(); base.setHours(0, 0, 0, 0);
@@ -112,7 +114,7 @@ const TodaysAppointments: React.FC<{ onOpenPatient: (p: Patient) => void }> = ({
         <h3 className="font-display font-bold text-sand-900 mb-3 flex items-center gap-2">
           <Stethoscope className="w-4 h-4 text-primary-500" /> Buscar paciente
         </h3>
-        <PatientSearch onSelect={onOpenPatient} onAddNew={() => undefined} />
+        <PatientSearch onSelect={onOpenPatient} onAddNew={(query) => setIsCreatingPatient(query)} />
       </Card>
 
       <Card>
@@ -157,6 +159,26 @@ const TodaysAppointments: React.FC<{ onOpenPatient: (p: Patient) => void }> = ({
           </ul>
         )}
       </Card>
+
+      {/* Modal de alta rápida de paciente para el médico */}
+      {isCreatingPatient !== null && (
+        <Modal
+          isOpen={true}
+          onClose={() => setIsCreatingPatient(null)}
+          title="Alta Rápida de Paciente"
+          size="lg"
+        >
+          <PacienteForm
+            initialQuery={isCreatingPatient}
+            showHeader={false}
+            onSuccess={(created) => {
+              setIsCreatingPatient(null);
+              onOpenPatient(created);
+            }}
+            onCancel={() => setIsCreatingPatient(null)}
+          />
+        </Modal>
+      )}
     </>
   );
 };

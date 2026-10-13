@@ -22,6 +22,7 @@ const BookingWizard = React.lazy(() => import('./features/appointments/BookingWi
 const AgendaView = React.lazy(() => import('./features/agenda/AgendaView').then(m => ({ default: m.AgendaView })));
 const EditAppointmentView = React.lazy(() => import('./features/agenda/EditAppointmentView').then(m => ({ default: m.EditAppointmentView })));
 const MedicalRecordView = React.lazy(() => import('./features/clinical/MedicalRecordView').then(m => ({ default: m.MedicalRecordView })));
+const PatientDirectoryView = React.lazy(() => import('./features/clinical/PatientDirectoryView').then(m => ({ default: m.PatientDirectoryView })));
 const AdminServicesView = React.lazy(() => import('./features/admin/AdminServicesView').then(m => ({ default: m.AdminServicesView })));
 const AnalyticsDashboardView = React.lazy(() => import('./features/analytics/AnalyticsDashboardView').then(m => ({ default: m.AnalyticsDashboardView })));
 
@@ -138,6 +139,14 @@ export function App() {
               <Route path="booking" element={<BookingWizard />} />
               <Route path="agenda" element={<AgendaView />} />
               <Route path="agenda/:id/editar" element={<EditAppointmentView />} />
+              <Route
+                path="patients"
+                element={
+                  <ProtectedRoute allowedRoles={['SECRETARIA', 'DOCTORA', 'ADMIN']}>
+                    <PatientDirectoryView />
+                  </ProtectedRoute>
+                }
+              />
               <Route
                 path="clinical"
                 element={

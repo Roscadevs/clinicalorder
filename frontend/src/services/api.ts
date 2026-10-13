@@ -88,7 +88,7 @@ const api = axios.create({
   headers: {
     'Content-Type': 'application/json',
   },
-  timeout: 8000, // Previene bloqueos indefinidos ante problemas de red
+  timeout: 15000, // Previene bloqueos indefinidos pero tolera latencias de red en la nube
 });
 
 // Interceptor para inyectar automáticamente el Bearer JWT en cada solicitud saliente
@@ -163,7 +163,8 @@ api.interceptors.response.use(
 // --- SERVICIOS DE AUTENTICACIÓN ---
 export const authApi = {
   login: async (username: string, password: string): Promise<AuthResponse> => {
-    const response = await api.post<AuthResponse>('/auth/login', { username, password });
+    // Para el login permitimos hasta 60s para esperar el arranque en frío del contenedor en Render
+    const response = await api.post<AuthResponse>('/auth/login', { username, password }, { timeout: 60000 });
     return response.data;
   },
   /** Alta de usuario del staff (solo ADMIN). POST /auth/register. */
@@ -415,26 +416,10 @@ export const patientsApi = {
       return newPatient;
     }
 
-    try {
-      const response = await api.post<Patient>('/pacientes', patient);
-      patientSearchCache.clear();
-      return response.data;
-    } catch (err) {
-      if (!isNetworkError(err)) throw err;
-      const current = getDemoPatients();
-      const newPatient: Patient = {
-        id: current.length > 0 ? Math.max(...current.map((p) => p.id)) + 1 : 1,
-        name: patient.name || '',
-        dni: patient.dni || '',
-        phone: patient.phone || '',
-        email: patient.email || '',
-        active: true,
-        createdAt: new Date().toISOString(),
-      };
-      localStorage.setItem('demo_patients', JSON.stringify([...current, newPatient]));
-      patientSearchCache.clear();
-      return newPatient;
-    }
+    // Persistencia real en Supabase (si falla, el error se propaga a la UI para informar fielmente al usuario)
+    const response = await api.post<Patient>('/pacientes', patient);
+    patientSearchCache.clear();
+    return response.data;
   },
   updatePatient: async (id: number, patient: Partial<Patient>): Promise<Patient> => {
     if (isDemoSession()) {
@@ -447,20 +432,9 @@ export const patientsApi = {
       return updated;
     }
 
-    try {
-      const response = await api.put<Patient>(`/pacientes/${id}`, patient);
-      patientSearchCache.clear();
-      return response.data;
-    } catch (err) {
-      if (!isNetworkError(err)) throw err;
-      const current = getDemoPatients();
-      const updatedList = current.map((p) => (p.id === id ? { ...p, ...patient } : p));
-      localStorage.setItem('demo_patients', JSON.stringify(updatedList));
-      patientSearchCache.clear();
-      const updated = updatedList.find((p) => p.id === id);
-      if (!updated) throw new Error('Paciente no encontrado');
-      return updated;
-    }
+    const response = await api.put<Patient>(`/pacientes/${id}`, patient);
+    patientSearchCache.clear();
+    return response.data;
   },
   deactivatePatient: async (id: number): Promise<void> => {
     if (isDemoSession()) {
@@ -471,16 +445,8 @@ export const patientsApi = {
       return;
     }
 
-    try {
-      await api.delete(`/pacientes/${id}`);
-      patientSearchCache.clear();
-    } catch (err) {
-      if (!isNetworkError(err)) throw err;
-      const current = getDemoPatients();
-      const updatedList = current.map((p) => (p.id === id ? { ...p, active: false } : p));
-      localStorage.setItem('demo_patients', JSON.stringify(updatedList));
-      patientSearchCache.clear();
-    }
+    await api.delete(`/pacientes/${id}`);
+    patientSearchCache.clear();
   },
 };
 

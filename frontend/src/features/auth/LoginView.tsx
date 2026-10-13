@@ -28,28 +28,12 @@ export const LoginView: React.FC = () => {
       navigate('/app/agenda');
     } catch (err: any) {
       if (err.response?.status === 400 || err.response?.status === 401 || err.response?.status === 403) {
-        setErrorMsg(err.response?.data?.message || 'Usuario o contraseña incorrectos.');
+        setErrorMsg(err.response?.data?.detail || err.response?.data?.message || 'Usuario o contraseña incorrectos.');
       } else {
-        // FALLBACK: Simulación local si el backend no está conectado (Modo Demo)
-        console.warn('Backend no disponible. Iniciando sesión simulada en Modo Demo.');
-
-        let simulatedRole = 'ADMIN';
-        let simulatedUserId = 1;
-        if (username.includes('recepcion') || username.includes('secretaria')) {
-          simulatedRole = 'SECRETARIA';
-          simulatedUserId = 3;
-        } else if (username.includes('paula') || username.includes('doctora') || username.includes('valeria')) {
-          simulatedRole = 'DOCTORA';
-          simulatedUserId = 2;
-        }
-
-        sessionStorage.removeItem('demo_session_modal_dismissed');
-        localStorage.setItem('token', 'demo-token-12345');
-        localStorage.setItem('role', simulatedRole);
-        localStorage.setItem('userId', String(simulatedUserId));
-        localStorage.setItem('fullName', 'Usuario Demo');
-
-        navigate('/app/agenda');
+        setErrorMsg(
+          'No se pudo conectar con el servidor en la nube. ' +
+          'Si el backend estaba suspendido por inactividad (Render Free Tier), puede demorar hasta 60 segundos en despertar. Por favor aguarde y reintente.'
+        );
       }
     } finally {
       setIsLoading(false);
@@ -119,6 +103,12 @@ export const LoginView: React.FC = () => {
             <Button type="submit" fullWidth size="lg" isLoading={isLoading} rightIcon={<ArrowRight className="w-4 h-4" />}>
               Ingresar
             </Button>
+
+            {isLoading && (
+              <p className="text-xs text-primary-600 animate-pulse text-center mt-2">
+                Conectando con el servidor en la nube...
+              </p>
+            )}
           </form>
 
           <div className="mt-6 text-center">
