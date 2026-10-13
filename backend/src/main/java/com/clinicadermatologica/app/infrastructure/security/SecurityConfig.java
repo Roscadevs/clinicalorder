@@ -109,10 +109,13 @@ public class SecurityConfig {
                 // 6. Restricción Estricta: Solo DOCTORA puede acceder a historias clínicas y auditoría médica
                 .requestMatchers("/historias-clinicas/**").hasRole("DOCTORA")
 
-                // 7. Endpoints Operativos de Staff (Agenda de Citas, Pacientes y Bloqueos de Calendario)
+                // 7. Endpoints de Analítica y Gestión de KPIs (Restringido a DOCTORA y ADMIN)
+                .requestMatchers("/analytics/**", "/api/v1/analytics/**").hasAnyRole("DOCTORA", "ADMIN")
+
+                // 8. Endpoints Operativos de Staff (Agenda de Citas, Pacientes y Bloqueos de Calendario)
                 .requestMatchers("/citas/**", "/pacientes/**", "/bloqueos/**").hasAnyRole("DOCTORA", "SECRETARIA", "ADMIN")
 
-                // 8. Cualquier otra solicitud requiere autenticación JWT válida por defecto (Default Deny)
+                // 9. Cualquier otra solicitud requiere autenticación JWT válida por defecto (Default Deny)
                 .anyRequest().authenticated()
             )
             .addFilterBefore(jwtAuthenticationFilter, UsernamePasswordAuthenticationFilter.class);

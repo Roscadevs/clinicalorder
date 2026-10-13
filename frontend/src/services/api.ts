@@ -18,6 +18,7 @@ import {
   UserRole,
   User,
   CalendarBlock,
+  AnalyticsKpisResponse,
 } from '../types'; // Importación de contratos de tipos
 
 /** URL absoluta de la API (para requests fuera de axios, p. ej. fetch keepalive). */
@@ -1022,6 +1023,54 @@ export const chatbotApi = {
     } catch (error) {
       console.warn('Intermitencia al conectar con el asistente de IA:', error);
       return '¡Hola! 🌿 En este momento estamos experimentando una breve intermitencia con el servidor. Puedes consultar nuestros tratamientos disponibles en la sección Servicios o reservar directamente seleccionando tu fecha y hora.';
+    }
+  },
+};
+
+const getDemoAnalyticsKpis = (): AnalyticsKpisResponse => ({
+  financial: {
+    totalRevenue: 5840000,
+    onlineDepositRevenue: 2920000,
+    counterBalanceRevenue: 2920000,
+    growthVsPreviousMonth: 24.5,
+  },
+  operational: {
+    totalAppointments: 142,
+    completedAppointments: 136,
+    attendedAppointments: 0,
+    noShowAppointments: 6,
+    attendanceRate: 95.8,
+    noShowRate: 4.2,
+  },
+  aiAssistant: {
+    totalInquiries: 389,
+    convertedToBooking: 250,
+    conversionRate: 64.2,
+  },
+  treatmentRankings: [
+    { name: 'Peeling Químico Facial (Ácido Mandélico + Retinol)', count: 48, percentage: 85, revenue: 2016000 },
+    { name: 'Toxina Botulínica (Frente, Entrecejo y Patas de Gallo)', count: 36, percentage: 65, revenue: 2340000 },
+    { name: 'Relleno con Ácido Hialurónico (Labios y Surcos)', count: 28, percentage: 50, revenue: 2100000 },
+    { name: 'Limpieza Facial Profunda + Hidrodermoabrasión', count: 20, percentage: 35, revenue: 560000 },
+    { name: 'Mesoterapia Facial con Vitaminas & Antioxidantes', count: 10, percentage: 20, revenue: 320000 },
+  ],
+  period: 'Agosto 2026 (Tiempo Real)',
+});
+
+// --- SERVICIO DE ANALÍTICA Y KPIS DIRECTIVOS ---
+export const analyticsApi = {
+  getKpis: async (): Promise<AnalyticsKpisResponse> => {
+    if (isDemoSession()) {
+      return getDemoAnalyticsKpis();
+    }
+    try {
+      const response = await api.get<AnalyticsKpisResponse>('/analytics/kpis');
+      return response.data;
+    } catch (err) {
+      if (shouldFallbackToDemo(err)) {
+        return getDemoAnalyticsKpis();
+      }
+      throw err;
     }
   },
 };
