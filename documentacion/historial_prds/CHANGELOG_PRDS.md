@@ -7,6 +7,16 @@
 
 ## 📜 Historial de Revisiones
 
+### 🔹 [Versión 27.0 (Fase 27 - Dashboard de Métricas y KPIs Dinámicos de Gestión)](PRD_Fase_27_Dashboard_Metricas_Y_Kpis_Dinamicos.md)
+- **Fecha:** 2026-10-13
+- **Estado:** PROPUESTO
+- **Autor:** Equipo de Arquitectura, Producto & Analítica
+- **Cambios Principales:**
+  - Dinamización del Dashboard de Métricas en `AnalyticsDashboardView.tsx` mediante conexión al backend en Spring Boot.
+  - Implementación del endpoint `GET /api/v1/analytics/kpis` con RBAC para roles `DOCTORA` y `ADMIN`.
+  - Agregación transaccional de sólo lectura sobre `Appointment`, `PaymentTransaction` y `DermatologicService`.
+  - Resguardo total de la inmutabilidad de `historia_clinica_audit` y control de concurrencia optimista `@Version`.
+
 ### 🔹 [Versión 26.0 (Fase 26 - Persistencia Real de Pacientes en Supabase, Desbloqueo del Directorio y Resiliencia ante Cold Starts)](PRD_Fase_26_Persistencia_Real_Pacientes_Directorio_Y_Conectividad.md)
 - **Fecha:** 2026-10-13
 - **Estado:** VIGENTE / IMPLEMENTADO

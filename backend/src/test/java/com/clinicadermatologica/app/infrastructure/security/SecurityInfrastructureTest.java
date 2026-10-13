@@ -61,6 +61,44 @@ public class SecurityInfrastructureTest {
     }
 
     @Test
+    @DisplayName("DelegatedAccessDeniedHandler genera respuesta RFC 7807 con status 403 al denegar rol no autorizado en analytics")
+    void testAccessDeniedHandler_AnalyticsEndpoint_Rfc7807ProblemDetail() throws Exception {
+        MockHttpServletRequest request = new MockHttpServletRequest("GET", "/api/v1/analytics/kpis");
+        MockHttpServletResponse response = new MockHttpServletResponse();
+
+        accessDeniedHandler.handle(request, response, new AccessDeniedException("Rol insuficiente para métricas"));
+
+        assertEquals(403, response.getStatus());
+        assertEquals("application/problem+json", response.getContentType());
+
+        String json = response.getContentAsString();
+        assertTrue(json.contains("\"title\":\"Acceso denegado\""));
+        assertTrue(json.contains("\"status\":403"));
+        assertTrue(json.contains("\"instance\":\"/api/v1/analytics/kpis\""));
+        assertTrue(json.contains("\"detail\":\"No cuenta con los privilegios requeridos para acceder a este recurso\""));
+        assertFalse(json.contains("Exception")); // Sin divulgar stack trace
+    }
+
+    @Test
+    @DisplayName("DelegatedAuthenticationEntryPoint genera respuesta RFC 7807 con status 401 en analytics sin autenticación")
+    void testAuthenticationEntryPoint_AnalyticsEndpoint_Rfc7807ProblemDetail() throws Exception {
+        MockHttpServletRequest request = new MockHttpServletRequest("GET", "/api/v1/analytics/kpis");
+        MockHttpServletResponse response = new MockHttpServletResponse();
+
+        authenticationEntryPoint.commence(request, response, new BadCredentialsException("Token ausente"));
+
+        assertEquals(401, response.getStatus());
+        assertEquals("application/problem+json", response.getContentType());
+
+        String json = response.getContentAsString();
+        assertTrue(json.contains("\"title\":\"No autenticado\""));
+        assertTrue(json.contains("\"status\":401"));
+        assertTrue(json.contains("\"instance\":\"/api/v1/analytics/kpis\""));
+        assertTrue(json.contains("\"detail\":\"Se requiere autenticación válida para acceder al recurso solicitado\""));
+        assertFalse(json.contains("Exception")); // Sin divulgar stack trace
+    }
+
+    @Test
     @DisplayName("StrictHttpFirewall rechaza caracteres sospechosos de evasión y traversal")
     void testStrictHttpFirewall_RejectsSuspiciousCharacters() {
         SecurityConfig config = new SecurityConfig(null, authenticationEntryPoint, accessDeniedHandler);

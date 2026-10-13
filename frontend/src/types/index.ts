@@ -218,3 +218,42 @@ export interface CalendarBlock {
   createdAt?: string;
 }
 
+export interface TreatmentRankingItem {
+  name: string;
+  count: number;
+  percentage: number;
+  revenue: number | string;
+  serviceName?: string;
+  appointmentsCount?: number;
+}
+
+export interface FinancialKpis {
+  totalRevenue: number;
+  onlineDepositRevenue: number;
+  counterBalanceRevenue: number;
+  growthVsPreviousMonth?: number;
+}
+
+export interface OperationalKpis {
+  totalAppointments: number;
+  completedAppointments: number;
+  attendedAppointments: number;
+  noShowAppointments: number;
+  attendanceRate: number;
+  noShowRate: number;
+}
+
+export interface AiAssistantKpis {
+  totalInquiries: number;
+  convertedToBooking: number;
+  conversionRate: number;
+}
+
+export interface AnalyticsKpisResponse {
+  financial: FinancialKpis;
+  operational: OperationalKpis;
+  aiAssistant: AiAssistantKpis;
+  treatmentRankings: TreatmentRankingItem[];
+  period: string;
+}
+

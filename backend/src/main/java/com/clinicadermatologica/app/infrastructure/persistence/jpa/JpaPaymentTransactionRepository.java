@@ -18,6 +18,7 @@ public interface JpaPaymentTransactionRepository extends JpaRepository<PaymentTr
     Optional<PaymentTransaction> findByMpPaymentId(String mpPaymentId); // Búsqueda por ID de pago de MercadoPago
     Optional<PaymentTransaction> findByMpPreferenceId(String mpPreferenceId); // Búsqueda por ID de preferencia
     List<PaymentTransaction> findByAppointmentIdOrderByCreatedAtAsc(Long appointmentId); // Historial de pagos de la cita
+    List<PaymentTransaction> findByStatus(com.clinicadermatologica.app.domain.model.PaymentStatus status); // Búsqueda por estado de transacción
 
     @Query(value = "SELECT sp_alta_transaccion_pago(:citaId, :paymentType, :paymentConcept, :amount, :status, :registeredByUserId, :mpPreferenceId, :mpPaymentId)", nativeQuery = true)
     Long executeSpAltaTransaccionPago(

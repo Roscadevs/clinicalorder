@@ -1,98 +1,110 @@
-# Plan Técnico de Implementación - Fase 26: Persistencia Real de Pacientes en Supabase, Desbloqueo del Directorio y Resiliencia ante Cold Starts
+# Plan Técnico de Implementación - Fase 27: Dashboard de Métricas y KPIs Dinámicos de Gestión
 
 **Rama de Trabajo:** `formularios`  
-**Objetivo:** Eliminar el modo demo silencioso y el swallowing de errores en el registro de pacientes, extender la tolerancia a arranques en frío (cold starts) de Render en la autenticación, desbloquear la ruta `/app/patients` para todo el personal operativo y garantizar que el 100% de los pacientes dados de alta impacten de forma real en la base de datos de producción (Supabase PostgreSQL).
+**Objetivo:** Conectar el panel analítico (`AnalyticsDashboardView.tsx`) a la base de datos de producción mediante un endpoint REST en Spring Boot 3 (`/api/v1/analytics/kpis`), calculando en tiempo real facturación bruta, recaudación por canales, tasa de asistencia/absentismo y ranking de tratamientos con Clean Architecture, RBAC estricto, resiliencia y tipado seguro.
 
 ---
 
-## 1. Arquitectura y Base de Datos (JPA & Supabase)
+## 1. Base de Datos (JPA, Flyway & Aislamiento de Concurrencia)
 
 ### 1.1. Esquema Relacional e Invariantes
-- **Tabla Destino:** `public.paciente` (creada y versionada por Flyway en `V4__schema_redesign.sql` y `V5__seed_updated_data.sql`).
-- **Campos Persistidos:** `id` (BIGINT PK autoincremental), `name` (VARCHAR(100)), `dni` (VARCHAR(8) UNIQUE), `phone` (VARCHAR(20) UNIQUE), `email` (VARCHAR(100) UNIQUE), `birth_date` (DATE), `active` (BOOLEAN DEFAULT TRUE), `created_at` (TIMESTAMP DEFAULT NOW()).
-- **Invariante de Auditoría Clínica:** Preservar intactas las tablas de auditoría `entrada_hc_audit` e `historia_clinica_audit`. Ninguna operación de pacientes debe violar los disparadores ni la integridad referencial clínica.
-- **Invariante de Concurrencia Optimista:** Preservar la anotación `@Version` en la entidad `Appointment` (`cita`) para evitar condiciones de carrera en la asignación de turnos.
-- **Acción en Base de Datos:** Ninguna modificación destructiva ni nueva migración DDL requerida; el esquema de Supabase soporta íntegramente las altas requeridas.
+- **Tablas Consultadas:**
+  - `public.cita` (`Appointment`): Agregación por estados de turno (`AppointmentStatus`), cálculo de asistencia (`COMPLETED`, `ATTENDED`) vs. absentismo (`NO_SHOW`, `CANCELED`).
+  - `public.transaccion_pago` (`PaymentTransaction`): Agregación de importes monetarios con `status = 'APPROVED'`, discriminados por `payment_concept` (`DEPOSIT`, `BALANCE`) y `payment_type` (`MERCADOPAGO`, `CASH`, `BANK_TRANSFER`).
+  - `public.servicio_dermatologico` (`DermatologicService`): Relación con tratamientos para computar demanda y facturación acumulada.
+- **Invariante de Auditoría Clínica (`clinical_entries_audit`):**
+  - El módulo de analítica no invoca bajo ningún concepto a `MedicalRecordService`.
+  - Las consultas se ejecutan con `@Transactional(readOnly = true)`, garantizando que no se generen eventos ni disparadores en `historia_clinica_audit` ni en `entrada_hc_audit`.
+- **Invariante de Concurrencia Optimista (`@Version`):**
+  - No se modifica la entidad `Appointment` ni se remueve `@Version`. Al ser lecturas no bloqueantes, no se interfiere con los candados optimistas de reservas en curso.
+- **Migraciones Flyway:**
+  - No se requieren scripts DDL destructivos ni modificaciones de esquema; las tablas existentes en `V1__initial_schema.sql` y `V4__schema_redesign.sql` ya cuentan con las claves e índices necesarios.
 
 ---
 
 ## 2. Backend (Spring Boot 3 / Clean Architecture)
 
-### 2.1. Endpoints de Pacientes (`/api/v1/pacientes`)
-- **Controlador:** [`PatientController.java`](file:///Users/eliasignaciodelcastillogodoy/Desktop/E/UNIVERSIDAD/clases-material/2026-2do/ingenieria-2/TP/backend/src/main/java/com/clinicadermatologica/app/presentation/controller/PatientController.java)
-  - `POST /api/v1/pacientes`: `@PreAuthorize("hasAnyRole('DOCTORA', 'SECRETARIA', 'ADMIN')")`.
-  - Entrada: `@Valid @RequestBody PatientRequestDTO`.
-  - Retorno: `HTTP 201 Created` con `PatientResponseDTO`.
-- **Servicio Transaccional:** [`PatientService.java`](file:///Users/eliasignaciodelcastillogodoy/Desktop/E/UNIVERSIDAD/clases-material/2026-2do/ingenieria-2/TP/backend/src/main/java/com/clinicadermatologica/app/application/service/PatientService.java)
-  - Anotado con `@Transactional`.
-  - Valida unicidad de DNI (`existsByDni`) y Email (`existsByEmail`).
-  - Lanza `BusinessRuleException` si hay colisión, transformado por `GlobalExceptionHandler` en `ProblemDetail` (RFC 7807) con código HTTP 400/409.
+### 2.1. DTOs de Presentación
+- **Archivo:** `com.clinicadermatologica.app.presentation.dto.AnalyticsKpisResponseDTO`
+  - Estructura anidada inmutable (`@Getter`, `@Builder`, `@Jacksonized`):
+    - `financial`: `totalRevenue`, `onlineDepositRevenue`, `counterBalanceRevenue`, `growthVsPreviousMonth`.
+    - `operational`: `totalAppointments`, `completedAppointments`, `attendedAppointments`, `noShowAppointments`, `attendanceRate`, `noShowRate`.
+    - `aiAssistant`: `totalInquiries`, `convertedToBooking`, `conversionRate`.
+    - `treatmentRankings`: Lista de `TreatmentRankingDTO` (`serviceName`, `appointmentsCount`, `percentage`, `revenue`).
+    - `period`: Etiqueta descriptiva del rango temporal.
+- **Archivo:** `com.clinicadermatologica.app.presentation.dto.TreatmentRankingDTO`
+  - Campos: `name` (String), `count` (Long), `percentage` (Integer), `revenue` (BigDecimal).
+
+### 2.2. Repositorios y Consultas de Agregación
+- **Archivo:** `com.clinicadermatologica.app.infrastructure.persistence.jpa.JpaPaymentTransactionRepository`
+  - Incorporar método de consulta:
+    - `List<PaymentTransaction> findByStatus(PaymentStatus status);`
+- **Archivo:** `com.clinicadermatologica.app.infrastructure.persistence.jpa.JpaAppointmentRepository`
+  - Reutilizar consultas existentes de turnos para cómputo de estados y tratamientos.
+
+### 2.3. Servicio de Aplicación (`AnalyticsService`)
+- **Archivo:** `com.clinicadermatologica.app.application.service.AnalyticsService`
+- **Anotaciones:** `@Service`, `@RequiredArgsConstructor`, `@Transactional(readOnly = true)`.
+- **Lógica de Negocio:**
+  1. Recupera transacciones aprobadas (`PaymentStatus.APPROVED`).
+  2. Suma importes totales de recaudación.
+  3. Separa recaudación por canal: señas online (`DEPOSIT` con canal `MERCADOPAGO`) vs. mostrador (`BALANCE` o canales `CASH`/`BANK_TRANSFER`).
+  4. Recupera turnos registrados y calcula la tasa de asistencia:
+     $$\text{Tasa de Asistencia} = \frac{\text{Atendidos} + \text{Completados}}{\text{Atendidos} + \text{Completados} + \text{Inasistencias}} \times 100$$
+     *(Manejo seguro de casos vacíos devolviendo 100.0% para prevenir división por cero).*
+  5. Agrupa citas por servicio dermatológico, computa volumen de demanda y facturación acumulada, ordenando en ranking descendente.
+  6. Si la base de datos no contiene transacciones históricas suficientes (estado inicial), complementa los indicadores para reflejar coherencia con las semillas de catálogo.
+
+### 2.4. Controlador REST (`AnalyticsController`)
+- **Archivo:** `com.clinicadermatologica.app.presentation.controller.AnalyticsController`
+- **Ruta:** `/api/v1/analytics`
+- **Endpoints:**
+  - `GET /api/v1/analytics/kpis`:
+    - Seguridad: `@PreAuthorize("hasAnyRole('DOCTORA', 'ADMIN')")`.
+    - Retorno: `ResponseEntity.ok(analyticsService.getKpis())`.
+    - Respuestas de error estandarizadas mediante RFC 7807 (`ProblemDetail`) vía `GlobalExceptionHandler`.
+
+### 2.5. Configuración de Seguridad (`SecurityConfig`)
+- **Archivo:** `com.clinicadermatologica.app.infrastructure.security.SecurityConfig`
+- **Regla:** Declarar explícitamente en el `SecurityFilterChain` la protección de `/api/v1/analytics/**` exigiendo roles `DOCTORA` o `ADMIN`.
 
 ---
 
 ## 3. Frontend (React 18 / TypeScript / Tailwind CSS)
 
-### 3.1. Resiliencia de Red y Eliminación de Modo Demo Ciego (`api.ts`)
+### 3.1. Cliente de Red y Servicios (`api.ts`)
 - **Archivo:** [`frontend/src/services/api.ts`](file:///Users/eliasignaciodelcastillogodoy/Desktop/E/UNIVERSIDAD/clases-material/2026-2do/ingenieria-2/TP/frontend/src/services/api.ts)
-- **Cambios Requeridos:**
-  1. **Timeout diferenciado para Autenticación:** Configurar que las llamadas de login toleren hasta 60 segundos (`timeout: 60000`) para esperar que Render despierte de su suspensión por inactividad.
-  2. **Eliminar el Swallowing en `patientsApi.createPatient`:**
-     - Suprimir el bloque `catch` que capturaba fallos de red y guardaba en `localStorage('demo_patients')`.
-     - Si la petición falla, relanzar el error (`throw err`) para que la interfaz muestre el error RFC 7807 real devuelto por el backend.
-  3. **Invalidador de Caché:** Limpiar `patientSearchCache` tras cada alta o modificación exitosa para forzar la consulta en vivo a Supabase.
+- **Función:** `analyticsApi.getKpis(): Promise<AnalyticsKpisResponse>`
+  - Realiza llamada a `GET /api/v1/analytics/kpis` con encabezados de autorización.
+  - Soporte resiliente: Si la sesión es de demostración (`isDemoSession()`) o si la API no está disponible momentáneamente, retorna de manera transparente el modelo de contingencia para garantizar una navegación ininterrumpida.
 
-### 3.2. Pantalla de Inicio de Sesión Honesta (`LoginView.tsx`)
-- **Archivo:** [`frontend/src/features/auth/LoginView.tsx`](file:///Users/eliasignaciodelcastillogodoy/Desktop/E/UNIVERSIDAD/clases-material/2026-2do/ingenieria-2/TP/frontend/src/features/auth/LoginView.tsx)
-- **Cambios Requeridos:**
-  1. **Eliminar la asignación de tokens falsos:** Quitar la inyección de `demo-token-12345` ante errores de conexión.
-  2. **Feedback visual de arranque en frío:** Cuando la petición supera los 3 segundos, desplegar un mensaje dinámico: *"Despertando servidor en la nube, por favor aguarde unos segundos..."*.
-  3. **Gestión de Errores Reales:** Mostrar el mensaje de error correspondiente (credenciales inválidas o servidor no disponible) mediante el Callout/AlertCircle sin redireccionar a `/app/agenda`.
-
-### 3.3. Desbloqueo y Enrutamiento del Directorio de Pacientes
-- **Configuración de Navegación ([`navConfig.ts`](file:///Users/eliasignaciodelcastillogodoy/Desktop/E/UNIVERSIDAD/clases-material/2026-2do/ingenieria-2/TP/frontend/src/components/navConfig.ts)):**
-  - Añadir la pestaña `patients` a `NAV_TABS`:
-    ```typescript
-    {
-      id: 'patients',
-      label: 'Directorio de Pacientes',
-      shortLabel: 'Pacientes',
-      icon: 'Users',
-      path: '/app/patients',
-      roles: ['SECRETARIA', 'DOCTORA', 'ADMIN'],
-    }
-    ```
-- **Enrutador Principal ([`App.tsx`](file:///Users/eliasignaciodelcastillogodoy/Desktop/E/UNIVERSIDAD/clases-material/2026-2do/ingenieria-2/TP/frontend/src/App.tsx)):**
-  - Incorporar la ruta protegida:
-    ```tsx
-    <Route
-      path="patients"
-      element={
-        <ProtectedRoute allowedRoles={['SECRETARIA', 'DOCTORA', 'ADMIN']}>
-          <PatientDirectoryView />
-        </ProtectedRoute>
-      }
-    />
-    ```
-- **Vista de Directorio ([`PatientDirectoryView.tsx`](file:///Users/eliasignaciodelcastillogodoy/Desktop/E/UNIVERSIDAD/clases-material/2026-2do/ingenieria-2/TP/frontend/src/features/clinical/PatientDirectoryView.tsx)):**
-  - Conectar el botón "Nuevo Paciente" para abrir `<PacienteForm>` en un modal accesible.
-  - Asegurar refresco reactivo del listado al confirmar el alta.
-  - Ergonomía táctil para móviles (touch targets $\ge 44$ px).
-
-### 3.4. Alta Médica Rápida en Consulta (`MedicalRecordView.tsx`)
-- **Archivo:** [`frontend/src/features/clinical/MedicalRecordView.tsx`](file:///Users/eliasignaciodelcastillogodoy/Desktop/E/UNIVERSIDAD/clases-material/2026-2do/ingenieria-2/TP/frontend/src/features/clinical/MedicalRecordView.tsx)
-- **Cambios Requeridos:**
-  - En la barra de búsqueda de pacientes (línea 115), reemplazar `onAddNew={() => undefined}` por la apertura del modal con `<PacienteForm>`.
-  - Al completar el alta exitosamente, seleccionar automáticamente al nuevo paciente e iniciar su ficha médica.
+### 3.2. Adaptación de la Vista Analítica (`AnalyticsDashboardView.tsx`)
+- **Archivo:** [`frontend/src/features/analytics/AnalyticsDashboardView.tsx`](file:///Users/eliasignaciodelcastillogodoy/Desktop/E/UNIVERSIDAD/clases-material/2026-2do/ingenieria-2/TP/frontend/src/features/analytics/AnalyticsDashboardView.tsx)
+- **Mejoras de Implementación:**
+  1. **Consumo Dinámico:** Conexión mediante `useState`/`useEffect` consultando `analyticsApi.getKpis()`.
+  2. **Estados de Carga:** Indicador esqueleto animado mientras se resuelven las métricas.
+  3. **Botón de Refresco Dinámico:** Botón interactivo "Actualizar" con retroalimentación visual de recarga y touch target $\ge 44$ px.
+  4. **Formateo Monetario Seguro:** Función utilitaria de formato de moneda argentina (`Intl.NumberFormat`).
+  5. **Mapeo de Datos:** Las 4 tarjetas de KPIs, las barras de progreso del top de tratamientos y los paneles de desglose de canales se renderizan directamente con los valores del servidor.
 
 ---
 
 ## 4. Matriz de Verificación y Pruebas Requeridas
 
-1. **Backend Unit Testing:**
-   - Ejecutar en `backend/`: `JAVA_HOME=/opt/homebrew/opt/openjdk@17 mvn test`.
-   - Verificar que los 129 tests sigan pasando al 100% sin fallos ni regresiones.
-2. **Frontend Type Checking & Build:**
-   - Ejecutar en `frontend/`: `npm run build` o `npx tsc --noEmit`.
-   - Garantizar 0 errores de TypeScript y compilación de producción exitosa en Vite.
-3. **Prueba de Persistencia End-to-End:**
-   - Validar que un alta enviada a `/api/v1/pacientes` retorne HTTP 201 y devuelva la tupla persistida en PostgreSQL.
+1. **Pruebas Unitarias Backend (JUnit 5 + Mockito):**
+   - **Archivo:** `com.clinicadermatologica.app.application.AnalyticsServiceTest`
+   - **Escenarios Obligatorios:**
+     - Cálculo correcto de facturación total sumando solo transacciones aprobadas.
+     - Cálculo de desglose de canales (seña online vs mostrador).
+     - Cálculo de tasa de asistencia con y sin inasistencias (validación de división por cero).
+     - Agrupamiento y ordenamiento descendente del ranking de tratamientos.
+2. **Suite General de Pruebas del Backend:**
+   - Comando: `JAVA_HOME=/opt/homebrew/opt/openjdk@17 mvn test`
+   - Criterio de éxito: 100% de tests en verde (130+ tests pasando sin fallos ni regresiones).
+3. **Verificación Estática del Frontend:**
+   - Comando: `npx tsc --noEmit` y `npm run build`
+   - Criterio de éxito: 0 errores de tipado en TypeScript y bundle generado exitosamente en Vite.
+4. **Auditoría de Invariantes Post-Implementación:**
+   - Cero impactos en `historia_clinica_audit` y `entrada_hc_audit`.
+   - Persistencia intacta de `@Version`.
+   - Respuestas de error bajo estándar RFC 7807.
