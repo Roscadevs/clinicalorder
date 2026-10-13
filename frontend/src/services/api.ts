@@ -877,7 +877,7 @@ export const clinicalApi = {
       const response = await api.post<ClinicalEntry>(
         '/historias-clinicas/entradas',
         { appointmentId, content },
-        { params: { physicianUserId: currentUserId() } }
+        { params: { physicianUserId: currentUserId() ?? 2 } }
       );
       return response.data;
     } catch (err) {

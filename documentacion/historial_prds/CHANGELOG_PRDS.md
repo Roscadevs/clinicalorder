@@ -7,9 +7,22 @@
 
 ## 📜 Historial de Revisiones
 
-### 🔹 [Versión 21.0 (Fase 21 - Gestión, Listado y Edición de Usuarios del Staff)](PRD_Fase_21_Gestion_Y_Edicion_Usuarios_Staff.md)
+### 🔹 [Versión 22.0 (Fase 22 - Formulario de Nueva Nota de Evolución Clínica)](PRD_Fase_22_Nueva_Nota_Evolucion_Clinica.md)
 - **Fecha:** 2026-10-12
 - **Estado:** ESPECIFICADO / EN ESPERA DE APROBACIÓN
+- **Autor:** Equipo Médico, UX & Arquitectura
+- **Cambios Principales:**
+  - Formulario modal `NewClinicalNoteModal.tsx` para redacción ágil de notas de evolución médica.
+  - Botón de acción principal "+ Nueva Nota de Evolución" en pestaña de notas de `MedicalRecordView.tsx`.
+  - Vinculación obligatoria y selectiva del turno del paciente a la evolución clínica.
+  - Conexión del cliente HTTP con `clinicalApi.addClinicalEntry` y actualización reactiva inmediata del expediente.
+  - Blindaje estricto del cifrado AES-256-GCM y preservación inmutable de la tabla `clinical_entries_audit`.
+
+---
+
+### 🔹 [Versión 21.0 (Fase 21 - Gestión, Listado y Edición de Usuarios del Staff)](PRD_Fase_21_Gestion_Y_Edicion_Usuarios_Staff.md)
+- **Fecha:** 2026-10-12
+- **Estado:** VIGENTE / IMPLEMENTADO
 - **Autor:** Equipo de Producto, Seguridad & Arquitectura
 - **Cambios Principales:**
   - Panel completo de nómina de usuarios del staff en `AdminServicesView.tsx` con badges de rol, estado y acciones.

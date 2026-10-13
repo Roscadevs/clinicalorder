@@ -1,14 +1,15 @@
 import React, { useCallback, useEffect, useMemo, useState } from 'react';
 import {
   ShieldCheck, FileText, Clock, FileSignature, Calendar, ArrowLeft, CheckCircle,
-  Stethoscope, ChevronRight, Pencil,
+  Stethoscope, ChevronRight, Pencil, Plus,
 } from 'lucide-react';
 import { clinicalApi, patientsApi, appointmentsApi } from '../../services/api';
 import { Patient, MedicalRecord, ClinicalEntry, Appointment } from '../../types';
-import { Card, Button, Badge, Spinner, Modal } from '../../components/ui';
+import { Card, Button, Badge, Spinner, Modal, toast } from '../../components/ui';
 import { AnamnesisForm } from './AnamnesisForm';
 import { PacienteForm } from './PacienteForm';
 import { ClinicalNoteModal } from './ClinicalNoteModal';
+import { NewClinicalNoteModal } from './NewClinicalNoteModal';
 import { InformedConsentModal } from '../documents/InformedConsentModal';
 import { PatientDirectoryView } from './PatientDirectoryView';
 import { PatientSearch } from '../appointments/PatientSearch';
@@ -168,6 +169,8 @@ const PatientClinicalRecord: React.FC<{ patient: Patient; onBack: () => void }> 
   const [entries, setEntries] = useState<ClinicalEntry[]>([]);
   const [loading, setLoading] = useState(true);
   const [openNote, setOpenNote] = useState<ClinicalEntry | null>(null);
+  const [newNoteOpen, setNewNoteOpen] = useState(false);
+  const [appointments, setAppointments] = useState<Appointment[]>([]);
   const [consentOpen, setConsentOpen] = useState(false);
   const [editPatientOpen, setEditPatientOpen] = useState(false);
 
@@ -177,12 +180,16 @@ const PatientClinicalRecord: React.FC<{ patient: Patient; onBack: () => void }> 
 
   useEffect(() => {
     setLoading(true);
+    const start = new Date(Date.now() - 365 * 86400000).toISOString();
+    const end = new Date(Date.now() + 365 * 86400000).toISOString();
     Promise.all([
       clinicalApi.getMedicalRecordByPatient(currentPatient.id).catch(() => null),
       clinicalApi.getClinicalEntriesByPatient(currentPatient.id).catch(() => []),
-    ]).then(([rec, list]) => {
+      appointmentsApi.getAgenda(start, end).catch(() => []),
+    ]).then(([rec, list, allAppts]) => {
       setRecord(rec ?? { ...EMPTY_RECORD, patientId: currentPatient.id });
       setEntries(list);
+      setAppointments(allAppts.filter((a) => a.patientId === currentPatient.id || a.patientDni === currentPatient.dni));
     }).finally(() => setLoading(false));
   }, [currentPatient.id]);
 
@@ -257,10 +264,23 @@ const PatientClinicalRecord: React.FC<{ patient: Patient; onBack: () => void }> 
 
       {section === 'notas' && (
         <Card>
-          <h3 className="font-display font-bold text-sand-900 mb-1">Notas clínicas</h3>
-          <p className="text-xs text-sand-500 mb-4">
-            Seleccioná una nota para ver su contenido y las fotos asociadas. Las notas se pueden editar, no eliminar.
-          </p>
+          <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 mb-4">
+            <div>
+              <h3 className="font-display font-bold text-sand-900 mb-1">Notas clínicas</h3>
+              <p className="text-xs text-sand-500">
+                Seleccioná una nota para ver su detalle o redactá una nueva evolución clínica.
+              </p>
+            </div>
+            {isMedicalStaff() && (
+              <Button
+                onClick={() => setNewNoteOpen(true)}
+                leftIcon={<Plus className="w-4 h-4" />}
+                className="self-start sm:self-auto"
+              >
+                Nueva nota de evolución
+              </Button>
+            )}
+          </div>
           {entries.length === 0 ? (
             <p className="text-sm text-sand-500 py-4">Este paciente no tiene notas clínicas registradas.</p>
           ) : (
@@ -291,6 +311,17 @@ const PatientClinicalRecord: React.FC<{ patient: Patient; onBack: () => void }> 
         onSaved={(updated) => {
           setEntries((prev) => prev.map((e) => (e.id === updated.id ? { ...e, ...updated } : e)));
           setOpenNote(null);
+        }}
+      />
+
+      <NewClinicalNoteModal
+        isOpen={newNoteOpen}
+        onClose={() => setNewNoteOpen(false)}
+        patient={currentPatient}
+        appointments={appointments}
+        onSaved={(newEntry) => {
+          setEntries((prev) => [newEntry, ...prev]);
+          toast.success('Nota de evolución clínica registrada con éxito');
         }}
       />
 
