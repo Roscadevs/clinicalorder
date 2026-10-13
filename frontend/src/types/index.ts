@@ -207,3 +207,14 @@ export interface GeminiChatResponse {
   suggestedServices: string[]; // Sugerencias detectadas
   bookingActionUrl: string; // Enlace directo a reserva
 }
+
+export interface CalendarBlock {
+  id: number;
+  createdByUserId?: number;
+  createdByUserFullName?: string;
+  startTime: string; // ISO 8601 UTC
+  endTime: string;   // ISO 8601 UTC
+  reason: string;
+  createdAt?: string;
+}
+

@@ -1,15 +1,17 @@
 import React, { useCallback, useEffect, useMemo, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { appointmentsApi } from '../../services/api';
-import { Appointment } from '../../types';
+import { appointmentsApi, calendarBlocksApi } from '../../services/api';
+import { Appointment, CalendarBlock } from '../../types';
+import { isMedicalStaff } from '../../utils/session';
 import {
   Calendar as CalendarIcon, Clock, Printer, Bell, DollarSign, XCircle, ChevronLeft, ChevronRight,
-  BarChart3, CheckCircle, Pencil, RefreshCw,
+  BarChart3, CheckCircle, Pencil, RefreshCw, Lock,
 } from 'lucide-react';
 import { Card, Button, Badge, Spinner, Modal } from '../../components/ui';
 import { AppointmentReceiptModal } from '../documents/AppointmentReceiptModal';
 import { ReminderNotificationModal } from '../reminders/ReminderNotificationModal';
 import { CollectBalanceModal } from './CollectBalanceModal';
+import { CalendarBlockModal } from './CalendarBlockModal';
 import { getVisualStatus, STATUS_STYLES, isActionable, type VisualStatus } from './appointmentStatus';
 import { cn } from '../../utils/cn';
 
@@ -27,6 +29,11 @@ interface ConfirmState {
 const ars = (n: number) => `$${n.toLocaleString('es-AR', { maximumFractionDigits: 0 })}`;
 const fmtTime = (iso: string) =>
   new Intl.DateTimeFormat('es-AR', { timeZone: TZ, hour: '2-digit', minute: '2-digit' }).format(new Date(iso));
+
+export const isAllDayBlock = (b: CalendarBlock): boolean => {
+  const diffMs = new Date(b.endTime).getTime() - new Date(b.startTime).getTime();
+  return diffMs >= 23 * 3600 * 1000;
+};
 
 // ── Utilidades de fecha (en hora local, suficiente para agrupar por día) ──────
 const startOfDay = (d: Date) => { const x = new Date(d); x.setHours(0, 0, 0, 0); return x; };
@@ -62,6 +69,8 @@ export const AgendaView: React.FC = () => {
   const [mode, setMode] = useState<RangeMode>('week');
   const [anchor, setAnchor] = useState<Date>(() => startOfDay(new Date()));
   const [appointments, setAppointments] = useState<Appointment[]>([]);
+  const [blocks, setBlocks] = useState<CalendarBlock[]>([]);
+  const [isBlockModalOpen, setIsBlockModalOpen] = useState(false);
   const [loading, setLoading] = useState(true);
   const [now, setNow] = useState(Date.now());
   const navigate = useNavigate();
@@ -82,10 +91,18 @@ export const AgendaView: React.FC = () => {
 
   const fetchAgenda = useCallback(() => {
     setLoading(true);
-    appointmentsApi
-      .getAgenda(start.toISOString(), end.toISOString())
-      .then((list) => setAppointments([...list].sort((a, b) => a.startTime.localeCompare(b.startTime))))
-      .catch(() => setAppointments([]))
+    Promise.all([
+      appointmentsApi.getAgenda(start.toISOString(), end.toISOString()),
+      calendarBlocksApi.getBlocks(start.toISOString(), end.toISOString()),
+    ])
+      .then(([appList, blockList]) => {
+        setAppointments([...appList].sort((a, b) => a.startTime.localeCompare(b.startTime)));
+        setBlocks([...blockList].sort((a, b) => a.startTime.localeCompare(b.startTime)));
+      })
+      .catch(() => {
+        setAppointments([]);
+        setBlocks([]);
+      })
       .finally(() => setLoading(false));
   }, [start, end]);
 
@@ -108,6 +125,34 @@ export const AgendaView: React.FC = () => {
         .sort((a, b) => a.startTime.localeCompare(b.startTime)),
     [appointments, effectivePanelDay]
   );
+
+  // Bloqueos del día del panel (que coincidan o se solapen con la fecha).
+  const panelBlocks = useMemo(
+    () =>
+      blocks
+        .filter((b) => {
+          const bStart = new Date(b.startTime).getTime();
+          const bEnd = new Date(b.endTime).getTime();
+          const dayStart = startOfDay(effectivePanelDay).getTime();
+          const dayEnd = addDays(startOfDay(effectivePanelDay), 1).getTime();
+          return bStart < dayEnd && bEnd > dayStart;
+        })
+        .sort((a, b) => a.startTime.localeCompare(b.startTime)),
+    [blocks, effectivePanelDay]
+  );
+
+  const releaseBlock = (block: CalendarBlock) => {
+    setConfirm({
+      title: 'Liberar horario bloqueado',
+      message: `¿Deseas liberar este horario y permitir nuevamente la reserva de turnos? (Motivo: "${block.reason}")`,
+      confirmLabel: 'Liberar horario',
+      variant: 'danger',
+      onConfirm: async () => {
+        await calendarBlocksApi.deleteBlock(block.id);
+        fetchAgenda();
+      },
+    });
+  };
 
   const cancel = (appt: Appointment) => {
     setConfirm({
@@ -157,6 +202,22 @@ export const AgendaView: React.FC = () => {
     return map;
   }, [appointments]);
 
+  const blocksByDay = useMemo(() => {
+    const map = new Map<string, CalendarBlock[]>();
+    blocks.forEach((b) => {
+      const cur = startOfDay(new Date(b.startTime));
+      const end = new Date(b.endTime);
+      while (cur.getTime() < end.getTime()) {
+        const k = dayKey(cur);
+        const list = map.get(k);
+        if (list) list.push(b);
+        else map.set(k, [b]);
+        cur.setDate(cur.getDate() + 1);
+      }
+    });
+    return map;
+  }, [blocks]);
+
   return (
     <div className="max-w-6xl mx-auto p-3 sm:p-6 space-y-5">
       {/* Encabezado + control de período */}
@@ -169,7 +230,7 @@ export const AgendaView: React.FC = () => {
             <h2 className="font-display text-xl sm:text-2xl font-bold text-sand-900">Agenda</h2>
           </div>
 
-          <div className="flex items-center gap-2 self-start">
+          <div className="flex items-center gap-2 self-start flex-wrap">
             {/* Selector Día / Semana / Mes */}
             <div className="bg-sand-100 p-1 rounded-xl flex items-center gap-1 border border-sand-200">
               {([['day', 'Día'], ['week', 'Semana'], ['month', 'Mes']] as const).map(([m, label]) => (
@@ -195,6 +256,19 @@ export const AgendaView: React.FC = () => {
               <span className="hidden sm:inline">Métricas de hoy</span>
               <span className="sm:hidden">Métricas</span>
             </button>
+
+            {/* Bloqueo de agenda (solo personal médico) */}
+            {isMedicalStaff() && (
+              <button
+                onClick={() => setIsBlockModalOpen(true)}
+                className="flex items-center gap-1.5 px-3 py-1.5 rounded-xl border border-amber-300 bg-amber-50 hover:bg-amber-100 text-xs font-bold text-amber-800 transition-colors"
+                title="Bloquear franja horaria o día completo"
+              >
+                <Lock className="w-3.5 h-3.5 text-amber-600" />
+                <span className="hidden sm:inline">Bloquear horario</span>
+                <span className="sm:hidden">Bloquear</span>
+              </button>
+            )}
           </div>
         </div>
 
@@ -235,17 +309,34 @@ export const AgendaView: React.FC = () => {
         <div className="grid grid-cols-1 lg:grid-cols-[300px_1fr] gap-5 items-start">
           <TodayPanel
             appts={panelAppts}
+            blocks={panelBlocks}
             day={effectivePanelDay}
             isToday={panelIsToday}
             now={now}
             onBackToToday={() => setPanelDay(null)}
             onSelectAppt={setActive}
+            onReleaseBlock={releaseBlock}
           />
           <div className="min-w-0">
             {mode === 'month' ? (
-              <MonthGrid anchor={anchor} apptsByDay={apptsByDay} now={now} onSelectDay={(d) => setPanelDay(startOfDay(d))} onSelectAppt={setActive} />
+              <MonthGrid
+                anchor={anchor}
+                apptsByDay={apptsByDay}
+                blocksByDay={blocksByDay}
+                now={now}
+                onSelectDay={(d) => setPanelDay(startOfDay(d))}
+                onSelectAppt={setActive}
+              />
             ) : (
-              <TimeGrid days={days} apptsByDay={apptsByDay} now={now} onSelectDay={(d) => setPanelDay(startOfDay(d))} onSelectAppt={setActive} />
+              <TimeGrid
+                days={days}
+                apptsByDay={apptsByDay}
+                blocksByDay={blocksByDay}
+                now={now}
+                onSelectDay={(d) => setPanelDay(startOfDay(d))}
+                onSelectAppt={setActive}
+                onReleaseBlock={releaseBlock}
+              />
             )}
           </div>
         </div>
@@ -341,6 +432,13 @@ export const AgendaView: React.FC = () => {
           }}
         />
       )}
+
+      <CalendarBlockModal
+        isOpen={isBlockModalOpen}
+        onClose={() => setIsBlockModalOpen(false)}
+        initialDate={effectivePanelDay}
+        onSaved={fetchAgenda}
+      />
     </div>
   );
 };
@@ -348,12 +446,14 @@ export const AgendaView: React.FC = () => {
 // ── Panel de turnos del día (columna izquierda) ───────────────────────────────
 const TodayPanel: React.FC<{
   appts: Appointment[];
+  blocks: CalendarBlock[];
   day: Date;
   isToday: boolean;
   now: number;
   onBackToToday: () => void;
   onSelectAppt: (a: Appointment) => void;
-}> = ({ appts, day, isToday, now, onBackToToday, onSelectAppt }) => {
+  onReleaseBlock?: (b: CalendarBlock) => void;
+}> = ({ appts, blocks, day, isToday, now, onBackToToday, onSelectAppt, onReleaseBlock }) => {
   const dayLabel = new Intl.DateTimeFormat('es-AR', { timeZone: TZ, weekday: 'long', day: 'numeric', month: 'long' }).format(day);
   return (
     <Card padded className="flex flex-col gap-3 lg:sticky lg:top-4">
@@ -367,7 +467,20 @@ const TodayPanel: React.FC<{
           </h3>
           <p className="text-[11px] text-sand-500 capitalize truncate">{dayLabel}</p>
         </div>
-        <span className="ml-auto text-xs font-bold text-sand-700 bg-sand-100 px-2 py-0.5 rounded-full flex-shrink-0">{appts.length}</span>
+        <div className="ml-auto flex items-center gap-1.5 flex-shrink-0">
+          {blocks.length > 0 && (
+            <span
+              className="text-xs font-bold text-amber-800 bg-amber-100 px-2 py-0.5 rounded-full flex items-center gap-1"
+              title="Horarios bloqueados en este día"
+            >
+              <Lock className="w-3 h-3 text-amber-600" />
+              {blocks.length}
+            </span>
+          )}
+          <span className="text-xs font-bold text-sand-700 bg-sand-100 px-2 py-0.5 rounded-full">
+            {appts.length}
+          </span>
+        </div>
       </div>
 
       {!isToday && (
@@ -380,9 +493,57 @@ const TodayPanel: React.FC<{
         </button>
       )}
 
-      {appts.length === 0 ? (
+      {/* Bloqueos de agenda para el día */}
+      {blocks.length > 0 && (
+        <div className="space-y-1.5 mb-1">
+          <div className="text-[11px] font-bold text-amber-800 uppercase tracking-wider flex items-center gap-1 px-0.5">
+            <Lock className="w-3 h-3 text-amber-600" />
+            <span>Indisponibilidad ({blocks.length})</span>
+          </div>
+          {blocks.map((b) => (
+            <div
+              key={b.id}
+              className="p-2.5 rounded-xl border border-amber-300 bg-amber-50/80 text-xs space-y-1 shadow-sm"
+            >
+              <div className="flex items-start justify-between gap-1.5">
+                <div className="font-bold text-amber-900 flex items-center gap-1.5">
+                  <span className="w-2 h-2 rounded-full bg-amber-500 shrink-0" />
+                  <span className="line-clamp-1">{b.reason}</span>
+                </div>
+                {onReleaseBlock && isMedicalStaff() && (
+                  <button
+                    type="button"
+                    onClick={() => onReleaseBlock(b)}
+                    className="text-[11px] text-amber-800 hover:text-red-700 font-bold underline underline-offset-2 shrink-0 px-1 py-0.5 rounded hover:bg-amber-100 transition-colors"
+                    title="Liberar este horario"
+                  >
+                    Liberar
+                  </button>
+                )}
+              </div>
+              <div className="text-[11px] text-amber-700 flex items-center gap-1 font-medium">
+                <Clock className="w-3 h-3 text-amber-600" />
+                <span>
+                  {isAllDayBlock(b)
+                    ? 'Día completo (00:00 a 23:59 hs)'
+                    : `${fmtTime(b.startTime)} a ${fmtTime(b.endTime)} hs`}
+                </span>
+                {b.createdByUserFullName && (
+                  <span className="text-amber-600 truncate">· {b.createdByUserFullName}</span>
+                )}
+              </div>
+            </div>
+          ))}
+        </div>
+      )}
+
+      {appts.length === 0 && blocks.length === 0 ? (
         <p className="text-sm text-sand-500 py-6 text-center">
           {isToday ? 'No hay turnos para hoy.' : 'No hay turnos para este día.'}
+        </p>
+      ) : appts.length === 0 ? (
+        <p className="text-xs text-sand-500 py-2 text-center italic">
+          No hay turnos de pacientes reservados para este día.
         </p>
       ) : (
         <div className="space-y-1.5 lg:max-h-[560px] lg:overflow-y-auto lg:pr-1">
@@ -399,11 +560,15 @@ const TodayPanel: React.FC<{
 const TimeGrid: React.FC<{
   days: Date[];
   apptsByDay: Map<string, Appointment[]>;
+  blocksByDay: Map<string, CalendarBlock[]>;
   now: number;
   onSelectDay: (d: Date) => void;
   onSelectAppt: (a: Appointment) => void;
-}> = ({ days, apptsByDay, now, onSelectDay, onSelectAppt }) => {
+  onReleaseBlock?: (b: CalendarBlock) => void;
+}> = ({ days, apptsByDay, blocksByDay, now, onSelectDay, onSelectAppt, onReleaseBlock }) => {
   const isWeek = days.length > 1;
+  const hasAnyAllDay = days.some((d) => (blocksByDay.get(dayKey(d)) ?? []).some(isAllDayBlock));
+
   return (
     <Card padded={false} className="overflow-hidden">
       <div className="overflow-x-auto">
@@ -428,6 +593,47 @@ const TimeGrid: React.FC<{
             })}
           </div>
 
+          {/* Fila de eventos de día completo (si existe al menos uno) */}
+          {hasAnyAllDay && (
+            <div className="grid border-b border-sand-200 bg-amber-50/50" style={{ gridTemplateColumns: `64px repeat(${days.length}, minmax(0, 1fr))` }}>
+              <div className="p-2 text-center text-[10px] font-bold text-amber-800 border-r border-sand-200 flex items-center justify-center">
+                Día completo
+              </div>
+              {days.map((d) => {
+                const dayAllDay = (blocksByDay.get(dayKey(d)) ?? []).filter(isAllDayBlock);
+                return (
+                  <div key={'allday-' + d.toISOString()} className="p-1 border-r border-sand-200 last:border-r-0 space-y-1">
+                    {dayAllDay.map((b) => (
+                      <div
+                        key={b.id}
+                        className="w-full text-left p-1.5 rounded-lg border border-amber-300 bg-amber-100/90 text-amber-900 text-xs flex items-center justify-between gap-1 shadow-sm"
+                        title={`Bloqueo día completo: ${b.reason}`}
+                      >
+                        <div className="flex items-center gap-1 truncate min-w-0">
+                          <Lock className="w-3 h-3 text-amber-600 shrink-0" />
+                          <span className="font-bold truncate">{b.reason}</span>
+                        </div>
+                        {onReleaseBlock && isMedicalStaff() && (
+                          <button
+                            type="button"
+                            onClick={(e) => {
+                              e.stopPropagation();
+                              onReleaseBlock(b);
+                            }}
+                            className="text-[10px] text-amber-700 hover:text-red-700 font-bold p-0.5 rounded hover:bg-amber-200 shrink-0"
+                            title="Liberar bloqueo"
+                          >
+                            ✕
+                          </button>
+                        )}
+                      </div>
+                    ))}
+                  </div>
+                );
+              })}
+            </div>
+          )}
+
           {/* Filas horarias */}
           <div className="divide-y divide-sand-100">
             {HOURS.map((h) => (
@@ -437,8 +643,45 @@ const TimeGrid: React.FC<{
                 </div>
                 {days.map((d) => {
                   const dayAppts = (apptsByDay.get(dayKey(d)) ?? []).filter((a) => new Date(a.startTime).getHours() === h);
+                  const isDayBlockedAllDay = (blocksByDay.get(dayKey(d)) ?? []).some(isAllDayBlock);
+                  const hourStart = new Date(d);
+                  hourStart.setHours(h, 0, 0, 0);
+                  const hourEnd = new Date(d);
+                  hourEnd.setHours(h + 1, 0, 0, 0);
+                  const dayBlocks = (blocksByDay.get(dayKey(d)) ?? []).filter((b) => {
+                    if (isAllDayBlock(b)) return false;
+                    const bs = new Date(b.startTime).getTime();
+                    const be = new Date(b.endTime).getTime();
+                    return bs < hourEnd.getTime() && be > hourStart.getTime();
+                  });
+
                   return (
-                    <div key={d.toISOString() + h} className="p-1 border-r border-sand-100 last:border-r-0 space-y-1">
+                    <div key={d.toISOString() + h} className={cn('p-1 border-r border-sand-100 last:border-r-0 space-y-1', isDayBlockedAllDay && 'bg-amber-50/25')}>
+                      {dayBlocks.map((b) => (
+                        <div
+                          key={b.id}
+                          className="w-full text-left p-1.5 rounded-lg border border-amber-300 bg-amber-50/90 text-amber-900 text-xs flex items-center justify-between gap-1 shadow-sm"
+                          title={`Bloqueo: ${b.reason} (${fmtTime(b.startTime)} - ${fmtTime(b.endTime)})`}
+                        >
+                          <div className="flex items-center gap-1 truncate min-w-0">
+                            <Lock className="w-3 h-3 text-amber-600 shrink-0" />
+                            <span className="font-bold truncate">{b.reason}</span>
+                          </div>
+                          {onReleaseBlock && isMedicalStaff() && (
+                            <button
+                              type="button"
+                              onClick={(e) => {
+                                e.stopPropagation();
+                                onReleaseBlock(b);
+                              }}
+                              className="text-[10px] text-amber-700 hover:text-red-700 font-bold p-0.5 rounded hover:bg-amber-100 shrink-0"
+                              title="Liberar bloqueo"
+                            >
+                              ✕
+                            </button>
+                          )}
+                        </div>
+                      ))}
                       {dayAppts.map((a) => (
                         <ApptChip key={a.id} appt={a} now={now} compact={isWeek} onClick={() => onSelectAppt(a)} />
                       ))}
@@ -458,10 +701,11 @@ const TimeGrid: React.FC<{
 const MonthGrid: React.FC<{
   anchor: Date;
   apptsByDay: Map<string, Appointment[]>;
+  blocksByDay: Map<string, CalendarBlock[]>;
   now: number;
   onSelectDay: (d: Date) => void;
   onSelectAppt: (a: Appointment) => void;
-}> = ({ anchor, apptsByDay, onSelectDay }) => {
+}> = ({ anchor, apptsByDay, blocksByDay, onSelectDay }) => {
   const first = startOfMonth(anchor);
   const gridStart = startOfWeek(first);
   const cells = Array.from({ length: 42 }, (_, i) => addDays(gridStart, i));
@@ -476,6 +720,7 @@ const MonthGrid: React.FC<{
           const inMonth = d.getMonth() === anchor.getMonth();
           const today = sameDay(d, new Date());
           const dayAppts = (apptsByDay.get(dayKey(d)) ?? []).filter((a) => a.status !== 'CANCELED');
+          const dayBlocks = blocksByDay.get(dayKey(d)) ?? [];
           return (
             <button
               key={d.toISOString()}
@@ -489,7 +734,17 @@ const MonthGrid: React.FC<{
                 {d.getDate()}
               </span>
               <div className="mt-1 space-y-0.5">
-                {dayAppts.slice(0, 3).map((a) => {
+                {dayBlocks.slice(0, 1).map((b) => (
+                  <div
+                    key={b.id}
+                    className="flex items-center gap-1 text-[10px] truncate rounded px-1 py-0.5 bg-amber-100/90 border border-amber-200 text-amber-800"
+                    title={`Bloqueo: ${b.reason}`}
+                  >
+                    <Lock className="w-2.5 h-2.5 text-amber-600 shrink-0" />
+                    <span className="truncate font-semibold">{b.reason}</span>
+                  </div>
+                ))}
+                {dayAppts.slice(0, 2).map((a) => {
                   const vs = getVisualStatus(a);
                   return (
                     <div key={a.id} className={cn('flex items-center gap-1 text-[10px] truncate rounded px-1 py-0.5', STATUS_STYLES[vs].badge)}>
@@ -498,7 +753,11 @@ const MonthGrid: React.FC<{
                     </div>
                   );
                 })}
-                {dayAppts.length > 3 && <div className="text-[10px] text-sand-500 pl-1">+{dayAppts.length - 3} más</div>}
+                {dayAppts.length + dayBlocks.length > 3 && (
+                  <div className="text-[10px] text-sand-500 pl-1">
+                    +{dayAppts.length + dayBlocks.length - 3} más
+                  </div>
+                )}
               </div>
             </button>
           );

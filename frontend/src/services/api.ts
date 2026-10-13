@@ -16,7 +16,8 @@ import {
   PaymentConcept,
   PaymentReceipt,
   UserRole,
-  User
+  User,
+  CalendarBlock,
 } from '../types'; // Importación de contratos de tipos
 
 /** URL absoluta de la API (para requests fuera de axios, p. ej. fetch keepalive). */
@@ -765,6 +766,102 @@ function demoAgenda(startIso: string, endIso: string): Appointment[] {
     return t >= start && t < end;
   });
 }
+
+// --- SERVICIOS DE BLOQUEOS DE AGENDA (Indisponibilidad Clínica) ---
+export const INITIAL_DEMO_BLOCKS: CalendarBlock[] = [
+  {
+    id: 901,
+    createdByUserId: 1,
+    createdByUserFullName: 'Administrador del Sistema',
+    startTime: new Date(Date.now() + 86400000 * 2).toISOString().slice(0, 10) + 'T13:00:00Z',
+    endTime: new Date(Date.now() + 86400000 * 2).toISOString().slice(0, 10) + 'T15:00:00Z',
+    reason: 'Mantenimiento de consultorio',
+    createdAt: new Date().toISOString(),
+  },
+  {
+    id: 902,
+    createdByUserId: 2,
+    createdByUserFullName: 'Dra. Paula Villa Fuhrmann',
+    startTime: new Date(Date.now() + 86400000 * 4).toISOString().slice(0, 10) + 'T08:00:00Z',
+    endTime: new Date(Date.now() + 86400000 * 4).toISOString().slice(0, 10) + 'T20:00:00Z',
+    reason: 'Congreso de Dermatología Estética',
+    createdAt: new Date().toISOString(),
+  },
+];
+
+export let DEMO_BLOCKS: CalendarBlock[] = [...INITIAL_DEMO_BLOCKS];
+
+export const calendarBlocksApi = {
+  getBlocks: async (start: string, end: string): Promise<CalendarBlock[]> => {
+    try {
+      const response = await api.get<CalendarBlock[]>('/bloqueos', { params: { start, end } });
+      if (!Array.isArray(response.data)) throw new Error('Expected array');
+      return response.data;
+    } catch (err) {
+      if (!shouldFallbackToDemo(err) && !(err instanceof Error && err.message === 'Expected array')) throw err;
+      const startMs = new Date(start).getTime();
+      const endMs = new Date(end).getTime();
+      return DEMO_BLOCKS.filter((b) => {
+        const bStart = new Date(b.startTime).getTime();
+        const bEnd = new Date(b.endTime).getTime();
+        return bStart < endMs && bEnd > startMs;
+      });
+    }
+  },
+
+  createBlock: async (
+    data: { startTime: string; endTime: string; reason: string },
+    userId?: number
+  ): Promise<CalendarBlock> => {
+    const effectiveUserId = userId || currentUserId();
+    if (isDemoSession()) {
+      const newBlock: CalendarBlock = {
+        id: Date.now(),
+        createdByUserId: effectiveUserId,
+        createdByUserFullName: localStorage.getItem('fullName') || 'Usuario Operador',
+        startTime: data.startTime,
+        endTime: data.endTime,
+        reason: data.reason,
+        createdAt: new Date().toISOString(),
+      };
+      DEMO_BLOCKS = [newBlock, ...DEMO_BLOCKS];
+      return newBlock;
+    }
+    try {
+      const response = await api.post<CalendarBlock>('/bloqueos', data, {
+        params: userId ? { userId } : undefined,
+      });
+      return response.data;
+    } catch (err) {
+      if (!shouldFallbackToDemo(err)) throw err;
+      const newBlock: CalendarBlock = {
+        id: Date.now(),
+        createdByUserId: effectiveUserId,
+        createdByUserFullName: localStorage.getItem('fullName') || 'Usuario Operador',
+        startTime: data.startTime,
+        endTime: data.endTime,
+        reason: data.reason,
+        createdAt: new Date().toISOString(),
+      };
+      DEMO_BLOCKS = [newBlock, ...DEMO_BLOCKS];
+      return newBlock;
+    }
+  },
+
+  deleteBlock: async (id: number): Promise<void> => {
+    if (isDemoSession()) {
+      DEMO_BLOCKS = DEMO_BLOCKS.filter((b) => b.id !== id);
+      return;
+    }
+    try {
+      await api.delete(`/bloqueos/${id}`);
+      DEMO_BLOCKS = DEMO_BLOCKS.filter((b) => b.id !== id);
+    } catch (err) {
+      if (!shouldFallbackToDemo(err)) throw err;
+      DEMO_BLOCKS = DEMO_BLOCKS.filter((b) => b.id !== id);
+    }
+  },
+};
 
 // --- SERVICIOS DE HISTORIA CLÍNICA (Solo Médicas) ---
 export const clinicalApi = {

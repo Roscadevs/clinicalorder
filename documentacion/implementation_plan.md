@@ -1,127 +1,120 @@
-# PLAN TÉCNICO DE IMPLEMENTACIÓN: FASE 22
-## Formulario de Nueva Nota de Evolución Clínica (Atención Médica en Consulta)
+# PLAN TÉCNICO DE IMPLEMENTACIÓN: FASE 23
+## Formulario de Bloqueos de Agenda e Indisponibilidad Médica (Agenda de Turnos)
 
 ---
 
 ## 1. Arquitectura y Persistencia de Datos
 
 ### 1.1. Base de Datos (PostgreSQL & Flyway)
-- **Tabla:** `entrada_historia_clinica` (creada en Flyway `V4__create_initial_schema.sql`).
+- **Tabla Existente:** `bloqueo_calendario` (creada en la migración Flyway `V4__calendar_block_schema.sql`).
 - **Esquema:**
   - `id BIGSERIAL PRIMARY KEY`
-  - `paciente_id BIGINT NOT NULL REFERENCES paciente(id)`
-  - `cita_id BIGINT NOT NULL REFERENCES cita(id)`
-  - `usuario_medico_id BIGINT NOT NULL REFERENCES usuario(id)`
-  - `contenido_cifrado BYTEA NOT NULL` (cifrado con AES-256-GCM)
+  - `usuario_id BIGINT NOT NULL REFERENCES usuario(id)`
+  - `start_time TIMESTAMP WITH TIME ZONE NOT NULL`
+  - `end_time TIMESTAMP WITH TIME ZONE NOT NULL`
+  - `motivo VARCHAR(255) NOT NULL`
   - `created_at TIMESTAMP WITH TIME ZONE NOT NULL DEFAULT NOW()`
-  - `updated_at TIMESTAMP WITH TIME ZONE NOT NULL DEFAULT NOW()`
-- **Tabla de Auditoría Inmutable:** `clinical_entries_audit` / `entrada_hc_audit`.
-- **Estrategia Flyway:** No se requieren modificaciones DDL en esta fase.
+- **Estrategia Flyway:** No se requieren modificaciones DDL adicionales ya que la estructura cubre íntegramente las necesidades de auditoría y fechas.
+- **Entidad JPA:** [`CalendarBlock.java`](file:///Users/eliasignaciodelcastillogodoy/Desktop/E/UNIVERSIDAD/clases-material/2026-2do/ingenieria-2/TP/backend/src/main/java/com/clinicadermatologica/app/domain/model/CalendarBlock.java).
+- **Repositorio JPA:** [`CalendarBlockRepository.java`](file:///Users/eliasignaciodelcastillogodoy/Desktop/E/UNIVERSIDAD/clases-material/2026-2do/ingenieria-2/TP/backend/src/domain/repository/CalendarBlockRepository.java) con consultas por rango `findByDateRange(start, end)` y solapamiento `findOverlappingBlocks(start, end)`.
 
 ---
 
 ## 2. Capa de Backend (Spring Boot 3 / Clean Architecture)
 
-### 2.1. Endpoints y Resiliencia en `MedicalRecordController`
-- **Ruta:** `POST /api/v1/historias-clinicas/entradas`
-- **Controlador:** [`MedicalRecordController.java`](file:///Users/eliasignaciodelcastillogodoy/Desktop/E/UNIVERSIDAD/clases-material/2026-2do/ingenieria-2/TP/backend/src/main/java/com/clinicadermatologica/app/presentation/controller/MedicalRecordController.java)
-- **Anotación de Seguridad:** `@PreAuthorize("hasRole('DOCTORA')")`
-- **Mejora Defensiva:**
-  - Hacer `@RequestParam(required = false) Long physicianUserId` opcional en el controlador, con resolución de respaldo mediante `Authentication.getName()` y `userRepository.findByUsername(...)` en caso de que el cliente HTTP no envíe el parámetro explícito en la URL.
-- **DTOs:**
-  - [`ClinicalEntryRequestDTO.java`](file:///Users/eliasignaciodelcastillogodoy/Desktop/E/UNIVERSIDAD/clases-material/2026-2do/ingenieria-2/TP/backend/src/main/java/com/clinicadermatologica/app/presentation/dto/ClinicalEntryRequestDTO.java): `@NotNull Long appointmentId`, `@NotBlank String content`.
-  - [`ClinicalEntryResponseDTO.java`](file:///Users/eliasignaciodelcastillogodoy/Desktop/E/UNIVERSIDAD/clases-material/2026-2do/ingenieria-2/TP/backend/src/main/java/com/clinicadermatologica/app/presentation/dto/ClinicalEntryResponseDTO.java): retorna texto descifrado en claro para consumo exclusivo de la médica autenticada.
+### 2.1. Controlador REST (`CalendarBlockController.java`)
+- **Ruta:** `/api/v1/bloqueos`
+- **Controlador:** [`CalendarBlockController.java`](file:///Users/eliasignaciodelcastillogodoy/Desktop/E/UNIVERSIDAD/clases-material/2026-2do/ingenieria-2/TP/backend/src/main/java/com/clinicadermatologica/app/presentation/controller/CalendarBlockController.java)
+- **Seguridad:** `@PreAuthorize("hasAnyRole('ADMIN', 'DOCTORA')")`
+- **Mejora de Robustez Defensiva en `POST /api/v1/bloqueos`:**
+  - Flexibilizar el parámetro `@RequestParam(required = false) Long userId`.
+  - Inyectar `UserRepository` y resolver el usuario automáticamente desde el token JWT mediante `Authentication authentication` (`authentication.getName()`).
+  - Si no se provee parámetro ni token resoluble, delegar al fallback seguro del servicio (`userId = 1L`).
+- **Endpoints Expuestos:**
+  1. `POST /api/v1/bloqueos`: Crea un nuevo bloqueo a partir de `CalendarBlockRequestDTO`. Responde con HTTP 201 Created y `CalendarBlockResponseDTO`.
+  2. `GET /api/v1/bloqueos?start={iso}&end={iso}`: Obtiene la lista de bloqueos en el rango temporal. Responde con HTTP 200 OK y `List<CalendarBlockResponseDTO>`.
+  3. `DELETE /api/v1/bloqueos/{id}`: Elimina el bloqueo por su identificador primario. Responde con HTTP 204 No Content.
+- **Respuestas de Error:** Estándar RFC 7807 (`ProblemDetail`) ante `BusinessRuleException` (por ejemplo, si `endTime <= startTime`) o `ResourceNotFoundException`.
 
-### 2.2. Servicio de Aplicación (`MedicalRecordService`)
-- Método `addClinicalEntry(ClinicalEntryRequestDTO request, Long physicianUserId)`:
-  - Valida existencia del turno `Appointment` y del usuario médico `User`.
-  - Deriva el `Patient` directamente desde la relación del turno para garantizar consistencia relacional.
-  - Cifra el contenido clínico mediante `AesEncryptionService.encrypt(...)`.
-  - Persiste la entidad `ClinicalEntry` y mapea a `ClinicalEntryResponseDTO` enriquecido con el nombre del servicio del turno (`serviceName`).
+### 2.2. Capa de Aplicación (`CalendarBlockService.java`)
+- Verificar que las transacciones sean `@Transactional` para escritura y `@Transactional(readOnly = true)` para lectura.
+- Mantener la validación temporal `if (request.getEndTime().isBefore(request.getStartTime())) throw new BusinessRuleException(...)`.
 
 ---
 
 ## 3. Capa de Frontend (React 18 / TypeScript / Tailwind CSS)
 
-### 3.1. Formulario Modal: `NewClinicalNoteModal.tsx` *(Nuevo Componente)*
-- **Ubicación:** `frontend/src/features/clinical/NewClinicalNoteModal.tsx`
-- **Contrato de Props:**
+### 3.1. Definición de Tipos (`types/index.ts`)
+- Declarar la interfaz oficial de bloqueos:
   ```typescript
-  interface NewClinicalNoteModalProps {
-    isOpen: boolean;
-    onClose: () => void;
-    patient: Patient;
-    appointments: Appointment[];
-    onSaved: (entry: ClinicalEntry) => void;
+  export interface CalendarBlock {
+    id: number;
+    createdByUserId?: number;
+    createdByUserFullName?: string;
+    startTime: string; // ISO 8601
+    endTime: string;   // ISO 8601
+    reason: string;
+    createdAt?: string;
   }
   ```
-- **Campos del Formulario:**
-  1. **Selector de Turno / Sesión:**
-     - Menú desplegable (`Select`) con los turnos del paciente formateados (Fecha, Hora y Nombre del Servicio).
-     - Preselección automática del turno más reciente.
-     - Si el paciente no posee turnos confirmados, muestra advertencia clara.
-  2. **Área de Texto de Evolución:**
-     - `Textarea` multilínea amplio con validación de al menos 10 caracteres.
-     - Contador de caracteres reactivo.
-  3. **Plantillas Rápidas Clínicas (Atajos de Consulta):**
-     - Botones tipo "chip" para insertar texto base común con un clic:
-       - *Toxina Botulínica*: "Aplicación de toxina botulínica en tercio superior (...U). Buena tolerancia. Control en 15 días."
-       - *Peeling Químico*: "Sesión de peeling (...%). Exposición ... minutos. Neutralizado. Se indica FPS 50+ cada 3 hs."
-       - *Ácido Hialurónico*: "Relleno con ácido hialurónico con cánula en zona (...). Anestesia tópica. Sin hematomas inmediatos."
-- **Feedback:**
-  - Alerta de error mediante `Callout intent="error"` ante respuestas HTTP 400/409/500.
-  - Botón "Guardar evolución" con spinner `isLoading={saving}`.
 
-### 3.2. Integración en `MedicalRecordView.tsx`
-- **Ubicación:** `frontend/src/features/clinical/MedicalRecordView.tsx`
-- **Cambios:**
-  - En la pestaña `section === 'notas'`:
-    - Incorporar botón en el encabezado:
-      ```tsx
-      <div className="flex items-center justify-between gap-3 mb-4">
-        <div>
-          <h3 className="font-display font-bold text-sand-900">Notas clínicas</h3>
-          <p className="text-xs text-sand-500">Historial de evoluciones médicas y tratamientos realizados.</p>
-        </div>
-        {isMedicalStaff() && (
-          <Button onClick={() => setNewNoteOpen(true)} leftIcon={<Plus className="w-4 h-4" />}>
-            Nueva nota de evolución
-          </Button>
-        )}
-      </div>
-      ```
-    - Apertura reactiva de `NewClinicalNoteModal`.
-    - Al guardar:
-      ```tsx
-      onSaved={(newEntry) => {
-        setEntries((prev) => [newEntry, ...prev]);
-        toast.success('Nota de evolución registrada con éxito');
-      }}
-      ```
+### 3.2. Cliente HTTP y Modo Resiliente (`api.ts`)
+- Crear el objeto `calendarBlocksApi`:
+  - `getBlocks(start: string, end: string): Promise<CalendarBlock[]>`: Consume `GET /bloqueos?start=...&end=...` con fallback en memoria a `DEMO_BLOCKS`.
+  - `createBlock(data: { startTime: string; endTime: string; reason: string }, userId?: number): Promise<CalendarBlock>`: Consume `POST /bloqueos` enviando JSON y `userId` opcional.
+  - `deleteBlock(id: number): Promise<void>`: Consume `DELETE /bloqueos/{id}` y actualiza el almacenamiento local en caso de contingencia.
 
-### 3.3. Cliente API (`services/api.ts`)
-- Asegurar que `clinicalApi.addClinicalEntry` pase un fallback seguro de `physicianUserId` utilizando `currentUserId() ?? 2` y capture respuestas correctamente.
+### 3.3. Componente Modal: `CalendarBlockModal.tsx` *(Nuevo)*
+- **Ubicación:** `frontend/src/features/agenda/CalendarBlockModal.tsx`
+- **Contrato de Props:**
+  ```typescript
+  interface CalendarBlockModalProps {
+    isOpen: boolean;
+    onClose: () => void;
+    initialDate?: Date;
+    onSaved: () => void;
+  }
+  ```
+- **Características de UX y Ergonomía:**
+  - Campo de fecha con inicialización en el día seleccionado de la agenda.
+  - Interruptor (Toggle) de "Día completo": al activarse, deshabilita los selectores de hora y configura el rango de 00:00 a 23:59:59.
+  - Selectores de "Hora desde" y "Hora hasta" (valores entre 08:00 y 20:00 en saltos de 30 o 60 minutos) con validación reactiva de coherencia temporal.
+  - Campo de texto obligatorio "Motivo del bloqueo" (con sugerencias rápidas: *Cirugía programada*, *Congreso / Capacitación*, *Feriado / Asueto*, *Mantenimiento de consultorio*, *Licencia médica*).
+  - Alerta integrada de errores (`Callout`) para retroalimentación visual inmediata.
+  - Controles táctiles optimizados para dispositivos móviles (mínimo 44px de área táctil).
+
+### 3.4. Integración en la Vista de Agenda (`AgendaView.tsx`)
+- **Botón de Acción:**
+  - Agregar botón "Bloquear horario" en la cabecera de la agenda, visible exclusivamente para roles autorizados (`isMedicalStaff()`).
+- **Carga y Sincronización:**
+  - Invocar `calendarBlocksApi.getBlocks(start.toISOString(), end.toISOString())` de forma coordinada con la carga de turnos (`fetchAgenda`).
+  - Almacenar el estado reactivo `blocks: CalendarBlock[]`.
+- **Visualización en Grilla y Panel Lateral:**
+  - Renderizar bloques en el panel lateral de turnos del día seleccionado y en la vista semanal/diaria, con diseño distintivo (tarjeta con borde ámbar/rojo suave, ícono de candado, horario destacado y motivo visible).
+- **Acción de Desbloqueo / Liberación:**
+  - Botón "Liberar horario" en cada tarjeta de bloqueo.
+  - Al hacer clic, invocar el modal de confirmación `setConfirm(...)`: *"¿Deseas liberar este horario y permitir nuevamente la reserva de turnos?"*.
+  - Al confirmar, invocar `calendarBlocksApi.deleteBlock(id)` y refrescar la agenda reactivamente sin recargar la página.
 
 ---
 
-## 4. Pruebas y Plan de Verificación
+## 4. Suite de Pruebas y Criterios de Aceptación
 
-### 4.1. Suite de Pruebas Backend (JUnit 5 & Mockito)
-- Ejecutar pruebas en `MedicalRecordServiceTest.java`:
-  - `testAddClinicalEntry_EncryptsContent` (verifica cifrado de bytes).
-  - Escenarios de excepciones (turno no encontrado).
-- Comando:
-  ```bash
-  JAVA_HOME=/opt/homebrew/opt/openjdk@17 mvn test
-  ```
+### 4.1. Backend (JUnit 5 & Mockito)
+- Tests unitarios en `CalendarBlockServiceTest` y verificación de `CalendarBlockController`:
+  1. Creación exitosa de bloqueo con usuario autenticado resuelto automáticamente.
+  2. Fallo de validación cuando `endTime <= startTime` retornando `BusinessRuleException`.
+  3. Consulta por rango devolviendo lista de bloqueos en formato DTO.
+  4. Eliminación exitosa de bloqueo por ID.
+- Ejecución con OpenJDK 17: `JAVA_HOME=/opt/homebrew/opt/openjdk@17 mvn test`.
 
-### 4.2. Suite de Verificación Frontend
-- Compilación y tipado estricto:
-  ```bash
-  cd frontend && npm run build && npx tsc --noEmit
-  ```
+### 4.2. Frontend (TypeScript & Vite)
+- Validación de tipos sin errores: `npm run build` o `npx tsc --noEmit`.
+- Verificación de renderizado y flujos de usuario (creación, visualización y desbloqueo).
 
-### 4.3. Auditoría de Invariantes
-- Verificar que el contenido persista cifrado con AES-256-GCM.
-- Comprobar que cualquier edición posterior siga generando registros en `clinical_entries_audit`.
-- Confirmar que las respuestas sigan el estándar RFC 7807.
+---
+
+## 5. Auditoría de Invariantes del Repositorio
+- Preservar inmutable la anotación `@Version` en las entidades JPA.
+- Garantizar que las operaciones de indisponibilidad no alteren `clinical_entries_audit`.
+- Respuestas de excepción uniformes bajo el estándar RFC 7807.

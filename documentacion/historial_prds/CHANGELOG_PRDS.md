@@ -7,9 +7,22 @@
 
 ## 📜 Historial de Revisiones
 
+### 🔹 [Versión 23.0 (Fase 23 - Formulario de Bloqueos de Agenda e Indisponibilidad Médica)](PRD_Fase_23_Bloqueos_Agenda_Indisponibilidad.md)
+- **Fecha:** 2026-10-13
+- **Estado:** VIGENTE / IMPLEMENTADO
+- **Autor:** Equipo de Producto, UX & Arquitectura
+- **Cambios Principales:**
+  - Formulario modal `CalendarBlockModal.tsx` para bloqueo de horarios y días completos por la médica o el staff administrativo.
+  - Botón de acción "Bloquear horario" en `AgendaView.tsx` visible para perfiles autorizados (`DOCTORA` y `ADMIN`).
+  - Visualización integrada de franjas horarias bloqueadas e indisponibilidades junto a citas programadas.
+  - Acción de desbloqueo/liberación de horario con diálogo de confirmación.
+  - Integración en frontend `calendarBlocksApi` (`getBlocks`, `createBlock`, `deleteBlock`) con `/api/v1/bloqueos`.
+
+---
+
 ### 🔹 [Versión 22.0 (Fase 22 - Formulario de Nueva Nota de Evolución Clínica)](PRD_Fase_22_Nueva_Nota_Evolucion_Clinica.md)
 - **Fecha:** 2026-10-12
-- **Estado:** ESPECIFICADO / EN ESPERA DE APROBACIÓN
+- **Estado:** VIGENTE / IMPLEMENTADO
 - **Autor:** Equipo Médico, UX & Arquitectura
 - **Cambios Principales:**
   - Formulario modal `NewClinicalNoteModal.tsx` para redacción ágil de notas de evolución médica.
