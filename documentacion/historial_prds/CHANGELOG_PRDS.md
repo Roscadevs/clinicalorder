@@ -7,6 +7,18 @@
 
 ## 📜 Historial de Revisiones
 
+### 🔹 [Versión 25.0 (Fase 25 - Testing de Mutación Ad-Hoc sobre Operaciones Transaccionales)](PRD_Fase_25_Testing_Mutacion_AdHoc_Transaccional.md)
+- **Fecha:** 2026-10-13
+- **Estado:** VIGENTE / IMPLEMENTADO
+- **Autor:** Equipo de Arquitectura, QA & Testing de Mutación
+- **Cambios Principales:**
+  - Arnés automatizado ad-hoc de Testing de Mutación (`scripts/mutation_runner.py`) con respaldo inmutable y rollback atómico garantizado.
+  - Catálogo de 32+ mutantes sintéticos en 4 categorías: Balances y Pagos, Auditoría Legal e Invariantes, Concurrencia Optimista y Seguridad, y Validaciones Temporales y Unicidad.
+  - Blindaje y fortalecimiento de la suite de pruebas unitarias JUnit 5 en 6 servicios transaccionales clave.
+  - Meta de calidad estricta: Mutation Score del 100% (cero mutantes supervivientes) con preservación inmutable de `clinical_entries_audit` y `@Version`.
+
+---
+
 ### 🔹 [Versión 24.0 (Fase 24 - Gestión, Alta y Edición de Tratamientos del Catálogo)](PRD_Fase_24_Gestion_Y_Edicion_Tratamientos_Catalogo.md)
 - **Fecha:** 2026-10-13
 - **Estado:** VIGENTE / IMPLEMENTADO

@@ -12,6 +12,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
+import org.mockito.ArgumentCaptor;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
@@ -183,5 +184,83 @@ public class AuthServiceTest {
         when(passwordResetTokenRepository.findByToken("expired_token")).thenReturn(Optional.of(token));
 
         assertThrows(BusinessRuleException.class, () -> authService.resetPassword(request));
+    }
+
+    @Test
+    @DisplayName("registerUser debe cifrar la contraseña con BCrypt y persistir el usuario")
+    void testRegisterUser_Success_HashesPasswordWithBCrypt_KillsMutant() {
+        RegisterUserRequestDTO request = RegisterUserRequestDTO.builder()
+                .username("operador.nuevo")
+                .password("SecureP@ssword2026")
+                .email("operador@clinica.com")
+                .fullName("Operador Nuevo")
+                .role(UserRole.SECRETARIA)
+                .build();
+
+        when(userRepository.existsByUsername("operador.nuevo")).thenReturn(false);
+        when(userRepository.existsByEmail("operador@clinica.com")).thenReturn(false);
+        when(passwordEncoder.encode("SecureP@ssword2026")).thenReturn("$2a$12$hashedPasswordSample");
+        when(userRepository.save(any(User.class))).thenAnswer(inv -> inv.getArgument(0));
+
+        User result = authService.registerUser(request);
+
+        assertNotNull(result);
+        assertEquals("operador.nuevo", result.getUsername());
+        assertEquals("operador@clinica.com", result.getEmail());
+        assertTrue(result.getActive());
+
+        ArgumentCaptor<User> userCaptor = ArgumentCaptor.forClass(User.class);
+        verify(userRepository, times(1)).save(userCaptor.capture());
+        User savedUser = userCaptor.getValue();
+
+        verify(passwordEncoder, times(1)).encode("SecureP@ssword2026");
+        assertNotEquals("SecureP@ssword2026", savedUser.getPasswordHash(),
+                "La contraseña nunca debe persistirse en texto plano");
+        assertEquals("$2a$12$hashedPasswordSample", savedUser.getPasswordHash());
+    }
+
+    @Test
+    @DisplayName("registerUser debe lanzar BusinessRuleException ante nombre de usuario duplicado")
+    void testRegisterUser_DuplicateUsername_ThrowsBusinessRule_KillsMutant() {
+        RegisterUserRequestDTO request = RegisterUserRequestDTO.builder()
+                .username("dra.valeria")
+                .password("Password123!")
+                .email("otra@clinica.com")
+                .fullName("Dra. Valeria Gómez")
+                .role(UserRole.DOCTORA)
+                .build();
+
+        when(userRepository.existsByUsername("dra.valeria")).thenReturn(true);
+
+        BusinessRuleException ex = assertThrows(BusinessRuleException.class,
+                () -> authService.registerUser(request));
+
+        assertTrue(ex.getMessage().contains("ya se encuentra registrado"),
+                "Debe advertir que el nombre de usuario ya existe");
+        verify(passwordEncoder, never()).encode(any());
+        verify(userRepository, never()).save(any());
+    }
+
+    @Test
+    @DisplayName("registerUser debe lanzar BusinessRuleException ante email duplicado")
+    void testRegisterUser_DuplicateEmail_ThrowsBusinessRule_KillsMutant() {
+        RegisterUserRequestDTO request = RegisterUserRequestDTO.builder()
+                .username("nuevo.usuario")
+                .password("Password123!")
+                .email("valeria@clinicadermatologica.com")
+                .fullName("Nuevo Usuario")
+                .role(UserRole.SECRETARIA)
+                .build();
+
+        when(userRepository.existsByUsername("nuevo.usuario")).thenReturn(false);
+        when(userRepository.existsByEmail("valeria@clinicadermatologica.com")).thenReturn(true);
+
+        BusinessRuleException ex = assertThrows(BusinessRuleException.class,
+                () -> authService.registerUser(request));
+
+        assertTrue(ex.getMessage().contains("correo electrónico ya se encuentra registrado"),
+                "Debe advertir que el correo ya existe");
+        verify(passwordEncoder, never()).encode(any());
+        verify(userRepository, never()).save(any());
     }
 }

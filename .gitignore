@@ -51,3 +51,6 @@ temp/
 
 # Graphify generated output
 graphify-out/
+
+# Teamwork scratch runs
+.agents/teamwork/

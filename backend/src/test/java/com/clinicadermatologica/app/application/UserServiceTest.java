@@ -237,4 +237,19 @@ public class UserServiceTest {
         assertTrue(ex.getMessage().contains("No puede suspender su propia cuenta de administrador"));
         verify(userRepository, never()).save(any());
     }
+
+    @Test
+    @DisplayName("Debe permitir que el administrador en sesión reactive su propia cuenta (regla anti-lockout aplica solo ante suspensión)")
+    void testToggleUserActive_AdminSelfActivation_Allowed_KillsMutant() {
+        mockUser1.setActive(false);
+        when(userRepository.findById(1L)).thenReturn(Optional.of(mockUser1));
+        when(userRepository.save(any(User.class))).thenAnswer(invocation -> invocation.getArgument(0));
+
+        UserResponseDTO response = userService.toggleUserActive(1L, true, "admin");
+
+        assertNotNull(response);
+        assertTrue(response.getActive(), "La activación de la propia cuenta debe permitirse");
+        assertTrue(mockUser1.getActive());
+        verify(userRepository, times(1)).save(mockUser1);
+    }
 }
