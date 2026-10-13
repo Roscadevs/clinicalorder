@@ -14,6 +14,17 @@ export interface AuthResponse {
   expiresInMs: number; // Milisegundos de vigencia
 }
 
+export interface User {
+  id: number;
+  username: string;
+  email: string;
+  fullName: string;
+  role: UserRole;
+  active: boolean;
+  createdAt?: string;
+  updatedAt?: string;
+}
+
 export interface Patient {
   id: number; // Identificador
   name: string; // Nombre y apellido

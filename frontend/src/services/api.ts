@@ -15,7 +15,8 @@ import {
   PaymentType,
   PaymentConcept,
   PaymentReceipt,
-  UserRole
+  UserRole,
+  User
 } from '../types'; // Importación de contratos de tipos
 
 /** URL absoluta de la API (para requests fuera de axios, p. ej. fetch keepalive). */
@@ -176,7 +177,91 @@ export const authApi = {
       await api.post('/auth/register', data);
     } catch (err) {
       if (!isNetworkError(err)) throw err;
-      // Modo demo: se considera creado.
+      // Modo demo: se agrega a inMemoryUsers
+      const newUser: User = {
+        id: Date.now(),
+        username: data.username,
+        email: data.email,
+        fullName: data.fullName,
+        role: data.role,
+        active: true,
+        createdAt: new Date().toISOString(),
+        updatedAt: new Date().toISOString(),
+      };
+      inMemoryUsers = [newUser, ...inMemoryUsers];
+    }
+  },
+};
+
+// Nómina de operadores de demostración (backend apagado)
+const DEMO_USERS: User[] = [
+  { id: 1, username: 'admin', fullName: 'Dra. Paula Villa Fuhrmann', email: 'admin@clinica.com', role: 'ADMIN', active: true, createdAt: '2026-01-01T10:00:00Z', updatedAt: '2026-01-01T10:00:00Z' },
+  { id: 2, username: 'dra.valeria', fullName: 'Dra. Valeria Gómez', email: 'valeria@clinica.com', role: 'DOCTORA', active: true, createdAt: '2026-01-15T10:00:00Z', updatedAt: '2026-01-15T10:00:00Z' },
+  { id: 3, username: 'sofia.recepcion', fullName: 'Sofía Martínez', email: 'sofia@clinica.com', role: 'SECRETARIA', active: true, createdAt: '2026-02-01T10:00:00Z', updatedAt: '2026-02-01T10:00:00Z' },
+];
+
+let inMemoryUsers: User[] = [...DEMO_USERS];
+
+// --- SERVICIOS DE GESTIÓN DE USUARIOS DEL STAFF ---
+export const usersApi = {
+  /** Obtiene todos los usuarios del staff (solo ADMIN). GET /usuarios */
+  getAllUsers: async (): Promise<User[]> => {
+    try {
+      const response = await api.get<User[]>('/usuarios');
+      if (!Array.isArray(response.data)) throw new Error('Expected array');
+      inMemoryUsers = response.data;
+      return response.data;
+    } catch (err) {
+      if (!isNetworkError(err) && !(err instanceof Error && err.message === 'Expected array')) throw err;
+      return inMemoryUsers;
+    }
+  },
+  /** Actualiza un operador del staff (solo ADMIN). PUT /usuarios/{id} */
+  updateUser: async (
+    id: number,
+    data: { username: string; email: string; fullName: string; role: UserRole; password?: string }
+  ): Promise<User> => {
+    try {
+      const response = await api.put<User>(`/usuarios/${id}`, data);
+      const updated = response.data;
+      const idx = inMemoryUsers.findIndex((u) => u.id === id);
+      if (idx !== -1) inMemoryUsers[idx] = updated;
+      return updated;
+    } catch (err) {
+      if (!isNetworkError(err)) throw err;
+      const idx = inMemoryUsers.findIndex((u) => u.id === id);
+      if (idx !== -1) {
+        inMemoryUsers[idx] = {
+          ...inMemoryUsers[idx],
+          username: data.username,
+          email: data.email,
+          fullName: data.fullName,
+          role: data.role,
+          updatedAt: new Date().toISOString(),
+        };
+        return inMemoryUsers[idx];
+      }
+      throw err;
+    }
+  },
+  /** Alterna estado activo/suspendido de un operador (solo ADMIN). PATCH /usuarios/{id}/toggle-active */
+  toggleUserActive: async (id: number, active: boolean): Promise<User> => {
+    try {
+      const response = await api.patch<User>(`/usuarios/${id}/toggle-active`, null, {
+        params: { active },
+      });
+      const updated = response.data;
+      const idx = inMemoryUsers.findIndex((u) => u.id === id);
+      if (idx !== -1) inMemoryUsers[idx] = updated;
+      return updated;
+    } catch (err) {
+      if (!isNetworkError(err)) throw err;
+      const idx = inMemoryUsers.findIndex((u) => u.id === id);
+      if (idx !== -1) {
+        inMemoryUsers[idx] = { ...inMemoryUsers[idx], active, updatedAt: new Date().toISOString() };
+        return inMemoryUsers[idx];
+      }
+      throw err;
     }
   },
 };

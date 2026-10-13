@@ -6,6 +6,7 @@ import com.clinicadermatologica.app.infrastructure.persistence.jpa.JpaUserReposi
 import lombok.RequiredArgsConstructor; // Genera constructor con inyección de dependencias de campos 'final'
 import org.springframework.stereotype.Component; // Componente administrado por el contenedor de Spring
 
+import java.util.List;
 import java.util.Optional; // Contenedor opcional
 
 /**
@@ -33,6 +34,11 @@ public class UserRepositoryAdapter implements UserRepository {
     }
 
     @Override
+    public List<User> findAll() {
+        return jpaUserRepository.findAll(); // Delega la obtención de todos los usuarios
+    }
+
+    @Override
     public User save(User user) {
         return jpaUserRepository.save(user); // Persiste la entidad
     }
@@ -45,5 +51,15 @@ public class UserRepositoryAdapter implements UserRepository {
     @Override
     public boolean existsByEmail(String email) {
         return jpaUserRepository.existsByEmail(email); // Verifica unicidad
+    }
+
+    @Override
+    public boolean existsByUsernameAndIdNot(String username, Long id) {
+        return jpaUserRepository.existsByUsernameAndIdNot(username, id); // Verifica unicidad de username excluyendo ID
+    }
+
+    @Override
+    public boolean existsByEmailAndIdNot(String email, Long id) {
+        return jpaUserRepository.existsByEmailAndIdNot(email, id); // Verifica unicidad de email excluyendo ID
     }
 }

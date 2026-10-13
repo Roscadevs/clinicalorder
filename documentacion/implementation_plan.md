@@ -1,127 +1,166 @@
-# Plan Técnico de Implementación - Fase 20: Edición y Gestión Integral de Pacientes
-
-**Fecha:** 2026-10-12  
-**Documento de Especificación:** [PRD_Fase_20_Edicion_Y_Gestion_Pacientes.md](file:///Users/eliasignaciodelcastillogodoy/Desktop/E/UNIVERSIDAD/clases-material/2026-2do/ingenieria-2/TP/documentacion/historial_prds/PRD_Fase_20_Edicion_Y_Gestion_Pacientes.md)  
-**Estado:** EN ESPERA DE APROBACIÓN (Fase 3)  
+# PLAN TÉCNICO DE IMPLEMENTACIÓN: FASE 21
+## Gestión, Listado y Edición de Usuarios del Staff (Panel Administrador)
 
 ---
 
-## 1. Arquitectura y Modelo de Datos (Base de Datos & JPA)
+## 1. Arquitectura y Base de Datos
 
-### 1.1. Tablas y Restricciones (Flyway)
-- **Tabla afectada:** `paciente` (definida en [V4__schema_redesign.sql](file:///Users/eliasignaciodelcastillogodoy/Desktop/E/UNIVERSIDAD/clases-material/2026-2do/ingenieria-2/TP/backend/src/main/resources/db/migration/V4__schema_redesign.sql#L64-L78)).
-- **Restricciones activas:**
-  - `dni VARCHAR(8) NOT NULL UNIQUE CHECK (dni ~ '^[0-9]{7,8}$')`
+### 1.1. Base de Datos (PostgreSQL & Flyway)
+- **Tabla:** `usuario` (creada en migración Flyway `V4__create_initial_schema.sql`).
+- **Esquema:**
+  - `id BIGSERIAL PRIMARY KEY`
+  - `username VARCHAR(50) NOT NULL UNIQUE`
+  - `password_hash VARCHAR(255) NOT NULL`
   - `email VARCHAR(100) NOT NULL UNIQUE`
-  - `phone VARCHAR(20) NOT NULL UNIQUE`
-  - `active BOOLEAN NOT NULL DEFAULT TRUE`
-- **Integridad referencial y bajas:** No se ejecutan migraciones DDL nuevas. La baja es estrictamente lógica (`active = false`), garantizando que las foreign keys restrictivas desde `cita` (`ON DELETE RESTRICT`) e `historia_clinica` (`ON DELETE RESTRICT`) permanezcan íntegras y sin violaciones referenciales.
-- **Invariante de auditoría:** Se verifica que la tabla `clinical_entries_audit` no sea afectada por modificaciones en datos de filiación del paciente.
-
-### 1.2. Dominio y Repositorios JPA
-- **Entidad:** [Patient.java](file:///Users/eliasignaciodelcastillogodoy/Desktop/E/UNIVERSIDAD/clases-material/2026-2do/ingenieria-2/TP/backend/src/main/java/com/clinicadermatologica/app/domain/model/Patient.java) preservando `@Version` para concurrencia optimista.
-- **Contrato de Repositorio:** [PatientRepository.java](file:///Users/eliasignaciodelcastillogodoy/Desktop/E/UNIVERSIDAD/clases-material/2026-2do/ingenieria-2/TP/backend/src/main/java/com/clinicadermatologica/app/domain/repository/PatientRepository.java):
-  - Añadir método `boolean existsByEmailAndIdNot(String email, Long id)`
-  - Añadir método `boolean existsByPhoneAndIdNot(String phone, Long id)`
-- **Adaptador e Implementación Spring Data JPA:**
-  - [JpaPatientRepository.java](file:///Users/eliasignaciodelcastillogodoy/Desktop/E/UNIVERSIDAD/clases-material/2026-2do/ingenieria-2/TP/backend/src/main/java/com/clinicadermatologica/app/infrastructure/persistence/jpa/JpaPatientRepository.java): Definir las firmas de métodos derivados de Spring Data.
-  - [PatientRepositoryAdapter.java](file:///Users/eliasignaciodelcastillogodoy/Desktop/E/UNIVERSIDAD/clases-material/2026-2do/ingenieria-2/TP/backend/src/main/java/com/clinicadermatologica/app/infrastructure/persistence/adapter/PatientRepositoryAdapter.java): Delegar la invocación al repositorio JPA subyacente.
+  - `full_name VARCHAR(100) NOT NULL`
+  - `role VARCHAR(20) NOT NULL` (`ADMIN`, `DOCTORA`, `SECRETARIA`)
+  - `active BOOLEAN NOT NULL DEFAULT true`
+  - `created_at TIMESTAMP WITH TIME ZONE NOT NULL DEFAULT NOW()`
+  - `updated_at TIMESTAMP WITH TIME ZONE NOT NULL DEFAULT NOW()`
+- **Estrategia Flyway:** No se requieren migraciones DDL adicionales ya que la tabla cuenta con todas las columnas necesarias. Se preserva el principio de migraciones no destructivas.
 
 ---
 
-## 2. Capa Backend (Spring Boot 3)
+## 2. Capa de Backend (Spring Boot 3 / Clean Architecture)
 
-### 2.1. Servicio de Aplicación (`PatientService.java`)
-- **Modificación en `updatePatient(Long id, PatientRequestDTO request)`:**
-  1. Recuperar la entidad por ID (`findById`). Si no existe, lanzar `ResourceNotFoundException("Paciente no encontrado con ID " + id)`.
-  2. Validar colisión de email: `if (patientRepository.existsByEmailAndIdNot(request.getEmail(), id))` $\rightarrow$ lanzar `BusinessRuleException("Ya existe otro paciente registrado con el correo " + request.getEmail())`.
-  3. Validar colisión de teléfono: `if (patientRepository.existsByPhoneAndIdNot(request.getPhone(), id))` $\rightarrow$ lanzar `BusinessRuleException("Ya existe otro paciente registrado con el teléfono " + request.getPhone())`.
-  4. Actualizar campos demográficos permitidos: `name`, `phone`, `email`, `birthDate`.
-  5. Preservar `dni` inmutable (o verificar que coincida con el existente).
-  6. Guardar la entidad y retornar `PatientResponseDTO` mapeado.
-- **Método `deactivatePatient(Long id)`:**
-  1. Recuperar la entidad por ID.
-  2. Asignar `patient.setActive(false)`.
-  3. Persistir y confirmar el soft-delete.
+### 2.1. Entidades y Repositorios
+- **Entidad:** [`User.java`](file:///Users/eliasignaciodelcastillogodoy/Desktop/E/UNIVERSIDAD/clases-material/2026-2do/ingenieria-2/TP/backend/src/main/java/com/clinicadermatologica/app/domain/model/User.java)
+  - Conserva su mapeo JPA intacto. No se modifica ninguna anotación existente.
+- **Contrato de Dominio:** [`UserRepository.java`](file:///Users/eliasignaciodelcastillogodoy/Desktop/E/UNIVERSIDAD/clases-material/2026-2do/ingenieria-2/TP/backend/src/main/java/com/clinicadermatologica/app/domain/repository/UserRepository.java)
+  - Adición de métodos de consulta:
+    - `List<User> findAll();`
+    - `boolean existsByUsernameAndIdNot(String username, Long id);`
+    - `boolean existsByEmailAndIdNot(String email, Long id);`
+- **Repositorio JPA:** [`JpaUserRepository.java`](file:///Users/eliasignaciodelcastillogodoy/Desktop/E/UNIVERSIDAD/clases-material/2026-2do/ingenieria-2/TP/backend/src/main/java/com/clinicadermatologica/app/infrastructure/persistence/jpa/JpaUserRepository.java)
+  - Métodos derivados Spring Data JPA:
+    - `boolean existsByUsernameAndIdNot(String username, Long id);`
+    - `boolean existsByEmailAndIdNot(String email, Long id);`
+- **Adaptador:** [`UserRepositoryAdapter.java`](file:///Users/eliasignaciodelcastillogodoy/Desktop/E/UNIVERSIDAD/clases-material/2026-2do/ingenieria-2/TP/backend/src/main/java/com/clinicadermatologica/app/infrastructure/persistence/adapter/UserRepositoryAdapter.java)
+  - Implementación de los nuevos métodos delegando en `JpaUserRepository`.
 
-### 2.2. Controlador REST (`PatientController.java`)
-- **Endpoint `PUT /api/v1/pacientes/{id}`:**
-  - `@PreAuthorize("hasAnyRole('DOCTORA', 'SECRETARIA', 'ADMIN')")`
-  - Validar request body con `@Valid @RequestBody PatientRequestDTO request`.
-  - Retornar `HttpStatus.OK` con `PatientResponseDTO`.
-- **Endpoint `DELETE /api/v1/pacientes/{id}`:**
-  - `@PreAuthorize("hasAnyRole('DOCTORA', 'SECRETARIA', 'ADMIN')")`
-  - Invocar `patientService.deactivatePatient(id)`.
-  - Retornar `HttpStatus.NO_CONTENT` (HTTP 204).
-- **Manejo de Errores RFC 7807:**
-  - Las excepciones `BusinessRuleException` y `ResourceNotFoundException` son capturadas por [GlobalExceptionHandler.java](file:///Users/eliasignaciodelcastillogodoy/Desktop/E/UNIVERSIDAD/clases-material/2026-2do/ingenieria-2/TP/backend/src/main/java/com/clinicadermatologica/app/presentation/advice/GlobalExceptionHandler.java), retornando `ProblemDetail` con código 400/404/409 sin filtrar stack traces.
+### 2.2. DTOs (Data Transfer Objects)
+- **`UserResponseDTO.java`** (Nuevo en `presentation/dto`):
+  - Campos: `id`, `username`, `email`, `fullName`, `role`, `active`, `createdAt`, `updatedAt`.
+  - **Seguridad Criptográfica:** No incluye `passwordHash` bajo ninguna circunstancia, eliminando la filtración de credenciales.
+- **`UpdateUserRequestDTO.java`** (Nuevo en `presentation/dto`):
+  - Campos:
+    - `@NotBlank @Size(min = 3, max = 50) private String username;`
+    - `@NotBlank @Email private String email;`
+    - `@NotBlank private String fullName;`
+    - `@NotNull private UserRole role;`
+    - `private String password;` (Opcional; si no viene vacío, debe tener al menos 8 caracteres).
+
+### 2.3. Servicio de Aplicación (`UserService.java`)
+- **Clase:** `com.clinicadermatologica.app.application.service.UserService`
+- **Anotaciones:** `@Service`, `@RequiredArgsConstructor`, `@Slf4j`
+- **Dependencias:** `UserRepository`, `PasswordEncoder`
+- **Métodos:**
+  - `@Transactional(readOnly = true) public List<UserResponseDTO> getAllUsers()`:
+    - Retorna todos los usuarios ordenados por ID mapeados a `UserResponseDTO`.
+  - `@Transactional public UserResponseDTO updateUser(Long id, UpdateUserRequestDTO request)`:
+    - Valida existencia del usuario (404 `ResourceNotFoundException`).
+    - Valida unicidad de `username` mediante `existsByUsernameAndIdNot` (409/400 `BusinessRuleException`).
+    - Valida unicidad de `email` mediante `existsByEmailAndIdNot` (409/400 `BusinessRuleException`).
+    - Actualiza `fullName`, `username`, `email` y `role`.
+    - Si `request.getPassword()` no es nulo ni vacío, valida longitud y codifica con BCrypt (`passwordEncoder.encode`).
+    - Guarda y retorna `UserResponseDTO`.
+  - `@Transactional public UserResponseDTO toggleUserActive(Long id, boolean active, String currentUsername)`:
+    - Valida existencia del usuario (404).
+    - Valida regla de negocio anti-lockout: si el usuario es el administrador en sesión y se intenta desactivar (`!active`), rechaza la solicitud (`BusinessRuleException("No puede suspender su propia cuenta de administrador en sesión")`).
+    - Actualiza `active = active`.
+    - Guarda y retorna `UserResponseDTO`.
+
+### 2.4. Controlador REST (`UserController.java`)
+- **Ruta:** `/usuarios` (prefijo `/api/v1/usuarios`)
+- **Anotaciones:** `@RestController`, `@RequestMapping("/usuarios")`, `@RequiredArgsConstructor`, `@PreAuthorize("hasRole('ADMIN')")`
+- **Endpoints:**
+  - `GET /usuarios`: retorna `ResponseEntity<List<UserResponseDTO>>` (HTTP 200).
+  - `PUT /usuarios/{id}`: recibe `@PathVariable Long id`, `@Valid @RequestBody UpdateUserRequestDTO request`, retorna `ResponseEntity<UserResponseDTO>` (HTTP 200).
+  - `PATCH /usuarios/{id}/toggle-active`: recibe `@PathVariable Long id`, `@RequestParam boolean active`, `Authentication auth`, retorna `ResponseEntity<UserResponseDTO>` (HTTP 200).
+- **Manejo de Errores:** Centralizado en `GlobalExceptionHandler` con formato estándar RFC 7807 (`ProblemDetail`).
+
+### 2.5. Seguridad Perimetral (`SecurityConfig.java`)
+- Agregar regla explícita en `securityFilterChain`:
+  - `.requestMatchers("/usuarios/**").hasRole("ADMIN")`
 
 ---
 
-## 3. Capa Frontend (React 18 / TypeScript)
+## 3. Capa de Frontend (React 18 / TypeScript / Tailwind CSS)
 
-### 3.1. Cliente de API (`patientsApi` en `src/services/api.ts`)
-- **Implementar método `updatePatient`:**
-  - Firma: `updatePatient: async (id: number, patient: Partial<Patient>): Promise<Patient>`
-  - Llamada HTTP: `PUT /pacientes/${id}` enviando el payload sanitizado.
-  - Modo demo: actualizar el registro en `demo_patients` de `localStorage`.
-  - Invalidador: Limpiar caché en memoria `patientSearchCache.clear()`.
-- **Implementar método `deactivatePatient`:**
-  - Firma: `deactivatePatient: async (id: number): Promise<void>`
-  - Llamada HTTP: `DELETE /pacientes/${id}`.
-  - Modo demo: marcar `active: false` en `localStorage`.
-  - Invalidador: Limpiar `patientSearchCache.clear()`.
-
-### 3.2. Formulario Dual (`PacienteForm.tsx`)
-- **Interfaz de Props extendida:**
+### 3.1. Definición de Tipos (`types/index.ts`)
+- Declarar interfaz `User`:
   ```typescript
-  export interface PacienteFormProps {
-    patient?: Patient; // Si está definido -> MODO EDICIÓN
-    onSuccess?: (patient: Patient) => void;
-    onCancel?: () => void;
-    initialQuery?: string;
-    showHeader?: boolean;
-    className?: string;
+  export interface User {
+    id: number;
+    username: string;
+    email: string;
+    fullName: string;
+    role: UserRole;
+    active: boolean;
+    createdAt?: string;
+    updatedAt?: string;
   }
   ```
-- **Comportamiento en Modo Edición (`patient !== undefined`):**
-  - Inicializar `useForm` con los datos del paciente (`name`, `dni`, `phone`, `email`, `birthDate`).
-  - Campo DNI: Renderizar con atributo `disabled={isEditMode}`, estilo visual atenuado y badge aclaratorio: *"Identificador civil inmutable"*.
-  - Título y textos: Cabecera *"Modificar datos del paciente"*, subtítulo *"Actualizá la información de contacto y filiación"*, botón principal *"Guardar cambios"*.
-  - Al enviar: invocar `patientsApi.updatePatient(patient.id, sanitizedData)`.
-- **Comportamiento en Modo Alta (`patient === undefined`):**
-  - Mantiene intacto el flujo actual de creación (`patientsApi.createPatient`).
 
-### 3.3. Integración en `PatientDirectoryView.tsx`
-- En la tarjeta del paciente seleccionado ([PatientDirectoryView.tsx#L76-L91](file:///Users/eliasignaciodelcastillogodoy/Desktop/E/UNIVERSIDAD/clases-material/2026-2do/ingenieria-2/TP/frontend/src/features/clinical/PatientDirectoryView.tsx#L76-L91)):
-  - Agregar botón de acción *"Editar"* (ícono `Pencil`) $\rightarrow$ abre `Modal` con `PacienteForm` en modo edición.
-  - Agregar botón *"Desactivar"* (ícono `UserX` o `Trash2`, variante fantasma/peligro) $\rightarrow$ abre diálogo de confirmación de baja lógica.
-  - Al confirmar baja: invocar `deactivatePatient(selected.id)`, emitir toast de éxito y deseleccionar paciente (`setSelected(null)`).
-  - Al guardar edición: actualizar el estado `selected` con la respuesta y refrescar la búsqueda.
+### 3.2. Cliente API (`services/api.ts`)
+- Declarar `usersApi`:
+  - `getAllUsers(): Promise<User[]>`: invoca `GET /usuarios` con fallback resiliente en modo demo (`DEMO_USERS`).
+  - `updateUser(id: number, data: UpdateUserData): Promise<User>`: invoca `PUT /usuarios/{id}`.
+  - `toggleUserActive(id: number, active: boolean): Promise<User>`: invoca `PATCH /usuarios/{id}/toggle-active?active={active}`.
 
-### 3.4. Integración en `MedicalRecordView.tsx`
-- En la cabecera clínica del paciente ([MedicalRecordView.tsx#L200-L215](file:///Users/eliasignaciodelcastillogodoy/Desktop/E/UNIVERSIDAD/clases-material/2026-2do/ingenieria-2/TP/frontend/src/features/clinical/MedicalRecordView.tsx#L200-L215)):
-  - Incorporar botón compacto *"Editar datos"* junto a la información de contacto.
-  - Abrir modal de edición para que la médica pueda corregir teléfono o email en tiempo real si el paciente lo manifiesta durante la sesión.
+### 3.3. Modal Dual de Usuario (`UserFormModal.tsx`)
+- Props actualizadas:
+  - `isOpen: boolean`
+  - `onClose: () => void`
+  - `user?: User | null` (usuario a editar, o nulo para alta)
+  - `onSaved: () => void`
+- Comportamiento:
+  - En alta (`!user`): contraseña requerida (min 8 caracteres), título "Nuevo usuario del staff", botón "Crear usuario".
+  - En edición (`!!user`): campos precargados con `user`, contraseña opcional ("Nueva contraseña - dejar en blanco para conservar actual"), título "Editar usuario del staff", botón "Guardar cambios".
+  - Captura y muestra de errores del backend con `Callout intent="error"`.
 
-### 3.5. Ergonomía Táctil y Mobile
-- Botones de acción táctiles con `min-h-[44px]` y espaciado adaptado a pulgares.
-- Modales responsivos con cierre claro y foco automático.
+### 3.4. Pestaña de Usuarios en Panel Administrador (`AdminServicesView.tsx`)
+- Estado:
+  - Lista de operadores `users: User[]`, `loadingUsers: boolean`.
+  - Usuario en edición `editingUser: User | null`.
+  - Diálogo de confirmación para suspender/reactivar usuario.
+- UI:
+  - Encabezado con título "Usuarios del staff", descripción y botón principal "Crear usuario".
+  - Tabla responsiva estilizada con Tailwind:
+    - **Nombre y Usuario:** Nombre en negrita, username en texto secundario.
+    - **Correo:** Dirección institucional.
+    - **Rol:** Badge visual (`ADMIN` -> Púrpura, `DOCTORA` -> Turquesa, `SECRETARIA` -> Ámbar).
+    - **Estado:** Badge (`Activo` -> Verde esmeralda, `Suspendido` -> Rojo/Gris suave).
+    - **Acciones:**
+      - Botón "Editar" (ícono `Pencil`) -> abre `UserFormModal` con el usuario.
+      - Botón "Suspender" / "Reactivar" (ícono `UserX` / `UserCheck`) -> abre modal de confirmación con advertencia de seguridad.
 
 ---
 
-## 4. Suite de Pruebas y Verificación
+## 4. Pruebas y Plan de Verificación
 
-### 4.1. Backend (JUnit 5 & Mockito)
-- **Archivo:** `backend/src/test/java/com/clinicadermatologica/app/application/PatientServiceTest.java`
-- **Casos de prueba a incluir/verificar:**
-  1. `updatePatient_Success`: Actualiza datos demográficos y valida DTO resultante.
-  2. `updatePatient_NotFound_ThrowsException`: Lanza `ResourceNotFoundException` ante ID inexistente.
-  3. `updatePatient_EmailCollision_ThrowsBusinessRuleException`: Verifica que arroje error si el email pertenece a otro paciente.
-  4. `updatePatient_PhoneCollision_ThrowsBusinessRuleException`: Verifica que arroje error si el teléfono pertenece a otro paciente.
-  5. `deactivatePatient_Success`: Verifica que el flag `active` pase a `false`.
-- **Ejecución autónoma:** `cd backend && mvn test -Dtest=PatientServiceTest`
+### 4.1. Pruebas Unitarias Backend (`UserServiceTest.java`)
+- Suite completa con JUnit 5 y Mockito:
+  1. `testGetAllUsers_Success`: retorna lista de DTOs sin hash.
+  2. `testUpdateUser_Success`: actualiza datos y codifica contraseña si fue provista.
+  3. `testUpdateUser_KeepPassword_WhenPasswordEmpty`: conserva hash anterior si contraseña es nula o vacía.
+  4. `testUpdateUser_UsernameCollision_ThrowsException`: rechaza si el username ya lo tiene otro operador.
+  5. `testUpdateUser_EmailCollision_ThrowsException`: rechaza si el email ya lo tiene otro operador.
+  6. `testUpdateUser_UserNotFound_ThrowsException`: emite 404 si el ID no existe.
+  7. `testToggleUserActive_Success`: actualiza estado activo.
+  8. `testToggleUserActive_SelfDeactivationBlocked_ThrowsException`: rechaza si el admin intenta suspender su propia cuenta.
 
-### 4.2. Frontend (Compilación y Tipos)
-- Ejecución de chequeo estricto TypeScript: `cd frontend && npx tsc --noEmit`
-- Verificación del empaquetado de producción: `cd frontend && npm run build`
+### 4.2. Ejecución de Tests y Verificación Autónoma
+- Backend:
+  ```bash
+  JAVA_HOME=/opt/homebrew/opt/openjdk@17 mvn test
+  ```
+- Frontend:
+  ```bash
+  cd frontend && npm run build && npx tsc --noEmit
+  ```
+
+### 4.3. Auditoría de Invariantes
+- Verificar que ninguna operación sobre `usuario` afecte la tabla `clinical_entries_audit`.
+- Confirmar que las respuestas de error sigan el estándar RFC 7807 (`ProblemDetail`).
+- Confirmar que `passwordHash` jamás sea serializado en respuestas REST.

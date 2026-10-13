@@ -7,9 +7,22 @@
 
 ## 📜 Historial de Revisiones
 
-### 🔹 [Versión 20.0 (Fase 20 - Edición y Gestión Integral de Pacientes)](PRD_Fase_20_Edicion_Y_Gestion_Pacientes.md)
+### 🔹 [Versión 21.0 (Fase 21 - Gestión, Listado y Edición de Usuarios del Staff)](PRD_Fase_21_Gestion_Y_Edicion_Usuarios_Staff.md)
 - **Fecha:** 2026-10-12
 - **Estado:** ESPECIFICADO / EN ESPERA DE APROBACIÓN
+- **Autor:** Equipo de Producto, Seguridad & Arquitectura
+- **Cambios Principales:**
+  - Panel completo de nómina de usuarios del staff en `AdminServicesView.tsx` con badges de rol, estado y acciones.
+  - Modo dual en `UserFormModal.tsx`: Alta (contraseña requerida) y Edición (contraseña opcional, precarga reactiva).
+  - Nuevo `UserResponseDTO` que blinda el sistema impidiendo la exposición del hash BCrypt en respuestas REST.
+  - Endpoints administrativos en backend (`/api/v1/usuarios`) y validación de unicidad cruzada en `UserService`.
+  - Acciones seguras de activación/suspensión de cuentas con regla anti-lockout para administradores.
+
+---
+
+### 🔹 [Versión 20.0 (Fase 20 - Edición y Gestión Integral de Pacientes)](PRD_Fase_20_Edicion_Y_Gestion_Pacientes.md)
+- **Fecha:** 2026-10-12
+- **Estado:** VIGENTE / IMPLEMENTADO
 - **Autor:** Equipo de Producto, Arquitectura & UX
 - **Cambios Principales:**
   - Modo dual en `PacienteForm.tsx`: Alta (inserción con DNI editable) y Edición (precarga reactiva con DNI inmutable).
