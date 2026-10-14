@@ -3,7 +3,7 @@ package com.clinicadermatologica.app.application.service;
 import com.clinicadermatologica.app.domain.exception.*;
 import com.clinicadermatologica.app.domain.model.*;
 import com.clinicadermatologica.app.domain.repository.PasswordResetTokenRepository;
-import com.clinicadermatologica.app.domain.repository.UserRepository;
+import com.clinicadermatologica.app.infrastructure.persistence.dao.UserDAO;
 import com.clinicadermatologica.app.infrastructure.notification.EmailNotificationService;
 import com.clinicadermatologica.app.infrastructure.security.JwtTokenProvider;
 import com.clinicadermatologica.app.presentation.dto.*;
@@ -31,7 +31,7 @@ import java.util.UUID;
 @Slf4j
 public class AuthService {
 
-    private final UserRepository userRepository;
+    private final UserDAO userRepository;
     private final PasswordResetTokenRepository passwordResetTokenRepository;
     private final PasswordEncoder passwordEncoder; // BCrypt costo 12 — ver SecurityConfig.passwordEncoder()
     private final JwtTokenProvider jwtTokenProvider;

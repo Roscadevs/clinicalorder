@@ -2,7 +2,7 @@ package com.clinicadermatologica.app.presentation.controller;
 
 import com.clinicadermatologica.app.application.service.CalendarBlockService;
 import com.clinicadermatologica.app.domain.model.User;
-import com.clinicadermatologica.app.domain.repository.UserRepository;
+import com.clinicadermatologica.app.infrastructure.persistence.dao.UserDAO;
 import com.clinicadermatologica.app.presentation.dto.CalendarBlockRequestDTO;
 import com.clinicadermatologica.app.presentation.dto.CalendarBlockResponseDTO;
 import org.junit.jupiter.api.DisplayName;
@@ -32,7 +32,7 @@ class CalendarBlockControllerTest {
     private CalendarBlockService blockService;
 
     @Mock
-    private UserRepository userRepository;
+    private UserDAO userRepository;
 
     @Mock
     private Authentication authentication;

@@ -2,7 +2,7 @@ package com.clinicadermatologica.app.infrastructure.payment.strategy;
 
 import com.clinicadermatologica.app.application.strategy.PaymentRegistrationStrategy;
 import com.clinicadermatologica.app.domain.model.*;
-import com.clinicadermatologica.app.domain.repository.PaymentTransactionRepository;
+import com.clinicadermatologica.app.infrastructure.persistence.dao.PaymentTransactionDAO;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 
@@ -20,7 +20,7 @@ import java.math.BigDecimal;
 @RequiredArgsConstructor
 public class MercadoPagoPaymentStrategy implements PaymentRegistrationStrategy {
 
-    private final PaymentTransactionRepository paymentTransactionRepository;
+    private final PaymentTransactionDAO paymentTransactionRepository;
 
     @Override
     public PaymentType supportedType() {

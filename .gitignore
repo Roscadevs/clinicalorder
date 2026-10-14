@@ -14,6 +14,7 @@ target/
 .mvn/timing.properties
 .mvn/wrapper/maven-wrapper.jar
 
+
 # Node / React / Vite
 node_modules/
 dist/
@@ -49,8 +50,15 @@ temp/
 .*.bkp
 *.visual-check.*
 
-# Graphify generated output
-graphify-out/
-
 # Teamwork scratch runs
 .agents/teamwork/
+
+# Documentacion de trabajo propia (local, no se versiona)
+docs/
+
+# Graphify: se versiona solo el grafo (fuente de verdad) y el reporte.
+# El HTML, la cache y el vault de Obsidian son derivados y se regeneran con
+# `graphify update .` y `graphify export obsidian` (ver README).
+graphify-out/*
+!graphify-out/graph.json
+!graphify-out/GRAPH_REPORT.md

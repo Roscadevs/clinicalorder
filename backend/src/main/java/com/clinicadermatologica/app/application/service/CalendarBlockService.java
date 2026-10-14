@@ -4,8 +4,8 @@ import com.clinicadermatologica.app.domain.exception.BusinessRuleException; // E
 import com.clinicadermatologica.app.domain.exception.ResourceNotFoundException; // Excepción de no encontrado
 import com.clinicadermatologica.app.domain.model.CalendarBlock; // Entidad CalendarBlock
 import com.clinicadermatologica.app.domain.model.User; // Entidad User
-import com.clinicadermatologica.app.domain.repository.CalendarBlockRepository; // Repositorio de bloqueos
-import com.clinicadermatologica.app.domain.repository.UserRepository; // Repositorio de usuarios
+import com.clinicadermatologica.app.infrastructure.persistence.dao.CalendarBlockDAO; // DAO de bloqueos
+import com.clinicadermatologica.app.infrastructure.persistence.dao.UserDAO; // DAO de usuarios
 import com.clinicadermatologica.app.presentation.dto.CalendarBlockRequestDTO; // DTO de entrada
 import com.clinicadermatologica.app.presentation.dto.CalendarBlockResponseDTO; // DTO de salida
 import lombok.RequiredArgsConstructor; // Inyección por constructor
@@ -23,8 +23,8 @@ import java.util.stream.Collectors; // Streams
 @RequiredArgsConstructor // Inyección por constructor
 public class CalendarBlockService {
 
-    private final CalendarBlockRepository calendarBlockRepository; // Repositorio de bloqueos
-    private final UserRepository userRepository; // Repositorio de usuarios
+    private final CalendarBlockDAO calendarBlockRepository; // DAO de bloqueos
+    private final UserDAO userRepository; // DAO de usuarios
 
     /**
      * Crea un nuevo bloqueo de calendario (vacaciones, feriados o cierres de consultorio).

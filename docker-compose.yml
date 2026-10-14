@@ -8,7 +8,7 @@ services:
     environment:
       POSTGRES_DB: clinica_dermatologica
       POSTGRES_USER: postgres
-      POSTGRES_PASSWORD: postgrespassword
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:?define POSTGRES_PASSWORD en tu archivo .env}
     ports:
       - "5432:5432"
     volumes:
@@ -31,15 +31,15 @@ services:
     environment:
       - SPRING_DATASOURCE_URL=jdbc:postgresql://postgres:5432/clinica_dermatologica?sslmode=disable
       - SPRING_DATASOURCE_USERNAME=postgres
-      - SPRING_DATASOURCE_PASSWORD=postgrespassword
-      - JWT_SECRET_KEY=MiClaveSecretaSuperSeguraParaLaClinicaDermatologica2026EsteticaYSalud
-      - MERCADOPAGO_PUBLIC_KEY=${MERCADOPAGO_PUBLIC_KEY:-TEST-7bfe7629-c425-4def-a3d2-cd5c67cd44a0}
-      - MERCADOPAGO_ACCESS_TOKEN=${MERCADOPAGO_ACCESS_TOKEN:-TEST-8031893331544574-082123-75359de71994fa0989744ffa69fc1bc0-333038110}
-      - MERCADOPAGO_WEBHOOK_SECRET=${MERCADOPAGO_WEBHOOK_SECRET:-test_webhook_secret}
-      - GEMINI_API_KEY=${GEMINI_API_KEY:-AQ.Ab8RN6JtRjMndLmRpDeKhB60q8XernnuMzaJXyWk99XmT7zI4A}
-      - GEMINI_MODEL=${GEMINI_MODEL:-gemini-3.5-flash-lite}
-      - SUPABASE_STORAGE_URL=${SUPABASE_STORAGE_URL:-https://jcsgixxatmqzpdcflevw.supabase.co/storage/v1}
-      - SUPABASE_ANON_KEY=${SUPABASE_ANON_KEY:-sb_publishable_vCQ09c8ZXEKvQeNipnC5gA_d8VQnASl}
+      - SPRING_DATASOURCE_PASSWORD=${POSTGRES_PASSWORD:?define POSTGRES_PASSWORD en tu archivo .env}
+      - JWT_SECRET_KEY=${JWT_SECRET_KEY:?define JWT_SECRET_KEY en tu archivo .env}
+      - MERCADOPAGO_PUBLIC_KEY=${MERCADOPAGO_PUBLIC_KEY:?define MERCADOPAGO_PUBLIC_KEY en tu archivo .env}
+      - MERCADOPAGO_ACCESS_TOKEN=${MERCADOPAGO_ACCESS_TOKEN:?define MERCADOPAGO_ACCESS_TOKEN en tu archivo .env}
+      - MERCADOPAGO_WEBHOOK_SECRET=${MERCADOPAGO_WEBHOOK_SECRET:?define MERCADOPAGO_WEBHOOK_SECRET en tu archivo .env}
+      - GEMINI_API_KEY=${GEMINI_API_KEY:?define GEMINI_API_KEY en tu archivo .env}
+      - GEMINI_MODEL=${GEMINI_MODEL:-gemini-1.5-flash}
+      - SUPABASE_STORAGE_URL=${SUPABASE_STORAGE_URL:?define SUPABASE_STORAGE_URL en tu archivo .env}
+      - SUPABASE_ANON_KEY=${SUPABASE_ANON_KEY:?define SUPABASE_ANON_KEY en tu archivo .env}
     depends_on:
       postgres:
         condition: service_healthy
@@ -57,8 +57,9 @@ services:
     command: sh -c "npm install && npm run dev -- --host 0.0.0.0"
     environment:
       - VITE_API_BASE_URL=http://localhost:8080/api/v1
-      - VITE_SUPABASE_URL=${SUPABASE_URL:-https://jcsgixxatmqzpdcflevw.supabase.co}
-      - VITE_SUPABASE_ANON_KEY=${SUPABASE_ANON_KEY:-sb_publishable_vCQ09c8ZXEKvQeNipnC5gA_d8VQnASl}
+      - VITE_SUPABASE_URL=${SUPABASE_URL:?define SUPABASE_URL en tu archivo .env}
+      - VITE_SUPABASE_ANON_KEY=${SUPABASE_ANON_KEY:?define SUPABASE_ANON_KEY en tu archivo .env}
+      - AES_ENCRYPTION_KEY=${AES_ENCRYPTION_KEY:?define AES_ENCRYPTION_KEY en tu archivo .env}
     depends_on:
       - backend
     restart: unless-stopped

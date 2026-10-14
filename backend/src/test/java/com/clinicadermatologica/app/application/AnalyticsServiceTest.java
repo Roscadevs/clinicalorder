@@ -2,8 +2,8 @@ package com.clinicadermatologica.app.application;
 
 import com.clinicadermatologica.app.application.service.AnalyticsService;
 import com.clinicadermatologica.app.domain.model.*;
-import com.clinicadermatologica.app.infrastructure.persistence.jpa.JpaAppointmentRepository;
-import com.clinicadermatologica.app.infrastructure.persistence.jpa.JpaPaymentTransactionRepository;
+import com.clinicadermatologica.app.infrastructure.persistence.dao.AppointmentDAO;
+import com.clinicadermatologica.app.infrastructure.persistence.dao.PaymentTransactionDAO;
 import com.clinicadermatologica.app.presentation.dto.AnalyticsKpisResponseDTO;
 import com.clinicadermatologica.app.presentation.dto.TreatmentRankingDTO;
 import org.junit.jupiter.api.DisplayName;
@@ -31,10 +31,10 @@ import static org.mockito.Mockito.when;
 public class AnalyticsServiceTest {
 
     @Mock
-    private JpaPaymentTransactionRepository paymentTransactionRepository;
+    private PaymentTransactionDAO paymentTransactionRepository;
 
     @Mock
-    private JpaAppointmentRepository appointmentRepository;
+    private AppointmentDAO appointmentRepository;
 
     @InjectMocks
     private AnalyticsService analyticsService;

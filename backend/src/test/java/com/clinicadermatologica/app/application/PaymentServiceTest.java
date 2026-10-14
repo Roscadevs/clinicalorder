@@ -6,7 +6,7 @@ import com.clinicadermatologica.app.application.strategy.PaymentStrategyFactory;
 import com.clinicadermatologica.app.domain.exception.BusinessRuleException;
 import com.clinicadermatologica.app.domain.exception.ResourceNotFoundException;
 import com.clinicadermatologica.app.domain.model.*;
-import com.clinicadermatologica.app.domain.repository.*;
+import com.clinicadermatologica.app.infrastructure.persistence.dao.*;
 import com.clinicadermatologica.app.infrastructure.payment.MercadoPagoPaymentAdapter;
 import com.clinicadermatologica.app.presentation.dto.FinalizePaymentRequestDTO;
 import com.clinicadermatologica.app.presentation.dto.PaymentReceiptDTO;
@@ -37,9 +37,9 @@ import static org.mockito.Mockito.*;
 @ExtendWith(MockitoExtension.class)
 public class PaymentServiceTest {
 
-    @Mock private PaymentTransactionRepository paymentTransactionRepository;
-    @Mock private AppointmentRepository appointmentRepository;
-    @Mock private UserRepository userRepository;
+    @Mock private PaymentTransactionDAO paymentTransactionRepository;
+    @Mock private AppointmentDAO appointmentRepository;
+    @Mock private UserDAO userRepository;
     @Mock private MercadoPagoPaymentAdapter mercadoPagoAdapter;
     @Mock private PaymentStrategyFactory paymentStrategyFactory;
 

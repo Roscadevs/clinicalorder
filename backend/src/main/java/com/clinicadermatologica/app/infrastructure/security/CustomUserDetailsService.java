@@ -1,7 +1,7 @@
 package com.clinicadermatologica.app.infrastructure.security;
 
 import com.clinicadermatologica.app.domain.model.User;
-import com.clinicadermatologica.app.domain.repository.UserRepository;
+import com.clinicadermatologica.app.infrastructure.persistence.dao.UserDAO;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.*;
@@ -21,7 +21,7 @@ import java.util.Collections;
 @RequiredArgsConstructor
 public class CustomUserDetailsService implements UserDetailsService {
 
-    private final UserRepository userRepository;
+    private final UserDAO userRepository;
 
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {

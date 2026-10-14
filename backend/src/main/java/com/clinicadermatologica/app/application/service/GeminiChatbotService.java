@@ -1,7 +1,7 @@
 package com.clinicadermatologica.app.application.service;
 
 import com.clinicadermatologica.app.domain.model.DermatologicService; // Entidad del dominio
-import com.clinicadermatologica.app.domain.repository.DermatologicServiceRepository; // Repositorio de servicios
+import com.clinicadermatologica.app.infrastructure.persistence.dao.DermatologicServiceDAO; // DAO de servicios
 import com.clinicadermatologica.app.infrastructure.ai.GeminiApiClientAdapter; // Adaptador Gemini
 import com.clinicadermatologica.app.presentation.dto.GeminiChatRequestDTO; // DTO entrada
 import com.clinicadermatologica.app.presentation.dto.GeminiChatResponseDTO; // DTO respuesta
@@ -19,7 +19,7 @@ import java.util.List; // Listas
 public class GeminiChatbotService {
 
     private final GeminiApiClientAdapter geminiApiClientAdapter; // Adaptador de llamada a Gemini API
-    private final DermatologicServiceRepository serviceRepository; // Repositorio para obtener catálogo fresco
+    private final DermatologicServiceDAO serviceRepository; // DAO para obtener catálogo fresco
 
     /**
      * Procesa la consulta del usuario inyectando el catálogo de servicios activo en el System Prompt.

@@ -39,10 +39,11 @@ spring:
     locations: classpath:db/migration
 
 # Configuración personalizada de Seguridad y Tokens JWT
-security:
+security: 
   jwt:
-    secret-key: ${JWT_SECRET_KEY:MiClaveSecretaSuperSeguraParaLaClinicaDermatologica2026EsteticaYSalud}
+    secret-key: ${JWT_SECRET_KEY}
     expiration-time-ms: 28800000
+
 
 # Cifrado AES-256-GCM para contenido clínico sensible (historias clínicas, entradas clínicas)
 # SEGURIDAD: La clave real NUNCA debe estar en este archivo.
@@ -50,7 +51,7 @@ security:
 # Generar con: openssl rand -base64 32
 app:
   encryption:
-    key: ${AES_ENCRYPTION_KEY:3V0xvxxcK3EadxYqHBe7moUn0WEJgSkwpXnPXrLN4cM=}
+    key: ${AES_ENCRYPTION_KEY}
   cors:
     allowed-origins: ${APP_CORS_ALLOWED_ORIGINS:http://localhost:5173,http://localhost:3000,http://127.0.0.1:5173,https://clinicalorder.eliasdelcastillo.com,https://clinicalorder.onrender.com}
 
@@ -77,5 +78,6 @@ gemini:
 supabase:
   storage:
     url: ${SUPABASE_STORAGE_URL:https://jcsgixxatmqzpdcflevw.supabase.co/storage/v1}
-    anon-key: ${SUPABASE_ANON_KEY:sb_publishable_vCQ09c8ZXEKvQeNipnC5gA_d8VQnASl}
+    anon-key: ${SUPABASE_ANON_KEY}
     bucket-name: photos
+

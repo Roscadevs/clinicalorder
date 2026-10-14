@@ -3,7 +3,7 @@ package com.clinicadermatologica.app.application.service;
 import com.clinicadermatologica.app.application.strategy.PaymentStrategyFactory;
 import com.clinicadermatologica.app.domain.exception.*;
 import com.clinicadermatologica.app.domain.model.*;
-import com.clinicadermatologica.app.domain.repository.*;
+import com.clinicadermatologica.app.infrastructure.persistence.dao.*;
 import com.clinicadermatologica.app.infrastructure.payment.MercadoPagoPaymentAdapter;
 import com.clinicadermatologica.app.presentation.dto.FinalizePaymentRequestDTO;
 import com.clinicadermatologica.app.presentation.dto.PaymentReceiptDTO;
@@ -37,9 +37,9 @@ import java.util.Map;
 @Slf4j
 public class PaymentService {
 
-    private final PaymentTransactionRepository paymentTransactionRepository;
-    private final AppointmentRepository appointmentRepository;
-    private final UserRepository userRepository;
+    private final PaymentTransactionDAO paymentTransactionRepository;
+    private final AppointmentDAO appointmentRepository;
+    private final UserDAO userRepository;
     private final MercadoPagoPaymentAdapter mercadoPagoAdapter;
     private final PaymentStrategyFactory paymentStrategyFactory; // Patrón Strategy
 

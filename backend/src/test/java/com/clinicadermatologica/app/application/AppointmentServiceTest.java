@@ -4,7 +4,7 @@ import com.clinicadermatologica.app.application.service.AppointmentService;
 import com.clinicadermatologica.app.domain.exception.BusinessRuleException;
 import com.clinicadermatologica.app.domain.exception.SlotUnavailableException;
 import com.clinicadermatologica.app.domain.model.*;
-import com.clinicadermatologica.app.domain.repository.*;
+import com.clinicadermatologica.app.infrastructure.persistence.dao.*;
 import com.clinicadermatologica.app.infrastructure.payment.MercadoPagoPaymentAdapter;
 import com.clinicadermatologica.app.presentation.dto.BookAppointmentRequestDTO;
 import com.clinicadermatologica.app.presentation.dto.PaymentPreferenceResponseDTO;
@@ -34,12 +34,12 @@ import static org.mockito.Mockito.*;
 @ExtendWith(MockitoExtension.class)
 public class AppointmentServiceTest {
 
-    @Mock private AppointmentRepository appointmentRepository;
-    @Mock private PatientRepository patientRepository;
-    @Mock private DermatologicServiceRepository serviceRepository;
-    @Mock private UserRepository userRepository;
-    @Mock private PaymentTransactionRepository paymentTransactionRepository;
-    @Mock private CalendarBlockRepository calendarBlockRepository;
+    @Mock private AppointmentDAO appointmentRepository;
+    @Mock private PatientDAO patientRepository;
+    @Mock private DermatologicServiceDAO serviceRepository;
+    @Mock private UserDAO userRepository;
+    @Mock private PaymentTransactionDAO paymentTransactionRepository;
+    @Mock private CalendarBlockDAO calendarBlockRepository;
     @Mock private MercadoPagoPaymentAdapter mercadoPagoAdapter;
     @Mock private com.clinicadermatologica.app.application.service.PaymentService paymentService;
 

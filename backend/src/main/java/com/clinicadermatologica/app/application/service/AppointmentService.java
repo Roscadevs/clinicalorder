@@ -2,7 +2,7 @@ package com.clinicadermatologica.app.application.service;
 
 import com.clinicadermatologica.app.domain.exception.*;
 import com.clinicadermatologica.app.domain.model.*;
-import com.clinicadermatologica.app.domain.repository.*;
+import com.clinicadermatologica.app.infrastructure.persistence.dao.*;
 import com.clinicadermatologica.app.infrastructure.payment.MercadoPagoPaymentAdapter;
 import com.clinicadermatologica.app.presentation.dto.*;
 import com.mercadopago.resources.preference.Preference;
@@ -27,12 +27,12 @@ import java.util.stream.Collectors;
 @Slf4j
 public class AppointmentService {
 
-    private final AppointmentRepository appointmentRepository;
-    private final PatientRepository patientRepository;
-    private final DermatologicServiceRepository serviceRepository;
-    private final UserRepository userRepository;
-    private final PaymentTransactionRepository paymentTransactionRepository;
-    private final CalendarBlockRepository calendarBlockRepository;
+    private final AppointmentDAO appointmentRepository;
+    private final PatientDAO patientRepository;
+    private final DermatologicServiceDAO serviceRepository;
+    private final UserDAO userRepository;
+    private final PaymentTransactionDAO paymentTransactionRepository;
+    private final CalendarBlockDAO calendarBlockRepository;
     private final MercadoPagoPaymentAdapter mercadoPagoAdapter;
     private final PaymentService paymentService;
 

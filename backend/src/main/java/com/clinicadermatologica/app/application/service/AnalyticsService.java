@@ -6,8 +6,8 @@ import com.clinicadermatologica.app.domain.model.PaymentConcept;
 import com.clinicadermatologica.app.domain.model.PaymentStatus;
 import com.clinicadermatologica.app.domain.model.PaymentTransaction;
 import com.clinicadermatologica.app.domain.model.PaymentType;
-import com.clinicadermatologica.app.infrastructure.persistence.jpa.JpaAppointmentRepository;
-import com.clinicadermatologica.app.infrastructure.persistence.jpa.JpaPaymentTransactionRepository;
+import com.clinicadermatologica.app.infrastructure.persistence.dao.AppointmentDAO;
+import com.clinicadermatologica.app.infrastructure.persistence.dao.PaymentTransactionDAO;
 import com.clinicadermatologica.app.presentation.dto.AnalyticsKpisResponseDTO;
 import com.clinicadermatologica.app.presentation.dto.TreatmentRankingDTO;
 import lombok.RequiredArgsConstructor;
@@ -27,8 +27,7 @@ import java.util.stream.Collectors;
  *
  * Todas las operaciones se ejecutan con @Transactional(readOnly = true) para garantizar:
  * - Aislamiento de lectura no bloqueante sobre la agenda médica y transacciones.
- * - Inmutabilidad absoluta sobre los registros y tablas de auditoría clínica (clinical_entries_audit).
- * - Cero interferencia con la concurrencia optimista (@Version) de reservas concurrentes.
+ * - Lectura no bloqueante sobre la agenda médica y las transacciones de pago.
  */
 @Service
 @RequiredArgsConstructor
@@ -36,8 +35,8 @@ import java.util.stream.Collectors;
 @Slf4j
 public class AnalyticsService {
 
-    private final JpaPaymentTransactionRepository paymentTransactionRepository;
-    private final JpaAppointmentRepository appointmentRepository;
+    private final PaymentTransactionDAO paymentTransactionRepository;
+    private final AppointmentDAO appointmentRepository;
 
     /**
      * Calcula los KPIs consolidados de la clínica a partir de las transacciones aprobadas y citas registradas.

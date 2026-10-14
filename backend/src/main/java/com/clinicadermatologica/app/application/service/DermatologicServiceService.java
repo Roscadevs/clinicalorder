@@ -3,7 +3,7 @@ package com.clinicadermatologica.app.application.service;
 import com.clinicadermatologica.app.domain.exception.BusinessRuleException;
 import com.clinicadermatologica.app.domain.exception.ResourceNotFoundException;
 import com.clinicadermatologica.app.domain.model.DermatologicService;
-import com.clinicadermatologica.app.domain.repository.DermatologicServiceRepository;
+import com.clinicadermatologica.app.infrastructure.persistence.dao.DermatologicServiceDAO;
 import com.clinicadermatologica.app.presentation.dto.ServiceRequestDTO;
 import com.clinicadermatologica.app.presentation.dto.ServiceResponseDTO;
 import lombok.RequiredArgsConstructor;
@@ -20,7 +20,7 @@ import java.util.stream.Collectors;
 @RequiredArgsConstructor
 public class DermatologicServiceService {
 
-    private final DermatologicServiceRepository serviceRepository;
+    private final DermatologicServiceDAO serviceRepository;
 
     /**
      * Obtiene el catálogo de servicios activos para la vista pública y el chatbot.

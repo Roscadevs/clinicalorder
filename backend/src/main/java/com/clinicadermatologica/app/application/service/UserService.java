@@ -3,7 +3,7 @@ package com.clinicadermatologica.app.application.service;
 import com.clinicadermatologica.app.domain.exception.BusinessRuleException;
 import com.clinicadermatologica.app.domain.exception.ResourceNotFoundException;
 import com.clinicadermatologica.app.domain.model.User;
-import com.clinicadermatologica.app.domain.repository.UserRepository;
+import com.clinicadermatologica.app.infrastructure.persistence.dao.UserDAO;
 import com.clinicadermatologica.app.presentation.dto.UpdateUserRequestDTO;
 import com.clinicadermatologica.app.presentation.dto.UserResponseDTO;
 import lombok.RequiredArgsConstructor;
@@ -23,7 +23,7 @@ import java.util.List;
 @Slf4j
 public class UserService {
 
-    private final UserRepository userRepository;
+    private final UserDAO userRepository;
     private final PasswordEncoder passwordEncoder;
 
     /**
