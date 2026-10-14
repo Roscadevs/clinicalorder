@@ -176,9 +176,14 @@ clínicas) tiene una estructura de puerto + adaptador (`domain/repository` +
 └── README.md
 ```
 
-> La carpeta `graphify-out/` (si existe) es un grafo de conocimiento generado por la
-> herramienta [graphify](https://github.com/Graphify-Labs/graphify) y **no se versiona**.
-> Ver [docs/graphify.md](docs/graphify.md) para cómo generarlo.
+> La carpeta `graphify-out/` contiene un grafo de conocimiento del sistema generado con
+> [graphify](https://github.com/Graphify-Labs/graphify). Solo se versiona `graph.json`
+> (la fuente de verdad) y `GRAPH_REPORT.md`; el resto (HTML, caché y el vault de Obsidian)
+> es derivado y se regenera localmente.
+>
+> **Para ver el grafo en Obsidian** (igual que lo ve el resto del equipo): instalá graphify
+> una vez (`uv tool install graphifyy --python 3.12`) y luego, desde la raíz del repo, corré
+> `graphify export obsidian`. Abrí `graphify-out/obsidian/` como vault en Obsidian.
 
 ---
 

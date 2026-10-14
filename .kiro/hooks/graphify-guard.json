@@ -1,0 +1,16 @@
+{
+  "version": "v1",
+  "hooks": [
+    {
+      "name": "Proteger graphify-out de escrituras",
+      "trigger": "PreToolUse",
+      "description": "Pide confirmación antes de que un agente escriba o borre dentro de graphify-out/ (archivos generados).",
+      "matcher": "fs_write|str_replace|fs_append|delete_file",
+      "action": {
+        "type": "command",
+        "command": "powershell -NoProfile -ExecutionPolicy Bypass -File .kiro/hooks/graphify-guard.ps1",
+        "timeout": 15
+      }
+    }
+  ]
+}

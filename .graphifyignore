@@ -1,0 +1,68 @@
+# .graphifyignore — acota el grafo de conocimiento SOLO al código del sistema.
+#
+# Sintaxis idéntica a .gitignore (last-match-wins, negación con "!", anclaje de
+# directorios). Los patrones se evalúan relativos a la carpeta sobre la que se
+# corre graphify (la raíz del repo).
+#
+# Objetivo: que la vista en Obsidian y el grafo representen EL SISTEMA real
+# (backend/src + frontend/src), no la documentación ni los metadatos de agentes.
+# Sin esto, graphify indexa cientos de archivos de prosa y genera miles de notas
+# ilegibles.
+
+# --- Documentación y texto en prosa (no es el sistema) ---
+documentacion/
+docs/
+*.md
+!README.md
+
+# --- Metadatos de agentes de IA (briefings, dispatches, análisis) ---
+.agents/
+.github/
+GEMINI.md
+PROJECT.md
+AGENTS.md
+
+# --- Salida de la propia herramienta (evita auto-referencia) ---
+graphify-out/
+
+# --- Configuración de Kiro (hooks, steering) ---
+.kiro/
+
+# --- Prototipos y utilidades que no son el sistema a presentar ---
+nextjs/
+scripts/
+
+# --- Dependencias y artefactos de build ---
+node_modules/
+dist/
+dist-ssr/
+target/
+*.class
+*.jar
+
+# --- Manifiestos de build (no son código del sistema) ---
+backend/pom.xml
+frontend/package.json
+frontend/package-lock.json
+
+# --- Backend: solo código fuente principal, sin tests ni recursos no-código ---
+backend/src/test/
+backend/HELP.md
+backend/.env.example
+
+# --- Frontend: fuera assets binarios, estilos sueltos y scripts de prueba ---
+frontend/public/
+frontend/src/assets/
+frontend/test-login.js
+frontend/test-rbac.js
+frontend/.env.example
+frontend/.env.production
+
+# --- Archivos sueltos en la raíz que no forman parte del sistema ---
+TestUrl.java
+render.yaml
+vercel.json
+*.config.js
+*.config.ts
+tsconfig*.json
+package-lock.json

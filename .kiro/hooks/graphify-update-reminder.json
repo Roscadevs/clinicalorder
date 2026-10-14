@@ -1,0 +1,15 @@
+{
+  "version": "v1",
+  "hooks": [
+    {
+      "name": "Recordar actualizar el grafo graphify",
+      "trigger": "PostFileSave",
+      "description": "Al guardar código de backend/src o frontend/src, recuerda regenerar el grafo de graphify para mantener la vista de Obsidian sincronizada con el sistema.",
+      "matcher": "(backend[\\\\/]src[\\\\/]main|frontend[\\\\/]src)[\\\\/].*\\.(java|ts|tsx)$",
+      "action": {
+        "type": "agent",
+        "prompt": "Se guardó un archivo de código del sistema (backend/src o frontend/src). Si graphify está instalado, el grafo de conocimiento en graphify-out/ quedó potencialmente desactualizado respecto al sistema. Para mantener la vista de Obsidian sincronizada, conviene regenerarlo ejecutando desde la raíz del repo: `graphify update . && graphify export obsidian`. Respeta el alcance definido en .graphifyignore (solo código del sistema). No edites a mano los archivos de graphify-out/. Si graphify no está instalado, ignora este recordatorio."
+      }
+    }
+  ]
+}
