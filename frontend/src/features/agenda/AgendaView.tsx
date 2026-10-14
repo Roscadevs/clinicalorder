@@ -548,7 +548,7 @@ const TodayPanel: React.FC<{
       ) : (
         <div className="space-y-1.5 lg:max-h-[560px] lg:overflow-y-auto lg:pr-1">
           {appts.map((a) => (
-            <ApptChip key={a.id} appt={a} now={now} compact={false} onClick={() => onSelectAppt(a)} />
+            <ApptChip key={a.id} appt={a} now={now} compact={false} onSelectAppt={onSelectAppt} />
           ))}
         </div>
       )}
@@ -683,7 +683,7 @@ const TimeGrid: React.FC<{
                         </div>
                       ))}
                       {dayAppts.map((a) => (
-                        <ApptChip key={a.id} appt={a} now={now} compact={isWeek} onClick={() => onSelectAppt(a)} />
+                        <ApptChip key={a.id} appt={a} now={now} compact={isWeek} onSelectAppt={onSelectAppt} />
                       ))}
                     </div>
                   );
@@ -705,7 +705,7 @@ const MonthGrid: React.FC<{
   now: number;
   onSelectDay: (d: Date) => void;
   onSelectAppt: (a: Appointment) => void;
-}> = ({ anchor, apptsByDay, blocksByDay, onSelectDay }) => {
+}> = ({ anchor, apptsByDay, blocksByDay, now, onSelectDay }) => {
   const first = startOfMonth(anchor);
   const gridStart = startOfWeek(first);
   const cells = Array.from({ length: 42 }, (_, i) => addDays(gridStart, i));
@@ -745,7 +745,7 @@ const MonthGrid: React.FC<{
                   </div>
                 ))}
                 {dayAppts.slice(0, 2).map((a) => {
-                  const vs = getVisualStatus(a);
+                  const vs = getVisualStatus(a, now);
                   return (
                     <div key={a.id} className={cn('flex items-center gap-1 text-[10px] truncate rounded px-1 py-0.5', STATUS_STYLES[vs].badge)}>
                       <span className="font-bold">{fmtTime(a.startTime)}</span>
@@ -768,25 +768,35 @@ const MonthGrid: React.FC<{
 };
 
 // ── Chip de turno en la grilla ─────────────────────────────────────────────────
-const ApptChip: React.FC<{ appt: Appointment; now: number; compact: boolean; onClick: () => void }> = ({ appt, now, compact, onClick }) => {
-  const vs = getVisualStatus(appt, now);
-  const s = STATUS_STYLES[vs];
-  return (
-    <button
-      onClick={onClick}
-      className={cn('w-full text-left p-2 rounded-lg border text-xs transition-colors', s.card)}
-    >
-      <div className="flex items-center justify-between gap-1">
-        <span className="font-bold text-sand-900 truncate">{appt.patientName}</span>
-        <span className="text-[10px] font-bold text-sand-700 bg-white/70 px-1 py-0.5 rounded flex-shrink-0">{fmtTime(appt.startTime)}</span>
-      </div>
-      {!compact && <p className="text-[11px] text-sand-600 truncate mt-0.5">{appt.serviceName}</p>}
-      <p className="text-[10px] font-semibold mt-0.5 text-sand-700">
-        {vs === 'COMPLETED' ? 'Pago completo' : vs === 'OVERDUE' ? 'Sin atender' : s.label}
-      </p>
-    </button>
-  );
-};
+const ApptChip = React.memo<{ appt: Appointment; now: number; compact: boolean; onSelectAppt: (a: Appointment) => void }>(
+  ({ appt, now, compact, onSelectAppt }) => {
+    const vs = getVisualStatus(appt, now);
+    const s = STATUS_STYLES[vs];
+    return (
+      <button
+        onClick={() => onSelectAppt(appt)}
+        className={cn('w-full text-left p-2 rounded-lg border text-xs transition-colors', s.card)}
+      >
+        <div className="flex items-center justify-between gap-1">
+          <span className="font-bold text-sand-900 truncate">{appt.patientName}</span>
+          <span className="text-[10px] font-bold text-sand-700 bg-white/70 px-1 py-0.5 rounded flex-shrink-0">{fmtTime(appt.startTime)}</span>
+        </div>
+        {!compact && <p className="text-[11px] text-sand-600 truncate mt-0.5">{appt.serviceName}</p>}
+        <p className="text-[10px] font-semibold mt-0.5 text-sand-700">
+          {vs === 'COMPLETED' ? 'Pago completo' : vs === 'OVERDUE' ? 'Sin atender' : s.label}
+        </p>
+      </button>
+    );
+  },
+  (prev, next) => {
+    return (
+      prev.appt === next.appt &&
+      prev.compact === next.compact &&
+      prev.onSelectAppt === next.onSelectAppt &&
+      getVisualStatus(prev.appt, prev.now) === getVisualStatus(next.appt, next.now)
+    );
+  }
+);
 
 // ── Panel de detalle del turno ─────────────────────────────────────────────────
 const AppointmentDetail: React.FC<{
