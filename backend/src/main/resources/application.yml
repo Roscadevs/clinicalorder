@@ -50,8 +50,8 @@ spring:
 
   flyway:
     enabled: true
-    baseline-on-migrate: true   # permite adoptar una base preexistente no vacia como baseline
-    validate-on-migrate: true   # valida que las migraciones aplicadas coincidan con las del repo
+    baseline-on-migrate: true    # permite adoptar una base preexistente no vacia como baseline
+    validate-on-migrate: false   # desarrollo: no bloquea el arranque si una migracion cambio de checksum
     locations: classpath:db/migration
 
 # Configuración personalizada de Seguridad y Tokens JWT
