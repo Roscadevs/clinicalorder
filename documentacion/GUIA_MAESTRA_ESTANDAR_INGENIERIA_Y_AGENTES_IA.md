@@ -62,21 +62,26 @@ Para evitar documentos monolíticos inmanejables, la documentación debe organiz
 ```text
 documentacion/
 ├── 00_INDICE_GENERAL.md                                  # Mapa maestro, guía de lectura y referencias
+├── GUIA_MAESTRA_ESTANDAR_INGENIERIA_Y_AGENTES_IA.md      # Manual maestro de ingeniería y agentes
+├── base_de_datos/                                        # Scripts DDL, transacciones y esquemas SQL
+├── fases/                                                # Módulos y fases técnicas del sistema
+│   ├── fase1_especificacion_y_diseno/                    # Diagramas UML, MER, MR y Glosario Técnico
+│   ├── fase2_backend_y_calidad/                          # Lógica de negocio, algoritmos y tests unitarios
+│   ├── fase3_frontend_avanzado_y_devops/                 # UI/UX médica, estados y Docker
+│   ├── fase4_bpmn_y_casos_de_uso/                        # Modelado BPMN 2.0 y Casos de Uso formales
+│   ├── fase5_cicd_y_calidad_continua/                    # Workflows de GitHub Actions y calidad
+│   ├── fase6_comprobantes_y_consentimientos_pdf/         # Generación de reportes/PDFs y compliance
+│   ├── fase7_dashboard_metricas_y_kpis/                  # Métricas analíticas y fórmulas de negocio
+│   ├── fase8_recordatorios_y_calendario_sync/            # Integraciones y sincronización iCal/Google
+│   ├── fase9_guia_de_defensa_y_pitch/                    # Pitch, guión de demo y preguntas críticas
+│   ├── fase10_diseno_mobile_y_responsive/                # Ergonomía táctil, Bottom Sheets y UI adaptativa
+│   └── fase11_landing_y_enrutamiento/                    # Landing page, SEO y ruteo público
 ├── historial_prds/                                       # Bitácora cronológica inmutable de versiones del PRD
 │   ├── CHANGELOG_PRDS.md                                 # Tabla de cambios, autores, fecha y alcance
 │   ├── PRD_v1.0_Fase1_Inicial.md                         # Requerimientos base y universo de discurso
-│   ├── PRD_v2.0_Fase2_Backend_Storage_Tests.md           # Backend, persistencia y tests
 │   └── PRD_vN.0_FaseN_Master_Final.md                    # PRD vigente consolidado
-├── fase1_especificacion_y_diseno/                        # Diagramas UML, MER, MR y Glosario Técnico
-├── fase2_backend_y_calidad/                              # Lógica de negocio, algoritmos y tests unitarios
-├── fase3_frontend_avanzado_y_devops/                     # UI/UX médica, estados y Docker
-├── fase4_bpmn_y_casos_de_uso/                            # Modelado BPMN 2.0 y Casos de Uso formales
-├── fase5_cicd_y_calidad_continua/                        # Workflows de GitHub Actions y calidad
-├── fase6_comprobantes_y_pdf/                             # Generación de reportes/PDFs y compliance
-├── fase7_dashboard_metricas_y_kpis/                      # Métricas analíticas y fórmulas de negocio
-├── fase8_recordatorios_y_calendarios/                    # Integraciones y sincronización iCal/Google
-├── fase9_guia_de_defensa_y_pitch/                        # Pitch, guión de demo y preguntas críticas
-└── fase10_diseno_mobile_y_responsive/                    # Ergonomía táctil, Bottom Sheets y UI adaptativa
+├── recursos_academicos_originales/                       # Enunciados, consignas y diagramas base de la cátedra
+└── reportes/                                             # Reportes de calidad y testing de mutación
 ```
 
 ---
@@ -546,17 +551,11 @@ A continuación se detalla la estructura canónica recomendada para cualquier pr
 ├── 📂 documentacion/                     # Módulo centralizado de especificación formal
 │   ├── 📄 00_INDICE_GENERAL.md           # Índice maestro navegable
 │   ├── 📄 GUIA_MAESTRA_ESTANDAR.md       # Este documento maestro
+│   ├── 📂 base_de_datos/                 # DDL SQL y scripts de esquema
+│   ├── 📂 fases/                         # Fases y módulos técnicos del sistema (Fases 1 a 11)
 │   ├── 📂 historial_prds/                # CHANGELOG y PRD v1.0 a vN.0 (How I Spec)
-│   ├── 📂 fase1_especificacion_y_diseno/ # Diagramas UML, MER, MR y Glosario
-│   ├── 📂 fase2_backend_y_calidad/       # Algoritmos, storage y tests unitarios
-│   ├── 📂 fase3_frontend_y_devops/       # UI/UX médica y Docker
-│   ├── 📂 fase4_bpmn_y_casos_de_uso/     # Procesos BPMN 2.0 y Casos de Uso
-│   ├── 📂 fase5_cicd_y_calidad/          # Automatización de integración continua
-│   ├── 📂 fase6_comprobantes_pdf/        # Documentos PDF y firmas legales
-│   ├── 📂 fase7_dashboard_kpis/          # Métricas analíticas
-│   ├── 📂 fase8_recordatorios_sync/      # Google Calendar y archivos .ics
-│   ├── 📂 fase9_guia_defensa_pitch/      # Guión de demo y preguntas trampa
-│   └── 📂 fase10_diseno_mobile_first/    # BottomNav, Bottom Sheets y ergonomía táctil
+│   ├── 📂 recursos_academicos_originales/# Consignas y modelos base de la cátedra
+│   └── 📂 reportes/                      # Reportes de testing de mutación y calidad
 │
 ├── 📂 backend/                           # API REST Spring Boot (Java 17)
 │   ├── 📄 pom.xml                        # Dependencias Maven (Spring Boot 3, JPA, Security, Gemini, MP)
@@ -633,7 +632,7 @@ Sigue estrictamente el **Manual Maestro de Ingeniería de Software**:
 3. **Manejo de Errores:** Excepciones semánticas (`BusinessRuleException`, `ResourceNotFoundException`) gestionadas centralmente por `GlobalExceptionHandler` devolviendo RFC 7807.
 4. **Persistencia & Concurrencia:** Concurrencia optimista (`@Version`), transacciones `@Transactional` e índices en claves foráneas.
 5. **Calidad:** Crea los tests unitarios en JUnit 5/Mockito para cubrir casos de éxito y de error, y verifica la compilación con `tsc --noEmit` y `mvn test`.
-6. **Documentación:** Genera el documento de la fase en `documentacion/faseX_.../` y actualiza el PRD e índice general.
+6. **Documentación:** Genera el documento de la fase en `documentacion/fases/faseX_.../` y actualiza el PRD e índice general.
 ```
 
 ---

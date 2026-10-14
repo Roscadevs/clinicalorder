@@ -27,8 +27,8 @@ JAVA_HOME = os.environ.get("JAVA_HOME", "/opt/homebrew/opt/openjdk@17")
 DEFAULT_CATALOG_PATH = os.path.join(os.path.dirname(__file__), "mutants_catalog.json")
 BACKEND_DIR = os.path.abspath(os.path.join(os.path.dirname(__file__), "..", "backend"))
 PROJECT_ROOT = os.path.abspath(os.path.join(os.path.dirname(__file__), ".."))
-REPORT_JSON_PATH = os.path.join(PROJECT_ROOT, "documentacion", "mutation_report.json")
-REPORT_MD_PATH = os.path.join(PROJECT_ROOT, "documentacion", "mutation_report.md")
+REPORT_JSON_PATH = os.path.join(PROJECT_ROOT, "documentacion", "reportes", "mutation_report.json")
+REPORT_MD_PATH = os.path.join(PROJECT_ROOT, "documentacion", "reportes", "mutation_report.md")
 
 # Global state for emergency signal cleanup
 active_mutation = None  # (target_file_path, original_content, backup_file_path)
