@@ -57,8 +57,8 @@ class GeminiApiClientAdapterTest {
     }
 
     @Test
-    @DisplayName("Debe retornar la respuesta de contingencia institucional cuando todos los modelos fallan")
-    void shouldReturnInstitutionalFallbackWhenAllModelsFail() {
+    @DisplayName("Debe retornar una respuesta de contingencia neutra cuando todos los modelos fallan")
+    void shouldReturnFallbackWhenAllModelsFail() {
         // Adaptador apuntando a URL inaccesible para forzar el fallo de toda la cascada
         GeminiApiClientAdapter adapter = new GeminiApiClientAdapter(
                 "dummy-key",
@@ -68,35 +68,37 @@ class GeminiApiClientAdapterTest {
         );
 
         GeminiChatRequestDTO request = GeminiChatRequestDTO.builder()
-                .message("Hola, ¿tienen turnos disponibles?")
+                .message("¿Cómo registro un pago?")
                 .build();
 
         GeminiChatResponseDTO response = adapter.generateResponse(request, "Catalogo de prueba");
 
+        // El asistente interno no sugiere servicios ni ofrece reservar turnos (eso era de cliente).
         assertThat(response).isNotNull();
-        assertThat(response.getReply()).contains("intermitencia con el servidor de inteligencia artificial");
-        assertThat(response.getBookingActionUrl()).isEqualTo("/turnos/reservar");
-        assertThat(response.getSuggestedServices()).isNotEmpty();
+        assertThat(response.getReply()).contains("asistente interno");
+        assertThat(response.getBookingActionUrl()).isNull();
+        assertThat(response.getSuggestedServices()).isEmpty();
     }
 
     @Test
-    @DisplayName("Debe construir el System Instruction con blindaje de dominio, modismos de pago y jerarquía de catálogo")
-    void shouldBuildSystemInstructionWithDomainGuardrailsAndFinancialRules() {
+    @DisplayName("Debe construir el System Instruction como manual de usuario interno con restricciones de privacidad")
+    void shouldBuildSystemInstructionAsInternalUserManual() {
         GeminiApiClientAdapter adapter = new GeminiApiClientAdapter("dummy-key", "https://dummy.base.url", "gemini-3.5-flash-lite", null);
-        String catalog = "- Tratamiento: Peeling Químico\n  Precio Base: $42000.00 ARS\n";
+        String catalog = "- Servicio: Peeling Quimico\n  Descripcion: Renovacion celular\n  Duracion: 45 minutos\n";
 
         String instruction = adapter.buildSystemInstruction(catalog);
 
-        assertThat(instruction).contains("Dra. Paula Villa Fuhrmann");
-        assertThat(instruction).contains("ANTI-JAILBREAK");
-        assertThat(instruction).contains("código de programación");
-        assertThat(instruction).contains("problemas matemáticos");
-        assertThat(instruction).contains("MercadoPago");
-        assertThat(instruction).contains("seña del 50%");
-        assertThat(instruction).contains("plata");
-        assertThat(instruction).contains("Consultas Médicas y Diagnóstico");
-        assertThat(instruction).contains("Cuidado Facial y Renovación");
-        assertThat(instruction).contains("Armonización y Rejuvenecimiento");
-        assertThat(instruction).contains("Peeling Químico");
+        // Rol: asistente interno para empleados (no asistente de clientes).
+        assertThat(instruction).contains("Asistente Interno");
+        assertThat(instruction).contains("EMPLEADO");
+        // Debe poder explicar operaciones reales del sistema.
+        assertThat(instruction).contains("turno");
+        assertThat(instruction).contains("seña");
+        // Debe prohibir explícitamente datos sensibles, métricas y código.
+        assertThat(instruction).contains("historias clínicas");
+        assertThat(instruction).contains("métricas");
+        assertThat(instruction).contains("código");
+        // El catálogo de servicios se inyecta como contexto (sin precios).
+        assertThat(instruction).contains("Peeling Quimico");
     }
 }
