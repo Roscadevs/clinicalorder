@@ -14,6 +14,7 @@ target/
 .mvn/timing.properties
 .mvn/wrapper/maven-wrapper.jar
 
+
 # Node / React / Vite
 node_modules/
 dist/
@@ -49,8 +50,8 @@ temp/
 .*.bkp
 *.visual-check.*
 
-# Graphify generated output
-graphify-out/
-
 # Teamwork scratch runs
 .agents/teamwork/
+
+# Documentacion de trabajo propia (local, no se versiona)
+docs/
