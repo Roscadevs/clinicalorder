@@ -17,7 +17,7 @@ import org.springframework.web.multipart.MultipartFile;
 import java.util.List;
 
 import com.clinicadermatologica.app.domain.model.User;
-import com.clinicadermatologica.app.domain.repository.UserRepository;
+import com.clinicadermatologica.app.infrastructure.persistence.dao.UserDAO;
 import org.springframework.security.core.Authentication;
 
 /**
@@ -40,7 +40,7 @@ public class MedicalRecordController {
     private final MedicalRecordService medicalRecordService;
     private final ClinicalImageService imageService;
     private final MedicalRecordRepository medicalRecordRepository;
-    private final UserRepository userRepository;
+    private final UserDAO userRepository;
 
     // ─── HISTORIA CLINICA ───────────────────────────────────────────────────────
 

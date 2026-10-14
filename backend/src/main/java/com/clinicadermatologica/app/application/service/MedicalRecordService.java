@@ -3,6 +3,9 @@ package com.clinicadermatologica.app.application.service;
 import com.clinicadermatologica.app.domain.exception.*;
 import com.clinicadermatologica.app.domain.model.*;
 import com.clinicadermatologica.app.domain.repository.*;
+import com.clinicadermatologica.app.infrastructure.persistence.dao.AppointmentDAO;
+import com.clinicadermatologica.app.infrastructure.persistence.dao.PatientDAO;
+import com.clinicadermatologica.app.infrastructure.persistence.dao.UserDAO;
 import com.clinicadermatologica.app.infrastructure.security.AesEncryptionService;
 import com.clinicadermatologica.app.presentation.dto.*;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -31,9 +34,9 @@ public class MedicalRecordService {
 
     private final MedicalRecordRepository medicalRecordRepository;
     private final ClinicalEntryRepository clinicalEntryRepository;
-    private final PatientRepository patientRepository;
-    private final AppointmentRepository appointmentRepository;
-    private final UserRepository userRepository;
+    private final PatientDAO patientRepository;
+    private final AppointmentDAO appointmentRepository;
+    private final UserDAO userRepository;
     private final AlergiaRepository alergiaRepository;
     private final AntecedentePatologicoRepository antecedentePatologicoRepository;
     private final HabitoRepository habitoRepository;

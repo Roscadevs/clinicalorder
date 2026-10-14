@@ -3,7 +3,7 @@ package com.clinicadermatologica.app.application.service;
 import com.clinicadermatologica.app.domain.exception.BusinessRuleException;
 import com.clinicadermatologica.app.domain.exception.ResourceNotFoundException;
 import com.clinicadermatologica.app.domain.model.Patient;
-import com.clinicadermatologica.app.domain.repository.PatientRepository;
+import com.clinicadermatologica.app.infrastructure.persistence.dao.PatientDAO;
 import com.clinicadermatologica.app.presentation.dto.PatientRequestDTO;
 import com.clinicadermatologica.app.presentation.dto.PatientResponseDTO;
 import lombok.RequiredArgsConstructor;
@@ -20,7 +20,7 @@ import java.util.stream.Collectors;
 @RequiredArgsConstructor
 public class PatientService {
 
-    private final PatientRepository patientRepository;
+    private final PatientDAO patientRepository;
 
     /**
      * Registra un nuevo paciente con validaciones de unicidad de DNI, teléfono y correo.

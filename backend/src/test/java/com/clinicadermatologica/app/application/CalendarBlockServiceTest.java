@@ -6,8 +6,8 @@ import com.clinicadermatologica.app.domain.exception.ResourceNotFoundException;
 import com.clinicadermatologica.app.domain.model.CalendarBlock;
 import com.clinicadermatologica.app.domain.model.User;
 import com.clinicadermatologica.app.domain.model.UserRole;
-import com.clinicadermatologica.app.domain.repository.CalendarBlockRepository;
-import com.clinicadermatologica.app.domain.repository.UserRepository;
+import com.clinicadermatologica.app.infrastructure.persistence.dao.CalendarBlockDAO;
+import com.clinicadermatologica.app.infrastructure.persistence.dao.UserDAO;
 import com.clinicadermatologica.app.presentation.dto.CalendarBlockRequestDTO;
 import com.clinicadermatologica.app.presentation.dto.CalendarBlockResponseDTO;
 import org.junit.jupiter.api.BeforeEach;
@@ -34,10 +34,10 @@ import static org.mockito.Mockito.*;
 class CalendarBlockServiceTest {
 
     @Mock
-    private CalendarBlockRepository calendarBlockRepository;
+    private CalendarBlockDAO calendarBlockRepository;
 
     @Mock
-    private UserRepository userRepository;
+    private UserDAO userRepository;
 
     @InjectMocks
     private CalendarBlockService calendarBlockService;

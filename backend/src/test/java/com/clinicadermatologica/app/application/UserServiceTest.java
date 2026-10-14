@@ -5,7 +5,7 @@ import com.clinicadermatologica.app.domain.exception.BusinessRuleException;
 import com.clinicadermatologica.app.domain.exception.ResourceNotFoundException;
 import com.clinicadermatologica.app.domain.model.User;
 import com.clinicadermatologica.app.domain.model.UserRole;
-import com.clinicadermatologica.app.domain.repository.UserRepository;
+import com.clinicadermatologica.app.infrastructure.persistence.dao.UserDAO;
 import com.clinicadermatologica.app.presentation.dto.UpdateUserRequestDTO;
 import com.clinicadermatologica.app.presentation.dto.UserResponseDTO;
 import org.junit.jupiter.api.BeforeEach;
@@ -32,7 +32,7 @@ import static org.mockito.Mockito.*;
 public class UserServiceTest {
 
     @Mock
-    private UserRepository userRepository;
+    private UserDAO userRepository;
 
     @Mock
     private PasswordEncoder passwordEncoder;

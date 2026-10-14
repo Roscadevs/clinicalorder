@@ -2,7 +2,7 @@ package com.clinicadermatologica.app.presentation.controller;
 
 import com.clinicadermatologica.app.application.service.CalendarBlockService; // Servicio de bloqueos
 import com.clinicadermatologica.app.domain.model.User; // Entidad User
-import com.clinicadermatologica.app.domain.repository.UserRepository; // Repositorio de usuarios
+import com.clinicadermatologica.app.infrastructure.persistence.dao.UserDAO; // DAO de usuarios
 import com.clinicadermatologica.app.presentation.dto.CalendarBlockRequestDTO; // DTO entrada
 import com.clinicadermatologica.app.presentation.dto.CalendarBlockResponseDTO; // DTO salida
 import jakarta.validation.Valid; // Validador
@@ -27,7 +27,7 @@ import java.util.List; // Listas
 public class CalendarBlockController {
 
     private final CalendarBlockService blockService; // Inyección del servicio
-    private final UserRepository userRepository; // Repositorio de usuarios
+    private final UserDAO userRepository; // DAO de usuarios
 
     @PostMapping // Mapea HTTP POST /api/v1/bloqueos
     public ResponseEntity<CalendarBlockResponseDTO> createBlock(
