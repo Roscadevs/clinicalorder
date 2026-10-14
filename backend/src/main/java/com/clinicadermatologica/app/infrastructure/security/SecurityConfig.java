@@ -97,8 +97,8 @@ public class SecurityConfig {
                 .requestMatchers(HttpMethod.GET, "/citas/disponibilidad").permitAll()
                 .requestMatchers(HttpMethod.GET, "/citas/{id:[0-9]+}/estado").permitAll()
 
-                // 3. Endpoint Público del Asistente Virtual con Gemini API
-                .requestMatchers(HttpMethod.POST, "/chat/gemini").permitAll()
+                // 3. Asistente Interno con Gemini API: solo empleados autenticados (manual de uso del sistema)
+                .requestMatchers(HttpMethod.POST, "/chat/gemini").hasAnyRole("DOCTORA", "SECRETARIA", "ADMIN")
 
                 // 4. Webhook Público de MercadoPago (recibe notificaciones de pago con HMAC)
                 .requestMatchers(HttpMethod.POST, "/pagos/webhook").permitAll()

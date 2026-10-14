@@ -2,10 +2,27 @@ server:
   port: ${PORT:8080} # Puerto dinámico inyectado por Render o 8080 por defecto
   servlet:
     context-path: /api/v1 # Prefijo base global de versión para todas las rutas REST
+  error:
+    # Seguridad: la respuesta de error NUNCA expone mensaje interno, stacktrace ni errores de binding.
+    # Evita filtrar información que pueda orientar a un atacante.
+    include-message: never
+    include-stacktrace: never
+    include-binding-errors: never
+    include-exception: false
 
 spring:
   application:
     name: clinica-dermatologica-backend # Nombre identificador del servicio
+
+  mvc:
+    # Hace que una ruta inexistente lance NoHandlerFoundException (manejada en GlobalExceptionHandler)
+    # en lugar de la página de error por defecto de Spring.
+    throw-exception-if-no-handler-found: true
+  web:
+    resources:
+      # Desactiva el mapeo automático de recursos estáticos para que las rutas desconocidas
+      # lleguen al manejador de 404 y no se confundan con recursos.
+      add-mappings: false
 
   datasource:
     # URL de conexión JDBC a Supabase o PostgreSQL en la nube
@@ -33,9 +50,8 @@ spring:
 
   flyway:
     enabled: true
-    baseline-on-migrate: true
-    validate-on-migrate: false
-    out-of-order: true
+    baseline-on-migrate: true   # permite adoptar una base preexistente no vacia como baseline
+    validate-on-migrate: true   # valida que las migraciones aplicadas coincidan con las del repo
     locations: classpath:db/migration
 
 # Configuración personalizada de Seguridad y Tokens JWT

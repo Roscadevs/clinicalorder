@@ -11,7 +11,7 @@ export const GeminiChatbotWidget: React.FC = () => {
     {
       id: 'welcome',
       role: 'assistant',
-      content: '¡Hola! 🌿 Soy la Asistente Virtual de la Clínica Dermatológica y Estética de la Dra. Paula Villa Fuhrmann. ¿En qué tratamiento o consulta médica puedo asesorarte hoy?',
+      content: '¡Hola! 👋 Soy el Asistente Interno del sistema. Puedo explicarte cómo realizar las operaciones disponibles: cargar pacientes, reservar turnos, registrar pagos, consultar la agenda y más. ¿Qué necesitás hacer?',
       timestamp: new Date(),
     },
   ]);
@@ -60,7 +60,7 @@ export const GeminiChatbotWidget: React.FC = () => {
       const errorMsg: ChatMessage = {
         id: (Date.now() + 1).toString(),
         role: 'assistant',
-        content: 'Disculpas, ocurrió una intermitencia temporal con nuestro asistente de IA. Por favor, intenta nuevamente en unos instantes o consulta directamente en nuestro portal de turnos.',
+        content: 'Hubo una intermitencia temporal con el asistente de IA. Volvé a intentarlo en unos instantes. Mientras tanto, podés realizar las operaciones directamente desde el menú del sistema.',
         timestamp: new Date(),
       };
       setMessages((prev) => [...prev, errorMsg]);
@@ -71,7 +71,7 @@ export const GeminiChatbotWidget: React.FC = () => {
 
   return (
     <aside
-      aria-label="Asistente Virtual con IA"
+      aria-label="Asistente Interno del Sistema"
       className="fixed bottom-20 right-4 sm:bottom-6 sm:right-6 z-50 flex flex-col items-end"
     >
       {/* Ventana de Chat Flotante / Adaptativa */}
@@ -88,7 +88,7 @@ export const GeminiChatbotWidget: React.FC = () => {
                 <Bot className="w-4 h-4 text-white" />
               </div>
               <div>
-                <h3 className="text-xs font-bold leading-tight">Asistente IA Dermatológico</h3>
+                <h3 className="text-xs font-bold leading-tight">Asistente Interno del Sistema</h3>
                 <span className="text-[10px] text-primary-100 flex items-center">
                   <span className="w-1.5 h-1.5 bg-success-500 rounded-full mr-1 animate-pulse"></span>
                   En línea
@@ -173,7 +173,7 @@ export const GeminiChatbotWidget: React.FC = () => {
                   type="text"
                   value={inputMessage}
                   onChange={(e) => setInputMessage(e.target.value)}
-                  placeholder="Pregunta sobre precios, tratamientos..."
+                  placeholder="Preguntá cómo realizar una operación..."
                   className="flex-1 bg-sand-50 border border-sand-200 rounded-xl px-3 py-2 text-xs focus:ring-2 focus:ring-primary-500/40 focus:border-primary-500 outline-none"
                 />
                 <button
@@ -197,7 +197,7 @@ export const GeminiChatbotWidget: React.FC = () => {
             setIsMinimized(false);
           }}
           className="bg-primary-500 hover:bg-primary-600 text-white shadow-xl shadow-primary-700/25 transition-all transform hover:scale-105 active:scale-95 flex items-center justify-center p-3 sm:py-3 sm:px-4 rounded-full border-2 border-white/20"
-          aria-label="Abrir asistente virtual de inteligencia artificial"
+          aria-label="Abrir asistente interno del sistema"
         >
           {/* En Móvil: Botón circular con icono y badge de IA */}
           <div className="relative flex items-center justify-center">
@@ -207,7 +207,7 @@ export const GeminiChatbotWidget: React.FC = () => {
 
           {/* En Desktop: Texto descriptivo visible */}
           <span className="hidden sm:inline text-xs font-bold pl-2 pr-1">
-            ¿Dudas? Consultar con IA
+            ¿Cómo se hace? Preguntale al asistente
           </span>
         </button>
       )}

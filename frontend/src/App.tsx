@@ -9,6 +9,7 @@ import { PasswordRecoveryView } from './features/auth/PasswordRecoveryView';
 import { AuthCallbackView } from './features/auth/AuthCallbackView';
 import { UpdatePasswordView } from './features/auth/UpdatePasswordView';
 import { ServicesCatalogView } from './features/public/ServicesCatalogView';
+import { NotFoundView } from './features/public/NotFoundView';
 import { BookingSuccessView, BookingFailureView, BookingPendingView } from './features/appointments/BookingStatusViews';
 
 // Internal Views Layout & Security Guard
@@ -173,8 +174,15 @@ export function App() {
               />
             </Route>
 
-            {/* Fallback route */}
-            <Route path="*" element={<Navigate to="/" replace />} />
+            {/* Ruta no encontrada (404): página neutra que no revela información interna */}
+            <Route
+              path="*"
+              element={
+                <PageTransition>
+                  <NotFoundView />
+                </PageTransition>
+              }
+            />
           </Routes>
         </Suspense>
       </AnimatePresence>
