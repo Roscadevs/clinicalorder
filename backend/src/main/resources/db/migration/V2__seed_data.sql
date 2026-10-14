@@ -10,7 +10,7 @@
 
 INSERT INTO usuario (username, password_hash, email, full_name, role, active)
 SELECT 'admin',
-       '$2a$12$EixZaYVK1fsbw1ZfbX3OXePaWxn96p36WQmG6eW6vVev49/Z.qWkK',
+       '$2a$12$xRMRmwLBTnYv5/p8pwWZmuvFuhLNIi/mIga3oXCbPM1tJjFjA6uQq',
        'admin@clinicadermatologica.com',
        'Administrador del Sistema',
        'ADMIN',
@@ -22,7 +22,7 @@ WHERE NOT EXISTS (
 
 INSERT INTO usuario (username, password_hash, email, full_name, role, active)
 SELECT 'dra.valeria',
-       '$2a$12$EixZaYVK1fsbw1ZfbX3OXePaWxn96p36WQmG6eW6vVev49/Z.qWkK',
+       '$2a$12$xRMRmwLBTnYv5/p8pwWZmuvFuhLNIi/mIga3oXCbPM1tJjFjA6uQq',
        'valeria.medica@clinicadermatologica.com',
        'Dra. Valeria Gomez',
        'DOCTORA',
@@ -34,7 +34,7 @@ WHERE NOT EXISTS (
 
 INSERT INTO usuario (username, password_hash, email, full_name, role, active)
 SELECT 'sofia.recepcion',
-       '$2a$12$EixZaYVK1fsbw1ZfbX3OXePaWxn96p36WQmG6eW6vVev49/Z.qWkK',
+       '$2a$12$xRMRmwLBTnYv5/p8pwWZmuvFuhLNIi/mIga3oXCbPM1tJjFjA6uQq',
        'sofia.secretaria@clinicadermatologica.com',
        'Sofia Martinez',
        'SECRETARIA',
