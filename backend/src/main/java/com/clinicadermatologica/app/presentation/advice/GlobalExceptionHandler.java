@@ -8,6 +8,7 @@ import org.springframework.security.access.AccessDeniedException; // Excepción 
 import org.springframework.validation.FieldError; // Errores de validación de campos
 import org.springframework.web.bind.MethodArgumentNotValidException; // Captura de fallo de @Valid
 import org.springframework.web.bind.annotation.*; // Anotaciones de controlador REST
+import org.springframework.web.servlet.NoHandlerFoundException; // Ruta inexistente (404 a nivel servlet)
 
 import java.time.Instant; // Tiempo UTC
 import java.util.*; // Colecciones
@@ -79,8 +80,18 @@ public class GlobalExceptionHandler {
 
     @ExceptionHandler(PaymentGatewayException.class)
     public ResponseEntity<Map<String, Object>> handlePaymentGateway(PaymentGatewayException ex, HttpServletRequest request) {
+        // El detalle de la pasarela se registra en servidor, pero NO se reenvía al cliente
+        // para no exponer mensajes de infraestructura de un tercero.
         log.error("Falla en pasarela de pagos al procesar {}: {}", request.getRequestURI(), ex.getMessage());
-        return buildErrorResponse(HttpStatus.BAD_GATEWAY, ex.getMessage(), request.getRequestURI());
+        return buildErrorResponse(HttpStatus.BAD_GATEWAY,
+                "No se pudo procesar el pago en este momento. Intente nuevamente más tarde.",
+                request.getRequestURI());
+    }
+
+    @ExceptionHandler(NoHandlerFoundException.class) // Ruta inexistente: 404 genérico sin filtrar información
+    public ResponseEntity<Map<String, Object>> handleNoHandlerFound(NoHandlerFoundException ex, HttpServletRequest request) {
+        // Mensaje neutro y path fijo: no reflejamos la ruta solicitada para no dar pistas de la superficie de la API.
+        return buildErrorResponse(HttpStatus.NOT_FOUND, "El recurso solicitado no existe.", request.getRequestURI());
     }
 
     @ExceptionHandler(Exception.class) // Captura genérica de excepciones inesperadas

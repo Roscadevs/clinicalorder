@@ -12,7 +12,8 @@ import org.springframework.transaction.annotation.Transactional; // Transaccione
 import java.util.List; // Listas
 
 /**
- * Servicio de Aplicación para el Asistente Virtual conversacional con IA para pacientes.
+ * Servicio de Aplicación para el Asistente Interno con IA: un manual de usuario conversacional
+ * para los empleados autenticados del sistema (ADMINISTRADOR, DOCTORA, SECRETARIA).
  */
 @Service // Componente de servicio Spring
 @RequiredArgsConstructor // Inyección por constructor
@@ -31,14 +32,14 @@ public class GeminiChatbotService {
 
         StringBuilder catalogBuilder = new StringBuilder();
         for (DermatologicService s : activeServices) {
-            catalogBuilder.append("- Tratamiento: ").append(s.getName()).append("\n")
+            // Solo nombre, descripción y duración. Sin precios ni señas: el asistente es un manual
+            // de uso para empleados, no una herramienta de venta.
+            catalogBuilder.append("- Servicio: ").append(s.getName()).append("\n")
                     .append("  Descripción: ").append(s.getDescription()).append("\n")
-                    .append("  Duración: ").append(s.getDurationMinutes()).append(" minutos\n")
-                    .append("  Precio Base: $").append(s.getBasePrice()).append(" ARS\n")
-                    .append("  Seña para reservar (50%): $").append(s.getBasePrice().divide(new java.math.BigDecimal("2"))).append(" ARS\n\n");
+                    .append("  Duración: ").append(s.getDurationMinutes()).append(" minutos\n\n");
         }
 
-        // 2. Invoca al modelo Gemini con el contexto clínico del catálogo
+        // 2. Invoca al modelo Gemini con el listado de servicios (sin datos de dinero) como contexto
         return geminiApiClientAdapter.generateResponse(request, catalogBuilder.toString());
     }
 }

@@ -22,30 +22,28 @@ export interface HumanFriendlyErrorFallbackProps extends FallbackProps {
  * los detalles técnicos dentro de un acordeón colapsado.
  */
 export const HumanFriendlyErrorFallback: React.FC<HumanFriendlyErrorFallbackProps> = ({
-  error,
   resetErrorBoundary,
   moduleTitle = 'esta sección',
 }) => {
   const [copied, setCopied] = useState(false);
   const [showDetails, setShowDetails] = useState(false);
 
-  const errorReport = {
-    modulo: moduleTitle,
-    mensaje: error instanceof Error ? error.message : String(error),
-    ruta: typeof window !== 'undefined' ? window.location.pathname : '',
+  // El detalle técnico real (error.message / stack) se registra en consola vía componentDidCatch
+  // del ErrorBoundary, NO se muestra al usuario. De cara a la UI solo exponemos un identificador
+  // de incidencia neutro, para no revelar información que pueda orientar a un atacante.
+  const incidentReport = {
+    seccion: moduleTitle,
+    referencia: `ERR-${new Date().getTime().toString(36).toUpperCase()}`,
     fecha: new Date().toISOString(),
-    stack: error instanceof Error ? error.stack?.split('\n').slice(0, 4).join('\n') : undefined,
   };
 
   const handleCopy = () => {
-    navigator.clipboard.writeText(JSON.stringify(errorReport, null, 2));
+    navigator.clipboard.writeText(JSON.stringify(incidentReport, null, 2));
     setCopied(true);
     setTimeout(() => setCopied(false), 2200);
   };
 
-  const rawWhatsappMsg = `Hola Soporte de la Clínica, se presentó un inconveniente en ${moduleTitle}.\nDetalle: ${
-    error instanceof Error ? error.message : 'Error inesperado'
-  }\nHora: ${new Date().toLocaleTimeString()}`;
+  const rawWhatsappMsg = `Hola Soporte de la Clínica, se presentó un inconveniente en ${moduleTitle}.\nReferencia: ${incidentReport.referencia}\nHora: ${new Date().toLocaleTimeString()}`;
 
   return (
     <div className="w-full max-w-2xl mx-auto my-8 p-6 sm:p-8 bg-sand-50 border border-sand-300 rounded-3xl shadow-card text-sand-900 font-sans transition-all">
@@ -105,7 +103,7 @@ export const HumanFriendlyErrorFallback: React.FC<HumanFriendlyErrorFallbackProp
           onClick={() => setShowDetails(!showDetails)}
           className="flex items-center justify-between w-full text-xs font-semibold text-sand-500 hover:text-sand-800 transition-colors py-1 cursor-pointer"
         >
-          <span>Información de diagnóstico (para soporte técnico)</span>
+          <span>Referencia de la incidencia (para soporte técnico)</span>
           <ChevronDown
             className={`w-4 h-4 transition-transform duration-200 ${
               showDetails ? 'rotate-180' : ''
@@ -129,13 +127,13 @@ export const HumanFriendlyErrorFallback: React.FC<HumanFriendlyErrorFallbackProp
                 ) : (
                   <>
                     <Copy className="w-3.5 h-3.5" />
-                    <span>Copiar reporte de diagnóstico</span>
+                    <span>Copiar referencia</span>
                   </>
                 )}
               </button>
             </div>
             <pre className="p-3.5 bg-sand-900 text-sand-100 rounded-2xl text-xs font-mono overflow-x-auto max-h-40 leading-relaxed border border-sand-800 whitespace-pre-wrap">
-              {JSON.stringify(errorReport, null, 2)}
+              {JSON.stringify(incidentReport, null, 2)}
             </pre>
           </div>
         )}

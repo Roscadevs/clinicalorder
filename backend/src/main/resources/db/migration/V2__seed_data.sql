@@ -1,16 +1,11 @@
 -- =====================================================================================
--- MIGRACION FLYWAY V5: Datos Iniciales Actualizados
--- Reemplaza funcionalmente a V3 para el esquema rediseñado en V4.
--- V3 (seed original) ya no es compatible con el esquema V4 porque:
---   - Los roles PHYSICIAN y RECEPTIONIST no existen en el nuevo CHECK constraint de usuario.
---   - La columna profession fue eliminada de paciente.
---   - deposit_percentage en servicio es ahora INT (no NUMERIC).
--- Contrasenas hasheadas con BCrypt (costo 12) para 'Password123!'
+-- MIGRACION FLYWAY V2: Datos Iniciales (Seed)
+-- Contrasenas hasheadas con BCrypt (costo 12) correspondientes a 'Password123!'
+-- Todos los INSERT son idempotentes (WHERE NOT EXISTS): seguros de re-ejecutar.
 -- =====================================================================================
 
 -- ─────────────────────────────────────────────────────────────────────────────────────
--- 1. Usuarios del Sistema
---    Roles actualizados: DOCTORA (antes PHYSICIAN), SECRETARIA (antes RECEPTIONIST)
+-- 1. Usuarios del Sistema. Roles: ADMIN | DOCTORA | SECRETARIA
 -- ─────────────────────────────────────────────────────────────────────────────────────
 
 INSERT INTO usuario (username, password_hash, email, full_name, role, active)
@@ -30,7 +25,7 @@ SELECT 'dra.valeria',
        '$2a$12$EixZaYVK1fsbw1ZfbX3OXePaWxn96p36WQmG6eW6vVev49/Z.qWkK',
        'valeria.medica@clinicadermatologica.com',
        'Dra. Valeria Gomez',
-       'DOCTORA',                                            -- Antes: PHYSICIAN
+       'DOCTORA',
        true
 WHERE NOT EXISTS (
     SELECT 1 FROM usuario
@@ -42,7 +37,7 @@ SELECT 'sofia.recepcion',
        '$2a$12$EixZaYVK1fsbw1ZfbX3OXePaWxn96p36WQmG6eW6vVev49/Z.qWkK',
        'sofia.secretaria@clinicadermatologica.com',
        'Sofia Martinez',
-       'SECRETARIA',                                         -- Antes: RECEPTIONIST
+       'SECRETARIA',
        true
 WHERE NOT EXISTS (
     SELECT 1 FROM usuario
@@ -51,7 +46,6 @@ WHERE NOT EXISTS (
 
 -- ─────────────────────────────────────────────────────────────────────────────────────
 -- 2. Catalogo de Servicios Dermatologicos y Esteticos
---    deposit_percentage ahora es INT (antes NUMERIC); follow_up_interval_days NOT NULL
 -- ─────────────────────────────────────────────────────────────────────────────────────
 
 INSERT INTO servicio (name, description, duration_minutes, base_price,
@@ -98,8 +92,6 @@ WHERE NOT EXISTS (SELECT 1 FROM servicio WHERE name = 'Bioestimuladores de Colag
 
 -- ─────────────────────────────────────────────────────────────────────────────────────
 -- 3. Pacientes de Ejemplo
---    Columna profession ELIMINADA del esquema V4.
---    birth_date ahora NOT NULL — se incluye en todos los registros.
 -- ─────────────────────────────────────────────────────────────────────────────────────
 
 INSERT INTO paciente (name, dni, phone, email, birth_date, active)
