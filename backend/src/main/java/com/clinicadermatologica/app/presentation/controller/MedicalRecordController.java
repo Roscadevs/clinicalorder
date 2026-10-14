@@ -16,6 +16,10 @@ import org.springframework.web.multipart.MultipartFile;
 
 import java.util.List;
 
+import com.clinicadermatologica.app.domain.model.User;
+import com.clinicadermatologica.app.domain.repository.UserRepository;
+import org.springframework.security.core.Authentication;
+
 /**
  * Controlador REST para Historias Clinicas, Evoluciones, Fotografias, Auditoria
  * y sub-recursos de entidades debiles (Alergias, Antecedentes Patologicos, Habitos).
@@ -36,6 +40,7 @@ public class MedicalRecordController {
     private final MedicalRecordService medicalRecordService;
     private final ClinicalImageService imageService;
     private final MedicalRecordRepository medicalRecordRepository;
+    private final UserRepository userRepository;
 
     // ─── HISTORIA CLINICA ───────────────────────────────────────────────────────
 
@@ -49,9 +54,19 @@ public class MedicalRecordController {
     public ResponseEntity<MedicalRecordDTO> saveMedicalRecord(
             @PathVariable Long pacienteId,
             @Valid @RequestBody MedicalRecordDTO dto,
-            @RequestParam Long physicianUserId) {
+            @RequestParam(required = false) Long physicianUserId,
+            Authentication authentication) {
+        Long resolvedPhysicianId = physicianUserId;
+        if (resolvedPhysicianId == null && authentication != null) {
+            resolvedPhysicianId = userRepository.findByUsername(authentication.getName())
+                    .map(User::getId)
+                    .orElse(null);
+        }
+        if (resolvedPhysicianId == null) {
+            resolvedPhysicianId = 2L;
+        }
         return ResponseEntity.status(HttpStatus.CREATED)
-                .body(medicalRecordService.saveOrUpdateMedicalRecord(pacienteId, dto, physicianUserId));
+                .body(medicalRecordService.saveOrUpdateMedicalRecord(pacienteId, dto, resolvedPhysicianId));
     }
 
     // ─── ENTRADAS CLINICAS ──────────────────────────────────────────────────────
@@ -60,9 +75,19 @@ public class MedicalRecordController {
     @PostMapping("/entradas")
     public ResponseEntity<ClinicalEntryResponseDTO> addClinicalEntry(
             @Valid @RequestBody ClinicalEntryRequestDTO request,
-            @RequestParam Long physicianUserId) {
+            @RequestParam(required = false) Long physicianUserId,
+            Authentication authentication) {
+        Long resolvedPhysicianId = physicianUserId;
+        if (resolvedPhysicianId == null && authentication != null) {
+            resolvedPhysicianId = userRepository.findByUsername(authentication.getName())
+                    .map(User::getId)
+                    .orElse(null);
+        }
+        if (resolvedPhysicianId == null) {
+            resolvedPhysicianId = 2L;
+        }
         return ResponseEntity.status(HttpStatus.CREATED)
-                .body(medicalRecordService.addClinicalEntry(request, physicianUserId));
+                .body(medicalRecordService.addClinicalEntry(request, resolvedPhysicianId));
     }
 
     /** Edita una nota de evolucion previa con registro automatico de auditoria. */

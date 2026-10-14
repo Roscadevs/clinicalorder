@@ -14,6 +14,17 @@ export interface AuthResponse {
   expiresInMs: number; // Milisegundos de vigencia
 }
 
+export interface User {
+  id: number;
+  username: string;
+  email: string;
+  fullName: string;
+  role: UserRole;
+  active: boolean;
+  createdAt?: string;
+  updatedAt?: string;
+}
+
 export interface Patient {
   id: number; // Identificador
   name: string; // Nombre y apellido
@@ -196,3 +207,53 @@ export interface GeminiChatResponse {
   suggestedServices: string[]; // Sugerencias detectadas
   bookingActionUrl: string; // Enlace directo a reserva
 }
+
+export interface CalendarBlock {
+  id: number;
+  createdByUserId?: number;
+  createdByUserFullName?: string;
+  startTime: string; // ISO 8601 UTC
+  endTime: string;   // ISO 8601 UTC
+  reason: string;
+  createdAt?: string;
+}
+
+export interface TreatmentRankingItem {
+  name: string;
+  count: number;
+  percentage: number;
+  revenue: number | string;
+  serviceName?: string;
+  appointmentsCount?: number;
+}
+
+export interface FinancialKpis {
+  totalRevenue: number;
+  onlineDepositRevenue: number;
+  counterBalanceRevenue: number;
+  growthVsPreviousMonth?: number;
+}
+
+export interface OperationalKpis {
+  totalAppointments: number;
+  completedAppointments: number;
+  attendedAppointments: number;
+  noShowAppointments: number;
+  attendanceRate: number;
+  noShowRate: number;
+}
+
+export interface AiAssistantKpis {
+  totalInquiries: number;
+  convertedToBooking: number;
+  conversionRate: number;
+}
+
+export interface AnalyticsKpisResponse {
+  financial: FinancialKpis;
+  operational: OperationalKpis;
+  aiAssistant: AiAssistantKpis;
+  treatmentRankings: TreatmentRankingItem[];
+  period: string;
+}
+

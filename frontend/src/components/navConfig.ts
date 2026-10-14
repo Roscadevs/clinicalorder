@@ -2,11 +2,11 @@
  * Configuración de la navegación del panel interno, compartida por Navbar y BottomNav.
  * Fuente única de verdad para las pestañas, sus íconos, rutas y roles habilitados.
  */
-export type TabType = 'booking' | 'agenda' | 'clinical' | 'admin' | 'analytics';
+export type TabType = 'booking' | 'agenda' | 'patients' | 'clinical' | 'admin' | 'analytics';
 export type RoleType = 'PUBLIC' | 'SECRETARIA' | 'DOCTORA' | 'ADMIN';
 
 /** Nombre del ícono de lucide (se resuelve en cada componente). */
-export type NavIcon = 'Calendar' | 'UserCheck' | 'ShieldCheck' | 'Settings' | 'BarChart3';
+export type NavIcon = 'Calendar' | 'UserCheck' | 'Users' | 'ShieldCheck' | 'Settings' | 'BarChart3';
 
 export interface NavTab {
   id: TabType;
@@ -32,6 +32,14 @@ export const NAV_TABS: NavTab[] = [
     shortLabel: 'Agenda',
     icon: 'UserCheck',
     path: '/app/agenda',
+    roles: ['SECRETARIA', 'DOCTORA', 'ADMIN'],
+  },
+  {
+    id: 'patients',
+    label: 'Directorio de Pacientes',
+    shortLabel: 'Pacientes',
+    icon: 'Users',
+    path: '/app/patients',
     roles: ['SECRETARIA', 'DOCTORA', 'ADMIN'],
   },
   {

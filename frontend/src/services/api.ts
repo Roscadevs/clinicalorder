@@ -1,4 +1,5 @@
 import axios from 'axios'; // Cliente HTTP Axios
+import { toast } from '../components/ui/Toast';
 import {
   AuthResponse,
   Patient,
@@ -14,11 +15,26 @@ import {
   PaymentType,
   PaymentConcept,
   PaymentReceipt,
-  UserRole
+  UserRole,
+  User,
+  CalendarBlock,
+  AnalyticsKpisResponse,
 } from '../types'; // Importación de contratos de tipos
 
 /** URL absoluta de la API (para requests fuera de axios, p. ej. fetch keepalive). */
-export const API_BASE_URL: string = import.meta.env.VITE_API_BASE_URL || '/api/v1';
+const resolvedDefaultBaseUrl =
+  typeof window !== 'undefined' &&
+  window.location.hostname !== 'localhost' &&
+  window.location.hostname !== '127.0.0.1'
+    ? 'https://clinicalorder.onrender.com/api/v1'
+    : '/api/v1';
+
+export const API_BASE_URL: string = import.meta.env.VITE_API_BASE_URL || resolvedDefaultBaseUrl;
+
+export const isDemoSession = (): boolean => {
+  const token = localStorage.getItem('token');
+  return !token || token.startsWith('demo-');
+};
 
 /**
  * true sólo si el backend no está disponible (modo demo):
@@ -43,18 +59,37 @@ const isNetworkError = (err: unknown): boolean => {
   return false;
 };
 
-const currentUserId = (): number | undefined => {
+/**
+ * En modo demo (token simulado o no autenticado), las rutas protegidas del backend
+ * responden con 401/403 o fallos de conexión. Este helper asegura que en tales casos
+ * se active inmediatamente el comportamiento simulado en lugar de romper el flujo.
+ */
+const shouldFallbackToDemo = (err: unknown): boolean => {
+  if (isDemoSession()) return true;
+  return isNetworkError(err);
+};
+
+const ROLE_FALLBACK_IDS: Record<string, number> = {
+  ADMIN: 1,
+  DOCTORA: 2,
+  SECRETARIA: 3,
+};
+
+const currentUserId = (): number => {
   const raw = localStorage.getItem('userId');
   const n = raw ? Number(raw) : NaN;
-  return Number.isFinite(n) ? n : undefined;
+  if (Number.isFinite(n) && n > 0 && n !== 999) return n;
+  const role = localStorage.getItem('role') || 'ADMIN';
+  return ROLE_FALLBACK_IDS[role] ?? 1;
 };
 
 // Instancia configurada de Axios con base URL hacia la API de Spring Boot
 const api = axios.create({
-  baseURL: import.meta.env.VITE_API_BASE_URL || '/api/v1', // URL base configurada o proxy relativo
+  baseURL: API_BASE_URL, // URL base configurada dinámicamente según entorno
   headers: {
     'Content-Type': 'application/json',
   },
+  timeout: 15000, // Previene bloqueos indefinidos pero tolera latencias de red en la nube
 });
 
 // Interceptor para inyectar automáticamente el Bearer JWT en cada solicitud saliente
@@ -66,10 +101,71 @@ api.interceptors.request.use((config) => {
   return config;
 });
 
+let isRedirectingToLogin = false;
+
+// Interceptor global de respuestas para manejo amable de fallos HTTP
+api.interceptors.response.use(
+  (response) => response,
+  (error) => {
+    if (axios.isAxiosError(error) && error.response) {
+      const status = error.response.status;
+
+      // 401: Sesión caducada
+      if (status === 401 && !isRedirectingToLogin) {
+        const isAuthRoute =
+          typeof window !== 'undefined' &&
+          (window.location.pathname === '/login' ||
+            window.location.pathname === '/recover-password');
+
+        if (!isAuthRoute) {
+          isRedirectingToLogin = true;
+          toast.friendlyError('Tu sesión ha caducado por seguridad', {
+            description:
+              'Te redirigiremos al inicio de sesión para que continúes de forma segura.',
+            duration: 3500,
+          });
+          setTimeout(() => {
+            localStorage.removeItem('token');
+            if (typeof window !== 'undefined') {
+              window.location.href = '/login';
+            }
+            isRedirectingToLogin = false;
+          }, 2000);
+        }
+      } else if (status === 403) {
+        // 403: Acceso no autorizado para el rol
+        const data = error.response.data as any;
+        const msg = data?.detail || data?.message || 'No disponés de los privilegios necesarios para esta acción.';
+        toast.friendlyError('Acceso denegado', {
+          description: msg,
+          duration: 3500,
+        });
+      } else if (status >= 500 && !isNetworkError(error)) {
+        // 500+ Error interno no simulado
+        toast.friendlyError('Inconveniente temporal en el servidor', {
+          description:
+            'Los datos están protegidos. Podés reintentar la acción en unos segundos.',
+        });
+      }
+    } else if (isNetworkError(error)) {
+      if (typeof navigator !== 'undefined' && !navigator.onLine) {
+        toast.friendlyError('Sin conexión a internet', {
+          description:
+            'Comprobá tu red. La aplicación volverá a sincronizarse cuando estés en línea.',
+        });
+      }
+    }
+
+    return Promise.reject(error);
+  }
+);
+
+
 // --- SERVICIOS DE AUTENTICACIÓN ---
 export const authApi = {
   login: async (username: string, password: string): Promise<AuthResponse> => {
-    const response = await api.post<AuthResponse>('/auth/login', { username, password });
+    // Para el login permitimos hasta 60s para esperar el arranque en frío del contenedor en Render
+    const response = await api.post<AuthResponse>('/auth/login', { username, password }, { timeout: 60000 });
     return response.data;
   },
   /** Alta de usuario del staff (solo ADMIN). POST /auth/register. */
@@ -84,7 +180,91 @@ export const authApi = {
       await api.post('/auth/register', data);
     } catch (err) {
       if (!isNetworkError(err)) throw err;
-      // Modo demo: se considera creado.
+      // Modo demo: se agrega a inMemoryUsers
+      const newUser: User = {
+        id: Date.now(),
+        username: data.username,
+        email: data.email,
+        fullName: data.fullName,
+        role: data.role,
+        active: true,
+        createdAt: new Date().toISOString(),
+        updatedAt: new Date().toISOString(),
+      };
+      inMemoryUsers = [newUser, ...inMemoryUsers];
+    }
+  },
+};
+
+// Nómina de operadores de demostración (backend apagado)
+const DEMO_USERS: User[] = [
+  { id: 1, username: 'admin', fullName: 'Dra. Paula Villa Fuhrmann', email: 'admin@clinica.com', role: 'ADMIN', active: true, createdAt: '2026-01-01T10:00:00Z', updatedAt: '2026-01-01T10:00:00Z' },
+  { id: 2, username: 'dra.valeria', fullName: 'Dra. Valeria Gómez', email: 'valeria@clinica.com', role: 'DOCTORA', active: true, createdAt: '2026-01-15T10:00:00Z', updatedAt: '2026-01-15T10:00:00Z' },
+  { id: 3, username: 'sofia.recepcion', fullName: 'Sofía Martínez', email: 'sofia@clinica.com', role: 'SECRETARIA', active: true, createdAt: '2026-02-01T10:00:00Z', updatedAt: '2026-02-01T10:00:00Z' },
+];
+
+let inMemoryUsers: User[] = [...DEMO_USERS];
+
+// --- SERVICIOS DE GESTIÓN DE USUARIOS DEL STAFF ---
+export const usersApi = {
+  /** Obtiene todos los usuarios del staff (solo ADMIN). GET /usuarios */
+  getAllUsers: async (): Promise<User[]> => {
+    try {
+      const response = await api.get<User[]>('/usuarios');
+      if (!Array.isArray(response.data)) throw new Error('Expected array');
+      inMemoryUsers = response.data;
+      return response.data;
+    } catch (err) {
+      if (!isNetworkError(err) && !(err instanceof Error && err.message === 'Expected array')) throw err;
+      return inMemoryUsers;
+    }
+  },
+  /** Actualiza un operador del staff (solo ADMIN). PUT /usuarios/{id} */
+  updateUser: async (
+    id: number,
+    data: { username: string; email: string; fullName: string; role: UserRole; password?: string }
+  ): Promise<User> => {
+    try {
+      const response = await api.put<User>(`/usuarios/${id}`, data);
+      const updated = response.data;
+      const idx = inMemoryUsers.findIndex((u) => u.id === id);
+      if (idx !== -1) inMemoryUsers[idx] = updated;
+      return updated;
+    } catch (err) {
+      if (!isNetworkError(err)) throw err;
+      const idx = inMemoryUsers.findIndex((u) => u.id === id);
+      if (idx !== -1) {
+        inMemoryUsers[idx] = {
+          ...inMemoryUsers[idx],
+          username: data.username,
+          email: data.email,
+          fullName: data.fullName,
+          role: data.role,
+          updatedAt: new Date().toISOString(),
+        };
+        return inMemoryUsers[idx];
+      }
+      throw err;
+    }
+  },
+  /** Alterna estado activo/suspendido de un operador (solo ADMIN). PATCH /usuarios/{id}/toggle-active */
+  toggleUserActive: async (id: number, active: boolean): Promise<User> => {
+    try {
+      const response = await api.patch<User>(`/usuarios/${id}/toggle-active`, null, {
+        params: { active },
+      });
+      const updated = response.data;
+      const idx = inMemoryUsers.findIndex((u) => u.id === id);
+      if (idx !== -1) inMemoryUsers[idx] = updated;
+      return updated;
+    } catch (err) {
+      if (!isNetworkError(err)) throw err;
+      const idx = inMemoryUsers.findIndex((u) => u.id === id);
+      if (idx !== -1) {
+        inMemoryUsers[idx] = { ...inMemoryUsers[idx], active, updatedAt: new Date().toISOString() };
+        return inMemoryUsers[idx];
+      }
+      throw err;
     }
   },
 };
@@ -160,33 +340,114 @@ export const servicesApi = {
   },
   /** Activa o desactiva un servicio (baja lógica). Reenvía todos los campos + active. */
   setServiceActive: async (service: DermatologicService, active: boolean): Promise<DermatologicService> => {
-    return servicesApi.updateService(service.id, { ...service, active });
+    return servicesApi.updateService(service.id, {
+      ...service,
+      followUpIntervalDays: service.followUpIntervalDays ?? 0,
+      active,
+    });
   },
 };
 
 // --- SERVICIOS DE GESTIÓN DE PACIENTES ---
+const INITIAL_DEMO_PATIENTS: Patient[] = [
+  { id: 1, name: 'Lucía Fernández', dni: '38456123', phone: '+54 9 11 1234-5678', email: 'lucia.fernandez@example.com', active: true, createdAt: '2026-08-01' },
+  { id: 2, name: 'Camila Rossi', dni: '40123987', phone: '+54 9 11 8765-4321', email: 'camila.rossi@example.com', active: true, createdAt: '2026-08-10' },
+  { id: 3, name: 'Mariana Díaz', dni: '36987452', phone: '+54 9 11 5555-1234', email: 'mariana.diaz@example.com', active: true, createdAt: '2026-08-12' },
+  { id: 4, name: 'Sofía Álvarez', dni: '39874125', phone: '+54 9 11 9999-8888', email: 'sofia.alvarez@example.com', active: true, createdAt: '2026-08-15' },
+];
+
+const getDemoPatients = (): Patient[] => {
+  const raw = localStorage.getItem('demo_patients');
+  if (raw) {
+    try {
+      const parsed = JSON.parse(raw);
+      if (Array.isArray(parsed) && parsed.length > 0) return parsed;
+    } catch {}
+  }
+  return INITIAL_DEMO_PATIENTS;
+};
+
+const filterDemoPatients = (search?: string): Patient[] => {
+  const list = getDemoPatients();
+  const q = (search ?? '').trim().toLowerCase();
+  if (!q) return list;
+  return list.filter((p) => p.dni.includes(q) || p.name.toLowerCase().includes(q));
+};
+
+const patientSearchCache = new Map<string, { data: Patient[]; timestamp: number }>();
+const PATIENT_CACHE_TTL = 30000;
+
 export const patientsApi = {
   getPatients: async (search?: string): Promise<Patient[]> => {
+    const q = (search ?? '').trim().toLowerCase();
+
+    // En modo demo respondemos de forma inmediata en memoria (sin latencia de red ni esperar el 403 del servidor)
+    if (isDemoSession()) {
+      return filterDemoPatients(q);
+    }
+
+    const cached = patientSearchCache.get(q);
+    if (cached && Date.now() - cached.timestamp < PATIENT_CACHE_TTL) {
+      return cached.data;
+    }
+
     try {
       const response = await api.get<Patient[]>('/pacientes', { params: { search } });
       if (!Array.isArray(response.data)) throw new Error('Expected array');
+      patientSearchCache.set(q, { data: response.data, timestamp: Date.now() });
       return response.data;
     } catch {
-      // Modo demo: filtra localmente por nombre o DNI, igual que el backend.
-      const demo: Patient[] = [
-        { id: 1, name: 'Lucía Fernández', dni: '38456123', phone: '+54 9 11 1234-5678', email: 'lucia.fernandez@example.com', active: true, createdAt: '2026-08-01' },
-        { id: 2, name: 'Camila Rossi', dni: '40123987', phone: '+54 9 11 8765-4321', email: 'camila.rossi@example.com', active: true, createdAt: '2026-08-10' },
-        { id: 3, name: 'Mariana Díaz', dni: '36987452', phone: '+54 9 11 5555-1234', email: 'mariana.diaz@example.com', active: true, createdAt: '2026-08-12' },
-        { id: 4, name: 'Sofía Álvarez', dni: '39874125', phone: '+54 9 11 9999-8888', email: 'sofia.alvarez@example.com', active: true, createdAt: '2026-08-15' },
-      ];
-      const q = (search ?? '').trim().toLowerCase();
-      if (!q) return demo;
-      return demo.filter((p) => p.dni.includes(q) || p.name.toLowerCase().includes(q));
+      return filterDemoPatients(q);
     }
   },
   createPatient: async (patient: Partial<Patient>): Promise<Patient> => {
+    if (isDemoSession()) {
+      const current = getDemoPatients();
+      const newPatient: Patient = {
+        id: current.length > 0 ? Math.max(...current.map((p) => p.id)) + 1 : 1,
+        name: patient.name || '',
+        dni: patient.dni || '',
+        phone: patient.phone || '',
+        email: patient.email || '',
+        active: true,
+        createdAt: new Date().toISOString(),
+      };
+      localStorage.setItem('demo_patients', JSON.stringify([...current, newPatient]));
+      patientSearchCache.clear();
+      return newPatient;
+    }
+
+    // Persistencia real en Supabase (si falla, el error se propaga a la UI para informar fielmente al usuario)
     const response = await api.post<Patient>('/pacientes', patient);
+    patientSearchCache.clear();
     return response.data;
+  },
+  updatePatient: async (id: number, patient: Partial<Patient>): Promise<Patient> => {
+    if (isDemoSession()) {
+      const current = getDemoPatients();
+      const updatedList = current.map((p) => (p.id === id ? { ...p, ...patient } : p));
+      localStorage.setItem('demo_patients', JSON.stringify(updatedList));
+      patientSearchCache.clear();
+      const updated = updatedList.find((p) => p.id === id);
+      if (!updated) throw new Error('Paciente no encontrado');
+      return updated;
+    }
+
+    const response = await api.put<Patient>(`/pacientes/${id}`, patient);
+    patientSearchCache.clear();
+    return response.data;
+  },
+  deactivatePatient: async (id: number): Promise<void> => {
+    if (isDemoSession()) {
+      const current = getDemoPatients();
+      const updatedList = current.map((p) => (p.id === id ? { ...p, active: false } : p));
+      localStorage.setItem('demo_patients', JSON.stringify(updatedList));
+      patientSearchCache.clear();
+      return;
+    }
+
+    await api.delete(`/pacientes/${id}`);
+    patientSearchCache.clear();
   },
 };
 
@@ -240,13 +501,22 @@ export const appointmentsApi = {
     serviceId: number;
     startTime: string;
   }): Promise<PaymentPreferenceResponse> => {
+    if (isDemoSession()) {
+      return {
+        appointmentId: Math.floor(Math.random() * 9000) + 1000,
+        preferenceId: 'PREF-MP-2026-SIMULATED',
+        initPointUrl: 'https://www.mercadopago.com.ar/checkout/v1/redirect?pref_id=simulated',
+        depositAmount: 21000,
+        holdExpiresAt: new Date(Date.now() + 600000).toISOString(),
+      };
+    }
     try {
       const response = await api.post<PaymentPreferenceResponse>('/citas/reservar-temporal', data, {
         params: { userId: currentUserId() },
       });
       return response.data;
     } catch (err) {
-      if (!isNetworkError(err)) throw err;
+      if (!shouldFallbackToDemo(err)) throw err;
       return {
         appointmentId: Math.floor(Math.random() * 9000) + 1000,
         preferenceId: 'PREF-MP-2026-SIMULATED',
@@ -281,7 +551,7 @@ export const appointmentsApi = {
     try {
       await api.post(`/citas/${id}/cancelar`);
     } catch (err) {
-      if (!isNetworkError(err)) throw err;
+      if (!shouldFallbackToDemo(err)) throw err;
     }
   },
 
@@ -292,8 +562,30 @@ export const appointmentsApi = {
    */
   registerDepositPayment: async (
     id: number,
-    payload: { paymentType: Exclude<PaymentType, 'MERCADOPAGO'>; paymentConcept: PaymentConcept; amount: number; agreedPrice: number }
+    payload: {
+      paymentType: Exclude<PaymentType, 'MERCADOPAGO'>;
+      amount: number;
+      agreedPrice: number;
+      /** Concepto elegido: seña (DEPOSIT) o pago total (FULL). */
+      concept?: Exclude<PaymentConcept, 'BALANCE'>;
+      paymentConcept?: PaymentConcept;
+    }
   ): Promise<PaymentReceipt> => {
+    // Si no viene explícito, se infiere por el monto respecto del precio acordado.
+    const concept: Exclude<PaymentConcept, 'BALANCE'> =
+      payload.concept ?? (payload.amount >= payload.agreedPrice ? 'FULL' : 'DEPOSIT');
+
+    if (isDemoSession()) {
+      return {
+        appointmentId: id,
+        paymentType: payload.paymentType,
+        concept,
+        amount: payload.amount,
+        paymentDate: new Date().toISOString(),
+        appointmentStatus: 'CONFIRMED',
+      };
+    }
+
     try {
       const response = await api.post<PaymentReceipt>(
         `/citas/${id}/registrar-pago`,
@@ -302,12 +594,12 @@ export const appointmentsApi = {
       );
       return response.data;
     } catch (err) {
-      if (!isNetworkError(err)) throw err;
-      // Modo demo: se considera registrado.
+      if (!shouldFallbackToDemo(err)) throw err;
+      // Modo demo o caída de red: se considera registrado.
       return {
         appointmentId: id,
         paymentType: payload.paymentType,
-        concept: payload.amount >= payload.agreedPrice ? 'FULL' : 'DEPOSIT',
+        concept,
         amount: payload.amount,
         paymentDate: new Date().toISOString(),
         appointmentStatus: 'CONFIRMED',
@@ -321,7 +613,7 @@ export const appointmentsApi = {
       if (!Array.isArray(response.data)) throw new Error('Expected array');
       return response.data;
     } catch (err) {
-      if (!isNetworkError(err) && !(err instanceof Error && err.message === 'Expected array')) throw err;
+      if (!shouldFallbackToDemo(err) && !(err instanceof Error && err.message === 'Expected array')) throw err;
       return demoAgenda(start, end);
     }
   },
@@ -329,7 +621,29 @@ export const appointmentsApi = {
     try {
       await api.post(`/citas/${id}/cancelar`);
     } catch (err) {
-      if (!isNetworkError(err)) throw err;
+      if (!shouldFallbackToDemo(err)) throw err;
+    }
+  },
+  /** Consulta pública del estado de un turno (usado en la pantalla de retorno de Mercado Pago). */
+  getPublicStatus: async (
+    id: number
+  ): Promise<{ appointmentId: number; status: string; serviceName: string; startTime: string }> => {
+    try {
+      const response = await api.get<{
+        appointmentId: number;
+        status: string;
+        serviceName: string;
+        startTime: string;
+      }>(`/citas/${id}/estado`);
+      return response.data;
+    } catch (err) {
+      if (!shouldFallbackToDemo(err)) throw err;
+      return {
+        appointmentId: id,
+        status: 'CONFIRMED',
+        serviceName: 'Consulta Dermatológica',
+        startTime: new Date().toISOString(),
+      };
     }
   },
   /** El médico marca el turno como atendido (CONFIRMED -> ATTENDED). */
@@ -337,7 +651,26 @@ export const appointmentsApi = {
     try {
       await api.post(`/citas/${id}/atender`);
     } catch (err) {
-      if (!isNetworkError(err)) throw err;
+      if (!shouldFallbackToDemo(err)) throw err;
+    }
+  },
+  /**
+   * Reprograma un turno a una nueva fecha/hora, conservando el servicio.
+   * El backend revalida la disponibilidad del nuevo horario. Devuelve el turno
+   * actualizado. En modo demo (sin backend) se simula el cambio localmente.
+   */
+  rescheduleAppointment: async (id: number, newStartTime: string): Promise<Appointment | null> => {
+    try {
+      const response = await api.post<Appointment>(
+        `/citas/${id}/reprogramar`,
+        { startTime: newStartTime },
+        { params: { userId: currentUserId() } }
+      );
+      return response.data;
+    } catch (err) {
+      if (!shouldFallbackToDemo(err)) throw err;
+      // Modo demo: se considera reprogramado; el refresco de la agenda reflejará el cambio.
+      return null;
     }
   },
   /**
@@ -350,7 +683,7 @@ export const appointmentsApi = {
         params: { receptionistUserId: currentUserId() },
       });
     } catch (err) {
-      if (!isNetworkError(err)) throw err;
+      if (!shouldFallbackToDemo(err)) throw err;
     }
   },
 };
@@ -399,6 +732,102 @@ function demoAgenda(startIso: string, endIso: string): Appointment[] {
     return t >= start && t < end;
   });
 }
+
+// --- SERVICIOS DE BLOQUEOS DE AGENDA (Indisponibilidad Clínica) ---
+export const INITIAL_DEMO_BLOCKS: CalendarBlock[] = [
+  {
+    id: 901,
+    createdByUserId: 1,
+    createdByUserFullName: 'Administrador del Sistema',
+    startTime: new Date(Date.now() + 86400000 * 2).toISOString().slice(0, 10) + 'T13:00:00Z',
+    endTime: new Date(Date.now() + 86400000 * 2).toISOString().slice(0, 10) + 'T15:00:00Z',
+    reason: 'Mantenimiento de consultorio',
+    createdAt: new Date().toISOString(),
+  },
+  {
+    id: 902,
+    createdByUserId: 2,
+    createdByUserFullName: 'Dra. Paula Villa Fuhrmann',
+    startTime: new Date(Date.now() + 86400000 * 4).toISOString().slice(0, 10) + 'T08:00:00Z',
+    endTime: new Date(Date.now() + 86400000 * 4).toISOString().slice(0, 10) + 'T20:00:00Z',
+    reason: 'Congreso de Dermatología Estética',
+    createdAt: new Date().toISOString(),
+  },
+];
+
+export let DEMO_BLOCKS: CalendarBlock[] = [...INITIAL_DEMO_BLOCKS];
+
+export const calendarBlocksApi = {
+  getBlocks: async (start: string, end: string): Promise<CalendarBlock[]> => {
+    try {
+      const response = await api.get<CalendarBlock[]>('/bloqueos', { params: { start, end } });
+      if (!Array.isArray(response.data)) throw new Error('Expected array');
+      return response.data;
+    } catch (err) {
+      if (!shouldFallbackToDemo(err) && !(err instanceof Error && err.message === 'Expected array')) throw err;
+      const startMs = new Date(start).getTime();
+      const endMs = new Date(end).getTime();
+      return DEMO_BLOCKS.filter((b) => {
+        const bStart = new Date(b.startTime).getTime();
+        const bEnd = new Date(b.endTime).getTime();
+        return bStart < endMs && bEnd > startMs;
+      });
+    }
+  },
+
+  createBlock: async (
+    data: { startTime: string; endTime: string; reason: string },
+    userId?: number
+  ): Promise<CalendarBlock> => {
+    const effectiveUserId = userId || currentUserId();
+    if (isDemoSession()) {
+      const newBlock: CalendarBlock = {
+        id: Date.now(),
+        createdByUserId: effectiveUserId,
+        createdByUserFullName: localStorage.getItem('fullName') || 'Usuario Operador',
+        startTime: data.startTime,
+        endTime: data.endTime,
+        reason: data.reason,
+        createdAt: new Date().toISOString(),
+      };
+      DEMO_BLOCKS = [newBlock, ...DEMO_BLOCKS];
+      return newBlock;
+    }
+    try {
+      const response = await api.post<CalendarBlock>('/bloqueos', data, {
+        params: userId ? { userId } : undefined,
+      });
+      return response.data;
+    } catch (err) {
+      if (!shouldFallbackToDemo(err)) throw err;
+      const newBlock: CalendarBlock = {
+        id: Date.now(),
+        createdByUserId: effectiveUserId,
+        createdByUserFullName: localStorage.getItem('fullName') || 'Usuario Operador',
+        startTime: data.startTime,
+        endTime: data.endTime,
+        reason: data.reason,
+        createdAt: new Date().toISOString(),
+      };
+      DEMO_BLOCKS = [newBlock, ...DEMO_BLOCKS];
+      return newBlock;
+    }
+  },
+
+  deleteBlock: async (id: number): Promise<void> => {
+    if (isDemoSession()) {
+      DEMO_BLOCKS = DEMO_BLOCKS.filter((b) => b.id !== id);
+      return;
+    }
+    try {
+      await api.delete(`/bloqueos/${id}`);
+      DEMO_BLOCKS = DEMO_BLOCKS.filter((b) => b.id !== id);
+    } catch (err) {
+      if (!shouldFallbackToDemo(err)) throw err;
+      DEMO_BLOCKS = DEMO_BLOCKS.filter((b) => b.id !== id);
+    }
+  },
+};
 
 // --- SERVICIOS DE HISTORIA CLÍNICA (Solo Médicas) ---
 export const clinicalApi = {
@@ -511,7 +940,7 @@ export const clinicalApi = {
       const response = await api.post<ClinicalEntry>(
         '/historias-clinicas/entradas',
         { appointmentId, content },
-        { params: { physicianUserId: currentUserId() } }
+        { params: { physicianUserId: currentUserId() ?? 2 } }
       );
       return response.data;
     } catch (err) {
@@ -582,12 +1011,61 @@ export const chatApi = {
 };
 
 export const chatbotApi = {
-  sendMessage: async (message: string): Promise<string> => {
+  sendMessage: async (message: string, history?: { role: string; text: string }[]): Promise<string> => {
     try {
-      const res = await chatApi.sendMessageToGemini(message);
+      const res = await chatApi.sendMessageToGemini(message, history);
       return res.reply;
-    } catch {
-      return '¡Hola! 🌿 Los tratamientos más solicitados son el Peeling Mandélico ($42.000 ARS con seña de $21.000 ARS) y la Toxina Botulínica ($65.000 ARS con seña de $32.500 ARS). Para reservar, escribinos por WhatsApp y coordinamos tu turno.';
+    } catch (error) {
+      console.warn('Intermitencia al conectar con el asistente de IA:', error);
+      return '¡Hola! 🌿 En este momento estamos experimentando una breve intermitencia con el servidor. Puedes consultar nuestros tratamientos disponibles en la sección Servicios o reservar directamente seleccionando tu fecha y hora.';
+    }
+  },
+};
+
+const getDemoAnalyticsKpis = (): AnalyticsKpisResponse => ({
+  financial: {
+    totalRevenue: 5840000,
+    onlineDepositRevenue: 2920000,
+    counterBalanceRevenue: 2920000,
+    growthVsPreviousMonth: 24.5,
+  },
+  operational: {
+    totalAppointments: 142,
+    completedAppointments: 136,
+    attendedAppointments: 0,
+    noShowAppointments: 6,
+    attendanceRate: 95.8,
+    noShowRate: 4.2,
+  },
+  aiAssistant: {
+    totalInquiries: 389,
+    convertedToBooking: 250,
+    conversionRate: 64.2,
+  },
+  treatmentRankings: [
+    { name: 'Peeling Químico Facial (Ácido Mandélico + Retinol)', count: 48, percentage: 85, revenue: 2016000 },
+    { name: 'Toxina Botulínica (Frente, Entrecejo y Patas de Gallo)', count: 36, percentage: 65, revenue: 2340000 },
+    { name: 'Relleno con Ácido Hialurónico (Labios y Surcos)', count: 28, percentage: 50, revenue: 2100000 },
+    { name: 'Limpieza Facial Profunda + Hidrodermoabrasión', count: 20, percentage: 35, revenue: 560000 },
+    { name: 'Mesoterapia Facial con Vitaminas & Antioxidantes', count: 10, percentage: 20, revenue: 320000 },
+  ],
+  period: 'Agosto 2026 (Tiempo Real)',
+});
+
+// --- SERVICIO DE ANALÍTICA Y KPIS DIRECTIVOS ---
+export const analyticsApi = {
+  getKpis: async (): Promise<AnalyticsKpisResponse> => {
+    if (isDemoSession()) {
+      return getDemoAnalyticsKpis();
+    }
+    try {
+      const response = await api.get<AnalyticsKpisResponse>('/analytics/kpis');
+      return response.data;
+    } catch (err) {
+      if (shouldFallbackToDemo(err)) {
+        return getDemoAnalyticsKpis();
+      }
+      throw err;
     }
   },
 };

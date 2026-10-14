@@ -72,6 +72,20 @@
     text-rendering: optimizeLegibility;
   }
 
+  /* ------------------------------------------------------------------------
+   * Escalado tipográfico en escritorio (≥1024px).
+   * Toda la escala de Tailwind usa rem, relativa al font-size del <html>.
+   * Subir la raíz a 20px (1.25× sobre los 16px del navegador) agranda TODO
+   * el texto de forma proporcional, manteniendo la jerarquía visual.
+   * Para ajustar el tamaño, cambiá sólo este valor. Para revertir, borrá
+   * el bloque. (Mobile/tablet quedan con el tamaño por defecto.)
+   * ---------------------------------------------------------------------- */
+  @media (min-width: 1024px) {
+    html {
+      font-size: 20px;
+    }
+  }
+
   body {
     @apply bg-sand-50 text-sand-900 font-sans;
   }

@@ -15,4 +15,5 @@ public interface JpaDermatologicServiceRepository extends JpaRepository<Dermatol
     Optional<DermatologicService> findByName(String name); // Búsqueda por nombre único
     List<DermatologicService> findByActiveTrue(); // Listado de servicios activos disponibles
     boolean existsByName(String name); // Verificación de nombre único
+    boolean existsByNameAndIdNot(String name, Long id); // Verificación de nombre único excluyendo un ID
 }

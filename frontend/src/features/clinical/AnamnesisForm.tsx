@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { FileText, AlertTriangle, CheckCircle, Save, Pencil, ShieldCheck } from 'lucide-react';
 import { clinicalApi } from '../../services/api';
 import { MedicalRecord } from '../../types';
-import { Button } from '../../components/ui';
+import { Button, Callout, toast } from '../../components/ui';
 import { currentUserId } from '../../utils/session';
 import { cn } from '../../utils/cn';
 
@@ -42,22 +42,36 @@ export const AnamnesisForm: React.FC<AnamnesisFormProps> = ({ patientId, record,
   const [draft, setDraft] = useState<Partial<MedicalRecord>>(record);
   const [isSaving, setIsSaving] = useState(false);
   const [saved, setSaved] = useState(false);
+  const [errorMsg, setErrorMsg] = useState<string | null>(null);
 
-  const startEdit = () => { setDraft(record); setEditing(true); setSaved(false); };
-  const cancel = () => { setDraft(record); setEditing(false); };
+  const startEdit = () => { setDraft(record); setEditing(true); setSaved(false); setErrorMsg(null); };
+  const cancel = () => { setDraft(record); setEditing(false); setErrorMsg(null); };
   const set = (patch: Partial<MedicalRecord>) => setDraft((d) => ({ ...d, ...patch }));
 
   const handleSave = async (e: React.FormEvent) => {
     e.preventDefault();
     setIsSaving(true);
+    setErrorMsg(null);
     try {
       const result = await clinicalApi.saveMedicalRecord(patientId, draft, currentUserId() ?? 2);
       onChange(result);
       setEditing(false);
       setSaved(true);
+      toast.success('Ficha clínica guardada exitosamente');
       setTimeout(() => setSaved(false), 3000);
-    } catch {
-      alert('No se pudo guardar la ficha clínica.');
+    } catch (err: any) {
+      const serverMsg =
+        err?.response?.data?.detail ||
+        err?.response?.data?.message ||
+        (err?.message && !err.message.includes('status code') ? err.message : null) ||
+        'No se pudo guardar la ficha clínica en este momento.';
+      setErrorMsg(serverMsg);
+      toast.friendlyError('No pudimos guardar los cambios de la ficha clínica', {
+        description: 'Tus modificaciones no se han perdido. Podés reintentar en unos instantes.',
+        onRetry: () => {
+          handleSave(e);
+        },
+      });
     } finally {
       setIsSaving(false);
     }
@@ -116,6 +130,12 @@ export const AnamnesisForm: React.FC<AnamnesisFormProps> = ({ patientId, record,
         </h3>
       </div>
 
+      {errorMsg && (
+        <Callout intent="error" title="Atención" onClose={() => setErrorMsg(null)}>
+          {errorMsg} Podés intentar guardar nuevamente con el botón de abajo.
+        </Callout>
+      )}
+
       <div>
         <label className="block text-[11px] font-bold text-sand-700 uppercase tracking-wider mb-2">
           Fototipo cutáneo (Fitzpatrick)
@@ -127,7 +147,7 @@ export const AnamnesisForm: React.FC<AnamnesisFormProps> = ({ patientId, record,
               type="button"
               onClick={() => set({ fitzpatrickPhototype: type })}
               className={cn(
-                'p-2 rounded-xl border text-xs font-bold transition-all min-h-[40px]',
+                'p-2 rounded-xl border text-xs font-bold transition-all min-h-[44px]',
                 draft.fitzpatrickPhototype === type
                   ? 'border-primary-500 bg-primary-50 text-primary-700 ring-2 ring-primary-500/20'
                   : 'border-sand-200 bg-sand-50 text-sand-600 hover:bg-sand-100'
@@ -143,7 +163,7 @@ export const AnamnesisForm: React.FC<AnamnesisFormProps> = ({ patientId, record,
         <label className="block text-[11px] font-bold text-sand-700 uppercase tracking-wider mb-2">Antecedentes patológicos</label>
         <div className="grid grid-cols-1 sm:grid-cols-3 gap-2 text-xs">
           {PATOLOGIAS.map((item) => (
-            <label key={item.key} className="flex items-center gap-2 bg-sand-50 p-2.5 rounded-xl border border-sand-200 cursor-pointer hover:bg-sand-100/60 min-h-[42px]">
+            <label key={item.key} className="flex items-center gap-2 bg-sand-50 p-2.5 rounded-xl border border-sand-200 cursor-pointer hover:bg-sand-100/60 min-h-[44px]">
               <input
                 type="checkbox"
                 checked={Boolean(draft[item.key as keyof MedicalRecord])}
@@ -162,7 +182,7 @@ export const AnamnesisForm: React.FC<AnamnesisFormProps> = ({ patientId, record,
         </label>
         <div className="grid grid-cols-1 sm:grid-cols-3 gap-2 text-xs">
           {ALERGIAS.map((item) => (
-            <label key={item.key} className="flex items-center gap-2 bg-danger-50/60 p-2.5 rounded-xl border border-danger-100 cursor-pointer min-h-[42px]">
+            <label key={item.key} className="flex items-center gap-2 bg-danger-50/60 p-2.5 rounded-xl border border-danger-100 cursor-pointer min-h-[44px]">
               <input
                 type="checkbox"
                 checked={Boolean(draft[item.key as keyof MedicalRecord])}

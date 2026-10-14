@@ -1,0 +1,88 @@
+name: Jules Asynchronous Coding Agent
+
+on:
+  workflow_dispatch:
+    inputs:
+      prompt:
+        description: 'Instrucción o tarea para Google Jules'
+        required: true
+        type: string
+      starting_branch:
+        description: 'Rama base de inicio'
+        required: false
+        default: 'main'
+        type: string
+
+  issue_comment:
+    types: [created]
+
+concurrency:
+  group: jules-${{ github.ref }}
+  cancel-in-progress: false
+
+jobs:
+  dispatch-jules:
+    name: Dispatch Task to Google Jules
+    # Filtro de Seguridad RBAC: Solo mantenedores autorizados pueden activar a Jules
+    if: |
+      github.event_name == 'workflow_dispatch' ||
+      (
+        github.event.issue.pull_request == null &&
+        contains(github.event.comment.body, '@jules') &&
+        (
+          github.event.comment.author_association == 'OWNER' ||
+          github.event.comment.author_association == 'MEMBER' ||
+          github.event.comment.author_association == 'COLLABORATOR'
+        )
+      )
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      issues: write
+
+    steps:
+      - name: Prepare Prompt (Securizado contra Inyección)
+        id: prepare
+        env:
+          EVENT_NAME: ${{ github.event_name }}
+          INPUT_PROMPT: ${{ github.event.inputs.prompt }}
+          INPUT_BRANCH: ${{ github.event.inputs.starting_branch }}
+          ISSUE_NUM: ${{ github.event.issue.number }}
+          ISSUE_TITLE: ${{ github.event.issue.title }}
+          ISSUE_BODY: ${{ github.event.issue.body }}
+          COMMENT_BODY: ${{ github.event.comment.body }}
+        shell: bash
+        run: |
+          if [ "$EVENT_NAME" = "workflow_dispatch" ]; then
+            echo "FINAL_PROMPT=$INPUT_PROMPT" >> $GITHUB_ENV
+            echo "TARGET_BRANCH=${INPUT_BRANCH:-main}" >> $GITHUB_ENV
+          else
+            PROMPT_CONTENT=$(printf "Tarea delegada desde el Issue #%s: %s\n\nContexto del Issue:\n%s\n\nInstrucción del Mantenedor:\n%s\n\nPor favor, ejecuta la tarea respetando el protocolo A-LOOP estipulado en AGENTS.md." \
+              "$ISSUE_NUM" "$ISSUE_TITLE" "$ISSUE_BODY" "$COMMENT_BODY")
+            
+            echo "FINAL_PROMPT<<EOF" >> $GITHUB_ENV
+            echo "$PROMPT_CONTENT" >> $GITHUB_ENV
+            echo "EOF" >> $GITHUB_ENV
+            echo "TARGET_BRANCH=main" >> $GITHUB_ENV
+          fi
+
+      - name: Invoke Google Jules Agent
+        uses: google-labs-code/jules-invoke@v1
+        with:
+          prompt: ${{ env.FINAL_PROMPT }}
+          starting_branch: ${{ env.TARGET_BRANCH }}
+          include_last_commit: false
+          include_commit_log: true
+          jules_api_key: ${{ secrets.JULES_API_KEY }}
+
+      - name: Notify Issue
+        if: github.event_name == 'issue_comment'
+        uses: actions/github-script@v7
+        with:
+          script: |
+            github.rest.issues.createComment({
+              issue_number: context.issue.number,
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              body: '🤖 **Google Jules Despachado**: Se ha iniciado una sesión asíncrona en la nube de Google Labs. Jules seguirá el protocolo A-LOOP de `AGENTS.md` y abrirá una Pull Request con la solución y la auditoría de invariantes.'
+            });

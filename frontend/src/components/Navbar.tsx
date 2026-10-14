@@ -1,10 +1,10 @@
 import React from 'react';
-import { Calendar, UserCheck, ShieldCheck, Settings, BarChart3, LogOut } from 'lucide-react';
+import { Calendar, UserCheck, Users, ShieldCheck, Settings, BarChart3, LogOut } from 'lucide-react';
 import { Logo } from './ui';
 import { cn } from '../utils/cn';
 import { NAV_TABS, type TabType, type RoleType } from './navConfig';
 
-const ICONS = { Calendar, UserCheck, ShieldCheck, Settings, BarChart3 } as const;
+const ICONS = { Calendar, UserCheck, Users, ShieldCheck, Settings, BarChart3 } as const;
 
 interface NavbarProps {
   currentTab: TabType;

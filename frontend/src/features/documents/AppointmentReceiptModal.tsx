@@ -94,7 +94,7 @@ export const AppointmentReceiptModal: React.FC<AppointmentReceiptModalProps> = (
               href={generateGoogleCalendarUrl(calendarEvent)}
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center gap-1.5 px-3 py-2 min-h-[40px] rounded-xl text-xs font-bold border border-sand-200 bg-sand-50 text-sand-700 hover:bg-sand-100"
+              className="inline-flex items-center gap-1.5 px-3 py-2 min-h-[44px] rounded-xl text-xs font-bold border border-sand-200 bg-sand-50 text-sand-700 hover:bg-sand-100"
               title="Añadir a Google Calendar"
             >
               <Calendar className="w-3.5 h-3.5" />
@@ -102,7 +102,7 @@ export const AppointmentReceiptModal: React.FC<AppointmentReceiptModalProps> = (
             </a>
             <button
               onClick={() => downloadIcsCalendarFile(calendarEvent)}
-              className="inline-flex items-center gap-1.5 px-3 py-2 min-h-[40px] rounded-xl text-xs font-bold border border-sand-200 bg-sand-50 text-sand-700 hover:bg-sand-100"
+              className="inline-flex items-center gap-1.5 px-3 py-2 min-h-[44px] rounded-xl text-xs font-bold border border-sand-200 bg-sand-50 text-sand-700 hover:bg-sand-100"
               title="Descargar archivo .ics"
             >
               <Download className="w-3.5 h-3.5" />
@@ -110,7 +110,7 @@ export const AppointmentReceiptModal: React.FC<AppointmentReceiptModalProps> = (
             </button>
             <button
               onClick={() => window.print()}
-              className="inline-flex items-center gap-1.5 px-3 py-2 min-h-[40px] rounded-xl text-xs font-bold bg-primary-500 hover:bg-primary-600 text-white"
+              className="inline-flex items-center gap-1.5 px-3 py-2 min-h-[44px] rounded-xl text-xs font-bold bg-primary-500 hover:bg-primary-600 text-white"
             >
               <Printer className="w-4 h-4" />
               Imprimir
@@ -118,7 +118,7 @@ export const AppointmentReceiptModal: React.FC<AppointmentReceiptModalProps> = (
             <button
               onClick={onClose}
               aria-label="Cerrar"
-              className="p-2 min-h-[40px] min-w-[40px] rounded-xl text-sand-400 hover:bg-sand-100 hover:text-sand-700 flex items-center justify-center"
+              className="p-2 min-h-[44px] min-w-[44px] rounded-xl text-sand-400 hover:bg-sand-100 hover:text-sand-700 flex items-center justify-center"
             >
               <X className="w-5 h-5" />
             </button>

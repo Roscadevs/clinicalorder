@@ -1,87 +1,153 @@
 package com.clinicadermatologica.app.infrastructure.security;
 
-import lombok.RequiredArgsConstructor; // Genera constructor con dependencias final
-import org.springframework.context.annotation.Bean; // Declara un método que produce un Bean administrado por Spring
-import org.springframework.context.annotation.Configuration; // Marca la clase como archivo de configuración de Spring
-import org.springframework.http.HttpMethod; // Enum de métodos HTTP
-import org.springframework.security.authentication.AuthenticationManager; // Gestor de autenticación
-import org.springframework.security.config.annotation.authentication.configuration.AuthenticationConfiguration; // Configuración de auth
-import org.springframework.security.config.annotation.method.configuration.EnableMethodSecurity; // Habilita @PreAuthorize
-import org.springframework.security.config.annotation.web.builders.HttpSecurity; // Builder de reglas de seguridad HTTP
-import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity; // Habilita Spring Security web
-import org.springframework.security.config.annotation.web.configurers.AbstractHttpConfigurer; // Desactiva configuraciones por defecto
-import org.springframework.security.config.http.SessionCreationPolicy; // Políticas de gestión de sesiones
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder; // Encriptador de contraseñas BCrypt
-import org.springframework.security.crypto.password.PasswordEncoder; // Interfaz de hashing de contraseñas
-import org.springframework.security.web.SecurityFilterChain; // Cadena de filtros de seguridad
-import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter; // Filtro estándar de Spring
-import org.springframework.web.cors.*; // Configuración de CORS
+import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
+import org.springframework.http.HttpMethod;
+import org.springframework.security.authentication.AuthenticationManager;
+import org.springframework.security.config.Customizer;
+import org.springframework.security.config.annotation.authentication.configuration.AuthenticationConfiguration;
+import org.springframework.security.config.annotation.method.configuration.EnableMethodSecurity;
+import org.springframework.security.config.annotation.web.builders.HttpSecurity;
+import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
+import org.springframework.security.config.annotation.web.configurers.AbstractHttpConfigurer;
+import org.springframework.security.config.annotation.web.configurers.HeadersConfigurer;
+import org.springframework.security.config.http.SessionCreationPolicy;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.security.web.SecurityFilterChain;
+import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
+import org.springframework.security.web.firewall.HttpFirewall;
+import org.springframework.security.web.firewall.StrictHttpFirewall;
+import org.springframework.security.web.header.writers.ReferrerPolicyHeaderWriter;
+import org.springframework.web.cors.CorsConfiguration;
+import org.springframework.web.cors.CorsConfigurationSource;
+import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
 
-import java.util.Arrays; // Utilidad de arreglos
-import java.util.List; // Utilidad de listas
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 
 /**
- * Configuración central de Seguridad, CORS, CSRF, Sesiones Stateless y Filtros JWT en Spring Security 6.
+ * Configuración central de Seguridad, Firewall Perimetral, CORS, Cabeceras HTTP,
+ * Manejadores RFC 7807, Sesiones Stateless y Filtros JWT en Spring Security 6.
  */
-@Configuration // Clase de configuración de Spring
-@EnableWebSecurity // Habilita la seguridad web personalizada
-@EnableMethodSecurity(prePostEnabled = true) // Activa la seguridad a nivel de métodos con @PreAuthorize
-@RequiredArgsConstructor // Inyección de dependencias por constructor
+@Configuration
+@EnableWebSecurity
+@EnableMethodSecurity(prePostEnabled = true)
+@RequiredArgsConstructor
 public class SecurityConfig {
 
-    private final JwtAuthenticationFilter jwtAuthenticationFilter; // Filtro interceptor JWT
+    private final JwtAuthenticationFilter jwtAuthenticationFilter;
+    private final DelegatedAuthenticationEntryPoint authenticationEntryPoint;
+    private final DelegatedAccessDeniedHandler accessDeniedHandler;
 
-    @Bean // Expone el bean PasswordEncoder para cifrado seguro
+    @Value("${app.cors.allowed-origins:http://localhost:5173,http://localhost:3000,http://127.0.0.1:5173,https://clinicalorder.eliasdelcastillo.com,https://clinicalorder.onrender.com}")
+    private String allowedOrigins;
+
+    @Bean
     public PasswordEncoder passwordEncoder() {
-        return new BCryptPasswordEncoder(12); // BCrypt con factor de costo 12 (alta seguridad contra ataques por GPU)
+        return new BCryptPasswordEncoder(12);
     }
 
-    @Bean // Expone el AuthenticationManager estándar
+    @Bean
     public AuthenticationManager authenticationManager(AuthenticationConfiguration authConfig) throws Exception {
         return authConfig.getAuthenticationManager();
     }
 
-    @Bean // Configura la cadena principal de filtros de seguridad HTTP
+    /**
+     * Cortafuegos HTTP estricto para mitigar desincronización de proxy y ataques de path traversal.
+     * Bloquea terminaciones matriciales (;), barras codificadas (%2F), caracteres nulos y secuencias relativas.
+     */
+    @Bean
+    public HttpFirewall httpFirewall() {
+        StrictHttpFirewall firewall = new StrictHttpFirewall();
+        firewall.setAllowUrlEncodedSlash(false);
+        firewall.setAllowUrlEncodedPercent(false);
+        firewall.setAllowSemicolon(false);
+        firewall.setAllowBackSlash(false);
+        firewall.setAllowUrlEncodedPeriod(false);
+        return firewall;
+    }
+
+    @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         http
-            .cors(cors -> cors.configurationSource(corsConfigurationSource())) // Aplica política CORS para Vercel
-            .csrf(AbstractHttpConfigurer::disable) // Deshabilita CSRF al ser una API REST Stateless con JWT
-            .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS)) // Sin sesiones HTTP en memoria
+            .cors(cors -> cors.configurationSource(corsConfigurationSource()))
+            .csrf(AbstractHttpConfigurer::disable)
+            .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
+            .exceptionHandling(exceptions -> exceptions
+                .authenticationEntryPoint(authenticationEntryPoint)
+                .accessDeniedHandler(accessDeniedHandler)
+            )
+            .headers(headers -> headers
+                .frameOptions(HeadersConfigurer.FrameOptionsConfig::deny)
+                .contentTypeOptions(Customizer.withDefaults())
+                .xssProtection(Customizer.withDefaults())
+                .referrerPolicy(referrer -> referrer.policy(ReferrerPolicyHeaderWriter.ReferrerPolicy.STRICT_ORIGIN_WHEN_CROSS_ORIGIN))
+            )
             .authorizeHttpRequests(auth -> auth
-                // Endpoints Públicos de Autenticación
-                .requestMatchers("/auth/login", "/auth/forgot-password", "/auth/reset-password").permitAll()
-                // Endpoints Públicos para el Paciente (Landing, Catálogo y Turnos)
-                .requestMatchers(HttpMethod.GET, "/servicios", "/servicios/**").permitAll()
+                // 1. Endpoints Públicos de Autenticación
+                .requestMatchers("/auth/**").permitAll()
+
+                // 2. Endpoints Públicos para el Paciente (Landing, Catálogo y Turnos)
+                .requestMatchers(HttpMethod.GET, "/servicios", "/servicios/{id:[0-9]+}").permitAll()
                 .requestMatchers(HttpMethod.POST, "/citas/reservar-temporal").permitAll()
                 .requestMatchers(HttpMethod.GET, "/citas/disponibilidad").permitAll()
-                // Endpoint Público del Asistente Virtual con Gemini API
+                .requestMatchers(HttpMethod.GET, "/citas/{id:[0-9]+}/estado").permitAll()
+
+                // 3. Endpoint Público del Asistente Virtual con Gemini API
                 .requestMatchers(HttpMethod.POST, "/chat/gemini").permitAll()
-                // Webhook Público de MercadoPago (recibe notificaciones de pago)
+
+                // 4. Webhook Público de MercadoPago (recibe notificaciones de pago con HMAC)
                 .requestMatchers(HttpMethod.POST, "/pagos/webhook").permitAll()
-                // Restricción Estricta: Solo DOCTORA puede acceder a historias clínicas y auditoría
+
+                // 5. Restricción Estricta: Solo ADMINISTRADOR puede gestionar catálogo completo y administración
+                .requestMatchers("/servicios/todos", "/servicios/admin/**", "/admin/**", "/usuarios/**").hasRole("ADMIN")
+
+                // 6. Restricción Estricta: Solo DOCTORA puede acceder a historias clínicas y auditoría médica
                 .requestMatchers("/historias-clinicas/**").hasRole("DOCTORA")
-                // Restricción: Solo ADMINISTRADOR puede gestionar usuarios y servicios
-                .requestMatchers("/admin/**").hasRole("ADMIN")
-                // Cualquier otra solicitud requiere autenticación JWT válida
+
+                // 7. Endpoints de Analítica y Gestión de KPIs (Restringido a DOCTORA y ADMIN)
+                .requestMatchers("/analytics/**", "/api/v1/analytics/**").hasAnyRole("DOCTORA", "ADMIN")
+
+                // 8. Endpoints Operativos de Staff (Agenda de Citas, Pacientes y Bloqueos de Calendario)
+                .requestMatchers("/citas/**", "/pacientes/**", "/bloqueos/**").hasAnyRole("DOCTORA", "SECRETARIA", "ADMIN")
+
+                // 9. Cualquier otra solicitud requiere autenticación JWT válida por defecto (Default Deny)
                 .anyRequest().authenticated()
             )
-            // Agrega nuestro filtro JWT antes del filtro de usuario/contraseña estándar de Spring
             .addFilterBefore(jwtAuthenticationFilter, UsernamePasswordAuthenticationFilter.class);
 
         return http.build();
     }
 
-    @Bean // Configuración de CORS permitiendo llamadas desde el Frontend en Vercel y entorno local Vite
+    @Bean
     public CorsConfigurationSource corsConfigurationSource() {
         CorsConfiguration configuration = new CorsConfiguration();
-        configuration.setAllowedOriginPatterns(List.of("*")); // Permite peticiones desde cualquier origen (Vercel, localhost)
-        configuration.setAllowedMethods(Arrays.asList("GET", "POST", "PUT", "DELETE", "OPTIONS", "PATCH")); // Métodos HTTP permitidos
-        configuration.setAllowedHeaders(Arrays.asList("Authorization", "Content-Type", "X-Requested-With", "Accept", "Origin")); // Cabeceras permitidas
-        configuration.setExposedHeaders(List.of("Authorization")); // Expone cabecera Authorization al cliente
-        configuration.setAllowCredentials(true); // Permite credenciales y cookies si fueran necesarias
+        List<String> origins = Arrays.stream(allowedOrigins.split(","))
+                .map(String::trim)
+                .filter(s -> !s.isEmpty())
+                .toList();
+
+        List<String> originPatterns = new ArrayList<>(origins);
+        originPatterns.addAll(Arrays.asList(
+                "http://localhost:*",
+                "http://127.0.0.1:*",
+                "https://*.eliasdelcastillo.com",
+                "https://*.onrender.com",
+                "https://*.vercel.app"
+        ));
+
+        configuration.setAllowedOriginPatterns(originPatterns);
+        configuration.setAllowedMethods(Arrays.asList("GET", "POST", "PUT", "DELETE", "OPTIONS", "PATCH"));
+        configuration.setAllowedHeaders(Arrays.asList("Authorization", "Content-Type", "X-Requested-With", "Accept", "Origin"));
+        configuration.setExposedHeaders(List.of("Authorization"));
+        configuration.setAllowCredentials(true);
 
         UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
-        source.registerCorsConfiguration("/**", configuration); // Aplica la configuración a todas las rutas
+        source.registerCorsConfiguration("/**", configuration);
         return source;
     }
 }

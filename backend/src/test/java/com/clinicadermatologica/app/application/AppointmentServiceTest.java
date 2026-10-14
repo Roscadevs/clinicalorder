@@ -1,6 +1,7 @@
 package com.clinicadermatologica.app.application;
 
 import com.clinicadermatologica.app.application.service.AppointmentService;
+import com.clinicadermatologica.app.domain.exception.BusinessRuleException;
 import com.clinicadermatologica.app.domain.exception.SlotUnavailableException;
 import com.clinicadermatologica.app.domain.model.*;
 import com.clinicadermatologica.app.domain.repository.*;
@@ -12,6 +13,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
+import org.mockito.ArgumentCaptor;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
@@ -39,6 +41,7 @@ public class AppointmentServiceTest {
     @Mock private PaymentTransactionRepository paymentTransactionRepository;
     @Mock private CalendarBlockRepository calendarBlockRepository;
     @Mock private MercadoPagoPaymentAdapter mercadoPagoAdapter;
+    @Mock private com.clinicadermatologica.app.application.service.PaymentService paymentService;
 
     @InjectMocks
     private AppointmentService appointmentService;
@@ -90,6 +93,11 @@ public class AppointmentServiceTest {
         when(userRepository.findById(1L)).thenReturn(Optional.of(mockUser));
         when(calendarBlockRepository.findOverlappingBlocks(any(), any())).thenReturn(Collections.emptyList());
         when(appointmentRepository.findOverlappingAppointments(any(), any())).thenReturn(Collections.emptyList());
+
+        com.mercadopago.resources.preference.Preference mockPref = mock(com.mercadopago.resources.preference.Preference.class);
+        when(mockPref.getId()).thenReturn("PREF-100");
+        when(mercadoPagoAdapter.createDepositPreference(any(), any(), any(), any(), any(), any(), any())).thenReturn(mockPref);
+        when(mercadoPagoAdapter.resolveInitPoint(mockPref)).thenReturn("https://www.mercadopago.com.ar/checkout/v1/redirect?pref_id=PREF-100");
 
         when(appointmentRepository.save(any(Appointment.class))).thenAnswer(inv -> {
             Appointment appt = inv.getArgument(0);
@@ -151,6 +159,12 @@ public class AppointmentServiceTest {
         when(userRepository.findById(1L)).thenReturn(Optional.of(mockUser));
         when(calendarBlockRepository.findOverlappingBlocks(any(), any())).thenReturn(Collections.emptyList());
         when(appointmentRepository.findOverlappingAppointments(any(), any())).thenReturn(List.of(staleHold));
+
+        com.mercadopago.resources.preference.Preference mockPref = mock(com.mercadopago.resources.preference.Preference.class);
+        when(mockPref.getId()).thenReturn("PREF-101");
+        when(mercadoPagoAdapter.createDepositPreference(any(), any(), any(), any(), any(), any(), any())).thenReturn(mockPref);
+        when(mercadoPagoAdapter.resolveInitPoint(mockPref)).thenReturn("https://www.mercadopago.com.ar/checkout/v1/redirect?pref_id=PREF-101");
+
         when(appointmentRepository.save(any(Appointment.class))).thenAnswer(inv -> {
             Appointment appt = inv.getArgument(0);
             if (appt.getId() == null) appt.setId(101L);
@@ -221,5 +235,134 @@ public class AppointmentServiceTest {
         assertNotNull(slots);
         assertFalse(slots.isEmpty());
         assertTrue(slots.stream().anyMatch(TimeSlotDTO::getAvailable));
+    }
+
+    @Test
+    @DisplayName("cancelAppointment debe emitir reembolso si existe pago aprobado en MercadoPago")
+    void testCancelAppointment_WithApprovedMercadoPagoPayment_TriggersRefund() {
+        Appointment appt = Appointment.builder().id(200L).status(AppointmentStatus.CONFIRMED).build();
+        when(appointmentRepository.findById(200L)).thenReturn(Optional.of(appt));
+
+        PaymentTransaction approvedTx = PaymentTransaction.builder()
+                .id(500L)
+                .appointment(appt)
+                .paymentType(PaymentType.MERCADOPAGO)
+                .status(PaymentStatus.APPROVED)
+                .mpPaymentId("123456789")
+                .build();
+
+        when(paymentTransactionRepository.findByAppointmentId(200L)).thenReturn(List.of(approvedTx));
+
+        appointmentService.cancelAppointment(200L);
+
+        assertEquals(AppointmentStatus.CANCELED, appt.getStatus());
+        verify(paymentService, times(1)).refundPayment(approvedTx);
+        verify(appointmentRepository).save(appt);
+    }
+
+    @Test
+    @DisplayName("getAppointmentPublicStatus retorna información resumida del turno")
+    void testGetAppointmentPublicStatus() {
+        Appointment appt = Appointment.builder()
+                .id(300L)
+                .status(AppointmentStatus.CONFIRMED)
+                .service(mockService)
+                .startTime(Instant.now())
+                .build();
+
+        when(appointmentRepository.findById(300L)).thenReturn(Optional.of(appt));
+
+        Map<String, Object> status = appointmentService.getAppointmentPublicStatus(300L);
+
+        assertNotNull(status);
+        assertEquals(300L, status.get("appointmentId"));
+        assertEquals("CONFIRMED", status.get("status"));
+        assertEquals("Peeling Químico Médico", status.get("serviceName"));
+    }
+
+    @Test
+    @DisplayName("bookTemporaryHold debe rechazar reservas con fecha y hora en el pasado")
+    void testBookTemporaryHold_PastStartTime_ThrowsBusinessRule_KillsMutant() {
+        Instant pastStartTime = Instant.now().minus(2, ChronoUnit.HOURS);
+        BookAppointmentRequestDTO request = BookAppointmentRequestDTO.builder()
+                .patientId(1L)
+                .serviceId(10L)
+                .startTime(pastStartTime)
+                .build();
+
+        when(patientRepository.findById(1L)).thenReturn(Optional.of(mockPatient));
+        when(serviceRepository.findById(10L)).thenReturn(Optional.of(mockService));
+        when(userRepository.findById(1L)).thenReturn(Optional.of(mockUser));
+
+        BusinessRuleException ex = assertThrows(BusinessRuleException.class,
+                () -> appointmentService.bookTemporaryHold(request, 1L));
+
+        assertTrue(ex.getMessage().contains("fecha u hora pasada"),
+                "El mensaje debe indicar que no es posible reservar en fecha/hora pasada");
+        verify(appointmentRepository, never()).save(any());
+        verify(paymentTransactionRepository, never()).save(any());
+    }
+
+    @Test
+    @DisplayName("cancelAppointment debe rechazar la cancelación de turnos ya completados")
+    void testCancelAppointment_CompletedStatus_ThrowsBusinessRule_KillsMutant() {
+        Appointment completedAppt = Appointment.builder()
+                .id(200L)
+                .status(AppointmentStatus.COMPLETED)
+                .build();
+
+        when(appointmentRepository.findById(200L)).thenReturn(Optional.of(completedAppt));
+
+        BusinessRuleException ex = assertThrows(BusinessRuleException.class,
+                () -> appointmentService.cancelAppointment(200L));
+
+        assertTrue(ex.getMessage().contains("ya ha sido completado"),
+                "El mensaje debe advertir que un turno completado no puede cancelarse");
+        verify(paymentService, never()).refundPayment(any());
+        verify(appointmentRepository, never()).save(completedAppt);
+    }
+
+    @Test
+    @DisplayName("bookTemporaryHold debe persistir cita en PENDING_PAYMENT y transacción en DEPOSIT")
+    void testBookTemporaryHold_CapturesStrictPendingPaymentState_KillsMutant() {
+        Instant startTime = Instant.now().plus(4, ChronoUnit.HOURS);
+        BookAppointmentRequestDTO request = BookAppointmentRequestDTO.builder()
+                .patientId(1L)
+                .serviceId(10L)
+                .startTime(startTime)
+                .build();
+
+        when(patientRepository.findById(1L)).thenReturn(Optional.of(mockPatient));
+        when(serviceRepository.findById(10L)).thenReturn(Optional.of(mockService));
+        when(userRepository.findById(1L)).thenReturn(Optional.of(mockUser));
+        when(calendarBlockRepository.findOverlappingBlocks(any(), any())).thenReturn(Collections.emptyList());
+        when(appointmentRepository.findOverlappingAppointments(any(), any())).thenReturn(Collections.emptyList());
+
+        com.mercadopago.resources.preference.Preference mockPref = mock(com.mercadopago.resources.preference.Preference.class);
+        when(mockPref.getId()).thenReturn("PREF-102");
+        when(mercadoPagoAdapter.createDepositPreference(any(), any(), any(), any(), any(), any(), any())).thenReturn(mockPref);
+        when(mercadoPagoAdapter.resolveInitPoint(mockPref)).thenReturn("https://www.mercadopago.com.ar/test");
+
+        when(appointmentRepository.save(any(Appointment.class))).thenAnswer(inv -> {
+            Appointment appt = inv.getArgument(0);
+            appt.setId(102L);
+            return appt;
+        });
+
+        appointmentService.bookTemporaryHold(request, 1L);
+
+        ArgumentCaptor<Appointment> apptCaptor = ArgumentCaptor.forClass(Appointment.class);
+        verify(appointmentRepository, times(1)).save(apptCaptor.capture());
+        Appointment capturedAppt = apptCaptor.getValue();
+        assertEquals(AppointmentStatus.PENDING_PAYMENT, capturedAppt.getStatus(),
+                "El turno retenido debe crearse estrictamente en estado PENDING_PAYMENT");
+
+        ArgumentCaptor<PaymentTransaction> txCaptor = ArgumentCaptor.forClass(PaymentTransaction.class);
+        verify(paymentTransactionRepository, times(1)).save(txCaptor.capture());
+        PaymentTransaction capturedTx = txCaptor.getValue();
+        assertEquals(PaymentConcept.DEPOSIT, capturedTx.getPaymentConcept(),
+                "El concepto del pago inicial debe ser DEPOSIT");
+        assertEquals(PaymentStatus.PENDING, capturedTx.getStatus(),
+                "La transacción inicial debe crearse en estado PENDING");
     }
 }

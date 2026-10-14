@@ -87,6 +87,13 @@ public class PatientService {
         Patient patient = patientRepository.findById(id)
                 .orElseThrow(() -> new ResourceNotFoundException("Paciente no encontrado con ID " + id));
 
+        if (patientRepository.existsByEmailAndIdNot(request.getEmail(), id)) {
+            throw new BusinessRuleException("Ya existe otro paciente con el correo " + request.getEmail());
+        }
+        if (patientRepository.existsByPhoneAndIdNot(request.getPhone(), id)) {
+            throw new BusinessRuleException("Ya existe otro paciente con el teléfono " + request.getPhone());
+        }
+
         patient.setName(request.getName());
         patient.setPhone(request.getPhone());
         patient.setEmail(request.getEmail());

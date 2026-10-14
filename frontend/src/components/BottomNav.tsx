@@ -1,9 +1,9 @@
 import React from 'react';
-import { Calendar, UserCheck, ShieldCheck, Settings, BarChart3 } from 'lucide-react';
+import { Calendar, UserCheck, Users, ShieldCheck, Settings, BarChart3 } from 'lucide-react';
 import { cn } from '../utils/cn';
 import { NAV_TABS, type TabType, type RoleType } from './navConfig';
 
-const ICONS = { Calendar, UserCheck, ShieldCheck, Settings, BarChart3 } as const;
+const ICONS = { Calendar, UserCheck, Users, ShieldCheck, Settings, BarChart3 } as const;
 
 interface BottomNavProps {
   currentTab: TabType;

@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { Banknote, Smartphone, AlertCircle, Copy, Check, MessageCircle, ArrowLeft, QrCode, CheckCircle, Info } from 'lucide-react';
 import { QRCodeSVG } from 'qrcode.react';
 import { appointmentsApi } from '../../services/api';
-import { PaymentConcept, PaymentReceipt } from '../../types';
+import { PaymentConcept, PaymentReceipt, PAYMENT_CONCEPT_LABELS } from '../../types';
 import { Button, Input } from '../../components/ui';
 import { cn } from '../../utils/cn';
 
@@ -11,7 +11,10 @@ type CashOption = 'DEPOSIT' | 'FULL';
 
 interface RegisterPaymentStepProps {
   appointmentId: number;
-  depositAmount: number;
+  /** Monto efectivo a cobrar según la opción elegida (seña o total). */
+  amountToPay: number;
+  /** Concepto elegido en el paso de confirmación: seña (DEPOSIT) o pago total (FULL). */
+  paymentConcept: Exclude<PaymentConcept, 'BALANCE'>;
   depositPercentage: number;
   agreedPrice: number;
   serviceName: string;
@@ -35,7 +38,8 @@ const ars = (n: number) => `$${n.toLocaleString('es-AR', { maximumFractionDigits
  */
 export const RegisterPaymentStep: React.FC<RegisterPaymentStepProps> = ({
   appointmentId,
-  depositAmount,
+  amountToPay,
+  paymentConcept,
   depositPercentage,
   agreedPrice,
   serviceName,
@@ -49,24 +53,30 @@ export const RegisterPaymentStep: React.FC<RegisterPaymentStepProps> = ({
   onVirtualSent,
 }) => {
   const [method, setMethod] = useState<Method>('CASH');
-  const [cashOption, setCashOption] = useState<CashOption>(isToday ? 'FULL' : 'DEPOSIT');
-  const [received, setReceived] = useState<string>(isToday ? String(agreedPrice) : String(depositAmount));
+  const depositAmount = Math.round((agreedPrice * depositPercentage) / 100);
+  const [cashOption, setCashOption] = useState<CashOption>(
+    isToday ? 'FULL' : (paymentConcept === 'FULL' ? 'FULL' : 'DEPOSIT')
+  );
+  const amountToCharge: number = isToday ? agreedPrice : (cashOption === 'FULL' ? agreedPrice : depositAmount);
+  const [received, setReceived] = useState<string>(String(amountToCharge));
   const [fieldError, setFieldError] = useState<string | null>(null);
   const [submitError, setSubmitError] = useState<string | null>(null);
   const [isSaving, setIsSaving] = useState(false);
   const [copied, setCopied] = useState(false);
 
-  const amountToCharge: number = cashOption === 'FULL' ? agreedPrice : depositAmount;
-
   const receivedNum = Number(received.replace(',', '.'));
   const change = Number.isFinite(receivedNum) ? Math.max(0, receivedNum - amountToCharge) : 0;
+
+  React.useEffect(() => {
+    setReceived(String(amountToCharge));
+  }, [amountToCharge]);
 
   // E-2: validación de los datos ingresados antes de registrar.
   const validate = (): string | null => {
     if (!received.trim() || !Number.isFinite(receivedNum)) return 'Ingresá el monto recibido.';
     if (receivedNum <= 0) return 'El monto debe ser mayor a cero.';
     if (receivedNum < amountToCharge) {
-      return `El monto recibido es menor al importe requerido (${ars(amountToCharge)}).`;
+      return `El monto recibido es menor al importe a cobrar (${ars(amountToCharge)}).`;
     }
     return null;
   };
@@ -83,6 +93,7 @@ export const RegisterPaymentStep: React.FC<RegisterPaymentStepProps> = ({
       const receipt = await appointmentsApi.registerDepositPayment(appointmentId, {
         paymentType: 'CASH',
         paymentConcept: cashOption as PaymentConcept,
+        concept: cashOption as Exclude<PaymentConcept, 'BALANCE'>,
         amount: amountToCharge,
         agreedPrice,
       });
@@ -109,9 +120,11 @@ export const RegisterPaymentStep: React.FC<RegisterPaymentStepProps> = ({
     }
   };
 
+  const conceptLabel = PAYMENT_CONCEPT_LABELS[paymentConcept].toLowerCase();
+
   const patientWhatsapp = patientPhone?.replace(/\D/g, '');
   const virtualMessage = encodeURIComponent(
-    `Hola ${patientName}, te enviamos el link para abonar la seña de tu turno de ${serviceName} (${ars(depositAmount)}). ` +
+    `Hola ${patientName}, te enviamos el link para abonar ${conceptLabel === 'pago total' ? 'el total' : 'la seña'} de tu turno de ${serviceName} (${ars(amountToPay)}). ` +
       `El turno queda reservado por 10 minutos: ${initPointUrl ?? ''}`
   );
 

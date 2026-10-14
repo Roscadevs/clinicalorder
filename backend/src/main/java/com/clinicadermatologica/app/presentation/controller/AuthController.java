@@ -51,8 +51,18 @@ public class AuthController {
      */
     @PostMapping("/register") // Mapea HTTP POST /api/v1/auth/register
     @PreAuthorize("hasRole('ADMIN')") // Exige rol ADMIN
-    public ResponseEntity<User> register(@Valid @RequestBody RegisterUserRequestDTO request) {
+    public ResponseEntity<UserResponseDTO> register(@Valid @RequestBody RegisterUserRequestDTO request) {
         User createdUser = authService.registerUser(request);
-        return ResponseEntity.status(HttpStatus.CREATED).body(createdUser); // Retorna HTTP 201 Created
+        UserResponseDTO response = UserResponseDTO.builder()
+                .id(createdUser.getId())
+                .username(createdUser.getUsername())
+                .email(createdUser.getEmail())
+                .fullName(createdUser.getFullName())
+                .role(createdUser.getRole())
+                .active(createdUser.getActive())
+                .createdAt(createdUser.getCreatedAt())
+                .updatedAt(createdUser.getUpdatedAt())
+                .build();
+        return ResponseEntity.status(HttpStatus.CREATED).body(response); // Retorna HTTP 201 Created sin hash
     }
 }

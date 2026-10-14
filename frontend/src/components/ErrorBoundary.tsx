@@ -1,7 +1,13 @@
 import React, { Component, ErrorInfo, ReactNode } from 'react';
+import { HumanFriendlyErrorFallback } from './HumanFriendlyErrorFallback';
 
-interface Props {
+export interface ErrorBoundaryProps {
   children?: ReactNode;
+  moduleTitle?: string;
+  supportPhone?: string;
+  fallback?: ReactNode;
+  onReset?: () => void;
+  onError?: (error: Error, info: ErrorInfo) => void;
 }
 
 interface State {
@@ -9,10 +15,15 @@ interface State {
   error: Error | null;
 }
 
-export class ErrorBoundary extends Component<Props, State> {
+/**
+ * Error Boundary robusto y empático adaptado para React 18.
+ * Captura errores en tiempo de renderizado y presenta una experiencia amable
+ * respetando la paleta de diseño de la clínica dermatológica.
+ */
+export class ErrorBoundary extends Component<ErrorBoundaryProps, State> {
   public state: State = {
     hasError: false,
-    error: null
+    error: null,
   };
 
   public static getDerivedStateFromError(error: Error): State {
@@ -20,32 +31,37 @@ export class ErrorBoundary extends Component<Props, State> {
   }
 
   public componentDidCatch(error: Error, errorInfo: ErrorInfo) {
-    console.error('Uncaught error:', error, errorInfo);
+    console.error(`[Error capturado en ${this.props.moduleTitle || 'aplicación'}]:`, error, errorInfo);
+    if (this.props.onError) {
+      this.props.onError(error, errorInfo);
+    }
   }
 
+  public resetErrorBoundary = () => {
+    if (this.props.onReset) {
+      this.props.onReset();
+    }
+    this.setState({ hasError: false, error: null });
+  };
+
   public render() {
-    if (this.state.hasError) {
+    if (this.state.hasError && this.state.error) {
+      if (this.props.fallback) {
+        return this.props.fallback;
+      }
+
       return (
-        <div className="min-h-screen bg-slate-50 flex flex-col items-center justify-center p-6">
-          <div className="bg-white p-8 rounded-2xl border border-rose-200 shadow-xl max-w-2xl w-full">
-            <h1 className="text-2xl font-bold text-rose-600 mb-4">Algo salió mal en la aplicación</h1>
-            <p className="text-slate-700 mb-4">Por favor, toma una captura de este error para soporte:</p>
-            <pre className="bg-slate-100 p-4 rounded-xl text-xs text-slate-800 overflow-x-auto border border-slate-200 font-mono whitespace-pre-wrap">
-              {this.state.error?.toString()}
-              {'\n\n'}
-              {this.state.error?.stack}
-            </pre>
-            <button 
-              onClick={() => window.location.href = '/'}
-              className="mt-6 px-4 py-2 bg-slate-900 text-white font-bold rounded-xl"
-            >
-              Volver al inicio
-            </button>
-          </div>
-        </div>
+        <HumanFriendlyErrorFallback
+          error={this.state.error}
+          resetErrorBoundary={this.resetErrorBoundary}
+          moduleTitle={this.props.moduleTitle}
+          supportPhone={this.props.supportPhone}
+        />
       );
     }
 
     return this.props.children;
   }
 }
+
+export default ErrorBoundary;

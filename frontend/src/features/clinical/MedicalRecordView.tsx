@@ -1,13 +1,15 @@
 import React, { useCallback, useEffect, useMemo, useState } from 'react';
 import {
   ShieldCheck, FileText, Clock, FileSignature, Calendar, ArrowLeft, CheckCircle,
-  Stethoscope, ChevronRight,
+  Stethoscope, ChevronRight, Pencil, Plus,
 } from 'lucide-react';
 import { clinicalApi, patientsApi, appointmentsApi } from '../../services/api';
 import { Patient, MedicalRecord, ClinicalEntry, Appointment } from '../../types';
-import { Card, Button, Badge, Spinner } from '../../components/ui';
+import { Card, Button, Badge, Spinner, Modal, toast } from '../../components/ui';
 import { AnamnesisForm } from './AnamnesisForm';
+import { PacienteForm } from './PacienteForm';
 import { ClinicalNoteModal } from './ClinicalNoteModal';
+import { NewClinicalNoteModal } from './NewClinicalNoteModal';
 import { InformedConsentModal } from '../documents/InformedConsentModal';
 import { PatientDirectoryView } from './PatientDirectoryView';
 import { PatientSearch } from '../appointments/PatientSearch';
@@ -76,6 +78,8 @@ const TodaysAppointments: React.FC<{ onOpenPatient: (p: Patient) => void }> = ({
   const [loading, setLoading] = useState(true);
   const [now, setNow] = useState(Date.now());
 
+  const [isCreatingPatient, setIsCreatingPatient] = useState<string | null>(null);
+
   const load = useCallback(() => {
     setLoading(true);
     const base = new Date(); base.setHours(0, 0, 0, 0);
@@ -110,7 +114,7 @@ const TodaysAppointments: React.FC<{ onOpenPatient: (p: Patient) => void }> = ({
         <h3 className="font-display font-bold text-sand-900 mb-3 flex items-center gap-2">
           <Stethoscope className="w-4 h-4 text-primary-500" /> Buscar paciente
         </h3>
-        <PatientSearch onSelect={onOpenPatient} onAddNew={() => undefined} />
+        <PatientSearch onSelect={onOpenPatient} onAddNew={(query) => setIsCreatingPatient(query)} />
       </Card>
 
       <Card>
@@ -155,29 +159,61 @@ const TodaysAppointments: React.FC<{ onOpenPatient: (p: Patient) => void }> = ({
           </ul>
         )}
       </Card>
+
+      {/* Modal de alta rápida de paciente para el médico */}
+      {isCreatingPatient !== null && (
+        <Modal
+          isOpen={true}
+          onClose={() => setIsCreatingPatient(null)}
+          title="Alta Rápida de Paciente"
+          size="lg"
+        >
+          <PacienteForm
+            initialQuery={isCreatingPatient}
+            showHeader={false}
+            onSuccess={(created) => {
+              setIsCreatingPatient(null);
+              onOpenPatient(created);
+            }}
+            onCancel={() => setIsCreatingPatient(null)}
+          />
+        </Modal>
+      )}
     </>
   );
 };
 
 // ── Historia clínica del paciente ────────────────────────────────────────────
 const PatientClinicalRecord: React.FC<{ patient: Patient; onBack: () => void }> = ({ patient, onBack }) => {
+  const [currentPatient, setCurrentPatient] = useState<Patient>(patient);
   const [section, setSection] = useState<Section>('ficha');
   const [record, setRecord] = useState<Partial<MedicalRecord>>(EMPTY_RECORD);
   const [entries, setEntries] = useState<ClinicalEntry[]>([]);
   const [loading, setLoading] = useState(true);
   const [openNote, setOpenNote] = useState<ClinicalEntry | null>(null);
+  const [newNoteOpen, setNewNoteOpen] = useState(false);
+  const [appointments, setAppointments] = useState<Appointment[]>([]);
   const [consentOpen, setConsentOpen] = useState(false);
+  const [editPatientOpen, setEditPatientOpen] = useState(false);
+
+  useEffect(() => {
+    setCurrentPatient(patient);
+  }, [patient]);
 
   useEffect(() => {
     setLoading(true);
+    const start = new Date(Date.now() - 365 * 86400000).toISOString();
+    const end = new Date(Date.now() + 365 * 86400000).toISOString();
     Promise.all([
-      clinicalApi.getMedicalRecordByPatient(patient.id).catch(() => null),
-      clinicalApi.getClinicalEntriesByPatient(patient.id).catch(() => []),
-    ]).then(([rec, list]) => {
-      setRecord(rec ?? { ...EMPTY_RECORD, patientId: patient.id });
+      clinicalApi.getMedicalRecordByPatient(currentPatient.id).catch(() => null),
+      clinicalApi.getClinicalEntriesByPatient(currentPatient.id).catch(() => []),
+      appointmentsApi.getAgenda(start, end).catch(() => []),
+    ]).then(([rec, list, allAppts]) => {
+      setRecord(rec ?? { ...EMPTY_RECORD, patientId: currentPatient.id });
       setEntries(list);
+      setAppointments(allAppts.filter((a) => a.patientId === currentPatient.id || a.patientDni === currentPatient.dni));
     }).finally(() => setLoading(false));
-  }, [patient.id]);
+  }, [currentPatient.id]);
 
   const activeAllergies = useMemo(() => {
     const list: string[] = [];
@@ -203,12 +239,16 @@ const PatientClinicalRecord: React.FC<{ patient: Patient; onBack: () => void }> 
             <button onClick={onBack} className="inline-flex items-center gap-1.5 text-xs font-semibold text-sand-500 hover:text-primary-600 mb-2">
               <ArrowLeft className="w-3.5 h-3.5" /> Volver a turnos
             </button>
-            <h3 className="font-display text-xl font-bold text-sand-900">{patient.name}</h3>
-            <p className="text-sm text-sand-600">DNI {patient.dni} · {patient.phone}</p>
+            <h3 className="font-display text-xl font-bold text-sand-900">{currentPatient.name}</h3>
+            <p className="text-sm text-sand-600">DNI {currentPatient.dni} · {currentPatient.phone}</p>
+            {currentPatient.email && <p className="text-xs text-sand-500 mt-0.5">{currentPatient.email}</p>}
           </div>
           <div className="text-right space-y-1.5">
             <Badge variant="primary">Fototipo {record.fitzpatrickPhototype ?? '—'}</Badge>
-            <div>
+            <div className="flex items-center gap-2 justify-end">
+              <Button size="sm" variant="ghost" onClick={() => setEditPatientOpen(true)} leftIcon={<Pencil className="w-3.5 h-3.5" />}>
+                Editar datos
+              </Button>
               <Button size="sm" variant="secondary" onClick={() => setConsentOpen(true)} leftIcon={<FileSignature className="w-4 h-4" />}>
                 Consentimiento
               </Button>
@@ -246,10 +286,23 @@ const PatientClinicalRecord: React.FC<{ patient: Patient; onBack: () => void }> 
 
       {section === 'notas' && (
         <Card>
-          <h3 className="font-display font-bold text-sand-900 mb-1">Notas clínicas</h3>
-          <p className="text-xs text-sand-500 mb-4">
-            Seleccioná una nota para ver su contenido y las fotos asociadas. Las notas se pueden editar, no eliminar.
-          </p>
+          <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 mb-4">
+            <div>
+              <h3 className="font-display font-bold text-sand-900 mb-1">Notas clínicas</h3>
+              <p className="text-xs text-sand-500">
+                Seleccioná una nota para ver su detalle o redactá una nueva evolución clínica.
+              </p>
+            </div>
+            {isMedicalStaff() && (
+              <Button
+                onClick={() => setNewNoteOpen(true)}
+                leftIcon={<Plus className="w-4 h-4" />}
+                className="self-start sm:self-auto"
+              >
+                Nueva nota de evolución
+              </Button>
+            )}
+          </div>
           {entries.length === 0 ? (
             <p className="text-sm text-sand-500 py-4">Este paciente no tiene notas clínicas registradas.</p>
           ) : (
@@ -275,7 +328,7 @@ const PatientClinicalRecord: React.FC<{ patient: Patient; onBack: () => void }> 
 
       <ClinicalNoteModal
         entry={openNote}
-        patientId={patient.id}
+        patientId={currentPatient.id}
         onClose={() => setOpenNote(null)}
         onSaved={(updated) => {
           setEntries((prev) => prev.map((e) => (e.id === updated.id ? { ...e, ...updated } : e)));
@@ -283,14 +336,44 @@ const PatientClinicalRecord: React.FC<{ patient: Patient; onBack: () => void }> 
         }}
       />
 
+      <NewClinicalNoteModal
+        isOpen={newNoteOpen}
+        onClose={() => setNewNoteOpen(false)}
+        patient={currentPatient}
+        appointments={appointments}
+        onSaved={(newEntry) => {
+          setEntries((prev) => [newEntry, ...prev]);
+          toast.success('Nota de evolución clínica registrada con éxito');
+        }}
+      />
+
       <InformedConsentModal
         isOpen={consentOpen}
         onClose={() => setConsentOpen(false)}
-        patientName={patient.name}
-        patientDni={patient.dni}
+        patientName={currentPatient.name}
+        patientDni={currentPatient.dni}
         treatmentName="Procedimientos estéticos"
         fitzpatrickPhototype={record.fitzpatrickPhototype || 'III'}
       />
+
+      {editPatientOpen && (
+        <Modal
+          isOpen={true}
+          onClose={() => setEditPatientOpen(false)}
+          title={`Editar Paciente: ${currentPatient.name}`}
+          size="lg"
+        >
+          <PacienteForm
+            patient={currentPatient}
+            showHeader={false}
+            onSuccess={(updated) => {
+              setCurrentPatient(updated);
+              setEditPatientOpen(false);
+            }}
+            onCancel={() => setEditPatientOpen(false)}
+          />
+        </Modal>
+      )}
     </>
   );
 };

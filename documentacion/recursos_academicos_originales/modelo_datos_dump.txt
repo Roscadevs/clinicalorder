@@ -1,0 +1,623 @@
+Documentación del Modelo de Datos - Sistema de Gestión Dermatológica
+1. Entidades y Atributos
+USUARIO: Representa a los operadores del sistema (personal de la clínica con  credenciales de acceso).
+id (BIGINT): Identificador único (Clave Primaria, Autoincremental).
+username (VARCHAR(50)): Nombre de usuario único para el inicio de sesión (Restricción UNIQUE, NOT NULL).
+password_hash (VARCHAR(255)): Contraseña cifrada con Bcrypt (costo 12) (NOT NULL).
+email (VARCHAR(100)): Correo electrónico de contacto único (Restricción UNIQUE, NOT NULL).
+full_name (VARCHAR(100)): Nombre completo o nombre para mostrar (NOT NULL).
+role (ENUM('ADMIN','PHYSICIAN','RECEPTIONIST')): Rol asignado dentro del sistema (NOT NULL).
+active (BOOLEAN): Indicador de cuenta activa (NOT NULL, por defecto TRUE).
+failed_login_attempts (INT): Contador de intentos consecutivos fallidos de inicio de sesión (NOT NULL, por defecto 0).
+locked_until (TIMESTAMP): Fecha y hora hasta la cual la cuenta permanece bloqueada (Nulo si no está bloqueada).
+created_at (TIMESTAMP): Marca temporal de creación del registro (NOT NULL, por defecto NOW()).
+updated_at (TIMESTAMP): Marca temporal de la última modificación (NOT NULL, por defecto NOW()).
+PACIENTE:Representa a los individuos que reciben atención dermatológica.
+id (BIGINT): Identificador único (Clave Primaria, Autoincremental).
+name (VARCHAR(100)): Nombre completo del paciente, entre 1 y 100 caracteres (NOT NULL).
+dni (VARCHAR(8)): Documento Nacional de Identidad argentino, de 7 a 8 dígitos (Restricción UNIQUE, NOT NULL).
+phone (VARCHAR(20)): Número de teléfono en formato argentino de 10 dígitos (Restricción UNIQUE, NOT NULL).
+email (VARCHAR(100)): Dirección de correo electrónico única (Restricción UNIQUE, NOT NULL).
+birth_date (DATE): Fecha de nacimiento del paciente (Nulo opcional).
+profession (VARCHAR(100)): Profesión u ocupación del paciente (Nulo opcional).
+active (BOOLEAN): Indicador de borrado lógico (NOT NULL, por defecto TRUE).
+created_at (TIMESTAMP): Marca temporal de creación del registro (NOT NULL, por defecto NOW()).
+updated_at (TIMESTAMP): Marca temporal de la última modificación (NOT NULL, por defecto NOW()). (Nota: Las restricciones de unicidad aplican a registros tanto activos como inactivos).
+SERVICIO: Representa los servicios ofrecidos por la clínica.
+id (BIGINT): Identificador único (Clave Primaria, Autoincremental).
+name (VARCHAR(100)): Nombre del servicio, único entre servicios activos (NOT NULL).
+description (VARCHAR(500)): Descripción detallada del servicio (Nulo opcional).
+duration_minutes``** (INT): Duración en minutos, con validación entre 10 y 480 (NOT NULL).
+base_price (DECIMAL(12,2)): Precio base actual en ARS, mayor a 0 (NOT NULL).
+deposit_percentage (INT): Porcentaje del precio requerido como seña/depósito, entre 1 y 100 (NOT NULL).
+follow_up_interval_days (INT): Días hasta la consulta de seguimiento, donde 0 significa sin seguimiento (NOT NULL, por defecto 0).
+active (BOOLEAN): Indicador de desactivación lógica (NOT NULL, por defecto TRUE).
+created_at (TIMESTAMP): Marca temporal de creación del registro (NOT NULL, por defecto NOW()).
+updated_at (TIMESTAMP): Marca temporal de la última modificación (NOT NULL, por defecto NOW()).
+CITA:Representa una consulta programada que vincula a un paciente y un servicio en un tiempo específico.
+id (BIGINT): Identificador único (Clave Primaria, Autoincremental).
+patient_id (BIGINT): Clave foránea hacia PATIENT(id) (NOT NULL).
+service_id (BIGINT): Clave foránea hacia DERMATOLOGIC_SERVICE(id) (NOT NULL).
+created_by_user_id (BIGINT): Clave foránea hacia USER(id) que denota el personal que agendó la cita (NOT NULL).
+start_time (TIMESTAMP): Hora de inicio de la cita (NOT NULL).
+end_time (TIMESTAMP): Hora de finalización calculada como inicio más duración (NOT NULL).
+status (ENUM('PENDING_PAYMENT','CONFIRMED','CANCELED','COMPLETED','PAYMENT_FAILED','NO_SHOW')): Estado actual de la cita (NOT NULL).
+agreed_price (DECIMAL(12,2)): Precio del servicio congelado al momento de la reserva (NOT NULL).
+follow_up_of (BIGINT): Clave foránea autorreferencial hacia APPOINTMENT(id) que vincula con la cita de origen en un modelo de cadena (Única, Nula).
+slot_reserved_until (TIMESTAMP): Fecha límite para completar el pago de la seña (Nulo opcional).
+reschedule_count (INT): Cantidad de veces que se ha reprogramado la cita (NOT NULL, por defecto 0).
+original_start_time (TIMESTAMP): Primer horario agendado, establecido en la primera reprogramación (Nulo opcional).
+version (INT): Contador para bloqueo optimista (optimistic locking) (NOT NULL, por defecto 0).
+created_at (TIMESTAMP): Marca temporal de creación del registro (NOT NULL, por defecto NOW()).
+updated_at (TIMESTAMP): Marca temporal de la última modificación (NOT NULL, por defecto NOW()).
+TRANSACCION_PAGO:Representa las transacciones monetarias asociadas a las citas.
+id (BIGINT): Identificador único (Clave Primaria, Autoincremental).
+appointment_id (BIGINT): Clave foránea hacia APPOINTMENT(id) (NOT NULL).
+mp_preference_id (VARCHAR(100)): Identificador de preferencia de MercadoPago (Nulo opcional).
+mp_payment_id (VARCHAR(100)): Identificador de pago de MercadoPago que actúa como clave de idempotencia (Restricción UNIQUE, Nulo).
+payment_type (ENUM('DEPOSIT','FINAL_BALANCE')): Tipo de pago, ya sea seña o saldo final (NOT NULL).
+amount (DECIMAL(12,2)): Monto pagado, estrictamente mayor a 0 (NOT NULL).
+status (ENUM('PENDING','APPROVED','REJECTED','REFUNDED')): Estado actual del pago (NOT NULL).
+recorded_by_user_id (BIGINT): Clave foránea hacia USER(id) para registrar quién procesó pagos finales de forma manual (Nulo opcional).
+payment_date (TIMESTAMP): Fecha y hora en que se completó el pago (Nulo opcional).
+created_at (TIMESTAMP): Marca temporal de creación del registro (NOT NULL, por defecto NOW()).
+BLOQUEO_CALENDARIO:Representa periodos de indisponibilidad en la agenda de la clínica.
+id (BIGINT): Identificador único (Clave Primaria, Autoincremental).
+created_by_user_id (BIGINT): Clave foránea hacia USER(id) que indica el administrador que creó el bloqueo (NOT NULL).
+start_time (TIMESTAMP): Hora de inicio del bloqueo (NOT NULL).
+end_time (TIMESTAMP): Hora de finalización del bloqueo, validada para ser mayor a la hora de inicio (NOT NULL).
+reason (VARCHAR(255)): Motivo opcional del bloqueo, por ejemplo, "Vacaciones" (Nulo opcional).
+created_at (TIMESTAMP): Marca temporal de creación del registro (NOT NULL, por defecto NOW()).
+ENTRADA_HC: Representa la documentación médica por cada sesión u “hoja de seguimiento” utilizada por el cliente para llevar un control posterior de los tratamientos.
+id (BIGINT): Identificador único (Clave Primaria, Autoincremental).
+patient_id (BIGINT): Clave foránea hacia PATIENT(id) (NOT NULL).
+appointment_id (BIGINT): Clave foránea hacia APPOINTMENT(id) asociada a la nota (NOT NULL).
+author_user_id (BIGINT): Clave foránea hacia USER(id) que denota al médico redactor (NOT NULL).
+content (BYTEA): Contenido de texto cifrado con AES-256-GCM (NOT NULL).
+created_at (TIMESTAMP): Marca temporal de creación de la nota (NOT NULL, por defecto NOW()).
+updated_at (TIMESTAMP): Marca temporal de la última modificación (NOT NULL, por defecto NOW()).
+ENTRADAHC_AUDITORIA:Realiza el seguimiento de las modificaciones realizadas sobre las notas clínicas (ver documento “Marco Legal” para comprender la existencia de esta entidad mejor).
+id (BIGINT): Identificador único (Clave Primaria, Autoincremental).
+clinical_note_id (BIGINT): Clave foránea hacia CLINICAL_NOTE(id) modificada (NOT NULL).
+modified_by_user_id (BIGINT): Clave foránea hacia USER(id) del médico responsable de la modificación (NOT NULL).
+previous_content (BYTEA): Contenido anterior cifrado (NOT NULL).
+new_content (BYTEA): Contenido nuevo cifrado (NOT NULL).
+modified_at (TIMESTAMP): Marca temporal exacta en que ocurrió la modificación (NOT NULL, por defecto NOW()).
+HISTORIA_CLINICA:Representa la historia clínica estructurada general, existiendo una única instancia por paciente.
+id (BIGINT): Identificador único (Clave Primaria, Autoincremental).
+patient_id (BIGINT): Clave foránea hacia PATIENT(id) con relación uno a uno (Restricción UNIQUE, NOT NULL).
+created_by_user_id (BIGINT): Clave foránea hacia USER(id) del médico creador (NOT NULL).
+has_hta (BOOLEAN): Antecedente de hipertensión arterial (NOT NULL, por defecto FALSE).
+has_dbt (BOOLEAN): Antecedente de diabetes (NOT NULL, por defecto FALSE).
+has_hypothyroidism (BOOLEAN): Antecedente de hipotiroidismo (NOT NULL, por defecto FALSE).
+has_hyperthyroidism (BOOLEAN): Antecedente de hipertiroidismo (NOT NULL, por defecto FALSE).
+has_anemia (BOOLEAN): Antecedente de anemia (NOT NULL, por defecto FALSE).
+has_autoimmune_diseases (BOOLEAN): Antecedente de enfermedades autoinmunes (NOT NULL, por defecto FALSE).
+has_glaucoma (BOOLEAN): Antecedente de glaucoma (NOT NULL, por defecto FALSE).
+has_coagulation_disorders (BOOLEAN): Trastornos de coagulación (NOT NULL, por defecto FALSE).
+has_scarring_alterations (BOOLEAN): Alteraciones de cicatrización (NOT NULL, por defecto FALSE).
+other_pathological (VARCHAR(500)): Otras condiciones patológicas (Nulo opcional).
+allergy_anesthesia (BOOLEAN): Alergia a la anestesia (NOT NULL, por defecto FALSE).
+allergy_egg (BOOLEAN): Alergia al huevo (NOT NULL, por defecto FALSE).
+allergy_fish (BOOLEAN): Alergia al pescado (NOT NULL, por defecto FALSE).
+other_allergies (VARCHAR(500)): Otras alergias descritas (Nulo opcional).
+habit_tobacco (BOOLEAN): Tabaquismo (NOT NULL, por defecto FALSE).
+habit_alcohol (BOOLEAN): Consumo de alcohol (NOT NULL, por defecto FALSE).
+habit_sun_exposure (BOOLEAN): Exposición solar habitual (NOT NULL, por defecto FALSE).
+habit_spf_use (BOOLEAN): Uso regular de protector solar SPF (NOT NULL, por defecto FALSE).
+surgical_history (VARCHAR(1000)): Historial de cirugías previas (Nulo opcional).
+gynecological_history (VARCHAR(500)): Antecedentes ginecológicos como FUM, embarazo o lactancia (Nulo opcional).
+current_medications (VARCHAR(1000)): Medicación habitual del paciente (Nulo opcional).
+previous_aesthetic_treatments (VARCHAR(1000)): Tratamientos estéticos previos (Nulo opcional).
+fitzpatrick_phototype (INT): Fototipo cutáneo según escala de Fitzpatrick, validado entre 1 y 6 (NOT NULL).
+physical_examination (BYTEA): Examen físico cifrado que almacena estructura JSON con datos antropométricos y clínicos (Nulo opcional).
+treatment_plan (BYTEA): Plan de tratamiento y diagnóstico cifrado en formato JSON (Nulo opcional).
+informed_consent_signed (BOOLEAN): Indicador de consentimiento informado en papel firmado (NOT NULL, por defecto FALSE).
+created_at (TIMESTAMP): Marca temporal de creación (NOT NULL, por defecto NOW()).
+updated_at (TIMESTAMP): Marca temporal de última modificación (NOT NULL, por defecto NOW()).
+HISTORIA_CLINICA_AUDITORIA:Registra modificaciones detalladas por secciones sobre la historia clínica general.
+id (BIGINT): Identificador único (Clave Primaria, Autoincremental).
+medical_record_id (BIGINT): Clave foránea hacia MEDICAL_RECORD(id) afectada (NOT NULL).
+modified_by_user_id (BIGINT): Clave foránea hacia USER(id) del médico que realizó el cambio (NOT NULL).
+modified_section (VARCHAR(100)): Sección específica modificada, por ejemplo, "allergies" o "physical_examination" (NOT NULL).
+previous_values (JSONB): Valores previos en formato JSON (NOT NULL).
+new_values (JSONB): Nuevos valores en formato JSON (NOT NULL).
+modified_at (TIMESTAMP): Momento exacto del cambio (NOT NULL, por defecto NOW()).
+IMAGEN_HC: Almacena metadatos de las fotografías clínicas adjuntas al registro médico.
+id (BIGINT): Identificador único (Clave Primaria, Autoincremental).
+medical_record_id (BIGINT): Clave foránea hacia MEDICAL_RECORD(id) vinculada (NOT NULL).
+file_path (VARCHAR(500)): Ruta de almacenamiento de la imagen en el sistema de archivos (NOT NULL).
+original_filename (VARCHAR(255)): Nombre original con el que se subió el archivo (NOT NULL).
+content_type (VARCHAR(50)): Tipo MIME del archivo, limitado a formatos image/jpeg o image/png (NOT NULL).
+file_size (BIGINT): Tamaño del archivo en bytes, limitado a un máximo de 10 MB (NOT NULL).
+description (VARCHAR(500)): Descripción opcional de la fotografía (Nulo opcional).
+uploaded_at (TIMESTAMP): Marca temporal de carga de la foto (NOT NULL, por defecto NOW()).
+PASSWORD_RESET_TOKEN: Tokens temporales destinados al flujo de recuperación de contraseñas.
+id (BIGINT): Identificador único (Clave Primaria, Autoincremental).
+user_id (BIGINT): Clave foránea hacia USER(id) que solicitó el restablecimiento (NOT NULL).
+token (VARCHAR(255)): Valor de cadena aleatorio y único del token (Restricción UNIQUE, NOT NULL).
+used (BOOLEAN): Indicador booleano que señala si el token ya fue consumido (NOT NULL, por defecto FALSE).
+expires_at (TIMESTAMP): Momento de expiración del token (15 minutos tras su creación) (NOT NULL).
+created_at (TIMESTAMP): Marca temporal de generación del token (NOT NULL, por defecto NOW()).
+2. Relaciones y Cardinalidad
+Usuario y Cita (1:N)
+Cardinalidad: Uno a muchos (1 usuario crea N citas).
+Justificación: Un operador del sistema (Usuario) puede registrar múltiples turnos o citas en la agenda, pero cada cita individual es creada y registrada por un único usuario responsable en su origen (created_by_user_id).
+Doctora y entrada_hc (1:N)
+Cardinalidad: Uno a muchos (1 médico redacta N notas clínicas).
+Justificación: Un profesional médico (USER con rol de físico/médico) redacta múltiples notas de evolución a lo largo del tiempo, pero cada nota clínica individual posee un único autor principal (author_user_id).
+Doctora y historia_clinica (1:N)
+Cardinalidad: Uno a muchos (1 médico crea N historias clínicas).
+Justificación: Un médico puede abrir y gestionar las historias clínicas de muchos pacientes diferentes a lo largo de su práctica, aunque cada historia clínica pertenece de forma exclusiva a un único médico creador inicial.
+Usuario y bloqueo_calendario (1:N)
+Cardinalidad: Uno a muchos (1 administrador crea N bloqueos de calendario).
+Justificación: Un administrador o personal autorizado puede establecer múltiples bloqueos de horario por vacaciones o feriados, pero cada bloqueo de calendario específico depende de un único usuario creador.
+Usuario y transaccion_pago (1:N)
+Cardinalidad: Uno a muchos con participación opcional (1 usuario registra 0..N pagos finales).
+Justificación: Las transacciones mediante pasarela automatizada pueden no requerir un operador humano directo, pero cuando se trata de pagos finales presenciales, un usuario los registra, pudiendo un mismo operador registrar múltiples transacciones.
+Usuario y PASSWORD_RESET_TOKEN (1:N)
+Cardinalidad: Uno a muchos (1 usuario genera N tokens a lo largo del tiempo).
+Justificación: Por motivos de seguridad y expiración, un usuario puede solicitar múltiples restablecimientos de contraseña en diferentes momentos, pero cada token individual pertenece estrictamente a un único usuario.
+Paciente y Cita (1:N)
+Cardinalidad: Uno a muchos (1 paciente tiene N citas).
+Justificación: Un paciente puede asistir a múltiples consultas dermatológicas de forma histórica en la clínica, mientras que cada cita pertenece a un único paciente específico.
+Paciente y entrada_hc (1:N)
+Cardinalidad: Uno a muchos (1 paciente posee N notas clínicas).
+Justificación: A medida que transcurren las sesiones médicas, se acumulan múltiples notas clínicas asociadas al historial de un paciente, pero cada nota se vincula de forma inequívoca a un solo paciente.
+Paciente y historia_clinica (1:1)
+Cardinalidad: Uno a uno estricto (1 paciente tiene exactamente 1 historia clínica).
+Justificación: Cada paciente posee una única historia clínica integral y consolidada en el sistema, la cual está restringida mediante una clave única (UNIQUE) sobre la columna patient_id.
+Servicio y Cita (1:N)
+Cardinalidad: Uno a muchos (1 servicio se ofrece en N citas).
+Justificación: Un tipo de servicio dermatológico específico puede ser contratado y agendado infinidad de veces para diferentes turnos, pero cada cita individual corresponde a la prestación de un único servicio.
+Cita y Cita (1:1)
+Cardinalidad: Cero a uno autorreferencial (1 cita puede ser origen de a lo sumo 1 cita sucesora).
+Justificación: Se utiliza para modelar la cadena de citas de control o seguimiento (follow_up_of), donde una cita puede derivar en una única cita subsecuente de control directa, siendo nula si no requiere seguimiento.
+Cita y transaccion_pago (1:N)
+Cardinalidad: Uno a muchos (1 cita tiene N pagos, típicamente máximo 2: seña y saldo final).
+Justificación: Una misma consulta requiere la gestión económica fraccionada en un pago de seña y un pago de saldo final, permitiendo asociar múltiples transacciones financieras a una única cita.
+Cita y entrada_hc (1:N)
+Cardinalidad: Uno a muchos con participación parcial (1 cita puede tener N notas clínicas).
+Justificación: Por lo general, una consulta genera una nota clínica asociada, pero la estructura permite la existencia de múltiples notas para una misma cita o ninguna (en casos de inasistencia o estado sin documentar).
+entrada_hc y entrada_hc_auditoria (1:N)
+Cardinalidad: Uno a muchos con participación parcial (1 nota clínica tiene N registros de auditoría).
+Justificación: Una nota clínica puede no ser editada nunca (0 auditorías) o sufrir múltiples modificaciones a lo largo de su ventana permitida de edición, registrando cada cambio histórico de manera independiente.
+historia_clinica y historia_clinica_auditoria (1:N)
+Cardinalidad: Uno a muchos con participación parcial (1 historia clínica tiene N auditorías de sección).
+Justificación: Los cambios se registran por secciones específicas cada vez que el médico actualiza antecedentes o datos estructurados, generando múltiples entradas de auditoría asociadas al registro principal.
+historia_clinica y imagen_hc (1:N)
+Cardinalidad: Uno a muchos con participación parcial (1 historia clínica contiene N fotos médicas).
+Justificación: Un paciente puede tener asociadas múltiples imágenes fotográficas de seguimiento dermatológico adjuntas a su historia clínica, o ninguna de manera opcional.
+Tipos de atributos del modelo:
+1. Usuario
+Atributo
+Ingresado/Derivado(calculado)
+Obligatorio / Opcional
+id
+Derivado (generado automáticamente por el sistema)
+Obligatorio
+username
+Ingresado
+Obligatorio
+password_hash
+Derivado (calculado a partir de la contraseña introducida mediante Bcrypt)
+Obligatorio
+email
+Ingresado
+Obligatorio
+full_name
+Ingresado
+Obligatorio
+role
+Ingresado (assigned by admin)
+Obligatorio
+active
+Ingresado (modified by admin)
+Obligatorio
+failed_login_attempts
+Derivado (incremented by system on failed login, reset on success)
+Obligatorio
+locked_until
+Derivado (calculated as now() + 15min after 5 failures)
+Optional
+created_at
+Derivado (system timestamp on creation)
+Obligatorio
+updated_at
+Derivado (system timestamp on modification)
+Obligatorio
+2. Paciente
+Attribute
+Ingresado/Derivado
+Obligatorio/Optional
+id
+Derivado (auto-generated)
+Obligatorio
+name
+Ingresado
+Obligatorio
+dni
+Ingresado
+Obligatorio
+phone
+Ingresado
+Obligatorio
+email
+Ingresado
+Obligatorio
+birth_date
+Ingresado
+Optional
+profession
+Ingresado
+Optional
+active
+Derivado (set by system on soft-delete/reactivation)
+Obligatorio
+created_at
+Derivado (system timestamp)
+Obligatorio
+updated_at
+Derivado (system timestamp)
+Obligatorio
+3. servicio
+Attribute
+Ingresado/Derivado
+Obligatorio/Optional
+id
+Derivado (auto-generated)
+Obligatorio
+name
+Ingresado
+Obligatorio
+description
+Ingresado
+Optional
+duration_minutes
+Ingresado
+Obligatorio
+base_price
+Ingresado
+Obligatorio
+deposit_percentage
+Ingresado
+Obligatorio
+follow_up_interval_days
+Ingresado
+Obligatorio
+active
+Derivado (set by system on deactivation/reactivation)
+Obligatorio
+created_at
+Derivado (system timestamp)
+Obligatorio
+updated_at
+Derivado (system timestamp)
+Obligatorio
+4. cita
+Attribute
+Ingresado/Derivado
+Obligatorio/Optional
+id
+Derivado (auto-generated)
+Obligatorio
+Paciente_id
+Ingresado (staff selects Paciente)
+Obligatorio
+service_id
+Ingresado (staff selects service)
+Obligatorio
+created_by_user_id
+Derivado (system captures logged-in user)
+Obligatorio
+start_time
+Ingresado (staff selects time slot)
+Obligatorio
+end_time
+Derivado (calculated as start_time + service.duration_minutes)
+Obligatorio
+status
+Derivado (system manages transitions based on events)
+Obligatorio
+agreed_price
+Derivado (copied from service.base_price at booking time)
+Obligatorio
+follow_up_of
+Derivado (set by system when follow-up is accepted)
+Optional
+slot_reserved_until
+Derivado (calculated as now() + timeout on creation)
+Optional
+reschedule_count
+Derivado (incremented by system on each reschedule)
+Obligatorio
+original_start_time
+Derivado (captured from start_time on first reschedule)
+Optional
+version
+Derivado (auto-incremented by ORM on each update)
+Obligatorio
+created_at
+Derivado (system timestamp)
+Obligatorio
+updated_at
+Derivado (system timestamp)
+Obligatorio
+5. transaccion_pago
+Attribute
+Ingresado/Derivado
+Obligatorio/Optional
+id
+Derivado (auto-generated)
+Obligatorio
+cita_id
+Derivado (system links to the cita being paid)
+Obligatorio
+mp_preference_id
+Derivado (returned by MercadoPago API on preference creation)
+Optional
+mp_payment_id
+Derivado (received from MercadoPago webhook notification)
+Optional
+payment_type
+Derivado (system sets DEPOSIT on booking, FINAL_BALANCE on completion)
+Obligatorio
+amount
+Derivado (calculated: DEPOSIT = agreed_price * deposit_percentage / 100; FINAL = agreed_price - deposit_amount)
+Obligatorio
+status
+Derivado (updated by system from webhook notifications or manual recording)
+Obligatorio
+recorded_by_user_id
+Derivado (system captures logged-in user, only for final payments)
+Optional
+payment_date
+Derivado (timestamp from MercadoPago or system clock on manual recording)
+Optional
+created_at
+Derivado (system timestamp)
+Obligatorio
+6. bloqueo_calendario
+Attribute
+Ingresado/Derivado
+Obligatorio/Optional
+id
+Derivado (auto-generated)
+Obligatorio
+created_by_user_id
+Derivado (system captures logged-in user)
+Obligatorio
+start_time
+Ingresado (admin selects start)
+Obligatorio
+end_time
+Ingresado (admin selects end)
+Obligatorio
+reason
+Ingresado (admin provides reason)
+Optional
+created_at
+Derivado (system timestamp)
+Obligatorio
+7. entrada_hc
+Attribute
+Ingresado/Derivado
+Obligatorio/Optional
+id
+Derivado (auto-generated)
+Obligatorio
+Paciente_id
+Derivado (system resolves from the cita's Paciente)
+Obligatorio
+cita_id
+Ingresado (physician selects which cita to document)
+Obligatorio
+author_user_id
+Derivado (system captures logged-in physician)
+Obligatorio
+content
+Ingresado (physician writes free text)
+Obligatorio
+created_at
+Derivado (system timestamp)
+Obligatorio
+updated_at
+Derivado (system timestamp)
+Obligatorio
+8. entrada_hc_AUDIT
+Attribute
+Ingresado/Derivado
+Obligatorio/Optional
+id
+Derivado (auto-generated)
+Obligatorio
+entrada_hc_id
+Derivado (system links to the edited note)
+Obligatorio
+modified_by_user_id
+Derivado (system captures logged-in physician)
+Obligatorio
+previous_content
+Derivado (system captures content before edit)
+Obligatorio
+new_content
+Derivado (system captures content after edit)
+Obligatorio
+modified_at
+Derivado (system timestamp)
+Obligatorio
+9. historia_clinica
+Attribute
+Ingresado/Derivado
+Obligatorio/Optional
+id
+Derivado (auto-generated)
+Obligatorio
+Paciente_id
+Derivado (system links to current Paciente)
+Obligatorio
+created_by_user_id
+Derivado (system captures logged-in physician)
+Obligatorio
+has_hta
+Ingresado (physician checks/unchecks)
+Obligatorio
+has_dbt
+Ingresado
+Obligatorio
+has_hypothyroidism
+Ingresado
+Obligatorio
+has_hyperthyroidism
+Ingresado
+Obligatorio
+has_anemia
+Ingresado
+Obligatorio
+has_autoimmune_diseases
+Ingresado
+Obligatorio
+has_glaucoma
+Ingresado
+Obligatorio
+has_coagulation_disorders
+Ingresado
+Obligatorio
+has_scarring_alterations
+Ingresado
+Obligatorio
+other_pathological
+Ingresado
+Optional
+allergy_anesthesia
+Ingresado
+Obligatorio
+allergy_egg
+Ingresado
+Obligatorio
+allergy_fish
+Ingresado
+Obligatorio
+other_allergies
+Ingresado
+Optional
+habit_tobacco
+Ingresado
+Obligatorio
+habit_alcohol
+Ingresado
+Obligatorio
+habit_sun_exposure
+Ingresado
+Obligatorio
+habit_spf_use
+Ingresado
+Obligatorio
+surgical_history
+Ingresado
+Optional
+gynecological_history
+Ingresado
+Optional
+current_medications
+Ingresado
+Optional
+previous_aesthetic_treatments
+Ingresado
+Optional
+fitzpatrick_phototype
+Ingresado (physician assesses)
+Obligatorio
+physical_examination
+Ingresado (physician writes narrative)
+Optional
+treatment_plan
+Ingresado (physician writes narrative)
+Optional
+informed_consent_signed
+Ingresado (physician checks yes/no)
+Obligatorio
+created_at
+Derivado (system timestamp)
+Obligatorio
+updated_at
+Derivado (system timestamp)
+Obligatorio
+10. historia_clinica_AUDIT
+Attribute
+Ingresado/Derivado
+Obligatorio/Optional
+id
+Derivado (auto-generated)
+Obligatorio
+historia_clinica_id
+Derivado (system links to edited record)
+Obligatorio
+modified_by_user_id
+Derivado (system captures logged-in physician)
+Obligatorio
+modified_section
+Derivado (system determines which section changed)
+Obligatorio
+previous_values
+Derivado (system captures values before edit)
+Obligatorio
+new_values
+Derivado (system captures values after edit)
+Obligatorio
+modified_at
+Derivado (system timestamp)
+Obligatorio
+11. imagen_hc
+Attribute
+Ingresado/Derivado
+Obligatorio/Optional
+id
+Derivado (auto-generated)
+Obligatorio
+historia_clinica_id
+Derivado (system links to Paciente's record)
+Obligatorio
+file_path
+Derivado (system generates path: /storage/photos/{Paciente_id}/{uuid}.{ext})
+Obligatorio
+original_filename
+Derivado (captured from uploaded file metadata)
+Obligatorio
+content_type
+Derivado (detected from file)
+Obligatorio
+file_size
+Derivado (measured from uploaded file)
+Obligatorio
+description
+Ingresado (physician adds optional description)
+Optional
+uploaded_at
+Derivado (system timestamp)
+Obligatorio
+12. PASSWORD_RESET_TOKEN
+Attribute
+Ingresado/Derivado
+Obligatorio/Optional
+id
+Derivado (auto-generated)
+Obligatorio
+user_id
+Derivado (system identifies user from email)
+Obligatorio
+token
+Derivado (system generates cryptographically random string)
+Obligatorio
+used
+Derivado (system sets to TRUE when token is consumed)
+Obligatorio
+expires_at
+Derivado (calculated as created_at + 15 minutes)
+Obligatorio
+created_at
+Derivado (system timestamp)
+Obligatorio
+Atributos multivalorados: Ninguno en el modelo. Todo lo que podría ser multivalorado (p. ej., múltiples alergias, múltiples afecciones patológicas) se ha descompuesto en campos booleanos individuales (alergia_anestesia, alergia_huevo, alergia_pescado) o se ha colocado en una estructura JSONB. Esta es una práctica estándar en bases de datos relacionales que no admiten atributos multivalorados de forma nativa.
+Los atributos derivados predominan en las entidades de auditoría (entrada_hc_auditoria, historia_clinica_auditoria) y en las entidades gestionadas por el sistema (TRANSACCIÓN_PAGO, password_reset_token): el usuario nunca introduce valores directamente, el sistema calcula todo a partir de los eventos.
+Los atributos ingresados ​​se concentran en PACIENTE, SERVICIO, entrada_hc y historia_clinica: estas son las entidades donde los usuarios proporcionan los datos comerciales/médicos reales.

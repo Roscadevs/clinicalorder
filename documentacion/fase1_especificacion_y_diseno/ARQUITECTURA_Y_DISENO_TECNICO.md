@@ -111,7 +111,7 @@ graph TB
         VercelCDN --> ReactSPA
     end
 
-    subgraph "Cloud PaaS (Render / Railway / Cloud Run)"
+    subgraph "Cloud PaaS (Render / Cloud Run)"
         DockerContainer["Contenedor Docker (Linux x86_64 / Alpine)"]
         SpringBootApp["Java 17 (JVM OpenJDK) + Spring Boot 3.2.x API REST"]
         HikariCP["HikariCP Connection Pool (Max: 10, Min-Idle: 5)"]
