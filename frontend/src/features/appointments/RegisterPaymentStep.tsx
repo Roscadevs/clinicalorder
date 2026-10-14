@@ -118,8 +118,14 @@ export const RegisterPaymentStep: React.FC<RegisterPaymentStepProps> = ({
   return (
     <div className="space-y-5">
       <div>
-        <h2 className="font-display text-2xl font-bold text-sand-900">Registrar pago de la seña</h2>
-        <p className="text-sm text-sand-600">Seleccioná el medio de pago y completá los datos.</p>
+        <h2 className="font-display text-2xl font-bold text-sand-900">
+          {isToday ? 'Registrar pago del tratamiento' : 'Registrar pago de la seña'}
+        </h2>
+        <p className="text-sm text-sand-600">
+          {isToday
+            ? 'Los turnos del día requieren el pago completo.'
+            : 'Seleccioná el medio de pago y completá los datos.'}
+        </p>
       </div>
 
       {/* Datos de la operación */}
@@ -131,7 +137,7 @@ export const RegisterPaymentStep: React.FC<RegisterPaymentStepProps> = ({
         <div>
           <span className="block text-xs text-sand-500">Concepto</span>
           <span className="font-semibold text-sand-800">
-            {cashOption === 'DEPOSIT' ? `Seña (${depositPercentage}%)` : 'Pago total (100%)'}
+            {isToday ? 'Pago total (100%)' : cashOption === 'DEPOSIT' ? `Seña (${depositPercentage}%)` : 'Pago total (100%)'}
           </span>
         </div>
         <div className="col-span-2 pt-2 border-t border-sand-200 flex items-baseline justify-between">
@@ -182,15 +188,25 @@ export const RegisterPaymentStep: React.FC<RegisterPaymentStepProps> = ({
         </div>
       </fieldset>
 
-      {submitError && (
-        <div role="alert" className="p-3 rounded-xl bg-danger-50 border border-danger-100 text-danger-700 text-sm flex items-start gap-2">
-          <AlertCircle className="w-4 h-4 mt-0.5 flex-shrink-0" />
-          <span>{submitError}</span>
-        </div>
-      )}
-
+      {/* Paso 4 del caso de uso: el sistema solicita los datos DESPUÉS de que
+          el usuario eligió el medio. Solo se muestra cuando method === 'CASH'. */}
       {method === 'CASH' ? (
         <form onSubmit={handleConfirmCash} className="space-y-4" noValidate>
+
+          {/* Separador visual — deja claro que esta sección responde al medio elegido */}
+          <div className="border-t border-sand-200 pt-4">
+            <p className="text-xs font-bold text-sand-700 uppercase tracking-wider mb-3">
+              Datos del pago en efectivo
+            </p>
+          </div>
+
+          {submitError && (
+            <div role="alert" className="p-3 rounded-xl bg-danger-50 border border-danger-100 text-danger-700 text-sm flex items-start gap-2">
+              <AlertCircle className="w-4 h-4 mt-0.5 flex-shrink-0" />
+              <span>{submitError}</span>
+            </div>
+          )}
+
           {/* Opción de pago: seña vs total */}
           {isToday ? (
             <div className="space-y-3">
