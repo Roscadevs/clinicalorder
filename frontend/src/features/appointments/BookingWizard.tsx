@@ -2,7 +2,7 @@
 import { useNavigate } from 'react-router-dom';
 import {
   AlertCircle, ArrowLeft, ArrowRight, Calendar, CheckCircle, Clock, Pencil, Printer,
-  RefreshCw, Timer, TimerOff, UserRound,
+  RefreshCw, Timer, TimerOff, UserRound, X,
 } from 'lucide-react';
 import { servicesApi, appointmentsApi } from '../../services/api';
 import {
@@ -261,7 +261,16 @@ export const BookingWizard: React.FC = () => {
     const receipt = confirmed ? outcome.receipt : null;
     return (
       <div className="w-full flex justify-center px-4 py-6 sm:py-10">
-        <Card className="w-full max-w-2xl text-center space-y-6">
+        <Card className="w-full max-w-2xl text-center space-y-6 relative">
+          {/* Cruz roja para volver a la agenda */}
+          <button
+            type="button"
+            onClick={() => navigate('/app/agenda')}
+            aria-label="Volver a la agenda"
+            className="absolute top-4 right-4 w-8 h-8 rounded-full flex items-center justify-center bg-danger-50 text-danger-600 hover:bg-danger-100 transition-colors"
+          >
+            <X className="w-4 h-4" />
+          </button>
           <div className={`w-16 h-16 rounded-full flex items-center justify-center mx-auto ${confirmed ? 'bg-success-100 text-success-600' : 'bg-warning-100 text-warning-600'}`}>
             {confirmed ? <CheckCircle className="w-8 h-8" /> : <Clock className="w-8 h-8" />}
           </div>
@@ -600,8 +609,19 @@ export const BookingWizard: React.FC = () => {
                     </div>
                     <div className="p-4 space-y-1.5">
                       <div className="flex justify-between"><dt className="text-sand-600">Precio total</dt><dd className="font-semibold text-sand-900">{ars(service.basePrice)}</dd></div>
-                      <div className="flex justify-between"><dt className="text-sand-600">Seña ({service.depositPercentage}%)</dt><dd className="font-bold text-primary-600">{ars(depositAmount)}</dd></div>
-                      <div className="flex justify-between"><dt className="text-sand-600">Saldo en consultorio</dt><dd className="font-semibold text-sand-900">{ars(service.basePrice - depositAmount)}</dd></div>
+                      {hold?.isToday ? (
+                        /* Turno del mismo día: se cobra la totalidad, sin opción de seña */
+                        <div className="flex justify-between items-center pt-1 border-t border-sand-100">
+                          <dt className="text-sand-600 font-semibold">A abonar hoy (pago completo)</dt>
+                          <dd className="font-bold text-primary-600">{ars(service.basePrice)}</dd>
+                        </div>
+                      ) : (
+                        /* Turno futuro: se puede pagar seña o total */
+                        <>
+                          <div className="flex justify-between"><dt className="text-sand-600">Seña ({service.depositPercentage}%)</dt><dd className="font-bold text-primary-600">{ars(depositAmount)}</dd></div>
+                          <div className="flex justify-between"><dt className="text-sand-600">Saldo en consultorio</dt><dd className="font-semibold text-sand-900">{ars(service.basePrice - depositAmount)}</dd></div>
+                        </>
+                      )}
                     </div>
                   </dl>
                 )}
