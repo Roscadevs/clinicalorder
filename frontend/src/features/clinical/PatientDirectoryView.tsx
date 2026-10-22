@@ -1,9 +1,10 @@
 import React, { useEffect, useMemo, useState } from 'react';
-import { UserRound, Phone, Mail, Clock, ArrowLeft } from 'lucide-react';
+import { UserRound, Phone, Mail, Clock, ArrowLeft, UserPlus } from 'lucide-react';
 import { patientsApi, appointmentsApi } from '../../services/api';
 import { Patient, Appointment } from '../../types';
-import { Card, Badge, Spinner } from '../../components/ui';
+import { Card, Badge, Spinner, Modal, Button } from '../../components/ui';
 import { PatientSearch } from '../appointments/PatientSearch';
+import { PacienteForm } from './PacienteForm';
 import { getVisualStatus, STATUS_STYLES } from '../agenda/appointmentStatus';
 
 const TZ = 'America/Argentina/Buenos_Aires';
@@ -19,6 +20,7 @@ export const PatientDirectoryView: React.FC = () => {
   const [selected, setSelected] = useState<Patient | null>(null);
   const [appointments, setAppointments] = useState<Appointment[]>([]);
   const [loading, setLoading] = useState(false);
+  const [isCreating, setIsCreating] = useState<string | null>(null);
 
   useEffect(() => {
     if (!selected) return;
@@ -37,20 +39,34 @@ export const PatientDirectoryView: React.FC = () => {
   return (
     <div className="max-w-4xl mx-auto p-3 sm:p-6 space-y-5">
       <Card>
-        <div className="flex items-center gap-3">
-          <div className="w-10 h-10 rounded-2xl bg-primary-500 text-white flex items-center justify-center flex-shrink-0">
-            <UserRound className="w-5 h-5" />
+        <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+          <div className="flex items-center gap-3">
+            <div className="w-10 h-10 rounded-2xl bg-primary-500 text-white flex items-center justify-center flex-shrink-0">
+              <UserRound className="w-5 h-5" />
+            </div>
+            <div>
+              <h2 className="font-display text-lg font-bold text-sand-900">Pacientes</h2>
+              <p className="text-xs text-sand-500">Buscá un paciente para ver su contacto e historial de turnos.</p>
+            </div>
           </div>
-          <div>
-            <h2 className="font-display text-lg font-bold text-sand-900">Pacientes</h2>
-            <p className="text-xs text-sand-500">Buscá un paciente para ver su contacto e historial de turnos.</p>
-          </div>
+          <Button
+            variant="primary"
+            size="sm"
+            leftIcon={<UserPlus className="w-4 h-4" />}
+            onClick={() => setIsCreating('')}
+          >
+            Nuevo Paciente
+          </Button>
         </div>
       </Card>
 
       {!selected ? (
         <Card>
-          <PatientSearch autoFocus onSelect={setSelected} onAddNew={() => undefined} />
+          <PatientSearch
+            autoFocus
+            onSelect={setSelected}
+            onAddNew={(query) => setIsCreating(query)}
+          />
           <p className="mt-4 text-xs text-sand-400">
             La historia clínica solo está disponible para el personal médico.
           </p>

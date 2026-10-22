@@ -1,5 +1,5 @@
 server:
-  port: ${PORT:8080} # Puerto dinámico inyectado por Railway o 8080 por defecto
+  port: ${PORT:8080} # Puerto dinámico inyectado por Render o 8080 por defecto
   servlet:
     context-path: /api/v1 # Prefijo base global de versión para todas las rutas REST
 
@@ -9,9 +9,9 @@ spring:
 
   datasource:
     # URL de conexión JDBC a Supabase o PostgreSQL en la nube
-    url: ${SPRING_DATASOURCE_URL:${JDBC_DATABASE_URL:jdbc:postgresql://${PGHOST:${DATABASE_HOST:localhost}}:${PGPORT:${DATABASE_PORT:5432}}/${PGDATABASE:${DATABASE_NAME:clinica_db}}?sslmode=prefer}}
+    url: ${SPRING_DATASOURCE_URL:${JDBC_DATABASE_URL:jdbc:postgresql://${PGHOST:${DATABASE_HOST:localhost}}:${PGPORT:${DATABASE_PORT:5432}}/${PGDATABASE:${DATABASE_NAME:clinica_dermatologica}}?sslmode=prefer}}
     username: ${SPRING_DATASOURCE_USERNAME:${PGUSER:${DATABASE_USER:postgres}}}
-    password: ${SPRING_DATASOURCE_PASSWORD:${PGPASSWORD:${DATABASE_PASSWORD:postgres}}}
+    password: ${SPRING_DATASOURCE_PASSWORD:${PGPASSWORD:${DATABASE_PASSWORD:postgrespassword}}}
     driver-class-name: org.postgresql.Driver
     hikari:
       maximum-pool-size: 10
@@ -49,13 +49,13 @@ security:
 # Generar con: openssl rand -base64 32
 app:
   encryption:
-    key: ${AES_ENCRYPTION_KEY:c2VjcmV0RW5jcnlwdGlvbktleUZvckRldmVsb3BtZW50MjAyNiE=}
+    key: ${AES_ENCRYPTION_KEY:3V0xvxxcK3EadxYqHBe7moUn0WEJgSkwpXnPXrLN4cM=}
 
 # Configuración de Pasarela de Pagos MercadoPago
 mercadopago:
-  access-token: ${MERCADOPAGO_ACCESS_TOKEN:TEST-8031893331544574-082123-75359de71994fa0989744ffa69fc1bc0-333038110}
-  public-key: ${MERCADOPAGO_PUBLIC_KEY:TEST-7bfe7629-c425-4def-a3d2-cd5c67cd44a0}
-  webhook-secret: ${MERCADOPAGO_WEBHOOK_SECRET:test_webhook_secret}
+  access-token: ${MERCADOPAGO_ACCESS_TOKEN:}
+  public-key: ${MERCADOPAGO_PUBLIC_KEY:}
+  webhook-secret: ${MERCADOPAGO_WEBHOOK_SECRET:}
   notification-url: ${NOTIFICATION_URL:${BACKEND_BASE_URL:http://localhost:8080}/api/v1/pagos/webhook}
   back-urls:
     success: ${FRONTEND_BASE_URL:http://localhost:5173}/turnos/confirmado

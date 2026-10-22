@@ -1,4 +1,5 @@
 import axios from 'axios'; // Cliente HTTP Axios
+import { toast } from '../components/ui/Toast';
 import {
   AuthResponse,
   Patient,
@@ -19,6 +20,11 @@ import {
 
 /** URL absoluta de la API (para requests fuera de axios, p. ej. fetch keepalive). */
 export const API_BASE_URL: string = import.meta.env.VITE_API_BASE_URL || '/api/v1';
+
+export const isDemoSession = (): boolean => {
+  const token = localStorage.getItem('token');
+  return !token || token.startsWith('demo-');
+};
 
 /**
  * true sólo si el backend no está disponible (modo demo):
@@ -43,10 +49,28 @@ const isNetworkError = (err: unknown): boolean => {
   return false;
 };
 
-const currentUserId = (): number | undefined => {
+/**
+ * En modo demo (token simulado o no autenticado), las rutas protegidas del backend
+ * responden con 401/403 o fallos de conexión. Este helper asegura que en tales casos
+ * se active inmediatamente el comportamiento simulado en lugar de romper el flujo.
+ */
+const shouldFallbackToDemo = (err: unknown): boolean => {
+  if (isDemoSession()) return true;
+  return isNetworkError(err);
+};
+
+const ROLE_FALLBACK_IDS: Record<string, number> = {
+  ADMIN: 1,
+  DOCTORA: 2,
+  SECRETARIA: 3,
+};
+
+const currentUserId = (): number => {
   const raw = localStorage.getItem('userId');
   const n = raw ? Number(raw) : NaN;
-  return Number.isFinite(n) ? n : undefined;
+  if (Number.isFinite(n) && n > 0 && n !== 999) return n;
+  const role = localStorage.getItem('role') || 'ADMIN';
+  return ROLE_FALLBACK_IDS[role] ?? 1;
 };
 
 // Instancia configurada de Axios con base URL hacia la API de Spring Boot
@@ -55,6 +79,7 @@ const api = axios.create({
   headers: {
     'Content-Type': 'application/json',
   },
+  timeout: 8000, // Previene bloqueos indefinidos ante problemas de red
 });
 
 // Interceptor para inyectar automáticamente el Bearer JWT en cada solicitud saliente
@@ -65,6 +90,66 @@ api.interceptors.request.use((config) => {
   }
   return config;
 });
+
+let isRedirectingToLogin = false;
+
+// Interceptor global de respuestas para manejo amable de fallos HTTP
+api.interceptors.response.use(
+  (response) => response,
+  (error) => {
+    if (axios.isAxiosError(error) && error.response) {
+      const status = error.response.status;
+
+      // 401: Sesión caducada
+      if (status === 401 && !isRedirectingToLogin) {
+        const isAuthRoute =
+          typeof window !== 'undefined' &&
+          (window.location.pathname === '/login' ||
+            window.location.pathname === '/recover-password');
+
+        if (!isAuthRoute) {
+          isRedirectingToLogin = true;
+          toast.friendlyError('Tu sesión ha caducado por seguridad', {
+            description:
+              'Te redirigiremos al inicio de sesión para que continúes de forma segura.',
+            duration: 3500,
+          });
+          setTimeout(() => {
+            localStorage.removeItem('token');
+            if (typeof window !== 'undefined') {
+              window.location.href = '/login';
+            }
+            isRedirectingToLogin = false;
+          }, 2000);
+        }
+      } else if (status === 403) {
+        // 403: Acceso no autorizado para el rol
+        const data = error.response.data as any;
+        const msg = data?.detail || data?.message || 'No disponés de los privilegios necesarios para esta acción.';
+        toast.friendlyError('Acceso denegado', {
+          description: msg,
+          duration: 3500,
+        });
+      } else if (status >= 500 && !isNetworkError(error)) {
+        // 500+ Error interno no simulado
+        toast.friendlyError('Inconveniente temporal en el servidor', {
+          description:
+            'Los datos están protegidos. Podés reintentar la acción en unos segundos.',
+        });
+      }
+    } else if (isNetworkError(error)) {
+      if (typeof navigator !== 'undefined' && !navigator.onLine) {
+        toast.friendlyError('Sin conexión a internet', {
+          description:
+            'Comprobá tu red. La aplicación volverá a sincronizarse cuando estés en línea.',
+        });
+      }
+    }
+
+    return Promise.reject(error);
+  }
+);
+
 
 // --- SERVICIOS DE AUTENTICACIÓN ---
 export const authApi = {
@@ -165,28 +250,94 @@ export const servicesApi = {
 };
 
 // --- SERVICIOS DE GESTIÓN DE PACIENTES ---
+const INITIAL_DEMO_PATIENTS: Patient[] = [
+  { id: 1, name: 'Lucía Fernández', dni: '38456123', phone: '+54 9 11 1234-5678', email: 'lucia.fernandez@example.com', active: true, createdAt: '2026-08-01' },
+  { id: 2, name: 'Camila Rossi', dni: '40123987', phone: '+54 9 11 8765-4321', email: 'camila.rossi@example.com', active: true, createdAt: '2026-08-10' },
+  { id: 3, name: 'Mariana Díaz', dni: '36987452', phone: '+54 9 11 5555-1234', email: 'mariana.diaz@example.com', active: true, createdAt: '2026-08-12' },
+  { id: 4, name: 'Sofía Álvarez', dni: '39874125', phone: '+54 9 11 9999-8888', email: 'sofia.alvarez@example.com', active: true, createdAt: '2026-08-15' },
+];
+
+const getDemoPatients = (): Patient[] => {
+  const raw = localStorage.getItem('demo_patients');
+  if (raw) {
+    try {
+      const parsed = JSON.parse(raw);
+      if (Array.isArray(parsed) && parsed.length > 0) return parsed;
+    } catch {}
+  }
+  return INITIAL_DEMO_PATIENTS;
+};
+
+const filterDemoPatients = (search?: string): Patient[] => {
+  const list = getDemoPatients();
+  const q = (search ?? '').trim().toLowerCase();
+  if (!q) return list;
+  return list.filter((p) => p.dni.includes(q) || p.name.toLowerCase().includes(q));
+};
+
+const patientSearchCache = new Map<string, { data: Patient[]; timestamp: number }>();
+const PATIENT_CACHE_TTL = 30000;
+
 export const patientsApi = {
   getPatients: async (search?: string): Promise<Patient[]> => {
+    const q = (search ?? '').trim().toLowerCase();
+
+    // En modo demo respondemos de forma inmediata en memoria (sin latencia de red ni esperar el 403 del servidor)
+    if (isDemoSession()) {
+      return filterDemoPatients(q);
+    }
+
+    const cached = patientSearchCache.get(q);
+    if (cached && Date.now() - cached.timestamp < PATIENT_CACHE_TTL) {
+      return cached.data;
+    }
+
     try {
       const response = await api.get<Patient[]>('/pacientes', { params: { search } });
       if (!Array.isArray(response.data)) throw new Error('Expected array');
+      patientSearchCache.set(q, { data: response.data, timestamp: Date.now() });
       return response.data;
     } catch {
-      // Modo demo: filtra localmente por nombre o DNI, igual que el backend.
-      const demo: Patient[] = [
-        { id: 1, name: 'Lucía Fernández', dni: '38456123', phone: '+54 9 11 1234-5678', email: 'lucia.fernandez@example.com', active: true, createdAt: '2026-08-01' },
-        { id: 2, name: 'Camila Rossi', dni: '40123987', phone: '+54 9 11 8765-4321', email: 'camila.rossi@example.com', active: true, createdAt: '2026-08-10' },
-        { id: 3, name: 'Mariana Díaz', dni: '36987452', phone: '+54 9 11 5555-1234', email: 'mariana.diaz@example.com', active: true, createdAt: '2026-08-12' },
-        { id: 4, name: 'Sofía Álvarez', dni: '39874125', phone: '+54 9 11 9999-8888', email: 'sofia.alvarez@example.com', active: true, createdAt: '2026-08-15' },
-      ];
-      const q = (search ?? '').trim().toLowerCase();
-      if (!q) return demo;
-      return demo.filter((p) => p.dni.includes(q) || p.name.toLowerCase().includes(q));
+      return filterDemoPatients(q);
     }
   },
   createPatient: async (patient: Partial<Patient>): Promise<Patient> => {
-    const response = await api.post<Patient>('/pacientes', patient);
-    return response.data;
+    if (isDemoSession()) {
+      const current = getDemoPatients();
+      const newPatient: Patient = {
+        id: current.length > 0 ? Math.max(...current.map((p) => p.id)) + 1 : 1,
+        name: patient.name || '',
+        dni: patient.dni || '',
+        phone: patient.phone || '',
+        email: patient.email || '',
+        active: true,
+        createdAt: new Date().toISOString(),
+      };
+      localStorage.setItem('demo_patients', JSON.stringify([...current, newPatient]));
+      patientSearchCache.clear();
+      return newPatient;
+    }
+
+    try {
+      const response = await api.post<Patient>('/pacientes', patient);
+      patientSearchCache.clear();
+      return response.data;
+    } catch (err) {
+      if (!isNetworkError(err)) throw err;
+      const current = getDemoPatients();
+      const newPatient: Patient = {
+        id: current.length > 0 ? Math.max(...current.map((p) => p.id)) + 1 : 1,
+        name: patient.name || '',
+        dni: patient.dni || '',
+        phone: patient.phone || '',
+        email: patient.email || '',
+        active: true,
+        createdAt: new Date().toISOString(),
+      };
+      localStorage.setItem('demo_patients', JSON.stringify([...current, newPatient]));
+      patientSearchCache.clear();
+      return newPatient;
+    }
   },
 };
 
@@ -240,13 +391,22 @@ export const appointmentsApi = {
     serviceId: number;
     startTime: string;
   }): Promise<PaymentPreferenceResponse> => {
+    if (isDemoSession()) {
+      return {
+        appointmentId: Math.floor(Math.random() * 9000) + 1000,
+        preferenceId: 'PREF-MP-2026-SIMULATED',
+        initPointUrl: 'https://www.mercadopago.com.ar/checkout/v1/redirect?pref_id=simulated',
+        depositAmount: 21000,
+        holdExpiresAt: new Date(Date.now() + 600000).toISOString(),
+      };
+    }
     try {
       const response = await api.post<PaymentPreferenceResponse>('/citas/reservar-temporal', data, {
         params: { userId: currentUserId() },
       });
       return response.data;
     } catch (err) {
-      if (!isNetworkError(err)) throw err;
+      if (!shouldFallbackToDemo(err)) throw err;
       return {
         appointmentId: Math.floor(Math.random() * 9000) + 1000,
         preferenceId: 'PREF-MP-2026-SIMULATED',
@@ -281,7 +441,7 @@ export const appointmentsApi = {
     try {
       await api.post(`/citas/${id}/cancelar`);
     } catch (err) {
-      if (!isNetworkError(err)) throw err;
+      if (!shouldFallbackToDemo(err)) throw err;
     }
   },
 
@@ -292,22 +452,49 @@ export const appointmentsApi = {
    */
   registerDepositPayment: async (
     id: number,
-    payload: { paymentType: Exclude<PaymentType, 'MERCADOPAGO'>; paymentConcept: PaymentConcept; amount: number; agreedPrice: number }
+    payload: {
+      paymentType: Exclude<PaymentType, 'MERCADOPAGO'>;
+      amount: number;
+      agreedPrice: number;
+      /** Concepto elegido: seña (DEPOSIT) o pago total (FULL). */
+      concept?: Exclude<PaymentConcept, 'BALANCE'>;
+      paymentConcept?: PaymentConcept;
+    }
   ): Promise<PaymentReceipt> => {
+    // Si no viene explícito, se infiere por el monto respecto del precio acordado.
+    const concept: Exclude<PaymentConcept, 'BALANCE'> =
+      payload.concept ?? (payload.amount >= payload.agreedPrice ? 'FULL' : 'DEPOSIT');
+
+    if (isDemoSession()) {
+      return {
+        appointmentId: id,
+        paymentType: payload.paymentType,
+        concept,
+        amount: payload.amount,
+        paymentDate: new Date().toISOString(),
+        appointmentStatus: 'CONFIRMED',
+      };
+    }
+
     try {
       const response = await api.post<PaymentReceipt>(
         `/citas/${id}/registrar-pago`,
-        { paymentType: payload.paymentType, paymentConcept: payload.paymentConcept, amount: payload.amount },
+        {
+          paymentType: payload.paymentType,
+          paymentConcept: payload.paymentConcept ?? concept,
+          concept,
+          amount: payload.amount,
+        },
         { params: { userId: currentUserId() } }
       );
       return response.data;
     } catch (err) {
-      if (!isNetworkError(err)) throw err;
-      // Modo demo: se considera registrado.
+      if (!shouldFallbackToDemo(err)) throw err;
+      // Modo demo o caída de red: se considera registrado.
       return {
         appointmentId: id,
         paymentType: payload.paymentType,
-        concept: payload.amount >= payload.agreedPrice ? 'FULL' : 'DEPOSIT',
+        concept,
         amount: payload.amount,
         paymentDate: new Date().toISOString(),
         appointmentStatus: 'CONFIRMED',
@@ -321,7 +508,7 @@ export const appointmentsApi = {
       if (!Array.isArray(response.data)) throw new Error('Expected array');
       return response.data;
     } catch (err) {
-      if (!isNetworkError(err) && !(err instanceof Error && err.message === 'Expected array')) throw err;
+      if (!shouldFallbackToDemo(err) && !(err instanceof Error && err.message === 'Expected array')) throw err;
       return demoAgenda(start, end);
     }
   },
@@ -329,7 +516,29 @@ export const appointmentsApi = {
     try {
       await api.post(`/citas/${id}/cancelar`);
     } catch (err) {
-      if (!isNetworkError(err)) throw err;
+      if (!shouldFallbackToDemo(err)) throw err;
+    }
+  },
+  /** Consulta pública del estado de un turno (usado en la pantalla de retorno de Mercado Pago). */
+  getPublicStatus: async (
+    id: number
+  ): Promise<{ appointmentId: number; status: string; serviceName: string; startTime: string }> => {
+    try {
+      const response = await api.get<{
+        appointmentId: number;
+        status: string;
+        serviceName: string;
+        startTime: string;
+      }>(`/citas/${id}/estado`);
+      return response.data;
+    } catch (err) {
+      if (!shouldFallbackToDemo(err)) throw err;
+      return {
+        appointmentId: id,
+        status: 'CONFIRMED',
+        serviceName: 'Consulta Dermatológica',
+        startTime: new Date().toISOString(),
+      };
     }
   },
   /** El médico marca el turno como atendido (CONFIRMED -> ATTENDED). */
@@ -337,7 +546,26 @@ export const appointmentsApi = {
     try {
       await api.post(`/citas/${id}/atender`);
     } catch (err) {
-      if (!isNetworkError(err)) throw err;
+      if (!shouldFallbackToDemo(err)) throw err;
+    }
+  },
+  /**
+   * Reprograma un turno a una nueva fecha/hora, conservando el servicio.
+   * El backend revalida la disponibilidad del nuevo horario. Devuelve el turno
+   * actualizado. En modo demo (sin backend) se simula el cambio localmente.
+   */
+  rescheduleAppointment: async (id: number, newStartTime: string): Promise<Appointment | null> => {
+    try {
+      const response = await api.post<Appointment>(
+        `/citas/${id}/reprogramar`,
+        { startTime: newStartTime },
+        { params: { userId: currentUserId() } }
+      );
+      return response.data;
+    } catch (err) {
+      if (!shouldFallbackToDemo(err)) throw err;
+      // Modo demo: se considera reprogramado; el refresco de la agenda reflejará el cambio.
+      return null;
     }
   },
   /**
@@ -350,7 +578,7 @@ export const appointmentsApi = {
         params: { receptionistUserId: currentUserId() },
       });
     } catch (err) {
-      if (!isNetworkError(err)) throw err;
+      if (!shouldFallbackToDemo(err)) throw err;
     }
   },
 };

@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { Banknote, Smartphone, Landmark } from 'lucide-react';
 import { appointmentsApi } from '../../services/api';
 import { Appointment, PaymentType, PAYMENT_TYPE_LABELS } from '../../types';
-import { Modal, Button, Input } from '../../components/ui';
+import { Modal, Button, Input, Callout } from '../../components/ui';
 import { cn } from '../../utils/cn';
 
 interface CollectBalanceModalProps {
@@ -94,7 +94,11 @@ export const CollectBalanceModal: React.FC<CollectBalanceModalProps> = ({ isOpen
           </div>
         </fieldset>
 
-        {error && <p role="alert" className="text-sm text-danger-600 font-medium">{error}</p>}
+        {error && (
+          <Callout intent="error" title="No se pudo registrar el cobro" onClose={() => setError(null)}>
+            {error}
+          </Callout>
+        )}
       </div>
     </Modal>
   );

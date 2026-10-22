@@ -25,7 +25,10 @@ documentacion/
 │   ├── PRD_v7.0_Fase7_Dashboard_KPIs_Master.md           # Versión 7.0 (Dashboard de KPIs y Métricas)
 │   ├── PRD_v8.0_Fase8_Recordatorios_Calendario_Master.md # Versión 8.0 (Recordatorios y Sincronización Calendarios)
 │   ├── PRD_v9.0_Fase9_Master_Defensa_Integral.md         # Versión 9.0 (Guía de Defensa y Demo 7 min)
-│   └── PRD_v10.0_Fase10_Mobile_Responsive_Master.md      # Versión 10.0 (Master Final con Diseño Mobile-First)
+│   ├── PRD_v10.0_Fase10_Mobile_Responsive_Master.md      # Versión 10.0 (Master Final con Diseño Mobile-First)
+│   ├── PRD_v11.0_Fase11_Landing_Login.md                 # Versión 11.0 (Landing Page y Enrutamiento)
+│   ├── PRD_v12.0_Fase12_Seguridad_Web_Path.md            # Versión 12.0 (Seguridad Web y Blindaje de Paths)
+│   └── PRD_v13.0_Fase13_Heuristicas_Usabilidad_Nielsen_README.md # Versión 13.0 (Heurísticas de Usabilidad de Nielsen)
 │
 ├── 🏗️ fase1_especificacion_y_diseno/                      # Fase 1: Arquitectura base y Modelado
 │   ├── ARQUITECTURA_Y_DISENO_TECNICO.md                  # Diagramas UML (Paquetes, Despliegue), MER/MR, ACID

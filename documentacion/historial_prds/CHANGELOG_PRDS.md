@@ -7,9 +7,38 @@
 
 ## 📜 Historial de Revisiones
 
-### 🔹 [Versión 10.0 (Master Final - Fase 10: Diseño Mobile-First & Responsive UX)](file:///Users/eliasignaciodelcastillogodoy/Desktop/ProyectoIntegrador/documentacion/historial_prds/PRD_v10.0_Fase10_Mobile_Responsive_Master.md)
+### 🔹 [Versión 13.0 (Fase 13 - Heurísticas de Usabilidad de Nielsen en README)](PRD_v13.0_Fase13_Heuristicas_Usabilidad_Nielsen_README.md)
+- **Fecha:** 2026-10-12
+- **Estado:** EN REVISIÓN / PROPUESTO
+- **Autor:** Equipo de Arquitectura & Desarrollo
+- **Cambios Principales:**
+  - Incorporación de la evaluación heurística de 10 principios de Jakob Nielsen en el `README.md`.
+  - Mapeo punto por punto de cada heurística a componentes funcionales, validaciones, control de concurrencia y asistente IA.
+
+---
+
+### 🔹 [Versión 12.0 (Fase 12 - Seguridad Web & Blindaje Perimetral de Rutas)](PRD_v12.0_Fase12_Seguridad_Web_Path.md)
+- **Fecha:** 2026-10-12
+- **Estado:** VIGENTE
+- **Autor:** Equipo de Arquitectura & Desarrollo
+- **Cambios Principales:**
+  - Blindaje perimetral de rutas en Spring Security y guardianes de ruta en React (`ProtectedRoute`).
+  - StrictHttpFirewall, mitigación de path traversal y separación estricta de rutas públicas y privadas.
+
+---
+
+### 🔹 [Versión 11.0 (Fase 11 - Landing Page & Enrutamiento)](PRD_v11.0_Fase11_Landing_Login.md)
+- **Fecha:** 2026-10-05
+- **Estado:** VIGENTE
+- **Autor:** Equipo de Arquitectura & Desarrollo
+- **Cambios Principales:**
+  - Separación de Landing comercial y aplicación clínica bajo `/app/*`.
+
+---
+
+### 🔹 [Versión 10.0 (Master Final - Fase 10: Diseño Mobile-First & Responsive UX)](PRD_v10.0_Fase10_Mobile_Responsive_Master.md)
 - **Fecha:** 2026-08-22
-- **Estado:** VIGENTE / MASTER FINAL
+- **Estado:** HISTÓRICO
 - **Autor:** Equipo de Arquitectura & Desarrollo
 - **Cambios Principales:**
   - Implementación de la **Barra de Navegación Inferior (*Bottom Tab Bar*)** para celulares (`BottomNav.tsx`) con zonas táctiles de 48x48 px.
