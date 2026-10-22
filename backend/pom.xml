@@ -106,6 +106,13 @@
             <version>${mercadopago.version}</version>
         </dependency>
 
+        <!-- Bucket4j Core: Rate limiting en memoria por IP sin Redis (algoritmo de token bucket) -->
+        <dependency>
+            <groupId>com.bucket4j</groupId>
+            <artifactId>bucket4j-core</artifactId>
+            <version>8.10.1</version>
+        </dependency>
+
         <!-- Spring Boot Starter Test: Suite completa de pruebas unitarias e integración (JUnit 5, Mockito) -->
         <dependency>
             <groupId>org.springframework.boot</groupId>

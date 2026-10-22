@@ -1,6 +1,7 @@
 package com.clinicadermatologica.app.infrastructure.security;
 
 import lombok.RequiredArgsConstructor; // Genera constructor con dependencias final
+import org.springframework.boot.web.servlet.FilterRegistrationBean; // Suprime el auto-registro del filtro por Servlet container
 import org.springframework.context.annotation.Bean; // Declara un método que produce un Bean administrado por Spring
 import org.springframework.context.annotation.Configuration; // Marca la clase como archivo de configuración de Spring
 import org.springframework.http.HttpMethod; // Enum de métodos HTTP
@@ -30,6 +31,7 @@ import java.util.List; // Utilidad de listas
 public class SecurityConfig {
 
     private final JwtAuthenticationFilter jwtAuthenticationFilter; // Filtro interceptor JWT
+    private final LoginRateLimitFilter loginRateLimitFilter; // Filtro de rate limiting para /auth/login
 
     @Bean // Expone el bean PasswordEncoder para cifrado seguro
     public PasswordEncoder passwordEncoder() {
@@ -65,6 +67,8 @@ public class SecurityConfig {
                 // Cualquier otra solicitud requiere autenticación JWT válida
                 .anyRequest().authenticated()
             )
+            // Agrega el filtro de rate limiting antes del filtro JWT para bloquear IPs antes de procesar credenciales
+            .addFilterBefore(loginRateLimitFilter, UsernamePasswordAuthenticationFilter.class)
             // Agrega nuestro filtro JWT antes del filtro de usuario/contraseña estándar de Spring
             .addFilterBefore(jwtAuthenticationFilter, UsernamePasswordAuthenticationFilter.class);
 
@@ -83,5 +87,17 @@ public class SecurityConfig {
         UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
         source.registerCorsConfiguration("/**", configuration); // Aplica la configuración a todas las rutas
         return source;
+    }
+
+    /**
+     * Suprime el auto-registro del filtro de rate limiting por parte del contenedor Servlet.
+     * Sin esto, Spring Boot registraría el @Component como filtro global adicional,
+     * ejecutándolo dos veces por petición.
+     */
+    @Bean
+    public FilterRegistrationBean<LoginRateLimitFilter> rateLimitFilterRegistration(LoginRateLimitFilter filter) {
+        FilterRegistrationBean<LoginRateLimitFilter> bean = new FilterRegistrationBean<>(filter);
+        bean.setEnabled(false); // Solo se ejecuta dentro de la cadena de Spring Security
+        return bean;
     }
 }
