@@ -73,6 +73,48 @@ const MedicalWorkspace: React.FC = () => {
 };
 
 // ── Turnos del médico + búsqueda de paciente ─────────────────────────────────
+const AppointmentListItem = React.memo<{
+  appt: Appointment;
+  now: number;
+  onOpenPatient: (a: Appointment) => void;
+  onAttend: (a: Appointment) => void;
+}>(
+  ({ appt, now, onOpenPatient, onAttend }) => {
+    const vs = getVisualStatus(appt, now);
+    return (
+      <li className={cn('rounded-xl border p-3 flex items-center justify-between gap-3', STATUS_STYLES[vs].card)}>
+        <button onClick={() => onOpenPatient(appt)} className="flex-grow text-left min-w-0">
+          <div className="flex items-center gap-2">
+            <span className="font-bold text-sand-900 truncate">{appt.patientName}</span>
+            <span className="text-xs font-bold text-sand-700 bg-white/70 px-1.5 py-0.5 rounded">{fmtDateTime(appt.startTime)}</span>
+          </div>
+          <p className="text-xs text-sand-600 truncate">{appt.serviceName}</p>
+        </button>
+        <div className="flex items-center gap-2 flex-shrink-0">
+          {appt.status === 'CONFIRMED' && (
+            <Button size="sm" variant="success" onClick={() => onAttend(appt)} leftIcon={<CheckCircle className="w-4 h-4" />}>
+              Atender
+            </Button>
+          )}
+          {appt.status === 'ATTENDED' && <Badge variant="info">Atendido · a cobrar</Badge>}
+          {appt.status === 'COMPLETED' && <Badge variant="success">Cobrado</Badge>}
+          <button onClick={() => onOpenPatient(appt)} className="text-primary-600 hover:text-primary-700" aria-label="Abrir historia clínica">
+            <ChevronRight className="w-5 h-5" />
+          </button>
+        </div>
+      </li>
+    );
+  },
+  (prev, next) => {
+    return (
+      prev.appt === next.appt &&
+      prev.onOpenPatient === next.onOpenPatient &&
+      prev.onAttend === next.onAttend &&
+      getVisualStatus(prev.appt, prev.now) === getVisualStatus(next.appt, next.now)
+    );
+  }
+);
+
 const TodaysAppointments: React.FC<{ onOpenPatient: (p: Patient) => void }> = ({ onOpenPatient }) => {
   const [appts, setAppts] = useState<Appointment[]>([]);
   const [loading, setLoading] = useState(true);
@@ -94,19 +136,19 @@ const TodaysAppointments: React.FC<{ onOpenPatient: (p: Patient) => void }> = ({
   useEffect(() => { load(); }, [load]);
   useEffect(() => { const t = setInterval(() => setNow(Date.now()), 60000); return () => clearInterval(t); }, []);
 
-  const openPatient = async (a: Appointment) => {
+  const openPatient = useCallback(async (a: Appointment) => {
     // Resolvemos el paciente a partir del turno (búsqueda por DNI)
     const found = await patientsApi.getPatients(a.patientDni).catch(() => []);
     const p = found.find((x) => x.id === a.patientId) ?? found[0] ?? {
       id: a.patientId, name: a.patientName, dni: a.patientDni, phone: a.patientPhone, email: '', active: true, createdAt: '',
     };
     onOpenPatient(p);
-  };
+  }, [onOpenPatient]);
 
-  const attend = async (a: Appointment) => {
+  const attend = useCallback(async (a: Appointment) => {
     await appointmentsApi.markAsAttended(a.id);
     load();
-  };
+  }, [load]);
 
   return (
     <>
@@ -130,32 +172,15 @@ const TodaysAppointments: React.FC<{ onOpenPatient: (p: Patient) => void }> = ({
           <p className="text-sm text-sand-500 py-4">No hay turnos agendados para hoy.</p>
         ) : (
           <ul className="space-y-2">
-            {appts.map((a) => {
-              const vs = getVisualStatus(a, now);
-              return (
-                <li key={a.id} className={cn('rounded-xl border p-3 flex items-center justify-between gap-3', STATUS_STYLES[vs].card)}>
-                  <button onClick={() => openPatient(a)} className="flex-grow text-left min-w-0">
-                    <div className="flex items-center gap-2">
-                      <span className="font-bold text-sand-900 truncate">{a.patientName}</span>
-                      <span className="text-xs font-bold text-sand-700 bg-white/70 px-1.5 py-0.5 rounded">{fmtDateTime(a.startTime)}</span>
-                    </div>
-                    <p className="text-xs text-sand-600 truncate">{a.serviceName}</p>
-                  </button>
-                  <div className="flex items-center gap-2 flex-shrink-0">
-                    {a.status === 'CONFIRMED' && (
-                      <Button size="sm" variant="success" onClick={() => attend(a)} leftIcon={<CheckCircle className="w-4 h-4" />}>
-                        Atender
-                      </Button>
-                    )}
-                    {a.status === 'ATTENDED' && <Badge variant="info">Atendido · a cobrar</Badge>}
-                    {a.status === 'COMPLETED' && <Badge variant="success">Cobrado</Badge>}
-                    <button onClick={() => openPatient(a)} className="text-primary-600 hover:text-primary-700" aria-label="Abrir historia clínica">
-                      <ChevronRight className="w-5 h-5" />
-                    </button>
-                  </div>
-                </li>
-              );
-            })}
+            {appts.map((a) => (
+              <AppointmentListItem
+                key={a.id}
+                appt={a}
+                now={now}
+                onOpenPatient={openPatient}
+                onAttend={attend}
+              />
+            ))}
           </ul>
         )}
       </Card>
