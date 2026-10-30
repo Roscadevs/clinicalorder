@@ -2,8 +2,14 @@ package com.clinicadermatologica.app.application.service;
 
 import com.clinicadermatologica.app.domain.exception.*;
 import com.clinicadermatologica.app.domain.model.*;
-import com.clinicadermatologica.app.domain.repository.*;
+import com.clinicadermatologica.app.infrastructure.persistence.dao.AlergiaDAO;
+import com.clinicadermatologica.app.infrastructure.persistence.dao.AntecedentePatologicoDAO;
 import com.clinicadermatologica.app.infrastructure.persistence.dao.AppointmentDAO;
+import com.clinicadermatologica.app.infrastructure.persistence.dao.ClinicalEntryAuditDAO;
+import com.clinicadermatologica.app.infrastructure.persistence.dao.ClinicalEntryDAO;
+import com.clinicadermatologica.app.infrastructure.persistence.dao.HabitoDAO;
+import com.clinicadermatologica.app.infrastructure.persistence.dao.MedicalRecordAuditDAO;
+import com.clinicadermatologica.app.infrastructure.persistence.dao.MedicalRecordDAO;
 import com.clinicadermatologica.app.infrastructure.persistence.dao.PatientDAO;
 import com.clinicadermatologica.app.infrastructure.persistence.dao.UserDAO;
 import com.clinicadermatologica.app.infrastructure.security.AesEncryptionService;
@@ -32,14 +38,16 @@ import java.util.stream.Collectors;
 @Slf4j
 public class MedicalRecordService {
 
-    private final MedicalRecordRepository medicalRecordRepository;
-    private final ClinicalEntryRepository clinicalEntryRepository;
+    private final MedicalRecordDAO medicalRecordRepository;
+    private final MedicalRecordAuditDAO medicalRecordAuditDAO;
+    private final ClinicalEntryDAO clinicalEntryRepository;
+    private final ClinicalEntryAuditDAO clinicalEntryAuditDAO;
     private final PatientDAO patientRepository;
     private final AppointmentDAO appointmentRepository;
     private final UserDAO userRepository;
-    private final AlergiaRepository alergiaRepository;
-    private final AntecedentePatologicoRepository antecedentePatologicoRepository;
-    private final HabitoRepository habitoRepository;
+    private final AlergiaDAO alergiaRepository;
+    private final AntecedentePatologicoDAO antecedentePatologicoRepository;
+    private final HabitoDAO habitoRepository;
     private final AesEncryptionService aesEncryptionService; // Singleton — AES-256-GCM
     private final ObjectMapper objectMapper;
 
@@ -84,7 +92,7 @@ public class MedicalRecordService {
                         .newValues(newJson)
                         .build();
 
-                medicalRecordRepository.saveAudit(audit);
+                medicalRecordAuditDAO.save(audit);
                 record = medicalRecordRepository.save(record);
                 log.info("Historia clinica #{} actualizada con auditoria", record.getId());
             } catch (Exception e) {
@@ -139,16 +147,24 @@ public class MedicalRecordService {
                 .newContent(encryptedNew)
                 .build();
 
-        clinicalEntryRepository.saveAudit(audit);
+        clinicalEntryAuditDAO.save(audit);
         entry.setContent(encryptedNew);
         return mapEntryToDTO(clinicalEntryRepository.save(entry));
     }
 
     @Transactional(readOnly = true)
     public List<ClinicalEntryResponseDTO> getClinicalEntriesByPatient(Long patientId) {
-        return clinicalEntryRepository.findByPatientId(patientId).stream()
+        return clinicalEntryRepository.findByPatientIdOrderByCreatedAtDesc(patientId).stream()
                 .map(this::mapEntryToDTO)
                 .collect(Collectors.toList());
+    }
+
+    // ─── AUDITORIA ────────────────────────────────────────────────────────────────
+
+    /** Historial de auditoria de una historia clinica, del mas reciente al mas antiguo. */
+    @Transactional(readOnly = true)
+    public List<MedicalRecordAudit> getAuditHistory(Long medicalRecordId) {
+        return medicalRecordAuditDAO.findByMedicalRecordIdOrderByUpdatedAtDesc(medicalRecordId);
     }
 
     // ─── ALERGIAS ────────────────────────────────────────────────────────────────
@@ -180,7 +196,7 @@ public class MedicalRecordService {
             throw new ResourceNotFoundException(
                     "Alergia de tipo '" + tipo + "' no encontrada en esta historia clinica");
         }
-        alergiaRepository.delete(id);
+        alergiaRepository.deleteById(id);
     }
 
     // ─── ANTECEDENTES PATOLOGICOS ────────────────────────────────────────────────
@@ -213,7 +229,7 @@ public class MedicalRecordService {
             throw new ResourceNotFoundException(
                     "Antecedente de tipo '" + tipo + "' no encontrado en esta historia clinica");
         }
-        antecedentePatologicoRepository.delete(id);
+        antecedentePatologicoRepository.deleteById(id);
     }
 
     // ─── HABITOS ─────────────────────────────────────────────────────────────────
@@ -245,7 +261,7 @@ public class MedicalRecordService {
             throw new ResourceNotFoundException(
                     "Habito de tipo '" + tipo + "' no encontrado en esta historia clinica");
         }
-        habitoRepository.delete(id);
+        habitoRepository.deleteById(id);
     }
 
     // ─── HELPERS DE CIFRADO ──────────────────────────────────────────────────────
@@ -284,17 +300,17 @@ public class MedicalRecordService {
 
     private MedicalRecordDTO mapRecordToDTO(MedicalRecord r) {
         List<AlergiaResponseDTO> alergias = alergiaRepository
-                .findByMedicalRecordId(r.getId()).stream()
+                .findByIdMedicalRecordId(r.getId()).stream()
                 .map(this::mapAlergiaToDTO)
                 .collect(Collectors.toList());
 
         List<AntecedentePatologicoResponseDTO> antecedentes = antecedentePatologicoRepository
-                .findByMedicalRecordId(r.getId()).stream()
+                .findByIdMedicalRecordId(r.getId()).stream()
                 .map(this::mapAntecedenteToDTO)
                 .collect(Collectors.toList());
 
         List<HabitoResponseDTO> habitos = habitoRepository
-                .findByMedicalRecordId(r.getId()).stream()
+                .findByIdMedicalRecordId(r.getId()).stream()
                 .map(this::mapHabitoToDTO)
                 .collect(Collectors.toList());
 

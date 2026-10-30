@@ -4,8 +4,8 @@ import com.clinicadermatologica.app.domain.exception.BusinessRuleException;
 import com.clinicadermatologica.app.domain.exception.ResourceNotFoundException;
 import com.clinicadermatologica.app.domain.model.ClinicalEntry;
 import com.clinicadermatologica.app.domain.model.ClinicalImage;
-import com.clinicadermatologica.app.domain.repository.ClinicalEntryRepository;
-import com.clinicadermatologica.app.domain.repository.ClinicalImageRepository;
+import com.clinicadermatologica.app.infrastructure.persistence.dao.ClinicalEntryDAO;
+import com.clinicadermatologica.app.infrastructure.persistence.dao.ClinicalImageDAO;
 import com.clinicadermatologica.app.infrastructure.storage.SupabaseStorageAdapter;
 import com.clinicadermatologica.app.presentation.dto.ClinicalImageResponseDTO;
 import lombok.RequiredArgsConstructor;
@@ -35,8 +35,8 @@ public class ClinicalImageService {
 
     private static final long MAX_FILE_SIZE_BYTES = 10L * 1024 * 1024; // 10 MB
 
-    private final ClinicalImageRepository imageRepository;
-    private final ClinicalEntryRepository clinicalEntryRepository;
+    private final ClinicalImageDAO imageRepository;
+    private final ClinicalEntryDAO clinicalEntryRepository;
     private final SupabaseStorageAdapter storageAdapter;
 
     /**
@@ -88,7 +88,7 @@ public class ClinicalImageService {
      */
     @Transactional(readOnly = true)
     public List<ClinicalImageResponseDTO> getImagesByClinicalEntry(Long clinicalEntryId) {
-        return imageRepository.findByClinicalEntryId(clinicalEntryId).stream()
+        return imageRepository.findByClinicalEntryIdOrderByUploadedAtDesc(clinicalEntryId).stream()
                 .map(this::mapToDTO)
                 .collect(Collectors.toList());
     }
