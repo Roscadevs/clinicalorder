@@ -26,5 +26,7 @@ public class AppointmentResponseDTO {
     private Instant endTime;
     private AppointmentStatus status;
     private BigDecimal agreedPrice;
+    private BigDecimal paidAmount;
+    private BigDecimal remainingBalance;
     private Long followUpToId; // ID de la cita de origen (null si es cita independiente)
 }

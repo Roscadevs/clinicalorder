@@ -93,7 +93,7 @@ public class AppointmentController {
     public ResponseEntity<PaymentReceiptDTO> finalizePayment(
             @PathVariable Long id,
             @Valid @RequestBody FinalizePaymentRequestDTO request,
-            @RequestParam Long receptionistUserId) {
+            @RequestParam(required = false) Long receptionistUserId) {
         PaymentReceiptDTO receipt = paymentService.registerFinalPayment(id, request, receptionistUserId);
         return ResponseEntity.ok(receipt);
     }
