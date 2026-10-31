@@ -1,4 +1,4 @@
-package com.clinicadermatologica.app.infrastructure.persistence.jpa;
+package com.clinicadermatologica.app.infrastructure.persistence.dao;
 
 import com.clinicadermatologica.app.domain.model.ClinicalEntry;
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -8,11 +8,14 @@ import java.util.List;
 import java.util.Optional;
 
 /**
- * Repositorio Spring Data JPA para las notas de evolución clínica.
- * Delegado por ClinicalEntryRepositoryAdapter (DAO Implementation).
+ * PATRÓN DAO (Data Access Object) para la entidad ClinicalEntry (notas de evolución clínica).
+ *
+ * Encapsula el acceso a datos de las evoluciones clínicas mediante Spring Data JPA.
+ * Spring genera la implementación en tiempo de ejecución; los servicios dependen
+ * directamente de este DAO.
  */
 @Repository
-public interface JpaClinicalEntryRepository extends JpaRepository<ClinicalEntry, Long> {
+public interface ClinicalEntryDAO extends JpaRepository<ClinicalEntry, Long> {
 
     /** Evoluciones de un paciente ordenadas por fecha descendente. */
     List<ClinicalEntry> findByPatientIdOrderByCreatedAtDesc(Long patientId);

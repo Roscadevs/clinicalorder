@@ -3,7 +3,7 @@ package com.clinicadermatologica.app.application;
 import com.clinicadermatologica.app.application.service.AuthService;
 import com.clinicadermatologica.app.domain.exception.BusinessRuleException;
 import com.clinicadermatologica.app.domain.model.*;
-import com.clinicadermatologica.app.domain.repository.PasswordResetTokenRepository;
+import com.clinicadermatologica.app.infrastructure.persistence.dao.PasswordResetTokenDAO;
 import com.clinicadermatologica.app.infrastructure.persistence.dao.UserDAO;
 import com.clinicadermatologica.app.infrastructure.notification.EmailNotificationService;
 import com.clinicadermatologica.app.infrastructure.security.JwtTokenProvider;
@@ -33,7 +33,7 @@ import static org.mockito.Mockito.*;
 public class AuthServiceTest {
 
     @Mock private UserDAO userRepository;
-    @Mock private PasswordResetTokenRepository passwordResetTokenRepository;
+    @Mock private PasswordResetTokenDAO passwordResetTokenRepository;
     @Mock private PasswordEncoder passwordEncoder;
     @Mock private JwtTokenProvider jwtTokenProvider;
     @Mock private EmailNotificationService emailService;

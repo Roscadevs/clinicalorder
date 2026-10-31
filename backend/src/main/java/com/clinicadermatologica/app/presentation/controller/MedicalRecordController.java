@@ -3,7 +3,6 @@ package com.clinicadermatologica.app.presentation.controller;
 import com.clinicadermatologica.app.application.service.ClinicalImageService;
 import com.clinicadermatologica.app.application.service.MedicalRecordService;
 import com.clinicadermatologica.app.domain.model.MedicalRecordAudit;
-import com.clinicadermatologica.app.domain.repository.MedicalRecordRepository;
 import com.clinicadermatologica.app.presentation.dto.*;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
@@ -39,7 +38,6 @@ public class MedicalRecordController {
 
     private final MedicalRecordService medicalRecordService;
     private final ClinicalImageService imageService;
-    private final MedicalRecordRepository medicalRecordRepository;
     private final UserDAO userRepository;
 
     // ─── HISTORIA CLINICA ───────────────────────────────────────────────────────
@@ -132,7 +130,7 @@ public class MedicalRecordController {
     @GetMapping("/{medicalRecordId}/auditoria")
     public ResponseEntity<List<MedicalRecordAudit>> getAuditHistory(
             @PathVariable Long medicalRecordId) {
-        return ResponseEntity.ok(medicalRecordRepository.findAuditHistory(medicalRecordId));
+        return ResponseEntity.ok(medicalRecordService.getAuditHistory(medicalRecordId));
     }
 
     // ─── SUB-RECURSOS: ALERGIAS ──────────────────────────────────────────────────
