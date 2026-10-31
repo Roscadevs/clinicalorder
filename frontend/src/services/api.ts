@@ -830,15 +830,110 @@ export const calendarBlocksApi = {
 };
 
 // --- SERVICIOS DE HISTORIA CLÍNICA (Solo Médicas) ---
+
+const FITZ_NUM_TO_ROMAN: Record<number, MedicalRecord['fitzpatrickPhototype']> = {
+  1: 'I',
+  2: 'II',
+  3: 'III',
+  4: 'IV',
+  5: 'V',
+  6: 'VI',
+};
+
+const FITZ_ROMAN_TO_NUM: Record<string, number> = {
+  I: 1,
+  II: 2,
+  III: 3,
+  IV: 4,
+  V: 5,
+  VI: 6,
+};
+
+const PATOLOGIAS_MAPPING: { key: keyof MedicalRecord; tipo: string }[] = [
+  { key: 'hasHta', tipo: 'Hipertensión (HTA)' },
+  { key: 'hasDbt', tipo: 'Diabetes (DBT)' },
+  { key: 'hasHypothyroidism', tipo: 'Hipotiroidismo' },
+  { key: 'hasHyperthyroidism', tipo: 'Hipertiroidismo' },
+  { key: 'hasAnemia', tipo: 'Anemia' },
+  { key: 'hasAutoimmuneDiseases', tipo: 'Enf. Autoinmune' },
+  { key: 'hasGlaucoma', tipo: 'Glaucoma' },
+  { key: 'hasCoagulationDisorders', tipo: 'Trast. Coagulación' },
+  { key: 'hasScarringAlterations', tipo: 'Queloides / Cicatrización' },
+];
+
+const ALERGIAS_MAPPING: { key: keyof MedicalRecord; tipo: string; aliases?: string[] }[] = [
+  { key: 'allergyAnesthesia', tipo: 'Anestésicos (Lidocaína)', aliases: ['Anestesicos locales', 'Anestésicos'] },
+  { key: 'allergyEgg', tipo: 'Huevo / Derivados', aliases: ['Huevo'] },
+  { key: 'allergyFish', tipo: 'Pescado / Yodo', aliases: ['Pescado'] },
+];
+
+const HABITOS_MAPPING: { key: keyof MedicalRecord; tipo: string; aliases?: string[] }[] = [
+  { key: 'habitTobacco', tipo: 'Tabaquismo' },
+  { key: 'habitAlcohol', tipo: 'Consumo de alcohol' },
+  { key: 'habitSunExposure', tipo: 'Exposición solar frecuente', aliases: ['Exposicion solar frecuente'] },
+  { key: 'habitSpfUse', tipo: 'Uso diario de FPS' },
+];
+
+function mapBackendRecordToFrontend(raw: any): MedicalRecord {
+  const numFitz = typeof raw.fitzpatrickPhototype === 'number' ? raw.fitzpatrickPhototype : FITZ_ROMAN_TO_NUM[String(raw.fitzpatrickPhototype)] || 3;
+  const romanFitz = FITZ_NUM_TO_ROMAN[numFitz] || 'III';
+
+  const antecedentesList: { tipo: string; observaciones?: string }[] = Array.isArray(raw.antecedentesPatologicos) ? raw.antecedentesPatologicos : [];
+  const alergiasList: { tipo: string; observaciones?: string }[] = Array.isArray(raw.alergias) ? raw.alergias : [];
+  const habitosList: { tipo: string; observaciones?: string }[] = Array.isArray(raw.habitos) ? raw.habitos : [];
+
+  const hasTipo = (list: { tipo: string }[], target: string, aliases: string[] = []) => {
+    const candidates = [target, ...aliases].map((s) => s.toLowerCase());
+    return list.some((item) => candidates.includes((item.tipo || '').toLowerCase()));
+  };
+
+  return {
+    id: raw.id,
+    patientId: raw.patientId,
+    patientName: raw.patientName || '',
+    patientDni: raw.patientDni || '',
+    fitzpatrickPhototype: romanFitz,
+    hasHta: Boolean(raw.hasHta) || hasTipo(antecedentesList, 'Hipertensión (HTA)', ['HTA', 'Hipertension']),
+    hasDbt: Boolean(raw.hasDbt) || hasTipo(antecedentesList, 'Diabetes (DBT)', ['Diabetes', 'DBT']),
+    hasHypothyroidism: Boolean(raw.hasHypothyroidism) || hasTipo(antecedentesList, 'Hipotiroidismo'),
+    hasHyperthyroidism: Boolean(raw.hasHyperthyroidism) || hasTipo(antecedentesList, 'Hipertiroidismo'),
+    hasAnemia: Boolean(raw.hasAnemia) || hasTipo(antecedentesList, 'Anemia'),
+    hasAutoimmuneDiseases: Boolean(raw.hasAutoimmuneDiseases) || hasTipo(antecedentesList, 'Enf. Autoinmune'),
+    hasGlaucoma: Boolean(raw.hasGlaucoma) || hasTipo(antecedentesList, 'Glaucoma'),
+    hasCoagulationDisorders: Boolean(raw.hasCoagulationDisorders) || hasTipo(antecedentesList, 'Trast. Coagulación'),
+    hasScarringAlterations: Boolean(raw.hasScarringAlterations) || hasTipo(antecedentesList, 'Queloides / Cicatrización'),
+    allergyAnesthesia: Boolean(raw.allergyAnesthesia) || hasTipo(alergiasList, 'Anestésicos (Lidocaína)', ['Anestesicos locales', 'Anestésicos']),
+    allergyEgg: Boolean(raw.allergyEgg) || hasTipo(alergiasList, 'Huevo / Derivados', ['Huevo']),
+    allergyFish: Boolean(raw.allergyFish) || hasTipo(alergiasList, 'Pescado / Yodo', ['Pescado']),
+    habitTobacco: Boolean(raw.habitTobacco) || hasTipo(habitosList, 'Tabaquismo'),
+    habitAlcohol: Boolean(raw.habitAlcohol) || hasTipo(habitosList, 'Consumo de alcohol'),
+    habitSunExposure: Boolean(raw.habitSunExposure) || hasTipo(habitosList, 'Exposición solar frecuente', ['Exposicion solar frecuente']),
+    habitSpfUse: raw.habitSpfUse !== undefined ? Boolean(raw.habitSpfUse) : hasTipo(habitosList, 'Uso diario de FPS'),
+    alergias: alergiasList,
+    antecedentesPatologicos: antecedentesList,
+    habitos: habitosList,
+    surgicalHistory: raw.surgicalHistory || '',
+    gynecologicalHistory: raw.gynecologicalHistory || '',
+    currentMedications: raw.currentMedications || '',
+    previousAestheticTreatments: raw.previousAestheticTreatments || '',
+    physicalExamination: raw.physicalExamination || raw.treatmentPlan || '',
+    treatmentPlan: raw.physicalExamination || raw.treatmentPlan || '',
+    informedConsentSigned: raw.informedConsentSigned ?? true,
+    createdAt: raw.createdAt || new Date().toISOString(),
+    updatedAt: raw.updatedAt || new Date().toISOString(),
+  };
+}
+
 export const clinicalApi = {
   getMedicalRecordByPatient: async (patientId: number): Promise<MedicalRecord | null> => {
     try {
-      const response = await api.get<MedicalRecord>(`/historias-clinicas/paciente/${patientId}`);
-      return response.status === 204 ? null : response.data;
-    } catch {
+      const response = await api.get(`/historias-clinicas/paciente/${patientId}`);
+      return response.status === 204 || !response.data ? null : mapBackendRecordToFrontend(response.data);
+    } catch (err) {
+      if (!shouldFallbackToDemo(err)) throw err;
       return {
         id: 1,
-        patientId: 1,
+        patientId,
         patientName: 'Lucía Fernández',
         patientDni: '38456123',
         fitzpatrickPhototype: 'III',
@@ -859,6 +954,7 @@ export const clinicalApi = {
         habitSunExposure: false,
         habitSpfUse: true,
         informedConsentSigned: true,
+        physicalExamination: 'Protocolo de 3 sesiones de Peeling Mandélico 30% + Retinol 1%. Control cada 21 días.',
         treatmentPlan: 'Protocolo de 3 sesiones de Peeling Mandélico 30% + Retinol 1%. Control cada 21 días.',
         createdAt: '2026-08-01T10:00:00Z',
         updatedAt: '2026-08-22T02:00:00Z',
@@ -867,11 +963,78 @@ export const clinicalApi = {
   },
   saveMedicalRecord: async (patientId: number, data: Partial<MedicalRecord>, physicianUserId: number): Promise<MedicalRecord> => {
     try {
-      const response = await api.post<MedicalRecord>(`/historias-clinicas/paciente/${patientId}`, data, {
+      const fitzNum = typeof data.fitzpatrickPhototype === 'number'
+        ? data.fitzpatrickPhototype
+        : FITZ_ROMAN_TO_NUM[data.fitzpatrickPhototype || 'III'] || 3;
+
+      const payload = {
+        fitzpatrickPhototype: fitzNum,
+        physicalExamination: data.treatmentPlan ?? data.physicalExamination ?? null,
+        informedConsentSigned: data.informedConsentSigned ?? true,
+        gynecologicalHistory: data.gynecologicalHistory ?? null,
+        surgicalHistory: data.surgicalHistory ?? null,
+        currentMedications: data.currentMedications ?? null,
+        previousAestheticTreatments: data.previousAestheticTreatments ?? null,
+      };
+
+      const response = await api.post(`/historias-clinicas/paciente/${patientId}`, payload, {
         params: { physicianUserId },
       });
-      return response.data;
-    } catch {
+      const savedRaw = response.data;
+      const recordId: number | undefined = savedRaw?.id;
+
+      // Sincroniza las entidades débiles (alergias, antecedentes patológicos, hábitos)
+      if (recordId) {
+        const existingAntecedentes: string[] = (savedRaw.antecedentesPatologicos || []).map((x: any) => String(x.tipo));
+        for (const item of PATOLOGIAS_MAPPING) {
+          const checked = Boolean(data[item.key]);
+          const exists = existingAntecedentes.some((t) => t.toLowerCase() === item.tipo.toLowerCase());
+          if (checked && !exists) {
+            await api.post(`/historias-clinicas/${recordId}/antecedentes`, { tipo: item.tipo, observaciones: '' }).catch(() => undefined);
+          } else if (!checked && exists) {
+            const match = existingAntecedentes.find((t) => t.toLowerCase() === item.tipo.toLowerCase()) || item.tipo;
+            await api.delete(`/historias-clinicas/${recordId}/antecedentes/${encodeURIComponent(match)}`).catch(() => undefined);
+          }
+        }
+
+        const existingAlergias: string[] = (savedRaw.alergias || []).map((x: any) => String(x.tipo));
+        for (const item of ALERGIAS_MAPPING) {
+          const checked = Boolean(data[item.key]);
+          const candidates = [item.tipo, ...(item.aliases || [])].map((s) => s.toLowerCase());
+          const matchingTypes = existingAlergias.filter((t) => candidates.includes(t.toLowerCase()));
+          if (checked && matchingTypes.length === 0) {
+            await api.post(`/historias-clinicas/${recordId}/alergias`, { tipo: item.tipo, observaciones: '' }).catch(() => undefined);
+          } else if (!checked && matchingTypes.length > 0) {
+            for (const match of matchingTypes) {
+              await api.delete(`/historias-clinicas/${recordId}/alergias/${encodeURIComponent(match)}`).catch(() => undefined);
+            }
+          }
+        }
+
+        const existingHabitos: string[] = (savedRaw.habitos || []).map((x: any) => String(x.tipo));
+        for (const item of HABITOS_MAPPING) {
+          if (data[item.key] === undefined) continue;
+          const checked = Boolean(data[item.key]);
+          const candidates = [item.tipo, ...(item.aliases || [])].map((s) => s.toLowerCase());
+          const matchingTypes = existingHabitos.filter((t) => candidates.includes(t.toLowerCase()));
+          if (checked && matchingTypes.length === 0) {
+            await api.post(`/historias-clinicas/${recordId}/habitos`, { tipo: item.tipo, observaciones: '' }).catch(() => undefined);
+          } else if (!checked && matchingTypes.length > 0) {
+            for (const match of matchingTypes) {
+              await api.delete(`/historias-clinicas/${recordId}/habitos/${encodeURIComponent(match)}`).catch(() => undefined);
+            }
+          }
+        }
+
+        const refreshed = await api.get(`/historias-clinicas/paciente/${patientId}`).catch(() => null);
+        if (refreshed?.data) {
+          return mapBackendRecordToFrontend(refreshed.data);
+        }
+      }
+
+      return mapBackendRecordToFrontend(savedRaw);
+    } catch (err) {
+      if (!shouldFallbackToDemo(err)) throw err;
       return {
         id: 1,
         patientId,
@@ -893,9 +1056,14 @@ export const clinicalApi = {
         habitTobacco: data.habitTobacco || false,
         habitAlcohol: data.habitAlcohol || false,
         habitSunExposure: data.habitSunExposure || false,
-        habitSpfUse: data.habitSpfUse || true,
+        habitSpfUse: data.habitSpfUse ?? true,
+        surgicalHistory: data.surgicalHistory || '',
+        gynecologicalHistory: data.gynecologicalHistory || '',
+        currentMedications: data.currentMedications || '',
+        previousAestheticTreatments: data.previousAestheticTreatments || '',
         informedConsentSigned: true,
-        treatmentPlan: data.treatmentPlan || '',
+        physicalExamination: data.treatmentPlan || data.physicalExamination || '',
+        treatmentPlan: data.treatmentPlan || data.physicalExamination || '',
         createdAt: '2026-08-01T10:00:00Z',
         updatedAt: new Date().toISOString(),
       };
