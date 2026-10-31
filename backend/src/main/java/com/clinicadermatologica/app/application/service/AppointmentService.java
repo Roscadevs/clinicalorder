@@ -318,13 +318,6 @@ public class AppointmentService {
     }
 
     public AppointmentResponseDTO mapToDTO(Appointment a) {
-        BigDecimal agreedPrice = a.getAgreedPrice() != null ? a.getAgreedPrice() : BigDecimal.ZERO;
-        BigDecimal paidAmount = paymentTransactionRepository.findByAppointmentId(a.getId()).stream()
-                .filter(tx -> tx.getStatus() == PaymentStatus.APPROVED)
-                .map(PaymentTransaction::getAmount)
-                .reduce(BigDecimal.ZERO, BigDecimal::add);
-        BigDecimal remainingBalance = agreedPrice.subtract(paidAmount).max(BigDecimal.ZERO);
-
         return AppointmentResponseDTO.builder()
                 .id(a.getId())
                 .patientId(a.getPatient().getId())
@@ -336,9 +329,7 @@ public class AppointmentService {
                 .startTime(a.getStartTime())
                 .endTime(a.getEndTime())
                 .status(a.getStatus())
-                .agreedPrice(agreedPrice)
-                .paidAmount(paidAmount)
-                .remainingBalance(remainingBalance)
+                .agreedPrice(a.getAgreedPrice())
                 .followUpToId(a.getFollowUpTo() != null ? a.getFollowUpTo().getId() : null)
                 .build();
     }

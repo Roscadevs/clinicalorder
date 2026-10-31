@@ -220,18 +220,6 @@ const PatientClinicalRecord: React.FC<{ patient: Patient; onBack: () => void }> 
     if (record.allergyAnesthesia) list.push('Anestésicos');
     if (record.allergyEgg) list.push('Huevo');
     if (record.allergyFish) list.push('Pescado/Yodo');
-    if (record.alergias) {
-      for (const a of record.alergias) {
-        const lower = (a.tipo || '').toLowerCase();
-        if (
-          a.tipo &&
-          !list.some((x) => x.toLowerCase() === lower) &&
-          !['anestesicos locales', 'anestésicos (lidocaína)', 'huevo / derivados', 'pescado / yodo'].includes(lower)
-        ) {
-          list.push(a.tipo);
-        }
-      }
-    }
     return list;
   }, [record]);
 

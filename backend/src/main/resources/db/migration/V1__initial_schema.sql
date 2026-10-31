@@ -94,7 +94,7 @@ CREATE TABLE cita (
     start_time          TIMESTAMP WITH TIME ZONE NOT NULL,
     end_time            TIMESTAMP WITH TIME ZONE NOT NULL CHECK (end_time > start_time),
     status              VARCHAR(30)      NOT NULL CHECK (status IN (
-                            'PENDING_PAYMENT', 'CONFIRMED', 'ATTENDED', 'CANCELED',
+                            'PENDING_PAYMENT', 'CONFIRMED', 'CANCELED',
                             'COMPLETED', 'PAYMENT_FAILED', 'NO_SHOW')),
     agreed_price        NUMERIC(12, 2)   NOT NULL CHECK (agreed_price >= 0),
     follow_up_to_id     BIGINT           NULL UNIQUE REFERENCES cita(id) ON DELETE SET NULL,

@@ -92,21 +92,10 @@ public class MedicalRecordController {
     @PutMapping("/entradas/{entryId}")
     public ResponseEntity<ClinicalEntryResponseDTO> updateClinicalEntry(
             @PathVariable Long entryId,
-            @RequestBody java.util.Map<String, String> body,
-            @RequestParam(required = false) Long physicianUserId,
-            Authentication authentication) {
-        String newContent = body != null ? body.getOrDefault("content", "") : "";
-        Long resolvedPhysicianId = physicianUserId;
-        if (resolvedPhysicianId == null && authentication != null) {
-            resolvedPhysicianId = userRepository.findByUsername(authentication.getName())
-                    .map(User::getId)
-                    .orElse(null);
-        }
-        if (resolvedPhysicianId == null) {
-            resolvedPhysicianId = 2L;
-        }
+            @RequestBody String newContent,
+            @RequestParam Long physicianUserId) {
         return ResponseEntity.ok(
-                medicalRecordService.updateClinicalEntry(entryId, newContent, resolvedPhysicianId));
+                medicalRecordService.updateClinicalEntry(entryId, newContent, physicianUserId));
     }
 
     /** Lista todas las entradas clinicas de un paciente. */

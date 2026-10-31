@@ -32,9 +32,9 @@ export const CollectBalanceModal: React.FC<CollectBalanceModalProps> = ({ isOpen
 
   if (!appointment) return null;
 
-  // Usa el saldo real informado por el backend; si no viene (modo demo), asume seña del 50%.
-  const deposit = appointment.paidAmount ?? appointment.agreedPrice * 0.5;
-  const balance = appointment.remainingBalance ?? Math.max(0, appointment.agreedPrice - deposit);
+  // Sin dato de seña en el turno, se asume el 50% (regla vigente). El backend recalcula.
+  const deposit = appointment.agreedPrice * 0.5;
+  const balance = Math.max(0, appointment.agreedPrice - deposit);
 
   const handleConfirm = async () => {
     setError(null);

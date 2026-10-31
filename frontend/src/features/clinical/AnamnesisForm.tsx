@@ -30,13 +30,6 @@ const ALERGIAS = [
   { key: 'allergyFish', label: 'Pescado / Yodo' },
 ] as const;
 
-const HABITOS = [
-  { key: 'habitTobacco', label: 'Tabaquismo' },
-  { key: 'habitAlcohol', label: 'Consumo de alcohol' },
-  { key: 'habitSunExposure', label: 'Exposición solar frecuente' },
-  { key: 'habitSpfUse', label: 'Uso diario de FPS' },
-] as const;
-
 const FITZ = ['I', 'II', 'III', 'IV', 'V', 'VI'] as const;
 
 /**
@@ -84,42 +77,8 @@ export const AnamnesisForm: React.FC<AnamnesisFormProps> = ({ patientId, record,
     }
   };
 
-  const patologiasActivas: string[] = PATOLOGIAS.filter((p) => Boolean(record[p.key as keyof MedicalRecord])).map((p) => p.label);
-  if (record.antecedentesPatologicos) {
-    for (const ap of record.antecedentesPatologicos) {
-      if (ap.tipo && !patologiasActivas.some((l) => l.toLowerCase() === ap.tipo.toLowerCase())) {
-        patologiasActivas.push(ap.tipo);
-      }
-    }
-  }
-
-  const alergiasActivas: string[] = ALERGIAS.filter((a) => Boolean(record[a.key as keyof MedicalRecord])).map((a) => a.label);
-  if (record.alergias) {
-    for (const al of record.alergias) {
-      const lower = (al.tipo || '').toLowerCase();
-      if (
-        al.tipo &&
-        !alergiasActivas.some((l) => l.toLowerCase() === lower) &&
-        !['anestesicos locales', 'anestésicos', 'huevo', 'pescado'].includes(lower)
-      ) {
-        alergiasActivas.push(al.tipo);
-      }
-    }
-  }
-
-  const habitosActivos: string[] = HABITOS.filter((h) => Boolean(record[h.key as keyof MedicalRecord])).map((h) => h.label);
-  if (record.habitos) {
-    for (const hb of record.habitos) {
-      const lower = (hb.tipo || '').toLowerCase();
-      if (
-        hb.tipo &&
-        !habitosActivos.some((l) => l.toLowerCase() === lower) &&
-        lower !== 'exposicion solar frecuente'
-      ) {
-        habitosActivos.push(hb.tipo);
-      }
-    }
-  }
+  const patologiasActivas = PATOLOGIAS.filter((p) => Boolean(record[p.key as keyof MedicalRecord]));
+  const alergiasActivas = ALERGIAS.filter((a) => Boolean(record[a.key as keyof MedicalRecord]));
 
   // ── MODO LECTURA ────────────────────────────────────────────────────────────
   if (!editing) {
@@ -142,25 +101,17 @@ export const AnamnesisForm: React.FC<AnamnesisFormProps> = ({ patientId, record,
         <ReadRow label="Fototipo (Fitzpatrick)" value={`Tipo ${record.fitzpatrickPhototype ?? '—'}`} />
         <ReadRow
           label="Antecedentes patológicos"
-          value={patologiasActivas.length ? patologiasActivas.join(', ') : 'Sin antecedentes registrados'}
+          value={patologiasActivas.length ? patologiasActivas.map((p) => p.label).join(', ') : 'Sin antecedentes registrados'}
         />
         <div>
           <span className="block text-[11px] font-bold text-danger-700 uppercase tracking-wider mb-1 flex items-center">
             <AlertTriangle className="w-3.5 h-3.5 mr-1" /> Alergias
           </span>
           <p className={cn('text-sm', alergiasActivas.length ? 'text-danger-700 font-semibold' : 'text-sand-600')}>
-            {alergiasActivas.length ? alergiasActivas.join(', ') : 'Sin alergias conocidas'}
+            {alergiasActivas.length ? alergiasActivas.map((a) => a.label).join(', ') : 'Sin alergias conocidas'}
           </p>
         </div>
-        <ReadRow
-          label="Hábitos"
-          value={habitosActivos.length ? habitosActivos.join(', ') : 'Sin hábitos registrados'}
-        />
-        {record.surgicalHistory && <ReadRow label="Antecedentes quirúrgicos" value={record.surgicalHistory} />}
-        {record.gynecologicalHistory && <ReadRow label="Antecedentes ginecológicos" value={record.gynecologicalHistory} />}
-        {record.currentMedications && <ReadRow label="Medicación habitual" value={record.currentMedications} />}
-        {record.previousAestheticTreatments && <ReadRow label="Tratamientos estéticos previos" value={record.previousAestheticTreatments} />}
-        <ReadRow label="Examen físico y plan de tratamiento" value={record.treatmentPlan || record.physicalExamination || 'Sin plan registrado'} block />
+        <ReadRow label="Plan de tratamiento" value={record.treatmentPlan || 'Sin plan registrado'} block />
 
         <p className="text-[11px] text-sand-400 flex items-center gap-1.5 pt-2 border-t border-sand-100">
           <ShieldCheck className="w-3.5 h-3.5 text-primary-500" />
@@ -245,81 +196,13 @@ export const AnamnesisForm: React.FC<AnamnesisFormProps> = ({ patientId, record,
       </div>
 
       <div>
-        <label className="block text-[11px] font-bold text-sand-700 uppercase tracking-wider mb-2">Hábitos</label>
-        <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 text-xs">
-          {HABITOS.map((item) => (
-            <label key={item.key} className="flex items-center gap-2 bg-sand-50 p-2.5 rounded-xl border border-sand-200 cursor-pointer hover:bg-sand-100/60 min-h-[44px]">
-              <input
-                type="checkbox"
-                checked={Boolean(draft[item.key as keyof MedicalRecord])}
-                onChange={(e) => set({ [item.key]: e.target.checked } as Partial<MedicalRecord>)}
-                className="rounded text-primary-600 focus:ring-primary-500 w-4 h-4"
-              />
-              <span className="font-medium text-sand-700">{item.label}</span>
-            </label>
-          ))}
-        </div>
-      </div>
-
-      <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
-        <div>
-          <label className="block text-[11px] font-bold text-sand-700 uppercase tracking-wider mb-1">
-            Antecedentes quirúrgicos
-          </label>
-          <input
-            type="text"
-            value={draft.surgicalHistory || ''}
-            onChange={(e) => set({ surgicalHistory: e.target.value })}
-            placeholder="Ej. Apendicectomía en 2015..."
-            className="w-full bg-sand-50 border border-sand-300 rounded-xl px-3 py-2 text-xs focus:ring-2 focus:ring-primary-500/40 focus:border-primary-500 outline-none"
-          />
-        </div>
-        <div>
-          <label className="block text-[11px] font-bold text-sand-700 uppercase tracking-wider mb-1">
-            Antecedentes ginecológicos
-          </label>
-          <input
-            type="text"
-            value={draft.gynecologicalHistory || ''}
-            onChange={(e) => set({ gynecologicalHistory: e.target.value })}
-            placeholder="Ej. Sin embarazo ni lactancia..."
-            className="w-full bg-sand-50 border border-sand-300 rounded-xl px-3 py-2 text-xs focus:ring-2 focus:ring-primary-500/40 focus:border-primary-500 outline-none"
-          />
-        </div>
-        <div>
-          <label className="block text-[11px] font-bold text-sand-700 uppercase tracking-wider mb-1">
-            Medicación habitual
-          </label>
-          <input
-            type="text"
-            value={draft.currentMedications || ''}
-            onChange={(e) => set({ currentMedications: e.target.value })}
-            placeholder="Ej. Levotiroxina 50mcg..."
-            className="w-full bg-sand-50 border border-sand-300 rounded-xl px-3 py-2 text-xs focus:ring-2 focus:ring-primary-500/40 focus:border-primary-500 outline-none"
-          />
-        </div>
-        <div>
-          <label className="block text-[11px] font-bold text-sand-700 uppercase tracking-wider mb-1">
-            Tratamientos estéticos previos
-          </label>
-          <input
-            type="text"
-            value={draft.previousAestheticTreatments || ''}
-            onChange={(e) => set({ previousAestheticTreatments: e.target.value })}
-            placeholder="Ej. Limpiezas faciales periódicas..."
-            className="w-full bg-sand-50 border border-sand-300 rounded-xl px-3 py-2 text-xs focus:ring-2 focus:ring-primary-500/40 focus:border-primary-500 outline-none"
-          />
-        </div>
-      </div>
-
-      <div>
         <label className="block text-[11px] font-bold text-sand-700 uppercase tracking-wider mb-1">
-          Examen físico, plan de tratamiento y protocolo
+          Plan de tratamiento y protocolo
         </label>
         <textarea
           rows={3}
-          value={draft.treatmentPlan ?? draft.physicalExamination ?? ''}
-          onChange={(e) => set({ treatmentPlan: e.target.value, physicalExamination: e.target.value })}
+          value={draft.treatmentPlan || ''}
+          onChange={(e) => set({ treatmentPlan: e.target.value })}
           placeholder="Ej. Protocolo de 3 sesiones de Peeling Mandélico 30%..."
           className="w-full bg-sand-50 border border-sand-300 rounded-xl p-3 text-xs focus:ring-2 focus:ring-primary-500/40 focus:border-primary-500 outline-none"
         />

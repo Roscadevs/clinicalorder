@@ -69,8 +69,6 @@ export interface Appointment {
   endTime: string; // ISO 8601 UTC
   status: AppointmentStatus;
   agreedPrice: number;
-  paidAmount?: number;
-  remainingBalance?: number;
   temporaryHoldDeadline?: string; // Límite de 10 minutos
   rescheduleCount: number;
   version: number; // Control de concurrencia optimista
@@ -121,14 +119,6 @@ export const PAYMENT_CONCEPT_LABELS: Record<PaymentConcept, string> = {
   FULL: 'Pago total',
 };
 
-export interface SubResourceEntry {
-  medicalRecordId?: number;
-  tipo: string;
-  observaciones?: string;
-  createdAt?: string;
-  updatedAt?: string;
-}
-
 export interface MedicalRecord {
   id: number;
   patientId: number;
@@ -155,10 +145,6 @@ export interface MedicalRecord {
   habitAlcohol: boolean;
   habitSunExposure: boolean;
   habitSpfUse: boolean;
-  // Entidades débiles del backend
-  alergias?: SubResourceEntry[];
-  antecedentesPatologicos?: SubResourceEntry[];
-  habitos?: SubResourceEntry[];
   // Quirúrgicos y medicamentos
   surgicalHistory?: string;
   gynecologicalHistory?: string;
