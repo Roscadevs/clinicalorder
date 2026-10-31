@@ -24,19 +24,10 @@ spring:
       # lleguen al manejador de 404 y no se confundan con recursos.
       add-mappings: false
 
-  datasource:
-    # URL de conexión JDBC a Supabase o PostgreSQL en la nube
-    url: ${SPRING_DATASOURCE_URL:${JDBC_DATABASE_URL:jdbc:postgresql://${PGHOST:${DATABASE_HOST:localhost}}:${PGPORT:${DATABASE_PORT:5432}}/${PGDATABASE:${DATABASE_NAME:clinica_dermatologica}}?sslmode=prefer}}
-    username: ${SPRING_DATASOURCE_USERNAME:${PGUSER:${DATABASE_USER:postgres}}}
-    password: ${SPRING_DATASOURCE_PASSWORD:${PGPASSWORD:${DATABASE_PASSWORD:postgrespassword}}}
-    driver-class-name: org.postgresql.Driver
-    hikari:
-      maximum-pool-size: 10
-      minimum-idle: 2
-      idle-timeout: 300000
-      connection-timeout: 30000
-      max-lifetime: 600000 # 10 minutos (mantiene conexiones sanas con Transaction Poolers de Supabase)
-      keepalive-time: 60000 # Keepalive activo cada 60s
+  # Conexión a la base de datos: NO se configura aquí.
+  # El pool de conexiones lo crea el Singleton ConexionBD (infrastructure/persistence) a partir de
+  # las variables de entorno SPRING_DATASOURCE_URL, SPRING_DATASOURCE_USERNAME y SPRING_DATASOURCE_PASSWORD.
+  # ConfiguracionBaseDeDatos se lo entrega a Spring, que lo usa para Hibernate, los DAO y Flyway.
 
   jpa:
     open-in-view: false

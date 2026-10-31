@@ -15,8 +15,8 @@ import java.util.Map;
  *
  * Expone una verificación simple del estado de la base de datos utilizando el patrón
  * SINGLETON {@link ConexionBD}: obtiene la única instancia con {@code getInstance()} y
- * solicita una conexión mediante {@code obtenerConexion()}. Es un uso real del Singleton
- * como punto de acceso global a la conexión con la base de datos.
+ * pide prestada una conexión del pool con {@code obtenerConexion()}. Es el mismo pool que
+ * usan Hibernate y los DAO; al cerrar la conexión, vuelve al pool.
  *
  * Ruta: /api/v1/estado (prefijo /api/v1 configurado en server.servlet.context-path).
  */
