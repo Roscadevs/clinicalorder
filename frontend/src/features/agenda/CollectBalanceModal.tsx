@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Banknote, Smartphone, Landmark } from 'lucide-react';
+import { Banknote, Smartphone, Landmark, CheckCircle2 } from 'lucide-react';
 import { appointmentsApi } from '../../services/api';
 import { Appointment, PaymentType, PAYMENT_TYPE_LABELS } from '../../types';
 import { Modal, Button, Input, Callout } from '../../components/ui';
@@ -22,8 +22,8 @@ const METHODS: { id: PaymentType; icon: typeof Banknote }[] = [
 ];
 
 /**
- * Cobro del saldo restante en mostrador (liquida el turno: CONFIRMED -> COMPLETED).
- * El saldo es el precio acordado menos la seña ya abonada.
+ * Cobro del saldo restante en mostrador (liquida el turno: ATTENDED -> COMPLETED).
+ * Si el turno ya fue pagado al 100%, permite finalizar la cita sin intentar registrar un pago de $0.
  */
 export const CollectBalanceModal: React.FC<CollectBalanceModalProps> = ({ isOpen, onClose, appointment, onPaid }) => {
   const [method, setMethod] = useState<PaymentType>('CASH');
@@ -35,12 +35,17 @@ export const CollectBalanceModal: React.FC<CollectBalanceModalProps> = ({ isOpen
   // Usa el saldo real informado por el backend; si no viene (modo demo), asume seña del 50%.
   const deposit = appointment.paidAmount ?? appointment.agreedPrice * 0.5;
   const balance = appointment.remainingBalance ?? Math.max(0, appointment.agreedPrice - deposit);
+  const isFullyPaid = balance <= 0;
 
   const handleConfirm = async () => {
     setError(null);
     setIsSaving(true);
     try {
-      await appointmentsApi.finalizePayment(appointment.id, balance, method);
+      if (isFullyPaid) {
+        await appointmentsApi.completeAppointment(appointment.id);
+      } else {
+        await appointmentsApi.finalizePayment(appointment.id, balance, method);
+      }
       onPaid();
       onClose();
     } catch (err: any) {
@@ -61,7 +66,7 @@ export const CollectBalanceModal: React.FC<CollectBalanceModalProps> = ({ isOpen
         serverMsg = err.message;
       }
 
-      setError(serverMsg || 'No se pudo registrar el cobro. Intentá nuevamente.');
+      setError(serverMsg || 'No se pudo finalizar la operación. Intentá nuevamente.');
     } finally {
       setIsSaving(false);
     }
@@ -71,52 +76,70 @@ export const CollectBalanceModal: React.FC<CollectBalanceModalProps> = ({ isOpen
     <Modal
       isOpen={isOpen}
       onClose={onClose}
-      title="Cobrar saldo en mostrador"
+      title={isFullyPaid ? 'Turno abonado al 100%' : 'Cobrar saldo en mostrador'}
       footer={
         <>
           <Button variant="ghost" onClick={onClose} className="min-h-[44px]">
-            Cancelar
+            {isFullyPaid ? 'Cerrar' : 'Cancelar'}
           </Button>
-          <Button onClick={handleConfirm} isLoading={isSaving} className="min-h-[44px]">
-            Registrar cobro
+          <Button
+            variant={isFullyPaid ? 'success' : 'primary'}
+            onClick={handleConfirm}
+            isLoading={isSaving}
+            className="min-h-[44px]"
+            leftIcon={isFullyPaid ? <CheckCircle2 className="w-4 h-4" /> : undefined}
+          >
+            {isFullyPaid ? 'Finalizar cita' : 'Registrar cobro'}
           </Button>
         </>
       }
     >
       <div className="space-y-4">
+        {isFullyPaid && (
+          <div className="bg-emerald-50 border border-emerald-200 rounded-xl p-3.5 flex items-start gap-3">
+            <CheckCircle2 className="w-5 h-5 text-emerald-600 flex-shrink-0 mt-0.5" />
+            <div className="text-xs text-emerald-900 leading-relaxed">
+              <span className="font-bold block text-sm text-emerald-950 mb-0.5">Tratamiento 100% abonado</span>
+              Este turno ya fue pagado en su totalidad por adelantado ({ars(appointment.agreedPrice)}). No posee saldo pendiente. Podés dar por concluida la cita haciendo clic en <strong>Finalizar cita</strong>.
+            </div>
+          </div>
+        )}
+
         <div className="bg-sand-50 border border-sand-200 rounded-xl p-4 text-sm space-y-1.5">
           <div className="flex justify-between"><span className="text-sand-500">Paciente</span><span className="font-semibold text-sand-800">{appointment.patientName}</span></div>
           <div className="flex justify-between"><span className="text-sand-500">Tratamiento</span><span className="font-semibold text-sand-800 text-right">{appointment.serviceName}</span></div>
           <div className="flex justify-between border-t border-sand-200 pt-1.5"><span className="text-sand-500">Precio total</span><span className="font-semibold text-sand-800">{ars(appointment.agreedPrice)}</span></div>
-          <div className="flex justify-between"><span className="text-sand-500">Seña abonada</span><span className="font-semibold text-sand-800">- {ars(deposit)}</span></div>
-          <div className="flex justify-between text-base pt-1.5 border-t border-sand-200"><span className="font-bold text-sand-800">Saldo a cobrar</span><span className="font-display font-bold text-primary-600">{ars(balance)}</span></div>
+          <div className="flex justify-between"><span className="text-sand-500">Total abonado</span><span className="font-semibold text-sand-800">- {ars(deposit)}</span></div>
+          <div className="flex justify-between text-base pt-1.5 border-t border-sand-200"><span className="font-bold text-sand-800">Saldo a cobrar</span><span className="font-display font-bold text-primary-600">{ars(Math.max(0, balance))}</span></div>
         </div>
 
-        <fieldset>
-          <legend className="block text-xs font-bold text-sand-700 uppercase tracking-wider mb-2">Medio de pago</legend>
-          <div className="grid grid-cols-3 gap-2">
-            {METHODS.map((m) => {
-              const Icon = m.icon;
-              const selected = method === m.id;
-              return (
-                <label
-                  key={m.id}
-                  className={cn(
-                    'flex flex-col items-center justify-center gap-1.5 p-3 rounded-xl border cursor-pointer text-center transition-colors min-h-[56px] select-none',
-                    selected ? 'border-primary-500 bg-primary-50/60 ring-2 ring-primary-500/20' : 'border-sand-200 hover:border-primary-300'
-                  )}
-                >
-                  <input type="radio" name="balance-method" value={m.id} checked={selected} onChange={() => setMethod(m.id)} className="sr-only" />
-                  <Icon className={cn('w-5 h-5', selected ? 'text-primary-600' : 'text-sand-500')} />
-                  <span className="text-[11px] font-semibold text-sand-700 leading-tight">{PAYMENT_TYPE_LABELS[m.id]}</span>
-                </label>
-              );
-            })}
-          </div>
-        </fieldset>
+        {!isFullyPaid && (
+          <fieldset>
+            <legend className="block text-xs font-bold text-sand-700 uppercase tracking-wider mb-2">Medio de pago</legend>
+            <div className="grid grid-cols-3 gap-2">
+              {METHODS.map((m) => {
+                const Icon = m.icon;
+                const selected = method === m.id;
+                return (
+                  <label
+                    key={m.id}
+                    className={cn(
+                      'flex flex-col items-center justify-center gap-1.5 p-3 rounded-xl border cursor-pointer text-center transition-colors min-h-[56px] select-none',
+                      selected ? 'border-primary-500 bg-primary-50/60 ring-2 ring-primary-500/20' : 'border-sand-200 hover:border-primary-300'
+                    )}
+                  >
+                    <input type="radio" name="balance-method" value={m.id} checked={selected} onChange={() => setMethod(m.id)} className="sr-only" />
+                    <Icon className={cn('w-5 h-5', selected ? 'text-primary-600' : 'text-sand-500')} />
+                    <span className="text-[11px] font-semibold text-sand-700 leading-tight">{PAYMENT_TYPE_LABELS[m.id]}</span>
+                  </label>
+                );
+              })}
+            </div>
+          </fieldset>
+        )}
 
         {error && (
-          <Callout intent="error" title="No se pudo registrar el cobro" onClose={() => setError(null)}>
+          <Callout intent="error" title="No se pudo registrar la operación" onClose={() => setError(null)}>
             {error}
           </Callout>
         )}

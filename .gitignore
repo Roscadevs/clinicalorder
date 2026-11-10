@@ -56,6 +56,12 @@ temp/
 # Documentacion de trabajo propia (local, no se versiona)
 docs/
 
+# Hive / Agent scratch
+.archify/
+hive/
+roster.json
+roster-backups/
+
 # Graphify: se versiona solo el grafo (fuente de verdad) y el reporte.
 # El HTML, la cache y el vault de Obsidian son derivados y se regeneran con
 # `graphify update .` y `graphify export obsidian` (ver README).

@@ -40,6 +40,7 @@ services:
       - GEMINI_MODEL=${GEMINI_MODEL:-gemini-1.5-flash}
       - SUPABASE_STORAGE_URL=${SUPABASE_STORAGE_URL:?define SUPABASE_STORAGE_URL en tu archivo .env}
       - SUPABASE_ANON_KEY=${SUPABASE_ANON_KEY:?define SUPABASE_ANON_KEY en tu archivo .env}
+      - AES_ENCRYPTION_KEY=${AES_ENCRYPTION_KEY:?define AES_ENCRYPTION_KEY en tu archivo .env}
     depends_on:
       postgres:
         condition: service_healthy
@@ -54,12 +55,12 @@ services:
       - "5173:5173"
     volumes:
       - ./frontend:/app
+      - /app/node_modules
     command: sh -c "npm install && npm run dev -- --host 0.0.0.0"
     environment:
       - VITE_API_BASE_URL=http://localhost:8080/api/v1
       - VITE_SUPABASE_URL=${SUPABASE_URL:?define SUPABASE_URL en tu archivo .env}
       - VITE_SUPABASE_ANON_KEY=${SUPABASE_ANON_KEY:?define SUPABASE_ANON_KEY en tu archivo .env}
-      - AES_ENCRYPTION_KEY=${AES_ENCRYPTION_KEY:?define AES_ENCRYPTION_KEY en tu archivo .env}
     depends_on:
       - backend
     restart: unless-stopped

@@ -252,9 +252,37 @@ public class AppointmentService {
                     + appointment.getStatus() + ")");
         }
 
+        BigDecimal totalPaid = paymentTransactionRepository.findByAppointmentId(appointment.getId()).stream()
+                .filter(tx -> tx.getStatus() == PaymentStatus.APPROVED)
+                .map(PaymentTransaction::getAmount)
+                .reduce(BigDecimal.ZERO, BigDecimal::add);
+
+        BigDecimal agreedPrice = appointment.getAgreedPrice() != null ? appointment.getAgreedPrice() : BigDecimal.ZERO;
+        if (agreedPrice.compareTo(BigDecimal.ZERO) > 0 && totalPaid.compareTo(agreedPrice) >= 0) {
+            appointment.setStatus(AppointmentStatus.COMPLETED);
+            appointmentRepository.save(appointment);
+            log.info("Cita #{} marcada como COMPLETADA directamente (ya estaba abonada al 100%)", appointmentId);
+            return;
+        }
+
         appointment.setStatus(AppointmentStatus.ATTENDED);
         appointmentRepository.save(appointment);
         log.info("Cita #{} marcada como ATENDIDA; pendiente de cobro del saldo", appointmentId);
+    }
+
+    /**
+     * Completa formalmente una cita atendida cuando ya no posee saldo pendiente.
+     */
+    @Transactional
+    public void completeAppointment(Long appointmentId) {
+        Appointment appointment = appointmentRepository.findById(appointmentId)
+                .orElseThrow(() -> new ResourceNotFoundException("Turno no encontrado"));
+        if (appointment.getStatus() != AppointmentStatus.ATTENDED && appointment.getStatus() != AppointmentStatus.CONFIRMED) {
+            throw new BusinessRuleException("Solo se puede completar un turno confirmado o atendido");
+        }
+        appointment.setStatus(AppointmentStatus.COMPLETED);
+        appointmentRepository.save(appointment);
+        log.info("Cita #{} marcada como COMPLETADA", appointmentId);
     }
 
     /**

@@ -110,6 +110,16 @@ public class AppointmentController {
     }
 
     /**
+     * Completa un turno atendido sin saldo pendiente.
+     */
+    @PostMapping("/{id}/completar") // Mapea HTTP POST /api/v1/citas/{id}/completar
+    @PreAuthorize("hasAnyRole('SECRETARIA', 'ADMIN', 'DOCTORA')")
+    public ResponseEntity<Void> completeAppointment(@PathVariable Long id) {
+        appointmentService.completeAppointment(id);
+        return ResponseEntity.noContent().build();
+    }
+
+    /**
      * Caso de uso "Registrar Pago": registra la seña (efectivo o transferencia) de un turno
      * bloqueado temporalmente y lo confirma. Devuelve los datos para el comprobante.
      */

@@ -164,7 +164,7 @@ clínicas) tiene una estructura de puerto + adaptador (`domain/repository` +
 │   │   └── infrastructure/    persistence, security, payment, storage, ai, scheduling
 │   ├── src/main/resources/
 │   │   ├── application.yml
-│   │   └── db/migration/      migraciones Flyway (V1..V6)
+│   │   └── db/migration/      migraciones Flyway (V1..V2)
 │   └── src/test/              pruebas con JUnit 5 + Mockito
 ├── frontend/           SPA en React 18 + TypeScript + Vite
 │   └── src/
@@ -200,6 +200,12 @@ clínicas) tiene una estructura de puerto + adaptador (`domain/repository` +
 ```bash
 docker compose up -d
 ```
+
+> **Nota:** Si venías corriendo una base de datos local previa a la consolidación de Flyway (V1 esquema + V2 seed), reseteá el volumen una vez para que no choque y recree los datos semilla:
+> ```bash
+> docker compose down -v
+> docker compose up --build
+> ```
 
 - Frontend: `http://localhost:5173`
 - Backend: `http://localhost:8080/api/v1`

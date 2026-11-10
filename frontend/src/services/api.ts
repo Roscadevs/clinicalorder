@@ -686,6 +686,16 @@ export const appointmentsApi = {
       if (!shouldFallbackToDemo(err)) throw err;
     }
   },
+  /**
+   * Completa formalmente una cita atendida cuando ya no posee saldo pendiente.
+   */
+  completeAppointment: async (id: number): Promise<void> => {
+    try {
+      await api.post(`/citas/${id}/completar`);
+    } catch (err) {
+      if (!shouldFallbackToDemo(err)) throw err;
+    }
+  },
 };
 
 /**
