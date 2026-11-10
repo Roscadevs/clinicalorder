@@ -2,6 +2,8 @@ package com.clinicadermatologica.app.infrastructure.persistence.dao;
 
 import com.clinicadermatologica.app.domain.model.MedicalRecordAudit;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
@@ -17,5 +19,6 @@ import java.util.List;
 public interface MedicalRecordAuditDAO extends JpaRepository<MedicalRecordAudit, Long> {
 
     /** Historial de cambios de una historia clínica, del más reciente al más antiguo. */
-    List<MedicalRecordAudit> findByMedicalRecordIdOrderByUpdatedAtDesc(Long medicalRecordId);
+    @Query("SELECT m FROM MedicalRecordAudit m LEFT JOIN FETCH m.modifiedByUser WHERE m.medicalRecord.id = :medicalRecordId ORDER BY m.updatedAt DESC")
+    List<MedicalRecordAudit> findByMedicalRecordIdOrderByUpdatedAtDesc(@Param("medicalRecordId") Long medicalRecordId);
 }

@@ -1,5 +1,6 @@
 package com.clinicadermatologica.app.domain.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.*;
 import org.hibernate.annotations.CreationTimestamp;
@@ -28,10 +29,12 @@ public class ClinicalEntryAudit {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @JsonIgnore
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "entrada_hc_id", nullable = false)
     private ClinicalEntry clinicalEntry;
 
+    @JsonIgnore
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "modified_by_user_id", nullable = false)
     private User modifiedByUser;
