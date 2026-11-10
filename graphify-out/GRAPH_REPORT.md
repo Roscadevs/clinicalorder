@@ -1,7 +1,7 @@
-# Graph Report - TP  (2026-11-09)
+# Graph Report - TP  (2026-11-10)
 
 ## Corpus Check
-- 198 files · ~86,089 words
+- 198 files · ~86,103 words
 - Verdict: corpus is large enough that graph structure adds value.
 - Unclassified: 11 file(s) not represented in the graph (top: .css 6, (none) 4, .example 1)
 
@@ -11,7 +11,7 @@
 - Token cost: 0 input · 0 output
 
 ## Graph Freshness
-- Built from commit: `4a3ea2a5`
+- Built from commit: `cefffe02`
 - Run `git rev-parse HEAD` and compare to check if the graph is stale.
 - Run `graphify update .` after code changes (no API cost).
 
@@ -442,7 +442,7 @@ Nodes (6): AllArgsConstructor, Builder, Getter, NoArgsConstructor, Setter, Regis
 _Questions this graph is uniquely positioned to answer:_
 
 - **Why does `User` connect `User` to `SecurityConfig.java`, `MedicalRecord`, `UserRole`, `list`, `AuthController`, `org.springframework.transaction.annotation.Transactional`, `instant`, `MedicalRecordAudit`, `CalendarBlock`, `JwtAuthenticationFilter.java`, `ClinicalEntry`, `UserResponseDTO`, `org.springframework.http.ResponseEntity`, `Appointment`, `AnalyticsService.java`, `PasswordResetToken`, `MedicalRecordController`?**
-  _High betweenness centrality (0.043) - this node is a cross-community bridge._
+  _High betweenness centrality (0.046) - this node is a cross-community bridge._
 - **Why does `MedicalRecordService` connect `MedicalRecordService` to `SecurityConfig.java`, `list`, `AntecedentePatologicoResponseDTO`, `lombok.extern.slf4j.Slf4j`, `HabitoResponseDTO`, `MedicalRecordAudit`, `User`, `lombok.RequiredArgsConstructor`, `Patient`, `ClinicalEntry`, `org.springframework.http.ResponseEntity`, `AlergiaResponseDTO`, `Appointment`, `MedicalRecordController`?**
   _High betweenness centrality (0.031) - this node is a cross-community bridge._
 - **Why does `MedicalRecordDTO` connect `MedicalRecordService` to `MedicalRecordDTO.java`, `AntecedentePatologicoResponseDTO`, `HabitoResponseDTO`, `AlergiaResponseDTO`, `MedicalRecordController`?**

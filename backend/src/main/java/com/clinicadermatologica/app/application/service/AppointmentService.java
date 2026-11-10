@@ -48,7 +48,7 @@ public class AppointmentService {
 
         ZoneId zone = ZoneId.of("America/Argentina/Buenos_Aires");
         ZonedDateTime dayStart = date.atTime(9, 0).atZone(zone);
-        ZonedDateTime dayEnd = date.atTime(19, 0).atZone(zone);
+        ZonedDateTime dayEnd = date.plusDays(1).atTime(0, 0).atZone(zone);
 
         Instant startInstant = dayStart.toInstant();
         Instant endInstant = dayEnd.toInstant();

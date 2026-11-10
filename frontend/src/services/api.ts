@@ -473,7 +473,7 @@ export const appointmentsApi = {
       for (const ch of `${date}|${serviceId}`) seed = (seed * 31 + ch.charCodeAt(0)) >>> 0;
       const slots: TimeSlot[] = [];
       let i = 0;
-      for (let h = 9; h < 19; h++) {
+      for (let h = 9; h < 24; h++) {
         for (const m of [0, 30]) {
           const hhmm = `${String(h).padStart(2, '0')}:${m === 0 ? '00' : '30'}`;
           const start = new Date(`${date}T${hhmm}:00-03:00`);

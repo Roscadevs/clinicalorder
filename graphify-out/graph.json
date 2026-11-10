@@ -9386,7 +9386,7 @@
       "file_type": "code",
       "norm_label": "calendarblockmodal()",
       "source_file": "frontend/src/features/agenda/CalendarBlockModal.tsx",
-      "source_location": "L38"
+      "source_location": "L40"
     },
     {
       "id": "frontend_src_features_agenda_calendarblockmodal_formatdatetoinput",
@@ -18026,7 +18026,7 @@
       "file_type": "code",
       "norm_label": "common_reasons",
       "source_file": "frontend/src/features/agenda/CalendarBlockModal.tsx",
-      "source_location": "L26"
+      "source_location": "L28"
     },
     {
       "id": "frontend_src_features_agenda_calendarblockmodal_time_options",
@@ -28857,7 +28857,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "frontend/src/features/agenda/CalendarBlockModal.tsx",
-      "source_location": "L264",
+      "source_location": "L266",
       "weight": 1.0
     },
     {
@@ -28869,7 +28869,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "frontend/src/features/agenda/CalendarBlockModal.tsx",
-      "source_location": "L44",
+      "source_location": "L46",
       "weight": 1.0
     },
     {
@@ -56676,7 +56676,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "frontend/src/features/agenda/CalendarBlockModal.tsx",
-      "source_location": "L26",
+      "source_location": "L28",
       "weight": 1.0
     },
     {
@@ -56687,7 +56687,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "frontend/src/features/agenda/CalendarBlockModal.tsx",
-      "source_location": "L38",
+      "source_location": "L40",
       "weight": 1.0
     },
     {
@@ -64327,5 +64327,5 @@
     }
   ],
   "hyperedges": [],
-  "built_at_commit": "4a3ea2a5535ba01526ddd09efe98014c55f87d83"
+  "built_at_commit": "cefffe022d1a4e5f55ef492c7899f7ff65b97d88"
 }

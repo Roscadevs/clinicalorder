@@ -63,7 +63,7 @@ const rangeLabel = (mode: RangeMode, anchor: Date): string => {
   return new Intl.DateTimeFormat('es-AR', { month: 'long', year: 'numeric' }).format(anchor);
 };
 
-const HOURS = Array.from({ length: 11 }, (_, i) => 9 + i); // 09–19
+const HOURS = Array.from({ length: 15 }, (_, i) => 9 + i); // 09–23 (hasta las 00:00 hs / medianoche)
 
 export const AgendaView: React.FC = () => {
   const [mode, setMode] = useState<RangeMode>('week');
