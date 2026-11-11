@@ -17,9 +17,9 @@ import java.util.List;
 @Repository
 public interface CalendarBlockDAO extends JpaRepository<CalendarBlock, Long> {
 
-    @Query("SELECT b FROM CalendarBlock b WHERE b.startTime < :end AND b.endTime > :start")
+    @Query("SELECT b FROM CalendarBlock b JOIN FETCH b.createdByUser WHERE b.startTime < :end AND b.endTime > :start")
     List<CalendarBlock> findOverlappingBlocks(@Param("start") Instant start, @Param("end") Instant end);
 
-    @Query("SELECT b FROM CalendarBlock b WHERE b.startTime >= :start AND b.endTime <= :end ORDER BY b.startTime ASC")
+    @Query("SELECT b FROM CalendarBlock b JOIN FETCH b.createdByUser WHERE b.startTime >= :start AND b.endTime <= :end ORDER BY b.startTime ASC")
     List<CalendarBlock> findByDateRange(@Param("start") Instant start, @Param("end") Instant end);
 }
