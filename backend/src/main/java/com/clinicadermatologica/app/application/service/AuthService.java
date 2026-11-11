@@ -36,23 +36,42 @@ public class AuthService {
     private final PasswordEncoder passwordEncoder; // BCrypt costo 12 — ver SecurityConfig.passwordEncoder()
     private final JwtTokenProvider jwtTokenProvider;
     private final EmailNotificationService emailService;
+    private final LoginAuditService loginAuditService;
 
     /**
-     * Autentica credenciales y emite token JWT stateless.
-     * Flujo: cargar usuario → verificar cuenta activa → comparar contraseña → emitir JWT.
+     * Autentica credenciales y emite token JWT stateless (versión de conveniencia sin metadatos de red).
      */
     @Transactional
     public AuthResponseDTO login(AuthRequestDTO request) {
-        User user = userRepository.findByUsername(request.getUsername())
-                .orElseThrow(() -> new BusinessRuleException("Credenciales no válidas"));
+        return login(request, null, null);
+    }
+
+    /**
+     * Autentica credenciales, emite token JWT stateless y registra la auditoría de conexión en la base de datos.
+     * Flujo: cargar usuario → verificar cuenta activa → comparar contraseña → registrar auditoría → emitir JWT.
+     * Registra tanto intentos exitosos como fallidos (credenciales erróneas, cuenta inactiva o usuario inexistente).
+     */
+    @Transactional
+    public AuthResponseDTO login(AuthRequestDTO request, String ipAddress, String userAgent) {
+        String username = request.getUsername();
+        User user = userRepository.findByUsername(username).orElse(null);
+
+        if (user == null) {
+            loginAuditService.registrarConexion(null, username, false, ipAddress, userAgent);
+            throw new BusinessRuleException("Credenciales no válidas");
+        }
 
         if (!user.getActive()) {
+            loginAuditService.registrarConexion(user, username, false, ipAddress, userAgent);
             throw new BusinessRuleException("La cuenta de usuario se encuentra suspendida");
         }
 
         if (!passwordEncoder.matches(request.getPassword(), user.getPasswordHash())) {
+            loginAuditService.registrarConexion(user, username, false, ipAddress, userAgent);
             throw new BusinessRuleException("Credenciales no válidas");
         }
+
+        loginAuditService.registrarConexion(user, username, true, ipAddress, userAgent);
 
         String token = jwtTokenProvider.generateToken(user);
 

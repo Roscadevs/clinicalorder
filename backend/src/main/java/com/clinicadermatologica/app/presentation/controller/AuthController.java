@@ -3,6 +3,7 @@ package com.clinicadermatologica.app.presentation.controller;
 import com.clinicadermatologica.app.application.service.AuthService; // Servicio de autenticación
 import com.clinicadermatologica.app.domain.model.User; // Entidad User
 import com.clinicadermatologica.app.presentation.dto.*; // DTOs
+import jakarta.servlet.http.HttpServletRequest; // Captura metadatos de red del cliente
 import jakarta.validation.Valid; // Dispara validación de DTOs
 import lombok.RequiredArgsConstructor; // Inyección por constructor
 import org.springframework.http.HttpStatus; // Códigos HTTP
@@ -22,10 +23,26 @@ public class AuthController {
 
     /**
      * Endpoint público para iniciar sesión y obtener token JWT.
+     * Captura la dirección IP y el User-Agent para el registro de auditoría de conexiones.
      */
     @PostMapping("/login") // Mapea HTTP POST /api/v1/auth/login
-    public ResponseEntity<AuthResponseDTO> login(@Valid @RequestBody AuthRequestDTO request) {
-        return ResponseEntity.ok(authService.login(request)); // Retorna HTTP 200 con el token
+    public ResponseEntity<AuthResponseDTO> login(
+            @Valid @RequestBody AuthRequestDTO request,
+            HttpServletRequest httpRequest) {
+        String ipAddress = extractClientIp(httpRequest);
+        String userAgent = httpRequest != null ? httpRequest.getHeader("User-Agent") : null;
+        return ResponseEntity.ok(authService.login(request, ipAddress, userAgent)); // Retorna HTTP 200 con el token
+    }
+
+    private String extractClientIp(HttpServletRequest request) {
+        if (request == null) {
+            return null;
+        }
+        String xForwardedFor = request.getHeader("X-Forwarded-For");
+        if (xForwardedFor != null && !xForwardedFor.isBlank()) {
+            return xForwardedFor.split(",")[0].trim();
+        }
+        return request.getRemoteAddr();
     }
 
     /**

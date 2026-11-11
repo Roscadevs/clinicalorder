@@ -37,6 +37,7 @@ public class AuthServiceTest {
     @Mock private PasswordEncoder passwordEncoder;
     @Mock private JwtTokenProvider jwtTokenProvider;
     @Mock private EmailNotificationService emailService;
+    @Mock private com.clinicadermatologica.app.application.service.LoginAuditService loginAuditService;
 
     @InjectMocks
     private AuthService authService;
@@ -88,6 +89,68 @@ public class AuthServiceTest {
         when(passwordEncoder.matches("ClaveEquivocada", "$2a$12$hashedPassword")).thenReturn(false);
 
         assertThrows(BusinessRuleException.class, () -> authService.login(request));
+    }
+
+    @Test
+    @DisplayName("Debe registrar auditoría de conexión exitosa con IP y User-Agent")
+    void testLogin_Success_WithNetworkMetadata_RegistersAudit() {
+        AuthRequestDTO request = AuthRequestDTO.builder()
+                .username("dra.valeria")
+                .password("Password123!")
+                .build();
+
+        when(userRepository.findByUsername("dra.valeria")).thenReturn(Optional.of(mockUser));
+        when(passwordEncoder.matches("Password123!", "$2a$12$hashedPassword")).thenReturn(true);
+        when(jwtTokenProvider.generateToken(mockUser)).thenReturn("jwt.token.mock");
+
+        AuthResponseDTO response = authService.login(request, "192.168.1.100", "Mozilla/5.0 TestBrowser");
+
+        assertNotNull(response);
+        verify(loginAuditService, times(1)).registrarConexion(mockUser, "dra.valeria", true, "192.168.1.100", "Mozilla/5.0 TestBrowser");
+    }
+
+    @Test
+    @DisplayName("Debe registrar auditoría de intento fallido cuando la contraseña no coincide")
+    void testLogin_FailedPassword_WithNetworkMetadata_RegistersFailedAudit() {
+        AuthRequestDTO request = AuthRequestDTO.builder()
+                .username("dra.valeria")
+                .password("ClaveInvalida")
+                .build();
+
+        when(userRepository.findByUsername("dra.valeria")).thenReturn(Optional.of(mockUser));
+        when(passwordEncoder.matches("ClaveInvalida", "$2a$12$hashedPassword")).thenReturn(false);
+
+        assertThrows(BusinessRuleException.class, () -> authService.login(request, "10.0.0.5", "Curl/7.68.0"));
+        verify(loginAuditService, times(1)).registrarConexion(mockUser, "dra.valeria", false, "10.0.0.5", "Curl/7.68.0");
+    }
+
+    @Test
+    @DisplayName("Debe registrar auditoría de intento fallido para un usuario inexistente con user=null")
+    void testLogin_UserNotFound_RegistersFailedAuditWithNullUser() {
+        AuthRequestDTO request = AuthRequestDTO.builder()
+                .username("fantasma")
+                .password("Password123!")
+                .build();
+
+        when(userRepository.findByUsername("fantasma")).thenReturn(Optional.empty());
+
+        assertThrows(BusinessRuleException.class, () -> authService.login(request, "200.5.10.1", "Chrome/120"));
+        verify(loginAuditService, times(1)).registrarConexion(null, "fantasma", false, "200.5.10.1", "Chrome/120");
+    }
+
+    @Test
+    @DisplayName("Debe registrar auditoría de intento fallido para una cuenta inactiva")
+    void testLogin_InactiveAccount_RegistersFailedAudit() {
+        mockUser.setActive(false);
+        AuthRequestDTO request = AuthRequestDTO.builder()
+                .username("dra.valeria")
+                .password("Password123!")
+                .build();
+
+        when(userRepository.findByUsername("dra.valeria")).thenReturn(Optional.of(mockUser));
+
+        assertThrows(BusinessRuleException.class, () -> authService.login(request, "10.0.0.1", "PostmanRuntime/7.29.0"));
+        verify(loginAuditService, times(1)).registrarConexion(mockUser, "dra.valeria", false, "10.0.0.1", "PostmanRuntime/7.29.0");
     }
 
     @Test
