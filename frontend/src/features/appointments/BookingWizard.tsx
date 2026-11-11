@@ -51,6 +51,25 @@ const formatCountdown = (ms: number) => {
   return `${String(Math.floor(total / 60)).padStart(2, '0')}:${String(total % 60).padStart(2, '0')}`;
 };
 
+const HoldCountdown: React.FC<{ deadline: number }> = React.memo(({ deadline }) => {
+  const [now, setNow] = useState(Date.now());
+  useEffect(() => {
+    const t = setInterval(() => setNow(Date.now()), 1000);
+    return () => clearInterval(t);
+  }, []);
+  const remainingMs = deadline - now;
+  return <span className="font-display text-lg font-bold tabular-nums">{formatCountdown(remainingMs)}</span>;
+});
+
+const ResetCountdown: React.FC<{ resetIn: number }> = React.memo(({ resetIn }) => {
+  const [current, setCurrent] = useState(resetIn);
+  useEffect(() => {
+    const t = setInterval(() => setCurrent((s) => s - 1), 1000);
+    return () => clearInterval(t);
+  }, []);
+  return <strong className="text-sand-900">{Math.max(0, current)} s</strong>;
+});
+
 /**
  * Caso de uso "Reservar Turno" (actor: staff).
  * 1. Paciente (E-1: alta)  2. Servicio  3. Fecha y hora (bloqueo 10 min)
@@ -82,10 +101,9 @@ export const BookingWizard: React.FC = () => {
 
   // Bloqueo temporal y resultado
   const [hold, setHold] = useState<Hold | null>(null);
-  const [now, setNow] = useState(Date.now());
   const [outcome, setOutcome] = useState<Outcome | null>(null);
   const [errorMsg, setErrorMsg] = useState<string | null>(null);
-  const [resetIn, setResetIn] = useState(EXPIRED_RESET_SECONDS);
+  const [holdExpired, setHoldExpired] = useState(false);
   const [receiptOpen, setReceiptOpen] = useState(false);
   const [reminderOpen, setReminderOpen] = useState(false);
 
@@ -100,19 +118,24 @@ export const BookingWizard: React.FC = () => {
   );
   const selectedSlot = useMemo(() => slots.find((s) => s.startTime === slotStart) ?? null, [slots, slotStart]);
 
-  const remainingMs = hold ? hold.deadline - now : 0;
-  const holdExpired = !!hold && !outcome && remainingMs <= 0;
   const currentKey = patient && serviceId && slotStart ? `${patient.id}|${serviceId}|${slotStart}` : null;
 
   useEffect(() => {
     servicesApi.getActiveServices().then(setServices).catch(console.error);
   }, []);
 
-  // Reloj del contador (sólo mientras hay un bloqueo sin resolver)
   useEffect(() => {
-    if (!hold || outcome) return;
-    const t = setInterval(() => setNow(Date.now()), 1000);
-    return () => clearInterval(t);
+    if (!hold || outcome) {
+      setHoldExpired(false);
+      return;
+    }
+    const remainingMs = hold.deadline - Date.now();
+    if (remainingMs <= 0) {
+      setHoldExpired(true);
+    } else {
+      const t = setTimeout(() => setHoldExpired(true), remainingMs);
+      return () => clearTimeout(t);
+    }
   }, [hold, outcome]);
 
   // Disponibilidad por fecha y servicio. Se descartan respuestas viejas para que,
@@ -174,9 +197,9 @@ export const BookingWizard: React.FC = () => {
     setOutcome(null);
     setErrorMsg(null);
     setDate(todayInAR());
-    setResetIn(EXPIRED_RESET_SECONDS);
     setDirection(-1);
     setStep(STEP.PATIENT);
+    setHoldExpired(false);
   }, []);
 
   // Bloqueo vencido: se informa y la reserva se reinicia (el horario queda liberado)
@@ -187,14 +210,11 @@ export const BookingWizard: React.FC = () => {
 
   useEffect(() => {
     if (!holdExpired) return;
-    setResetIn(EXPIRED_RESET_SECONDS);
-    const t = setInterval(() => setResetIn((s) => s - 1), 1000);
-    return () => clearInterval(t);
-  }, [holdExpired]);
-
-  useEffect(() => {
-    if (holdExpired && resetIn <= 0) restartAfterExpiry();
-  }, [holdExpired, resetIn, restartAfterExpiry]);
+    const t = setTimeout(() => {
+      restartAfterExpiry();
+    }, EXPIRED_RESET_SECONDS * 1000);
+    return () => clearTimeout(t);
+  }, [holdExpired, restartAfterExpiry]);
 
   // Liberación del bloqueo al abandonar: al salir de la vista (desmontaje) y, como
   // mejor esfuerzo, al cerrar/recargar la pestaña. Si el navegador se cierra de golpe
@@ -243,7 +263,7 @@ export const BookingWizard: React.FC = () => {
       });
       const deadline = data.holdExpiresAt ? new Date(data.holdExpiresAt).getTime() : Date.now() + HOLD_MS;
       setHold({ data, key: currentKey, deadline, isToday: date === todayInAR() });
-      setNow(Date.now());
+      setHoldExpired(false);
       goTo(STEP.REVIEW);
     } catch (err: any) {
       setSlotStart(null);
@@ -385,7 +405,7 @@ export const BookingWizard: React.FC = () => {
               <Timer className="w-4 h-4 animate-pulse" />
               Horario bloqueado para esta reserva
             </div>
-            <span className="font-display text-lg font-bold tabular-nums">{formatCountdown(remainingMs)}</span>
+            <HoldCountdown deadline={hold.deadline} />
           </div>
         )}
 
@@ -713,7 +733,7 @@ export const BookingWizard: React.FC = () => {
       >
         <p className="text-sm text-sand-600">
           Pasaron los 10 minutos para completar la operación, así que el horario fue liberado y puede
-          reservarlo otra persona. La reserva se reinicia en <strong className="text-sand-900">{Math.max(0, resetIn)} s</strong>.
+          reservarlo otra persona. La reserva se reinicia en <ResetCountdown resetIn={EXPIRED_RESET_SECONDS} />.
         </p>
       </Modal>
 
