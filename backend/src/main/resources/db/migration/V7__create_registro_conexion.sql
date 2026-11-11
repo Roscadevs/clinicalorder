@@ -1,5 +1,5 @@
 -- =====================================================================================
--- MIGRACION FLYWAY V5: Registro y Auditoría de Conexiones de Usuarios (Login Audit)
+-- MIGRACION FLYWAY V7: Registro y Auditoría de Conexiones de Usuarios (Login Audit)
 -- Base de datos: PostgreSQL 15+ (Supabase / contenedor local)
 -- =====================================================================================
 
